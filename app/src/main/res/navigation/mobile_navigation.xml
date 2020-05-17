@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.apptea.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_frases"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -32,12 +32,18 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.apptea.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_habilidades"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.apptea.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_juegos"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_other"
+        android:name="com.example.apptea.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_juegos"
+        tools:layout="@layout/fragment_nueva_opcion" />
 </navigation>

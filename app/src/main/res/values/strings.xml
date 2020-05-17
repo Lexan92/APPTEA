@@ -7,11 +7,14 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+--Nombre de Menus
 
-    <string name="menu_juegos">juegos</string>
-    <string name="menu_frases">frases</string>
-    <string name="menu_vocabulario">vocabulario</string>
-    <string name="menu_habilidades">habilidades</string>
+    <string name="menu_inicio">Inicio</string>
+
+    <string name="menu_gestion_pictograma">Gestión de Pictogramas</string>
+    <string name="menu_registro_perfil">Registro de Perfiles</string>
+    <string name="menu_gestion_habilidad">Gestión de Habilidades Cotidianas</string>
+    <string name="menu_gestion_juego">Gestión de Juegos Interactivos</string>
 
     <string name="home_second">Home Second</string>
 </resources>

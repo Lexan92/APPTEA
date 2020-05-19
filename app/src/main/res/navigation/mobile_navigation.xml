@@ -8,36 +8,34 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.apptea.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_inicio"
         tools:layout="@layout/fragment_home">
 
-        <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.example.apptea.ui.home.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
-        <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
 
-        <argument
-            android:name="myArg"
-            app:argType="string" />
     </fragment>
 
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.apptea.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.apptea.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_gestion_pictograma"
+        android:name="com.example.apptea.ui.home.HomeFragment"
+        android:label="@string/menu_gestion_pictograma"
+        tools:layout="@layout/fragment_gestion_pictograma" />
+
+    <fragment
+        android:id="@+id/nav_registro_perfil"
+        android:name="com.example.apptea.ui.home.HomeFragment"
+        android:label="@string/menu_registro_perfil"
+        tools:layout="@layout/fragment_registro_perfil" />
+
+    <fragment
+        android:id="@+id/nav_gestion_habilidad"
+        android:name="com.example.apptea.ui.home.HomeFragment"
+        android:label="@string/menu_gestion_habilidad"
+        tools:layout="@layout/fragment_gestion_habilidad" />
+
+    <fragment
+        android:id="@+id/nav_gestion_juego"
+        android:name="com.example.apptea.ui.home.HomeFragment"
+        android:label="@string/menu_gestion_juego"
+        tools:layout="@layout/fragment_gestion_juego" />
 </navigation>

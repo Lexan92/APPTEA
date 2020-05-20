@@ -25,6 +25,7 @@ public class Usuario {
     @NonNull
     private int codigo_verificacion;
 
+//CONSTRUCTOR
     public Usuario(int usuario_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono, @NonNull String direccion, int codigo_verificacion) {
         this.usuario_id = usuario_id;
         this.usuario_nombre = usuario_nombre;
@@ -36,6 +37,7 @@ public class Usuario {
         this.codigo_verificacion = codigo_verificacion;
     }
 
+//GET AND SETTER
     public int getUsuario_id() {
         return usuario_id;
     }

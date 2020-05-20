@@ -18,13 +18,27 @@ public class PersonaTea {
     private Date persona_fecha_nac;
     @NonNull
     private char persona_sexo;
+    @NonNull
+    private String persona_foto;
 
-    public PersonaTea(int persona_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, char persona_sexo) {
+// CONSTRUCTOR
+    public PersonaTea(int persona_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, char persona_sexo, @NonNull String persona_foto) {
         this.persona_id = persona_id;
         this.persona_nombre = persona_nombre;
         this.persona_apellido = persona_apellido;
         this.persona_fecha_nac = persona_fecha_nac;
         this.persona_sexo = persona_sexo;
+        this.persona_foto = persona_foto;
+    }
+
+// GET AND SETTER
+    @NonNull
+    public String getPersona_foto() {
+        return persona_foto;
+    }
+
+    public void setPersona_foto(@NonNull String persona_foto) {
+        this.persona_foto = persona_foto;
     }
 
     public int getPersona_id() {

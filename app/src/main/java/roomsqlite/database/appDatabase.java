@@ -11,6 +11,7 @@ import androidx.room.RoomDatabase;
 import roomsqlite.dao.CatalogoHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
 import roomsqlite.dao.DepartamentoDao;
+import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.MunicipioDao;
 import roomsqlite.dao.PaisDao;
 import roomsqlite.dao.UsuarioDao;
@@ -37,7 +38,7 @@ public abstract class appDatabase extends RoomDatabase {
     //DECLARACION DE DAOS
 
     public abstract CatalogoHabCotidianaDao catalogoHabCotidianaDao();
-
+    public abstract HabilidadCotidianaDao habilidadCotidianaDao();
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
 
     public abstract PaisDao paisDao();

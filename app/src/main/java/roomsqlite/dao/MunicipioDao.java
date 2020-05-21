@@ -9,20 +9,20 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import roomsqlite.entidades.Pais;
+import roomsqlite.entidades.Municipio;
 
 @Dao
-public interface PaisDao {
+public interface MunicipioDao {
 
-    @Query("SELECT * FROM pais")
-    List<Pais> getAllPais();
+    @Query("SELECT * FROM municipio")
+    List<Municipio> getAllMunicipio();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertPais(Pais pais);
+    void insertMunicipio(Municipio municipio);
 
     @Update
-    void updatePais(Pais pais);
+    void updateMunicipio(Municipio municipio);
 
     @Delete
-    void deletePais(Pais pais);
+    void deleteMunicipio(Municipio municipio);
 }

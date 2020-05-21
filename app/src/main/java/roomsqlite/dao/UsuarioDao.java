@@ -9,20 +9,19 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import roomsqlite.entidades.Pais;
+import roomsqlite.entidades.Usuario;
 
 @Dao
-public interface PaisDao {
-
-    @Query("SELECT * FROM pais")
-    List<Pais> getAllPais();
+public interface UsuarioDao {
+    @Query("SELECT * FROM usuario")
+    List<Usuario> getAllUsuario();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertPais(Pais pais);
+    void insertUsuario(Usuario usuario);
 
     @Update
-    void updatePais(Pais pais);
+    void updateUsuario(Usuario usuario);
 
     @Delete
-    void deletePais(Pais pais);
+    void deleteUsuario(Usuario usuario);
 }

@@ -7,6 +7,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import roomsqlite.dao.CategoriaJuegoDAO;
 import roomsqlite.entidades.CatalogoHabCotidianas;
 
 import roomsqlite.config.constantes;
@@ -27,6 +28,7 @@ public abstract class appDatabase extends RoomDatabase {
     private static volatile appDatabase INSTANCE;
 
     //DECLARACION DE DAOS
+    public abstract CategoriaJuegoDAO categoriaJuegoDAO();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     static appDatabase getDatabase(final Context context){

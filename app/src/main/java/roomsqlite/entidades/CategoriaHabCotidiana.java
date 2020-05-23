@@ -2,7 +2,7 @@ package roomsqlite.entidades;
 /*
 * @autor: Oscar Turish
 * 20/05/2020
-* Esta Clase define la entidad Catalogo de Habilidades Cotidianas
+* Esta Clase define la entidad Categoria de Habilidades Cotidianas
 * */
 
 import androidx.annotation.NonNull;
@@ -10,20 +10,20 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName= "cat_habilidad_cotidiana")
-public class CatalogoHabCotidiana {
+public class CategoriaHabCotidiana {
     @PrimaryKey(autoGenerate = true)
     private int cat_hab_cotidiana_id;
 
     @NonNull
     private String cat_hab_cotidiana_nombre;
 
-    private String path;//No va aca se mostrara imagen en la clase habilidad cotidiana
+   // private String path;//No va aca se mostrara imagen en la clase habilidad cotidiana
 
 
-    public CatalogoHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, String path) {
+    public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre/*, String path*/) {
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
-        this.path = path;
+       // this.path = path;
     }
 
     public int getCat_hab_cotidiana_id() {
@@ -43,11 +43,10 @@ public class CatalogoHabCotidiana {
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
     }
 
-    public String getPath() {
+   /* public String getPath() { //Descomentar si al final se utilizara
         return path;
     }
-
     public void setPath(String path) {
         this.path = path;
-    }
+    }*/
 }

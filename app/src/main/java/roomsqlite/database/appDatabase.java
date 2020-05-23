@@ -1,6 +1,5 @@
 package roomsqlite.database;
 
-import android.app.Person;
 import android.content.Context;
 
 import androidx.room.Database;
@@ -8,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
-import roomsqlite.dao.CatalogoHabCotidianaDao;
+import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
 import roomsqlite.dao.DepartamentoDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
@@ -16,8 +15,7 @@ import roomsqlite.dao.MunicipioDao;
 import roomsqlite.dao.PaisDao;
 import roomsqlite.dao.UsuarioDao;
 
-import roomsqlite.entidades.CatalogoHabCotidiana;
-import roomsqlite.entidades.CatalogoHabCotidiana;
+import roomsqlite.entidades.CategoriaHabCotidiana;
 
 
 import roomsqlite.config.constantes;
@@ -31,7 +29,7 @@ import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Usuario;
 
-@Database(entities = {CatalogoHabCotidiana.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
+@Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
         Departamento.class, Municipio.class, Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
@@ -39,7 +37,7 @@ public abstract class appDatabase extends RoomDatabase {
 
     //DECLARACION DE DAOS
 
-    public abstract CatalogoHabCotidianaDao catalogoHabCotidianaDao();
+    public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
     public abstract HabilidadCotidianaDao habilidadCotidianaDao();
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
 

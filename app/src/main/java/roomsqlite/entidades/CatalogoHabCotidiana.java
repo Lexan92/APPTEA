@@ -17,7 +17,7 @@ public class CatalogoHabCotidiana {
     @NonNull
     private String cat_hab_cotidiana_nombre;
 
-    private String path;
+    private String path;//No va aca se mostrara imagen en la clase habilidad cotidiana
 
 
     public CatalogoHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, String path) {

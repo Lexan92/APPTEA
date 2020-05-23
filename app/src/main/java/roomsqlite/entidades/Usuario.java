@@ -3,13 +3,16 @@ package roomsqlite.entidades;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName= "usuario")
+@Entity(tableName= "usuario",
+        foreignKeys = @ForeignKey(entity = Municipio.class, parentColumns = "municipio_id", childColumns = "municipio_id"))
 public class Usuario {
     @PrimaryKey(autoGenerate = true)
     private int usuario_id;
-
+    @NonNull
+    private int municipio_id;
     @NonNull
     private String usuario_nombre;
     @NonNull
@@ -26,8 +29,10 @@ public class Usuario {
     private int codigo_verificacion;
 
 //CONSTRUCTOR
-    public Usuario(int usuario_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono, @NonNull String direccion, int codigo_verificacion) {
+
+    public Usuario(int usuario_id, int municipio_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono, @NonNull String direccion, int codigo_verificacion) {
         this.usuario_id = usuario_id;
+        this.municipio_id = municipio_id;
         this.usuario_nombre = usuario_nombre;
         this.usuario_apellido = usuario_apellido;
         this.contrasenia = contrasenia;
@@ -38,6 +43,15 @@ public class Usuario {
     }
 
 //GET AND SETTER
+
+    public int getMunicipio_id() {
+        return municipio_id;
+    }
+
+    public void setMunicipio_id(int municipio_id) {
+        this.municipio_id = municipio_id;
+    }
+
     public int getUsuario_id() {
         return usuario_id;
     }

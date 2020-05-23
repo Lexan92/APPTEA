@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Nombre del Autor
+  ~ 18/05/2020
+  ~ Esta actividad hace el llamado a la lista de roles
+  ~ */
+  ~
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
+
+            <!-- Media -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_height_cat_juego"
+                app:srcCompat="@drawable/ic_spellcheck_black_24dp"
+                android:scaleType="fitCenter"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:id="@+id/nombre_categoria_juego"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="Categoria Juego"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

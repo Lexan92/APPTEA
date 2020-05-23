@@ -8,7 +8,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import roomsqlite.dao.CategoriaJuegoDAO;
-import roomsqlite.entidades.CatalogoHabCotidianas;
+import roomsqlite.entidades.CatalogoHabCotidiana;
+
 
 import roomsqlite.config.constantes;
 import roomsqlite.entidades.CatalogoPictograma;
@@ -21,7 +22,7 @@ import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Usuario;
 
-@Database(entities = {CatalogoHabCotidianas.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
+@Database(entities = {CatalogoHabCotidiana.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
         Departamento.class, Municipio.class, Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
@@ -31,7 +32,7 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
-    static appDatabase getDatabase(final Context context){
+    public static appDatabase getDatabase(final Context context){
         if(INSTANCE==null){
             synchronized (appDatabase.class){
                 if(INSTANCE == null){

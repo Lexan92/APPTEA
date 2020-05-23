@@ -16,19 +16,20 @@ public class CategoriaJuego {
     public static final String TABLE_NAME = "categoria_juego";
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(index = true,name = "categoria_juego_id")
-    int categoriaJuegoId;
+
+    private int categoriaJuegoId;
     @ColumnInfo(name = "categoria_juego_nombre")
-    String categoriaJuegoNombre;
+
+    private String categoriaJuegoNombre;
 
 
-    public CategoriaJuego(int categoriaJuegoId, String categoriaJuegoNombre) {
+    public CategoriaJuego(int categoriaJuegoId,  String categoriaJuegoNombre) {
         this.categoriaJuegoId = categoriaJuegoId;
         this.categoriaJuegoNombre = categoriaJuegoNombre;
     }
 
-    public int getCategoriaJuegoId() {
+    public  int getCategoriaJuegoId() {
         return categoriaJuegoId;
     }
 
@@ -36,11 +37,11 @@ public class CategoriaJuego {
         this.categoriaJuegoId = categoriaJuegoId;
     }
 
-    public String getCategoriaJuegoNombre() {
+    public  String getCategoriaJuegoNombre() {
         return categoriaJuegoNombre;
     }
 
-    public void setCategoriaJuegoNombre(String categoriaJuegoNombre) {
+    public void setCategoriaJuegoNombre(  String categoriaJuegoNombre) {
         this.categoriaJuegoNombre = categoriaJuegoNombre;
     }
 }

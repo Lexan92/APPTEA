@@ -1,5 +1,6 @@
 package roomsqlite.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,14 +20,14 @@ import roomsqlite.entidades.CategoriaJuego;
 public interface CategoriaJuegoDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertCategoriaJuego(CategoriaJuego categoriaJuego);
+    void insertCategoriaJuego(CategoriaJuego categoriaJuego);
 
     @Update
-    public void updateCategoriaJuego(CategoriaJuego categoriaJuego);
+    void updateCategoriaJuego(CategoriaJuego categoriaJuego);
 
     @Delete
-    public void deleteCategoriaJuego(CategoriaJuego categoriaJuego);
+    void deleteCategoriaJuego(CategoriaJuego categoriaJuego);
 
     @Query("SELECT * FROM " + CategoriaJuego.TABLE_NAME)
-    List<CategoriaJuego> getAllCategoriasJuegos();
+    LiveData<List<CategoriaJuego>> getAllCategoriasJuegos();
 }

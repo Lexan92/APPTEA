@@ -12,6 +12,9 @@
         tools:layout="@layout/fragment_home">
 
 
+        <action
+            android:id="@+id/action_nav_home_to_nav_gestion_habilidad"
+            app:destination="@id/nav_gestion_habilidad" />
     </fragment>
 
 
@@ -31,7 +34,11 @@
         android:id="@+id/nav_gestion_habilidad"
         android:name="com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaFragment"
         android:label="@string/menu_gestion_habilidad"
-        tools:layout="@layout/fragment_gestion_habilidad" />
+        tools:layout="@layout/fragment_gestion_habilidad" >
+        <action
+            android:id="@+id/action_nav_gestion_habilidad_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gestion_juego"

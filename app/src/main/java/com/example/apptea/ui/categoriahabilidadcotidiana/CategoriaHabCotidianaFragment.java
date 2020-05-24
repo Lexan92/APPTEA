@@ -13,6 +13,8 @@ package com.example.apptea.ui.categoriahabilidadcotidiana;
 import android.app.Application;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,22 +38,31 @@ public class CategoriaHabCotidianaFragment extends Fragment {
 
     private CategoriaHabCotidianaRepository categoriaHabCotidianaRepository;
     private LiveData<List<CategoriaHabCotidiana>> categoriaHabCotidianaAll;
+    RecyclerView recyclerView;
 
     public CategoriaHabCotidianaFragment(){
-
+        //requiere un constructor vacio
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gestion_habilidad, container, false);
+        View vista = inflater.inflate(R.layout.fragment_gestion_habilidad, container, false);
 
-
-
-
+        recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_cat_hab_cotidiana);
+        final CategoriaHabCotidianaAdapter adapter = new CategoriaHabCotidianaAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return vista;
     }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
 /*
     public CategoriaHabCotidianaFragment(Application application) {
 

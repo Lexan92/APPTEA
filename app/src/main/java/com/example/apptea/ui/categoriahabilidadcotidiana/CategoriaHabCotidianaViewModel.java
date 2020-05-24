@@ -42,16 +42,6 @@ public class CategoriaHabCotidianaViewModel extends AndroidViewModel {
     private CategoriaHabCotidianaRepository categoriaHabCotidianaRepository;
     private LiveData<List<CategoriaHabCotidiana>> categoriaHabCotidianaAll;
 
-    protected void onCreate(Bundle savedInstanceState, RecyclerView container) {
-
-
-        RecyclerView recyclerView = container.findViewById(R.id.recyclerview_cat_hab_cotidiana);
-        final CategoriaHabCotidianaAdapter adapter = new CategoriaHabCotidianaAdapter(getApplication().getApplicationContext());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplication().getApplicationContext()));
-
-    }
-
     public CategoriaHabCotidianaViewModel(Application application){
         super(application);
         categoriaHabCotidianaRepository = new CategoriaHabCotidianaRepository(application);

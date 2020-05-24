@@ -25,6 +25,10 @@ public interface CategoriaHabCotidianaDao {
     @Query("SELECT * FROM cat_habilidad_cotidiana ORDER BY cat_hab_cotidiana_nombre ASC")
     LiveData<List<CategoriaHabCotidiana>> getCatalogoHabCotidiana();
 
+    @Query("DELETE FROM cat_habilidad_cotidiana")
+    public void deleteAll();
+
+
     //metodo donde se inserta una categoria de habilidades cotidianas
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insert(CategoriaHabCotidiana cathabilidades);

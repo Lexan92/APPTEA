@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +41,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
     private CategoriaHabCotidianaRepository categoriaHabCotidianaRepository;
     private LiveData<List<CategoriaHabCotidiana>> categoriaHabCotidianaAll;
     RecyclerView recyclerView;
+    private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
 
     public CategoriaHabCotidianaFragment(){
         //requiere un constructor vacio
@@ -54,7 +57,20 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         final CategoriaHabCotidianaAdapter adapter = new CategoriaHabCotidianaAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        categoriaHabCotidianaViewModel = new ViewModelProvider(getActivity()).get(CategoriaHabCotidianaViewModel.class);
+        categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().observe(getActivity(), new Observer<List<CategoriaHabCotidiana>>() {
+            @Override
+            public void onChanged(@Nullable final List<CategoriaHabCotidiana> categoriaHabCotidianaList) {
+                // Update the cached copy of the words in the adapter.
+                adapter.setWords(categoriaHabCotidianaList);
+            }
+        });
+
         return vista;
+
+
+
     }
 
 
@@ -63,7 +79,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
-/*
+
     public CategoriaHabCotidianaFragment(Application application) {
 
         categoriaHabCotidianaRepository = new CategoriaHabCotidianaRepository(application);
@@ -76,7 +92,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
 
     public void insert(CategoriaHabCotidiana categoriaHabCotidiana){
         categoriaHabCotidianaRepository.insert(categoriaHabCotidiana);
-    }*/
+    }
 
 
 }

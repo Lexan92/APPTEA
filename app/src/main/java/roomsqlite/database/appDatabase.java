@@ -13,6 +13,7 @@ import roomsqlite.dao.DepartamentoDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.MunicipioDao;
 import roomsqlite.dao.PaisDao;
+import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.UsuarioDao;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
@@ -45,7 +46,7 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract DepartamentoDao departamentoDao();
     public abstract MunicipioDao municipioDao();
     public abstract UsuarioDao usuarioDao();
-
+    public  abstract PersonaTeaDao personaTeaDao();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     public static appDatabase getDatabase(final Context context){

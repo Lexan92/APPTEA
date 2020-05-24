@@ -2,10 +2,15 @@ package roomsqlite.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
@@ -35,7 +40,9 @@ import roomsqlite.entidades.Usuario;
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
-
+    private static final int NUMBER_OF_THREADS = 4;
+    static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     //DECLARACION DE DAOS
 
     public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
@@ -55,6 +62,7 @@ public abstract class appDatabase extends RoomDatabase {
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     appDatabase.class,constantes.getBdName())
+                            .addCallback(sRoomDatabaseCallback)
                     .build();
                 }
             }
@@ -62,4 +70,29 @@ public abstract class appDatabase extends RoomDatabase {
 
         return INSTANCE;
     }
+
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+
+            // If you want to keep data through app restarts,
+            // comment out the following block
+            databaseWriteExecutor.execute(() -> {
+
+                    // Populate the database in the background.
+                    // If you want to start with more words, just add them.
+                    CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
+                    dao.deleteAll();
+                    CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "categoria 1");
+                    dao.insert(categoriaHabCotidiana);
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(2, "categoria 2");
+                    dao.insert(categoriaHabCotidiana);
+
+
+            });
+        }
+    };
+
+
 }

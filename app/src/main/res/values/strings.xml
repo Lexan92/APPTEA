@@ -13,7 +13,7 @@
 
     <string name="menu_gestion_pictograma">Gestión de Pictogramas</string>
     <string name="menu_registro_perfil">Registro de Perfiles</string>
-    <string name="menu_gestion_habilidad">Gestión de Habilidades Cotidianas</string>
+    <string name="menu_gestion_habilidad">Categorias de Habilidades Cotidianas</string>
     <string name="menu_gestion_juego">Gestión de Juegos Interactivos</string>
     <string name="menu_persona_tea">Menú Persona TEA</string>
 
@@ -29,4 +29,11 @@
     <string name="textarea">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas sed tempus urna et. Nisi lacus sed viverra tellus. Vulputate sapien nec sagittis aliquam malesuada. Montes nascetur ridiculus mus mauris vitae ultricies. Neque vitae tempus quam pellentesque nec nam aliquam sem et. Amet massa vitae tortor condimentum lacinia quis. Elit duis tristique sollicitudin nibh sit amet commodo. Non pulvinar neque laoreet suspendisse interdum. In hac habitasse platea dictumst vestibulum. Diam quam nulla porttitor massa id neque. Ultricies lacus sed turpis tincidunt id aliquet risus. Varius sit amet mattis vulputate enim. Diam vulputate ut pharetra sit amet aliquam id diam.
 
 Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar elementum integer. </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">fragmento de categoria hab cotidiana</string>
+
+
+
+
 </resources>

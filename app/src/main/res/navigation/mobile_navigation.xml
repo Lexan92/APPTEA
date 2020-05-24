@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/nav_gestion_habilidad"
-        android:name="com.example.apptea.ui.home.HomeFragment"
+        android:name="com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaFragment"
         android:label="@string/menu_gestion_habilidad"
         tools:layout="@layout/fragment_gestion_habilidad" />
 

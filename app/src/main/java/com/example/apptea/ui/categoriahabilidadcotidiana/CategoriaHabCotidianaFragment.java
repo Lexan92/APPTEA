@@ -38,6 +38,7 @@ import roomsqlite.repositorios.CategoriaHabCotidianaRepository;
  */
 public class CategoriaHabCotidianaFragment extends Fragment {
 
+
     private CategoriaHabCotidianaRepository categoriaHabCotidianaRepository;
     private LiveData<List<CategoriaHabCotidiana>> categoriaHabCotidianaAll;
     RecyclerView recyclerView;
@@ -66,11 +67,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 adapter.setWords(categoriaHabCotidianaList);
             }
         });
-
         return vista;
-
-
-
     }
 
 
@@ -79,7 +76,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
-
+/*
     public CategoriaHabCotidianaFragment(Application application) {
 
         categoriaHabCotidianaRepository = new CategoriaHabCotidianaRepository(application);
@@ -92,7 +89,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
 
     public void insert(CategoriaHabCotidiana categoriaHabCotidiana){
         categoriaHabCotidianaRepository.insert(categoriaHabCotidiana);
-    }
+    }*/
 
 
 }

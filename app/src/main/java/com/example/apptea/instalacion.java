@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.apptea.ui.usuario.registro_usuario;
+
 public class instalacion extends AppCompatActivity {
 
     @Override
@@ -28,5 +30,11 @@ public class instalacion extends AppCompatActivity {
 
         Intent acceso = new Intent(this, MainActivity.class);
         startActivity(acceso);
+    }
+
+    public void siguiente(View view){
+
+        Intent siguiente = new Intent(this, registro_usuario.class);
+        startActivity(siguiente);
     }
 }

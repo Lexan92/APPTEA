@@ -24,6 +24,9 @@
     <string name="opcion_menu_tea_vocabulario">Vocabulario</string>
 
     --botones instalacion
+    <string name="txt1">Bienvenido a</string>
+    <string name="txt2">TEAyudo jugando</string>
+    <string name="txt3">Terminos y Condiciones</string>
     <string name="button1">Siguiente</string>
     <string name="button2">Acceso directo</string>
     <string name="textarea">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas sed tempus urna et. Nisi lacus sed viverra tellus. Vulputate sapien nec sagittis aliquam malesuada. Montes nascetur ridiculus mus mauris vitae ultricies. Neque vitae tempus quam pellentesque nec nam aliquam sem et. Amet massa vitae tortor condimentum lacinia quis. Elit duis tristique sollicitudin nibh sit amet commodo. Non pulvinar neque laoreet suspendisse interdum. In hac habitasse platea dictumst vestibulum. Diam quam nulla porttitor massa id neque. Ultricies lacus sed turpis tincidunt id aliquet risus. Varius sit amet mattis vulputate enim. Diam vulputate ut pharetra sit amet aliquam id diam.
@@ -33,7 +36,17 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">fragmento de categoria hab cotidiana</string>
 
-
-
-
+  --registro usuario
+    <string name="datos">Datos Generales</string>
+    <string name="nombreUsuario">Nombre</string>
+    <string name="apellidoUsuario">Apellido</string>
+    <string name="correoUsuario">Correo</string>
+    <string name="telefonoUsuario">Telefono</string>
+    <string name="spinnerPais">Pais</string>
+    <string name="spinnerDepto">Departamento</string>
+    <string name="spinnerMunicipio">Municipio</string>
+    <string name="direccionUsuario">Direccion</string>
+    <string name="contraUsuario">Contraseña de desbloqueo</string>
+    <string name="siguienteUsuario">Siguiente</string>
+    <string name="regresarUsuario">Regresar</string>
 </resources>

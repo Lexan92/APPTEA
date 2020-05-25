@@ -13,7 +13,7 @@ import roomsqlite.entidades.Municipio;
 
 @Dao
 public interface MunicipioDao {
-
+/*
     @Query("SELECT * FROM municipio")
     List<Municipio> getAllMunicipio();
 
@@ -24,5 +24,5 @@ public interface MunicipioDao {
     void updateMunicipio(Municipio municipio);
 
     @Delete
-    void deleteMunicipio(Municipio municipio);
+    void deleteMunicipio(Municipio municipio);*/
 }

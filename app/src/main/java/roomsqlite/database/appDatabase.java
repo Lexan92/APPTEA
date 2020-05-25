@@ -36,7 +36,7 @@ import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
-        Departamento.class, Municipio.class, Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
+        Departamento.class,/* Municipio.class,*/ Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;

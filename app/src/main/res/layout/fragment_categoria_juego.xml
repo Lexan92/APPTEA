@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.apptea.ui.categoriajuego.CategoriaJuegoAdapter">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_categoria_juego"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingEnd="@dimen/card_side_margin"
+        android:paddingStart="@dimen/card_side_margin"
+        android:paddingTop="@dimen/header_margin"
+        tools:listitem="@layout/fragment_item_categoria_juego"/>
+
+
+</FrameLayout>
+

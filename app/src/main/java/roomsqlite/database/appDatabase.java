@@ -3,10 +3,15 @@ package roomsqlite.database;
 import android.app.Person;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import roomsqlite.dao.CatalogoHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
@@ -36,6 +41,9 @@ import roomsqlite.entidades.Usuario;
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
+    private static final int NUMBER_OF_THREADS = 4;
+    static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     //DECLARACION DE DAOS
 
@@ -56,6 +64,7 @@ public abstract class appDatabase extends RoomDatabase {
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     appDatabase.class,constantes.getBdName())
+                            .addCallback(categoriaJuegoCallback)
                     .build();
                 }
             }
@@ -63,4 +72,35 @@ public abstract class appDatabase extends RoomDatabase {
 
         return INSTANCE;
     }
+
+
+    private static RoomDatabase.Callback categoriaJuegoCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+
+            // If you want to keep data through app restarts,
+            // comment out the following block
+            databaseWriteExecutor.execute(() -> {
+                // Populate the database in the background.
+                // If you want to start with more words, just add them.
+                //WordDao dao = INSTANCE.wordDao();
+                CategoriaJuegoDAO dao = INSTANCE.categoriaJuegoDAO();
+
+                CategoriaJuego cate= new CategoriaJuego(1,"Juego Mental");
+                dao.insertCategoriaJuego(cate);
+                CategoriaJuego cate1= new CategoriaJuego(2,"Juego Memoria");
+                dao.insertCategoriaJuego(cate1);
+                CategoriaJuego cate2= new CategoriaJuego(3,"Juego Vocales");
+                dao.insertCategoriaJuego(cate2);
+                CategoriaJuego cate3= new CategoriaJuego(4,"Juego Consonantes");
+                dao.insertCategoriaJuego(cate3);
+                CategoriaJuego cate4= new CategoriaJuego(5,"Juego Repeticiones");
+                dao.insertCategoriaJuego(cate4);
+                CategoriaJuego cate5= new CategoriaJuego(6,"Juego Colores");
+                dao.insertCategoriaJuego(cate5);
+
+            });
+        }
+    };
 }

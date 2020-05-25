@@ -32,7 +32,7 @@ public class CategoriaViewModel extends AndroidViewModel {
         allCategoriasJuegos = categoriaJuegoRepository.getAllCategoriaJuego();
     }
 
-    LiveData<List<CategoriaJuego>> getAllCategoriasJuegos(){
+    public LiveData<List<CategoriaJuego>> getAllCategoriasJuegos(){
         return allCategoriasJuegos;
     }
 

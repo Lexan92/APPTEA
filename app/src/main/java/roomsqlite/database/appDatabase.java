@@ -86,6 +86,8 @@ public abstract class appDatabase extends RoomDatabase {
                     // Populate the database in the background.
                     // If you want to start with more words, just add them.
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
+                    CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
+
                     dao.deleteAll();
                     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "categoria 1");
                     dao.insert(categoriaHabCotidiana);
@@ -134,40 +136,28 @@ public abstract class appDatabase extends RoomDatabase {
 
 
 
-            });
-        }
-    };
-
-
-
-
-    private static RoomDatabase.Callback categoriaJuegoCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-            super.onOpen(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
-                //WordDao dao = INSTANCE.wordDao();
-                CategoriaJuegoDAO dao = INSTANCE.categoriaJuegoDAO();
-
                 CategoriaJuego cate= new CategoriaJuego(1,"Juego Mental");
-                dao.insertCategoriaJuego(cate);
+                categoriaJuegoDAO.insertCategoriaJuego(cate);
                 CategoriaJuego cate1= new CategoriaJuego(2,"Juego Memoria");
-                dao.insertCategoriaJuego(cate1);
+                categoriaJuegoDAO.insertCategoriaJuego(cate1);
                 CategoriaJuego cate2= new CategoriaJuego(3,"Juego Vocales");
-                dao.insertCategoriaJuego(cate2);
+                categoriaJuegoDAO.insertCategoriaJuego(cate2);
                 CategoriaJuego cate3= new CategoriaJuego(4,"Juego Consonantes");
-                dao.insertCategoriaJuego(cate3);
+                categoriaJuegoDAO.insertCategoriaJuego(cate3);
                 CategoriaJuego cate4= new CategoriaJuego(5,"Juego Repeticiones");
-                dao.insertCategoriaJuego(cate4);
+                categoriaJuegoDAO.insertCategoriaJuego(cate4);
                 CategoriaJuego cate5= new CategoriaJuego(6,"Juego Colores");
-                dao.insertCategoriaJuego(cate5);
+                categoriaJuegoDAO.insertCategoriaJuego(cate5);
+
+
 
             });
         }
     };
+
+
+
+
+
+    
 }

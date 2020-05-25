@@ -18,6 +18,9 @@ public interface PaisDao {
     @Query("SELECT * FROM pais")
     LiveData<List<Pais>> getAllPais();
 
+    @Query("DELETE FROM pais")
+    public void deletePaisAll();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPais(Pais pais);
 

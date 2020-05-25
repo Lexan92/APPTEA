@@ -17,6 +17,9 @@ public interface DepartamentoDao {
     @Query("SELECT * FROM departamento")
     LiveData<List<Departamento>> getAllDepartamento();
 
+    @Query("DELETE FROM departamento")
+    public void deleteDepartamentoAll();
+
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     void insertDepartamento(Departamento departamento);
 

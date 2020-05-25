@@ -51,7 +51,7 @@ public abstract class appDatabase extends RoomDatabase {
 
     public abstract PaisDao paisDao();
     public abstract DepartamentoDao departamentoDao();
-    public abstract MunicipioDao municipioDao();
+   /* public abstract MunicipioDao municipioDao();*/
     public abstract UsuarioDao usuarioDao();
     public  abstract PersonaTeaDao personaTeaDao();
 
@@ -88,6 +88,47 @@ public abstract class appDatabase extends RoomDatabase {
                     dao.insert(categoriaHabCotidiana);
                     categoriaHabCotidiana = new CategoriaHabCotidiana(2, "categoria 2");
                     dao.insert(categoriaHabCotidiana);
+
+                    PaisDao paisesdao = INSTANCE.paisDao();
+                    paisesdao.deletePaisAll();
+                    Pais pais = new Pais(1,"El Salvador");
+                    paisesdao.insertPais(pais);
+                    pais= new Pais(2,"Guatemala");
+                    paisesdao.insertPais(pais);
+                    pais= new Pais(3,"Honduras");
+                    paisesdao.insertPais(pais);
+
+                    DepartamentoDao deptodao =INSTANCE.departamentoDao();
+                    deptodao.deleteDepartamentoAll();
+                    Departamento departamento = new Departamento(1,1,"San Salvador");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(2,1,"La libertad");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(3,1,"Santa Ana");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(4,1,"Ahuachapan");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(5,1,"Sonsonate");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(6,1,"Cabañas");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(7,1,"Chalatenango");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(8,1,"Cuscatlan");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(9,1,"La Paz");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(10,1,"La Union");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(11,1,"Morazan");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(12,1,"San Miguel");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(13,1,"San Vicente");
+                    deptodao.insertDepartamento(departamento);
+                    departamento = new Departamento(14,1,"Usulutan");
+                    deptodao.insertDepartamento(departamento);
+
 
 
             });

@@ -86,7 +86,7 @@ public abstract class appDatabase extends RoomDatabase {
                     // Populate the database in the background.
                     // If you want to start with more words, just add them.
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
-                    CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
+
 
                     dao.deleteAll();
                     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "categoria 1");
@@ -95,6 +95,10 @@ public abstract class appDatabase extends RoomDatabase {
                     dao.insert(categoriaHabCotidiana);
 
                     PaisDao paisesdao = INSTANCE.paisDao();
+                    DepartamentoDao deptodao =INSTANCE.departamentoDao();
+                    //primero de borran las entidades dependientes
+                    deptodao.deleteDepartamentoAll();
+                    //segundo se borran la entidades independientes
                     paisesdao.deletePaisAll();
                     Pais pais = new Pais(1,"El Salvador");
                     paisesdao.insertPais(pais);
@@ -103,8 +107,8 @@ public abstract class appDatabase extends RoomDatabase {
                     pais= new Pais(3,"Honduras");
                     paisesdao.insertPais(pais);
 
-                    DepartamentoDao deptodao =INSTANCE.departamentoDao();
-                    deptodao.deleteDepartamentoAll();
+
+
                     Departamento departamento = new Departamento(1,1,"San Salvador");
                     deptodao.insertDepartamento(departamento);
                     departamento = new Departamento(2,1,"La libertad");
@@ -135,19 +139,20 @@ public abstract class appDatabase extends RoomDatabase {
                     deptodao.insertDepartamento(departamento);
 
 
-
-                CategoriaJuego cate= new CategoriaJuego(1,"Juego Mental");
-                categoriaJuegoDAO.insertCategoriaJuego(cate);
-                CategoriaJuego cate1= new CategoriaJuego(2,"Juego Memoria");
-                categoriaJuegoDAO.insertCategoriaJuego(cate1);
-                CategoriaJuego cate2= new CategoriaJuego(3,"Juego Vocales");
-                categoriaJuegoDAO.insertCategoriaJuego(cate2);
-                CategoriaJuego cate3= new CategoriaJuego(4,"Juego Consonantes");
-                categoriaJuegoDAO.insertCategoriaJuego(cate3);
-                CategoriaJuego cate4= new CategoriaJuego(5,"Juego Repeticiones");
-                categoriaJuegoDAO.insertCategoriaJuego(cate4);
-                CategoriaJuego cate5= new CategoriaJuego(6,"Juego Colores");
-                categoriaJuegoDAO.insertCategoriaJuego(cate5);
+                    CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
+                    categoriaJuegoDAO.deleteAllCategoriaJuegos();
+                    CategoriaJuego cate= new CategoriaJuego(1,"Juego Mental");
+                    categoriaJuegoDAO.insertCategoriaJuego(cate);
+                    CategoriaJuego cate1= new CategoriaJuego(2,"Juego Memoria");
+                    categoriaJuegoDAO.insertCategoriaJuego(cate1);
+                    CategoriaJuego cate2= new CategoriaJuego(3,"Juego Vocales");
+                    categoriaJuegoDAO.insertCategoriaJuego(cate2);
+                    CategoriaJuego cate3= new CategoriaJuego(4,"Juego Consonantes");
+                    categoriaJuegoDAO.insertCategoriaJuego(cate3);
+                    CategoriaJuego cate4= new CategoriaJuego(5,"Juego Repeticiones");
+                    categoriaJuegoDAO.insertCategoriaJuego(cate4);
+                    CategoriaJuego cate5= new CategoriaJuego(6,"Juego Colores");
+                    categoriaJuegoDAO.insertCategoriaJuego(cate5);
 
 
 
@@ -159,5 +164,5 @@ public abstract class appDatabase extends RoomDatabase {
 
 
 
-    
+
 }

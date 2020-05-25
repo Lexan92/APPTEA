@@ -30,4 +30,7 @@ public interface CategoriaJuegoDAO {
 
     @Query("SELECT * FROM " + CategoriaJuego.TABLE_NAME)
     LiveData<List<CategoriaJuego>> getAllCategoriasJuegos();
+
+    @Query("DELETE FROM "+CategoriaJuego.TABLE_NAME)
+    public void deleteAllCategoriaJuegos();
 }

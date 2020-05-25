@@ -1,5 +1,6 @@
 package roomsqlite.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -14,7 +15,7 @@ import roomsqlite.entidades.Usuario;
 @Dao
 public interface UsuarioDao {
     @Query("SELECT * FROM usuario")
-    List<Usuario> getAllUsuario();
+    LiveData<List<Usuario>> getAllUsuario();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUsuario(Usuario usuario);

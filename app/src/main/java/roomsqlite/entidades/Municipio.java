@@ -5,11 +5,11 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "municipio",
+/*@Entity(tableName = "municipio",
         foreignKeys = @ForeignKey(entity = Departamento.class, parentColumns = "departamento_id", childColumns = "departamento_id"))
-
+*/
 public class Municipio {
-    @PrimaryKey (autoGenerate = true)
+   /* @PrimaryKey (autoGenerate = true)
     private int municipio_id;
     @NonNull
     private int departamento_id;
@@ -49,5 +49,5 @@ public class Municipio {
 
     public void setMunicipio_nombre(@NonNull String municipio_nombre) {
         this.municipio_nombre = municipio_nombre;
-    }
+    }*/
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Oscar Turish
+  ~ 24/05/2020
+  ~ Item para categorias de habilidades cotidianas
+  ~ */
+  ~
+  ~
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+<TextView
+    android:id="@+id/txt_categoria_hab_cotidiana"
+    style="@style/cat_hab_cotidiana"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_orange_light" />
+</LinearLayout>

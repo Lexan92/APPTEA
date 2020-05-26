@@ -6,42 +6,48 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego;
 
+import java.net.SocketOptions;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
 
-public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoViewHolder> {
+public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoViewHolder>  {
 
     private List<CategoriaJuego> categoriasJuego;
-
-  /*  public static class CategoriaViewHolder extends RecyclerView.ViewHolder{
-        public final TextView nombreCategoria;
-
-        public CategoriaViewHolder(View itemView){
-            super(itemView);
-            nombreCategoria = itemView.findViewById(R.id.nombre_categoria_juego);
-        }
-    }*/
     private final LayoutInflater cjInflater;
+    Context miContext;
+
 
 
     
      public CategoriaJuegoAdapter(Context context) {
-       //this.categoriasJuegos = categoriaJuegos;
+        this.miContext = context;
         cjInflater = LayoutInflater.from(context);
+  ;
     }
 
     @Override
     public CategoriaJuegoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View layoutView = cjInflater.inflate(R.layout.fragment_item_categoria_juego,parent,false);
-        //View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_categoria_juego,parent,false);
+
+       layoutView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Toast.makeText(miContext,"prueba click " , Toast.LENGTH_SHORT).show();
+              // DetalleCategoriaJuego detalleCategoriaJuego = new DetalleCategoriaJuego();
+
+           }
+       });
         return new CategoriaJuegoViewHolder(layoutView);
     }
 
@@ -67,4 +73,9 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
             return categoriasJuego.size();
         else return 0;
     }
+
+
+
+
+
 }

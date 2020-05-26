@@ -10,42 +10,34 @@
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-android:orientation="vertical"
-android:layout_width="match_parent"
-android:layout_height="wrap_content">
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardCatHabCotidiana"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:strokeColor="@color/colorPrimaryDark"
-        app:strokeWidth="2dp"
-        >
-
-        <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCatHabCotidiana"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/colorFondo"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="2dp"
             >
-
-            <TextView
-                android:id="@+id/txt_categoria_hab_cotidiana"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?attr/textAppearanceHeadline5"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="25dp"
-                android:textAlignment="center"
-                />
-
-
-        </LinearLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
+                android:layout_height="80dp"
+                android:background="@color/colorFondo"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txt_categoria_hab_cotidiana"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="25dp"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
 

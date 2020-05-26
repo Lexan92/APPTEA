@@ -49,85 +49,76 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nombreUsuario"
+                android:id="@+id/nombreUsuarioLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/nombreUsuario"
-                android:inputType="textPersonName"
+
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nombreUsuario"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/apellidoUsuario"
+                android:id="@+id/apellidoUsuarioLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/apellidoUsuario"
-                android:inputType="textPersonName"
+
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/apellidoUsuario"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/correoUsuario"
+                android:id="@+id/correoUsuarioLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/correoUsuario"
-                android:inputType="textEmailAddress"
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/correoUsuario"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/telefonoUsuario"
+                android:id="@+id/telefonoUsuarioLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/telefonoUsuario"
-                android:inputType="phone"
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="@string/spinnerPais"
-                android:textSize="12sp">
-
-                <AutoCompleteTextView
-                    android:id="@+id/spinnerPais"
+                    android:id="@+id/telefonoUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />
+                    android:inputType="phone"/>
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <!---    <Spinner
@@ -138,25 +129,42 @@
                    android:layout_marginTop="10dp" /> -->
 
 
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/spinnerPais"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinnerPais"
+                style="@style/Widget.AppCompat.Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp" />
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/direccionUsuario"
+                android:id="@+id/direccionUsuarioLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/direccionUsuario"
-                android:inputType="textPersonName"
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/direccionUsuario"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/contraUsuario"
+                android:id="@+id/contraUsuarioLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,12 +172,13 @@
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:hint="@string/contraUsuario"
-                android:inputType="textPassword"
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contraUsuario"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

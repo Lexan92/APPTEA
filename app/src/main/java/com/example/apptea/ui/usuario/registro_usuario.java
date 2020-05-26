@@ -11,16 +11,56 @@
 package com.example.apptea.ui.usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
+import android.app.Application;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.pais.PaisViewModel;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import roomsqlite.entidades.Pais;
+
+import static java.security.AccessController.getContext;
 
 public class registro_usuario extends AppCompatActivity {
+
+
+
+
+
+    private Spinner spinnerPais;
+
+
+    List<Pais> paises = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario);
+
+        //obteniendo datos del layout
+        final TextInputEditText nombreUsuario=  findViewById(R.id.nombreUsuario);
+        final TextInputEditText apellidoUsuario =  findViewById(R.id.apellidoUsuario);
+        final TextInputEditText correoUsuario=  findViewById(R.id.correoUsuario);
+        final TextInputEditText telefonoUsuario =  findViewById(R.id.telefonoUsuario);
+        spinnerPais = (Spinner) findViewById(R.id.spinnerPais);
+        final TextInputEditText direccionUsuario =  findViewById(R.id.direccionUsuario);
+        final TextInputEditText contraUsuario = findViewById(R.id.contraUsuario);
     }
+
+
+    public void setList(){
+        ArrayAdapter<Pais> adapter = new ArrayAdapter<Pais>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, paises);
+        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        spinnerPais.setAdapter(adapter);
+    }
+
 }

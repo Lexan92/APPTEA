@@ -10,8 +10,10 @@
 
 package com.example.apptea.ui.usuario;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import android.app.Application;
 import android.os.Bundle;
@@ -32,14 +34,11 @@ import static java.security.AccessController.getContext;
 
 public class registro_usuario extends AppCompatActivity {
 
-
-
-
-
     private Spinner spinnerPais;
 
-
+   /* private LiveData<List<Pais>> paisAll;
     List<Pais> paises = new ArrayList<>();
+    private PaisViewModel paisViewModel;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +53,20 @@ public class registro_usuario extends AppCompatActivity {
         spinnerPais = (Spinner) findViewById(R.id.spinnerPais);
         final TextInputEditText direccionUsuario =  findViewById(R.id.direccionUsuario);
         final TextInputEditText contraUsuario = findViewById(R.id.contraUsuario);
+
+        /*paisAll= paisViewModel.getPaisAll();
+        paises =paisAll.getValue();*/
+
+
+
     }
 
 
-    public void setList(){
+
+   /* public void setList(){
         ArrayAdapter<Pais> adapter = new ArrayAdapter<Pais>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, paises);
         adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         spinnerPais.setAdapter(adapter);
-    }
+    }*/
 
 }

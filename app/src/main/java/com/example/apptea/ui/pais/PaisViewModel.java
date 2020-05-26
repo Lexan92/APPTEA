@@ -33,6 +33,7 @@ public class PaisViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Pais>> getPaisAll(){
+        paisAll = paisRepository.getPais();
         return paisAll;
     }
 

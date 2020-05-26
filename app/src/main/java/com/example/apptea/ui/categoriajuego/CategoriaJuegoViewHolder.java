@@ -18,12 +18,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 
-public class CategoriaJuegoViewHolder extends RecyclerView.ViewHolder {
+public class CategoriaJuegoViewHolder extends RecyclerView.ViewHolder{
 
     public TextView nombreCategoria;
+
 
     public CategoriaJuegoViewHolder(@NonNull View itemView) {
         super(itemView);
         nombreCategoria = itemView.findViewById(R.id.nombre_categoria_juego);
+
+
+
+
     }
+
+
+
+
 }

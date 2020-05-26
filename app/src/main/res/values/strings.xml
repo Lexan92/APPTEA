@@ -34,8 +34,7 @@
 Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar elementum integer. </string>
 
 
-
-  --registro usuario
+    --registro usuario
     <string name="datos">Datos Generales</string>
     <string name="nombreUsuario">Nombre</string>
     <string name="apellidoUsuario">Apellido</string>

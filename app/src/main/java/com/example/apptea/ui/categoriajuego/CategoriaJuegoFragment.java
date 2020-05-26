@@ -2,6 +2,7 @@
 
 package com.example.apptea.ui.categoriajuego;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -54,8 +57,10 @@ public class CategoriaJuegoFragment extends Fragment {
 
         recyclerView =  vista.findViewById(R.id.lista_categoria_juego);
         final CategoriaJuegoAdapter adapter = new CategoriaJuegoAdapter(getActivity());
+
+
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
         categoriaViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         categoriaViewModel.getAllCategoriasJuegos().observe(getActivity(), new Observer<List<CategoriaJuego>>() {
@@ -66,27 +71,12 @@ public class CategoriaJuegoFragment extends Fragment {
         });
 
 
-      /*
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        final CategoriaJuegoAdapter adapter = new CategoriaJuegoAdapter(getContext());
-
-
-
-        cjModel = new ViewModelProvider(this).get(CategoriaViewModel.class);
-        cjModel.getAllCategoriasJuegos().observe(getViewLifecycleOwner(), new Observer<List<CategoriaJuego>>() {
-            @Override
-            public void onChanged(List<CategoriaJuego> categoriaJuegos) {
-                adapter.setCategoriasJuegos(categoriaJuegos);
-            }
-        });
-        recyclerView.setAdapter(adapter);
-        // Inflate the layout for this fragment
-
-       */
-
         return vista;
     }
+
+
+
+
 
 
 }

@@ -27,9 +27,6 @@ public class CategoriaJuegoViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         nombreCategoria = itemView.findViewById(R.id.nombre_categoria_juego);
 
-
-
-
     }
 
 

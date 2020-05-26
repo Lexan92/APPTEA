@@ -43,7 +43,7 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
        layoutView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Toast.makeText(miContext,"prueba click " , Toast.LENGTH_SHORT).show();
+               Toast.makeText(miContext,"prueba click " + String.valueOf(viewType) , Toast.LENGTH_SHORT).show();
               // DetalleCategoriaJuego detalleCategoriaJuego = new DetalleCategoriaJuego();
 
            }

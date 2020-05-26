@@ -51,5 +51,10 @@
         android:name="com.example.apptea.ui.home.HomeFragment"
         android:label="@string/menu_persona_tea"
         tools:layout="@layout/fragment_menu_persona_tea" />
+    <fragment
+        android:id="@+id/menuPrincipalFragment"
+        android:name="com.example.apptea.ui.menuPrincipal.MenuPrincipalFragment"
+        android:label="fragment_menu_principal"
+        tools:layout="@layout/fragment_menu_principal" />
 
 </navigation>

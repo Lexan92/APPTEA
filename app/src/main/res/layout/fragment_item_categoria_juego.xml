@@ -32,7 +32,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/card_height_cat_juego"
-                app:srcCompat="@drawable/ic_spellcheck_black_24dp"
+                app:srcCompat="@drawable/ic_tambor"
                 android:scaleType="fitCenter"
                 />
 

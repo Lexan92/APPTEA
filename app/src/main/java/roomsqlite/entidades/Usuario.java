@@ -7,12 +7,12 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName= "usuario",
-        foreignKeys = @ForeignKey(entity = Departamento.class, parentColumns = "departamento_id", childColumns = "departamento_id"))
+        foreignKeys = @ForeignKey(entity = Pais.class, parentColumns = "pais_id", childColumns = "pais_id"))
 public class Usuario {
     @PrimaryKey(autoGenerate = true)
     private int usuario_id;
     @NonNull
-    private int departamento_id;
+    private int pais_id;
     @NonNull
     private String usuario_nombre;
     @NonNull
@@ -30,9 +30,9 @@ public class Usuario {
 
 //CONSTRUCTOR
 
-    public Usuario(int usuario_id, int departamento_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono, @NonNull String direccion, int codigo_verificacion) {
+    public Usuario(int usuario_id, int pais_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono, @NonNull String direccion, int codigo_verificacion) {
         this.usuario_id = usuario_id;
-        this.departamento_id = departamento_id;
+        this.pais_id = pais_id;
         this.usuario_nombre = usuario_nombre;
         this.usuario_apellido = usuario_apellido;
         this.contrasenia = contrasenia;
@@ -44,12 +44,12 @@ public class Usuario {
 
 //GET AND SETTER
 
-    public int getDepartamento_id() {
-        return departamento_id;
+    public int getPais_id() {
+        return pais_id;
     }
 
-    public void setDepartamento_id(int departamento_id) {
-        this.departamento_id = departamento_id;
+    public void setPais_id(int pais_id) {
+        this.pais_id = pais_id;
     }
 
     public int getUsuario_id() {

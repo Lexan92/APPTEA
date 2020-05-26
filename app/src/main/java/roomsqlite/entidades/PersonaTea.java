@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.util.Date;
 
+import roomsqlite.database.DateConverter;
+
 @Entity(tableName = "persona_tea", foreignKeys = @ForeignKey(entity = Usuario.class,parentColumns = "usuario_id",childColumns = "usuario_id"))
+@TypeConverters(DateConverter.class)
 public class PersonaTea {
     @PrimaryKey(autoGenerate = true)
     private int persona_id;
@@ -17,8 +21,8 @@ public class PersonaTea {
     private String persona_nombre;
     @NonNull
     private String persona_apellido;
-   /* @NonNull
-    private Date persona_fecha_nac;*/
+   @NonNull
+    private Date persona_fecha_nac;
     @NonNull
     private char persona_sexo;
     @NonNull
@@ -26,12 +30,12 @@ public class PersonaTea {
 
 // CONSTRUCTOR
 
-    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido/*, @NonNull Date persona_fecha_nac*/, char persona_sexo, @NonNull String persona_foto) {
+    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, char persona_sexo, @NonNull String persona_foto) {
         this.persona_id = persona_id;
         this.usuario_id = usuario_id;
         this.persona_nombre = persona_nombre;
         this.persona_apellido = persona_apellido;
-       /* this.persona_fecha_nac = persona_fecha_nac;*/
+        this.persona_fecha_nac = persona_fecha_nac;
         this.persona_sexo = persona_sexo;
         this.persona_foto = persona_foto;
     }
@@ -81,7 +85,7 @@ public class PersonaTea {
     public void setPersona_apellido(@NonNull String persona_apellido) {
         this.persona_apellido = persona_apellido;
     }
-/*
+
     @NonNull
     public Date getPersona_fecha_nac() {
         return persona_fecha_nac;
@@ -90,7 +94,7 @@ public class PersonaTea {
     public void setPersona_fecha_nac(@NonNull Date persona_fecha_nac) {
         this.persona_fecha_nac = persona_fecha_nac;
     }
-*/
+
     public char getPersona_sexo() {
         return persona_sexo;
     }

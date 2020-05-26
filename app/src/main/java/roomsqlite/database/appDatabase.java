@@ -89,9 +89,9 @@ public abstract class appDatabase extends RoomDatabase {
 
 
                     dao.deleteAll();
-                    CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "categoria 1");
+                    CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo Personal");
                     dao.insert(categoriaHabCotidiana);
-                    categoriaHabCotidiana = new CategoriaHabCotidiana(2, "categoria 2");
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(2, "Vestimenta");
                     dao.insert(categoriaHabCotidiana);
 
                     PaisDao paisesdao = INSTANCE.paisDao();

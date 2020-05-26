@@ -33,4 +33,7 @@ public interface CategoriaJuegoDAO {
 
     @Query("DELETE FROM "+CategoriaJuego.TABLE_NAME)
     public void deleteAllCategoriaJuegos();
+
+    @Query("SELECT * FROM "+CategoriaJuego.TABLE_NAME + " WHERE categoria_juego_id = :id")
+    LiveData<CategoriaJuego> findbyCategoriaJuegoId(int id);
 }

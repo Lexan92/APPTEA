@@ -14,7 +14,7 @@ import roomsqlite.entidades.Departamento;
 
 @Dao
 public interface DepartamentoDao {
-    @Query("SELECT * FROM departamento")
+  /*  @Query("SELECT * FROM departamento")
     LiveData<List<Departamento>> getAllDepartamento();
 
     @Query("DELETE FROM departamento")
@@ -27,5 +27,5 @@ public interface DepartamentoDao {
     void updateDepartamento(Departamento departamento);
 
     @Delete
-    void deleteDepartamento (Departamento departamento);
+    void deleteDepartamento (Departamento departamento);*/
 }

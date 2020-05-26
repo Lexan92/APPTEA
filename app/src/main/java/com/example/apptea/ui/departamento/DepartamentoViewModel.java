@@ -20,8 +20,8 @@ import java.util.List;
 import roomsqlite.entidades.Departamento;
 import roomsqlite.repositorios.DepartamentoRepository;
 
-public class DepartamentoViewModel extends AndroidViewModel {
-    private DepartamentoRepository departamentoRepository;
+public class DepartamentoViewModel /*extends AndroidViewModel */ {
+    /*private DepartamentoRepository departamentoRepository;
     private LiveData<List<Departamento>> departamentoAll;
 
     public DepartamentoViewModel(Application application){
@@ -36,5 +36,5 @@ public class DepartamentoViewModel extends AndroidViewModel {
 
     public void insert(Departamento departamento){
         departamentoRepository.insert(departamento);
-    }
+    }*/
 }

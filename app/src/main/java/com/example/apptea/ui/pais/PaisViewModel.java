@@ -15,6 +15,8 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.apptea.ui.usuario.registro_usuario;
+
 import java.util.List;
 
 import roomsqlite.entidades.Pais;
@@ -33,6 +35,8 @@ public class PaisViewModel extends AndroidViewModel {
     public LiveData<List<Pais>> getPaisAll(){
         return paisAll;
     }
+
+
 
     public void insert(Pais pais){
         paisRepository.insert(pais);

@@ -31,4 +31,8 @@ public class CategoriaJuegoRepository {
     public void insert (CategoriaJuego categoriaJuego){
        categoriaJuegoDAO.insertCategoriaJuego(categoriaJuego);
     }
+
+    public LiveData<CategoriaJuego> findByIdCategoria(int id){
+        return categoriaJuegoDAO.findbyCategoriaJuegoId(id);
+    }
 }

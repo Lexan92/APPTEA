@@ -21,17 +21,17 @@ import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
 
-public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoViewHolder>  {
+public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoViewHolder> implements View.OnClickListener  {
 
     private List<CategoriaJuego> categoriasJuego;
     private final LayoutInflater cjInflater;
-    Context miContext;
+    private View.OnClickListener listener;
 
 
 
     
      public CategoriaJuegoAdapter(Context context) {
-        this.miContext = context;
+
         cjInflater = LayoutInflater.from(context);
   ;
     }
@@ -40,14 +40,7 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
     public CategoriaJuegoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View layoutView = cjInflater.inflate(R.layout.fragment_item_categoria_juego,parent,false);
 
-       layoutView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Toast.makeText(miContext,"prueba click " + String.valueOf(viewType) , Toast.LENGTH_SHORT).show();
-              // DetalleCategoriaJuego detalleCategoriaJuego = new DetalleCategoriaJuego();
-
-           }
-       });
+        layoutView.setOnClickListener(this);
         return new CategoriaJuegoViewHolder(layoutView);
     }
 
@@ -74,8 +67,15 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
         else return 0;
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+         this.listener = listener;
+    }
 
 
-
-
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
+    }
 }

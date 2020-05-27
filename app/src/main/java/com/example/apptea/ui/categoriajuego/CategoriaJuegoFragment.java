@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego;
@@ -58,15 +59,25 @@ public class CategoriaJuegoFragment extends Fragment {
         recyclerView =  vista.findViewById(R.id.lista_categoria_juego);
         final CategoriaJuegoAdapter adapter = new CategoriaJuegoAdapter(getActivity());
 
-
-        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setAdapter(adapter);
+
 
         categoriaViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         categoriaViewModel.getAllCategoriasJuegos().observe(getActivity(), new Observer<List<CategoriaJuego>>() {
             @Override
             public void onChanged(List<CategoriaJuego> categoriaJuegos) {
                 adapter.setCategoriasJuegos(categoriaJuegos);
+            }
+        });
+
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              
+                Toast.makeText(getActivity(),"Click en: " + (categoriaViewModel.getAllCategoriasJuegos()
+                        .getValue().get(recyclerView.getChildAdapterPosition(v)).getCategoriaJuegoNombre()), Toast.LENGTH_SHORT ).show();
             }
         });
 

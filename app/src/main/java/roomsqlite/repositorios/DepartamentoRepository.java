@@ -21,7 +21,7 @@ import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.Departamento;
 
 public class DepartamentoRepository {
-    private DepartamentoDao departamentoDao;
+   /* private DepartamentoDao departamentoDao;
     private LiveData<List<Departamento>> departamentoAll;
 
     public DepartamentoRepository(Application application){
@@ -36,5 +36,5 @@ public class DepartamentoRepository {
 
     public  void insert(Departamento departamento){
         departamentoDao.insertDepartamento(departamento);
-    }
+    }*/
 }

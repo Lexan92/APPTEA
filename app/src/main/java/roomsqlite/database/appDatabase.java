@@ -39,7 +39,7 @@ import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
-        Departamento.class,/* Municipio.class,*/ Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
+        /*Departamento.class, Municipio.class,*/ Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
@@ -53,7 +53,7 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
 
     public abstract PaisDao paisDao();
-    public abstract DepartamentoDao departamentoDao();
+    /*public abstract DepartamentoDao departamentoDao();*/
    /* public abstract MunicipioDao municipioDao();*/
     public abstract UsuarioDao usuarioDao();
     public  abstract PersonaTeaDao personaTeaDao();
@@ -104,9 +104,10 @@ public abstract class appDatabase extends RoomDatabase {
 
 
                     PaisDao paisesdao = INSTANCE.paisDao();
-                    DepartamentoDao deptodao =INSTANCE.departamentoDao();
+                    //DepartamentoDao deptodao =INSTANCE.departamentoDao();
                     //primero de borran las entidades dependientes
-                    deptodao.deleteDepartamentoAll();
+                  //  deptodao.deleteDepartamentoAll();
+
                     //segundo se borran la entidades independientes
                     paisesdao.deletePaisAll();
                     Pais pais = new Pais(1,"El Salvador");
@@ -117,7 +118,7 @@ public abstract class appDatabase extends RoomDatabase {
                     paisesdao.insertPais(pais);
 
 
-
+                    /*
                     Departamento departamento = new Departamento(1,1,"San Salvador");
                     deptodao.insertDepartamento(departamento);
                     departamento = new Departamento(2,1,"La libertad");
@@ -145,7 +146,7 @@ public abstract class appDatabase extends RoomDatabase {
                     departamento = new Departamento(13,1,"San Vicente");
                     deptodao.insertDepartamento(departamento);
                     departamento = new Departamento(14,1,"Usulutan");
-                    deptodao.insertDepartamento(departamento);
+                    deptodao.insertDepartamento(departamento);*/
 
 
                     CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();

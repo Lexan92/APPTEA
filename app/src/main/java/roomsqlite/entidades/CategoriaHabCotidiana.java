@@ -7,6 +7,7 @@ package roomsqlite.entidades;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName= "cat_habilidad_cotidiana")
@@ -19,11 +20,14 @@ public class CategoriaHabCotidiana {
 
    // private String path;//No va aca se mostrara imagen en la clase habilidad cotidiana
 
+    public CategoriaHabCotidiana(){
+
+    }
 
     public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre/*, String path*/) {
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
-       // this.path = path;
+        //this.path = path;
     }
 
     public CategoriaHabCotidiana(String stringExtra) {

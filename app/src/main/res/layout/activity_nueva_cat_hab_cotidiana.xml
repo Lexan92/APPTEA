@@ -15,29 +15,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.categoriahabilidadcotidiana.NuevaCategoriaDialog">
+    >
 
 
     <EditText
         android:id="@+id/edit_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="15dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="sans-serif-light"
         android:hint="@string/campo_nombre"
         android:inputType="textAutoComplete"
-        android:layout_margin="15dp"
+        android:minHeight="15dp"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="16dp"
         android:background="@color/colorPrimary"
         android:text="@string/button_save"
-        android:layout_margin="15dp"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_word"
+        app:layout_constraintVertical_bias="0.357"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

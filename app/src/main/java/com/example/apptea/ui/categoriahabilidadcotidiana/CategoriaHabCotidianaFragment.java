@@ -72,7 +72,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             @Override
             public void onChanged(@Nullable final List<CategoriaHabCotidiana> categoriaHabCotidianaList) {
                 // Update the cached copy of the words in the adapter.
-                adapter.setWords(categoriaHabCotidianaList);
+                adapter.setCategoria(categoriaHabCotidianaList);
             }
         });
 //Boton de + para agregar una nueva categoria
@@ -106,8 +106,8 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                Toast.LENGTH_LONG).show();
    }
 }
-/*
 
+/*
     public CategoriaHabCotidianaFragment(Application application) {
 
         categoriaHabCotidianaRepository = new CategoriaHabCotidianaRepository(application);
@@ -120,7 +120,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
 
     public void insert(CategoriaHabCotidiana categoriaHabCotidiana){
         categoriaHabCotidianaRepository.insert(categoriaHabCotidiana);
-    }*/
-
+    }
+*/
 
 }

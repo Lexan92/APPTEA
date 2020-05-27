@@ -26,6 +26,9 @@ public class CategoriaHabCotidiana {
        // this.path = path;
     }
 
+    public CategoriaHabCotidiana(String stringExtra) {
+    }
+
     public int getCat_hab_cotidiana_id() {
         return cat_hab_cotidiana_id;
     }

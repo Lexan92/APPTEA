@@ -11,6 +11,7 @@
 package com.example.apptea.ui.categoriahabilidadcotidiana;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.apptea.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +37,8 @@ import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.repositorios.CategoriaHabCotidianaRepository;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +50,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
     private LiveData<List<CategoriaHabCotidiana>> categoriaHabCotidianaAll;
     RecyclerView recyclerView;
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
+    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     public CategoriaHabCotidianaFragment(){
         //requiere un constructor vacio
@@ -70,16 +75,13 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 adapter.setWords(categoriaHabCotidianaList);
             }
         });
-
+//Boton de + para agregar una nueva categoria
          FloatingActionButton fab = vista.findViewById(R.id.fab);
-
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
+         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getActivity(), NuevaCategoriaDialog.class);
+                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
 
@@ -88,13 +90,24 @@ public class CategoriaHabCotidianaFragment extends Fragment {
 
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+   super.onActivityResult(requestCode, resultCode, data);
+
+   if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+       CategoriaHabCotidiana categoria = new CategoriaHabCotidiana(data.getStringExtra(NuevaCategoriaDialog.EXTRA_REPLY));
+       categoriaHabCotidianaViewModel.insert(categoria);
+   } else {
+       Toast.makeText(getActivity(),R.string.vacio_cat_hab_cot,
+               Toast.LENGTH_LONG).show();
+   }
+}
 /*
+
     public CategoriaHabCotidianaFragment(Application application) {
 
         categoriaHabCotidianaRepository = new CategoriaHabCotidianaRepository(application);

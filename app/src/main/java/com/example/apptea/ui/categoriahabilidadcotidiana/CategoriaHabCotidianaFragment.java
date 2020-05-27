@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apptea.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -57,7 +60,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_cat_hab_cotidiana);
         final CategoriaHabCotidianaAdapter adapter = new CategoriaHabCotidianaAdapter(getActivity());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
         categoriaHabCotidianaViewModel = new ViewModelProvider(getActivity()).get(CategoriaHabCotidianaViewModel.class);
         categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().observe(getActivity(), new Observer<List<CategoriaHabCotidiana>>() {
@@ -67,8 +70,23 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 adapter.setWords(categoriaHabCotidianaList);
             }
         });
+
+         FloatingActionButton fab = vista.findViewById(R.id.fab);
+
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
         return vista;
     }
+
+
 
 
     @Override

@@ -14,14 +14,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.ui.pais.PaisViewModel;
 import com.google.android.material.textfield.TextInputEditText;
@@ -32,13 +39,35 @@ import java.util.List;
 import roomsqlite.config.constantes;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.Pais;
+import roomsqlite.entidades.Usuario;
 
 import static java.security.AccessController.getContext;
 
 public class registro_usuario extends AppCompatActivity {
+    public static final String EXTRA_NOMBRE_USUARIO = "com.example.apptea.EXTRA_NOMBRE_USUARIO";
+    public static final String EXTRA_APELLIDO_USUARIO = "com.example.apptea.EXTRA_APELLIDO_USUARIO";
+    public static final String EXTRA_CORREO_USUARIO = "com.example.apptea.EXTRA_CORREO_USUARIO";
+    public static final String EXTRA_TELEFONO_USUARIO = "com.example.apptea.EXTRA_TELEFONO_USUARIO";
+    public static final String EXTRA_PAIS_USUARIO = "com.example.apptea.EXTRA_PAIS_USUARIO";
+    public static final String EXTRA_DIRECCION_USUARIO = "com.example.apptea.EXTRA_DIRECCION_USUARIO";
+    public static final String EXTRA_CONTRA_USUARIO = "com.example.apptea.EXTRA_CONTRA_USUARIO";
+    public static final String EXTRA_VERIFICACION_USUARIO = "com.example.apptea.EXTRA_VERIFICACION_USUARIO";
+
 
     private Spinner spinnerPais;
-    appDatabase db;
+    int verificacion;
+    UsuarioViewModel usuarioViewModel;
+    //Se declaran el ViewModel de Pais
+    private PaisViewModel paisViewModel;
+    //Se declara el List<Pais>
+    List<Pais> paisesArray = new ArrayList<>();
+    TextInputEditText nombreUsuario;
+    TextInputEditText apellidoUsuario;
+    TextInputEditText correoUsuario;
+    TextInputEditText telefonoUsuario;
+    TextInputEditText direccionUsuario;
+    TextInputEditText contraUsuario;
+
 
    /* private LiveData<List<Pais>> paisAll;
     List<Pais> paises = new ArrayList<>();
@@ -50,32 +79,110 @@ public class registro_usuario extends AppCompatActivity {
         setContentView(R.layout.activity_registro_usuario);
 
         //obteniendo datos del layout
-        final TextInputEditText nombreUsuario=  findViewById(R.id.nombreUsuario);
-        final TextInputEditText apellidoUsuario =  findViewById(R.id.apellidoUsuario);
-        final TextInputEditText correoUsuario=  findViewById(R.id.correoUsuario);
-        final TextInputEditText telefonoUsuario =  findViewById(R.id.telefonoUsuario);
+        nombreUsuario=  findViewById(R.id.nombreUsuario);
+        apellidoUsuario =  findViewById(R.id.apellidoUsuario);
+        correoUsuario=  findViewById(R.id.correoUsuario);
+        telefonoUsuario =  findViewById(R.id.telefonoUsuario);
         spinnerPais = (Spinner) findViewById(R.id.spinnerPais);
-        final TextInputEditText direccionUsuario =  findViewById(R.id.direccionUsuario);
-        final TextInputEditText contraUsuario = findViewById(R.id.contraUsuario);
+        direccionUsuario =  findViewById(R.id.direccionUsuario);
+        contraUsuario = findViewById(R.id.contraUsuario);
 
-        /*paisAll= paisViewModel.getPaisAll();
-        paises =paisAll.getValue();*/
 
-        ArrayList<String> paises = new ArrayList<String>();
-        paises.add("El Salvador");
-        paises.add("Guatemala");
-        paises.add("Honduras");
-        paises.add("Nicaragua");
-        paises.add("Costa Rica");
-        paises.add("Panama");
-
-        ArrayAdapter<CharSequence> adapter= new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,paises);
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
+        ArrayAdapter<Pais> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, paisesArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPais.setAdapter(adapter);
+        paisViewModel = new ViewModelProvider(this).get(PaisViewModel.class);
+        paisViewModel.getPaisAll().observe(this, new Observer<List<Pais>>() {
+            @Override
+            public void onChanged(List<Pais> paises) {
+                adapter.clear();
+                adapter.addAll(paises);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
+        //para insertar
+        final Button button = findViewById(R.id.guardar);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent replyIntent = new Intent();
+                if (TextUtils.isEmpty(nombreUsuario.getText()) || TextUtils.isEmpty(apellidoUsuario.getText())
+                        ||TextUtils.isEmpty(correoUsuario.getText()) || TextUtils.isEmpty(telefonoUsuario.getText())
+                        ||TextUtils.isEmpty(spinnerPais.getSelectedItem().toString()) || TextUtils.isEmpty(direccionUsuario.getText())
+                        ||TextUtils.isEmpty(contraUsuario.getText())) {
+                    setResult(RESULT_CANCELED, replyIntent);
+                } else {
+                    System.out.println("no vacio");
+                    String nombre = nombreUsuario.getText().toString();
+                    String apellido = apellidoUsuario.getText().toString();
+                    String correo = correoUsuario.getText().toString();
+                    String telefono = telefonoUsuario.getText().toString();
+                    int tel = Integer.parseInt(telefono);
+                    int pais =((Pais) spinnerPais.getSelectedItem()).getPais_id();
+                    String direccion = direccionUsuario.getText().toString();
+                    String contra = contraUsuario.getText().toString();
+                    verificacion = (int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000));
 
+                    System.out.println("obtuvo los valores");
+
+                    replyIntent.putExtra(EXTRA_PAIS_USUARIO, pais);
+                    replyIntent.putExtra(EXTRA_NOMBRE_USUARIO, nombre);
+                    replyIntent.putExtra(EXTRA_APELLIDO_USUARIO, apellido);
+                    replyIntent.putExtra(EXTRA_CORREO_USUARIO, correo);
+                    replyIntent.putExtra(EXTRA_TELEFONO_USUARIO, telefono);
+                    replyIntent.putExtra(EXTRA_DIRECCION_USUARIO, direccion);
+                    replyIntent.putExtra(EXTRA_CONTRA_USUARIO, contra);
+                    replyIntent.putExtra(EXTRA_VERIFICACION_USUARIO, verificacion);
+
+                    System.out.println("seteo los extra");
+                    setResult(RESULT_OK, replyIntent);
+                    startActivity(replyIntent);
+                }
+                finish();
+            }
+        });
 
     }
+
+   /* para insertar datos
+    public void guardar (View view) {
+        System.out.println("Si entra al onClick");
+        //
+        Intent intent = new Intent(this, MainActivity.class);
+
+        if (TextUtils.isEmpty(nombreUsuario.getText()) || TextUtils.isEmpty(apellidoUsuario.getText())
+                ||TextUtils.isEmpty(correoUsuario.getText()) || TextUtils.isEmpty(telefonoUsuario.getText())
+                ||TextUtils.isEmpty(spinnerPais.getSelectedItem().toString()) || TextUtils.isEmpty(direccionUsuario.getText())
+                ||TextUtils.isEmpty(contraUsuario.getText())) {
+            System.out.println("vacio");
+
+        } else {
+            System.out.println("no vacio");
+            String nombre = nombreUsuario.getText().toString();
+            String apellido = apellidoUsuario.getText().toString();
+            String correo = correoUsuario.getText().toString();
+            String telefono = telefonoUsuario.getText().toString();
+            int tel = Integer.parseInt(telefono);
+            int pais =((Pais) spinnerPais.getSelectedItem()).getPais_id();
+            String direccion = direccionUsuario.getText().toString();
+            String contra = contraUsuario.getText().toString();
+            verificacion = (int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000));
+
+            intent.putExtra(EXTRA_PAIS_USUARIO, pais);
+            intent.putExtra(EXTRA_NOMBRE_USUARIO, nombre);
+            intent.putExtra(EXTRA_APELLIDO_USUARIO, apellido);
+            intent.putExtra(EXTRA_CORREO_USUARIO, correo);
+            intent.putExtra(EXTRA_TELEFONO_USUARIO, tel);
+            intent.putExtra(EXTRA_DIRECCION_USUARIO, direccion);
+            intent.putExtra(EXTRA_CONTRA_USUARIO, contra);
+            intent.putExtra(EXTRA_VERIFICACION_USUARIO, verificacion);
+
+            startActivity(intent);
+        }
+
+    }*/
+
 
    /* public void setList(){
         ArrayAdapter<Pais> adapter = new ArrayAdapter<Pais>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, paises);

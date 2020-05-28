@@ -42,6 +42,8 @@ public class Usuario {
         this.codigo_verificacion = codigo_verificacion;
     }
 
+    public Usuario(){}
+
 //GET AND SETTER
 
     public int getPais_id() {

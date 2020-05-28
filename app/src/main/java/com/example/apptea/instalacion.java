@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.apptea.ui.usuario.registro_usuario;
 
@@ -24,6 +26,8 @@ public class instalacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instalacion);
+        TextView textViewResultados = findViewById(R.id.terminosycondiciones);
+        textViewResultados.setMovementMethod(new ScrollingMovementMethod());
     }
 
     public void acceso(View view){

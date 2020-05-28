@@ -35,4 +35,9 @@ public class Pais {
     public void setPais_nombre(@NonNull String pais_nombre) {
         this.pais_nombre = pais_nombre;
     }
+
+    @Override
+    public String toString() {
+        return pais_nombre;
+    }
 }

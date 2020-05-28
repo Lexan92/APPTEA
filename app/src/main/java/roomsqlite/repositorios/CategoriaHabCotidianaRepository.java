@@ -37,8 +37,10 @@ public class CategoriaHabCotidianaRepository {
     }
 
     public void insert(CategoriaHabCotidiana categoriaHabCotidiana){
-        categoriaHabCotidianaDao.insert(categoriaHabCotidiana);
-    }
+        appDatabase.databaseWriteExecutor.execute(()->{
+                    categoriaHabCotidianaDao.insert(categoriaHabCotidiana);
+                });
+        }
 
 
 

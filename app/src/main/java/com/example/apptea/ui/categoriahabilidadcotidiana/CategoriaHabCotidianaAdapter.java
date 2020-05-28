@@ -64,7 +64,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         }
     }
 
-    void setWords(List<CategoriaHabCotidiana> categorias){
+    void setCategoria(List<CategoriaHabCotidiana> categorias){
         categoriaHabCotidianaList = categorias;
         notifyDataSetChanged();
     }

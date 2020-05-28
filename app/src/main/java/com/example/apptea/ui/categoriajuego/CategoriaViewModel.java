@@ -39,4 +39,8 @@ public class CategoriaViewModel extends AndroidViewModel {
     public void insert(CategoriaJuego categoriaJuego){
         categoriaJuegoRepository.insert(categoriaJuego);
     }
+
+    public LiveData<CategoriaJuego> findById(int id){
+        return categoriaJuegoRepository.findByIdCategoria(id);
+    }
 }

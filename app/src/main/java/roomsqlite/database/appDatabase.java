@@ -44,7 +44,7 @@ public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor =
+    public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     //DECLARACION DE DAOS
 
@@ -65,7 +65,7 @@ public abstract class appDatabase extends RoomDatabase {
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     appDatabase.class,constantes.getBdName())
-                            .addCallback(sRoomDatabaseCallback)
+                         .addCallback(sRoomDatabaseCallback)
                     .build();
                 }
             }

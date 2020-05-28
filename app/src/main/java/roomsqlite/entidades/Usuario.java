@@ -6,9 +6,11 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName= "usuario",
         foreignKeys = @ForeignKey(entity = Pais.class, parentColumns = "pais_id", childColumns = "pais_id"))
-public class Usuario {
+public class Usuario implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int usuario_id;
     @NonNull

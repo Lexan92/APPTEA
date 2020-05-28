@@ -1,5 +1,6 @@
 package com.example.apptea;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.apptea.ui.categoriajuego.CategoriaJuegoAdapter;
 import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
+import com.example.apptea.ui.usuario.UsuarioViewModel;
+import com.example.apptea.ui.usuario.registro_usuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -27,9 +30,10 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
+import roomsqlite.entidades.Pais;
+import roomsqlite.entidades.Usuario;
 
 public class MainActivity extends AppCompatActivity {
-
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -64,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-
-
     }
 
     @Override
@@ -81,4 +83,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+
 }

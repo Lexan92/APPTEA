@@ -20,10 +20,15 @@ import android.widget.EditText;
 
 import com.example.apptea.R;
 
+import java.io.Serializable;
+
+import roomsqlite.entidades.CategoriaHabCotidiana;
+
 public class NuevaCategoriaDialog extends Activity {
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
 
     private EditText nombreCategoria;
+    private CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,8 +44,10 @@ public class NuevaCategoriaDialog extends Activity {
                 if (TextUtils.isEmpty( nombreCategoria.getText())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    String word =  nombreCategoria.getText().toString();
-                    replyIntent.putExtra(EXTRA_REPLY, word);
+                    //String word =  nombreCategoria.getText().toString();
+                    //replyIntent.putExtra(EXTRA_REPLY, word);
+                    categoriaHabCotidiana.setCat_hab_cotidiana_nombre(nombreCategoria.getText().toString());
+                    replyIntent.putExtra(EXTRA_REPLY, categoriaHabCotidiana);
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

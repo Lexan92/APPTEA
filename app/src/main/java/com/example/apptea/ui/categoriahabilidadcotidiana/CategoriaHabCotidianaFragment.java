@@ -99,7 +99,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
    super.onActivityResult(requestCode, resultCode, data);
 
    if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-       CategoriaHabCotidiana categoria = new CategoriaHabCotidiana(data.getStringExtra(NuevaCategoriaDialog.EXTRA_REPLY));
+       CategoriaHabCotidiana categoria = (CategoriaHabCotidiana) data.getSerializableExtra(NuevaCategoriaDialog.EXTRA_REPLY);
        categoriaHabCotidianaViewModel.insert(categoria);
    } else {
        Toast.makeText(getActivity(),R.string.vacio_cat_hab_cot,

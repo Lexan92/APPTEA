@@ -10,8 +10,10 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName= "cat_habilidad_cotidiana")
-public class CategoriaHabCotidiana {
+public class CategoriaHabCotidiana implements Serializable{
     @PrimaryKey(autoGenerate = true)
     private int cat_hab_cotidiana_id;
 
@@ -20,9 +22,7 @@ public class CategoriaHabCotidiana {
 
    // private String path;//No va aca se mostrara imagen en la clase habilidad cotidiana
 
-    public CategoriaHabCotidiana(){
 
-    }
 
     public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre/*, String path*/) {
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
@@ -31,6 +31,10 @@ public class CategoriaHabCotidiana {
     }
 
     public CategoriaHabCotidiana(String stringExtra) {
+    }
+
+    public CategoriaHabCotidiana() {
+
     }
 
     public int getCat_hab_cotidiana_id() {

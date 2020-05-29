@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego;
 import com.example.apptea.ui.categoriajuego.CategoriaJuegoAdapter;
 import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
+import com.example.apptea.ui.categoriajuego.IMainActivity;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.example.apptea.ui.usuario.registro_usuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,6 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -33,7 +36,7 @@ import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Pais;
 import roomsqlite.entidades.Usuario;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -44,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-       // FloatingActionButton fab = findViewById(R.id.fab);
 
 
 
+        // FloatingActionButton fab = findViewById(R.id.fab);
         /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,5 +88,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void inflateFragment() {
+        DetalleCategoriaJuego detalleCategoriaJuego = new DetalleCategoriaJuego();
 
+
+    }
 }

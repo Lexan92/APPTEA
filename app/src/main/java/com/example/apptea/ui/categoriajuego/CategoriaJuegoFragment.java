@@ -45,6 +45,7 @@ public class CategoriaJuegoFragment extends Fragment {
     private LiveData<List<CategoriaJuego>> categoriasJuegos;
     RecyclerView recyclerView;
     private CategoriaViewModel categoriaViewModel;
+    private IMainActivity iMainActivity;
 
 
     public CategoriaJuegoFragment() {
@@ -77,9 +78,7 @@ public class CategoriaJuegoFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //FragmentTransaction fragment1= FragmentManager.
-                //fragment1.replace(R.id.nav_home, new DetalleCategoriaJuego()).addToBackStack(null).commit();
-
+                iMainActivity.inflateFragment();
 
                 Toast.makeText(getActivity(),"Click en: " + (categoriaViewModel.getAllCategoriasJuegos()
                         .getValue().get(recyclerView.getChildAdapterPosition(v)).getCategoriaJuegoNombre()), Toast.LENGTH_SHORT ).show();

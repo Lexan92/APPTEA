@@ -44,15 +44,9 @@ import roomsqlite.entidades.Usuario;
 import static java.security.AccessController.getContext;
 
 public class registro_usuario extends AppCompatActivity {
-    public static final String EXTRA_NOMBRE_USUARIO = "com.example.apptea.EXTRA_NOMBRE_USUARIO";
-    public static final String EXTRA_APELLIDO_USUARIO = "com.example.apptea.EXTRA_APELLIDO_USUARIO";
-    public static final String EXTRA_CORREO_USUARIO = "com.example.apptea.EXTRA_CORREO_USUARIO";
-    public static final String EXTRA_TELEFONO_USUARIO = "com.example.apptea.EXTRA_TELEFONO_USUARIO";
-    public static final String EXTRA_PAIS_USUARIO = "com.example.apptea.EXTRA_PAIS_USUARIO";
-    public static final String EXTRA_DIRECCION_USUARIO = "com.example.apptea.EXTRA_DIRECCION_USUARIO";
-    public static final String EXTRA_CONTRA_USUARIO = "com.example.apptea.EXTRA_CONTRA_USUARIO";
-    public static final String EXTRA_VERIFICACION_USUARIO = "com.example.apptea.EXTRA_VERIFICACION_USUARIO";
+    public static final String EXTRA_USUARIO = "com.example.apptea.EXTRA_USUARIO";
 
+    public static final int REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE = 1;
 
     private Spinner spinnerPais;
     int verificacion;
@@ -67,11 +61,7 @@ public class registro_usuario extends AppCompatActivity {
     TextInputEditText telefonoUsuario;
     TextInputEditText direccionUsuario;
     TextInputEditText contraUsuario;
-
-
-   /* private LiveData<List<Pais>> paisAll;
-    List<Pais> paises = new ArrayList<>();
-    private PaisViewModel paisViewModel;*/
+    private Usuario usuario = new Usuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +78,7 @@ public class registro_usuario extends AppCompatActivity {
         contraUsuario = findViewById(R.id.contraUsuario);
 
 
+        usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
         //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
         ArrayAdapter<Pais> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, paisesArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -106,90 +97,66 @@ public class registro_usuario extends AppCompatActivity {
         final Button button = findViewById(R.id.guardar);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent replyIntent = new Intent();
+                //para insert usuario
+
+                /*startActivityForResult(intent, REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE);*/
+
+                //Intent replyIntent = new Intent();
                 if (TextUtils.isEmpty(nombreUsuario.getText()) || TextUtils.isEmpty(apellidoUsuario.getText())
                         ||TextUtils.isEmpty(correoUsuario.getText()) || TextUtils.isEmpty(telefonoUsuario.getText())
                         ||TextUtils.isEmpty(spinnerPais.getSelectedItem().toString()) || TextUtils.isEmpty(direccionUsuario.getText())
                         ||TextUtils.isEmpty(contraUsuario.getText())) {
-                    setResult(RESULT_CANCELED, replyIntent);
+                    System.out.println("está vacio");
+                    /*setResult(RESULT_CANCELED, replyIntent)*/;
                 } else {
                     System.out.println("no vacio");
-                    String nombre = nombreUsuario.getText().toString();
-                    String apellido = apellidoUsuario.getText().toString();
-                    String correo = correoUsuario.getText().toString();
-                    String telefono = telefonoUsuario.getText().toString();
-                    int tel = Integer.parseInt(telefono);
-                    int pais =((Pais) spinnerPais.getSelectedItem()).getPais_id();
-                    String direccion = direccionUsuario.getText().toString();
-                    String contra = contraUsuario.getText().toString();
-                    verificacion = (int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000));
+                    usuario.setUsuario_nombre(nombreUsuario.getText().toString());
+                    usuario.setUsuario_apellido(apellidoUsuario.getText().toString());
+                    usuario.setTelefono(Integer.parseInt(telefonoUsuario.getText().toString()));
+                    usuario.setCorreo(correoUsuario.getText().toString());
+                    usuario.setPais_id(((Pais) spinnerPais.getSelectedItem()).getPais_id());
+                    usuario.setDireccion(direccionUsuario.getText().toString());
+                    usuario.setContrasenia(contraUsuario.getText().toString());
+                    usuario.setCodigo_verificacion((int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000)));
 
                     System.out.println("obtuvo los valores");
 
-                    replyIntent.putExtra(EXTRA_PAIS_USUARIO, pais);
-                    replyIntent.putExtra(EXTRA_NOMBRE_USUARIO, nombre);
-                    replyIntent.putExtra(EXTRA_APELLIDO_USUARIO, apellido);
-                    replyIntent.putExtra(EXTRA_CORREO_USUARIO, correo);
-                    replyIntent.putExtra(EXTRA_TELEFONO_USUARIO, telefono);
-                    replyIntent.putExtra(EXTRA_DIRECCION_USUARIO, direccion);
-                    replyIntent.putExtra(EXTRA_CONTRA_USUARIO, contra);
-                    replyIntent.putExtra(EXTRA_VERIFICACION_USUARIO, verificacion);
+                    //replyIntent.putExtra(EXTRA_USUARIO, usuario);
 
                     System.out.println("seteo los extra");
-                    setResult(RESULT_OK, replyIntent);
-                    startActivity(replyIntent);
+                   // setResult(RESULT_OK, replyIntent);
+
+                    usuarioViewModel.insert(usuario);
+                    System.out.println("en teoria guardo...");
                 }
                 finish();
             }
         });
 
+
+
     }
 
-   /* para insertar datos
-    public void guardar (View view) {
-        System.out.println("Si entra al onClick");
-        //
-        Intent intent = new Intent(this, MainActivity.class);
+    //INSERTANDO
+    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("entro al onactivity");
+        if (requestCode == REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            try {
+                Usuario usuario= (Usuario) data.getSerializableExtra(registro_usuario.EXTRA_USUARIO);
 
-        if (TextUtils.isEmpty(nombreUsuario.getText()) || TextUtils.isEmpty(apellidoUsuario.getText())
-                ||TextUtils.isEmpty(correoUsuario.getText()) || TextUtils.isEmpty(telefonoUsuario.getText())
-                ||TextUtils.isEmpty(spinnerPais.getSelectedItem().toString()) || TextUtils.isEmpty(direccionUsuario.getText())
-                ||TextUtils.isEmpty(contraUsuario.getText())) {
-            System.out.println("vacio");
-
+                usuarioViewModel.insert(usuario);
+                Toast.makeText(getApplicationContext(), "Si se guardo", Toast.LENGTH_LONG);
+                System.out.println("Si guardo, pero le valio y se fue");
+            }
+            catch(Exception ex){
+                Toast.makeText(getApplicationContext(), "Algo malo paso"+ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
         } else {
-            System.out.println("no vacio");
-            String nombre = nombreUsuario.getText().toString();
-            String apellido = apellidoUsuario.getText().toString();
-            String correo = correoUsuario.getText().toString();
-            String telefono = telefonoUsuario.getText().toString();
-            int tel = Integer.parseInt(telefono);
-            int pais =((Pais) spinnerPais.getSelectedItem()).getPais_id();
-            String direccion = direccionUsuario.getText().toString();
-            String contra = contraUsuario.getText().toString();
-            verificacion = (int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000));
-
-            intent.putExtra(EXTRA_PAIS_USUARIO, pais);
-            intent.putExtra(EXTRA_NOMBRE_USUARIO, nombre);
-            intent.putExtra(EXTRA_APELLIDO_USUARIO, apellido);
-            intent.putExtra(EXTRA_CORREO_USUARIO, correo);
-            intent.putExtra(EXTRA_TELEFONO_USUARIO, tel);
-            intent.putExtra(EXTRA_DIRECCION_USUARIO, direccion);
-            intent.putExtra(EXTRA_CONTRA_USUARIO, contra);
-            intent.putExtra(EXTRA_VERIFICACION_USUARIO, verificacion);
-
-            startActivity(intent);
-        }
-
-    }*/
-
-
-   /* public void setList(){
-        ArrayAdapter<Pais> adapter = new ArrayAdapter<Pais>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, paises);
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
-        spinnerPais.setAdapter(adapter);
-    }*/
+            System.out.println("no fue OK");
+            Toast.makeText(getApplicationContext(), "Algo malo paso", Toast.LENGTH_LONG).show();
+        }*/
+    }
 
 
 
-}

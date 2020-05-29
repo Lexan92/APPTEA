@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Nombre del Autor
+  ~ 18/05/2020
+  ~ Esta actividad hace el llamado a la lista de roles
+  ~ */
+  ~
+  ~
+  -->
+
+<!--
+  ~ /*
+  ~ Nombre del Autor
+  ~ 18/05/2020
+  ~ Esta actividad hace el llamado a la lista de roles
+  ~ */
+  ~
+  ~
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#464343"/>
+    <padding android:left="16dp"
+        android:right="16dp"
+        android:top="5dp"
+        android:bottom="5dp"/>
+    <corners android:radius="2dp"/>
+
+</shape>

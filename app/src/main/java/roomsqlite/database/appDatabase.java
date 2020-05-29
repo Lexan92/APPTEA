@@ -23,6 +23,7 @@ import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.MunicipioDao;
 import roomsqlite.dao.PaisDao;
 import roomsqlite.dao.PersonaTeaDao;
+import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.UsuarioDao;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
@@ -53,6 +54,7 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract HabilidadCotidianaDao habilidadCotidianaDao();
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
     public abstract CategoriaPictogramaDAO categoriaPictogramaDAO();
+    public abstract PictogramaDAO pictogramaDAO();
 
     public abstract PaisDao paisDao();
     /*public abstract DepartamentoDao departamentoDao();*/

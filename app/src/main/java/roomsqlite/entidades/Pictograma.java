@@ -7,18 +7,30 @@ package roomsqlite.entidades;
  * */
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.versionedparcelable.NonParcelField;
 
-@Entity(tableName= "pictograma")
+
+@Entity(tableName= Pictograma.TABLE_NAME)
 public class Pictograma {
 
+    public static final String TABLE_NAME="pictograma";
+
     @PrimaryKey (autoGenerate = true)
+    @ColumnInfo(index = true, name="pictograma_id")
+    @NonNull
     private int pictograma_id;
 
+    @ColumnInfo(name="pictograma_nombre")
     @NonNull
     private String pictograma_nombre;
+
+    // private int pictorgrama_ban;
+
+
+
     private String pictograma_imagen;
     private String pictograma_sonido;
     private int pictograma_ban;

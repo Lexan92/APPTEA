@@ -61,7 +61,7 @@ public class registro_usuario extends AppCompatActivity {
     TextInputEditText telefonoUsuario;
     TextInputEditText direccionUsuario;
     TextInputEditText contraUsuario;
-
+    private Usuario usuario = new Usuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class registro_usuario extends AppCompatActivity {
         direccionUsuario =  findViewById(R.id.direccionUsuario);
         contraUsuario = findViewById(R.id.contraUsuario);
 
-        Usuario usuario = new Usuario();
+
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
         //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
         ArrayAdapter<Pais> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, paisesArray);
@@ -101,12 +101,13 @@ public class registro_usuario extends AppCompatActivity {
 
                 /*startActivityForResult(intent, REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE);*/
 
-                Intent replyIntent = new Intent();
+                //Intent replyIntent = new Intent();
                 if (TextUtils.isEmpty(nombreUsuario.getText()) || TextUtils.isEmpty(apellidoUsuario.getText())
                         ||TextUtils.isEmpty(correoUsuario.getText()) || TextUtils.isEmpty(telefonoUsuario.getText())
                         ||TextUtils.isEmpty(spinnerPais.getSelectedItem().toString()) || TextUtils.isEmpty(direccionUsuario.getText())
                         ||TextUtils.isEmpty(contraUsuario.getText())) {
-                    setResult(RESULT_CANCELED, replyIntent);
+                    System.out.println("está vacio");
+                    /*setResult(RESULT_CANCELED, replyIntent)*/;
                 } else {
                     System.out.println("no vacio");
                     usuario.setUsuario_nombre(nombreUsuario.getText().toString());
@@ -120,12 +121,13 @@ public class registro_usuario extends AppCompatActivity {
 
                     System.out.println("obtuvo los valores");
 
-                    replyIntent.putExtra(EXTRA_USUARIO, usuario);
+                    //replyIntent.putExtra(EXTRA_USUARIO, usuario);
 
                     System.out.println("seteo los extra");
-                    setResult(RESULT_OK, replyIntent);
+                   // setResult(RESULT_OK, replyIntent);
 
-
+                    usuarioViewModel.insert(usuario);
+                    System.out.println("en teoria guardo...");
                 }
                 finish();
             }
@@ -136,7 +138,7 @@ public class registro_usuario extends AppCompatActivity {
     }
 
     //INSERTANDO
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         System.out.println("entro al onactivity");
         if (requestCode == REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -153,8 +155,8 @@ public class registro_usuario extends AppCompatActivity {
         } else {
             System.out.println("no fue OK");
             Toast.makeText(getApplicationContext(), "Algo malo paso", Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 
 
-}
+

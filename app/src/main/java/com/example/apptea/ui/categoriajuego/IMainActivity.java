@@ -13,4 +13,5 @@ package com.example.apptea.ui.categoriajuego;
 public interface IMainActivity {
 
     void inflateFragment();
+
 }

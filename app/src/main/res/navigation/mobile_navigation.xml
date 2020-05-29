@@ -12,9 +12,7 @@
         tools:layout="@layout/fragment_home">
 
 
-        <action
-            android:id="@+id/action_nav_home_to_nav_gestion_habilidad"
-            app:destination="@id/nav_gestion_habilidad" />
+
     </fragment>
 
 

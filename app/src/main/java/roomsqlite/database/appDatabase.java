@@ -75,20 +75,18 @@ public abstract class appDatabase extends RoomDatabase {
     }
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+
         @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-            super.onOpen(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-
+        public void onCreate (SupportSQLiteDatabase db) {
+            try {
+                databaseWriteExecutor.execute(() -> {
+                    System.out.println("registro inicial");
                     // Populate the database in the background.
                     // If you want to start with more words, just add them.
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
+                    dao.deleteAll();
+                    System.out.println("categorias habilidades");
 
-
-                    //dao.deleteAll();
                     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo Personal");
                     dao.insert(categoriaHabCotidiana);
                     categoriaHabCotidiana = new CategoriaHabCotidiana(2, "Vestimenta");
@@ -106,15 +104,17 @@ public abstract class appDatabase extends RoomDatabase {
                     PaisDao paisesdao = INSTANCE.paisDao();
                     //DepartamentoDao deptodao =INSTANCE.departamentoDao();
                     //primero de borran las entidades dependientes
-                  //  deptodao.deleteDepartamentoAll();
+                    //  deptodao.deleteDepartamentoAll();
 
                     //segundo se borran la entidades independientes
                     paisesdao.deletePaisAll();
-                    Pais pais = new Pais(1,"El Salvador");
+                    System.out.println("paises");
+
+                    Pais pais = new Pais(1, "El Salvador");
                     paisesdao.insertPais(pais);
-                    pais= new Pais(2,"Guatemala");
+                    pais = new Pais(2, "Guatemala");
                     paisesdao.insertPais(pais);
-                    pais= new Pais(3,"Honduras");
+                    pais = new Pais(3, "Honduras");
                     paisesdao.insertPais(pais);
 
 
@@ -151,22 +151,34 @@ public abstract class appDatabase extends RoomDatabase {
 
                     CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
                     categoriaJuegoDAO.deleteAllCategoriaJuegos();
-                    CategoriaJuego cate= new CategoriaJuego(1,"Juego Mental");
+                    System.out.println("categoria juego");
+
+                    CategoriaJuego cate = new CategoriaJuego(1, "Juego Mental");
                     categoriaJuegoDAO.insertCategoriaJuego(cate);
-                    CategoriaJuego cate1= new CategoriaJuego(2,"Juego Memoria");
+                    CategoriaJuego cate1 = new CategoriaJuego(2, "Juego Memoria");
                     categoriaJuegoDAO.insertCategoriaJuego(cate1);
-                    CategoriaJuego cate2= new CategoriaJuego(3,"Juego Vocales");
+                    CategoriaJuego cate2 = new CategoriaJuego(3, "Juego Vocales");
                     categoriaJuegoDAO.insertCategoriaJuego(cate2);
-                    CategoriaJuego cate3= new CategoriaJuego(4,"Juego Consonantes");
+                    CategoriaJuego cate3 = new CategoriaJuego(4, "Juego Consonantes");
                     categoriaJuegoDAO.insertCategoriaJuego(cate3);
-                    CategoriaJuego cate4= new CategoriaJuego(5,"Juego Repeticiones");
+                    CategoriaJuego cate4 = new CategoriaJuego(5, "Juego Repeticiones");
                     categoriaJuegoDAO.insertCategoriaJuego(cate4);
-                    CategoriaJuego cate5= new CategoriaJuego(6,"Juego Colores");
+                    CategoriaJuego cate5 = new CategoriaJuego(6, "Juego Colores");
                     categoriaJuegoDAO.insertCategoriaJuego(cate5);
 
+                    System.out.println("registro inicial finalizado");
 
 
-            });
+                });
+            }
+            catch(Exception ex){
+                System.out.println("no se puede insertar porque ya esta instalada "+ex.getMessage());
+            }
+        }
+
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
         }
     };
 

@@ -52,7 +52,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
-    public CategoriaHabCotidianaFragment(){
+    public CategoriaHabCotidianaFragment() {
         //requiere un constructor vacio
     }
 
@@ -65,7 +65,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_cat_hab_cotidiana);
         final CategoriaHabCotidianaAdapter adapter = new CategoriaHabCotidianaAdapter(getActivity());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         categoriaHabCotidianaViewModel = new ViewModelProvider(getActivity()).get(CategoriaHabCotidianaViewModel.class);
         categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().observe(getActivity(), new Observer<List<CategoriaHabCotidiana>>() {
@@ -76,8 +76,8 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             }
         });
 //Boton de + para agregar una nueva categoria
-         FloatingActionButton fab = vista.findViewById(R.id.fab);
-         fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = vista.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NuevaCategoriaDialog.class);
@@ -85,9 +85,11 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             }
         });
 
+
+
+
         return vista;
     }
-
 
 
     @Override
@@ -95,32 +97,17 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-   super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
 
-   if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-       CategoriaHabCotidiana categoria = (CategoriaHabCotidiana) data.getSerializableExtra(NuevaCategoriaDialog.EXTRA_REPLY);
-       categoriaHabCotidianaViewModel.insert(categoria);
-   } else {
-       Toast.makeText(getActivity(),R.string.vacio_cat_hab_cot,
-               Toast.LENGTH_LONG).show();
-   }
-}
-
-/*
-    public CategoriaHabCotidianaFragment(Application application) {
-
-        categoriaHabCotidianaRepository = new CategoriaHabCotidianaRepository(application);
-        categoriaHabCotidianaAll = categoriaHabCotidianaRepository.getTodasCategoriaHabCotidiana();
+        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            CategoriaHabCotidiana categoria = (CategoriaHabCotidiana) data.getSerializableExtra(NuevaCategoriaDialog.EXTRA_REPLY);
+            categoriaHabCotidianaViewModel.insert(categoria);
+        } else {
+            Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
+                    Toast.LENGTH_LONG).show();
+        }
     }
-
-    public LiveData<List<CategoriaHabCotidiana>> getCategoriaHabCotidianaAll(){
-        return categoriaHabCotidianaAll;
-    }
-
-    public void insert(CategoriaHabCotidiana categoriaHabCotidiana){
-        categoriaHabCotidianaRepository.insert(categoriaHabCotidiana);
-    }
-*/
 
 }

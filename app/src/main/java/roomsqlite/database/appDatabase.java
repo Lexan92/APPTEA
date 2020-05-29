@@ -17,18 +17,20 @@ import java.util.concurrent.Executors;
 
 import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
+import roomsqlite.dao.CategoriaPictogramaDAO;
 import roomsqlite.dao.DepartamentoDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.MunicipioDao;
 import roomsqlite.dao.PaisDao;
 import roomsqlite.dao.PersonaTeaDao;
+import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.UsuarioDao;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
 
 
 import roomsqlite.config.constantes;
-import roomsqlite.entidades.CatalogoPictograma;
+import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Departamento;
 import roomsqlite.entidades.HabilidadCotidiana;
@@ -38,7 +40,7 @@ import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Usuario;
 
-@Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
+@Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
         /*Departamento.class, Municipio.class,*/ Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
@@ -51,6 +53,8 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
     public abstract HabilidadCotidianaDao habilidadCotidianaDao();
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
+    public abstract CategoriaPictogramaDAO categoriaPictogramaDAO();
+    public abstract PictogramaDAO pictogramaDAO();
 
     public abstract PaisDao paisDao();
     /*public abstract DepartamentoDao departamentoDao();*/
@@ -167,6 +171,22 @@ public abstract class appDatabase extends RoomDatabase {
                     categoriaJuegoDAO.insertCategoriaJuego(cate5);
 
                     System.out.println("registro inicial finalizado");
+
+                CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
+                categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
+                CategoriaPictograma pic= new CategoriaPictograma(1,"Colores");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic);
+                CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic1);
+                CategoriaPictograma pic2= new CategoriaPictograma(3,"Animales");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic2);
+                CategoriaPictograma pic3= new CategoriaPictograma(4,"Verduras");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic3);
+                CategoriaPictograma pic4 = new CategoriaPictograma(5,"Números");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic4);
+                CategoriaPictograma pic5= new CategoriaPictograma(6,"Emociones");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic5);
+
 
 
                 });

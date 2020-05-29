@@ -56,4 +56,6 @@ dependencies {
 
 // Testing
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+
+    implementation "com.getbase:floatingactionbutton:1.10.1"
 }

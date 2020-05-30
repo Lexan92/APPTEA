@@ -5,16 +5,11 @@ package com.example.apptea.ui.categoriajuego;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -25,10 +20,7 @@ import android.widget.Toast;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.repositorios.CategoriaJuegoRepository;
@@ -45,12 +37,16 @@ public class CategoriaJuegoFragment extends Fragment {
     private LiveData<List<CategoriaJuego>> categoriasJuegos;
     RecyclerView recyclerView;
     private CategoriaViewModel categoriaViewModel;
-    private IMainActivity iMainActivity;
+    private String message;
+    public static final String EXTRA_MESSAGE = "com.example.apptea.MESSAGE";
+    public static final  int REQUEST_CODE = 1;
 
 
     public CategoriaJuegoFragment() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -78,15 +74,19 @@ public class CategoriaJuegoFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                iMainActivity.inflateFragment();
+            message = categoriaViewModel.getAllCategoriasJuegos()
+                    .getValue().get(recyclerView.getChildAdapterPosition(v)).getCategoriaJuegoNombre();
 
-                Toast.makeText(getActivity(),"Click en: " + (categoriaViewModel.getAllCategoriasJuegos()
+                Intent intent = new Intent(getActivity(), DetalleCategoriaJuego.class);
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
+
+              /*  Toast.makeText(getActivity(),"Click en: " + (categoriaViewModel.getAllCategoriasJuegos()
                         .getValue().get(recyclerView.getChildAdapterPosition(v)).getCategoriaJuegoNombre()), Toast.LENGTH_SHORT ).show();
-
+                */
 
             }
         });
-
 
         return vista;
     }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Nombre del Autor
+  ~ 18/05/2020
+  ~ Esta actividad hace el llamado a la lista de roles
+  ~ */
+  ~
+  ~
+  -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main">
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetalleCategoriaJuego.DetalleCategoriaJuego">
+
+    <TextView
+        android:id="@+id/text_nombre_detalle_categoria_juego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="63dp" />
+</GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

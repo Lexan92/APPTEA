@@ -17,18 +17,20 @@ import java.util.concurrent.Executors;
 
 import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
+import roomsqlite.dao.CategoriaPictogramaDAO;
 import roomsqlite.dao.DepartamentoDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.MunicipioDao;
 import roomsqlite.dao.PaisDao;
 import roomsqlite.dao.PersonaTeaDao;
+import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.UsuarioDao;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
 
 
 import roomsqlite.config.constantes;
-import roomsqlite.entidades.CatalogoPictograma;
+import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Departamento;
 import roomsqlite.entidades.HabilidadCotidiana;
@@ -38,7 +40,7 @@ import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Usuario;
 
-@Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CatalogoPictograma.class, CategoriaJuego.class,
+@Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
         /*Departamento.class, Municipio.class,*/ Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
@@ -51,6 +53,8 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
     public abstract HabilidadCotidianaDao habilidadCotidianaDao();
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
+    public abstract CategoriaPictogramaDAO categoriaPictogramaDAO();
+    public abstract PictogramaDAO pictogramaDAO();
 
     public abstract PaisDao paisDao();
     /*public abstract DepartamentoDao departamentoDao();*/
@@ -75,20 +79,17 @@ public abstract class appDatabase extends RoomDatabase {
     }
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+
         @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-            super.onOpen(db);
+        public void onCreate (SupportSQLiteDatabase db) {
+            try {
+                databaseWriteExecutor.execute(() -> {
+                    System.out.println("registro inicial");
 
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
 
-                    // Populate the database in the background.
-                    // If you want to start with more words, just add them.
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
+                    System.out.println("categorias habilidades");
 
-
-                    dao.deleteAll();
                     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo Personal");
                     dao.insert(categoriaHabCotidiana);
                     categoriaHabCotidiana = new CategoriaHabCotidiana(2, "Vestimenta");
@@ -106,15 +107,17 @@ public abstract class appDatabase extends RoomDatabase {
                     PaisDao paisesdao = INSTANCE.paisDao();
                     //DepartamentoDao deptodao =INSTANCE.departamentoDao();
                     //primero de borran las entidades dependientes
-                  //  deptodao.deleteDepartamentoAll();
+                    //  deptodao.deleteDepartamentoAll();
 
                     //segundo se borran la entidades independientes
                     paisesdao.deletePaisAll();
-                    Pais pais = new Pais(1,"El Salvador");
+                    System.out.println("paises");
+
+                    Pais pais = new Pais(1, "El Salvador");
                     paisesdao.insertPais(pais);
-                    pais= new Pais(2,"Guatemala");
+                    pais = new Pais(2, "Guatemala");
                     paisesdao.insertPais(pais);
-                    pais= new Pais(3,"Honduras");
+                    pais = new Pais(3, "Honduras");
                     paisesdao.insertPais(pais);
 
 
@@ -151,22 +154,50 @@ public abstract class appDatabase extends RoomDatabase {
 
                     CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
                     categoriaJuegoDAO.deleteAllCategoriaJuegos();
-                    CategoriaJuego cate= new CategoriaJuego(1,"Juego Mental");
+                    System.out.println("categoria juego");
+
+                    CategoriaJuego cate = new CategoriaJuego(1, "Juego Mental");
                     categoriaJuegoDAO.insertCategoriaJuego(cate);
-                    CategoriaJuego cate1= new CategoriaJuego(2,"Juego Memoria");
+                    CategoriaJuego cate1 = new CategoriaJuego(2, "Juego Memoria");
                     categoriaJuegoDAO.insertCategoriaJuego(cate1);
-                    CategoriaJuego cate2= new CategoriaJuego(3,"Juego Vocales");
+                    CategoriaJuego cate2 = new CategoriaJuego(3, "Juego Vocales");
                     categoriaJuegoDAO.insertCategoriaJuego(cate2);
-                    CategoriaJuego cate3= new CategoriaJuego(4,"Juego Consonantes");
+                    CategoriaJuego cate3 = new CategoriaJuego(4, "Juego Consonantes");
                     categoriaJuegoDAO.insertCategoriaJuego(cate3);
-                    CategoriaJuego cate4= new CategoriaJuego(5,"Juego Repeticiones");
+                    CategoriaJuego cate4 = new CategoriaJuego(5, "Juego Repeticiones");
                     categoriaJuegoDAO.insertCategoriaJuego(cate4);
-                    CategoriaJuego cate5= new CategoriaJuego(6,"Juego Colores");
+                    CategoriaJuego cate5 = new CategoriaJuego(6, "Juego Colores");
                     categoriaJuegoDAO.insertCategoriaJuego(cate5);
 
+                    System.out.println("registro inicial finalizado");
+
+                CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
+                categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
+                CategoriaPictograma pic= new CategoriaPictograma(1,"Colores");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic);
+                CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic1);
+                CategoriaPictograma pic2= new CategoriaPictograma(3,"Animales");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic2);
+                CategoriaPictograma pic3= new CategoriaPictograma(4,"Verduras");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic3);
+                CategoriaPictograma pic4 = new CategoriaPictograma(5,"Números");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic4);
+                CategoriaPictograma pic5= new CategoriaPictograma(6,"Emociones");
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic5);
 
 
-            });
+
+                });
+            }
+            catch(Exception ex){
+                System.out.println("no se puede insertar porque ya esta instalada "+ex.getMessage());
+            }
+        }
+
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
         }
     };
 

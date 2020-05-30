@@ -50,6 +50,8 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     public CategoriaHabCotidianaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = mInflater.inflate(R.layout.recyclerview_item_categoria_hab_cotidiana,parent, false);
 
+
+
         return new CategoriaHabCotidianaHolder(itemview);
     }
 

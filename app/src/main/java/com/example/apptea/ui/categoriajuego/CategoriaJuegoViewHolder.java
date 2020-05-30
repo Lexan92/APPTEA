@@ -11,6 +11,7 @@
 package com.example.apptea.ui.categoriajuego;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,11 +22,15 @@ import com.example.apptea.R;
 public class CategoriaJuegoViewHolder extends RecyclerView.ViewHolder{
 
     public TextView nombreCategoria;
+    public Button cancelar;
+    public Button editar;
 
 
     public CategoriaJuegoViewHolder(@NonNull View itemView) {
         super(itemView);
         nombreCategoria = itemView.findViewById(R.id.nombre_categoria_juego);
+        cancelar = itemView.findViewById(R.id.btn_cancelar);
+        editar = itemView.findViewById(R.id.btn_editar);
 
     }
 

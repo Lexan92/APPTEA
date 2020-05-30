@@ -156,17 +156,17 @@ public abstract class appDatabase extends RoomDatabase {
                     categoriaJuegoDAO.deleteAllCategoriaJuegos();
                     System.out.println("categoria juego");
 
-                    CategoriaJuego cate = new CategoriaJuego(1, "Juego Mental");
+                    CategoriaJuego cate = new CategoriaJuego(1, "Juego Mental", true);
                     categoriaJuegoDAO.insertCategoriaJuego(cate);
-                    CategoriaJuego cate1 = new CategoriaJuego(2, "Juego Memoria");
+                    CategoriaJuego cate1 = new CategoriaJuego(2, "Juego Memoria",true);
                     categoriaJuegoDAO.insertCategoriaJuego(cate1);
-                    CategoriaJuego cate2 = new CategoriaJuego(3, "Juego Vocales");
+                    CategoriaJuego cate2 = new CategoriaJuego(3, "Juego Vocales",false);
                     categoriaJuegoDAO.insertCategoriaJuego(cate2);
-                    CategoriaJuego cate3 = new CategoriaJuego(4, "Juego Consonantes");
+                    CategoriaJuego cate3 = new CategoriaJuego(4, "Juego Consonantes",true);
                     categoriaJuegoDAO.insertCategoriaJuego(cate3);
-                    CategoriaJuego cate4 = new CategoriaJuego(5, "Juego Repeticiones");
+                    CategoriaJuego cate4 = new CategoriaJuego(5, "Juego Repeticiones",true);
                     categoriaJuegoDAO.insertCategoriaJuego(cate4);
-                    CategoriaJuego cate5 = new CategoriaJuego(6, "Juego Colores");
+                    CategoriaJuego cate5 = new CategoriaJuego(6, "Juego Colores",false);
                     categoriaJuegoDAO.insertCategoriaJuego(cate5);
 
                     System.out.println("registro inicial finalizado");

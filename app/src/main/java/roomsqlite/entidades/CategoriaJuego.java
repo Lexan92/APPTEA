@@ -23,10 +23,15 @@ public class CategoriaJuego {
     @NonNull
     private String categoriaJuegoNombre;
 
+    @NonNull
+    @ColumnInfo(name = "predeterminado")
+    private boolean predeterminado;
 
-    public CategoriaJuego(@NonNull int categoriaJuegoId,@NonNull  String categoriaJuegoNombre) {
+
+    public CategoriaJuego(@NonNull int categoriaJuegoId,@NonNull  String categoriaJuegoNombre, @NonNull boolean predeterminado) {
         this.categoriaJuegoId = categoriaJuegoId;
         this.categoriaJuegoNombre = categoriaJuegoNombre;
+        this.predeterminado = predeterminado;
     }
 
 
@@ -47,5 +52,13 @@ public class CategoriaJuego {
 
     public void setCategoriaJuegoNombre( @NonNull String categoriaJuegoNombre) {
         this.categoriaJuegoNombre = categoriaJuegoNombre;
+    }
+
+    public boolean isPredeterminado() {
+        return predeterminado;
+    }
+
+    public void setPredeterminado(boolean predeterminado) {
+        this.predeterminado = predeterminado;
     }
 }

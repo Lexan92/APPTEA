@@ -45,6 +45,7 @@
                 android:orientation="horizontal"
                 android:layout_gravity="right">
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_editar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -52,6 +53,7 @@
                     style="?attr/borderlessButtonStyle"
                     />
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_cancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:icon="@drawable/ic_close_black"

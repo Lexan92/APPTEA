@@ -45,7 +45,15 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
     public void onBindViewHolder(@NonNull CategoriaJuegoViewHolder holder, int position) {
     if (categoriasJuego != null && position < categoriasJuego.size()){
         CategoriaJuego categoriaJuego = categoriasJuego.get(position);
+
+        if(categoriaJuego.isPredeterminado()==true){
+
         holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+        holder.editar.setVisibility(View.INVISIBLE);
+        holder.cancelar.setVisibility(View.INVISIBLE);}
+        else {
+            holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+        }
     }else{
         holder.nombreCategoria.setText("No hay Categorias");
     }

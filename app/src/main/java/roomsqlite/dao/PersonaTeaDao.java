@@ -10,6 +10,7 @@
 
 package roomsqlite.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -23,7 +24,7 @@ import roomsqlite.entidades.PersonaTea;
 @Dao
 public interface PersonaTeaDao {
     @Query("SELECT * FROM persona_tea")
-    List<PersonaTea> getAllPersonaTea();
+    LiveData<List<PersonaTea>> getAllPersonaTea();
 
     @Insert
     void insertPersonaTea(PersonaTea personaTea);

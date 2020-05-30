@@ -85,10 +85,9 @@ public abstract class appDatabase extends RoomDatabase {
             try {
                 databaseWriteExecutor.execute(() -> {
                     System.out.println("registro inicial");
-                    // Populate the database in the background.
-                    // If you want to start with more words, just add them.
+
+
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
-                    dao.deleteAll();
                     System.out.println("categorias habilidades");
 
                     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo Personal");

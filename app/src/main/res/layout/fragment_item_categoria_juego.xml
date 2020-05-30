@@ -25,7 +25,7 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:background="@color/colorFondo"
             android:orientation="vertical">
             <TextView
@@ -37,7 +37,30 @@
                 android:textStyle="bold"
                 android:layout_marginTop="25dp"
                 android:textAlignment="center" />
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:layout_gravity="right">
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    app:icon="@drawable/ic_mode_edit_black_24dp"
+                    style="?attr/borderlessButtonStyle"
+                    />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_close_black"
+                    style="?attr/borderlessButtonStyle"
+                    />
+            </LinearLayout>
         </LinearLayout>
+
+
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
 

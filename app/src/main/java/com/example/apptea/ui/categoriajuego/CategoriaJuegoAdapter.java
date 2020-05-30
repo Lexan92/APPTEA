@@ -6,17 +6,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.apptea.MainActivity;
 import com.example.apptea.R;
-import com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego;
 
-import java.net.SocketOptions;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;

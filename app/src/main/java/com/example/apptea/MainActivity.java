@@ -1,27 +1,10 @@
 package com.example.apptea;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Toast;
 
-import com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego;
-import com.example.apptea.ui.categoriajuego.CategoriaJuegoAdapter;
-import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
-import com.example.apptea.ui.categoriajuego.IMainActivity;
-import com.example.apptea.ui.usuario.UsuarioViewModel;
-import com.example.apptea.ui.usuario.registro_usuario;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,13 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.List;
-
-import roomsqlite.entidades.CategoriaJuego;
-import roomsqlite.entidades.Pais;
-import roomsqlite.entidades.Usuario;
-
-public class MainActivity extends AppCompatActivity implements IMainActivity {
+public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -63,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gestion_habilidad,R.id.nav_gestion_juego,R.id.nav_gestion_pictograma,R.id.nav_registro_perfil)
+                R.id.nav_home, R.id.nav_gestion_habilidad,R.id.nav_gestion_juego,R.id.nav_gestion_pictograma,R.id.nav_registro_perfil
+        , R.id.detalleCategoriaJuego)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -88,10 +66,5 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     }
 
 
-    @Override
-    public void inflateFragment() {
-        DetalleCategoriaJuego detalleCategoriaJuego = new DetalleCategoriaJuego();
 
-
-    }
 }

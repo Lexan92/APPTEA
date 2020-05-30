@@ -10,52 +10,28 @@
 
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.apptea.R;
-import com.example.apptea.ui.home.HomeViewModel;
+import com.example.apptea.ui.categoriajuego.CategoriaJuegoFragment;
 
-public class DetalleCategoriaJuego extends Fragment {
+public class DetalleCategoriaJuego extends AppCompatActivity {
 
-    private DetalleCategoriaJuegoViewModel mViewModel;
 
-    public static DetalleCategoriaJuego newInstance() {
-        return new DetalleCategoriaJuego();
-    }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        mViewModel =
-                ViewModelProviders.of(this).get(DetalleCategoriaJuegoViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        mViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detalle_categoria_juego);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(DetalleCategoriaJuegoViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(CategoriaJuegoFragment.EXTRA_MESSAGE);
+        TextView textView = findViewById(R.id.text_nombre_detalle_categoria_juego);
+        textView.setText(message);
+    }
 }

@@ -21,13 +21,29 @@
         android:id="@+id/lista_personasTea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingEnd="@dimen/card_side_margin"
-        android:paddingStart="@dimen/card_side_margin"
-        android:paddingTop="@dimen/header_margin"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/card_side_margin"
 
-        tools:listitem="@layout/fragment_item_persona_tea"/>
+        android:paddingTop="@dimen/header_margin"
+        android:paddingEnd="@dimen/card_side_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/fragment_item_persona_tea" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabpersona"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

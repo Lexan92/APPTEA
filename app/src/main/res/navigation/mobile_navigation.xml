@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.apptea.ui.home.HomeFragment"
         android:label="@string/menu_inicio"
-        tools:layout="@layout/fragment_menu_persona_tea" >
+        tools:layout="@layout/fragment_home" >
 
 
 
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/nav_registro_perfil"
         android:name="com.example.apptea.ui.home.HomeFragment"
-        android:label="@string/menu_registro_perfil"
+        android:label="Perfil"
         tools:layout="@layout/fragment_registro_perfil" />
 
     <fragment

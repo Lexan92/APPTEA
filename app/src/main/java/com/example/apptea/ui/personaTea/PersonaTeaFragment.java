@@ -10,6 +10,7 @@
 
 package com.example.apptea.ui.personaTea;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -36,6 +39,7 @@ public class PersonaTeaFragment extends Fragment {
     private PersonaTeaRepository personaTeaRepository;
     private LiveData<List<PersonaTea>> personastea;
     RecyclerView recyclerView;
+    public static final int PERSONAS_REQUEST_CODE = 1;
 
 
 
@@ -59,7 +63,7 @@ public class PersonaTeaFragment extends Fragment {
 
         personaTeaViewModel = new ViewModelProvider(getActivity()).get(PersonaTeaViewModel.class);
 
-        if (personaTeaViewModel==null){
+        if (personaTeaViewModel.getPersonaTeaAll().getValue()==null){
 
             textpersona.setText(" No se han registrado personas en la lista");
         }
@@ -72,6 +76,16 @@ public class PersonaTeaFragment extends Fragment {
             }
         });
         }
+
+        // AGREGAR PERSONAS
+        FloatingActionButton fab = vista.findViewById(R.id.fabpersona);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent = new Intent(getActivity(), NuevaPersonaTea.class);
+                startActivityForResult(intent, PERSONAS_REQUEST_CODE);
+            }
+        });
 
         return vista;
     }

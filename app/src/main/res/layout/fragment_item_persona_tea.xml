@@ -43,7 +43,7 @@
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
-                    android:id="@+id/nombre_menu"
+                    android:id="@+id/nombre_persona_tea"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"

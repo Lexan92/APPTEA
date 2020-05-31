@@ -6,13 +6,14 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import roomsqlite.database.DateConverter;
 
 @Entity(tableName = "persona_tea", foreignKeys = @ForeignKey(entity = Usuario.class,parentColumns = "usuario_id",childColumns = "usuario_id"))
 @TypeConverters(DateConverter.class)
-public class PersonaTea {
+public class PersonaTea implements Serializable  {
     @PrimaryKey(autoGenerate = true)
     private int persona_id;
     @NonNull
@@ -29,6 +30,9 @@ public class PersonaTea {
     private String persona_foto;
 
 // CONSTRUCTOR
+
+    public PersonaTea() {
+    }
 
     public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, char persona_sexo, @NonNull String persona_foto) {
         this.persona_id = persona_id;

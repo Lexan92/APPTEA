@@ -4,11 +4,14 @@ package com.example.apptea.ui.categoriajuego;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,9 +55,17 @@ public class CategoriaJuegoFragment extends Fragment implements ICategoriaJuego 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View vista = inflater.inflate(R.layout.fragment_categoria_juego, container, false);
+        return inflater.inflate(R.layout.fragment_categoria_juego, container, false);
 
-        recyclerView =  vista.findViewById(R.id.lista_categoria_juego);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        recyclerView =  view.findViewById(R.id.lista_categoria_juego);
         final CategoriaJuegoAdapter adapter = new CategoriaJuegoAdapter(getActivity());
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
@@ -73,34 +84,20 @@ public class CategoriaJuegoFragment extends Fragment implements ICategoriaJuego 
             @Override
             public void onClick(View v) {
 
-            message = categoriaViewModel.getAllCategoriasJuegos().getValue().get(recyclerView.getChildAdapterPosition(v)).getCategoriaJuegoNombre();
-
-
+                //Instancia de fragment al cual se dirigira
                 Detalle_Juego detalle_juego =new Detalle_Juego();
-                //Bundle
+                //objeto Bundle que encapsula el objeto de tipo CategoriaJuego
                 Bundle  bundleEnvio = new Bundle();
                 bundleEnvio.putSerializable("objeto",categoriaViewModel.getAllCategoriasJuegos().getValue().get(recyclerView.getChildAdapterPosition(v)));
                 detalle_juego.setArguments(bundleEnvio);
-                //fragment destino
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment,detalle_juego);
-                transaction.addToBackStack(null).commit();
 
-
-              /*  Intent intent = new Intent(getActivity(), DetalleCategoriaJuego.class);
-                intent.putExtra(EXTRA_MESSAGE, message);
-                startActivity(intent);*/
-
-              /*  Toast.makeText(getActivity(),"Click en: " + (categoriaViewModel.getAllCategoriasJuegos()
-                        .getValue().get(recyclerView.getChildAdapterPosition(v)).getCategoriaJuegoNombre()), Toast.LENGTH_SHORT ).show();
-                */
+                //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
+                Navigation.findNavController(v).navigate(R.id.detalle_Juego,bundleEnvio);
 
             }
         });
 
-        return vista;
     }
-
 
     @Override
     public void setNameToolbar(String message) {

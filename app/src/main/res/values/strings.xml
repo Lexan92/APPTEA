@@ -50,7 +50,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
 
 
     --Categoria Habilidad Cotidiana
-    <string name="campo_nombre">Nombre de Categoria...</string>
+    <string name="campo_nombre">Nombre de Categoria</string>
     <string name="button_save">Guardar</string>
     <string name="vacio_cat_hab_cot">No se guardo, ya que el campo esta vacio.</string>
     <string name="titulo_cat_hab_cot">Nueva Categoria</string>

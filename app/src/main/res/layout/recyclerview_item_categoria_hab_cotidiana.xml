@@ -25,19 +25,43 @@
             >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:background="@color/colorFondo"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/txt_categoria_hab_cotidiana"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="25dp"
                     android:textAlignment="center" />
-            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_editar"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        app:icon="@drawable/ic_mode_edit_black_24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_cancelar"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="48dp"
+                        app:icon="@drawable/ic_close_black" />
+                </LinearLayout>
+           </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
 

@@ -54,10 +54,6 @@
         android:name="com.example.apptea.ui.menuPrincipal.MenuPrincipalFragment"
         android:label="fragment_menu_principal"
         tools:layout="@layout/fragment_menu_principal" />
-    <activity
-        android:id="@+id/detalleCategoriaJuego"
-        android:name="com.example.apptea.ui.DetalleCategoriaJuego.DetalleCategoriaJuego"
-        android:label="activity_detalle_categoria_juego"
-        tools:layout="@layout/activity_detalle_categoria_juego" />
+
 
 </navigation>

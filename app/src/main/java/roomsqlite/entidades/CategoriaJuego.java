@@ -5,13 +5,15 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 /*
 * AUTOR: ALEX
 * 19/MAYO/2020
 * CLASE ENTIDAD PARA LA CLASE CATEGORIA JUEGOS
 * */
 @Entity(tableName = CategoriaJuego.TABLE_NAME)
-public class CategoriaJuego {
+public class CategoriaJuego implements Serializable {
 
     public static final String TABLE_NAME = "categoria_juego";
 
@@ -27,8 +29,10 @@ public class CategoriaJuego {
     @ColumnInfo(name = "predeterminado")
     private boolean predeterminado;
 
+    public CategoriaJuego() {
+    }
 
-    public CategoriaJuego(@NonNull int categoriaJuegoId,@NonNull  String categoriaJuegoNombre, @NonNull boolean predeterminado) {
+    public CategoriaJuego(@NonNull int categoriaJuegoId, @NonNull  String categoriaJuegoNombre, @NonNull boolean predeterminado) {
         this.categoriaJuegoId = categoriaJuegoId;
         this.categoriaJuegoNombre = categoriaJuegoNombre;
         this.predeterminado = predeterminado;

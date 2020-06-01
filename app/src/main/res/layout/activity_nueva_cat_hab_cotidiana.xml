@@ -38,9 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:ems="15"
+
         android:hint="@string/campo_nombre"
-        android:textSize="5sp"
+
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         tools:layout_editor_absoluteX="178dp">
 
@@ -49,13 +49,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="164dp"
             android:fontFamily="sans-serif-light"
             android:inputType="textAutoComplete"
-            android:minHeight="15dp"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     </com.google.android.material.textfield.TextInputLayout>

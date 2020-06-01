@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
@@ -34,9 +35,12 @@ import java.util.List;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.repositorios.PersonaTeaRepository;
 
+import static android.app.Activity.RESULT_OK;
+
 public class PersonaTeaFragment extends Fragment {
     private PersonaTeaViewModel personaTeaViewModel;
     private PersonaTeaRepository personaTeaRepository;
+    private  PersonaTea personaTea;
     private LiveData<List<PersonaTea>> personastea;
     RecyclerView recyclerView;
     public static final int PERSONAS_REQUEST_CODE = 1;
@@ -88,6 +92,17 @@ public class PersonaTeaFragment extends Fragment {
         });
 
         return vista;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PERSONAS_REQUEST_CODE && resultCode == RESULT_OK) {
+            personaTea = (PersonaTea) data.getSerializableExtra(NuevaPersonaTea.EXTRA_PERSONA);
+            //PersonaTeaViewModel.insert(personaTea);
+        } else {
+            Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();
+        }
     }
 
 }

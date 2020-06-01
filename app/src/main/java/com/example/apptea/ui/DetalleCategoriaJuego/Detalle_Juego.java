@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.transition.MaterialContainerTransform;
 
 import roomsqlite.entidades.CategoriaJuego;
 
@@ -46,7 +47,7 @@ public class Detalle_Juego extends Fragment {
     private String mParam2;
 
     TextView textoTituloCategoria;
-    ActionBar actionBar;
+
 
 
     public Detalle_Juego() {
@@ -79,6 +80,7 @@ public class Detalle_Juego extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override

@@ -32,7 +32,7 @@ import roomsqlite.repositorios.CategoriaJuegoRepository;
 
  * create an instance of this fragment.
  */
-public class CategoriaJuegoFragment extends Fragment implements ICategoriaJuego {
+public class CategoriaJuegoFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private CategoriaJuegoRepository categoriaJuegoRepository;
@@ -99,8 +99,4 @@ public class CategoriaJuegoFragment extends Fragment implements ICategoriaJuego 
 
     }
 
-    @Override
-    public void setNameToolbar(String message) {
-
-    }
 }

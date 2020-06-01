@@ -16,7 +16,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card"
+            android:id="@+id/card_frases"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
@@ -71,7 +71,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card1"
+            android:id="@+id/card_vocabulario"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
@@ -123,7 +123,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card2"
+            android:id="@+id/card_habilidades"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
@@ -176,7 +176,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card3"
+            android:id="@+id/card_juegos"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"

@@ -35,13 +35,9 @@ import roomsqlite.repositorios.CategoriaJuegoRepository;
 public class CategoriaJuegoFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private CategoriaJuegoRepository categoriaJuegoRepository;
-    private LiveData<List<CategoriaJuego>> categoriasJuegos;
     RecyclerView recyclerView;
     private CategoriaViewModel categoriaViewModel;
-    private String message;
-    public static final String EXTRA_MESSAGE = "com.example.apptea.MESSAGE";
-    public static final  int REQUEST_CODE = 1;
+
 
 
     public CategoriaJuegoFragment() {

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -64,6 +65,18 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
+
+        //Comprobacion para pintar el nombre del toolbar proveniente del menu principal
+        Bundle objetoBundle = getArguments();
+        boolean bandera = false;
+        if (objetoBundle!=null){
+            bandera =  objetoBundle.getBoolean("bandera");
+
+            if (bandera == true){
+                Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+                toolbar.setTitle("Vocabulario");
+            }
+        }
 
         return vista;
     }

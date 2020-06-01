@@ -68,4 +68,15 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    --persona tea
+    <string name="datosTea">Nuevo Registro</string>
+    <string name="nombreTea">Nombre</string>
+    <string name="apellidoTea">Apellido</string>
+    <string name="fechaTea">fecha de nacimiento</string>
+    <string name="SexoTea">Sexo</string>
+    <string name="foto">Foto</string>
+    <string name="guardarPersona">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+
 </resources>

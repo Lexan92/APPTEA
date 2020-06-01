@@ -10,9 +10,12 @@
 
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -20,7 +23,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.transition.MaterialContainerTransform;
 
 import roomsqlite.entidades.CategoriaJuego;
 
@@ -41,6 +47,8 @@ public class Detalle_Juego extends Fragment {
     private String mParam2;
 
     TextView textoTituloCategoria;
+
+
 
     public Detalle_Juego() {
         // Required empty public constructor
@@ -72,15 +80,21 @@ public class Detalle_Juego extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_detalle__juego, container, false);
 
+
+
         textoTituloCategoria = vista.findViewById(R.id.text_titulo_categoria_juego);
+
 
         Bundle objetoCategoriaJuego=getArguments();
         CategoriaJuego categoriaJuego = null;
@@ -89,6 +103,9 @@ public class Detalle_Juego extends Fragment {
             textoTituloCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
         }
 
+        //Definiendo nombre para el toolbar
+        Toolbar  toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
 
 
         return vista;

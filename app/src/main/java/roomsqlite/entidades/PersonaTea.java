@@ -1,6 +1,7 @@
 package roomsqlite.entidades;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -25,8 +26,8 @@ public class PersonaTea implements Serializable  {
    @NonNull
     private Date persona_fecha_nac;
     @NonNull
-    private char persona_sexo;
-    @NonNull
+    private String persona_sexo;
+    @Nullable
     private String persona_foto;
 
 // CONSTRUCTOR
@@ -34,7 +35,7 @@ public class PersonaTea implements Serializable  {
     public PersonaTea() {
     }
 
-    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, char persona_sexo, @NonNull String persona_foto) {
+    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, String persona_sexo, @NonNull String persona_foto) {
         this.persona_id = persona_id;
         this.usuario_id = usuario_id;
         this.persona_nombre = persona_nombre;
@@ -99,11 +100,11 @@ public class PersonaTea implements Serializable  {
         this.persona_fecha_nac = persona_fecha_nac;
     }
 
-    public char getPersona_sexo() {
+    public String getPersona_sexo() {
         return persona_sexo;
     }
 
-    public void setPersona_sexo(char persona_sexo) {
+    public void setPersona_sexo(String persona_sexo) {
         this.persona_sexo = persona_sexo;
     }
 }

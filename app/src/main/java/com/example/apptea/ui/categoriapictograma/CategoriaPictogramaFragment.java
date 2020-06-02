@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -65,6 +66,14 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
+        FloatingActionButton fab1 = vista.findViewById(R.id.fab1);
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CategoriaNueva.class);
+                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+            }
+        });
 
         //Comprobacion para pintar el nombre del toolbar proveniente del menu principal
         Bundle objetoBundle = getArguments();
@@ -86,6 +95,19 @@ public class CategoriaPictogramaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            CategoriaPictograma categoria = (CategoriaPictograma) data.getSerializableExtra(CategoriaNueva.EXTRA_REPLY);
+            categoriaPictogramaViewModel.insert(categoria);
+        } else {
+            Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
 }

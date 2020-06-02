@@ -1,46 +1,52 @@
 package roomsqlite.entidades;
-/*
- * AUTOR: GUADALUPE
- * CLASE ENTIDAD PARACTEGORIA DE PICTOGRAMA
- * */
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName= CategoriaPictograma.TABLE_NAME)
-public class CategoriaPictograma {
+import java.io.Serializable;
 
-    public static final String TABLE_NAME="categoria_pictograma";
 
+
+@Entity(tableName = "CategoriaPictograma")
+
+public class CategoriaPictograma implements Serializable {
+
+    public static final String TABLE_NAME = "CategoriaPictograma";
+
+    /*@PrimaryKey (autoGenerate = true)
+    @ColumnInfo (index = true, name="cat_pictograma_id")
+    @NonNull*/
     @PrimaryKey (autoGenerate = true)
-    @ColumnInfo (index = true, name="categoria_pictograma_id")
-    @NonNull
+    @ColumnInfo(index = true,name = "cat_pictograma_id")
     private int cat_pictograma_id;
 
-    @ColumnInfo(name="categoria_pictograma_nombre")
+
     @NonNull
     private String cat_pictograma_nombre;
 
    // private int cat_pictorgrama_ban;
 
+public CategoriaPictograma(){
 
+}
 
 //CONSTRUCTOR
 
-    public CategoriaPictograma(@NonNull int cat_pictograma_id, @NonNull String cat_pictograma_nombre) {
+    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre) {
         this.cat_pictograma_id = cat_pictograma_id;
         this.cat_pictograma_nombre = cat_pictograma_nombre;
     }
 
 
     //GET Y SET
-    @NonNull
+
     public int getCat_pictograma_id() {
         return cat_pictograma_id;
     }
 
-    public void setCat_pictograma_id(@NonNull int cat_pictograma_id) {
+    public void setCat_pictograma_id(int cat_pictograma_id) {
         this.cat_pictograma_id = cat_pictograma_id;
     }
 

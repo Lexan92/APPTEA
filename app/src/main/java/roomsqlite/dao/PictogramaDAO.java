@@ -27,7 +27,7 @@ import roomsqlite.entidades.Pictograma;
         void Pictograma(Pictograma pictograma);
 
 
-        @Query("SELECT * FROM " + Pictograma.TABLE_NAME)
+        @Query("SELECT * FROM " +Pictograma.TABLE_NAME)
         LiveData<List<Pictograma>> getAllPictogramas();
 
         @Query("DELETE FROM "+Pictograma.TABLE_NAME)
@@ -35,5 +35,12 @@ import roomsqlite.entidades.Pictograma;
 
         @Query("SELECT * FROM "+Pictograma.TABLE_NAME + " WHERE pictograma_id = :id")
         LiveData<Pictograma> findbyPictogramaId(int id);
+
+        //metodo donde se recuperan todos los poctogramas
+        @Query("SELECT * FROM pictograma ORDER BY pictograma_nombre ASC")
+        LiveData<List<Pictograma>> getPictograma_nombre();
+
+        @Insert(onConflict = OnConflictStrategy.IGNORE)
+        public void insert(Pictograma pictograma);
 
 }

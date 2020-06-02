@@ -25,6 +25,9 @@
         <activity android:name=".ui.categoriahabilidadcotidiana.NuevaCategoriaDialog"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
             />
+        <activity android:name=".ui.categoriapictograma.CategoriaNueva"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
+            />
 
     </application>
 

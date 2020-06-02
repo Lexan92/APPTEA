@@ -169,25 +169,40 @@ public abstract class appDatabase extends RoomDatabase {
                     CategoriaJuego cate5 = new CategoriaJuego(6, "Juego Colores",false);
                     categoriaJuegoDAO.insertCategoriaJuego(cate5);
 
-                    System.out.println("registro inicial finalizado");
+
+
+
+                   // CategoriaPictogramaDAO pict  = INSTANCE.categoriaPictogramaDAO();
+
 
                 CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
                 categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
+                    System.out.println("categorias pictogramas");
+
                 CategoriaPictograma pic= new CategoriaPictograma(1,"Colores");
-                categoriaPictogramaDAO.insertCategoriaPictograma(pic);
+                categoriaPictogramaDAO.insert(pic);
                 CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas");
-                categoriaPictogramaDAO.insertCategoriaPictograma(pic1);
+                categoriaPictogramaDAO.insert(pic1);
                 CategoriaPictograma pic2= new CategoriaPictograma(3,"Animales");
-                categoriaPictogramaDAO.insertCategoriaPictograma(pic2);
+                categoriaPictogramaDAO.insert(pic2);
                 CategoriaPictograma pic3= new CategoriaPictograma(4,"Verduras");
-                categoriaPictogramaDAO.insertCategoriaPictograma(pic3);
+                categoriaPictogramaDAO.insert(pic3);
                 CategoriaPictograma pic4 = new CategoriaPictograma(5,"Números");
-                categoriaPictogramaDAO.insertCategoriaPictograma(pic4);
+                categoriaPictogramaDAO.insert(pic4);
                 CategoriaPictograma pic5= new CategoriaPictograma(6,"Emociones");
-                categoriaPictogramaDAO.insertCategoriaPictograma(pic5);
+                categoriaPictogramaDAO.insert(pic5);
 
+/*
+                PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
+                pictogramaDAO.deleteAllPictogramas();
+                System.out.println("pictogramas");
+                Pictograma picto= new Pictograma(pictograma_id:1, cat_pictograma_id: 1,"Verde");
+                pictogramaDAO.insert(picto);
+                Pictograma picto1= new Pictograma(pictograma_id:2, cat_pictograma_id: 1,"Azul");
+                pictogramaDAO.insert(picto1);
 
-
+*/
+                    System.out.println("registro inicial finalizado");
                 });
             }
             catch(Exception ex){

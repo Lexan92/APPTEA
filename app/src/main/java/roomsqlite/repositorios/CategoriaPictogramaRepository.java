@@ -35,12 +35,13 @@ public class CategoriaPictogramaRepository {
         return allCategoriaPictograma;
     }
 
-    public void insert (CategoriaPictograma categoriaPictograma){
-        categoriaPictogramaDAO.insertCategoriaPictograma(categoriaPictograma);
-    }
+   /* public void insert (CategoriaPictograma categoriaPictograma){
 
-    public LiveData<CategoriaPictograma> findByIdCategoria(int id){
-        return categoriaPictogramaDAO.findbyCategoriaPictogramaId(id);
+        categoriaPictogramaDAO.insertCategoriaPictograma(categoriaPictograma);
+    }*/
+
+    public void insert(CategoriaPictograma categoriaPictograma){
+        appDatabase.databaseWriteExecutor.execute(()-> categoriaPictogramaDAO.insert(categoriaPictograma));
     }
 
 

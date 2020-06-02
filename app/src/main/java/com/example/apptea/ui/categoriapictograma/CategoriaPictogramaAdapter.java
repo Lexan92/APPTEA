@@ -54,7 +54,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
             holder.categoriaItemView.setText(current.getCat_pictograma_nombre());
         } else {
             // Covers the case of data not being ready yet.
-            holder.categoriaItemView.setText("No existe ninguna categoria para habilidades cotidianas");
+            holder.categoriaItemView.setText("No existe ninguna categoria de pictogramas");
         }
     }
 

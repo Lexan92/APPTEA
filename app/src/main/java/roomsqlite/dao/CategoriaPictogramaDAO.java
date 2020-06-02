@@ -16,10 +16,11 @@ import roomsqlite.entidades.CategoriaPictograma;
 
 @Dao
 public interface CategoriaPictogramaDAO {
+    public static final String TABLE_NAME = "CategoriaPictograma";
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCategoriaPictograma(CategoriaPictograma categoriaPictograma);
-
+*/
     @Update
     void updateCategoriaPictograma(CategoriaPictograma categoriaPictograma);
 
@@ -29,13 +30,20 @@ public interface CategoriaPictogramaDAO {
     @Query("SELECT * FROM " + CategoriaPictograma.TABLE_NAME)
     LiveData<List<CategoriaPictograma>> getAllCategoriasPictogramas();
 
-    @Query("DELETE FROM "+CategoriaPictograma.TABLE_NAME)
+    @Query("DELETE FROM " + CategoriaPictograma.TABLE_NAME)
     public void deleteAllCategoriaPictogramas();
 
-    @Query("SELECT * FROM "+CategoriaPictograma.TABLE_NAME + " WHERE categoria_pictograma_id = :id")
+    @Query("SELECT * FROM " + CategoriaPictograma.TABLE_NAME + " WHERE cat_pictograma_id = :id")
     LiveData<CategoriaPictograma> findbyCategoriaPictogramaId(int id);
-}
 
+    //metodo donde se recuperan todas las categorias de pictograma
+    @Query("SELECT * FROM categoriapictograma ORDER BY cat_pictograma_nombre ASC")
+    LiveData<List<CategoriaPictograma>> getCat_pictograma_nombre();
+
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    public void insert(CategoriaPictograma catpictograma);
+}
 
 
 

@@ -16,22 +16,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.personaTea.NuevaPersonaTea">
 
-
     <TextView
         android:id="@+id/datosTea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/datosTea"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="566dp"
+        android:id="@+id/scrollViewtea"
+        style="@android:style/Widget.ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datosTea">
@@ -39,7 +42,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nombrePersonaTeaLayout"
@@ -56,7 +61,7 @@
                     android:id="@+id/nombreTea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -74,29 +79,28 @@
                     android:id="@+id/apellidoTea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fechaContainer"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp"
-            android:ems="10"
-            android:hint="@string/fechaTea"
-            android:textSize="12sp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fechaTea"
+                android:id="@+id/fechaContainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="false"
-                android:inputType="date"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/fechaTea"
+                android:textSize="12sp">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fechaTea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <LinearLayout
@@ -137,14 +141,13 @@
                     android:id="@+id/fotoPersona"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/guardarPersona"
@@ -153,19 +156,29 @@
                     android:layout_marginEnd="60dp"
                     android:layout_marginBottom="24dp"
                     android:text="@string/guardarPersona"
-                    android:gravity="right" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/cancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="60dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="32dp"
                     android:text="@string/cancelar"
-                    android:gravity="left"/>
-            </LinearLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guardar"
+                    app:layout_constraintHorizontal_bias="0.364"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
         </LinearLayout>
     </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

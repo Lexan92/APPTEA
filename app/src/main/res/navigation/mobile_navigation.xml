@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.example.apptea.ui.home.HomeFragment"
         android:label="@string/menu_inicio"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_gestion_habilidad"
+            app:destination="@id/nav_gestion_habilidad" />
+    </fragment>
 
 
     <fragment
@@ -19,10 +23,10 @@
         tools:layout="@layout/fragment_gestion_pictograma" />
 
     <fragment
-        android:id="@+id/nav_registro_perfil"
-        android:name="com.example.apptea.ui.home.HomeFragment"
-        android:label="Perfil"
-        tools:layout="@layout/fragment_registro_perfil" />
+        android:id="@+id/nav_mi_perfil"
+        android:name="com.example.apptea.ui.usuario.UsuarioFragment"
+        android:label="Mi Perfil"
+        tools:layout="@layout/fragment_mi_perfil" />
 
     <fragment
         android:id="@+id/nav_gestion_habilidad"

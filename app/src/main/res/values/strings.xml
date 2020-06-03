@@ -12,7 +12,7 @@
     <string name="menu_inicio">Inicio</string>
 
     <string name="menu_gestion_pictograma">Gestión de Pictogramas</string>
-    <string name="menu_registro_perfil">Registro de Perfiles</string>
+    <string name="menu_mi_perfil">Mi perfil</string>
     <string name="menu_gestion_habilidad">Categorias de Habilidades Cotidianas</string>
     <string name="menu_gestion_juego">Gestión de Juegos Interactivos</string>
     <string name="menu_persona_tea">Menú Persona TEA</string>

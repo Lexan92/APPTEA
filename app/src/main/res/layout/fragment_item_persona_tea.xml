@@ -12,7 +12,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_menu_principal"
         android:layout_width="match_parent"
@@ -24,16 +26,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
 
             <!-- Media -->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/card_height_cat_juego"
-                app:srcCompat="@drawable/ic_linda"
                 android:scaleType="fitCenter"
-                />
+                app:srcCompat="@drawable/ic_linda" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,16 +47,15 @@
                     android:id="@+id/nombre_persona_tea"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:text="Categoria Juego"
                     android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textSize="20sp"
                     android:textStyle="bold"
 
                     />
 
 
             </LinearLayout>
-
 
 
         </LinearLayout>

@@ -26,6 +26,9 @@ public interface PersonaTeaDao {
     @Query("SELECT * FROM persona_tea")
     LiveData<List<PersonaTea>> getAllPersonaTea();
 
+    @Query("DELETE FROM persona_tea")
+    public void deletePersonaAll();
+
     @Insert
     void insertPersonaTea(PersonaTea personaTea);
 

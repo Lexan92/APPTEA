@@ -67,19 +67,19 @@ public class PersonaTeaFragment extends Fragment {
 
         personaTeaViewModel = new ViewModelProvider(getActivity()).get(PersonaTeaViewModel.class);
 
-        if (personaTeaViewModel.getPersonaTeaAll().getValue()==null){
+        /*if (personaTeaViewModel.getPersonaTeaAll().getValue()==null){
 
             textpersona.setText(" No se han registrado personas en la lista");
         }
-        else{
-            textpersona.setText(" Gestion");
+        else{*/
+            textpersona.setText(" Listado de niños y niñas");
         personaTeaViewModel.getPersonaTeaAll().observe(getActivity(), new Observer<List<PersonaTea>>() {
             @Override
             public void onChanged(List<PersonaTea> personaTeas) {
                 adapter.setPersonas(personaTeas);
             }
         });
-        }
+        //}
 
         // AGREGAR PERSONAS
         FloatingActionButton fab = vista.findViewById(R.id.fabpersona);
@@ -99,7 +99,7 @@ public class PersonaTeaFragment extends Fragment {
 
         if (requestCode == PERSONAS_REQUEST_CODE && resultCode == RESULT_OK) {
             personaTea = (PersonaTea) data.getSerializableExtra(NuevaPersonaTea.EXTRA_PERSONA);
-            //PersonaTeaViewModel.insert(personaTea);
+            personaTeaViewModel.insert(personaTea);
         } else {
             Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();
         }

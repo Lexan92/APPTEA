@@ -202,6 +202,23 @@ public abstract class appDatabase extends RoomDatabase {
                 pictogramaDAO.insert(picto1);
 
 */
+
+
+                    UsuarioDao usuarioDao = INSTANCE.usuarioDao();
+                    PersonaTeaDao personaTeaDao =INSTANCE.personaTeaDao();
+                    //primero de borran las entidades dependientes
+                      personaTeaDao.deletePersonaAll();
+
+                    //segundo se borran la entidades independientes
+                    usuarioDao.deleteUsuarioAll();
+
+
+                    Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
+                    usuarioDao.insertUsuario(usuario);
+
+                    PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
+                    personaTeaDao.insertPersonaTea(personaTea);
+
                     System.out.println("registro inicial finalizado");
                 });
             }

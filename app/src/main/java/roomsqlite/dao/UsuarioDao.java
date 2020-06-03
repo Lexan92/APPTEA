@@ -17,6 +17,9 @@ public interface UsuarioDao {
     @Query("SELECT * FROM usuario")
     LiveData<List<Usuario>> getAllUsuario();
 
+    @Query("DELETE FROM usuario")
+    public void deleteUsuarioAll();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUsuario(Usuario usuario);
 

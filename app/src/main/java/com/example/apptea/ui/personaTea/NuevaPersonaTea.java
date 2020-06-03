@@ -100,7 +100,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
                         ||TextUtils.isEmpty(fecha.getText())  ||TextUtils.isEmpty(spinnerSexo.getSelectedItem().toString())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-
+                    personaTea.setUsuario_id(1);
                     personaTea.setPersona_nombre(nombreTea.getText().toString());
                     personaTea.setPersona_apellido(apellidoTea.getText().toString());
                     try {

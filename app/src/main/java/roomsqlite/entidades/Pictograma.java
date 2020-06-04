@@ -16,6 +16,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 
 @Entity(tableName= "pictograma",
         foreignKeys = @ForeignKey(entity = CategoriaPictograma.class, parentColumns = "cat_pictograma_id", childColumns = "cat_pictograma_id"))
@@ -24,7 +26,7 @@ import androidx.room.PrimaryKey;
 
 //@Entity(tableName = Pictograma.TABLE_NAME)
 
-public class Pictograma {
+public class Pictograma implements Serializable {
     public static final String TABLE_NAME="pictograma";
 
     @PrimaryKey (autoGenerate = true)

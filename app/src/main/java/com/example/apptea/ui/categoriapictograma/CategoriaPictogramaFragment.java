@@ -82,6 +82,15 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
+        FloatingActionButton fab1 = view.findViewById(R.id.fab1);
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CategoriaNueva.class);
+                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +103,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 detalle_pictograma.setArguments(bundleEnvio);
 
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                Navigation.findNavController(v).navigate(R.id.action_nav_gestion_pictograma_to_detalle_Pictograma,bundleEnvio);
+                Navigation.findNavController(v).navigate(R.id.detalle_Pictograma,bundleEnvio);
 
             }
         });

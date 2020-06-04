@@ -78,6 +78,9 @@
         android:label="fragment_detalle__pictograma"
         tools:layout="@layout/fragment_detalle__pictograma" >
 
+        <action
+            android:id="@+id/action_detalle_Pictograma_to_nav_gestion_pictograma"
+            app:destination="@id/nav_gestion_pictograma" />
     </fragment>
 
 

@@ -78,7 +78,7 @@ public class Detalle_Pictograma extends Fragment {
 
 
 
-        textoTituloCategoria = vista.findViewById(R.id.txt_categoria_pictograma);
+        textoTituloCategoria = vista.findViewById(R.id.text_nombre_categoria);
 
 
         Bundle objetoCategoriaPictograma=getArguments();

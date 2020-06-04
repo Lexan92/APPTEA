@@ -18,7 +18,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.apptea.ui.usuario.registro_usuario;
+import com.example.apptea.ui.usuario.RegistroUsuarioActivity;
 
 public class instalacion extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class instalacion extends AppCompatActivity {
 
     public void siguiente(View view){
 
-        Intent siguiente = new Intent(this, registro_usuario.class);
+        Intent siguiente = new Intent(this, RegistroUsuarioActivity.class);
         startActivity(siguiente);
     }
 }

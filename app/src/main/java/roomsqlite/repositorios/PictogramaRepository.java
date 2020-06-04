@@ -24,10 +24,12 @@ public class PictogramaRepository {
     private PictogramaDAO pictogramaDAO;
     private LiveData<List<Pictograma>>allPictograma;
 
+
     public PictogramaRepository(Application application){
         appDatabase db=appDatabase.getDatabase(application);
         pictogramaDAO=db.pictogramaDAO();
         allPictograma=pictogramaDAO.getAllPictogramas();
+
     }
 
     public LiveData<List<Pictograma>> getAllPictograma() {
@@ -39,5 +41,9 @@ public class PictogramaRepository {
 
     public LiveData<Pictograma>finfByIdPictograma(int id){
         return pictogramaDAO.findbyPictogramaId(id);
+    }
+
+    public LiveData<List<Pictograma>> findPictogramasByCategoria(int id){
+        return pictogramaDAO.allPictogramaByCategoria(id);
     }
 }

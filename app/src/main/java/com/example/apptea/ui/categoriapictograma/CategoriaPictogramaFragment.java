@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavAction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 
 
-import com.example.apptea.ui.DetalleCategoriaPictograma.Detalle_Pictograma;
+import com.example.apptea.ui.pictograma.Detalle_Pictograma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

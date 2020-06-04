@@ -1,5 +1,15 @@
 
-package com.example.apptea.ui.DetalleCategoriaPictograma;
+/*
+ *
+ * Nombre del Autor
+ * 18/05/2020
+ * Esta actividad hace el llamado a la lista de roles
+ * /
+ *
+ *
+ */
+
+package com.example.apptea.ui.pictograma;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +17,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 
+import java.util.List;
+
 import roomsqlite.entidades.CategoriaPictograma;
+import roomsqlite.entidades.Pictograma;
+import roomsqlite.repositorios.PictogramaRepository;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +51,10 @@ public class Detalle_Pictograma extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView textoTituloCategoria;
-
+    private PictogramaRepository pictogramaRepository;
+    private LiveData<List<Pictograma>> pictogramasAll;
+    private PictogramaViewModel pictogramaViewModel;
+    RecyclerView recyclerView;
 
 
     public Detalle_Pictograma() {
@@ -71,29 +94,38 @@ public class Detalle_Pictograma extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_detalle__pictograma, container, false);
-        
+        return inflater.inflate(R.layout.fragment_detalle__pictograma, container, false);
+
+    }
 
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        textoTituloCategoria = vista.findViewById(R.id.text_nombre_categoria);
+        recyclerView = view.findViewById(R.id.lista_pictogramas);
+        final PictogramaAdapter adapter = new PictogramaAdapter(getActivity());
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setAdapter(adapter);
+        pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
+
 
 
         Bundle objetoCategoriaPictograma=getArguments();
         CategoriaPictograma categoriaPictograma = null;
         if(objetoCategoriaPictograma!= null){
             categoriaPictograma = (CategoriaPictograma) objetoCategoriaPictograma.getSerializable("elementos");
-            textoTituloCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-
+            pictogramaViewModel.getAllPictogramaByCategoria(categoriaPictograma.getCat_pictograma_id()).observe(getActivity(), new Observer<List<Pictograma>>() {
+                @Override
+                public void onChanged(List<Pictograma> pictogramas) {
+                    adapter.setPictograma(pictogramas);
+                }
+            });
         }
 
         //Definiendo nombre para el toolbar
         Toolbar  toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(categoriaPictograma.getCat_pictograma_nombre());
-
-
-        return vista;
+        toolbar.setTitle("Categoria: " + categoriaPictograma.getCat_pictograma_nombre());
     }
 }

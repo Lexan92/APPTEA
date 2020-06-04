@@ -62,7 +62,7 @@ public class PersonaTeaFragment extends Fragment {
 
         final PersonaTeaAdapter adapter = new PersonaTeaAdapter(getActivity());
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         recyclerView.setAdapter(adapter);
 
         personaTeaViewModel = new ViewModelProvider(getActivity()).get(PersonaTeaViewModel.class);
@@ -95,7 +95,7 @@ public class PersonaTeaFragment extends Fragment {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
+         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PERSONAS_REQUEST_CODE && resultCode == RESULT_OK) {
             personaTea = (PersonaTea) data.getSerializableExtra(NuevaPersonaTea.EXTRA_PERSONA);

@@ -183,25 +183,31 @@ public abstract class appDatabase extends RoomDatabase {
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic);
                 CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas", false);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic1);
-                CategoriaPictograma pic2= new CategoriaPictograma(3,"Animales",false);
+               /* CategoriaPictograma pic2= new CategoriaPictograma(3,"Animales",false);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic2);
                 CategoriaPictograma pic3= new CategoriaPictograma(4,"Verduras",false);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic3);
                 CategoriaPictograma pic4 = new CategoriaPictograma(5,"Números",false);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic4);
                 CategoriaPictograma pic5= new CategoriaPictograma(6,"Emociones",true);
-                categoriaPictogramaDAO.insertCategoriaPictograma(pic5);
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic5);*/
 
-/*
+
                 PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
                 pictogramaDAO.deleteAllPictogramas();
-                System.out.println("pictogramas");
-                Pictograma picto= new Pictograma(pictograma_id:1, cat_pictograma_id: 1,"Verde");
-                pictogramaDAO.insert(picto);
-                Pictograma picto1= new Pictograma(pictograma_id:2, cat_pictograma_id: 1,"Azul");
-                pictogramaDAO.insert(picto1);
 
-*/
+                Pictograma picto= new Pictograma(1,  1,"Verde",true);
+                pictogramaDAO.insert(picto);
+                Pictograma picto1= new Pictograma(2, 1,"Azul",false);
+                pictogramaDAO.insert(picto1);
+                Pictograma picto2=new Pictograma(3,2,"Manzana",true);
+                pictogramaDAO.insert(picto2);
+                Pictograma picto3 = new Pictograma(4,2,"Pera",true);
+                pictogramaDAO.insert(picto3);
+                Pictograma picto4 = new Pictograma(5,2,"Uva",false);
+                pictogramaDAO.insert(picto4);
+
+
 
 
                     UsuarioDao usuarioDao = INSTANCE.usuarioDao();
@@ -213,11 +219,11 @@ public abstract class appDatabase extends RoomDatabase {
                     usuarioDao.deleteUsuarioAll();
 
 
-                    Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
+                 /*   Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
                     usuarioDao.insertUsuario(usuario);
 
                     PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
-                    personaTeaDao.insertPersonaTea(personaTea);
+                    personaTeaDao.insertPersonaTea(personaTea);*/
 
                     System.out.println("registro inicial finalizado");
                 });

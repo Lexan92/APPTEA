@@ -43,4 +43,9 @@ import roomsqlite.entidades.Pictograma;
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         public void insert(Pictograma pictograma);
 
-}
+        //metodo que devuelve todos los pictogramas segun una categoria especifica
+        @Query("SELECT * FROM " + Pictograma.TABLE_NAME + " WHERE cat_pictograma_id = :id")
+        LiveData<List<Pictograma>> allPictogramaByCategoria(int id);
+
+
+    }

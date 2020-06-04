@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/detalle_Pictograma"
-        android:name="com.example.apptea.ui.DetalleCategoriaPictograma.Detalle_Pictograma"
+        android:name="com.example.apptea.ui.pictograma.Detalle_Pictograma"
         android:label="fragment_detalle__pictograma"
         tools:layout="@layout/fragment_detalle__pictograma" >
 

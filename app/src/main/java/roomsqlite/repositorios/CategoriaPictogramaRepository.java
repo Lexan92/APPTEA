@@ -19,6 +19,7 @@ import java.util.List;
 import roomsqlite.dao.CategoriaPictogramaDAO;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaPictograma;
+import roomsqlite.entidades.Pictograma;
 
 
 public class CategoriaPictogramaRepository {

@@ -74,24 +74,20 @@ public class Detalle_Pictograma extends Fragment {
 
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_detalle__pictograma, container, false);
-        
 
-
-
-        textoTituloCategoria = vista.findViewById(R.id.text_nombre_categoria);
 
 
         Bundle objetoCategoriaPictograma=getArguments();
         CategoriaPictograma categoriaPictograma = null;
         if(objetoCategoriaPictograma!= null){
             categoriaPictograma = (CategoriaPictograma) objetoCategoriaPictograma.getSerializable("elementos");
-            textoTituloCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+
 
         }
 
         //Definiendo nombre para el toolbar
         Toolbar  toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(categoriaPictograma.getCat_pictograma_nombre());
+        toolbar.setTitle("Categoria: " + categoriaPictograma.getCat_pictograma_nombre());
 
 
         return vista;

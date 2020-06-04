@@ -15,12 +15,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavAction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 
 
+import com.example.apptea.ui.DetalleCategoriaPictograma.Detalle_Pictograma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -36,37 +39,50 @@ import static android.app.Activity.RESULT_OK;
 public class CategoriaPictogramaFragment extends Fragment {
 
 
+    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     private CategoriaPictogramaRepository categoriaPictogramaRepository;
     private LiveData<List<CategoriaPictograma>> categoriaPictogramaAll;
+
     RecyclerView recyclerView;
+
     private CategoriaPictogramaViewModel categoriaPictogramaViewModel;
-    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+
+
 
     public CategoriaPictogramaFragment() {
         //constructor vacio
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_gestion_pictograma, container, false);
+        return inflater.inflate(R.layout.fragment_gestion_pictograma, container, false);
 
-        recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_cat_pictograma);
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView =  view.findViewById(R.id.lista_categoria_pictograma);
         final CategoriaPictogramaAdapter adapter = new CategoriaPictogramaAdapter(getActivity());
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
 
         categoriaPictogramaViewModel = new ViewModelProvider(getActivity()).get(CategoriaPictogramaViewModel.class);
         categoriaPictogramaViewModel.getAllCategoriaPictograma().observe(getActivity(), new Observer<List<CategoriaPictograma>>() {
             @Override
-            public void onChanged(@Nullable final List<CategoriaPictograma> categoriaPictogramaList) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setCategoria(categoriaPictogramaList);
+            public void onChanged(List<CategoriaPictograma> categoriaPictogramas) {
+                adapter.setCategoria(categoriaPictogramas);
             }
         });
 
-        FloatingActionButton fab1 = vista.findViewById(R.id.fab1);
+        FloatingActionButton fab1 = view.findViewById(R.id.fab1);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +91,24 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
-        //Comprobacion para pintar el nombre del toolbar proveniente del menu principal
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Instancia de fragment al cual se dirigira
+                Detalle_Pictograma detalle_pictograma =new Detalle_Pictograma();
+                //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
+                Bundle  bundleEnvio = new Bundle();
+                bundleEnvio.putSerializable("elementos",categoriaPictogramaViewModel.getAllCategoriaPictograma().getValue().get(recyclerView.getChildAdapterPosition(v)));
+                detalle_pictograma.setArguments(bundleEnvio);
+
+                //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
+                Navigation.findNavController(v).navigate(R.id.detalle_Pictograma,bundleEnvio);
+
+            }
+        });
+
+        //Comprobacion para pintar el nombre del toolbar proveniente del menu principal y quitar el FAB
         Bundle objetoBundle = getArguments();
         boolean bandera = false;
         if (objetoBundle!=null){
@@ -83,17 +116,15 @@ public class CategoriaPictogramaFragment extends Fragment {
 
             if (bandera == true){
                 Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+                //toolbar se setea con VOCABULARIO
                 toolbar.setTitle("Vocabulario");
+                // el FAB se hace invisible
+                fab1.setVisibility(View.INVISIBLE);
             }
         }
 
-        return vista;
-    }
 
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
     }
 

@@ -22,19 +22,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.entidades.Pictograma;
 
 public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.PictogramaHolder> {
 
-
+        ArrayList <Pictograma> pictogramas;
     class PictogramaHolder extends RecyclerView.ViewHolder{
         private final TextView pictogramaItemView;
 
         private PictogramaHolder(View itemView){
             super(itemView);
-            pictogramaItemView = itemView.findViewById((R.id.txt_pictograma));
+            pictogramaItemView = itemView.findViewById((R.id.txt_categoria_pictograma));
         }
     }
 

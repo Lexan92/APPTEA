@@ -179,18 +179,18 @@ public abstract class appDatabase extends RoomDatabase {
                 categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
                     System.out.println("categorias pictogramas");
 
-                CategoriaPictograma pic= new CategoriaPictograma(1,"Colores");
-                categoriaPictogramaDAO.insert(pic);
-                CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas");
-                categoriaPictogramaDAO.insert(pic1);
-                CategoriaPictograma pic2= new CategoriaPictograma(3,"Animales");
-                categoriaPictogramaDAO.insert(pic2);
-                CategoriaPictograma pic3= new CategoriaPictograma(4,"Verduras");
-                categoriaPictogramaDAO.insert(pic3);
-                CategoriaPictograma pic4 = new CategoriaPictograma(5,"Números");
-                categoriaPictogramaDAO.insert(pic4);
-                CategoriaPictograma pic5= new CategoriaPictograma(6,"Emociones");
-                categoriaPictogramaDAO.insert(pic5);
+                CategoriaPictograma pic= new CategoriaPictograma(1,"Colores", false);
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic);
+                CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas", false);
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic1);
+                CategoriaPictograma pic2= new CategoriaPictograma(3,"Animales",false);
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic2);
+                CategoriaPictograma pic3= new CategoriaPictograma(4,"Verduras",false);
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic3);
+                CategoriaPictograma pic4 = new CategoriaPictograma(5,"Números",false);
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic4);
+                CategoriaPictograma pic5= new CategoriaPictograma(6,"Emociones",true);
+                categoriaPictogramaDAO.insertCategoriaPictograma(pic5);
 
 /*
                 PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();

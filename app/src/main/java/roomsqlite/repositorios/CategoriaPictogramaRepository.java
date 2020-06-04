@@ -22,6 +22,8 @@ import roomsqlite.entidades.CategoriaPictograma;
 
 
 public class CategoriaPictogramaRepository {
+
+
     private CategoriaPictogramaDAO categoriaPictogramaDAO;
     private LiveData<List<CategoriaPictograma>> allCategoriaPictograma;
 
@@ -35,14 +37,18 @@ public class CategoriaPictogramaRepository {
         return allCategoriaPictograma;
     }
 
-   /* public void insert (CategoriaPictograma categoriaPictograma){
+   public void insert (CategoriaPictograma categoriaPictograma){
 
         categoriaPictogramaDAO.insertCategoriaPictograma(categoriaPictograma);
-    }*/
-
-    public void insert(CategoriaPictograma categoriaPictograma){
-        appDatabase.databaseWriteExecutor.execute(()-> categoriaPictogramaDAO.insert(categoriaPictograma));
     }
+
+    public LiveData<CategoriaPictograma> findByIdCategoria(int id){
+        return categoriaPictogramaDAO.findbyCategoriaPictograma(id);
+    }
+
+   /* public void insert(CategoriaPictograma categoriaPictograma){
+        appDatabase.databaseWriteExecutor.execute(()-> categoriaPictogramaDAO.insert(categoriaPictograma));
+    }*/
 
 
 

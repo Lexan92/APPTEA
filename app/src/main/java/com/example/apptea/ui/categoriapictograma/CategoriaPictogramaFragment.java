@@ -75,7 +75,7 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
-        //Comprobacion para pintar el nombre del toolbar proveniente del menu principal
+        //Comprobacion para pintar el nombre del toolbar proveniente del menu principal y quitar el FAB
         Bundle objetoBundle = getArguments();
         boolean bandera = false;
         if (objetoBundle!=null){
@@ -83,7 +83,10 @@ public class CategoriaPictogramaFragment extends Fragment {
 
             if (bandera == true){
                 Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+                //toolbar se setea con VOCABULARIO
                 toolbar.setTitle("Vocabulario");
+                // el FAB se hace invisible
+                fab1.setVisibility(View.INVISIBLE);
             }
         }
 

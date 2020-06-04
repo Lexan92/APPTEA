@@ -29,13 +29,13 @@ import roomsqlite.entidades.Pictograma;
 
 public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.PictogramaHolder> {
 
-        ArrayList <Pictograma> pictogramas;
+
     class PictogramaHolder extends RecyclerView.ViewHolder{
         private final TextView pictogramaItemView;
 
         private PictogramaHolder(View itemView){
             super(itemView);
-            pictogramaItemView = itemView.findViewById((R.id.txt_categoria_pictograma));
+            pictogramaItemView = itemView.findViewById((R.id.nombre_pictograma));
         }
     }
 
@@ -50,7 +50,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
     @Override
     public PictogramaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemview = mInflater.inflate(R.layout.fragment_item_categoria_pictograma,parent, false);
+        View itemview = mInflater.inflate(R.layout.fragment_item_pictograma,parent, false);
 
 
 

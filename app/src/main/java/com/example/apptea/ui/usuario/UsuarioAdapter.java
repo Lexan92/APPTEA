@@ -59,7 +59,7 @@ class UsuarioHolder extends RecyclerView.ViewHolder{
     public void onBindViewHolder(UsuarioHolder holder, int position) {
         if (usuarioList != null) {
             Usuario current = usuarioList.get(position);
-            holder.nombreItemView.setText(current.getUsuario_nombre());
+            holder.nombreItemView.setText("Hola "+current.getUsuario_nombre()+"!");
             holder.correoItemView.setText(current.getCorreo());
             holder.telItemView.setText(String.valueOf(current.getTelefono()));
         } else {

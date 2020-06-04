@@ -15,8 +15,6 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.apptea.ui.usuario.registro_usuario;
-
 import java.util.List;
 
 import roomsqlite.entidades.Pais;

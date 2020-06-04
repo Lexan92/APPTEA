@@ -9,14 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ui.usuario.registro_usuario" />
-        <activity android:name=".instalacion">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.usuario.RegistroUsuarioActivity"
+            android:windowSoftInputMode="adjustPan|stateVisible"/>
+        <activity android:name=".instalacion"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".MainActivity"
@@ -28,9 +33,8 @@
         <activity
             android:name=".ui.categoriapictograma.CategoriaNueva"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
-
-        <activity android:name=".ui.personaTea.NuevaPersonaTea"></activity>
-
+        <activity android:name=".ui.personaTea.NuevaPersonaTea"
+            android:windowSoftInputMode="adjustPan|stateVisible"/>
     </application>
 
 </manifest>

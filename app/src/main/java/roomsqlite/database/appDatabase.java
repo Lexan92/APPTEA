@@ -219,11 +219,11 @@ public abstract class appDatabase extends RoomDatabase {
                     usuarioDao.deleteUsuarioAll();
 
 
-                    Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
+                 /*   Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
                     usuarioDao.insertUsuario(usuario);
 
                     PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
-                    personaTeaDao.insertPersonaTea(personaTea);
+                    personaTeaDao.insertPersonaTea(personaTea);*/
 
                     System.out.println("registro inicial finalizado");
                 });

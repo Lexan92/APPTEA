@@ -43,7 +43,7 @@ import roomsqlite.entidades.Usuario;
 
 import static java.security.AccessController.getContext;
 
-public class registro_usuario extends AppCompatActivity {
+public class RegistroUsuarioActivity extends AppCompatActivity {
     public static final String EXTRA_USUARIO = "com.example.apptea.EXTRA_USUARIO";
 
     public static final int REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE = 1;
@@ -128,6 +128,8 @@ public class registro_usuario extends AppCompatActivity {
 
                     usuarioViewModel.insert(usuario);
                     System.out.println("en teoria guardo...");
+                    Intent acceso = new Intent(RegistroUsuarioActivity.this, MainActivity.class);
+                    startActivity(acceso);
                 }
                 finish();
             }

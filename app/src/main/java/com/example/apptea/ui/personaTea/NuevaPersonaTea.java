@@ -11,6 +11,8 @@
 package com.example.apptea.ui.personaTea;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -23,6 +25,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DateFormat;
@@ -30,9 +33,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import roomsqlite.entidades.PersonaTea;
+import roomsqlite.entidades.Usuario;
 
 public class NuevaPersonaTea extends AppCompatActivity {
 
@@ -46,6 +51,8 @@ public class NuevaPersonaTea extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
     PersonaTea personaTea = new PersonaTea();
+    UsuarioViewModel usuarioViewModel;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,8 @@ public class NuevaPersonaTea extends AppCompatActivity {
         fecha = (TextInputEditText)findViewById(R.id.fechaTea);
         spinnerSexo = (Spinner)findViewById(R.id.SexoTea);
         foto = (TextInputEditText)findViewById(R.id.fotoPersona);
+
+        usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
 
         ArrayList<String> sexo = new ArrayList<String>();
         sexo.add("Masculino");
@@ -91,6 +100,20 @@ public class NuevaPersonaTea extends AppCompatActivity {
             }
         });
 
+        //OBTENIENDO EL ID
+        usuarioViewModel.getUsuarioAll().observe(this, new Observer<List<Usuario>>() {
+            @Override
+            public void onChanged(List<Usuario> usuarios) {
+                for(Usuario user : usuarios){
+                    id= user.getUsuario_id();
+                    System.out.println(user.getUsuario_id());
+                    System.out.println(user.getUsuario_nombre());
+                }
+
+            }
+        });
+
+
         //PARA GUARDAR UNA PERSONA
         final Button button = findViewById(R.id.guardarPersona);
         button.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +123,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
                         ||TextUtils.isEmpty(fecha.getText())  ||TextUtils.isEmpty(spinnerSexo.getSelectedItem().toString())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    personaTea.setUsuario_id(1);
+                    personaTea.setUsuario_id(id);
                     personaTea.setPersona_nombre(nombreTea.getText().toString());
                     personaTea.setPersona_apellido(apellidoTea.getText().toString());
                     try {

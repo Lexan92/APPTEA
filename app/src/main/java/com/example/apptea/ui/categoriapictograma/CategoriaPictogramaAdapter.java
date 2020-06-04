@@ -3,62 +3,74 @@
 package com.example.apptea.ui.categoriapictograma;
 
 import android.content.Context;
+import android.net.sip.SipSession;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriajuego.CategoriaJuegoViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 import roomsqlite.entidades.CategoriaPictograma;
+import roomsqlite.entidades.Pictograma;
 
-public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPictogramaAdapter.CategoriaPictogramaHolder> {
+public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPictogramaViewHolder> implements View.OnClickListener {
 
-
-    class CategoriaPictogramaHolder extends RecyclerView.ViewHolder{
-        private final TextView categoriaItemView;
-
-        private CategoriaPictogramaHolder(View itemView){
-            super(itemView);
-            categoriaItemView = itemView.findViewById((R.id.txt_categoria_pictograma));
-        }
-    }
-
-    private final LayoutInflater mInflater;
     private List<CategoriaPictograma> categoriaPictogramaList;
+    private final LayoutInflater mInflater;
+    private  View.OnClickListener listener;
 
-    CategoriaPictogramaAdapter(Context context){
+
+    private ArrayList<Pictograma> pictogramas;
+
+
+    public CategoriaPictogramaAdapter(Context context) {
+
         mInflater = LayoutInflater.from(context);
+
     }
 
 
 
+
+
+
     @Override
-    public CategoriaPictogramaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemview = mInflater.inflate(R.layout.fragment_item_categoria_pictograma,parent, false);
+    public CategoriaPictogramaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View layoutView = mInflater.inflate(R.layout.fragment_item_categoria_pictograma,parent, false);
 
-
-
-        return new CategoriaPictogramaHolder(itemview);
+        layoutView.setOnClickListener(this);
+        return new CategoriaPictogramaViewHolder(layoutView);
     }
 
     @Override
-    public void onBindViewHolder(CategoriaPictogramaAdapter.CategoriaPictogramaHolder holder, int position) {
-        if (categoriaPictogramaList != null) {
-            CategoriaPictograma current = categoriaPictogramaList.get(position);
-            holder.categoriaItemView.setText(current.getCat_pictograma_nombre());
+    public void onBindViewHolder(@NonNull CategoriaPictogramaViewHolder holder, int position) {
+        if (categoriaPictogramaList != null && position < categoriaPictogramaList.size()) {
+
+            CategoriaPictograma categoriaPictograma = categoriaPictogramaList.get(position);
+            if (categoriaPictograma.isPredeterminado()==true){
+                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                holder.editar.setVisibility(View.INVISIBLE);
+                holder.cancelar.setVisibility(View.INVISIBLE);
+            }
+            else {
+            holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());}
         } else {
             // Covers the case of data not being ready yet.
-            holder.categoriaItemView.setText("No existe ninguna categoria de pictogramas");
+            holder.nombreCategoria.setText("No existe ninguna categoria de pictogramas");
         }
     }
 
-    void setCategoria(List<CategoriaPictograma> categorias){
+   public void setCategoria(List<CategoriaPictograma> categorias){
         categoriaPictogramaList = categorias;
         notifyDataSetChanged();
     }
@@ -69,5 +81,17 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
             return categoriaPictogramaList.size();
        else
         return 0;
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
     }
 }

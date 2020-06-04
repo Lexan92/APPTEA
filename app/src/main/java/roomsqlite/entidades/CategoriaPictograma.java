@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 
 
-@Entity(tableName = "CategoriaPictograma")
+@Entity(tableName = CategoriaPictograma.TABLE_NAME)
 
 public class CategoriaPictograma implements Serializable {
 
@@ -20,6 +20,7 @@ public class CategoriaPictograma implements Serializable {
     @NonNull*/
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo(index = true,name = "cat_pictograma_id")
+    @NonNull
     private int cat_pictograma_id;
 
 
@@ -28,15 +29,20 @@ public class CategoriaPictograma implements Serializable {
 
    // private int cat_pictorgrama_ban;
 
+    @NonNull
+    @ColumnInfo(name = "predeterminado")
+    private boolean predeterminado;
+
 public CategoriaPictograma(){
 
 }
 
 //CONSTRUCTOR
 
-    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre) {
+    public CategoriaPictograma(@NonNull int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado) {
         this.cat_pictograma_id = cat_pictograma_id;
         this.cat_pictograma_nombre = cat_pictograma_nombre;
+        this.predeterminado = predeterminado;
     }
 
 
@@ -58,7 +64,13 @@ public CategoriaPictograma(){
     public void setCat_pictograma_nombre(@NonNull String cat_pictograma_nombre) {
         this.cat_pictograma_nombre = cat_pictograma_nombre;
     }
+    public boolean isPredeterminado() {
+        return predeterminado;
+    }
 
+    public void setPredeterminado(boolean predeterminado) {
+        this.predeterminado = predeterminado;
+    }
 
 
     /*public int getCat_pictorgrama_ban() {

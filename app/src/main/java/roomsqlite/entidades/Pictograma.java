@@ -42,7 +42,7 @@ public class Pictograma implements Serializable {
 
     private String pictograma_imagen;
     private String pictograma_sonido;
-    private int pictograma_ban;
+    private boolean predeterminado;
 
 //CONSTRUCTOR
 
@@ -57,10 +57,11 @@ public class Pictograma implements Serializable {
     }*/
 
 
-    public Pictograma(@NonNull int pictograma_id, int cat_pictograma_id, @NonNull String pictograma_nombre) {
+    public Pictograma(@NonNull int pictograma_id, int cat_pictograma_id, @NonNull String pictograma_nombre, @NonNull boolean predeterminado) {
         this.pictograma_id = pictograma_id;
         this.cat_pictograma_id = cat_pictograma_id;
         this.pictograma_nombre = pictograma_nombre;
+        this.predeterminado = predeterminado;
     }
 
 
@@ -108,12 +109,12 @@ public class Pictograma implements Serializable {
         this.pictograma_sonido = pictograma_sonido;
     }
 
-    public int getPictograma_ban() {
-        return pictograma_ban;
+    public boolean isPredeterminado() {
+        return predeterminado;
     }
 
-    public void setPictograma_ban(int pictograma_ban) {
-        this.pictograma_ban = pictograma_ban;
+    public void setPredeterminado(boolean predeterminado) {
+        this.predeterminado = predeterminado;
     }
 }
 

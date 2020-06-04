@@ -16,6 +16,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,10 +33,14 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
     class PictogramaHolder extends RecyclerView.ViewHolder{
         private final TextView pictogramaItemView;
+        public Button eliminar;
+        public Button editar;
 
         private PictogramaHolder(View itemView){
             super(itemView);
             pictogramaItemView = itemView.findViewById((R.id.nombre_pictograma));
+            eliminar = itemView.findViewById(R.id.btn_eliminar_pictograma);
+            editar = itemView.findViewById(R.id.btn_editar_pictograma);
         }
     }
 
@@ -61,7 +66,20 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     public void onBindViewHolder(PictogramaAdapter.PictogramaHolder holder, int position) {
         if (pictogramaList != null) {
             Pictograma current = pictogramaList.get(position);
-            holder.pictogramaItemView.setText(current.getPictograma_nombre());
+
+            if(current.isPredeterminado()==true){
+
+                holder.pictogramaItemView.setText(current.getPictograma_nombre());
+                holder.editar.setVisibility(View.INVISIBLE);
+                holder.eliminar.setVisibility(View.INVISIBLE);
+            }
+            else {
+                holder.pictogramaItemView.setText(current.getPictograma_nombre());
+            }
+
+
+
+
         } else {
             // Covers the case of data not being ready yet.
             holder.pictogramaItemView.setText("No existe pictogramas");

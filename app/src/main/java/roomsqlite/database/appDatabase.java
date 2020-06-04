@@ -196,15 +196,15 @@ public abstract class appDatabase extends RoomDatabase {
                 PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
                 pictogramaDAO.deleteAllPictogramas();
 
-                Pictograma picto= new Pictograma(1,  1,"Verde");
+                Pictograma picto= new Pictograma(1,  1,"Verde",true);
                 pictogramaDAO.insert(picto);
-                Pictograma picto1= new Pictograma(2, 1,"Azul");
+                Pictograma picto1= new Pictograma(2, 1,"Azul",false);
                 pictogramaDAO.insert(picto1);
-                Pictograma picto2=new Pictograma(3,2,"Manzana");
+                Pictograma picto2=new Pictograma(3,2,"Manzana",true);
                 pictogramaDAO.insert(picto2);
-                Pictograma picto3 = new Pictograma(4,2,"Pera");
+                Pictograma picto3 = new Pictograma(4,2,"Pera",true);
                 pictogramaDAO.insert(picto3);
-                Pictograma picto4 = new Pictograma(5,2,"Uva");
+                Pictograma picto4 = new Pictograma(5,2,"Uva",false);
                 pictogramaDAO.insert(picto4);
 
 

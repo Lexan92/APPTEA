@@ -20,7 +20,11 @@
         android:id="@+id/nav_gestion_pictograma"
         android:name="com.example.apptea.ui.categoriapictograma.CategoriaPictogramaFragment"
         android:label="@string/menu_gestion_pictograma"
-        tools:layout="@layout/fragment_gestion_pictograma" />
+        tools:layout="@layout/fragment_gestion_pictograma" >
+        <action
+            android:id="@+id/action_nav_gestion_pictograma_to_detalle_Pictograma"
+            app:destination="@id/detalle_Pictograma" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_mi_perfil"
@@ -68,6 +72,16 @@
             android:id="@+id/action_detalle_Juego_to_nav_gestion_juego"
             app:destination="@id/nav_gestion_juego" />
     </fragment>
+    <fragment
+        android:id="@+id/detalle_Pictograma"
+        android:name="com.example.apptea.ui.DetalleCategoriaPictograma.Detalle_Pictograma"
+        android:label="fragment_detalle__pictograma"
+        tools:layout="@layout/fragment_detalle__pictograma" >
+
+    </fragment>
+
+
+
 
 
 </navigation>

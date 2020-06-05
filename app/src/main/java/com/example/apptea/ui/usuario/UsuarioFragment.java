@@ -53,6 +53,7 @@ public class UsuarioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         View vista = inflater.inflate(R.layout.fragment_mi_perfil, container, false);
 
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_mi_perfil);

@@ -18,6 +18,8 @@ public class Pais {
         this.pais_nombre = pais_nombre;
     }
 
+    //constructor vacio
+    public Pais(){};
     // GET AND SETTER
     public int getPais_id() {
         return pais_id;
@@ -40,4 +42,6 @@ public class Pais {
     public String toString() {
         return pais_nombre;
     }
+
+
 }

@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.pais.PaisViewModel;
 
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class UsuarioFragment extends Fragment {
     private LiveData<List<Usuario>> usuarioAll;
     RecyclerView recyclerView;
     private UsuarioViewModel usuarioViewModel;
+    private PaisViewModel paisViewModel;
 
     public UsuarioFragment() {
         // Required empty public constructor

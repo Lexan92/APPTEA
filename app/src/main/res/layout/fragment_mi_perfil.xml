@@ -20,78 +20,8 @@
         tools:listitem="@layout/recyclerview_item_mi_perfil" />
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/editar_perfil"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginTop="0dp"
-        app:cardElevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil"
-        app:layout_constraintVertical_bias="0.094"
-        app:strokeColor="@color/colorPrimaryDark"
-        app:strokeWidth="0dp"
-        tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                app:srcCompat="@drawable/ic_edit_mi_perfil" />
-
-            <TextView
-                android:id="@+id/text_editar_perfil"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:text="Editar Información"
-                android:textAlignment="center"
-                android:textAppearance="?attr/textAppearanceHeadline5"
-                android:textSize="25sp" />
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/tus_perfiles"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        app:cardElevation="1dp"
-        app:layout_constraintTop_toBottomOf="@+id/editar_perfil"
-        app:layout_constraintVertical_bias="0.0"
-        app:strokeColor="@color/colorPrimaryDark"
-        app:strokeWidth="0dp"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txt_tus_perfiles"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:text="Tus Perfiles"
-                android:textAlignment="center"
-                android:textAppearance="?attr/textAppearanceHeadline5"
-                android:textSize="25sp" />
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/acerca_de"
@@ -102,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tus_perfiles"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil"
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="0dp"

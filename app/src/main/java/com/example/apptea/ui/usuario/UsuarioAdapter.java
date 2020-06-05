@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 import com.example.apptea.ui.pais.PaisViewModel;
@@ -30,7 +32,12 @@ import roomsqlite.repositorios.PaisRepository;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioHolder> {
 
-class UsuarioHolder extends RecyclerView.ViewHolder{
+
+    private int pais_id;
+    Pais pais = new Pais();
+
+    class UsuarioHolder extends RecyclerView.ViewHolder{
+
 
     private final TextView nombreItemView;
 
@@ -42,7 +49,6 @@ class UsuarioHolder extends RecyclerView.ViewHolder{
     private UsuarioHolder(View itemView){
         super(itemView);
         nombreItemView = itemView.findViewById((R.id.txt_nombreUsuario));
-
         telItemView = itemView.findViewById((R.id.txt_telefonoUsuario));
         correoItemView = itemView.findViewById((R.id.txt_correoUsuario));
         paisItemView = itemView.findViewById((R.id.txt_pais));
@@ -53,10 +59,11 @@ class UsuarioHolder extends RecyclerView.ViewHolder{
 
     private final LayoutInflater mInflater;
     private List<Usuario> usuarioList;
-    private List<Pais> paises;
+    PaisRepository paisRepository ;
 
    UsuarioAdapter(Context context){
         mInflater = LayoutInflater.from(context);
+
     }
 
 
@@ -69,13 +76,14 @@ class UsuarioHolder extends RecyclerView.ViewHolder{
 
     @Override
     public void onBindViewHolder(UsuarioHolder holder, int position) {
+
+        Pais pais = new Pais();
         if (usuarioList != null) {
             Usuario current = usuarioList.get(position);
-
             holder.nombreItemView.setText("Hola \n"+current.getUsuario_nombre()+" "+current.getUsuario_apellido()+"!");
             holder.correoItemView.setText(current.getCorreo());
             holder.telItemView.setText(String.valueOf(current.getTelefono()));
-            holder.paisItemView.setText(String.valueOf(current.getPais_id()));
+            holder.paisItemView.setText(String.valueOf(current.getPais_id()).getClass().getName());
             holder.direccionItemView.setText(current.getDireccion());
         } else {
             // Covers the case of data not being ready yet.

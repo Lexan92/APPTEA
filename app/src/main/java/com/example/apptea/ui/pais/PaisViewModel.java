@@ -23,11 +23,13 @@ import roomsqlite.repositorios.PaisRepository;
 public class PaisViewModel extends AndroidViewModel {
     private PaisRepository paisRepository;
     private LiveData<List<Pais>> paisAll;
+    private Pais pais;
 
-    public PaisViewModel(Application application){
+    public PaisViewModel(Application application, int id){
         super(application);
         paisRepository =new PaisRepository(application);
         paisAll = paisRepository.getPais();
+        pais = paisRepository.findById(id);
     }
 
     public LiveData<List<Pais>> getPaisAll(){
@@ -35,7 +37,7 @@ public class PaisViewModel extends AndroidViewModel {
         return paisAll;
     }
 
-
+    public Pais findById(int pais_id){return pais;}
 
     public void insert(Pais pais){
         paisRepository.insert(pais);

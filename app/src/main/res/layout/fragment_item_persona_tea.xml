@@ -11,9 +11,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_menu_principal"
@@ -27,33 +27,87 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <!-- Media -->
             <ImageView
-                android:layout_width="match_parent"
+                android:id="@+id/foto_persona"
+                android:layout_width="100dp"
                 android:layout_height="@dimen/card_height_cat_juego"
-                android:scaleType="fitCenter"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:scaleType="fitStart"
                 app:srcCompat="@drawable/ic_linda" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
-
-                <!-- Title, secondary and supporting text -->
-                <TextView
-                    android:id="@+id/nombre_persona_tea"
+                >
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Categoria Juego"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:orientation="horizontal">
+                <!-- Title, secondary and supporting text -->
+                     <TextView
+                        android:id="@+id/nombre_persona_tea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Categoria "
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                    />
+                    <TextView
+                        android:id="@+id/apellido_persona_tea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Juego"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                    <TextView
+                        android:id="@+id/fecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha de nacimiento"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/fecha_tea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Juego"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_editar_persona"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:visibility="visible"
+                        app:icon="@drawable/ic_mode_edit_black_24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_eliminar_persona"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="48dp"
+                        android:visibility="visible"
+                        app:icon="@drawable/ic_close_black" />
+                </LinearLayout>
 
             </LinearLayout>
 

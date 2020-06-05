@@ -14,6 +14,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,10 +30,21 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
 
     class PersonaTeaHolder extends RecyclerView.ViewHolder{
         private final TextView personaItemView;
+        private final TextView personaItemView2;
+        private final TextView personaItemView3;
+        private String fecha;
+        public Button eliminar;
+        public Button editar;
+
 
         private PersonaTeaHolder(View itemView){
             super(itemView);
             personaItemView = itemView.findViewById((R.id.nombre_persona_tea));
+            personaItemView2= itemView.findViewById((R.id.apellido_persona_tea));
+            personaItemView3 = itemView.findViewById((R.id.fecha_tea));
+            fecha="";
+            eliminar= itemView.findViewById(R.id.btn_eliminar_persona);
+            editar = itemView.findViewById(R.id.btn_editar_persona);
         }
     }
 
@@ -59,6 +71,10 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
         if (personaTeaList != null) {
             PersonaTea current = personaTeaList.get(position);
             holder.personaItemView.setText(current.getPersona_nombre());
+            holder.personaItemView2.setText(current.getPersona_apellido());
+            //holder.fecha=(current.getPersona_fecha_nac().toString());
+            holder.personaItemView3.setText(current.getPersona_fecha_nac().toString());
+
         } else {
             // Covers the case of data not being ready yet.
             holder.personaItemView.setText("No se han ingresado personas a la lista");

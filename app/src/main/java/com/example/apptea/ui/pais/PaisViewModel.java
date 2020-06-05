@@ -25,11 +25,11 @@ public class PaisViewModel extends AndroidViewModel {
     private LiveData<List<Pais>> paisAll;
     private Pais pais;
 
-    public PaisViewModel(Application application, int id){
+    public PaisViewModel(Application application){
         super(application);
         paisRepository =new PaisRepository(application);
         paisAll = paisRepository.getPais();
-        pais = paisRepository.findById(id);
+
     }
 
     public LiveData<List<Pais>> getPaisAll(){

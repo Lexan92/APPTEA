@@ -59,7 +59,7 @@
             android:id="@+id/edit_word"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
             android:layout_marginStart="45dp"
             android:layout_marginTop="164dp"
             android:fontFamily="sans-serif-light"

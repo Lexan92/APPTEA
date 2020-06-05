@@ -79,4 +79,12 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="guardarPersona">Guardar</string>
     <string name="cancelar">Cancelar</string>
 
+    --nuevo pictograma
+    <string name="titulo_dialog_nuevo_pictograma">Nuevo Pictograma</string>
+    <string name="hint_dialog_nuevo_pictograma">Nombre Pictograma</string>
+    <string name="button_elegir_imagen_nuevo_pictograma">Selecciona Imagen</string>
+    <string name="button_guardar_imagen_nuevo_pictograma">Guardar</string>
+
+
+
 </resources>

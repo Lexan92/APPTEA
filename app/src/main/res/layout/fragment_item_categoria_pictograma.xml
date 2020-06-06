@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /*
-  ~ Oscar Turish
-  ~ 24/05/2020
-  ~ Item para categorias de habilidades cotidianas
-  ~ */
-  ~
-  ~
-  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -31,33 +23,40 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/txt_categoria_pictograma"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 android:textAppearance="?attr/textAppearanceHeadline5"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="25dp"
+                android:fontFamily="@font/capriola"
+                android:textColor="@color/mi_perfil_titulo"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
                 android:textAlignment="center" />
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="horizontal"
-                android:layout_gravity="right">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_editarCPic"
-                    android:layout_width="wrap_content"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    app:icon="@drawable/ic_mode_edit_black_24dp"
-                    style="?attr/borderlessButtonStyle"/>
+                    android:layout_marginEnd="0dp"
+                    app:icon="@drawable/ic_mode_edit_black_24dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_cancelarCPic"
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
                     app:icon="@drawable/ic_close_black" />
             </LinearLayout>
         </LinearLayout>

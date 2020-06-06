@@ -90,19 +90,30 @@ public abstract class appDatabase extends RoomDatabase {
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
                     System.out.println("categorias habilidades");
 
-                    CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo Personal");
+                    CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo personal");
                     dao.insert(categoriaHabCotidiana);
-                    categoriaHabCotidiana = new CategoriaHabCotidiana(2, "Vestimenta");
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(2, "El baño");
                     dao.insert(categoriaHabCotidiana);
-                    categoriaHabCotidiana = new CategoriaHabCotidiana(3, "Alimentación");
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(3, "Agenda diaria");
                     dao.insert(categoriaHabCotidiana);
-                    categoriaHabCotidiana = new CategoriaHabCotidiana(4, "Locomotrices");
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(4, "Salud");
                     dao.insert(categoriaHabCotidiana);
-                    categoriaHabCotidiana = new CategoriaHabCotidiana(5, "Comunicativas");
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(5, "Comer");
                     dao.insert(categoriaHabCotidiana);
-                    categoriaHabCotidiana = new CategoriaHabCotidiana(6, "Festividades");
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(6, "Fiestas");
                     dao.insert(categoriaHabCotidiana);
-
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(7, "Vacaciones");
+                    dao.insert(categoriaHabCotidiana);
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(8, "Cuidado Personal");
+                    dao.insert(categoriaHabCotidiana);
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(9, "Paseos");
+                    dao.insert(categoriaHabCotidiana);
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(10, "Amigos");
+                    dao.insert(categoriaHabCotidiana);
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(11, "La cuidad");
+                    dao.insert(categoriaHabCotidiana);
+                    categoriaHabCotidiana = new CategoriaHabCotidiana(12, "La escuela");
+                    dao.insert(categoriaHabCotidiana);
 
                     PaisDao paisesdao = INSTANCE.paisDao();
                     //DepartamentoDao deptodao =INSTANCE.departamentoDao();

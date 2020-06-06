@@ -27,9 +27,11 @@ import roomsqlite.entidades.CategoriaHabCotidiana;
 
 public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> {
 
+    private  View.OnClickListener listener;
 
     class CategoriaHabCotidianaHolder extends RecyclerView.ViewHolder{
         private final TextView categoriaItemView;
+
 
         private CategoriaHabCotidianaHolder(View itemView){
             super(itemView);
@@ -70,6 +72,11 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         categoriaHabCotidianaList = categorias;
         notifyDataSetChanged();
     }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
 
     @Override
     public int getItemCount() {

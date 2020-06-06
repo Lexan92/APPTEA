@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_nav_gestion_habilidad_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_gestion_habilidad_to_habilidadCotidianaFragment4"
+            app:destination="@id/habilidadCotidianaFragment4" />
     </fragment>
 
     <fragment
@@ -82,9 +85,11 @@
             android:id="@+id/action_detalle_Pictograma_to_nav_gestion_pictograma"
             app:destination="@id/nav_gestion_pictograma" />
     </fragment>
-
-
-
+    <fragment
+        android:id="@+id/habilidadCotidianaFragment4"
+        android:name="com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment"
+        android:label="HabilidadCotidianaFragment"
+        tools:layout="@layout/fragment_habilidad_cotidiana" />
 
 
 </navigation>

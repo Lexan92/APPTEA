@@ -65,6 +65,8 @@ public class PersonaTeaFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         recyclerView.setAdapter(adapter);
 
+
+
         personaTeaViewModel = new ViewModelProvider(getActivity()).get(PersonaTeaViewModel.class);
 
         /*if (personaTeaViewModel.getPersonaTeaAll().getValue()==null){
@@ -91,6 +93,7 @@ public class PersonaTeaFragment extends Fragment {
             }
         });
 
+       // System.out.println(recyclerView.findViewHolderForLayoutPosition(0).getItemId());
         return vista;
     }
 

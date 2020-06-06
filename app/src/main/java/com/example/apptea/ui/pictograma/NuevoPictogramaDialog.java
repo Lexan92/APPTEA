@@ -253,8 +253,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             });
 
                     Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    //se llama al metodo para reorientar la imagen de manera correcta al presentarlo en
-                    //el imageview
+                    //se llama al metodo para reorientar la imagen de manera correcta al presentarlo en el imageview
                     imgFoto.setRotation(obtenerOrientacionFoto(path));
                     imgFoto.setImageBitmap(bitmap);
 

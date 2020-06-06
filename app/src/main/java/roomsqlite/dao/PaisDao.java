@@ -21,6 +21,9 @@ public interface PaisDao {
     @Query("DELETE FROM pais")
     public void deletePaisAll();
 
+    @Query("SELECT * FROM pais WHERE pais_id=:id")
+    Pais findById(int id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPais(Pais pais);
 

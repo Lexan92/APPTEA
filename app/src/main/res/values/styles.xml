@@ -24,5 +24,11 @@
         <item name="android:textColor">#FFFFFFFF</item>
 
     </style>
+    <style name="autor_onestyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/autour_one</item>
+    </style>
+    <style name="capriolastyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/capriola</item>
+    </style>
 
 </resources>

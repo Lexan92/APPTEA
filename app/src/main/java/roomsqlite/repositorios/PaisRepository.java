@@ -23,12 +23,18 @@ import roomsqlite.entidades.Pais;
 public class PaisRepository {
     private PaisDao paisDao;
     private LiveData<List<Pais>> paisAll;
+    private Pais pais;
 
     public PaisRepository(Application application){
         appDatabase db = appDatabase.getDatabase(application);
         paisDao =db.paisDao();
         paisAll = paisDao.getAllPais();
+
+
     }
+
+
+    public Pais findById(int id){return pais;}
 
     public LiveData<List<Pais>> getPais(){
         return paisAll;

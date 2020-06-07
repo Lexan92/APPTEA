@@ -39,4 +39,8 @@ public class PersonaTeaViewModel extends AndroidViewModel {
         personaTeaRepository.insert(personaTea);
     }
 
+    public void update(PersonaTea personaTea){personaTeaRepository.update(personaTea);}
+
+    public void delete(PersonaTea personaTea){personaTeaRepository.delete(personaTea);}
+
 }

@@ -36,6 +36,10 @@
                 android:layout_height="@dimen/card_height_cat_juego"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:scaleType="fitStart"
                 app:srcCompat="@drawable/ic_linda" />
 
@@ -96,8 +100,8 @@
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:visibility="visible"
+                        android:layout_alignParentLeft="true"
                         app:icon="@drawable/ic_mode_edit_black_24dp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -105,9 +109,10 @@
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
                         android:visibility="visible"
+                        android:layout_alignParentRight="true"
                         app:icon="@drawable/ic_close_black" />
+
                 </LinearLayout>
 
             </LinearLayout>

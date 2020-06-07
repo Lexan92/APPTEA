@@ -40,5 +40,13 @@ public class PersonaTeaRepository {
         appDatabase.databaseWriteExecutor.execute(()-> personaTeaDao.insertPersonaTea(personaTea));
     }
 
+    public void update(PersonaTea personaTea){
+        appDatabase.databaseWriteExecutor.execute(()-> personaTeaDao.updatePersonaTea(personaTea));
+    }
+
+    public void delete(PersonaTea personaTea){
+        appDatabase.databaseWriteExecutor.execute(()-> personaTeaDao.deletePersonaTea(personaTea));
+    }
+
 }
 

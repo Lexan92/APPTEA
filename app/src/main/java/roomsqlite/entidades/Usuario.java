@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.List;
-
 @Entity(tableName= "usuario",
         foreignKeys = @ForeignKey(entity = Pais.class, parentColumns = "pais_id", childColumns = "pais_id"))
 public class Usuario implements Serializable {

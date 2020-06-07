@@ -27,11 +27,22 @@ import roomsqlite.entidades.PersonaTea;
 
 public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.PersonaTeaHolder> {
 
+    private List<PersonaTea> personaTeaList;
+    private ButtonClicked buttonClicked;
 
-    class PersonaTeaHolder extends RecyclerView.ViewHolder{
-        private final TextView personaItemView;
-        private final TextView personaItemView2;
-        private final TextView personaItemView3;
+    public interface ButtonClicked{
+        void deleteClickedPersona(PersonaTea personaTea);
+        void updateClickedPersona(PersonaTea personaTea);
+    }
+
+    public void setButtonClicked(ButtonClicked buttonClicked) {
+        this.buttonClicked = buttonClicked;
+    }
+
+    public class PersonaTeaHolder extends RecyclerView.ViewHolder{
+        private final TextView personaItemNombre;
+        private final TextView personaItemApellido;
+        private final TextView personaItemFecha;
         private String fecha;
         public Button eliminar;
         public Button editar;
@@ -39,30 +50,31 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
 
         private PersonaTeaHolder(View itemView){
             super(itemView);
-            personaItemView = itemView.findViewById((R.id.nombre_persona_tea));
-            personaItemView2= itemView.findViewById((R.id.apellido_persona_tea));
-            personaItemView3 = itemView.findViewById((R.id.fecha_tea));
+            personaItemNombre = itemView.findViewById((R.id.nombre_persona_tea));
+            personaItemApellido= itemView.findViewById((R.id.apellido_persona_tea));
+            personaItemFecha = itemView.findViewById((R.id.fecha_tea));
             fecha="";
             eliminar= itemView.findViewById(R.id.btn_eliminar_persona);
             editar = itemView.findViewById(R.id.btn_editar_persona);
+
+            eliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClicked.deleteClickedPersona(personaTeaList.get(getAdapterPosition()));
+                }
+            });
+
+
         }
     }
 
-    private final LayoutInflater mInflater;
-    private List<PersonaTea> personaTeaList;
-
-    PersonaTeaAdapter(Context context){
-        mInflater = LayoutInflater.from(context);
-    }
 
 
+    public PersonaTeaAdapter(){}
 
     @Override
     public PersonaTeaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemview = mInflater.inflate(R.layout.fragment_item_persona_tea,parent, false);
-
-
-
+        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_persona_tea,parent, false);
         return new PersonaTeaHolder(itemview);
     }
 
@@ -70,15 +82,14 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
     public void onBindViewHolder(PersonaTeaAdapter.PersonaTeaHolder holder, int position) {
         if (personaTeaList != null) {
             PersonaTea current = personaTeaList.get(position);
-            holder.personaItemView.setText(current.getPersona_nombre());
-            holder.personaItemView2.setText(current.getPersona_apellido());
-            //holder.fecha=(current.getPersona_fecha_nac().toString());
-            holder.personaItemView3.setText(current.getPersona_fecha_nac().toString());
-
+            holder.personaItemNombre.setText(current.getPersona_nombre());
+            holder.personaItemApellido.setText(current.getPersona_apellido());
+            holder.personaItemFecha.setText(current.getPersona_fecha_nac().toString());
         } else {
             // Covers the case of data not being ready yet.
-            holder.personaItemView.setText("No se han ingresado personas a la lista");
+            holder.personaItemNombre.setText("No se han ingresado personas a la lista");
         }
+
     }
 
     void setPersonas(List<PersonaTea> personaTeas){

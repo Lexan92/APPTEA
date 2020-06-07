@@ -22,9 +22,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
+import com.google.android.material.internal.ContextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +52,8 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
             eliminar = itemView.findViewById(R.id.btn_eliminar_pictograma);
             editar = itemView.findViewById(R.id.btn_editar_pictograma);
             imagen = itemView.findViewById(R.id.img_pictograma);
+
+
         }
     }
 
@@ -77,14 +83,22 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
             if(current.isPredeterminado()==true){
 
                // holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
-                holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
+               // holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
+                Glide.with(holder.itemView.getContext())
+                        .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
+                        .into(holder.imagen);
+
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
                 holder.editar.setVisibility(View.INVISIBLE);
                 holder.eliminar.setVisibility(View.INVISIBLE);
             }
             else {
                 //holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
-                holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
+              //  holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
+
+                Glide.with(holder.itemView.getContext())
+                        .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
+                        .into(holder.imagen);
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
             }
 
@@ -93,6 +107,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
         } else {
             // Covers the case of data not being ready yet.
+            Glide.with(holder.itemView.getContext()).clear(holder.imagen);
             holder.pictogramaItemView.setText("No existe pictogramas");
         }
     }
@@ -108,5 +123,11 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
             return pictogramaList.size();
        else
         return 0;
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull PictogramaHolder holder) {
+        super.onViewRecycled(holder);
+        holder.setIsRecyclable(true);
     }
 }

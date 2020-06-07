@@ -28,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -60,6 +61,7 @@ public class Detalle_Pictograma extends Fragment {
     private PictogramaViewModel pictogramaViewModel;
     RecyclerView recyclerView;
     CategoriaPictograma categoriaPictograma = null;
+    PictogramaAdapter adapter;
 
 
     public Detalle_Pictograma() {
@@ -110,7 +112,7 @@ public class Detalle_Pictograma extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.lista_pictogramas);
-        final PictogramaAdapter adapter = new PictogramaAdapter(getActivity());
+        adapter = new PictogramaAdapter(getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
@@ -146,5 +148,20 @@ public class Detalle_Pictograma extends Fragment {
             }
         });
 
+
+
+
+
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(adapter!=null&& recyclerView!=null){
+            recyclerView.setAdapter(null);
+            adapter=null;
+            Glide.get(this.getActivity()).clearMemory();
+        }
+    }
+
+
 }

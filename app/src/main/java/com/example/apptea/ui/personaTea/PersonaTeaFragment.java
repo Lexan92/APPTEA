@@ -10,6 +10,8 @@
 
 package com.example.apptea.ui.personaTea;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -37,13 +39,14 @@ import roomsqlite.repositorios.PersonaTeaRepository;
 
 import static android.app.Activity.RESULT_OK;
 
-public class PersonaTeaFragment extends Fragment {
+public class PersonaTeaFragment extends Fragment{
     private PersonaTeaViewModel personaTeaViewModel;
     private PersonaTeaRepository personaTeaRepository;
     private  PersonaTea personaTea;
     private LiveData<List<PersonaTea>> personastea;
     RecyclerView recyclerView;
     public static final int PERSONAS_REQUEST_CODE = 1;
+    private PersonaTeaAdapter person;
 
 
 
@@ -60,7 +63,7 @@ public class PersonaTeaFragment extends Fragment {
         recyclerView =  vista.findViewById(R.id.lista_personasTea);
         final TextView textpersona = vista.findViewById(R.id.text_persona);
 
-        final PersonaTeaAdapter adapter = new PersonaTeaAdapter(getActivity());
+        final PersonaTeaAdapter adapter = new PersonaTeaAdapter();
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         recyclerView.setAdapter(adapter);
@@ -69,12 +72,7 @@ public class PersonaTeaFragment extends Fragment {
 
         personaTeaViewModel = new ViewModelProvider(getActivity()).get(PersonaTeaViewModel.class);
 
-        /*if (personaTeaViewModel.getPersonaTeaAll().getValue()==null){
-
-            textpersona.setText(" No se han registrado personas en la lista");
-        }
-        else{*/
-            textpersona.setText(" Listado de niños y niñas");
+        textpersona.setText(" Listado de niños y niñas");
         personaTeaViewModel.getPersonaTeaAll().observe(getActivity(), new Observer<List<PersonaTea>>() {
             @Override
             public void onChanged(List<PersonaTea> personaTeas) {
@@ -94,6 +92,41 @@ public class PersonaTeaFragment extends Fragment {
         });
 
        // System.out.println(recyclerView.findViewHolderForLayoutPosition(0).getItemId());
+
+        adapter.setButtonClicked(new PersonaTeaAdapter.ButtonClicked() {
+            @Override
+            public void updateClickedPersona(PersonaTea personaTea) {
+
+            }
+
+            @Override
+            public void deleteClickedPersona(PersonaTea personaTea) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Alerta");
+                builder.setMessage("¿esta seguro de eliminar a \n"+personaTea.getPersona_nombre()+"?");
+                builder.setIcon(android.R.drawable.ic_delete);
+
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.out.println("La persona TEA es " + personaTea.getPersona_nombre());
+
+                        personaTeaViewModel.delete(personaTea);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog deleteDialog = builder.create();
+                deleteDialog.show();
+            }
+        });
+
         return vista;
     }
 

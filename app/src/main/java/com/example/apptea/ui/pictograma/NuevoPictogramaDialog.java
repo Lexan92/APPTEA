@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -27,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.apptea.R;
 import com.google.android.material.button.MaterialButton;
@@ -35,6 +37,11 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.IOException;
+
+import roomsqlite.dao.PictogramaDAO;
+import roomsqlite.database.ImageConverter;
+import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.Pictograma;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -49,6 +56,9 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     private static final int COD_FOTO = 20;
     MaterialButton botonRegistrar, botonSeleccionar;
     ImageView imgFoto;
+    EditText nombrePictograma;
+    Bitmap bitmap=null;
+    PictogramaDAO pictogramaDAO ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +68,16 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         setTheme(R.style.Theme_MaterialComponents_Light_Dialog_MinWidth);
         setContentView(R.layout.activity_nuevo_pictograma_dialog);
         imgFoto = findViewById(R.id.img_nuevo_pictograma);
+        nombrePictograma = findViewById(R.id.edit_nombre_pictograma);
         botonRegistrar = findViewById(R.id.button_guardar_imagen);
         botonSeleccionar = findViewById(R.id.button_seleccionar_imagen);
+        //se obteiene el ID de categoria pictograma
+        int keyCategoria =getIntent().getIntExtra("llaveCategoria",0);
+       PictogramaViewModel pictogramaViewModel;
+       pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
+
+
+
 
         if (validaPermisos()) {
             botonSeleccionar.setEnabled(true);
@@ -70,7 +88,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         botonSeleccionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //inicia metodo para cargar imagenes
                 cargarImagen();
             }
         });
@@ -78,7 +96,18 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Los duendes aun siguen trabajando con esta opcion :)", Toast.LENGTH_SHORT).show();
+                //inicia guardado de pictogramas
+
+                if (nombrePictograma.getText().toString().isEmpty() || bitmap== null && imgFoto.getDrawable()==null){
+                    Toast.makeText(getApplicationContext(), "Debe agregar una imagen y asignarle un nombre antes de guardar", Toast.LENGTH_SHORT).show();
+                }else {
+                    Pictograma pictograma = new Pictograma();
+                    pictograma.setCat_pictograma_id(keyCategoria);
+                    pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
+                    pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
+                    pictogramaViewModel.insert(pictograma);
+                    Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -240,6 +269,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
             switch (requestCode) {
                 case COD_SELECCIONA:
                     Uri miPath = data.getData();
+
                     imgFoto.setImageURI(miPath);
                     break;
 
@@ -252,9 +282,9 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                                 }
                             });
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(path);
+                    bitmap = BitmapFactory.decodeFile(path);
                     //se llama al metodo para reorientar la imagen de manera correcta al presentarlo en el imageview
-                    imgFoto.setRotation(obtenerOrientacionFoto(path));
+                   imgFoto.setRotation(obtenerOrientacionFoto(path));
                     imgFoto.setImageBitmap(bitmap);
 
                     break;

@@ -40,7 +40,8 @@ public class Pictograma implements Serializable {
     @NonNull
     private String pictograma_nombre;
 
-    private String pictograma_imagen;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] pictograma_imagen;
     private String pictograma_sonido;
     private boolean predeterminado;
 
@@ -62,6 +63,10 @@ public class Pictograma implements Serializable {
         this.cat_pictograma_id = cat_pictograma_id;
         this.pictograma_nombre = pictograma_nombre;
         this.predeterminado = predeterminado;
+    }
+
+    public Pictograma() {
+
     }
 
 
@@ -93,11 +98,11 @@ public class Pictograma implements Serializable {
         this.pictograma_nombre = pictograma_nombre;
     }
 
-    public String getPictograma_imagen() {
+    public byte[] getPictograma_imagen() {
         return pictograma_imagen;
     }
 
-    public void setPictograma_imagen(String pictograma_imagen) {
+    public void setPictograma_imagen(byte[] pictograma_imagen) {
         this.pictograma_imagen = pictograma_imagen;
     }
 

@@ -13,10 +13,13 @@
 package com.example.apptea.ui.pictograma;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +29,7 @@ import com.example.apptea.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.database.ImageConverter;
 import roomsqlite.entidades.Pictograma;
 
 public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.PictogramaHolder> {
@@ -35,12 +39,15 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
         private final TextView pictogramaItemView;
         public Button eliminar;
         public Button editar;
+        public ImageView imagen;
+
 
         private PictogramaHolder(View itemView){
             super(itemView);
             pictogramaItemView = itemView.findViewById((R.id.nombre_pictograma));
             eliminar = itemView.findViewById(R.id.btn_eliminar_pictograma);
             editar = itemView.findViewById(R.id.btn_editar_pictograma);
+            imagen = itemView.findViewById(R.id.img_pictograma);
         }
     }
 
@@ -69,11 +76,15 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
             if(current.isPredeterminado()==true){
 
+               // holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
+                holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
                 holder.editar.setVisibility(View.INVISIBLE);
                 holder.eliminar.setVisibility(View.INVISIBLE);
             }
             else {
+                //holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
+                holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
             }
 

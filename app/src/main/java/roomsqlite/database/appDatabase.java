@@ -69,6 +69,7 @@ public abstract class appDatabase extends RoomDatabase {
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     appDatabase.class,constantes.getBdName())
+                            .allowMainThreadQueries()
                          .addCallback(sRoomDatabaseCallback)
                     .build();
                 }
@@ -204,12 +205,12 @@ public abstract class appDatabase extends RoomDatabase {
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic5);*/
 
 
-                PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
+             /*   PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
                 pictogramaDAO.deleteAllPictogramas();
 
                 Pictograma picto= new Pictograma(1,  1,"Verde",true);
                 pictogramaDAO.insert(picto);
-                Pictograma picto1= new Pictograma(2, 1,"Azul",false);
+                Pictograma picto1= new Pictograma(2, 1,"Azul",true);
                 pictogramaDAO.insert(picto1);
                 Pictograma picto2=new Pictograma(3,2,"Manzana",true);
                 pictogramaDAO.insert(picto2);
@@ -217,7 +218,7 @@ public abstract class appDatabase extends RoomDatabase {
                 pictogramaDAO.insert(picto3);
                 Pictograma picto4 = new Pictograma(5,2,"Uva",false);
                 pictogramaDAO.insert(picto4);
-
+*/
 
 
 

@@ -31,6 +31,7 @@
 
             <!-- Media -->
             <ImageView
+                android:id="@+id/img_pictograma"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/card_height_cat_juego"
                 android:scaleType="fitCenter"

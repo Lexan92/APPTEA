@@ -59,6 +59,7 @@ public class Detalle_Pictograma extends Fragment {
     private LiveData<List<Pictograma>> pictogramasAll;
     private PictogramaViewModel pictogramaViewModel;
     RecyclerView recyclerView;
+    CategoriaPictograma categoriaPictograma = null;
 
 
     public Detalle_Pictograma() {
@@ -117,7 +118,7 @@ public class Detalle_Pictograma extends Fragment {
 
 
         Bundle objetoCategoriaPictograma=getArguments();
-        CategoriaPictograma categoriaPictograma = null;
+
         if(objetoCategoriaPictograma!= null){
             categoriaPictograma = (CategoriaPictograma) objetoCategoriaPictograma.getSerializable("elementos");
             pictogramaViewModel.getAllPictogramaByCategoria(categoriaPictograma.getCat_pictograma_id()).observe(getActivity(), new Observer<List<Pictograma>>() {
@@ -139,6 +140,8 @@ public class Detalle_Pictograma extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NuevoPictogramaDialog.class );
+                //envio de ID de categoria
+                intent.putExtra("llaveCategoria",categoriaPictograma.getCat_pictograma_id());
                 startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
             }
         });

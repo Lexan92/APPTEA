@@ -11,6 +11,7 @@
 package com.example.apptea.ui.personaTea;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class PersonaTeaFragment extends Fragment{
     private LiveData<List<PersonaTea>> personastea;
     RecyclerView recyclerView;
     public static final int PERSONAS_REQUEST_CODE = 1;
+    public static final int PERSONAS_UPDATE_REQUEST_CODE = 2;
     private PersonaTeaAdapter person;
 
 
@@ -79,7 +81,7 @@ public class PersonaTeaFragment extends Fragment{
                 adapter.setPersonas(personaTeas);
             }
         });
-        //}
+
 
         // AGREGAR PERSONAS
         FloatingActionButton fab = vista.findViewById(R.id.fabpersona);
@@ -91,12 +93,22 @@ public class PersonaTeaFragment extends Fragment{
             }
         });
 
-       // System.out.println(recyclerView.findViewHolderForLayoutPosition(0).getItemId());
 
+        // ACTUALIZAR Y ELIMINAR
         adapter.setButtonClicked(new PersonaTeaAdapter.ButtonClicked() {
             @Override
             public void updateClickedPersona(PersonaTea personaTea) {
+                System.out.println("en el fragment"+personaTea.getPersona_id());
+                Intent intentUpdate = new Intent(getActivity(),ActualizarPersonaTeaActivity.class);
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_ID_PERSONA_UPDATE, personaTea.getPersona_id());
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_ID_USUARIO_UPDATE, personaTea.getUsuario_id());
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_NOMBRE_PERSONA_UPDATE, personaTea.getPersona_nombre());
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_APELLIDO_PERSONA_UPDATE, personaTea.getPersona_apellido());
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_FECHA_PERSONA_UPDATE, personaTea.getPersona_fecha_nac());
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_SEXO_PERSONA_UPDATE, personaTea.getPersona_sexo());
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_FOTO_PERSONA_UPDATE, personaTea.getPersona_foto());
 
+                startActivityForResult(intentUpdate,PERSONAS_UPDATE_REQUEST_CODE);
             }
 
             @Override
@@ -136,7 +148,11 @@ public class PersonaTeaFragment extends Fragment{
         if (requestCode == PERSONAS_REQUEST_CODE && resultCode == RESULT_OK) {
             personaTea = (PersonaTea) data.getSerializableExtra(NuevaPersonaTea.EXTRA_PERSONA);
             personaTeaViewModel.insert(personaTea);
-        } else {
+        } else
+            if (requestCode == PERSONAS_UPDATE_REQUEST_CODE && resultCode == RESULT_OK){
+                personaTea = (PersonaTea) data.getSerializableExtra(ActualizarPersonaTeaActivity.EXTRA_PERSONA_UPDATE);
+                personaTeaViewModel.update(personaTea);
+            } else {
             Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();
         }
     }

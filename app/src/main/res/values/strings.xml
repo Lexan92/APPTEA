@@ -78,6 +78,8 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="foto">Foto</string>
     <string name="guardarPersona">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="actualizarTea">Actualizar Datos</string>
+    <string name="actualizarPersona">Actualizar</string>
 
     --nuevo pictograma
     <string name="titulo_dialog_nuevo_pictograma">Nuevo Pictograma</string>

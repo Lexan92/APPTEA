@@ -12,6 +12,7 @@ package roomsqlite.repositorios;
 
 import android.app.Application;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
@@ -29,12 +30,12 @@ public class PaisRepository {
         appDatabase db = appDatabase.getDatabase(application);
         paisDao =db.paisDao();
         paisAll = paisDao.getAllPais();
-
-
     }
 
-
-    public Pais findById(int id){return pais;}
+    /*//Metodo para obtener el pais por id (No se pudo implementar)
+    public Pais findPaisById(Integer id){
+        paisDao.findPaisById(id);
+        return pais;}*/
 
     public LiveData<List<Pais>> getPais(){
         return paisAll;

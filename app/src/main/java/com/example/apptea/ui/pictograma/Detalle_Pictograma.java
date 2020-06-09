@@ -163,5 +163,15 @@ public class Detalle_Pictograma extends Fragment {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(adapter!=null&& recyclerView!=null){
+            recyclerView.setAdapter(null);
+            adapter=null;
+            Glide.get(this.getActivity()).clearMemory();
+        }
+    }
+
 
 }

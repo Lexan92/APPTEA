@@ -128,6 +128,6 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     @Override
     public void onViewRecycled(@NonNull PictogramaHolder holder) {
         super.onViewRecycled(holder);
-        holder.setIsRecyclable(true);
+        holder.setIsRecyclable(false);
     }
 }

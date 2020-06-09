@@ -38,7 +38,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="12dp"
-        android:src="@drawable/ic_outline_image"
+        android:src="@drawable/ic_wallpaper"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 

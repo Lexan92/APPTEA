@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
@@ -30,6 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -270,8 +272,23 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
             switch (requestCode) {
                 case COD_SELECCIONA:
                     Uri miPath = data.getData();
-
+                    Bitmap bitmap = null;
+                    if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.P){
+                        try {
+                            bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(),miPath));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        try {
+                           bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),miPath);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     imgFoto.setImageURI(miPath);
+
+                    Glide.with(this).load(bitmap).into(imgFoto);
                     break;
 
                 case COD_FOTO:
@@ -285,8 +302,9 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
 
                     bitmap = BitmapFactory.decodeFile(path);
                     //se llama al metodo para reorientar la imagen de manera correcta al presentarlo en el imageview
-                    imgFoto.setRotation(obtenerOrientacionFoto(path));
-                    imgFoto.setImageBitmap(bitmap);
+                    //imgFoto.setRotation(obtenerOrientacionFoto(path));
+                   // imgFoto.setImageBitmap(bitmap);
+                    Glide.with(this).load(bitmap).into(imgFoto);
 
                     break;
             }

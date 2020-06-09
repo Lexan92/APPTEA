@@ -84,6 +84,10 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="hint_dialog_nuevo_pictograma">Nombre Pictograma</string>
     <string name="button_elegir_imagen_nuevo_pictograma">Selecciona Imagen</string>
     <string name="button_guardar_imagen_nuevo_pictograma">Guardar</string>
+    <string name="juegos_interactivos">Juegos Interactivos</string>
+    <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
+    <string name="vocabulario">Vocabulario</string>
+    <string name="frases">Frases</string>
 
 
 </resources>

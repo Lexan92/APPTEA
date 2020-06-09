@@ -12,11 +12,13 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.HabilidadCotidiana;
+import roomsqlite.entidades.PersonaTea;
 
 @Dao
 public interface CategoriaHabCotidianaDao {
@@ -28,10 +30,16 @@ public interface CategoriaHabCotidianaDao {
     @Query("DELETE FROM cat_habilidad_cotidiana")
     public void deleteAll();
 
+    @Update
+    void updateCatHabilidad(CategoriaHabCotidiana categoriaHabCotidiana);
 
     //metodo donde se inserta una categoria de habilidades cotidianas
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insert(CategoriaHabCotidiana cathabilidades);
+
+    //Metodo de prueba de eliminar se ocupara el metodo deleteCategoriaHabCotidiana
+    @Delete
+    void deleteCategoriaHab(CategoriaHabCotidiana cathabilidades);
 
     //metodo donde se elimina una categoria de habilidades cotidianas junto con sus habilidades cotidianas..
      @Delete

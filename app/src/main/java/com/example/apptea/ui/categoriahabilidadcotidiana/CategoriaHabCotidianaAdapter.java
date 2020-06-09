@@ -10,32 +10,66 @@
 
 package com.example.apptea.ui.categoriahabilidadcotidiana;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.PersonaTea;
 
 public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> {
 
     private  View.OnClickListener listener;
 
+    private CategoriaHabCotidianaAdapter.ButtonClicked buttonClicked;
+
+    public interface ButtonClicked{
+        void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);
+        void updateClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);
+    }
+
+    public void setButtonClicked(CategoriaHabCotidianaAdapter.ButtonClicked buttonClicked) {
+        this.buttonClicked = buttonClicked;
+    }
+
+
     class CategoriaHabCotidianaHolder extends RecyclerView.ViewHolder{
         private final TextView categoriaItemView;
+        private final Button btnEdit, btnDelete;
 
 
         private CategoriaHabCotidianaHolder(View itemView){
             super(itemView);
             categoriaItemView = itemView.findViewById((R.id.txt_categoria_hab_cotidiana));
+            btnEdit = itemView.findViewById(R.id.btn_editar_cat_hab);
+            btnDelete = itemView.findViewById(R.id.btn_delete_cat_hab);
+
+            btnDelete.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    buttonClicked.deleteClickedCatHab(categoriaHabCotidianaList.get(getAdapterPosition()));
+                }
+            });
+
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClicked.updateClickedCatHab(categoriaHabCotidianaList.get(getAdapterPosition()));
+                }
+            });
         }
     }
 
@@ -59,6 +93,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
 
     @Override
     public void onBindViewHolder(CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder holder, int position) {
+        int mposition = position;
         if (categoriaHabCotidianaList != null) {
             CategoriaHabCotidiana current = categoriaHabCotidianaList.get(position);
             holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());

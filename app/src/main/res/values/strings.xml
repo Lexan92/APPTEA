@@ -54,6 +54,9 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="button_save">Guardar</string>
     <string name="vacio_cat_hab_cot">No se guardo, ya que el campo esta vacio.</string>
     <string name="titulo_cat_hab_cot">Nueva Categoria</string>
+    <string name="titulo_edit_cat_hab_cot">Editar Categoria</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -36,6 +36,7 @@ import com.example.apptea.R;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.PersonaTea;
 import roomsqlite.repositorios.CategoriaHabCotidianaRepository;
 
 public class CategoriaHabCotidianaViewModel extends AndroidViewModel {
@@ -57,6 +58,11 @@ public class CategoriaHabCotidianaViewModel extends AndroidViewModel {
         categoriaHabCotidianaRepository.insert(categoriaHabCotidiana);
     }
 
+    public void update(CategoriaHabCotidiana categoriaHabCotidiana){
+       categoriaHabCotidianaRepository.update(categoriaHabCotidiana);
+    }
 
-
+    public void delete(CategoriaHabCotidiana categoriaHabCotidiana){
+        categoriaHabCotidianaRepository.delete(categoriaHabCotidiana);
+    }
 }

@@ -10,7 +10,9 @@
 
 package com.example.apptea.ui.categoriahabilidadcotidiana;
 
+import android.app.AlertDialog;
 import android.app.Application;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -32,6 +34,8 @@ import android.widget.Toast;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment;
+import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
+import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -39,6 +43,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.PersonaTea;
 import roomsqlite.repositorios.CategoriaHabCotidianaRepository;
 
 import static android.app.Activity.RESULT_OK;
@@ -54,6 +59,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
     RecyclerView recyclerView;
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int CAT_UPDATE_REQUEST_CODE = 2;
 
     public CategoriaHabCotidianaFragment() {
         //requiere un constructor vacio
@@ -87,6 +93,46 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
+
+
+        // METODOS PARA ACTUALIZAR Y ELIMINAR
+        adapter.setButtonClicked(new CategoriaHabCotidianaAdapter.ButtonClicked() {
+            @Override
+            public void updateClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
+                System.out.println("en el fragment"+categoriaHabCotidiana.getCat_hab_cotidiana_id());
+                Intent intentUpdate = new Intent(getActivity(),EditCategoriaHab.class);
+                intentUpdate.putExtra(EditCategoriaHab.EXTRA_ID_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_id());
+                intentUpdate.putExtra(EditCategoriaHab.EXTRA_NOMBRE_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+                startActivityForResult(intentUpdate,CAT_UPDATE_REQUEST_CODE);
+            }
+
+            @Override
+            public void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Alerta");
+                builder.setMessage("¿Esta seguro de eliminar a la Categoria de:\n"+categoriaHabCotidiana.getCat_hab_cotidiana_nombre()+"?");
+                builder.setIcon(android.R.drawable.ic_delete);
+
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.out.println("La Categoria de Habilidad Cotidiana" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+
+                       categoriaHabCotidianaViewModel.delete(categoriaHabCotidiana);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog deleteDialog = builder.create();
+                deleteDialog.show();
+            }
+            });
 
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +168,10 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             CategoriaHabCotidiana categoria = (CategoriaHabCotidiana) data.getSerializableExtra(NuevaCategoriaDialog.EXTRA_REPLY);
             categoriaHabCotidianaViewModel.insert(categoria);
+        } else
+        if (requestCode == CAT_UPDATE_REQUEST_CODE && resultCode == RESULT_OK){
+           CategoriaHabCotidiana categoriaHabCotidiana = (CategoriaHabCotidiana) data.getSerializableExtra(EditCategoriaHab.EXTRA_CAT_HAB_UPDATE);
+            categoriaHabCotidianaViewModel.update(categoriaHabCotidiana);
         } else {
             Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
                     Toast.LENGTH_LONG).show();

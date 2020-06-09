@@ -3,7 +3,7 @@
   ~ /*
   ~ Nombre del Autor
   ~ 18/05/2020
-  ~ pantalla de nueva categoria habilidad cotidiana
+  ~ Esta actividad hace el llamado a la lista de roles
   ~ */
   ~
   ~
@@ -11,7 +11,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:theme="@style/AppTheme"
     android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/titulo_cat_hab_cot"
+        android:text="@string/titulo_edit_cat_hab_cot"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,19 +38,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:ems="10"
         android:hint="@string/campo_nombre"
         android:layout_margin="15dp"
+        android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:layout_editor_absoluteX="178dp"
-        android:textSize="12sp">
+        tools:layout_editor_absoluteX="178dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_word"
+            android:id="@+id/edit_cat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            />
+            android:fontFamily="sans-serif-light" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/button_save"
+        android:onClick="updateCat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -68,6 +67,5 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_word_layout"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

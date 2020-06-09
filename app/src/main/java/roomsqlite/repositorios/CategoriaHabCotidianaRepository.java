@@ -19,6 +19,7 @@ import java.util.List;
 import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.PersonaTea;
 
 public class CategoriaHabCotidianaRepository {
 
@@ -40,8 +41,13 @@ public class CategoriaHabCotidianaRepository {
         appDatabase.databaseWriteExecutor.execute(()-> categoriaHabCotidianaDao.insert(categoriaHabCotidiana));
         }
 
+    public void update(CategoriaHabCotidiana categoriaHabCotidiana){
+        appDatabase.databaseWriteExecutor.execute(()-> categoriaHabCotidianaDao.updateCatHabilidad(categoriaHabCotidiana));
+    }
 
-
+    public void delete(CategoriaHabCotidiana categoriaHabCotidiana){
+        appDatabase.databaseWriteExecutor.execute(()-> categoriaHabCotidianaDao.deleteCategoriaHab(categoriaHabCotidiana));
+    }
 
 
 }

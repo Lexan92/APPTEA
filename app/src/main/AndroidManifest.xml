@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apptea">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".ui.personaTea.ActualizarPersonaTeaActivity"></activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,7 +28,7 @@
             android:windowSoftInputMode="adjustPan|stateVisible" />
         <activity
             android:name=".instalacion"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -42,10 +42,12 @@
         <activity
             android:name=".ui.personaTea.NuevaPersonaTea"
             android:windowSoftInputMode="adjustPan|stateVisible" />
-
-        <activity android:name=".ui.pictograma.NuevoPictogramaDialog"
-            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"/>
-
+        <activity
+            android:name=".ui.pictograma.NuevoPictogramaDialog"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+        <activity
+            android:name=".ui.categoriahabilidadcotidiana.EditCategoriaHab"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
 
 
         <provider
@@ -55,7 +57,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 

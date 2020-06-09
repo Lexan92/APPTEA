@@ -51,7 +51,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_editar"
+                        android:id="@+id/btn_editar_cat_hab"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                         app:icon="@drawable/ic_mode_edit_black_24dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_cancelar"
+                        android:id="@+id/btn_delete_cat_hab"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"

@@ -14,14 +14,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.personaTea.NuevaPersonaTea">
+    tools:context=".ui.personaTea.ActualizarPersonaTeaActivity">
 
     <TextView
-        android:id="@+id/datosTea"
+        android:id="@+id/actualizarPersonaTea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/datosTea"
+        android:text="@string/actualizarTea"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datosTea">
+        app:layout_constraintTop_toBottomOf="@+id/actualizarPersonaTea">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nombreTea"
+                    android:id="@+id/actualizarNombreTea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
@@ -76,7 +76,7 @@
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/apellidoTea"
+                    android:id="@+id/actualizarApellidoTea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
@@ -94,7 +94,7 @@
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fechaTea"
+                    android:id="@+id/actualizarFechaTea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
@@ -118,7 +118,7 @@
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/SexoTea"
+                    android:id="@+id/actualizarSexoTea"
                     style="@style/Widget.AppCompat.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fotoPersona"
+                    android:id="@+id/actualizarFotoPersona"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
@@ -150,12 +150,12 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/guardarPersona"
+                    android:id="@+id/btnActualizarPersona"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="60dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/guardarPersona"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="@string/actualizarPersona"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -165,10 +165,12 @@
                     android:id="@+id/cancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="32dp"
                     android:text="@string/cancelar"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guardarPersona"
+                    app:layout_constraintEnd_toStartOf="@+id/btnActualizarPersona"
                     app:layout_constraintHorizontal_bias="0.364"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -179,6 +181,5 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

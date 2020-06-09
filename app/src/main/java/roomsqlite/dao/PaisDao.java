@@ -1,5 +1,6 @@
 package roomsqlite.dao;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -21,8 +22,10 @@ public interface PaisDao {
     @Query("DELETE FROM pais")
     public void deletePaisAll();
 
-    @Query("SELECT * FROM pais WHERE pais_id=:id")
-    Pais findById(int id);
+    //Metodo para obtener un pais mediante un parametro ID
+    @Query("SELECT * FROM pais WHERE pais_id = :id LIMIT 1")
+    @Nullable
+    Pais findPaisById(@Nullable int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPais(Pais pais);

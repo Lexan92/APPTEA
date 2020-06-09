@@ -64,6 +64,13 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
                 }
             });
 
+            editar.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    buttonClicked.updateClickedPersona(personaTeaList.get(getAdapterPosition()));
+                }
+            });
+
 
         }
     }

@@ -25,6 +25,7 @@ import com.example.apptea.ui.pais.PaisViewModel;
 import java.util.List;
 
 import roomsqlite.dao.PaisDao;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.Pais;
 import roomsqlite.entidades.Usuario;
 import roomsqlite.repositorios.PaisRepository;
@@ -32,9 +33,6 @@ import roomsqlite.repositorios.PaisRepository;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioHolder> {
 
-
-    private int pais_id;
-    Pais pais = new Pais();
 
     class UsuarioHolder extends RecyclerView.ViewHolder{
 
@@ -59,7 +57,9 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
 
     private final LayoutInflater mInflater;
     private List<Usuario> usuarioList;
-    PaisRepository paisRepository ;
+
+    PaisRepository paisRepository;
+
 
    UsuarioAdapter(Context context){
         mInflater = LayoutInflater.from(context);
@@ -77,13 +77,16 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
     @Override
     public void onBindViewHolder(UsuarioHolder holder, int position) {
 
-        Pais pais = new Pais();
+       //Se obtiene una instancia del DAO (aca no se implementa Repository genera error)
+        PaisDao paisDao = (PaisDao) appDatabase.getDatabase(mInflater.getContext()).paisDao();
+
         if (usuarioList != null) {
             Usuario current = usuarioList.get(position);
+            int idP= current.getPais_id();
             holder.nombreItemView.setText("Hola \n"+current.getUsuario_nombre()+" "+current.getUsuario_apellido()+"!");
             holder.correoItemView.setText(current.getCorreo());
             holder.telItemView.setText(String.valueOf(current.getTelefono()));
-            holder.paisItemView.setText(String.valueOf(current.getPais_id()).getClass().getName());
+            holder.paisItemView.setText(paisDao.findPaisById(current.getPais_id()).getPais_nombre());
             holder.direccionItemView.setText(current.getDireccion());
         } else {
             // Covers the case of data not being ready yet.

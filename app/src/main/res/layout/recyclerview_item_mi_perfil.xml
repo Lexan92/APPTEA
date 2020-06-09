@@ -120,7 +120,7 @@
                     android:layout_marginTop="5dp"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textSize="19sp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:textColor="@color/mi_perfil_titulo"
                     android:text="Telefono: "
                     android:fontFamily="@font/capriola"/>
@@ -146,7 +146,7 @@
                     android:layout_marginTop="5dp"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textSize="19sp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:textColor="@color/mi_perfil_titulo"
                     android:text="País: "
                     android:fontFamily="@font/capriola"/>
@@ -173,7 +173,7 @@
                     android:layout_marginTop="5dp"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textSize="19sp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:textColor="@color/mi_perfil_titulo"
                     android:text="Dirección: "
                     android:fontFamily="@font/capriola"

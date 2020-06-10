@@ -13,6 +13,7 @@ package com.example.apptea.ui.pictograma;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,15 +47,8 @@ import roomsqlite.repositorios.PictogramaRepository;
  */
 public class Detalle_Pictograma extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private static final int ACTIVITY_REQUEST_CODE = 10 ;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final int ACTIVITY_REQUEST_CODE = 10 ;
 
     private PictogramaRepository pictogramaRepository;
     private LiveData<List<Pictograma>> pictogramasAll;
@@ -79,10 +73,6 @@ public class Detalle_Pictograma extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static Detalle_Pictograma newInstance(String param1, String param2) {
         Detalle_Pictograma fragment = new Detalle_Pictograma();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
 
         return fragment;
     }
@@ -90,10 +80,7 @@ public class Detalle_Pictograma extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
 
     }
 
@@ -153,25 +140,19 @@ public class Detalle_Pictograma extends Fragment {
 
 
     }
-    @Override
+
+   /* @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(adapter!=null&& recyclerView!=null){
+       if(adapter!=null&& recyclerView!=null){
             recyclerView.setAdapter(null);
             adapter=null;
-            Glide.get(this.getActivity()).clearMemory();
-        }
-    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if(adapter!=null&& recyclerView!=null){
-            recyclerView.setAdapter(null);
-            adapter=null;
-            Glide.get(this.getActivity()).clearMemory();
         }
-    }
+    }*/
+
+
+
 
 
 }

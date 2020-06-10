@@ -128,6 +128,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     @Override
     public void onViewRecycled(@NonNull PictogramaHolder holder) {
         super.onViewRecycled(holder);
-        holder.setIsRecyclable(false);
+        holder.setIsRecyclable(true);
+        Glide.get(holder.imagen.getContext()).clearMemory();
     }
 }

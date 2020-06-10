@@ -65,7 +65,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_MaterialComponents_Light_Dialog_MinWidth);
-
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MaterialComponents_Light_Dialog_MinWidth);
         setContentView(R.layout.activity_nuevo_pictograma_dialog);
@@ -302,9 +301,9 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
 
                     bitmap = BitmapFactory.decodeFile(path);
                     //se llama al metodo para reorientar la imagen de manera correcta al presentarlo en el imageview
-                    //imgFoto.setRotation(obtenerOrientacionFoto(path));
-                   // imgFoto.setImageBitmap(bitmap);
-                    Glide.with(this).load(bitmap).into(imgFoto);
+                    imgFoto.setRotation(obtenerOrientacionFoto(path));
+                   imgFoto.setImageBitmap(bitmap);
+                    //Glide.with(this).load(bitmap).into(imgFoto);
 
                     break;
             }

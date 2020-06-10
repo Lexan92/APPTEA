@@ -52,7 +52,8 @@
         android:hint="@string/hint_dialog_nuevo_pictograma"
 
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:layout_editor_absoluteX="-38dp">
+        tools:layout_editor_absoluteX="-38dp"
+        app:errorEnabled="true">
 
 
         <com.google.android.material.textfield.TextInputEditText

@@ -15,12 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import roomsqlite.entidades.PersonaTea;
@@ -42,8 +45,8 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
     public class PersonaTeaHolder extends RecyclerView.ViewHolder{
         private final TextView personaItemNombre;
         private final TextView personaItemApellido;
-        private final TextView personaItemFecha;
-        private String fecha;
+        private final TextView personaItemEdad;
+        private final ImageView personaItemFoto;
         public Button eliminar;
         public Button editar;
 
@@ -52,8 +55,10 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
             super(itemView);
             personaItemNombre = itemView.findViewById((R.id.nombre_persona_tea));
             personaItemApellido= itemView.findViewById((R.id.apellido_persona_tea));
-            personaItemFecha = itemView.findViewById((R.id.fecha_tea));
-            fecha="";
+            personaItemEdad = itemView.findViewById((R.id.fecha_tea));
+            personaItemFoto = itemView.findViewById(R.id.foto_persona);
+
+
             eliminar= itemView.findViewById(R.id.btn_eliminar_persona);
             editar = itemView.findViewById(R.id.btn_editar_persona);
 
@@ -91,7 +96,14 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
             PersonaTea current = personaTeaList.get(position);
             holder.personaItemNombre.setText(current.getPersona_nombre());
             holder.personaItemApellido.setText(current.getPersona_apellido());
-            holder.personaItemFecha.setText(current.getPersona_fecha_nac().toString());
+            String edad = getAge(current.getPersona_fecha_nac());
+            holder.personaItemEdad.setText(edad);
+           String sexo = current.getPersona_sexo();
+           if (sexo.equals("Femenino")){
+               holder.personaItemFoto.setImageResource(R.drawable.ic_linda);
+           } else{
+               holder.personaItemFoto.setImageResource(R.drawable.ic_smile);
+           }
         } else {
             // Covers the case of data not being ready yet.
             holder.personaItemNombre.setText("No se han ingresado personas a la lista");
@@ -110,5 +122,23 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
             return personaTeaList.size();
         else
             return 0;
+    }
+
+    private String getAge(Date fecha){
+        Calendar ffecha = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        ffecha.setTime(fecha);
+
+        int age = today.get(Calendar.YEAR) - ffecha.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < ffecha.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+        Integer ageInt = new Integer(age);
+        String ageS = ageInt.toString();
+
+        return ageS;
     }
 }

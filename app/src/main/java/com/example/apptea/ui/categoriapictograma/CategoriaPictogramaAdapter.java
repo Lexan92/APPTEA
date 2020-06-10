@@ -59,8 +59,8 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
             CategoriaPictograma categoriaPictograma = categoriaPictogramaList.get(position);
             if (categoriaPictograma.isPredeterminado()==true){
                 holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-                holder.editar.setVisibility(View.INVISIBLE);
-                holder.cancelar.setVisibility(View.INVISIBLE);
+               // holder.editar.setVisibility(View.INVISIBLE);
+                holder.cancelar.setVisibility(View.GONE);
             }
             else {
             holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());}

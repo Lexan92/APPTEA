@@ -27,7 +27,9 @@ public interface CategoriaPictogramaDAO {
     @Delete
     void deleteCategoriaPictograma(CategoriaPictograma categoriaPictograma);
 
-    @Query("SELECT * FROM " + CategoriaPictograma.TABLE_NAME)
+
+    //recupera todas las categorias de pictogramas
+    @Query("SELECT * FROM categoriapictograma ORDER BY cat_pictograma_nombre ASC" )
     LiveData<List<CategoriaPictograma>> getAllCategoriasPictogramas();
 
     @Query("DELETE FROM " + CategoriaPictograma.TABLE_NAME)

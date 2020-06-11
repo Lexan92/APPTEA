@@ -47,6 +47,7 @@ public class NuevaCategoriaDialog extends Activity {
                     //String word =  nombreCategoria.getText().toString();
                     //replyIntent.putExtra(EXTRA_REPLY, word);
                     categoriaHabCotidiana.setCat_hab_cotidiana_nombre(nombreCategoria.getText().toString());
+                    categoriaHabCotidiana.setCat_predeterminado(false);
                     replyIntent.putExtra(EXTRA_REPLY, categoriaHabCotidiana);
                     setResult(RESULT_OK, replyIntent);
                 }

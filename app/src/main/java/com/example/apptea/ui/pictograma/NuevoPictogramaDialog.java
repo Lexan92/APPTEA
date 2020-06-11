@@ -56,22 +56,23 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     private String path;//almacena la ruta de la imagen
     private static final int COD_SELECCIONA = 10;
     private static final int COD_FOTO = 20;
-    MaterialButton botonRegistrar, botonSeleccionar;
+    MaterialButton botonRegistrar, botonSeleccionar, botonCancelar;
     ImageView imgFoto;
     EditText nombrePictograma;
     Bitmap bitmap=null;
-    PictogramaDAO pictogramaDAO ;
-
+    boolean ban=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_MaterialComponents_Light_Dialog_MinWidth);
+       // setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_MaterialComponents_Light_Dialog_MinWidth);
         setContentView(R.layout.activity_nuevo_pictograma_dialog);
         imgFoto = findViewById(R.id.img_nuevo_pictograma);
         nombrePictograma = findViewById(R.id.edit_nombre_pictograma);
+
         botonRegistrar = findViewById(R.id.button_guardar_imagen);
         botonSeleccionar = findViewById(R.id.button_seleccionar_imagen);
+        botonCancelar = findViewById(R.id.button_cancelar_guardar_imagen);
         //se obteiene el ID de categoria pictograma
         int keyCategoria =getIntent().getIntExtra("llaveCategoria",0);
        PictogramaViewModel pictogramaViewModel;
@@ -98,25 +99,42 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //inicia guardado de pictogramas
-
+                //se valida si los campos estan vacios
                 if (nombrePictograma.getText().toString().isEmpty() || bitmap== null && imgFoto.getDrawable()==null){
-                    Toast.makeText(getApplicationContext(), "Debe agregar una imagen y asignarle un nombre antes de guardar", Toast.LENGTH_SHORT).show();
+                    nombrePictograma.setError("Campo Requerido");
+                    Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
+                    ban=false;
                 }else {
                     Pictograma pictograma = new Pictograma();
                     pictograma.setCat_pictograma_id(keyCategoria);
                     pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
                     pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
                     pictogramaViewModel.insert(pictograma);
-                    Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_LONG).show();
+                     ban=true;
+                    finish();
 
                 }
+
+
+            }
+
+        });
+
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
+
+
 
     }
 
 
     private boolean validaPermisos() {
+        //se validan permisos para versiones de android menores a Marshmellow
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
@@ -174,7 +192,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     }
 
     private void solicitarPermisosManual() {
-
 
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(NuevoPictogramaDialog.this);
         builder.setTitle("¿Desea configurar los permisos de forma manual?");

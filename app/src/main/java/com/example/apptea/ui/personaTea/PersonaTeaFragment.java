@@ -104,7 +104,7 @@ public class PersonaTeaFragment extends Fragment{
                 intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_ID_USUARIO_UPDATE, personaTea.getUsuario_id());
                 intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_NOMBRE_PERSONA_UPDATE, personaTea.getPersona_nombre());
                 intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_APELLIDO_PERSONA_UPDATE, personaTea.getPersona_apellido());
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_FECHA_PERSONA_UPDATE, personaTea.getPersona_fecha_nac());
+                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_FECHA_PERSONA_UPDATE, personaTea.getPersona_fecha_nac().toString());
                 intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_SEXO_PERSONA_UPDATE, personaTea.getPersona_sexo());
                 intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_FOTO_PERSONA_UPDATE, personaTea.getPersona_foto());
 

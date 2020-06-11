@@ -40,6 +40,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import roomsqlite.entidades.PersonaTea;
@@ -82,8 +83,6 @@ public class ActualizarPersonaTeaActivity extends AppCompatActivity {
 
             actualizarNombreTea.setText(intent.getStringExtra(EXTRA_NOMBRE_PERSONA_UPDATE));
             actualizarApellidoTea.setText(intent.getStringExtra(EXTRA_APELLIDO_PERSONA_UPDATE));
-            actualizarFecha.setText(intent.getStringExtra(EXTRA_FECHA_PERSONA_UPDATE));
-            // actualizarSpinnerSexo.setSelection(actualizarSpinnerSexo,intent.getStringExtra(EXTRA_SEXO_PERSONA_UPDATE));
             actualizarFoto.setText(intent.getStringExtra(EXTRA_FOTO_PERSONA_UPDATE));
 
 
@@ -98,6 +97,7 @@ public class ActualizarPersonaTeaActivity extends AppCompatActivity {
         //PARA EL SPINNER
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,sexo);
         actualizarSpinnerSexo.setAdapter(adapter);
+        actualizarSpinnerSexo.setSelection(adapter.getPosition(intent.getStringExtra(EXTRA_SEXO_PERSONA_UPDATE)));
 
         //PARA EL CALENDAR
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -123,6 +123,8 @@ public class ActualizarPersonaTeaActivity extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+        myCalendar.setTime(new Date(intent.getStringExtra(EXTRA_FECHA_PERSONA_UPDATE)));
+        updateLabel();
 
         //PARA GUARDAR ACTUALIZACION PERSONA
         final Button button = findViewById(R.id.btnActualizarPersona);

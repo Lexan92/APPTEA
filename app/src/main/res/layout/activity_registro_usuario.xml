@@ -64,6 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"/>
+
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -83,7 +84,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"/>
+
+
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/correoUsuarioLayout"
@@ -100,6 +104,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"/>
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -119,14 +125,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="phone"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <!---    <Spinner
-                   android:id="@+id/spinnerDepto"
-                   style="@style/Widget.AppCompat.Spinner"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="10dp" /> -->
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <TextView
@@ -145,22 +145,6 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/direccionUsuarioLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="@string/direccionUsuario"
-                android:textSize="12sp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/direccionUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -179,7 +163,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"/>
+
+
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -195,7 +182,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    android:layout_marginRight="60dp" />
 
                 <Button
                     android:id="@+id/regresar"

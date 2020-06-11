@@ -26,14 +26,14 @@ public class Usuario implements Serializable {
     private String correo;
     @NonNull
     private int telefono;
-    @NonNull
-    private  String direccion;
+   /* @NonNull
+    private  String direccion;*/
     @NonNull
     private int codigo_verificacion;
 
 //CONSTRUCTOR
 
-    public Usuario(int usuario_id, int pais_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono, @NonNull String direccion, int codigo_verificacion) {
+    public Usuario(int usuario_id, int pais_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono/*, @NonNull String direccion*/, int codigo_verificacion) {
         this.usuario_id = usuario_id;
         this.pais_id = pais_id;
         this.usuario_nombre = usuario_nombre;
@@ -41,7 +41,7 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
         this.correo = correo;
         this.telefono = telefono;
-        this.direccion = direccion;
+        //this.direccion = direccion;
         this.codigo_verificacion = codigo_verificacion;
     }
 
@@ -109,14 +109,14 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
-    @NonNull
+   /* @NonNull
     public String getDireccion() {
         return direccion;
     }
 
     public void setDireccion(@NonNull String direccion) {
         this.direccion = direccion;
-    }
+    }*/
 
     public int getCodigo_verificacion() {
         return codigo_verificacion;

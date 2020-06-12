@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,7 +61,8 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     ImageView imgFoto;
     EditText nombrePictograma;
     Bitmap bitmap=null;
-    boolean ban=false;
+    boolean imagen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // setTheme(R.style.AppTheme);
@@ -77,7 +79,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         int keyCategoria =getIntent().getIntExtra("llaveCategoria",0);
        PictogramaViewModel pictogramaViewModel;
        pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
-
 
 
 
@@ -100,23 +101,30 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
             public void onClick(View v) {
                 //inicia guardado de pictogramas
                 //se valida si los campos estan vacios
-                if (nombrePictograma.getText().toString().isEmpty() || bitmap== null && imgFoto.getDrawable()==null){
+                if (nombrePictograma.getText().toString().isEmpty() && imagen==false) {
                     nombrePictograma.setError("Campo Requerido");
                     Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
-                    ban=false;
-                }else {
-                    Pictograma pictograma = new Pictograma();
-                    pictograma.setCat_pictograma_id(keyCategoria);
-                    pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
-                    pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
-                    pictogramaViewModel.insert(pictograma);
-                    Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_LONG).show();
-                     ban=true;
-                    finish();
+                } else {
+                    if (imagen==false) {
+                        Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
+                    } else {
+                        if (nombrePictograma.getText().toString().isEmpty()) {
+                            nombrePictograma.setError("Campo Requerido");
+                        } else {
+                            Pictograma pictograma = new Pictograma();
+                            pictograma.setCat_pictograma_id(keyCategoria);
+                            pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
+                            pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
+                            pictogramaViewModel.insert(pictograma);
+                            Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_LONG).show();
+
+                            finish();
+
+                        }
+                    }
+
 
                 }
-
-
             }
 
         });
@@ -305,6 +313,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                     imgFoto.setImageURI(miPath);
 
                     Glide.with(this).load(bitmap).into(imgFoto);
+                    imagen = true;
                     break;
 
                 case COD_FOTO:
@@ -321,7 +330,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                     imgFoto.setRotation(obtenerOrientacionFoto(path));
                    imgFoto.setImageBitmap(bitmap);
                     //Glide.with(this).load(bitmap).into(imgFoto);
-
+                    imagen=true;
                     break;
             }
 
@@ -356,4 +365,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         //retorna el grado correcto de rotacion
         return rotate;
     }
+
+
+
 }

@@ -44,6 +44,7 @@
             android:windowSoftInputMode="adjustPan|stateVisible" />
         <activity
             android:name=".ui.pictograma.NuevoPictogramaDialog"
+            android:label="Nuevo Pictograma"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
             android:name=".ui.categoriahabilidadcotidiana.EditCategoriaHab"

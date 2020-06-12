@@ -9,11 +9,7 @@
     android:transitionName="categoriapictograma_transicion"
     tools:context=".ui.pictograma.Detalle_Pictograma">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="6dp">
+
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -23,7 +19,7 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.core.widget.NestedScrollView>
+
     <!-- TODO: Update blank fragment layout -->
 
 

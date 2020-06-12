@@ -117,7 +117,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
                             pictogramaViewModel.insert(pictograma);
                             Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_LONG).show();
-
                             finish();
 
                         }
@@ -312,7 +311,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                     }
                     imgFoto.setImageURI(miPath);
 
-                    Glide.with(this).load(bitmap).into(imgFoto);
+                    //Glide.with(this).load(bitmap).into(imgFoto);
                     imagen = true;
                     break;
 
@@ -328,7 +327,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                     bitmap = BitmapFactory.decodeFile(path);
                     //se llama al metodo para reorientar la imagen de manera correcta al presentarlo en el imageview
                     imgFoto.setRotation(obtenerOrientacionFoto(path));
-                   imgFoto.setImageBitmap(bitmap);
+                    imgFoto.setImageBitmap(bitmap);
                     //Glide.with(this).load(bitmap).into(imgFoto);
                     imagen=true;
                     break;

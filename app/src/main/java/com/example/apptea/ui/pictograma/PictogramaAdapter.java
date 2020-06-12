@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
 import com.google.android.material.internal.ContextUtils;
@@ -86,6 +87,8 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                // holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
                 Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .skipMemoryCache(true)
                         .into(holder.imagen);
 
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());

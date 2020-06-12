@@ -44,7 +44,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="spinnerDepto">Departamento</string>
     <string name="spinnerMunicipio">Municipio</string>
     <string name="direccionUsuario">Direccion</string>
-    <string name="contraUsuario">Contraseña de desbloqueo</string>
+    <string name="contraUsuario">Contraseña</string>
     <string name="siguienteUsuario">Siguiente</string>
     <string name="regresarUsuario">Regresar</string>
 
@@ -93,6 +93,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
     <string name="vocabulario">Vocabulario</string>
     <string name="frases">Frases</string>
+
 
 
 </resources>

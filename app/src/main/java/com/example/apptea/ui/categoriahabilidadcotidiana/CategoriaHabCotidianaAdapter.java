@@ -28,6 +28,7 @@ import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.PersonaTea;
 
 public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> {
@@ -94,11 +95,16 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     @Override
     public void onBindViewHolder(CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder holder, int position) {
         int mposition = position;
-        if (categoriaHabCotidianaList != null) {
+        if (categoriaHabCotidianaList != null && position < categoriaHabCotidianaList.size()) {
             CategoriaHabCotidiana current = categoriaHabCotidianaList.get(position);
-            holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
-        } else {
-            // Covers the case of data not being ready yet.
+            if (current.isCat_predeterminado() == true) {
+                holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
+                holder.btnDelete.setVisibility(View.GONE);
+
+            } else {
+                holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
+            }
+        }else{
             holder.categoriaItemView.setText("No existe ninguna categoria para habilidades cotidianas");
         }
     }

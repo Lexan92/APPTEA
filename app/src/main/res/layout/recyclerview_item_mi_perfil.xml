@@ -161,7 +161,7 @@
                     android:textColor="@color/letra_mi_perfil_contenido"
                     android:fontFamily="@font/capriola"/>
             </LinearLayout>
-            <LinearLayout
+           <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -189,7 +189,7 @@
                     android:textColor="@color/letra_mi_perfil_contenido"
                     android:fontFamily="@font/capriola"
                    />
-            </LinearLayout>
+            </LinearLayout> -->
 
 
         </LinearLayout>

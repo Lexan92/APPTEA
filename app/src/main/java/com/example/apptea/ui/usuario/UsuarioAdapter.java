@@ -42,7 +42,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
     private final TextView correoItemView;
     private final TextView telItemView;
     private final TextView paisItemView;
-    private final TextView direccionItemView;
+    /*private final TextView direccionItemView;*/
 
     private UsuarioHolder(View itemView){
         super(itemView);
@@ -50,7 +50,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
         telItemView = itemView.findViewById((R.id.txt_telefonoUsuario));
         correoItemView = itemView.findViewById((R.id.txt_correoUsuario));
         paisItemView = itemView.findViewById((R.id.txt_pais));
-        direccionItemView = itemView.findViewById((R.id.txt_direccion));
+        /*direccionItemView = itemView.findViewById((R.id.txt_direccion));*/
 
     }
 }
@@ -87,7 +87,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
             holder.correoItemView.setText(current.getCorreo());
             holder.telItemView.setText(String.valueOf(current.getTelefono()));
             holder.paisItemView.setText(paisDao.findPaisById(current.getPais_id()).getPais_nombre());
-            holder.direccionItemView.setText(current.getDireccion());
+            /*holder.direccionItemView.setText(current.getDireccion());*/
         } else {
             // Covers the case of data not being ready yet.
             holder.nombreItemView.setText("No existe ninguna categoria para habilidades cotidianas");//mensaje aunq no se debera mostrar ya que es campo obligatorio

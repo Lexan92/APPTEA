@@ -6,6 +6,7 @@ package roomsqlite.entidades;
 * */
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -19,15 +20,28 @@ public class CategoriaHabCotidiana implements Serializable{
 
     @NonNull
     private String cat_hab_cotidiana_nombre;
+    @NonNull
+    private boolean cat_predeterminado;
+
+
+
+    public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, boolean cat_predeterminado) {
+        this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
+        this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
+        this.cat_predeterminado = cat_predeterminado;
+    }
+
+
 
    // private String path;//No va aca se mostrara imagen en la clase habilidad cotidiana
 
 
+    public boolean isCat_predeterminado() {
+        return cat_predeterminado;
+    }
 
-    public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre/*, String path*/) {
-        this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
-        this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
-        //this.path = path;
+    public void setCat_predeterminado(boolean cat_predeterminado) {
+        this.cat_predeterminado = cat_predeterminado;
     }
 
     public CategoriaHabCotidiana(String stringExtra) {

@@ -32,6 +32,7 @@ import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.ui.pais.PaisViewModel;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +60,13 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     TextInputEditText apellidoUsuario;
     TextInputEditText correoUsuario;
     TextInputEditText telefonoUsuario;
-    TextInputEditText direccionUsuario;
+    //TextInputEditText direccionUsuario;
     TextInputEditText contraUsuario;
     private Usuario usuario = new Usuario();
+    Boolean validar= false;
+
+    TextInputLayout nombre, apellido, correo, telefono,pais,contra;
+    String error="Campo Obligatorio";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +79,14 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         correoUsuario=  findViewById(R.id.correoUsuario);
         telefonoUsuario =  findViewById(R.id.telefonoUsuario);
         spinnerPais = (Spinner) findViewById(R.id.spinnerPais);
-        direccionUsuario =  findViewById(R.id.direccionUsuario);
+       // direccionUsuario =  findViewById(R.id.direccionUsuario);
         contraUsuario = findViewById(R.id.contraUsuario);
 
+        nombre=findViewById(R.id.nombreUsuarioLayout);
+        apellido=findViewById(R.id.apellidoUsuarioLayout);
+        correo= findViewById(R.id.correoUsuarioLayout);
+        telefono= findViewById(R.id.telefonoUsuarioLayout);
+        contra= findViewById(R.id.contraUsuarioLayout);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
         //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
@@ -97,16 +107,13 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.guardar);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //para insert usuario
 
-                /*startActivityForResult(intent, REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE);*/
 
-                //Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(nombreUsuario.getText()) || TextUtils.isEmpty(apellidoUsuario.getText())
-                        ||TextUtils.isEmpty(correoUsuario.getText()) || TextUtils.isEmpty(telefonoUsuario.getText())
-                        ||TextUtils.isEmpty(spinnerPais.getSelectedItem().toString()) || TextUtils.isEmpty(direccionUsuario.getText())
-                        ||TextUtils.isEmpty(contraUsuario.getText())) {
+                if (validaciones()>0) {
                     System.out.println("está vacio");
+                    System.out.println(TextUtils.isEmpty(apellidoUsuario.getText()));
+                    System.out.println(TextUtils.isEmpty(nombreUsuario.getText()));
+                    Toast.makeText(RegistroUsuarioActivity.this,"Es necesario llenar los campos obligatorios",Toast.LENGTH_LONG).show();
                     /*setResult(RESULT_CANCELED, replyIntent)*/;
                 } else {
                     System.out.println("no vacio");
@@ -115,23 +122,18 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                     usuario.setTelefono(Integer.parseInt(telefonoUsuario.getText().toString()));
                     usuario.setCorreo(correoUsuario.getText().toString());
                     usuario.setPais_id(((Pais) spinnerPais.getSelectedItem()).getPais_id());
-                    usuario.setDireccion(direccionUsuario.getText().toString());
+                    //usuario.setDireccion(direccionUsuario.getText().toString());
                     usuario.setContrasenia(contraUsuario.getText().toString());
                     usuario.setCodigo_verificacion((int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000)));
 
                     System.out.println("obtuvo los valores");
-
-                    //replyIntent.putExtra(EXTRA_USUARIO, usuario);
-
-                    System.out.println("seteo los extra");
-                   // setResult(RESULT_OK, replyIntent);
 
                     usuarioViewModel.insert(usuario);
                     System.out.println("en teoria guardo...");
                     Intent acceso = new Intent(RegistroUsuarioActivity.this, MainActivity.class);
                     startActivity(acceso);
                 }
-                finish();
+                //finish();
             }
         });
 
@@ -139,26 +141,38 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
     }
 
-    //INSERTANDO
-    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("entro al onactivity");
-        if (requestCode == REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            try {
-                Usuario usuario= (Usuario) data.getSerializableExtra(registro_usuario.EXTRA_USUARIO);
+    public int validaciones(){
+        int validar=0;
 
-                usuarioViewModel.insert(usuario);
-                Toast.makeText(getApplicationContext(), "Si se guardo", Toast.LENGTH_LONG);
-                System.out.println("Si guardo, pero le valio y se fue");
-            }
-            catch(Exception ex){
-                Toast.makeText(getApplicationContext(), "Algo malo paso"+ex.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        } else {
-            System.out.println("no fue OK");
-            Toast.makeText(getApplicationContext(), "Algo malo paso", Toast.LENGTH_LONG).show();
-        }*/
+        if (TextUtils.isEmpty(nombreUsuario.getText())) {
+                validar+=1;
+                nombre.setError(error);
+        }else{nombre.setError(null); }
+
+        if(TextUtils.isEmpty(apellidoUsuario.getText())){
+                validar+=1;;
+                apellido.setError(error);
+        }else{apellido.setError(null); }
+
+        if(TextUtils.isEmpty(correoUsuario.getText())){
+                validar+=1;
+                correo.setError(error);
+       }else{correo.setError(null); }
+
+        if(TextUtils.isEmpty(telefonoUsuario.getText())){
+                validar+=1;
+                telefono.setError(error);
+       }else{telefono.setError(null); }
+
+        if(TextUtils.isEmpty(contraUsuario.getText())){
+                validar+=1;
+                contra.setError(error);
+       }else{contra.setError(null); }
+
+        return validar;
     }
+
+}
 
 
 

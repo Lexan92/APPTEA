@@ -65,7 +65,6 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     private Usuario usuario = new Usuario();
     Boolean validar= false;
 
-    TextInputLayout nombre, apellido, correo, telefono,pais,contra;
     String error="Campo Obligatorio";
 
     @Override
@@ -81,12 +80,6 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         spinnerPais = (Spinner) findViewById(R.id.spinnerPais);
        // direccionUsuario =  findViewById(R.id.direccionUsuario);
         contraUsuario = findViewById(R.id.contraUsuario);
-
-        nombre=findViewById(R.id.nombreUsuarioLayout);
-        apellido=findViewById(R.id.apellidoUsuarioLayout);
-        correo= findViewById(R.id.correoUsuarioLayout);
-        telefono= findViewById(R.id.telefonoUsuarioLayout);
-        contra= findViewById(R.id.contraUsuarioLayout);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
         //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
@@ -111,8 +104,6 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
                 if (validaciones()>0) {
                     System.out.println("está vacio");
-                    System.out.println(TextUtils.isEmpty(apellidoUsuario.getText()));
-                    System.out.println(TextUtils.isEmpty(nombreUsuario.getText()));
                     Toast.makeText(RegistroUsuarioActivity.this,"Es necesario llenar los campos obligatorios",Toast.LENGTH_LONG).show();
                     /*setResult(RESULT_CANCELED, replyIntent)*/;
                 } else {
@@ -146,28 +137,28 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(nombreUsuario.getText())) {
                 validar+=1;
-                nombre.setError(error);
-        }else{nombre.setError(null); }
+                nombreUsuario.setError(error);
+        }else{nombreUsuario.setError(null); }
 
         if(TextUtils.isEmpty(apellidoUsuario.getText())){
                 validar+=1;;
-                apellido.setError(error);
-        }else{apellido.setError(null); }
+                apellidoUsuario.setError(error);
+        }else{apellidoUsuario.setError(null); }
 
         if(TextUtils.isEmpty(correoUsuario.getText())){
                 validar+=1;
-                correo.setError(error);
-       }else{correo.setError(null); }
+                correoUsuario.setError(error);
+       }else{correoUsuario.setError(null); }
 
         if(TextUtils.isEmpty(telefonoUsuario.getText())){
                 validar+=1;
-                telefono.setError(error);
-       }else{telefono.setError(null); }
+                telefonoUsuario.setError(error);
+       }else{telefonoUsuario.setError(null); }
 
         if(TextUtils.isEmpty(contraUsuario.getText())){
                 validar+=1;
-                contra.setError(error);
-       }else{contra.setError(null); }
+                contraUsuario.setError(error);
+       }else{contraUsuario.setError(null); }
 
         return validar;
     }

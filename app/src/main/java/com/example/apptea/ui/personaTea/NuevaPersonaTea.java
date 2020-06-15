@@ -22,7 +22,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
@@ -46,13 +48,14 @@ public class NuevaPersonaTea extends AppCompatActivity {
     TextInputEditText apellidoTea;
     TextInputEditText fecha;
     private Spinner spinnerSexo;
-    TextInputEditText foto;
+    ImageView foto;
     ArrayList sexo = new ArrayList<>();
     final Calendar myCalendar = Calendar.getInstance();
     DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
     PersonaTea personaTea = new PersonaTea();
     UsuarioViewModel usuarioViewModel;
     int id;
+    String error="Campo Obligatorio";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
         apellidoTea = (TextInputEditText)findViewById(R.id.apellidoTea);
         fecha = (TextInputEditText)findViewById(R.id.fechaTea);
         spinnerSexo = (Spinner)findViewById(R.id.SexoTea);
-        foto = (TextInputEditText)findViewById(R.id.fotoPersona);
+        foto = (ImageView)findViewById(R.id.fotoPersona);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
 
@@ -119,9 +122,10 @@ public class NuevaPersonaTea extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
-                if(TextUtils.isEmpty(nombreTea.getText()) || TextUtils.isEmpty(apellidoTea.getText())
-                        ||TextUtils.isEmpty(fecha.getText())  ||TextUtils.isEmpty(spinnerSexo.getSelectedItem().toString())) {
-                    setResult(RESULT_CANCELED, replyIntent);
+                if(validacionespersona()>0) {
+                    System.out.println("está vacio");
+                    Toast.makeText(NuevaPersonaTea.this,"Es necesario llenar los campos obligatorios",Toast.LENGTH_LONG).show();
+                   // setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     personaTea.setUsuario_id(id);
                     personaTea.setPersona_nombre(nombreTea.getText().toString());
@@ -131,12 +135,12 @@ public class NuevaPersonaTea extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    personaTea.setPersona_foto(foto.getText().toString());
+                  /*  personaTea.setPersona_foto(foto.getText().toString());*/
                     personaTea.setPersona_sexo(spinnerSexo.getSelectedItem().toString());
                     replyIntent.putExtra(EXTRA_PERSONA, personaTea);
                     setResult(RESULT_OK, replyIntent);
                 }
-                finish();
+                //finish();
             }
         });
     }
@@ -147,6 +151,29 @@ public class NuevaPersonaTea extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         fecha.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    public int validacionespersona(){
+        int validar=0;
+
+        if (TextUtils.isEmpty(nombreTea.getText())) {
+            validar+=1;
+            nombreTea.setError(error);
+        }else{nombreTea.setError(null); }
+
+        if(TextUtils.isEmpty(apellidoTea.getText())){
+            validar+=1;;
+            apellidoTea.setError(error);
+        }else{apellidoTea.setError(null); }
+
+        if(TextUtils.isEmpty(fecha.getText())){
+            validar+=1;
+            fecha.setError(error);
+        }else{fecha.setError(null); }
+
+
+
+        return validar;
     }
 
 }

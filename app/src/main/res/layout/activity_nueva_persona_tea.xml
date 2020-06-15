@@ -9,23 +9,27 @@
   ~
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.personaTea.NuevaPersonaTea">
 
-    <TextView
-        android:id="@+id/datosTea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/datosTea"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/datosTea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/datosTea"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
 
     <ScrollView
         android:id="@+id/scrollViewtea"
@@ -45,6 +49,32 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/fotoPersona"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/ic_face"
+                    android:layout_centerHorizontal="true"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_foto"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    app:icon="@drawable/ic_menu_camera" />
+
+            </RelativeLayout>
+
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nombrePersonaTeaLayout"
@@ -126,59 +156,32 @@
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fotoPersonaTeaLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="@string/foto"
+                android:layout_marginTop="25dp">
 
-                android:textSize="12sp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fotoPersona"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/guardarPersona"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="60dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/guardarPersona"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/cancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
                     android:text="@string/cancelar"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guardarPersona"
-                    app:layout_constraintHorizontal_bias="0.364"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_alignParentLeft="true" />
+
+                <Button
+                    android:id="@+id/guardarPersona"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/guardarPersona" />
+            </RelativeLayout>
 
 
 
         </LinearLayout>
     </ScrollView>
+    </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

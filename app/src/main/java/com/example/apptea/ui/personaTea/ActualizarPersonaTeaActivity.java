@@ -62,6 +62,7 @@ public class ActualizarPersonaTeaActivity extends AppCompatActivity {
     TextInputEditText actualizarFecha;
     private Spinner actualizarSpinnerSexo;
     TextInputEditText actualizarFoto;
+    String prueba;
     ArrayList sexo = new ArrayList<>();
     final Calendar myCalendar = Calendar.getInstance();
     DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
@@ -84,10 +85,6 @@ public class ActualizarPersonaTeaActivity extends AppCompatActivity {
             actualizarNombreTea.setText(intent.getStringExtra(EXTRA_NOMBRE_PERSONA_UPDATE));
             actualizarApellidoTea.setText(intent.getStringExtra(EXTRA_APELLIDO_PERSONA_UPDATE));
             actualizarFoto.setText(intent.getStringExtra(EXTRA_FOTO_PERSONA_UPDATE));
-
-
-
-
 
 
         ArrayList<String> sexo = new ArrayList<String>();

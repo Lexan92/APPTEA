@@ -49,7 +49,9 @@
         <activity
             android:name=".ui.categoriahabilidadcotidiana.EditCategoriaHab"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
-
+        <activity
+            android:name=".ui.usuario.EditUsuario"
+            android:windowSoftInputMode="adjustPan|stateVisible" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

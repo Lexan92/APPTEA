@@ -1,0 +1,90 @@
+/*
+ *
+ * Nombre del Autor
+ * 18/05/2020
+ * Esta actividad hace el llamado a la lista de roles
+ * /
+ *
+ *
+ */
+
+package com.example.apptea.ui.usuario;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+
+import com.example.apptea.R;
+import com.example.apptea.ui.pais.PaisViewModel;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import roomsqlite.dao.PaisDao;
+
+import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.Pais;
+import roomsqlite.entidades.Usuario;
+
+public class EditUsuario extends AppCompatActivity {
+    public static final String EXTRA_ID_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_ID_USUARIO_UPDATE";
+    public static final String EXTRA_NOMBRE_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_NOMBRE_USUARIO_UPDATE";
+    public static final String EXTRA_APELLIDO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_APELLIDO_USUARIO_UPDATE";
+    public static final String EXTRA_PAIS_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_PAIS_USUARIO_UPDATE";
+    public static final String EXTRA_TELEFONO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_TELEFONO_USUARIO_UPDATE";
+    public static final String EXTRA_CORREO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_CORREO_USUARIO_UPDATE";
+    public static final String EXTRA_CONTRASEÑA_UPDATE = "com.example.apptea.ui.usuario.EXTRA_CONTRASEÑA_UPDATE";
+
+    //Se declaran las variables para los campos que se editaran
+    EditText editNombre,editApellido,editCorreo,editTelefono;
+    //Spinner editSpinnerPais;
+
+    //Mandamos a llamar el ViewModel de Pais
+    //private PaisViewModel paisViewModel;
+    //Se declara el List<Pais>
+
+    private Usuario usuario = new Usuario();
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_editar_usuario);
+
+        editNombre = (EditText)findViewById(R.id.editNombreUsuario);
+        editApellido = (EditText)findViewById(R.id.editApellido);
+        editCorreo = (EditText)findViewById(R.id.editCorreo);
+       /* editTelefono = (EditText)findViewById(R.id.editTelefono);
+        editSpinnerPais = (Spinner)findViewById(R.id.editSpinnerPais);*/
+
+        Intent intent = getIntent();
+
+        editNombre.setText(intent.getStringExtra(EXTRA_NOMBRE_USUARIO_UPDATE));
+        editApellido.setText(intent.getStringExtra(EXTRA_APELLIDO_USUARIO_UPDATE));
+        editCorreo.setText(intent.getStringExtra(EXTRA_CORREO_USUARIO_UPDATE));
+        //editTelefono.setText(intent.getIntExtra(EXTRA_TELEFONO_USUARIO_UPDATE,Integer.parseInt(EXTRA_TELEFONO_USUARIO_UPDATE)));
+
+        /*PaisDao paisDao = (PaisDao) appDatabase.getDatabase(getBaseContext()).paisDao();
+
+        List paises = paisDao.paises();
+        //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, paises);
+        editSpinnerPais.setAdapter(adapter);
+        editSpinnerPais.setSelection(adapter.getPosition(intent.getStringExtra(EXTRA_PAIS_USUARIO_UPDATE)));*/
+
+
+
+
+
+
+    }
+
+
+}

@@ -36,6 +36,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
 
     --registro usuario
     <string name="datos">Datos Generales</string>
+    <string name="editarDatos">Editar Datos Generales</string>
     <string name="nombreUsuario">Nombre</string>
     <string name="apellidoUsuario">Apellido</string>
     <string name="correoUsuario">Correo</string>

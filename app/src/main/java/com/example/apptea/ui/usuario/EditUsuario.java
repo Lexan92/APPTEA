@@ -13,7 +13,10 @@ package com.example.apptea.ui.usuario;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -42,6 +45,7 @@ public class EditUsuario extends AppCompatActivity {
     public static final String EXTRA_TELEFONO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_TELEFONO_USUARIO_UPDATE";
     public static final String EXTRA_CORREO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_CORREO_USUARIO_UPDATE";
     public static final String EXTRA_CONTRASEÑA_UPDATE = "com.example.apptea.ui.usuario.EXTRA_CONTRASEÑA_UPDATE";
+    public static final String EXTRA_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_USUARIO_UPDATE";
 
     //Se declaran las variables para los campos que se editaran
     EditText editNombre,editApellido,editCorreo,editTelefono;
@@ -79,6 +83,27 @@ public class EditUsuario extends AppCompatActivity {
         editSpinnerPais.setAdapter(adapter);
         editSpinnerPais.setSelection(adapter.getPosition(intent.getStringExtra(EXTRA_PAIS_USUARIO_UPDATE)));*/
 
+        //PARA GUARDAR ACTUALIZACION Categoria de habilidades cotidiandas
+        final Button button = findViewById(R.id.button_save);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent replyIntent = new Intent();
+                if (TextUtils.isEmpty(editNombre.getText()) || TextUtils.isEmpty(editApellido.getText()) || TextUtils.isEmpty(editCorreo.getText()) ) {
+                    setResult(RESULT_CANCELED, replyIntent);
+                } else {
+                    usuario.setUsuario_id(intent.getIntExtra(EXTRA_ID_USUARIO_UPDATE, -1));
+                    usuario.setUsuario_nombre(editNombre.getText().toString());
+                    usuario.setUsuario_apellido(editApellido.getText().toString());
+                    usuario.setCorreo(editCorreo.getText().toString());
+                    usuario.setPais_id(intent.getIntExtra(EXTRA_PAIS_USUARIO_UPDATE, 1));
+                    usuario.setTelefono(intent.getIntExtra(EXTRA_TELEFONO_USUARIO_UPDATE,1));
+                    usuario.setContrasenia(intent.getStringExtra(EXTRA_CONTRASEÑA_UPDATE));
+                    replyIntent.putExtra(EXTRA_USUARIO_UPDATE, usuario);
+                    setResult(RESULT_OK, replyIntent);
+                }
+                finish();
+            }
+        });
 
 
 

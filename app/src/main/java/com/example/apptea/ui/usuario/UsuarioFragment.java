@@ -13,6 +13,7 @@ package com.example.apptea.ui.usuario;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -105,16 +106,23 @@ public class UsuarioFragment extends Fragment {
 
         return vista;
     }
-/*
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
        if (requestCode == USUARIO_UPDATE_REQUEST_CODE && resultCode == RESULT_OK){
-            usuario = (Usuario) data.getSerializableExtra(ActualizarPersonaTeaActivity.EXTRA_PERSONA_UPDATE);
-            personaTeaViewModel.update(personaTea);
+            Usuario usuario = (Usuario) data.getSerializableExtra(EditUsuario.EXTRA_USUARIO_UPDATE);
+            usuarioViewModel.update(usuario);
         } else {
-            Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"No completo todos los campos",Toast.LENGTH_LONG).show();
         }
-    }*/
+    }
 
 }

@@ -142,7 +142,7 @@
                     android:layout_marginRight="20dp"
                      />
                 <Button
-                    android:id="@+id/guardar"
+                    android:id="@+id/button_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/button_save"

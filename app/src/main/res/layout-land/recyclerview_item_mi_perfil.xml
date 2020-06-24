@@ -68,15 +68,15 @@
                     android:textStyle="bold" />
                 </LinearLayout>
 
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="48dp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                style="?attr/borderlessButtonStyle"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/ic_edit_mi_perfil"
-                android:onClick="LLevara a editar infromacion"
-                tools:ignore="OnClick" />
+                app:icon="@drawable/ic_mode_edit_black_24dp" />
         </LinearLayout>
         <View android:layout_width="match_parent"
             android:layout_height="1dp"

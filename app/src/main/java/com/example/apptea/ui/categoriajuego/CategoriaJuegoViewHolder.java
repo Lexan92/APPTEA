@@ -22,15 +22,13 @@ import com.example.apptea.R;
 public class CategoriaJuegoViewHolder extends RecyclerView.ViewHolder{
 
     public TextView nombreCategoria;
-    public Button cancelar;
-    public Button editar;
+
 
 
     public CategoriaJuegoViewHolder(@NonNull View itemView) {
         super(itemView);
         nombreCategoria = itemView.findViewById(R.id.nombre_categoria_juego);
-        cancelar = itemView.findViewById(R.id.btn_cancelar);
-        editar = itemView.findViewById(R.id.btn_editar);
+
 
     }
 

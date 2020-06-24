@@ -29,17 +29,17 @@ public class ImageConverter {
     public static byte[] convertirImagenAByteArray(Bitmap bitmap){
 
         //el bitmap es  redimensionado a 64x64 pixeles
-        bitmap=redimensionarImagen(bitmap,64,64);
+        bitmap=redimensionarImagen(bitmap,250,250);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         //el metodo comprime el bitmap en formato JPEG a una calidad del 75%
-        bitmap.compress(Bitmap.CompressFormat.JPEG,75,stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
 
         return stream.toByteArray();
     }
 
     private static Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
-        int ancho=bitmap.getWidth();
-        int alto=bitmap.getHeight();
+      int ancho=bitmap.getWidth();
+      int alto=bitmap.getHeight();
 
         if(ancho>anchoNuevo || alto>altoNuevo){
             float escalaAncho=anchoNuevo/ancho;

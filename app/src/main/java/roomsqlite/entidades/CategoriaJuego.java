@@ -18,15 +18,12 @@ public class CategoriaJuego implements Serializable {
     public static final String TABLE_NAME = "categoria_juego";
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(index = true,name = "categoria_juego_id")
+    @ColumnInfo(index = true)
     @NonNull
     private int categoriaJuegoId;
-    @ColumnInfo(name = "categoria_juego_nombre")
     @NonNull
     private String categoriaJuegoNombre;
-
     @NonNull
-    @ColumnInfo(name = "predeterminado")
     private boolean predeterminado;
 
     public CategoriaJuego() {

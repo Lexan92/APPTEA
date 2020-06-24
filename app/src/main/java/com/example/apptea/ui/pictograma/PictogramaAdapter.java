@@ -87,8 +87,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                // holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
                 Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .skipMemoryCache(true)
+                        .thumbnail(0.5f)
                         .into(holder.imagen);
 
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
@@ -101,6 +100,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
                 Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
+                        .thumbnail(0.5f)
                         .into(holder.imagen);
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
             }
@@ -131,7 +131,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     @Override
     public void onViewRecycled(@NonNull PictogramaHolder holder) {
         super.onViewRecycled(holder);
+        //holder.imagen.setImageBitmap(null);
         holder.setIsRecyclable(true);
-        Glide.get(holder.imagen.getContext()).clearMemory();
     }
 }

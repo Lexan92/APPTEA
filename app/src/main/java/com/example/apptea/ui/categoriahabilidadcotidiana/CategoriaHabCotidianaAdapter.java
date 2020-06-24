@@ -126,4 +126,10 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
        else
         return 0;
     }
+
+    @Override
+    public void onViewRecycled(@NonNull CategoriaHabCotidianaHolder holder) {
+        super.onViewRecycled(holder);
+        holder.isRecyclable();
+    }
 }

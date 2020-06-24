@@ -13,11 +13,9 @@ package com.example.apptea.ui.pictograma;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,9 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -48,7 +44,7 @@ import roomsqlite.repositorios.PictogramaRepository;
 public class Detalle_Pictograma extends Fragment {
 
 
-    private static final int ACTIVITY_REQUEST_CODE = 10 ;
+    private static final int ACTIVITY_REQUEST_CODE = 10;
 
     private PictogramaRepository pictogramaRepository;
     private LiveData<List<Pictograma>> pictogramasAll;
@@ -100,15 +96,14 @@ public class Detalle_Pictograma extends Fragment {
 
         recyclerView = view.findViewById(R.id.lista_pictogramas);
         adapter = new PictogramaAdapter(getActivity());
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
 
 
+        Bundle objetoCategoriaPictograma = getArguments();
 
-        Bundle objetoCategoriaPictograma=getArguments();
-
-        if(objetoCategoriaPictograma!= null){
+        if (objetoCategoriaPictograma != null) {
             categoriaPictograma = (CategoriaPictograma) objetoCategoriaPictograma.getSerializable("elementos");
             pictogramaViewModel.getAllPictogramaByCategoria(categoriaPictograma.getCat_pictograma_id()).observe(getActivity(), new Observer<List<Pictograma>>() {
                 @Override
@@ -119,7 +114,7 @@ public class Detalle_Pictograma extends Fragment {
         }
 
         //Definiendo nombre para el toolbar
-        Toolbar  toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Categoria: " + categoriaPictograma.getCat_pictograma_nombre());
 
 
@@ -128,31 +123,31 @@ public class Detalle_Pictograma extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NuevoPictogramaDialog.class );
+                Intent intent = new Intent(getActivity(), NuevoPictogramaDialog.class);
                 //envio de ID de categoria
-                intent.putExtra("llaveCategoria",categoriaPictograma.getCat_pictograma_id());
+                intent.putExtra("llaveCategoria", categoriaPictograma.getCat_pictograma_id());
                 startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
             }
         });
 
 
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (adapter != null && recyclerView != null) {
+            recyclerView.setAdapter(null);
+            adapter = null;
+        }
 
 
     }
 
-   /* @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-       if(adapter!=null&& recyclerView!=null){
-            recyclerView.setAdapter(null);
-            adapter=null;
-
-        }
-    }*/
-
-
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
+    }
 
 }

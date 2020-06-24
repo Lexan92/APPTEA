@@ -3,6 +3,7 @@ package com.example.apptea.ui.categoriapictograma;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class CategoriaPictogramaFragment extends Fragment {
     RecyclerView recyclerView;
 
     private CategoriaPictogramaViewModel categoriaPictogramaViewModel;
-
+    private CategoriaPictogramaAdapter adapter;
 
 
     public CategoriaPictogramaFragment() {
@@ -67,7 +68,7 @@ public class CategoriaPictogramaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView =  view.findViewById(R.id.lista_categoria_pictograma);
-        final CategoriaPictogramaAdapter adapter = new CategoriaPictogramaAdapter(getActivity());
+        adapter = new CategoriaPictogramaAdapter(getActivity());
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(adapter);
@@ -141,4 +142,41 @@ public class CategoriaPictogramaFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("lifecycle", "OnResume Categoria");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if(adapter!=null && recyclerView!=null){
+            recyclerView.setAdapter(null);
+            adapter.setOnClickListener(null);
+            adapter = null;
+            Log.d("lifecycle","OnPause Categoria");
+        }
+        categoriaPictogramaViewModel=null;
+        categoriaPictogramaAll=null;
+        categoriaPictogramaRepository=null;
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if(adapter!=null && recyclerView!=null){
+            recyclerView.setAdapter(null);
+            adapter.setOnClickListener(null);
+            Log.d("lifecycle","onStop Categoria");
+            adapter=null;
+        }
+        categoriaPictogramaViewModel=null;
+        categoriaPictogramaAll=null;
+        categoriaPictogramaRepository=null;
+        Runtime.getRuntime().gc();
+    }
 }

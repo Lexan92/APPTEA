@@ -94,4 +94,10 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
             listener.onClick(v);
         }
     }
+
+    @Override
+    public void onViewRecycled(@NonNull CategoriaPictogramaViewHolder holder) {
+        super.onViewRecycled(holder);
+        holder.setIsRecyclable(true);
+    }
 }

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.apptea"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -68,8 +68,8 @@ dependencies {
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-
-    implementation 'com.android.support:gridlayout-v7:26.1.0'
+    //Lottie
+    implementation "com.airbnb.android:lottie:3.4.1"
 
 
 }

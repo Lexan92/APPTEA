@@ -2,6 +2,7 @@ package roomsqlite.entidades;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -27,15 +28,15 @@ public class PersonaTea implements Serializable  {
     private Date persona_fecha_nac;
     @NonNull
     private String persona_sexo;
-    @Nullable
-    private String persona_foto;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] persona_foto;
 
 // CONSTRUCTOR
 
     public PersonaTea() {
     }
 
-    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, String persona_sexo, @NonNull String persona_foto) {
+    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, @NonNull String persona_sexo, byte[] persona_foto) {
         this.persona_id = persona_id;
         this.usuario_id = usuario_id;
         this.persona_nombre = persona_nombre;
@@ -45,8 +46,7 @@ public class PersonaTea implements Serializable  {
         this.persona_foto = persona_foto;
     }
 
-
-// GET AND SETTER
+    // GET AND SETTER
 
     public int getUsuario_id() {
         return usuario_id;
@@ -54,15 +54,6 @@ public class PersonaTea implements Serializable  {
 
     public void setUsuario_id(int usuario_id) {
         this.usuario_id = usuario_id;
-    }
-
-    @NonNull
-    public String getPersona_foto() {
-        return persona_foto;
-    }
-
-    public void setPersona_foto(@NonNull String persona_foto) {
-        this.persona_foto = persona_foto;
     }
 
     public int getPersona_id() {
@@ -106,5 +97,13 @@ public class PersonaTea implements Serializable  {
 
     public void setPersona_sexo(String persona_sexo) {
         this.persona_sexo = persona_sexo;
+    }
+
+    public byte[] getPersona_foto() {
+        return persona_foto;
+    }
+
+    public void setPersona_foto(byte[] persona_foto) {
+        this.persona_foto = persona_foto;
     }
 }

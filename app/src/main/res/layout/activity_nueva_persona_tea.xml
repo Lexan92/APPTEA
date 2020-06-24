@@ -63,7 +63,7 @@
                     android:layout_centerHorizontal="true"/>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_foto"
+                    android:id="@+id/btn_camara"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="36dp"
                     android:layout_height="wrap_content"

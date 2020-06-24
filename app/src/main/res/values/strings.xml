@@ -15,7 +15,7 @@
     <string name="menu_mi_perfil">Mi perfil</string>
     <string name="menu_gestion_habilidad">Categorias de Habilidades Cotidianas</string>
     <string name="menu_gestion_juego">Gestión de Juegos Interactivos</string>
-    <string name="menu_persona_tea">Menú Persona TEA</string>
+    <string name="menu_persona_tea">Listado de niños y niñas</string>
 
     <string name="home_second">Home Second</string>
     <string name="nombre_opcion_menu">nombre_opcion_menu</string>
@@ -58,7 +58,6 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="titulo_edit_cat_hab_cot">Editar Categoria</string>
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_item_list">Items</string>
@@ -94,7 +93,6 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
     <string name="vocabulario">Vocabulario</string>
     <string name="frases">Frases</string>
-
 
 
 </resources>

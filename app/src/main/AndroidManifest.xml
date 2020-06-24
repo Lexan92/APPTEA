@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.personaTea.ActualizarPersonaTeaActivity"></activity>
+        <activity android:name=".ui.personaTea.ActualizarPersonaTeaActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -49,9 +49,16 @@
         <activity
             android:name=".ui.categoriahabilidadcotidiana.EditCategoriaHab"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+
         <activity
             android:name=".ui.usuario.EditUsuario"
             android:windowSoftInputMode="adjustPan|stateVisible" />
+
+
+        <activity
+            android:name=".ui.Utilities.UtilCamara"
+            android:theme="@style/AppTheme.NoActionBar" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

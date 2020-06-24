@@ -23,7 +23,7 @@
             android:title="@string/menu_gestion_juego" />
         <item
             android:id="@+id/nav_menu_persona_tea"
-            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:icon="@drawable/ic_add_person"
             android:title="@string/menu_persona_tea" />
 
 

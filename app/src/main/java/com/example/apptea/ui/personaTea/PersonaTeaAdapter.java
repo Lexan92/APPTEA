@@ -20,12 +20,15 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.apptea.R;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import roomsqlite.database.ImageConverter;
 import roomsqlite.entidades.PersonaTea;
 
 public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.PersonaTeaHolder> {
@@ -99,10 +102,22 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
             String edad = getAge(current.getPersona_fecha_nac());
             holder.personaItemEdad.setText(edad);
            String sexo = current.getPersona_sexo();
-           if (sexo.equals("Femenino")){
-               holder.personaItemFoto.setImageResource(R.drawable.ic_linda);
-           } else{
-               holder.personaItemFoto.setImageResource(R.drawable.ic_smile);
+           byte[] foto = current.getPersona_foto();
+
+           if (foto==null){
+
+               if (sexo.equals("Femenino")) {
+                   holder.personaItemFoto.setImageResource(R.drawable.ic_linda);
+               } else {
+                   holder.personaItemFoto.setImageResource(R.drawable.ic_smile);
+               }
+
+           } else {
+               Glide.with(holder.itemView.getContext())
+                       .load(ImageConverter.convertirByteArrayAImagen(current.getPersona_foto()))
+                       .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                       .skipMemoryCache(true)
+                       .into(holder.personaItemFoto);
            }
         } else {
             // Covers the case of data not being ready yet.

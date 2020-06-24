@@ -29,7 +29,7 @@ public class ImageConverter {
     public static byte[] convertirImagenAByteArray(Bitmap bitmap){
 
         //el bitmap es  redimensionado a 64x64 pixeles
-        bitmap=redimensionarImagen(bitmap,64,64);
+       // bitmap=redimensionarImagen(bitmap,250,250);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         //el metodo comprime el bitmap en formato JPEG a una calidad del 75%
         bitmap.compress(Bitmap.CompressFormat.JPEG,75,stream);

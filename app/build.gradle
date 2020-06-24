@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.apptea"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -62,7 +62,7 @@ dependencies {
     implementation "com.getbase:floatingactionbutton:1.10.1"
 
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.11.0") {
+    implementation("com.github.bumptech.glide:glide:4.11.0") {
         exclude group: "com.android.support"
     }
 
@@ -70,6 +70,11 @@ dependencies {
 
 
     implementation 'com.android.support:gridlayout-v7:26.1.0'
+
+    //CAMERAX
+    def camerax_version = "1.0.0-alpha02"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
 
 
 }

@@ -15,21 +15,35 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.Utilities.UtilCamara;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,6 +52,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import roomsqlite.database.ImageConverter;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Usuario;
 
@@ -48,7 +63,8 @@ public class NuevaPersonaTea extends AppCompatActivity {
     TextInputEditText apellidoTea;
     TextInputEditText fecha;
     private Spinner spinnerSexo;
-    ImageView foto;
+    private TextView titulo;
+
     ArrayList sexo = new ArrayList<>();
     final Calendar myCalendar = Calendar.getInstance();
     DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
@@ -56,19 +72,27 @@ public class NuevaPersonaTea extends AppCompatActivity {
     UsuarioViewModel usuarioViewModel;
     int id;
     String error="Campo Obligatorio";
+    private Button camara;
+    private ImageView foto;
+    private Uri output;
+    private boolean tomarfoto=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_persona_tea);
-
+        titulo = findViewById(R.id.datosTea);
         nombreTea = (TextInputEditText)findViewById(R.id.nombreTea);
         apellidoTea = (TextInputEditText)findViewById(R.id.apellidoTea);
         fecha = (TextInputEditText)findViewById(R.id.fechaTea);
         spinnerSexo = (Spinner)findViewById(R.id.SexoTea);
         foto = (ImageView)findViewById(R.id.fotoPersona);
+        camara=(Button)findViewById(R.id.btn_camara);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
+
+
+        titulo.setText("Nuevo Registro");
 
         ArrayList<String> sexo = new ArrayList<String>();
         sexo.add("Masculino");
@@ -135,13 +159,30 @@ public class NuevaPersonaTea extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                  /*  personaTea.setPersona_foto(foto.getText().toString());*/
+
+                       if (tomarfoto) {
+
+                           personaTea.setPersona_foto(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) foto.getDrawable()).getBitmap()));
+                       }
+
                     personaTea.setPersona_sexo(spinnerSexo.getSelectedItem().toString());
                     replyIntent.putExtra(EXTRA_PERSONA, personaTea);
                     setResult(RESULT_OK, replyIntent);
+                    finish();
                 }
-                //finish();
+
             }
+        });
+
+        //PARA LA CAMARA
+        camara.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(NuevaPersonaTea.this, UtilCamara.class);
+                startActivityForResult(intent, 0);
+            }
+
         });
     }
 
@@ -153,6 +194,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
         fecha.setText(sdf.format(myCalendar.getTime()));
     }
 
+    //VALIDACIONES
     public int validacionespersona(){
         int validar=0;
 
@@ -174,6 +216,36 @@ public class NuevaPersonaTea extends AppCompatActivity {
 
 
         return validar;
+    }
+
+    //CAMARA
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            //output = (Uri) data.getExtras().get("data");
+            ContentResolver cr = this.getContentResolver();
+
+            Bitmap bit = BitmapFactory.decodeByteArray((byte[])data.getExtras().get("data"), 0, ((byte[])data.getExtras().get("data")).length, null);
+            int rotation = (int) data.getExtras().get("rotation");
+            System.out.println("rotation "+rotation);
+            try {
+                Matrix matrix = new Matrix();
+                matrix.postRotate(rotation);
+                bit = Bitmap.createBitmap(bit, 0, 0, bit.getWidth(), bit.getHeight(), matrix, true);
+                bit = Bitmap.createScaledBitmap(bit, 250, 250, true);
+                foto.setImageBitmap(bit);
+                tomarfoto=true;
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                Toast.makeText(NuevaPersonaTea.this, (String) (e.toString()),
+                        Toast.LENGTH_LONG).show();
+                Log.e("ioexception",e.toString());
+            }
+
+
+        }
+
     }
 
 }

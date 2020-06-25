@@ -4,19 +4,18 @@
 
 package com.example.apptea.ui.pictograma;
 
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.ExifInterface;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
@@ -24,26 +23,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.ui.Utilities.UtilCamara;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.File;
 import java.io.IOException;
 
-import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.database.ImageConverter;
-import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.Pictograma;
 
 import static android.Manifest.permission.CAMERA;
@@ -254,34 +249,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     }
 
     private void tomarFotografia() {
-        File fileImagen = new File(Environment.getExternalStorageDirectory(), DIRECTORIO_IMAGEN);
-
-        boolean isCreada = fileImagen.exists();
-        String nombreImagen = "";
-        if (isCreada == false) {
-            isCreada = fileImagen.mkdirs();
-        }
-
-        if (isCreada == true) {
-            nombreImagen = (System.currentTimeMillis() / 1000) + ".jpg";
-        }
-
-
-        path = Environment.getExternalStorageDirectory() +
-                File.separator + DIRECTORIO_IMAGEN + File.separator + nombreImagen;
-
-        File imagen = new File(path);
-
-        Intent intent = null;
-        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        ////
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            String authorities = getApplicationContext().getPackageName() + ".provider";
-            Uri imageUri = FileProvider.getUriForFile(this, authorities, imagen);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        } else {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagen));
-        }
+        Intent intent = new Intent(NuevoPictogramaDialog.this, UtilCamara.class);
         startActivityForResult(intent, COD_FOTO);
     }
 
@@ -316,20 +284,27 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                     break;
 
                 case COD_FOTO:
-                    MediaScannerConnection.scanFile(this, new String[]{path}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("Ruta de almacenamiento", "Path: " + path);
-                                }
-                            });
+                    ContentResolver cr = this.getContentResolver();
 
-                    bitmap = BitmapFactory.decodeFile(path);
-                    //se llama al metodo para reorientar la imagen de manera correcta al presentarlo en el imageview
-                    imgFoto.setRotation(obtenerOrientacionFoto(path));
-                    imgFoto.setImageBitmap(bitmap);
-                    //Glide.with(this).load(bitmap).into(imgFoto);
-                    imagen=true;
+                    Bitmap bit = BitmapFactory.decodeByteArray((byte[])data.getExtras().get("data"), 0, ((byte[])data.getExtras().get("data")).length, null);
+                    int rotation = (int) data.getExtras().get("rotation");
+                    System.out.println("rotation "+rotation);
+                    try {
+                        Matrix matrix = new Matrix();
+                        matrix.postRotate(rotation);
+                        bit = Bitmap.createBitmap(bit, 0, 0, bit.getWidth(), bit.getHeight(), matrix, true);
+                        bit = Bitmap.createScaledBitmap(bit, 250, 250, true);
+                        //imgFoto.setImageBitmap(bit);
+                        Glide.with(this).load(bit).thumbnail(0.5f).into(imgFoto);
+                        imagen=true;
+
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        Toast.makeText(NuevoPictogramaDialog.this, (String) (e.toString()),
+                                Toast.LENGTH_LONG).show();
+                        Log.e("ioexception",e.toString());
+                    }
+
                     break;
             }
 
@@ -337,34 +312,25 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         }
     }
 
-    //metodo que asigna la orientacion correcta a la imagen
-    private int obtenerOrientacionFoto(String path) {
-        int rotate =0;
-        ExifInterface exif = null;
-        try {
-            exif = new ExifInterface(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,0);
-
-        switch (orientation){
-            case ExifInterface.ORIENTATION_ROTATE_180:
-                rotate=180;
-                break;
-            case ExifInterface.ORIENTATION_ROTATE_90:
-                rotate=90;
-                break;
-            case ExifInterface.ORIENTATION_ROTATE_270:
-                rotate=90;
-            default:
-                rotate = 0;
-
-        }
-        //retorna el grado correcto de rotacion
-        return rotate;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("lifecycle","onResume Pictograma");
+        Runtime.getRuntime().gc();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("lifecycle","onPause Pictograma");
+        Runtime.getRuntime().gc();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("lifecycle","onDestroy Pictograma");
+        Runtime.getRuntime().gc();
 
+    }
 }

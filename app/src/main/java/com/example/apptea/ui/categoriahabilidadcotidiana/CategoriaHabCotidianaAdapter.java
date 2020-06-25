@@ -100,9 +100,12 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
             if (current.isCat_predeterminado() == true) {
                 holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
                 holder.btnDelete.setVisibility(View.GONE);
+                holder.setIsRecyclable(false);
 
             } else {
                 holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
+                holder.setIsRecyclable(false);
+
             }
         }else{
             holder.categoriaItemView.setText("No existe ninguna categoria para habilidades cotidianas");
@@ -130,6 +133,6 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     @Override
     public void onViewRecycled(@NonNull CategoriaHabCotidianaHolder holder) {
         super.onViewRecycled(holder);
-        holder.isRecyclable();
+        holder.setIsRecyclable(false);
     }
 }

@@ -46,9 +46,11 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
     if (categoriasJuego != null && position < categoriasJuego.size()){
         CategoriaJuego categoriaJuego = categoriasJuego.get(position);
         holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+        holder.setIsRecyclable(false);
 
     }else{
         holder.nombreCategoria.setText("No hay Categorias");
+        holder.setIsRecyclable(false);
     }
     }
 
@@ -79,6 +81,6 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
     @Override
     public void onViewRecycled(@NonNull CategoriaJuegoViewHolder holder) {
         super.onViewRecycled(holder);
-        holder.isRecyclable();
+        holder.setIsRecyclable(false);
     }
 }

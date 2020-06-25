@@ -41,9 +41,6 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
 
 
 
-
-
-
     @Override
     public CategoriaPictogramaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View layoutView = mInflater.inflate(R.layout.fragment_item_categoria_pictograma,parent, false);
@@ -61,9 +58,12 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                 holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
                // holder.editar.setVisibility(View.INVISIBLE);
                 holder.cancelar.setVisibility(View.GONE);
+                holder.setIsRecyclable(false);
             }
             else {
-            holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());}
+            holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+            holder.setIsRecyclable(false);
+            }
         } else {
             // Covers the case of data not being ready yet.
             holder.nombreCategoria.setText("No existe ninguna categoria de pictogramas");
@@ -98,6 +98,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
     @Override
     public void onViewRecycled(@NonNull CategoriaPictogramaViewHolder holder) {
         super.onViewRecycled(holder);
-        holder.setIsRecyclable(true);
+        holder.nombreCategoria.setText(null);
+        holder.setIsRecyclable(false);
     }
 }

@@ -136,12 +136,18 @@ public class Detalle_Pictograma extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (adapter != null && recyclerView != null) {
+       /* if (adapter != null && recyclerView != null) {
             recyclerView.setAdapter(null);
             adapter = null;
-        }
+        }*/
+        Runtime.getRuntime().gc();
 
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
     }
 
     @Override

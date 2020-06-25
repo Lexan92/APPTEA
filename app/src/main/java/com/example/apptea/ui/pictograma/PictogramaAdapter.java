@@ -93,6 +93,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
                 holder.editar.setVisibility(View.INVISIBLE);
                 holder.eliminar.setVisibility(View.INVISIBLE);
+                holder.setIsRecyclable(false);
             }
             else {
                 //holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
@@ -103,6 +104,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                         .thumbnail(0.5f)
                         .into(holder.imagen);
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
+                holder.setIsRecyclable(false);
             }
 
 
@@ -131,7 +133,9 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     @Override
     public void onViewRecycled(@NonNull PictogramaHolder holder) {
         super.onViewRecycled(holder);
-        //holder.imagen.setImageBitmap(null);
-        holder.setIsRecyclable(true);
+        holder.imagen.setImageBitmap(null);
+        holder.imagen.setImageDrawable(null);
+        holder.pictogramaItemView.setText(null);
+        holder.setIsRecyclable(false);
     }
 }

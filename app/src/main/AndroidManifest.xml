@@ -51,8 +51,14 @@
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
 
         <activity
+            android:name=".ui.usuario.EditUsuario"
+            android:windowSoftInputMode="adjustPan|stateVisible" />
+
+
+        <activity
             android:name=".ui.Utilities.UtilCamara"
             android:theme="@style/AppTheme.NoActionBar" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

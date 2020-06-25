@@ -18,6 +18,7 @@ import java.util.List;
 
 import roomsqlite.dao.UsuarioDao;
 import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.Usuario;
 
 public class UsuarioRepository {
@@ -38,5 +39,9 @@ public class UsuarioRepository {
        // usuarioDao.insertUsuario(usuario);
         appDatabase.databaseWriteExecutor.execute(()-> usuarioDao.insertUsuario(usuario));
 
+    }
+
+    public void update(Usuario usuario){
+        appDatabase.databaseWriteExecutor.execute(()-> usuarioDao.updateUsuario(usuario));
     }
 }

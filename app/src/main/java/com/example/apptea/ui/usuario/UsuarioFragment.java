@@ -10,8 +10,10 @@
 
 package com.example.apptea.ui.usuario;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -23,14 +25,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
+import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
 import com.example.apptea.ui.pais.PaisViewModel;
+import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
+import com.example.apptea.ui.personaTea.NuevaPersonaTea;
 
 import java.util.List;
 
+import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Usuario;
 import roomsqlite.repositorios.UsuarioRepository;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +50,7 @@ import roomsqlite.repositorios.UsuarioRepository;
  */
 public class UsuarioFragment extends Fragment {
 
+    public static final int USUARIO_UPDATE_REQUEST_CODE = 2;
     private UsuarioRepository usuarioRepository;
     private LiveData<List<Usuario>> usuarioAll;
     RecyclerView recyclerView;
@@ -73,7 +85,44 @@ public class UsuarioFragment extends Fragment {
 
         });
 
+        // METODOS PARA ACTUALIZAR Y ELIMINAR
+        adapter.setButtonClicked(new UsuarioAdapter.ButtonClicked() {
+            @Override
+            public void updateClickedUsuario(Usuario usuario) {
+                System.out.println("en el fragment"+usuario.getUsuario_id());
+                Intent intentUpdate = new Intent(getActivity(), EditUsuario.class);
+                intentUpdate.putExtra(EditUsuario.EXTRA_ID_USUARIO_UPDATE, usuario.getUsuario_id());
+                intentUpdate.putExtra(EditUsuario.EXTRA_NOMBRE_USUARIO_UPDATE, usuario.getUsuario_nombre());
+                intentUpdate.putExtra(EditUsuario.EXTRA_APELLIDO_USUARIO_UPDATE, usuario.getUsuario_apellido());
+                intentUpdate.putExtra(EditUsuario.EXTRA_PAIS_USUARIO_UPDATE, usuario.getPais_id());
+                intentUpdate.putExtra(EditUsuario.EXTRA_TELEFONO_USUARIO_UPDATE, usuario.getTelefono());
+                intentUpdate.putExtra(EditUsuario.EXTRA_CORREO_USUARIO_UPDATE, usuario.getCorreo());
+                intentUpdate.putExtra(EditUsuario. EXTRA_CONTRASEÑA_UPDATE, usuario.getContrasenia());
+                startActivityForResult(intentUpdate,USUARIO_UPDATE_REQUEST_CODE);
+            }
+            });
+
+
 
         return vista;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+       if (requestCode == USUARIO_UPDATE_REQUEST_CODE && resultCode == RESULT_OK){
+            Usuario usuario = (Usuario) data.getSerializableExtra(EditUsuario.EXTRA_USUARIO_UPDATE);
+            usuarioViewModel.update(usuario);
+        } else {
+            Toast.makeText(getActivity(),"No completo todos los campos",Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

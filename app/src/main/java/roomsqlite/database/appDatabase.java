@@ -8,46 +8,40 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
+import roomsqlite.config.constantes;
 import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
 import roomsqlite.dao.CategoriaPictogramaDAO;
-import roomsqlite.dao.DepartamentoDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
-import roomsqlite.dao.MunicipioDao;
+import roomsqlite.dao.JuegoDAO;
+import roomsqlite.dao.OpcionDAO;
 import roomsqlite.dao.PaisDao;
 import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.PictogramaDAO;
+import roomsqlite.dao.PreguntaDAO;
 import roomsqlite.dao.UsuarioDao;
-
 import roomsqlite.entidades.CategoriaHabCotidiana;
-
-
-import roomsqlite.config.constantes;
-import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.CategoriaJuego;
-import roomsqlite.entidades.Departamento;
+import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.HabilidadCotidiana;
-import roomsqlite.entidades.Municipio;
+import roomsqlite.entidades.Juego;
+import roomsqlite.entidades.Opcion;
 import roomsqlite.entidades.Pais;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
+import roomsqlite.entidades.Pregunta;
 import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
-        /*Departamento.class, Municipio.class,*/ Pais.class, PersonaTea.class, Pictograma.class, Usuario.class}, version = 1, exportSchema = false)
+        Pais.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    public static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     //DECLARACION DE DAOS
 
     public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
@@ -55,6 +49,9 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract CategoriaJuegoDAO categoriaJuegoDAO();
     public abstract CategoriaPictogramaDAO categoriaPictogramaDAO();
     public abstract PictogramaDAO pictogramaDAO();
+    public abstract JuegoDAO juegoDAO();
+    public abstract PreguntaDAO preguntaDAO();
+    public abstract OpcionDAO opcionDAO();
 
     public abstract PaisDao paisDao();
     /*public abstract DepartamentoDao departamentoDao();*/
@@ -117,11 +114,6 @@ public abstract class appDatabase extends RoomDatabase {
                     dao.insert(categoriaHabCotidiana);
 
                     PaisDao paisesdao = INSTANCE.paisDao();
-                    //DepartamentoDao deptodao =INSTANCE.departamentoDao();
-                    //primero de borran las entidades dependientes
-                    //  deptodao.deleteDepartamentoAll();
-
-                    //segundo se borran la entidades independientes
                     paisesdao.deletePaisAll();
                     System.out.println("paises");
 
@@ -133,43 +125,23 @@ public abstract class appDatabase extends RoomDatabase {
                     paisesdao.insertPais(pais);
 
 
-                    /*
-                    Departamento departamento = new Departamento(1,1,"San Salvador");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(2,1,"La libertad");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(3,1,"Santa Ana");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(4,1,"Ahuachapan");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(5,1,"Sonsonate");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(6,1,"Cabañas");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(7,1,"Chalatenango");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(8,1,"Cuscatlan");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(9,1,"La Paz");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(10,1,"La Union");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(11,1,"Morazan");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(12,1,"San Miguel");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(13,1,"San Vicente");
-                    deptodao.insertDepartamento(departamento);
-                    departamento = new Departamento(14,1,"Usulutan");
-                    deptodao.insertDepartamento(departamento);*/
-
-
+                    //CATEGORIAS JUEGOS
                     CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
                     categoriaJuegoDAO.deleteAllCategoriaJuegos();
-                    System.out.println("categoria juego");
-
                     CategoriaJuego cate = new CategoriaJuego(1, "Juegos de Selección", true);
                     categoriaJuegoDAO.insertCategoriaJuego(cate);
+
+                    //LISTADO DE JUEGOS
+
+                    JuegoDAO juegoDAO = INSTANCE.juegoDAO();
+                    Juego juego = new Juego(1,1,"Juego Vocales",true);
+                    juegoDAO.insertJuego(juego);
+                    Juego juego1 = new Juego(2,1,"Juego Numeros",true);
+                    juegoDAO.insertJuego(juego1);
+                    Juego juego2 = new Juego(3,1,"Juego de la Frutas", true);
+                    juegoDAO.insertJuego(juego2);
+                    Juego juego3 = new Juego(4,1,"Juego de las Verduras", false);
+                    juegoDAO.insertJuego(juego3);
 
 
 

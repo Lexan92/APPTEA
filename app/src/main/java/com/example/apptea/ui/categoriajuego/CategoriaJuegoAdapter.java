@@ -29,7 +29,7 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
      public CategoriaJuegoAdapter(Context context) {
 
         cjInflater = LayoutInflater.from(context);
-  ;
+
     }
 
     @Override

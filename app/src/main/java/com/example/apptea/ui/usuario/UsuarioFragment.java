@@ -34,6 +34,7 @@ import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
 import com.example.apptea.ui.pais.PaisViewModel;
 import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
 import com.example.apptea.ui.personaTea.NuevaPersonaTea;
+import com.example.apptea.utilidades.GenerarNumAleatorio;
 
 import java.util.List;
 
@@ -91,7 +92,9 @@ public class UsuarioFragment extends Fragment {
         cardCorreo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"CORREO ENVIADO",Toast.LENGTH_LONG).show();
+                int codigo;
+                codigo = GenerarNumAleatorio.getNumeroAleatorio();
+                Toast.makeText(getActivity(),"Codigo:"+codigo,Toast.LENGTH_LONG).show();
             }
         });
 

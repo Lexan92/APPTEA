@@ -15,6 +15,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -84,6 +85,25 @@ public class UsuarioFragment extends Fragment {
             }
 
         });
+
+        //CardView para enviar correo y abrir nueva modal de captura de codigo
+        CardView cardCorreo = vista.findViewById(R.id.cambiarContra);
+        cardCorreo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"CORREO ENVIADO",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //CardView que llevara a la actividad de Acerca de..
+        CardView cardAcercaDe = vista.findViewById(R.id.acerca_de);
+        cardAcercaDe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"Acerca de TEAyudo Jugando",Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         // METODOS PARA ACTUALIZAR Y ELIMINAR
         adapter.setButtonClicked(new UsuarioAdapter.ButtonClicked() {

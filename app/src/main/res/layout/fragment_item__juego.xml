@@ -8,15 +8,17 @@
   ~
   ~
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.DetalleCategoriaJuego.Item_Juego"
+    >
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_pictograma"
+        android:id="@+id/card_item_juego"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -32,36 +34,31 @@
             android:orientation="vertical">
 
             <!-- Media -->
-            <ImageView
-                android:id="@+id/img_pictograma"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/card_height_cat_juego"
-                android:scaleType="fitCenter"
-                android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/ic_linda" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:background="#0BBD14">
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
-                    android:id="@+id/nombre_pictograma"
+                    android:id="@+id/nombre_item_juego"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="nombre pictograma"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textSize="18sp"
+                    android:text="Nombre Pictograma"
+
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/capriola"
-                    android:textColor="@color/mi_perfil_titulo"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/colorSplash"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="3dp"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal" />
+                    android:gravity="left"
+                    />
 
 
                 <LinearLayout
@@ -69,24 +66,26 @@
                     android:layout_height="37dp"
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="right"
                     >
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_editar_pictograma"
+                        android:id="@+id/btn_editar_juego_lista"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        app:icon="@drawable/ic_mode_edit_black_24dp" />
+                        app:icon="@drawable/ic_mode_edit_black_24dp"
+                        app:iconTint="#000000"/>
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_eliminar_pictograma"
+                        android:id="@+id/btn_eliminar_juego_lista"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="42dp"
-                        app:icon="@drawable/ic_close_black" />
+                        android:layout_marginLeft="5dp"
+                        app:icon="@drawable/ic_close_black"
+                        app:iconTint="#000000"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -94,6 +93,5 @@
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
 
 </LinearLayout>

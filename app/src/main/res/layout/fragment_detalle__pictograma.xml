@@ -15,7 +15,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista_pictogramas"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:listitem="@layout/fragment_item_categoria_pictograma">
 
         </androidx.recyclerview.widget.RecyclerView>
 

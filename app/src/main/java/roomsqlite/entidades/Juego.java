@@ -30,8 +30,18 @@ public class Juego {
     @NonNull
     private String juego_nombre;
     @NonNull
-    private Boolean juego_predeterminado;
+    private boolean juego_predeterminado;
 
+    public Juego(int juego_id, int categoria_juego_id, @NonNull String juego_nombre, boolean juego_predeterminado) {
+        this.juego_id = juego_id;
+        this.categoria_juego_id = categoria_juego_id;
+        this.juego_nombre = juego_nombre;
+        this.juego_predeterminado = juego_predeterminado;
+    }
+
+    public Juego() {
+
+    }
 
     public int getJuego_id() {
         return juego_id;
@@ -58,12 +68,11 @@ public class Juego {
         this.juego_nombre = juego_nombre;
     }
 
-    @NonNull
-    public Boolean getJuego_predeterminado() {
+    public boolean isJuego_predeterminado() {
         return juego_predeterminado;
     }
 
-    public void setJuego_predeterminado(@NonNull Boolean juego_predeterminado) {
+    public void setJuego_predeterminado(boolean juego_predeterminado) {
         this.juego_predeterminado = juego_predeterminado;
     }
 }

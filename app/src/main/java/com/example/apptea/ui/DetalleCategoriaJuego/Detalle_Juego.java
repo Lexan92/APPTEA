@@ -11,11 +11,18 @@
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -25,28 +32,29 @@ import android.widget.TextView;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.juego.NuevoJuego;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.transition.MaterialContainerTransform;
 
+import java.util.List;
+
 import roomsqlite.entidades.CategoriaJuego;
+import roomsqlite.entidades.Juego;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Detalle_Juego#newInstance} factory method to
+ * Use the {@link Detalle_Juego} factory method to
  * create an instance of this fragment.
  */
 public class Detalle_Juego extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private JuegoViewModel juegoViewModel;
     TextView textoTituloCategoria;
+    RecyclerView recyclerView;
+    Juego juego = null;
+    JuegoAdapter adapter;
+    CategoriaJuego categoriaJuego=null;
 
 
 
@@ -54,60 +62,64 @@ public class Detalle_Juego extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Detalle_Juego.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Detalle_Juego newInstance(String param1, String param2) {
-        Detalle_Juego fragment = new Detalle_Juego();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
 
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_detalle__juego, container, false);
+         return inflater.inflate(R.layout.fragment_detalle__juego, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-
-        textoTituloCategoria = vista.findViewById(R.id.text_titulo_categoria_juego);
+        recyclerView = view.findViewById(R.id.lista_juegos);
+        adapter = new JuegoAdapter(getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
+        juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
 
 
         Bundle objetoCategoriaJuego=getArguments();
-        CategoriaJuego categoriaJuego = null;
+
         if(objetoCategoriaJuego!= null){
             categoriaJuego = (CategoriaJuego) objetoCategoriaJuego.getSerializable("objeto");
-            textoTituloCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+//            textoTituloCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+            juegoViewModel.findJuegosByCategoriaId(categoriaJuego.getCategoriaJuegoId()).observe(getActivity(), new Observer<List<Juego>>() {
+                @Override
+                public void onChanged(List<Juego> juegos) {
+                    adapter.setJuegos(juegos);
+                }
+            });
+
+
         }
 
         //Definiendo nombre para el toolbar
-        Toolbar  toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        Toolbar  toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
 
+        //Boton de + para agregar un nuevo juego
+        FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
 
-        return vista;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NuevoJuego.class);
+                //envia ID de categoria de juego
+                intent.putExtra("categoriaJuego", categoriaJuego.getCategoriaJuegoId());
+                startActivity(intent);
+
+            }
+        });
     }
 }

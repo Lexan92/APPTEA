@@ -49,6 +49,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,7 +59,21 @@ import roomsqlite.entidades.Usuario;
 
 public class NuevaPersonaTea extends AppCompatActivity {
 
+    //ACCION
+    public static final String EXTRA_EDIT = "com.example.apptea.ui.personaTea.EDIT";
+    //NUEVO
     public static final String EXTRA_PERSONA = "com.example.apptea.ui.personaTea.PERSONA";
+    //ACTUALIZAR
+    public static final String EXTRA_ID_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_ID_PERSONA_UPDATE";
+    public static final String EXTRA_ID_USUARIO_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_ID_USUARIO_UPDATE";
+    public static final String EXTRA_NOMBRE_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_NOMBRE_PERSONA_UPDATE";
+    public static final String EXTRA_APELLIDO_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_APELLIDO_PERSONA_UPDATE";
+    public static final String EXTRA_FECHA_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_FECHA_PERSONA_UPDATE";
+    public static final String EXTRA_SEXO_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_SEXO_PERSONA_UPDATE";
+    public static final String EXTRA_FOTO_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_FOTO_PERSONA_UPDATE";
+    public static final String EXTRA_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_PERSONA_UPDATE";
+
+
     TextInputEditText nombreTea;
     TextInputEditText apellidoTea;
     TextInputEditText fecha;
@@ -81,6 +96,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_persona_tea);
+
         titulo = findViewById(R.id.datosTea);
         nombreTea = (TextInputEditText)findViewById(R.id.nombreTea);
         apellidoTea = (TextInputEditText)findViewById(R.id.apellidoTea);
@@ -90,10 +106,6 @@ public class NuevaPersonaTea extends AppCompatActivity {
         camara=(Button)findViewById(R.id.btn_camara);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
-
-
-        titulo.setText("Nuevo Registro");
-
         ArrayList<String> sexo = new ArrayList<String>();
         sexo.add("Masculino");
         sexo.add("Femenino");
@@ -140,6 +152,35 @@ public class NuevaPersonaTea extends AppCompatActivity {
             }
         });
 
+        //VALIDANDO SI ES EDICION
+        Intent intent = getIntent();
+
+        if(intent.getIntExtra(EXTRA_EDIT,-1)==1){
+            //ES NUEVO
+            titulo.setText("Nuevo Registro");
+        }else{
+            // ES ACTUALIZACION
+            titulo.setText(R.string.actualizarTea);
+            nombreTea.setText(intent.getStringExtra(EXTRA_NOMBRE_PERSONA_UPDATE));
+            apellidoTea.setText(intent.getStringExtra(EXTRA_APELLIDO_PERSONA_UPDATE));
+            spinnerSexo.setSelection(adapter.getPosition(intent.getStringExtra(EXTRA_SEXO_PERSONA_UPDATE)));
+            myCalendar.setTime(new Date(intent.getStringExtra(EXTRA_FECHA_PERSONA_UPDATE)));
+            updateLabel();
+
+            byte[] actualizarfoto= intent.getByteArrayExtra(EXTRA_FOTO_PERSONA_UPDATE);
+            if (actualizarfoto==null){
+                String sexoAc= intent.getStringExtra(EXTRA_SEXO_PERSONA_UPDATE);
+                if (sexoAc.equals("Femenino")) {
+                    foto.setImageResource(R.drawable.ic_linda);
+                } else {
+                    foto.setImageResource(R.drawable.ic_smile);
+                }
+
+            } else {
+                foto.setImageBitmap(ImageConverter.convertirByteArrayAImagen(intent.getByteArrayExtra(EXTRA_FOTO_PERSONA_UPDATE)));
+            }
+        }
+
 
         //PARA GUARDAR UNA PERSONA
         final Button button = findViewById(R.id.guardarPersona);
@@ -151,6 +192,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
                     Toast.makeText(NuevaPersonaTea.this,"Es necesario llenar los campos obligatorios",Toast.LENGTH_LONG).show();
                    // setResult(RESULT_CANCELED, replyIntent);
                 } else {
+
                     personaTea.setUsuario_id(id);
                     personaTea.setPersona_nombre(nombreTea.getText().toString());
                     personaTea.setPersona_apellido(apellidoTea.getText().toString());
@@ -166,9 +208,19 @@ public class NuevaPersonaTea extends AppCompatActivity {
                        }
 
                     personaTea.setPersona_sexo(spinnerSexo.getSelectedItem().toString());
-                    replyIntent.putExtra(EXTRA_PERSONA, personaTea);
-                    setResult(RESULT_OK, replyIntent);
-                    finish();
+
+                    if (intent.getIntExtra(EXTRA_EDIT,-1)==1){
+                        replyIntent.putExtra(EXTRA_PERSONA, personaTea);
+                        setResult(RESULT_OK, replyIntent);
+                        finish();
+                    }   else{
+                        personaTea.setPersona_id(intent.getIntExtra(EXTRA_ID_PERSONA_UPDATE,-1));
+                        personaTea.setUsuario_id(intent.getIntExtra(EXTRA_ID_USUARIO_UPDATE,-1));
+                        replyIntent.putExtra(EXTRA_PERSONA_UPDATE, personaTea);
+                        setResult(RESULT_OK, replyIntent);
+                        finish();
+                    }
+
                 }
 
             }

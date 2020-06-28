@@ -170,7 +170,7 @@ public class Detalle_Juego extends Fragment {
             @Override
             public void updateClickedCatHab(Juego juego) {
 
-
+            //PENDIENTE
 
             }
 

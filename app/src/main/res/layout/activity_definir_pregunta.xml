@@ -18,7 +18,7 @@
     tools:context=".ui.juego.DefinirPregunta">
 
     <EditText
-        android:id="@+id/editNombreJuego"
+        android:id="@+id/editNombreJuego1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre Juego"
@@ -42,7 +42,7 @@
         app:iconTint="@color/colorSplash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toEndOf="@+id/editNombreJuego"
+        app:layout_constraintStart_toEndOf="@+id/editNombreJuego1"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -55,9 +55,10 @@
         android:textColor="@color/colorPrimary"
         android:textSize="21sp"
         android:textStyle="bold"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNombreJuego"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/editNombreJuego1"></EditText>
 
 
     <Button

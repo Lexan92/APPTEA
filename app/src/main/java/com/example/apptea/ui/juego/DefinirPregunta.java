@@ -11,12 +11,21 @@
 package com.example.apptea.ui.juego;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
+
+import roomsqlite.entidades.Juego;
 
 public class DefinirPregunta extends AppCompatActivity {
 
@@ -24,11 +33,39 @@ public class DefinirPregunta extends AppCompatActivity {
     boolean isCheckedOpcionDos = false;
     boolean isCheckedOpcionTres = false;
     boolean isCheckedOpcionCuatro = false;
+    JuegoViewModel juegoViewModel;
+    EditText nombreJuego;
+    ImageButton opcion1,opcion2,opcion3,opcion4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definir_pregunta);
+        juegoViewModel = new ViewModelProvider(this).get(JuegoViewModel.class);
+        LiveData<Juego> juego = juegoViewModel.obtenerUltimoJuego();
+        Juego juegoNuevo = new Juego();
+
+        nombreJuego = findViewById(R.id.editNombreJuego1);
+        opcion1 = findViewById(R.id.opcion_uno);
+
+        opcion1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // opcion1.setImageResource(R.drawable.letra_a);
+                Glide.with(v).load(R.drawable.letra_a).into(opcion1);
+            }
+        });
+
+        juego.observe(this, new Observer<Juego>() {
+            @Override
+            public void onChanged(Juego juego) {
+                nombreJuego.setText(juego.getJuego_nombre());
+                juegoNuevo.setJuego_id(juego.getJuego_id());
+                juegoNuevo.setCategoria_juego_id(juego.getCategoria_juego_id());
+                juegoNuevo.setJuego_nombre(juego.getJuego_nombre());
+                juegoNuevo.setJuego_predeterminado(juego.isJuego_predeterminado());
+            }
+        });
 
         //elementos de lottiAnimation, uno por cada checkbox
         LottieAnimationView checkedDone1 = findViewById(R.id.check_opcion_uno);

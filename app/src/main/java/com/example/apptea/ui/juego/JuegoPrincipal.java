@@ -37,7 +37,6 @@ public class JuegoPrincipal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setEnterSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
         setContentView(R.layout.activity_juego_principal);
         nombreJuego = findViewById(R.id.editNombreJuego);
         guardar = findViewById(R.id.guardar_nombre_juego);

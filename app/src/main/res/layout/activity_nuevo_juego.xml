@@ -82,6 +82,7 @@
 
     <Button
         android:id="@+id/cancelarCrearJuego"
+        android:transitionName="shared_boton_crear_juego"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"

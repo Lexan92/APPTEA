@@ -89,7 +89,8 @@ public class PersonaTeaFragment extends Fragment{
             @Override
             public void onClick(View view) {
                Intent intent = new Intent(getActivity(), NuevaPersonaTea.class);
-                startActivityForResult(intent, PERSONAS_REQUEST_CODE);
+                intent.putExtra(NuevaPersonaTea.EXTRA_EDIT,1);
+               startActivityForResult(intent, PERSONAS_REQUEST_CODE);
             }
         });
 
@@ -99,14 +100,16 @@ public class PersonaTeaFragment extends Fragment{
             @Override
             public void updateClickedPersona(PersonaTea personaTea) {
                 System.out.println("en el fragment"+personaTea.getPersona_id());
-                Intent intentUpdate = new Intent(getActivity(),ActualizarPersonaTeaActivity.class);
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_ID_PERSONA_UPDATE, personaTea.getPersona_id());
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_ID_USUARIO_UPDATE, personaTea.getUsuario_id());
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_NOMBRE_PERSONA_UPDATE, personaTea.getPersona_nombre());
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_APELLIDO_PERSONA_UPDATE, personaTea.getPersona_apellido());
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_FECHA_PERSONA_UPDATE, personaTea.getPersona_fecha_nac().toString());
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_SEXO_PERSONA_UPDATE, personaTea.getPersona_sexo());
-                intentUpdate.putExtra(ActualizarPersonaTeaActivity.EXTRA_FOTO_PERSONA_UPDATE, personaTea.getPersona_foto());
+                Intent intentUpdate = new Intent(getActivity(),NuevaPersonaTea.class);
+
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_EDIT,2);
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_ID_PERSONA_UPDATE, personaTea.getPersona_id());
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_ID_USUARIO_UPDATE, personaTea.getUsuario_id());
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_NOMBRE_PERSONA_UPDATE, personaTea.getPersona_nombre());
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_APELLIDO_PERSONA_UPDATE, personaTea.getPersona_apellido());
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_FECHA_PERSONA_UPDATE, personaTea.getPersona_fecha_nac().toString());
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_SEXO_PERSONA_UPDATE, personaTea.getPersona_sexo());
+                intentUpdate.putExtra(NuevaPersonaTea.EXTRA_FOTO_PERSONA_UPDATE, personaTea.getPersona_foto());
 
                 startActivityForResult(intentUpdate,PERSONAS_UPDATE_REQUEST_CODE);
             }

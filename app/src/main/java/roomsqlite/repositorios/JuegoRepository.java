@@ -45,4 +45,8 @@ public class JuegoRepository {
     public LiveData<List<Juego>> findJuegosByCategoria(int id){
         return juegoDAO.findJuegosByCategoria(id);
     }
+
+    public LiveData<Juego> obtenerUltimo(){
+        return juegoDAO.obtenerUltimoJuego();
+    }
 }

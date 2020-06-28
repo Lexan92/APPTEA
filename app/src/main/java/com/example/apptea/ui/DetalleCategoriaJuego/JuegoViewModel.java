@@ -47,4 +47,8 @@ public class JuegoViewModel extends AndroidViewModel {
         return juegoRepository.findJuegosByCategoria(id);
     }
 
+    public LiveData<Juego> obtenerUltimoJuego(){
+        return juegoRepository.obtenerUltimo();
+    }
+
 }

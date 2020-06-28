@@ -10,30 +10,75 @@
 
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriajuego.CategoriaJuegoViewHolder;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Juego;
 
-public class JuegoAdapter extends RecyclerView.Adapter<JuegoViewHolder> implements View.OnClickListener {
+
+
+
+
+
+public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHolder> implements View.OnClickListener {
 
     private List<Juego> juegos;
     private final LayoutInflater cjInflater;
     private View.OnClickListener listener;
+    private JuegoAdapter.ButtonClicked buttonClicked;
+
 
     public JuegoAdapter(Context context) {
        cjInflater = LayoutInflater.from(context);
+    }
+
+
+
+    public interface ButtonClicked{
+        void deleteClickedCatHab(Juego juego);
+        void updateClickedCatHab(Juego juego);
+    }
+
+    public void setButtonClicked(JuegoAdapter.ButtonClicked buttonClicked){
+        this.buttonClicked = buttonClicked;
+    }
+
+    class JuegoViewHolder extends RecyclerView.ViewHolder {
+        public TextView nombreJuego;
+        public MaterialButton editar;
+        public MaterialButton eliminar;
+
+
+
+
+
+        public JuegoViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nombreJuego = itemView.findViewById(R.id.nombre_item_juego);
+            editar = itemView.findViewById(R.id.btn_editar_juego_lista);
+            eliminar = itemView.findViewById(R.id.btn_eliminar_juego_lista);
+
+            eliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClicked.deleteClickedCatHab(juegos.get(getAdapterPosition()));
+                }
+            });
+
+        }
     }
 
 
@@ -53,11 +98,11 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoViewHolder> implemen
                 holder.nombreJuego.setText(juego.getJuego_nombre());
                 holder.editar.setVisibility(View.GONE);
                 holder.eliminar.setVisibility(View.GONE);
-                holder.setIsRecyclable(false);
+                holder.setIsRecyclable(true);
 
             } else {
                 holder.nombreJuego.setText(juego.getJuego_nombre());
-                holder.setIsRecyclable(false);
+               // holder.setIsRecyclable(false);
             }
         }
     }
@@ -90,5 +135,28 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoViewHolder> implemen
     public void onViewRecycled(@NonNull JuegoViewHolder holder) {
         super.onViewRecycled(holder);
         holder.setIsRecyclable(false);
+    }
+
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull JuegoViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        animateCircularReveal(holder.itemView);
+    }
+
+    private void animateCircularReveal(View itemView) {
+        int centerX = 0;
+        int centerY = 0;
+        int startRadius = 0;
+        int endRadius = (int) Math.hypot(itemView.getWidth(),itemView.getHeight());
+        Animator animation = ViewAnimationUtils.createCircularReveal(itemView,centerX,centerY,startRadius,endRadius);
+        itemView.setVisibility(View.VISIBLE);
+        animation.start();
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull JuegoViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.itemView.clearAnimation();
     }
 }

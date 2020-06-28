@@ -51,6 +51,7 @@ public class NuevoJuego extends AppCompatActivity {
                     juegoViewModel.insert(juego);
 
                     Intent intent = new Intent(getApplicationContext(),JuegoPrincipal.class);
+                    
                     startActivity(intent);
                     finish();
                 }

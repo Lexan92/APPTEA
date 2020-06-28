@@ -20,6 +20,9 @@ public interface UsuarioDao {
     @Query("DELETE FROM usuario")
     public void deleteUsuarioAll();
 
+    @Query("SELECT * FROM usuario LIMIT 1")
+    public Usuario obtenerUsuario();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUsuario(Usuario usuario);
 

@@ -10,10 +10,15 @@
 
 package com.example.apptea.utilidades;
 
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+
 public class GenerarNumAleatorio {
 
     public static int getNumeroAleatorio(){// Metodo para generar numero entero aleatorio
 
-        return (int)(Math.random()* 100000 + 1);//retorna un numero entero de 6 cifras
+        return (int)(Math.random()* 100000 + 1);//retorna un numero entero de 5 cifras
     }
 }

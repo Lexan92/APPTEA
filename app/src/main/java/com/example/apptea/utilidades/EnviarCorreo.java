@@ -10,7 +10,11 @@
 
 package com.example.apptea.utilidades;
 
+import android.app.Activity;
 import android.os.StrictMode;
+import android.widget.ProgressBar;
+
+import com.example.apptea.R;
 
 import java.util.Properties;
 import java.util.logging.Level;
@@ -26,9 +30,11 @@ import javax.mail.internet.MimeMessage;
 public class EnviarCorreo {
 
     Session session;
+    private ProgressBar progressBar;
 
 
     public void Enviar(int codigo,String correo ) {
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         Properties properties = new Properties();

@@ -48,7 +48,9 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="contraUsuario">Contraseña</string>
     <string name="siguienteUsuario">Siguiente</string>
     <string name="regresarUsuario">Regresar</string>
-
+    <string name="titulo_validar_codigo">Ingresar código de validación</string>
+    <string name="campo_codigo">Código</string>
+    <string name="button_validar">Validar</string>
 
     --Categoria Habilidad Cotidiana
     <string name="campo_nombre">Nombre de Categoria</string>

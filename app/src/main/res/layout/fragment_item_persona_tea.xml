@@ -133,6 +133,7 @@
                         android:layout_height="wrap_content"
                         android:visibility="visible"
                         android:layout_alignParentLeft="true"
+
                         app:icon="@drawable/ic_mode_edit_black_24dp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -142,6 +143,7 @@
                         android:layout_height="wrap_content"
                         android:visibility="visible"
                         android:layout_alignParentRight="true"
+                        android:layout_gravity="right"
                         app:icon="@drawable/ic_close_black" />
 
                 </LinearLayout>

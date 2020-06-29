@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Nombre del Autor
+  ~ 18/05/2020
+  ~ Esta actividad hace el llamado a la lista de roles
+  ~ */
+  ~
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.frases.frasesFragment"
+    android:orientation="vertical">
+
+ <!--  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="4">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_frases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:layout_weight="2"
+            tools:listitem="@layout/fragment_item_categoria_pictograma" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_play"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1"
+            app:icon="@drawable/ic_mode_edit_black_24dp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_categorias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:layout_weight="4"
+        tools:listitem="@layout/fragment_item_categoria_pictograma" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+ <!--     <View
+       android:id="@+id/divider2"
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:background="@color/colorPrimary" />
+
+<androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/recycler_picto"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="2"
+       tools:listitem="@layout/fragment_item_categoria_pictograma" />
+
+-->
+
+</LinearLayout>

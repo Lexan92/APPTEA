@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_gestion_habilidad"
             app:destination="@id/nav_gestion_habilidad" />
+        <action
+            android:id="@+id/nav_frasesFragment"
+            app:destination="@id/frasesFragment" />
     </fragment>
 
 
@@ -99,11 +102,18 @@
         android:name="com.example.apptea.ui.juego.JuegoPrincipal"
         android:label="activity_juego_principal"
         tools:layout="@layout/activity_juego_principal" />
+
     <activity
         android:id="@+id/registroUsuarioActivity2"
         android:name="com.example.apptea.ui.usuario.RegistroUsuarioActivity"
         android:label="activity_editar_usuario"
         tools:layout="@layout/activity_editar_usuario" />
+
+    <fragment
+        android:id="@+id/frasesFragment"
+        android:name="com.example.apptea.ui.frases.frasesFragment"
+        android:label="fragment_frases"
+        tools:layout="@layout/fragment_frases" />
 
 
 </navigation>

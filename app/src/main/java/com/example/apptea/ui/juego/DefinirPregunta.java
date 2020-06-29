@@ -15,6 +15,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -52,7 +53,9 @@ public class DefinirPregunta extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // opcion1.setImageResource(R.drawable.letra_a);
-                Glide.with(v).load(R.drawable.letra_a).into(opcion1);
+               //Glide.with(v).load(R.drawable.letra_a).into(opcion1);
+                Intent intent = new Intent(getApplicationContext(),BuscarPictograma.class);
+                startActivity(intent);
             }
         });
 
@@ -60,6 +63,7 @@ public class DefinirPregunta extends AppCompatActivity {
             @Override
             public void onChanged(Juego juego) {
                 nombreJuego.setText(juego.getJuego_nombre());
+
                 juegoNuevo.setJuego_id(juego.getJuego_id());
                 juegoNuevo.setCategoria_juego_id(juego.getCategoria_juego_id());
                 juegoNuevo.setJuego_nombre(juego.getJuego_nombre());

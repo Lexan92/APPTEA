@@ -11,12 +11,14 @@
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
 import android.app.ActionBar;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,6 +26,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
@@ -34,7 +37,9 @@ import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.ui.juego.NuevoJuego;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.MaterialContainerTransform;
 
 import java.util.List;
@@ -55,7 +60,7 @@ public class Detalle_Juego extends Fragment {
     Juego juego = null;
     JuegoAdapter adapter;
     CategoriaJuego categoriaJuego=null;
-
+    private boolean confirmacion=false;
 
 
     public Detalle_Juego() {
@@ -121,5 +126,59 @@ public class Detalle_Juego extends Fragment {
 
             }
         });
+
+
+        //METODO PARA ELIMINAR UN JUEGO
+        adapter.setButtonClicked(new JuegoAdapter.ButtonClicked() {
+            @Override
+            public void deleteClickedCatHab(Juego juego) {
+
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
+                builder.setTitle("Alerta");
+                builder.setMessage("¿Está seguro de eliminar el Juego :\n"+juego.getJuego_nombre()+"?");
+                builder.setIcon(android.R.drawable.ic_delete);
+
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        juegoViewModel.delete(juego);
+                        adapter.notifyDataSetChanged();
+                        confirmacion = true;
+                    }
+                });
+
+
+
+
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+                builder.show();
+
+
+            }
+
+
+
+            @Override
+            public void updateClickedCatHab(Juego juego) {
+
+            //PENDIENTE
+
+            }
+
+
+        });
+
+
     }
+
+
 }

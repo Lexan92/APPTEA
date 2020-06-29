@@ -34,10 +34,15 @@ import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
 import com.example.apptea.ui.pais.PaisViewModel;
 import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
 import com.example.apptea.ui.personaTea.NuevaPersonaTea;
+import com.example.apptea.utilidades.EnviarCorreo;
 import com.example.apptea.utilidades.GenerarNumAleatorio;
+
+import org.w3c.dom.Attr;
 
 import java.util.List;
 
+import roomsqlite.dao.UsuarioDao;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Usuario;
@@ -87,14 +92,19 @@ public class UsuarioFragment extends Fragment {
 
         });
 
+
         //CardView para enviar correo y abrir nueva modal de captura de codigo
         CardView cardCorreo = vista.findViewById(R.id.cambiarContra);
         cardCorreo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int codigo;
+                UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
+                Usuario usuario = usuarioDao.obtenerUsuario();
                 codigo = GenerarNumAleatorio.getNumeroAleatorio();
-                Toast.makeText(getActivity(),"Codigo:"+codigo,Toast.LENGTH_LONG).show();
+                EnviarCorreo enviarCorreo = new EnviarCorreo();
+                enviarCorreo.Enviar(codigo,usuario.getCorreo());
+                Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
             }
         });
 

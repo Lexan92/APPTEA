@@ -46,8 +46,6 @@ public class Detalle_Pictograma extends Fragment {
 
     private static final int ACTIVITY_REQUEST_CODE = 10;
 
-    private PictogramaRepository pictogramaRepository;
-    private LiveData<List<Pictograma>> pictogramasAll;
     private PictogramaViewModel pictogramaViewModel;
     RecyclerView recyclerView;
     CategoriaPictograma categoriaPictograma = null;

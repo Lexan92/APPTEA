@@ -40,7 +40,7 @@ public class EditContrasenia extends AppCompatActivity {
 
    EditText contra1;
    EditText contra2;
-
+   String error="Campo Obligatorio";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,24 +57,47 @@ public class EditContrasenia extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                if (contra1.getText().toString().equals(contra2.getText().toString())) {
-
-                    //Se obtiene el usuario guardado se obtiene la primera fila.
-                    UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getApplicationContext()).usuarioDao();
-                    Usuario usuario = usuarioDao.obtenerUsuario();
-
-                    usuario.setContrasenia(contra1.getText().toString());
-
-                    Toast.makeText(getApplicationContext(), "Se actualizo la contraseña con exito", Toast.LENGTH_LONG).show();
-                    finish();
-
+                if (validaciones() > 0) {
+                    Toast.makeText(getApplicationContext(), "Debe completar los campos obligatorios", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Las contraseñas deben de ser iguales", Toast.LENGTH_LONG).show();
-                }
+                    if (contra1.equals(contra2)) {
 
+                        //Se obtiene el usuario guardado se obtiene la primera fila.
+                        UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getApplicationContext()).usuarioDao();
+                        Usuario usuario = usuarioDao.obtenerUsuario();
+
+                        usuario.setContrasenia(contra1.getText().toString());
+
+                        Toast.makeText(getApplicationContext(), "Se actualizo la contraseña con exito", Toast.LENGTH_LONG).show();
+                        finish();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Las contraseñas deben de ser iguales", Toast.LENGTH_LONG).show();
+                    }
+
+                }
             }
         });
 
 
     }
+
+    //VALIDACIONES
+    public int validaciones(){
+        int validar=0;
+
+        if (TextUtils.isEmpty(contra1.getText())) {
+            validar+=1;
+            contra1.setError(error);
+        }else{contra1.setError(null); }
+
+        if(TextUtils.isEmpty(contra2.getText())){
+            validar+=1;;
+            contra2.setError(error);
+        }else{contra2.setError(null); }
+
+        return validar;
+    }
+
+
 }

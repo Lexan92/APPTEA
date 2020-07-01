@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.navigation.Navigation;
+
 import com.example.apptea.R;
 
 public class ValidarCodigo extends Activity {
@@ -50,6 +52,7 @@ public class ValidarCodigo extends Activity {
                             if (codigovalidar == cod) {
                                 Toast.makeText(getApplicationContext(), "Iguales" +codigovalidar, Toast.LENGTH_LONG).show();
                                 finish();
+                                //Navigation.findNavController(view).navigate(R.id.editar_contraseña,bundleBanderaToolbar);
                                 Intent intent2 = new Intent(getApplicationContext(), EditContrasenia.class);
                                 startActivity(intent2);
                             } else {

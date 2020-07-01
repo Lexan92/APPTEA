@@ -10,17 +10,24 @@
 
 package com.example.apptea.ui.usuario;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.TooltipCompat;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 
 import com.example.apptea.R;
@@ -52,6 +59,7 @@ public class EditUsuario extends AppCompatActivity {
 
     private Usuario usuario = new Usuario();
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -67,6 +75,8 @@ public class EditUsuario extends AppCompatActivity {
         editNombre.setText(intent.getStringExtra(EXTRA_NOMBRE_USUARIO_UPDATE));
         editApellido.setText(intent.getStringExtra(EXTRA_APELLIDO_USUARIO_UPDATE));
         editCorreo.setText(intent.getStringExtra(EXTRA_CORREO_USUARIO_UPDATE));
+
+
 
         //PARA GUARDAR ACTUALIZACION Categoria de habilidades cotidiandas
         final Button button = findViewById(R.id.button_save);

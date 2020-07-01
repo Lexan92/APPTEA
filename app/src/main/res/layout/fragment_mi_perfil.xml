@@ -13,12 +13,22 @@
         android:id="@+id/recyclerview_mi_perfil"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/recyclerview_item_mi_perfil" />
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/cambiarContra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerview_mi_perfil"
+        app:layout_constraintVertical_bias="0.847" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cambiarContra"

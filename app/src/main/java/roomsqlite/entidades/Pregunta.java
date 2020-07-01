@@ -25,6 +25,7 @@ public class Pregunta {
     @ColumnInfo(index = true)
     @NonNull
     private int pregunta_id;
+    @ColumnInfo(index = true)
     @NonNull
     private int juego_id;
     @NonNull

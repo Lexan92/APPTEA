@@ -2,6 +2,7 @@ package roomsqlite.entidades;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "pais")
@@ -13,6 +14,7 @@ public class Pais {
 
     //CONSTRUCTOR
 
+    @Ignore
     public Pais(int pais_id, @NonNull String pais_nombre) {
         this.pais_id = pais_id;
         this.pais_nombre = pais_nombre;

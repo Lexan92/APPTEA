@@ -15,6 +15,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Fts4;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -34,6 +35,7 @@ public class Pictograma implements Serializable {
     @ColumnInfo (index = true, name="pictograma_id")
     @NonNull
     private int pictograma_id;
+    @ColumnInfo(index = true)
     @NonNull
     private int cat_pictograma_id;
 
@@ -59,6 +61,7 @@ public class Pictograma implements Serializable {
     }*/
 
 
+    @Ignore
     public Pictograma(@NonNull int pictograma_id, int cat_pictograma_id, @NonNull String pictograma_nombre, @NonNull boolean predeterminado) {
         this.pictograma_id = pictograma_id;
         this.cat_pictograma_id = cat_pictograma_id;

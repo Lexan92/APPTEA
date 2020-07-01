@@ -3,6 +3,7 @@ package roomsqlite.entidades;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -39,6 +40,7 @@ public CategoriaPictograma(){
 
 //CONSTRUCTOR
 
+    @Ignore
     public CategoriaPictograma(@NonNull int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado) {
         this.cat_pictograma_id = cat_pictograma_id;
         this.cat_pictograma_nombre = cat_pictograma_nombre;

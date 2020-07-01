@@ -19,6 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,7 +39,9 @@ import java.util.List;
 import roomsqlite.database.ImageConverter;
 import roomsqlite.entidades.Pictograma;
 
-public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.PictogramaHolder> {
+public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.PictogramaHolder> implements Filterable {
+
+
 
 
     class PictogramaHolder extends RecyclerView.ViewHolder{
@@ -60,10 +64,14 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
     private final LayoutInflater mInflater;
     private List<Pictograma> pictogramaList;
+    private List<Pictograma> pictogramaListBusqueda;
 
-    PictogramaAdapter(Context context){
+
+
+    public PictogramaAdapter(Context context){
         mInflater = LayoutInflater.from(context);
     }
+
 
 
 
@@ -117,8 +125,9 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
         }
     }
 
-    void setPictograma(List<Pictograma> pic){
+    public void setPictograma(List<Pictograma> pic){
         pictogramaList = pic;
+        pictogramaListBusqueda = new ArrayList<>(pictogramaList);
         notifyDataSetChanged();
     }
 
@@ -138,4 +147,40 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
         holder.pictogramaItemView.setText(null);
         holder.setIsRecyclable(false);
     }
+
+
+    @Override
+    public Filter getFilter() {
+        return pictogramaFilter;
+    }
+
+    private Filter pictogramaFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Pictograma> listaFiltrada = new ArrayList<>();
+
+            if (constraint != null||constraint.length() != 0){
+
+                String patronDeFiltrado = constraint.toString().toLowerCase().trim();
+
+                for(Pictograma item:pictogramaListBusqueda){
+                    if (item.getPictograma_nombre().toLowerCase().contains(patronDeFiltrado)){
+
+                        listaFiltrada.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = listaFiltrada;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            pictogramaList.clear();
+            pictogramaList.addAll((List)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
 }

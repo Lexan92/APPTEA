@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -18,6 +19,7 @@ import roomsqlite.database.DateConverter;
 public class PersonaTea implements Serializable  {
     @PrimaryKey(autoGenerate = true)
     private int persona_id;
+    @ColumnInfo(index = true)
     @NonNull
     private int usuario_id;
     @NonNull
@@ -36,6 +38,7 @@ public class PersonaTea implements Serializable  {
     public PersonaTea() {
     }
 
+    @Ignore
     public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, @NonNull String persona_sexo, byte[] persona_foto) {
         this.persona_id = persona_id;
         this.usuario_id = usuario_id;

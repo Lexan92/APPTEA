@@ -3,6 +3,7 @@ package roomsqlite.entidades;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class CategoriaJuego implements Serializable {
     public CategoriaJuego() {
     }
 
+    @Ignore
     public CategoriaJuego(@NonNull int categoriaJuegoId, @NonNull  String categoriaJuegoNombre, @NonNull boolean predeterminado) {
         this.categoriaJuegoId = categoriaJuegoId;
         this.categoriaJuegoNombre = categoriaJuegoNombre;

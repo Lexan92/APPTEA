@@ -25,6 +25,8 @@ public class CategoriaHabCotidiana implements Serializable{
 
 
 
+
+    @Ignore
     public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, boolean cat_predeterminado) {
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;

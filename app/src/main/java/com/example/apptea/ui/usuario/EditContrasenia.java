@@ -77,37 +77,4 @@ public class EditContrasenia extends AppCompatActivity {
 
 
     }
-
-
-/*
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-
-        View vista = inflater.inflate(R.layout.editar_contrasenia, container, false);
-        contra1 = vista.findViewById(R.id.contrasenia1);
-        contra2 = vista.findViewById(R.id.contrasenia2);
-
-
-        //CardView para enviar correo y abrir nueva modal de captura de codigo
-        Button button = vista.findViewById(R.id.button_save);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int codigo;
-
-                //Se obtiene el usuario guardado se obtiene la primera fila.
-                UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
-                Usuario usuario = usuarioDao.obtenerUsuario();
-
-                usuario.setContrasenia(contra1.getText().toString());
-
-                Toast.makeText(getActivity(), "Se actualizo la contra", Toast.LENGTH_LONG).show();
-
-            }
-
-        });
-        return vista;
-    }*/
 }

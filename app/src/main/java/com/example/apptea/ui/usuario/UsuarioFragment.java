@@ -15,6 +15,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -26,11 +27,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
 import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
+import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
 import com.example.apptea.ui.pais.PaisViewModel;
 import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
 import com.example.apptea.ui.personaTea.NuevaPersonaTea;
@@ -48,6 +51,7 @@ import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Usuario;
 import roomsqlite.repositorios.UsuarioRepository;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 /**
@@ -62,7 +66,7 @@ public class UsuarioFragment extends Fragment {
     private LiveData<List<Usuario>> usuarioAll;
     RecyclerView recyclerView;
     private UsuarioViewModel usuarioViewModel;
-    private PaisViewModel paisViewModel;
+    private ProgressBar progressBar;
 
     public UsuarioFragment() {
         // Required empty public constructor
@@ -76,12 +80,12 @@ public class UsuarioFragment extends Fragment {
 
 
         View vista = inflater.inflate(R.layout.fragment_mi_perfil, container, false);
-
+        progressBar = (ProgressBar) vista.findViewById(R.id.progressbar);
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_mi_perfil);
         final UsuarioAdapter adapter = new UsuarioAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
-
+        progressBar.setVisibility(View.INVISIBLE);
         usuarioViewModel = new ViewModelProvider(getActivity()).get(UsuarioViewModel.class);
         usuarioViewModel.getUsuarioAll().observe(getActivity(), new Observer<List<Usuario>>() {
             @Override
@@ -99,13 +103,29 @@ public class UsuarioFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int codigo;
+                progressBar.setVisibility(View.VISIBLE);
+
+
+
+                //Se obtiene el usuario guardado se obtiene la primera fila.
                 UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
                 Usuario usuario = usuarioDao.obtenerUsuario();
+
+                //Se genera el codigo aleatorio y se guarda en variable int codigo
                 codigo = GenerarNumAleatorio.getNumeroAleatorio();
+
+                //Se inicializa el metodo para enviar correo
                 EnviarCorreo enviarCorreo = new EnviarCorreo();
                 enviarCorreo.Enviar(codigo,usuario.getCorreo());
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getActivity(),ValidarCodigo.class);
+                intent.putExtra("codigo", codigo);
+                startActivity(intent);
+
             }
+
         });
 
         //CardView que llevara a la actividad de Acerca de..
@@ -150,6 +170,7 @@ public class UsuarioFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
        if (requestCode == USUARIO_UPDATE_REQUEST_CODE && resultCode == RESULT_OK){
             Usuario usuario = (Usuario) data.getSerializableExtra(EditUsuario.EXTRA_USUARIO_UPDATE);
             usuarioViewModel.update(usuario);
@@ -157,5 +178,4 @@ public class UsuarioFragment extends Fragment {
             Toast.makeText(getActivity(),"No completo todos los campos",Toast.LENGTH_LONG).show();
         }
     }
-
 }

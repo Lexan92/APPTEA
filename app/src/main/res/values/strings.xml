@@ -37,8 +37,11 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     --registro usuario
     <string name="datos">Datos Generales</string>
     <string name="editarDatos">Editar Datos Generales</string>
+    <string name="tituloCamContrasenia">Cambiar Contraseña</string>
     <string name="nombreUsuario">Nombre</string>
     <string name="apellidoUsuario">Apellido</string>
+    <string name="NContrasenia">Nueva Contraseña</string>
+    <string name="NContrasenia2">Confirmar Contraseña</string>
     <string name="correoUsuario">Correo</string>
     <string name="telefonoUsuario">Telefono</string>
     <string name="spinnerPais">Pais</string>
@@ -48,7 +51,9 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="contraUsuario">Contraseña</string>
     <string name="siguienteUsuario">Siguiente</string>
     <string name="regresarUsuario">Regresar</string>
-
+    <string name="titulo_validar_codigo">Ingresar código de validación</string>
+    <string name="campo_codigo">Código</string>
+    <string name="button_validar">Validar</string>
 
     --Categoria Habilidad Cotidiana
     <string name="campo_nombre">Nombre de Categoria</string>

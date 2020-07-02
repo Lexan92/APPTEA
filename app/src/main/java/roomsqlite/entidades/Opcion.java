@@ -25,6 +25,7 @@ public class Opcion {
     @ColumnInfo(index = true)
     @NonNull
     private int opcion_id;
+    @ColumnInfo(index = true)
     @NonNull
     private int pregunta_id;
     @NonNull

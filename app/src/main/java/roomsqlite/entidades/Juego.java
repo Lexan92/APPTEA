@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
@@ -25,6 +26,7 @@ public class Juego {
     @ColumnInfo(index = true)
     @NonNull
     private int juego_id;
+    @ColumnInfo(index = true)
     @NonNull
     private int categoria_juego_id;
     @NonNull
@@ -32,6 +34,7 @@ public class Juego {
     @NonNull
     private boolean juego_predeterminado;
 
+    @Ignore
     public Juego(int juego_id, int categoria_juego_id, @NonNull String juego_nombre, boolean juego_predeterminado) {
         this.juego_id = juego_id;
         this.categoria_juego_id = categoria_juego_id;

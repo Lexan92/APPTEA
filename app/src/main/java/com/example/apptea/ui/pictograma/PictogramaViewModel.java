@@ -32,7 +32,7 @@ public class PictogramaViewModel extends AndroidViewModel {
         allPictograma = pictogramaRepository.getAllPictograma();
     }
 
-    public LiveData<List<Pictograma>> getAllCategoriaPictograma(){
+    public LiveData<List<Pictograma>> getAllPictogramas(){
         return allPictograma;
     }
 

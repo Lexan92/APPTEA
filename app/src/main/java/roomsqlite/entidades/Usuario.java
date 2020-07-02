@@ -14,6 +14,7 @@ import java.util.List;
 public class Usuario implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int usuario_id;
+    @ColumnInfo(index = true)
     @NonNull
     private int pais_id;
     @NonNull
@@ -33,6 +34,7 @@ public class Usuario implements Serializable {
 
 //CONSTRUCTOR
 
+    @Ignore
     public Usuario(int usuario_id, int pais_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono/*, @NonNull String direccion*/, int codigo_verificacion) {
         this.usuario_id = usuario_id;
         this.pais_id = pais_id;

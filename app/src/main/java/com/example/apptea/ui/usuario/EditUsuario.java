@@ -10,17 +10,24 @@
 
 package com.example.apptea.ui.usuario;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.TooltipCompat;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 
 import com.example.apptea.R;
@@ -47,15 +54,11 @@ public class EditUsuario extends AppCompatActivity {
     public static final String EXTRA_CONTRASEÑA_UPDATE = "com.example.apptea.ui.usuario.EXTRA_CONTRASEÑA_UPDATE";
     public static final String EXTRA_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_USUARIO_UPDATE";
 
-    //Se declaran las variables para los campos que se editaran
-    EditText editNombre,editApellido,editCorreo,editTelefono;
-    //Spinner editSpinnerPais;
 
-    //Mandamos a llamar el ViewModel de Pais
-    //private PaisViewModel paisViewModel;
-    //Se declara el List<Pais>
+    EditText editNombre,editApellido,editCorreo;
 
     private Usuario usuario = new Usuario();
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,23 +68,15 @@ public class EditUsuario extends AppCompatActivity {
         editNombre = (EditText)findViewById(R.id.editNombreUsuario);
         editApellido = (EditText)findViewById(R.id.editApellido);
         editCorreo = (EditText)findViewById(R.id.editCorreo);
-       /* editTelefono = (EditText)findViewById(R.id.editTelefono);
-        editSpinnerPais = (Spinner)findViewById(R.id.editSpinnerPais);*/
+
 
         Intent intent = getIntent();
 
         editNombre.setText(intent.getStringExtra(EXTRA_NOMBRE_USUARIO_UPDATE));
         editApellido.setText(intent.getStringExtra(EXTRA_APELLIDO_USUARIO_UPDATE));
         editCorreo.setText(intent.getStringExtra(EXTRA_CORREO_USUARIO_UPDATE));
-        //editTelefono.setText(intent.getIntExtra(EXTRA_TELEFONO_USUARIO_UPDATE,Integer.parseInt(EXTRA_TELEFONO_USUARIO_UPDATE)));
 
-        /*PaisDao paisDao = (PaisDao) appDatabase.getDatabase(getBaseContext()).paisDao();
 
-        List paises = paisDao.paises();
-        //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, paises);
-        editSpinnerPais.setAdapter(adapter);
-        editSpinnerPais.setSelection(adapter.getPosition(intent.getStringExtra(EXTRA_PAIS_USUARIO_UPDATE)));*/
 
         //PARA GUARDAR ACTUALIZACION Categoria de habilidades cotidiandas
         final Button button = findViewById(R.id.button_save);
@@ -104,6 +99,7 @@ public class EditUsuario extends AppCompatActivity {
                 finish();
             }
         });
+
 
 
 

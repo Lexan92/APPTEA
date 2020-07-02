@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.apptea">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -16,7 +17,14 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".ui.juego.BuscarPictograma"
-           ></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchablepictograma"/>
+        </activity>
         <activity
             android:name=".ui.juego.DefinirPregunta"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -63,12 +71,25 @@
         <activity
             android:name=".ui.categoriahabilidadcotidiana.EditCategoriaHab"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
-        <activity
+      <activity
             android:name=".ui.usuario.EditUsuario"
-            android:windowSoftInputMode="adjustPan|stateVisible" />
+            android:parentActivityName=".ui.usuario.RegistroUsuarioActivity"
+            android:windowSoftInputMode="adjustPan|stateVisible">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.usuario.RegistroUsuarioActivity"/>
+    </activity>
+        <activity
+            android:name=".ui.usuario.EditContrasenia"
+            android:windowSoftInputMode="adjustPan|stateVisible"
+            />
         <activity
             android:name=".ui.Utilities.UtilCamara"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.usuario.ValidarCodigo"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

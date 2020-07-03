@@ -43,4 +43,7 @@ public class PictogramaViewModel extends AndroidViewModel {
     public LiveData<List<Pictograma>> getAllPictogramaByCategoria(int id) {
         return pictogramaRepository.findPictogramasByCategoria(id);
     }
+    public LiveData<Pictograma> getPictogramaById(int id){
+        return pictogramaRepository.finfByIdPictograma(id);
+    }
 }

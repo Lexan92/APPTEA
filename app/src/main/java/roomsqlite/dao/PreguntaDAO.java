@@ -34,6 +34,9 @@ public interface PreguntaDAO {
     @Delete
     void deletePregunta(Pregunta pregunta);
 
-    @Query("SELECT * FROM "+Pregunta.TABLE_NAME+" WHERE juego_id=:id")
+    @Query("SELECT * FROM "+Pregunta.TABLE_NAME + " WHERE juego_id=:id")
     LiveData<List<Pregunta>> getPreguntasByJuego(int id);
+
+    @Query("SELECT * FROM "+Pregunta.TABLE_NAME + " ORDER BY pregunta_id DESC LIMIT 1")
+    Pregunta obtenerUltimaPregunta();
 }

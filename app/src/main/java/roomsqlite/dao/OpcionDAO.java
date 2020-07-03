@@ -27,6 +27,6 @@ public interface OpcionDAO {
     void insertOpcion(Opcion opcion);
     @Update
     void updateOpcion(Opcion opcion);
-    @Query("select * from "+Opcion.TABLE_NAME+" where pregunta_id=:id")
+    @Query("select * from "+Opcion.TABLE_NAME+ " where pregunta_id=:id")
     LiveData<List<Opcion>> getOpcionesByPregunta(int id);
 }

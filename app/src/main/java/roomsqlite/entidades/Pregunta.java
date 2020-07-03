@@ -23,10 +23,8 @@ public class Pregunta {
     public static final String TABLE_NAME = "pregunta";
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true)
-    @NonNull
     private int pregunta_id;
     @ColumnInfo(index = true)
-    @NonNull
     private int juego_id;
     @NonNull
     private String titulo_pregunta;

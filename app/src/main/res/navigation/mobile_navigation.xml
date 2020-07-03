@@ -35,8 +35,8 @@
         android:label="Mi Perfil"
         tools:layout="@layout/fragment_mi_perfil" >
         <action
-            android:id="@+id/action_nav_mi_perfil_to_registroUsuarioActivity2"
-            app:destination="@id/registroUsuarioActivity2" />
+            android:id="@+id/action_nav_mi_perfil_to_editUsuario"
+            app:destination="@id/editUsuario" />
     </fragment>
 
     <fragment
@@ -103,17 +103,16 @@
         android:label="activity_juego_principal"
         tools:layout="@layout/activity_juego_principal" />
 
-    <activity
-        android:id="@+id/registroUsuarioActivity2"
-        android:name="com.example.apptea.ui.usuario.RegistroUsuarioActivity"
-        android:label="activity_editar_usuario"
-        tools:layout="@layout/activity_editar_usuario" />
-
     <fragment
         android:id="@+id/frasesFragment"
         android:name="com.example.apptea.ui.frases.frasesFragment"
         android:label="fragment_frases"
         tools:layout="@layout/fragment_frases" />
+    <activity
+        android:id="@+id/editUsuario"
+        android:name="com.example.apptea.ui.usuario.EditUsuario"
+        android:label="activity_editar_usuario"
+        tools:layout="@layout/activity_editar_usuario" />
 
 
 </navigation>

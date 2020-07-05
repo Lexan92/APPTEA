@@ -16,6 +16,10 @@
         <action
             android:id="@+id/nav_frasesFragment"
             app:destination="@id/frasesFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_gestion_juego"
+            app:destination="@id/nav_gestion_juego" />
+
     </fragment>
 
 

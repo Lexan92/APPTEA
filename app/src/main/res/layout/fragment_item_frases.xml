@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCatPictoFrases"
+        android:layout_width="130dp"
+        android:layout_height="90dp"
+        android:layout_margin="15dp"
+        android:transitionName="categoriapictograma_transicion"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="2dp">
+
+
+            <TextView
+                android:id="@+id/txt_categoria_pictograma"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/capriola"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

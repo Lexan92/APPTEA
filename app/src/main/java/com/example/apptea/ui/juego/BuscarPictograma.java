@@ -10,12 +10,19 @@
 
 package com.example.apptea.ui.juego;
 
+import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -32,11 +39,13 @@ import java.util.List;
 
 import roomsqlite.entidades.Pictograma;
 
-public class BuscarPictograma extends AppCompatActivity {
+public class BuscarPictograma extends AppCompatActivity implements PictogramaAdapter.OnPictogramaListener {
 
     private MaterialToolbar toolbar;
     RecyclerView recyclerView;
-    PictogramaAdapter adapter;
+    PictogramaAdapter adapter=null;
+
+
     PictogramaViewModel pictogramaViewModel;
 
     @Override
@@ -46,7 +55,7 @@ public class BuscarPictograma extends AppCompatActivity {
         toolbar = findViewById(R.id.topAppBarBusqueda);
         setSupportActionBar(toolbar);
         recyclerView = findViewById(R.id.lista_pictograma_busqueda);
-        adapter = new PictogramaAdapter(this);
+         adapter = new PictogramaAdapter(this,this);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(BuscarPictograma.this).get(PictogramaViewModel.class);
@@ -56,9 +65,8 @@ public class BuscarPictograma extends AppCompatActivity {
                 adapter.setPictograma(pictogramas);
             }
         });
-
-
     }
+
 
 
     @Override
@@ -82,4 +90,21 @@ public class BuscarPictograma extends AppCompatActivity {
 
         return true;
     }
+
+    @Override
+    public void onPictogramaClick(Pictograma posicion) {
+        Log.d("PIC","D: "+posicion.getPictograma_id());
+        Intent intentRespuesta = new Intent();
+        intentRespuesta.putExtra("id",posicion.getPictograma_id());
+        setResult(Activity.RESULT_OK,intentRespuesta);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pictogramaViewModel=null;
+        Runtime.getRuntime().gc();
+    }
 }
+

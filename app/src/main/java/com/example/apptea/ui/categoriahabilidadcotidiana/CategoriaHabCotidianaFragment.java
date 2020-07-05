@@ -135,6 +135,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             }
             });
 
+
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

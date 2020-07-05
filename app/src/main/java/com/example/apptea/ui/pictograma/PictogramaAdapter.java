@@ -42,34 +42,42 @@ import roomsqlite.entidades.Pictograma;
 public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.PictogramaHolder> implements Filterable {
 
 
+    private OnPictogramaListener mOnPictogramaListener;
+    private final LayoutInflater mInflater;
+    private List<Pictograma> pictogramaList;
+    private List<Pictograma> pictogramaListBusqueda;
 
-
-    class PictogramaHolder extends RecyclerView.ViewHolder{
+    class PictogramaHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView pictogramaItemView;
         public Button eliminar;
         public Button editar;
         public ImageView imagen;
+        OnPictogramaListener onPictogramaListener;
 
 
-        private PictogramaHolder(View itemView){
+        private PictogramaHolder(View itemView,OnPictogramaListener onPictogramaListener){
             super(itemView);
             pictogramaItemView = itemView.findViewById((R.id.nombre_pictograma));
             eliminar = itemView.findViewById(R.id.btn_eliminar_pictograma);
             editar = itemView.findViewById(R.id.btn_editar_pictograma);
             imagen = itemView.findViewById(R.id.img_pictograma);
+            this.onPictogramaListener = onPictogramaListener;
+            itemView.setOnClickListener(this);
+        }
 
-
+        @Override
+        public void onClick(View v) {
+            onPictogramaListener.onPictogramaClick(pictogramaList.get(getAdapterPosition()));
         }
     }
 
-    private final LayoutInflater mInflater;
-    private List<Pictograma> pictogramaList;
-    private List<Pictograma> pictogramaListBusqueda;
 
 
 
-    public PictogramaAdapter(Context context){
+
+    public PictogramaAdapter(Context context, OnPictogramaListener onPictogramaListener){
         mInflater = LayoutInflater.from(context);
+        this.mOnPictogramaListener = onPictogramaListener;
     }
 
 
@@ -81,7 +89,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
 
 
-        return new PictogramaHolder(itemview);
+        return new PictogramaHolder(itemview, mOnPictogramaListener);
     }
 
     @Override
@@ -89,7 +97,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
         if (pictogramaList != null) {
             Pictograma current = pictogramaList.get(position);
 
-            if(current.isPredeterminado()==true){
+            if(current.isPredeterminado()){
 
                // holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
                // holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
@@ -183,4 +191,9 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
         }
     };
+
+
+    public interface OnPictogramaListener{
+        void onPictogramaClick(Pictograma posicion);
+    }
 }

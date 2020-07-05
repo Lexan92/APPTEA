@@ -41,7 +41,7 @@ import roomsqlite.repositorios.PictogramaRepository;
  * Use the {@link Detalle_Pictograma#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Detalle_Pictograma extends Fragment {
+public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.OnPictogramaListener {
 
 
     private static final int ACTIVITY_REQUEST_CODE = 10;
@@ -93,7 +93,7 @@ public class Detalle_Pictograma extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.lista_pictogramas);
-        adapter = new PictogramaAdapter(getActivity());
+        adapter = new PictogramaAdapter(getActivity(), Detalle_Pictograma.this);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
@@ -154,4 +154,8 @@ public class Detalle_Pictograma extends Fragment {
         Runtime.getRuntime().gc();
     }
 
+    @Override
+    public void onPictogramaClick(Pictograma posicion) {
+
+    }
 }

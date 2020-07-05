@@ -35,7 +35,7 @@ public interface JuegoDAO {
     void deleteJuego(Juego juego);
 
 
-    @Query("SELECT * FROM "+Juego.TABLE_NAME+" WHERE categoria_juego_id=:id")
+    @Query("SELECT * FROM "+Juego.TABLE_NAME+ " WHERE categoria_juego_id=:id")
     LiveData<List<Juego>> findJuegosByCategoria(int id);
 
     @Query("SELECT * FROM " +Juego.TABLE_NAME + " ORDER BY juego_id DESC LIMIT 1")

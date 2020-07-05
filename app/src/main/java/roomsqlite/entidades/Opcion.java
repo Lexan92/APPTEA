@@ -23,13 +23,14 @@ public class Opcion {
     public static final String TABLE_NAME = "opcion";
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true)
-    @NonNull
     private int opcion_id;
     @ColumnInfo(index = true)
-    @NonNull
     private int pregunta_id;
-    @NonNull
+    @ColumnInfo(index = true)
+    private int pictograma_id;
+
     private boolean opcion_respuesta;
+
 
     public int getOpcion_id() {
         return opcion_id;
@@ -53,5 +54,13 @@ public class Opcion {
 
     public void setOpcion_respuesta(boolean opcion_respuesta) {
         this.opcion_respuesta = opcion_respuesta;
+    }
+
+    public int getPictograma_id() {
+        return pictograma_id;
+    }
+
+    public void setPictograma_id(int pictograma_id) {
+        this.pictograma_id = pictograma_id;
     }
 }

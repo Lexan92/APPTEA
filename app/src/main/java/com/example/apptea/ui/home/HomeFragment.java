@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -66,8 +67,7 @@ public class HomeFragment extends Fragment {
        juegos.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Toast.makeText(getActivity(), "Juegos Interactivos pronto estará disponible",
-                       Toast.LENGTH_LONG).show();
+               Navigation.findNavController(v).navigate(R.id.action_nav_home_to_nav_gestion_juego);
            }
        });
 

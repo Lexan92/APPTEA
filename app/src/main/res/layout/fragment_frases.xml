@@ -17,28 +17,28 @@
     tools:context=".ui.frases.frasesFragment"
     android:orientation="vertical">
 
- <!--  <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="4">
+        android:layout_weight=".25">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_frases"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
-            android:layout_weight="2"
-            tools:listitem="@layout/fragment_item_categoria_pictograma" />
+            android:layout_weight=".75"
+            tools:listitem="@layout/fragment_item_pic_frases" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_play"
             style="?attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="0dp"
-            android:layout_weight="1"
+            android:layout_weight=".25"
             app:icon="@drawable/ic_mode_edit_black_24dp" />
 
     </LinearLayout>
@@ -48,19 +48,19 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimary" />
--->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_categorias"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:scrollbars="horizontal"
-        android:layout_weight="4"
-        tools:listitem="@layout/fragment_item_categoria_pictograma" >
+        android:layout_weight=".25"
+        tools:listitem="@layout/fragment_item_frases" >
 
     </androidx.recyclerview.widget.RecyclerView>
 
- <!--     <View
+      <View
        android:id="@+id/divider2"
        android:layout_width="match_parent"
        android:layout_height="1dp"
@@ -69,10 +69,10 @@
 <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recycler_picto"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="2"
-       tools:listitem="@layout/fragment_item_categoria_pictograma" />
+       android:layout_height="0dp"
+       android:layout_weight=".50"
+       tools:listitem="@layout/fragment_item_pic_frases" />
 
--->
+
 
 </LinearLayout>

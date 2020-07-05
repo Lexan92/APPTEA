@@ -44,4 +44,8 @@ public class PreguntaRepository {
     public LiveData<List<Pregunta>> findPreguntasByIdJuego(int id){
         return preguntaDAO.getPreguntasByJuego(id);
     }
+
+//    public LiveData<Pregunta> obtenerUltima(){
+//        return preguntaDAO.obtenerUltimaPregunta();
+//    }
 }

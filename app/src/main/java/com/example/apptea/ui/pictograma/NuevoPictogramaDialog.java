@@ -49,13 +49,11 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     private static final String CARPETA_PRINCIPAL = "misImagenesApp/";//directorio principal
     private static final String CARPETA_IMAGEN = "imagenes";//carpeta donde se guardan las fotos
     private static final String DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN;//ruta carpeta de directorios
-    private String path;//almacena la ruta de la imagen
     private static final int COD_SELECCIONA = 10;
     private static final int COD_FOTO = 20;
     MaterialButton botonRegistrar, botonSeleccionar, botonCancelar;
     ImageView imgFoto;
     EditText nombrePictograma;
-    Bitmap bitmap=null;
     boolean imagen = false;
 
 

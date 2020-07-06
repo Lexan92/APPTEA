@@ -49,4 +49,8 @@ public class JuegoRepository {
     public LiveData<Juego> obtenerUltimo(){
         return juegoDAO.obtenerUltimoJuego();
     }
+
+    public LiveData<List<Juego>> obtenerTodosJuegos(){
+        return juegoDAO.getAllJuegos();
+    }
 }

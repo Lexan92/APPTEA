@@ -24,10 +24,12 @@ import roomsqlite.repositorios.JuegoRepository;
 public class JuegoViewModel extends AndroidViewModel {
 
     private JuegoRepository juegoRepository;
+    private LiveData<List<Juego>> todosJuegos;
 
     public JuegoViewModel(@NonNull Application application) {
         super(application);
         juegoRepository = new JuegoRepository(application);
+        todosJuegos = juegoRepository.obtenerTodosJuegos();
 
     }
 
@@ -49,6 +51,10 @@ public class JuegoViewModel extends AndroidViewModel {
 
     public LiveData<Juego> obtenerUltimoJuego(){
         return juegoRepository.obtenerUltimo();
+    }
+
+    public LiveData<List<Juego>> obtenerTodosLosJuegos(){
+        return todosJuegos;
     }
 
 }

@@ -40,4 +40,7 @@ public interface JuegoDAO {
 
     @Query("SELECT * FROM " +Juego.TABLE_NAME + " ORDER BY juego_id DESC LIMIT 1")
     LiveData<Juego> obtenerUltimoJuego();
+
+    @Query("SELECT * FROM "+Juego.TABLE_NAME +" ORDER BY juego_id ASC" )
+    LiveData<List<Juego>> getAllJuegos();
 }

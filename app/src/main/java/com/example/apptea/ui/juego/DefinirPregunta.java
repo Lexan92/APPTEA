@@ -10,15 +10,8 @@
 
 package com.example.apptea.ui.juego;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Path;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +19,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
@@ -45,7 +43,6 @@ import roomsqlite.entidades.Pregunta;
 
 public class DefinirPregunta extends AppCompatActivity {
 
-    public static final int resultado = 0;
     boolean isCheckedOpcionUno = false;
     boolean isCheckedOpcionDos = false;
     boolean isCheckedOpcionTres = false;
@@ -56,6 +53,8 @@ public class DefinirPregunta extends AppCompatActivity {
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
     LiveData<Pictograma> pictogramaUno, pictogramaDos,pictogramaTres,pictogramaCuatro;
+    LiveData<Juego> juego;
+    Juego juegoNuevo = new Juego();
     EditText  tituloPregunta;
     ImageButton opcionBoton1,opcionBoton2,opcionBoton3,opcionBoton4;
     Button guardar;
@@ -75,7 +74,7 @@ public class DefinirPregunta extends AppCompatActivity {
         pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
         preguntaViewModel = new ViewModelProvider(this).get(PreguntaViewModel.class);
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
-        LiveData<Juego> juego = juegoViewModel.obtenerUltimoJuego();
+
         guardar = findViewById(R.id.guardar_pregunta);
         nombreJuego = findViewById(R.id.editNombreJuego1);
         tituloPregunta = findViewById(R.id.nombre_pregunta);
@@ -89,6 +88,9 @@ public class DefinirPregunta extends AppCompatActivity {
         txt4 = findViewById(R.id.nombre_opcion_cuatro);
         PreguntaDAO preguntaDAO = appDatabase.getDatabase(getApplicationContext()).preguntaDAO();
         Pregunta preguntaNueva = new Pregunta();
+        validarObjeto();
+
+
 
 
         //Escucha del boton guardar
@@ -98,12 +100,16 @@ public class DefinirPregunta extends AppCompatActivity {
 
                 if(!tituloPregunta.getText().toString().isEmpty()){
                     preguntaNueva.setTitulo_pregunta(tituloPregunta.getText().toString());
+                    if (getIntent()==null) {
                     juego.observe(DefinirPregunta.this, new Observer<Juego>() {
                         @Override
                         public void onChanged(Juego juego) {
                             preguntaNueva.setJuego_id(juego.getJuego_id());
                         }
                     });
+                    } else {
+                        preguntaNueva.setJuego_id(juegoNuevo.getJuego_id());
+                    }
                     //guardado de la pregunta
                     preguntaViewModel.insert(preguntaNueva);
 
@@ -218,13 +224,7 @@ public class DefinirPregunta extends AppCompatActivity {
             }
         });
 
-        //observando el elemento del nombre del juego en pantalla
-        juego.observe(this, new Observer<Juego>() {
-            @Override
-            public void onChanged(Juego juego) {
-                nombreJuego.setText(juego.getJuego_nombre());
-            }
-        });
+
 
         //elementos de lottiAnimation, uno por cada checkbox
         LottieAnimationView checkedDone1 = findViewById(R.id.check_opcion_uno);
@@ -296,8 +296,25 @@ public class DefinirPregunta extends AppCompatActivity {
         });
     }
 
+    private void validarObjeto() {
+        if(getIntent()==null) {
+            juego = juegoViewModel.obtenerUltimoJuego();
 
+            //observando el elemento del nombre del juego en pantalla
+            juego.observe(this, new Observer<Juego>() {
+                @Override
+                public void onChanged(Juego juego) {
+                    nombreJuego.setText(juego.getJuego_nombre());
+                }
+            });
+        } else {
 
+            juegoNuevo = (Juego) getIntent().getSerializableExtra("juegoNuevo");
+            Log.d("Pregunta","definir pregunta, titulo: "+juegoNuevo.getJuego_nombre());
+            nombreJuego.setText(juegoNuevo.getJuego_nombre());
+        }
+
+    }
 
 
     @Override

@@ -22,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +37,7 @@ import android.widget.TextView;
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.ui.juego.NuevoJuego;
+import com.example.apptea.ui.juego.VisorPregunta;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -52,7 +54,7 @@ import roomsqlite.entidades.Juego;
  * Use the {@link Detalle_Juego} factory method to
  * create an instance of this fragment.
  */
-public class Detalle_Juego extends Fragment {
+public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListener{
 
     private JuegoViewModel juegoViewModel;
     TextView textoTituloCategoria;
@@ -88,7 +90,7 @@ public class Detalle_Juego extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.lista_juegos);
-        adapter = new JuegoAdapter(getActivity());
+        adapter = new JuegoAdapter(getActivity(),this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
@@ -161,10 +163,7 @@ public class Detalle_Juego extends Fragment {
                 });
 
                 builder.show();
-
-
             }
-
 
 
             @Override
@@ -178,7 +177,20 @@ public class Detalle_Juego extends Fragment {
         });
 
 
+
     }
 
+    //METODO PARA INGRESAR A LOS JUEGOS CREADOS
+    @Override
+    public void onJuegoClick(Juego juego) {
+        Intent intent = new Intent(getActivity(), VisorPregunta.class);
+        intent.putExtra("juego",juego);
+        startActivity(intent);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
 }

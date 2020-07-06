@@ -44,7 +44,6 @@ public class VisorPregunta extends AppCompatActivity {
     TextView tituloPregunta, tituloJuego, contadorPreguntas,txt1,txt2,txt3,txt4;
     LiveData<List<Pregunta>> listadoPreguntas;
     LiveData<List<Opcion>> listaOpciones;
-    boolean tienePreguntas = false;
     Juego juego = new Juego();
 
 
@@ -79,21 +78,16 @@ public class VisorPregunta extends AppCompatActivity {
             @Override
             public void onChanged(List<Pregunta> preguntas) {
 
-                if(preguntas.isEmpty()){
-                    Intent intent = new Intent(getApplicationContext(),JuegoPrincipal.class);
-                    intent.putExtra("juego",juego);
-                    startActivity(intent);
-                    finish();
-                }else {
+
                     tituloPregunta.setText(preguntas.get(0).getTitulo_pregunta());
                     tituloJuego.setText(juego.getJuego_nombre());
                     setearOpciones(preguntas.get(0).getPregunta_id());
                     contadorPreguntas.setText("1 / " + preguntas.size());
 
-                }
 
             }
         });
+
 
     }
 
@@ -111,6 +105,8 @@ public class VisorPregunta extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        listadoPreguntas=null;
+        listaOpciones=null;
         Runtime.getRuntime().gc();
     }
 }

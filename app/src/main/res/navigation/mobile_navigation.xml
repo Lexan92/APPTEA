@@ -108,7 +108,9 @@
         android:id="@+id/juegoPrincipal"
         android:name="com.example.apptea.ui.juego.JuegoPrincipal"
         android:label="activity_juego_principal"
-        tools:layout="@layout/activity_juego_principal" />
+        tools:layout="@layout/activity_juego_principal" >
+
+    </activity>
 
     <fragment
         android:id="@+id/frasesFragment"

@@ -28,13 +28,13 @@ public class ImageConverter {
 
     public static byte[] convertirImagenAByteArray(Bitmap bitmap){
 
-        //el bitmap es  redimensionado a 64x64 pixeles
-       // bitmap=redimensionarImagen(bitmap,250,250);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        //el metodo comprime el bitmap en formato JPEG a una calidad del 75%
-        bitmap.compress(Bitmap.CompressFormat.JPEG,75,stream);
 
-        return stream.toByteArray();
+            //el bitmap es  redimensionado a 150x150 pixeles
+            bitmap=redimensionarImagen(bitmap,150,150);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG,90,stream);
+            return stream.toByteArray();
+
     }
 
     private static Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {

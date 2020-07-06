@@ -33,12 +33,12 @@ import roomsqlite.entidades.Juego;
 
 
 
-public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHolder> implements View.OnClickListener {
+public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHolder> {
 
     private OnJuegoListener mOnJuegoListener;
     private List<Juego> juegos;
     private final LayoutInflater cjInflater;
-    private View.OnClickListener listener;
+
     private JuegoAdapter.ButtonClicked buttonClicked;
 
 
@@ -96,7 +96,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     @Override
     public JuegoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View layoutView = cjInflater.inflate(R.layout.fragment_item__juego,parent,false);
-        layoutView.setOnClickListener(this);
         return new JuegoViewHolder(layoutView,mOnJuegoListener);
     }
 
@@ -108,11 +107,11 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
                 holder.nombreJuego.setText(juego.getJuego_nombre());
                 holder.editar.setVisibility(View.GONE);
                 holder.eliminar.setVisibility(View.GONE);
-                holder.setIsRecyclable(false);
+                holder.setIsRecyclable(true);
 
             } else {
                 holder.nombreJuego.setText(juego.getJuego_nombre());
-               // holder.setIsRecyclable(false);
+               holder.setIsRecyclable(true);
             }
         }
     }
@@ -129,17 +128,9 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
         else return 0;
     }
 
-    @Override
-    public void onClick(View v) {
-        if(listener!=null){
-            listener.onClick(v);
-        }
-    }
 
 
-    public void setOnClickListener(View.OnClickListener listener){
-        this.listener = listener;
-    }
+
 
     @Override
     public void onViewRecycled(@NonNull JuegoViewHolder holder) {

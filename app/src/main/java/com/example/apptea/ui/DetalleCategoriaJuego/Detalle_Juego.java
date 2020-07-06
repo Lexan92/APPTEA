@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -36,8 +37,12 @@ import android.widget.TextView;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
+import com.example.apptea.ui.juego.OpcionViewModel;
+import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
+import com.example.apptea.ui.pictograma.Detalle_Pictograma;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,6 +53,7 @@ import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Juego;
+import roomsqlite.entidades.Opcion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,12 +63,12 @@ import roomsqlite.entidades.Juego;
 public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListener{
 
     private JuegoViewModel juegoViewModel;
-    TextView textoTituloCategoria;
     RecyclerView recyclerView;
-    Juego juego = null;
     JuegoAdapter adapter;
     CategoriaJuego categoriaJuego=null;
-    private boolean confirmacion=false;
+    PreguntaViewModel preguntaViewModel;
+
+
 
 
     public Detalle_Juego() {
@@ -94,13 +100,12 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
-
+        preguntaViewModel= new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
 
         Bundle objetoCategoriaJuego=getArguments();
 
         if(objetoCategoriaJuego!= null){
             categoriaJuego = (CategoriaJuego) objetoCategoriaJuego.getSerializable("objeto");
-//            textoTituloCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
             juegoViewModel.findJuegosByCategoriaId(categoriaJuego.getCategoriaJuegoId()).observe(getActivity(), new Observer<List<Juego>>() {
                 @Override
                 public void onChanged(List<Juego> juegos) {
@@ -145,7 +150,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
                     public void onClick(DialogInterface dialog, int which) {
                         juegoViewModel.delete(juego);
                         adapter.notifyDataSetChanged();
-                        confirmacion = true;
+
                     }
                 });
 
@@ -183,9 +188,22 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     //METODO PARA INGRESAR A LOS JUEGOS CREADOS
     @Override
     public void onJuegoClick(Juego juego) {
-        Intent intent = new Intent(getActivity(), VisorPregunta.class);
-        intent.putExtra("juego",juego);
-        startActivity(intent);
+
+        int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
+        Log.d("DetalleJuego","NUMERO "+numero);
+        if (numero>0){
+            Intent intent = new Intent(getActivity(), VisorPregunta.class);
+            intent.putExtra("juego",juego);
+            startActivity(intent);
+
+
+        } else if (numero==0){
+            Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
+            intent.putExtra("juego",juego);
+            startActivity(intent);
+
+        }
+
     }
 
     @Override

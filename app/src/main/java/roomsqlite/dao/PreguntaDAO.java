@@ -39,4 +39,7 @@ public interface PreguntaDAO {
 
     @Query("SELECT * FROM "+Pregunta.TABLE_NAME + " ORDER BY pregunta_id DESC LIMIT 1")
     Pregunta obtenerUltimaPregunta();
+
+    @Query("SELECT COUNT (juego_id) FROM "+Pregunta.TABLE_NAME + " WHERE juego_id =:id")
+    int numeroPreguntas(int id);
 }

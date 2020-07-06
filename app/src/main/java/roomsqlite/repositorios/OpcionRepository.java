@@ -39,4 +39,8 @@ public class OpcionRepository {
     public LiveData<List<Opcion>> findOpcionesByIdPregunta(int id){
         return opcionDAO.getOpcionesByPregunta(id);
     }
+
+    public int numeroOpciones(int id){
+        return opcionDAO.numeroOpciones(id);
+    }
 }

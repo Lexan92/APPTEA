@@ -103,6 +103,8 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
     protected void onDestroy() {
         super.onDestroy();
         pictogramaViewModel=null;
+        adapter=null;
+        recyclerView = null;
         Runtime.getRuntime().gc();
     }
 }

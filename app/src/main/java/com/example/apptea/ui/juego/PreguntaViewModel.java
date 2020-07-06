@@ -44,8 +44,8 @@ public class PreguntaViewModel extends AndroidViewModel {
         return preguntaRepository.findPreguntasByIdJuego(id);
     }
 
-//    public LiveData<Pregunta> obtenerUltimaPregunta(){
-//        return preguntaRepository.obtenerUltima();
-//    }
+    public int numeroPreguntas(int id){
+        return preguntaRepository.numeroPreguntas(id);
+    }
 
 }

@@ -32,14 +32,32 @@
             android:layout_weight=".75"
             tools:listitem="@layout/fragment_item_pic_frases" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_play"
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="0dp"
-            android:layout_weight=".25"
-            app:icon="@drawable/ic_mode_edit_black_24dp" />
+       <LinearLayout
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight=".25"
+           android:orientation="vertical">
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btn_play"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight=".50"
+               app:icon="@drawable/ic_play"
+               app:iconSize="@android:dimen/app_icon_size"
+               app:iconGravity="textStart"/>
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btn_backspace"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight=".50"
+               app:icon="@drawable/ic_backspace"
+               app:iconSize="@android:dimen/app_icon_size"
+               app:iconGravity="textStart"/>
+
+       </LinearLayout>
+
 
     </LinearLayout>
 

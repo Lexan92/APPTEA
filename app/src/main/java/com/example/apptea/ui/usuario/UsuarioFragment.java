@@ -117,9 +117,9 @@ public class UsuarioFragment extends Fragment {
                 //Se inicializa el metodo para enviar correo
                 EnviarCorreo enviarCorreo = new EnviarCorreo();
                 enviarCorreo.Enviar(codigo,usuario.getCorreo());
-                progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
 
+                Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(getActivity(),ValidarCodigo.class);
                 intent.putExtra("codigo", codigo);
                 startActivity(intent);

@@ -36,4 +36,8 @@ public class OpcionViewModel extends AndroidViewModel {
         return opcionRepository.findOpcionesByIdPregunta(id);
     }
 
+    public int numeroOpciones(int id){
+        return opcionRepository.numeroOpciones(id);
+    }
+
 }

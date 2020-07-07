@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_detalle_Juego_to_nav_gestion_juego"
             app:destination="@id/nav_gestion_juego" />
+        <action
+            android:id="@+id/action_detalle_Juego_to_visorPregunta"
+            app:destination="@id/visorPregunta" />
     </fragment>
     <fragment
         android:id="@+id/detalle_Pictograma"
@@ -105,7 +108,9 @@
         android:id="@+id/juegoPrincipal"
         android:name="com.example.apptea.ui.juego.JuegoPrincipal"
         android:label="activity_juego_principal"
-        tools:layout="@layout/activity_juego_principal" />
+        tools:layout="@layout/activity_juego_principal" >
+
+    </activity>
 
     <fragment
         android:id="@+id/frasesFragment"
@@ -117,6 +122,11 @@
         android:name="com.example.apptea.ui.usuario.EditUsuario"
         android:label="activity_editar_usuario"
         tools:layout="@layout/activity_editar_usuario" />
+    <activity
+        android:id="@+id/visorPregunta"
+        android:name="com.example.apptea.ui.juego.VisorPregunta"
+        android:label="activity_visor_pregunta"
+        tools:layout="@layout/activity_visor_pregunta" />
 
 
 </navigation>

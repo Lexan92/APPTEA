@@ -49,14 +49,13 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     private static final String CARPETA_PRINCIPAL = "misImagenesApp/";//directorio principal
     private static final String CARPETA_IMAGEN = "imagenes";//carpeta donde se guardan las fotos
     private static final String DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN;//ruta carpeta de directorios
-    private String path;//almacena la ruta de la imagen
     private static final int COD_SELECCIONA = 10;
     private static final int COD_FOTO = 20;
     MaterialButton botonRegistrar, botonSeleccionar, botonCancelar;
     ImageView imgFoto;
     EditText nombrePictograma;
-    Bitmap bitmap=null;
     boolean imagen = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,11 +95,11 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
             public void onClick(View v) {
                 //inicia guardado de pictogramas
                 //se valida si los campos estan vacios
-                if (nombrePictograma.getText().toString().isEmpty() && imagen==false) {
+                if (nombrePictograma.getText().toString().isEmpty() && !imagen) {
                     nombrePictograma.setError("Campo Requerido");
                     Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
                 } else {
-                    if (imagen==false) {
+                    if (!imagen) {
                         Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
                     } else {
                         if (nombrePictograma.getText().toString().isEmpty()) {
@@ -109,7 +108,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             Pictograma pictograma = new Pictograma();
                             pictograma.setCat_pictograma_id(keyCategoria);
                             pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
-                            pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
+                            pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable)imgFoto.getDrawable()).getBitmap()));
                             pictogramaViewModel.insert(pictograma);
                             Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_LONG).show();
                             finish();
@@ -277,9 +276,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    imgFoto.setImageURI(miPath);
-
-                    //Glide.with(this).load(bitmap).into(imgFoto);
+                    imgFoto.setImageBitmap(bitmap);
                     imagen = true;
                     break;
 

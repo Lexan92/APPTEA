@@ -29,4 +29,7 @@ public interface OpcionDAO {
     void updateOpcion(Opcion opcion);
     @Query("select * from "+Opcion.TABLE_NAME+ " where pregunta_id=:id")
     LiveData<List<Opcion>> getOpcionesByPregunta(int id);
+
+    @Query("SELECT COUNT (pregunta_id) FROM "+ Opcion.TABLE_NAME+ " WHERE pregunta_id=:id")
+    int numeroOpciones(int id);
 }

@@ -45,7 +45,7 @@ public class PreguntaRepository {
         return preguntaDAO.getPreguntasByJuego(id);
     }
 
-//    public LiveData<Pregunta> obtenerUltima(){
-//        return preguntaDAO.obtenerUltimaPregunta();
-//    }
+    public int numeroPreguntas(int id){
+        return preguntaDAO.numeroPreguntas(id);
+    }
 }

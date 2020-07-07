@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class JuegoPrincipal extends AppCompatActivity {
     EditText nombreJuego;
     JuegoViewModel juegoViewModel;
     Button guardar, nuevaPregunta;
+    Juego juegoNuevo = new Juego();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +44,13 @@ public class JuegoPrincipal extends AppCompatActivity {
         guardar = findViewById(R.id.guardar_nombre_juego);
         nuevaPregunta = findViewById(R.id.nueva_pregunta);
         juegoViewModel = new ViewModelProvider(this).get(JuegoViewModel.class);
-        LiveData<Juego> juego = juegoViewModel.obtenerUltimoJuego();
-        Juego juegoNuevo = new Juego();
 
-        juego.observe(this, new Observer<Juego>() {
-            @Override
-            public void onChanged(Juego juego) {
-                nombreJuego.setText(juego.getJuego_nombre());
 
-                juegoNuevo.setJuego_id(juego.getJuego_id());
-                juegoNuevo.setCategoria_juego_id(juego.getCategoria_juego_id());
-                juegoNuevo.setJuego_nombre(juego.getJuego_nombre());
-                juegoNuevo.setJuego_predeterminado(juego.isJuego_predeterminado());
-            }
-        });
+
+            //setea el nombre del juego
+            juegoNuevo = (Juego) getIntent().getSerializableExtra("juego");
+            nombreJuego.setText(juegoNuevo.getJuego_nombre());
+
 
 
         guardar.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +67,8 @@ public class JuegoPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),DefinirPregunta.class);
+                intent.putExtra("juegoNuevo",juegoNuevo);
+                Log.d("Pregunta","titulo: "+juegoNuevo.getJuego_nombre());
                 startActivity(intent);
                 finish();
             }
@@ -79,4 +76,9 @@ public class JuegoPrincipal extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
 }

@@ -93,7 +93,6 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
 
     @Override
     public void onPictogramaClick(Pictograma posicion) {
-        Log.d("PIC","D: "+posicion.getPictograma_id());
         Intent intentRespuesta = new Intent();
         intentRespuesta.putExtra("id",posicion.getPictograma_id());
         setResult(Activity.RESULT_OK,intentRespuesta);
@@ -104,6 +103,8 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
     protected void onDestroy() {
         super.onDestroy();
         pictogramaViewModel=null;
+        adapter=null;
+        recyclerView = null;
         Runtime.getRuntime().gc();
     }
 }

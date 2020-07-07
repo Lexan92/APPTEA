@@ -17,10 +17,12 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName =Juego.TABLE_NAME,foreignKeys = @ForeignKey(entity = CategoriaJuego.class, parentColumns = "categoriaJuegoId", childColumns = "categoria_juego_id", onDelete = CASCADE,onUpdate = CASCADE))
-public class Juego {
+public class Juego implements Serializable {
     public static final String TABLE_NAME = "juego";
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true)

@@ -60,7 +60,7 @@ public class EditContrasenia extends AppCompatActivity {
                 if (validaciones() > 0) {
                     Toast.makeText(getApplicationContext(), "Debe completar los campos obligatorios", Toast.LENGTH_LONG).show();
                 } else {
-                    if (contra1.equals(contra2)) {
+                    if (contra1.getText().toString().equals(contra2.getText().toString())) {
 
                         //Se obtiene el usuario guardado se obtiene la primera fila.
                         UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getApplicationContext()).usuarioDao();

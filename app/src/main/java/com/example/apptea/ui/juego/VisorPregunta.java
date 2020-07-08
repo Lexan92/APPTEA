@@ -41,7 +41,7 @@ public class VisorPregunta extends AppCompatActivity {
     boolean isCheckedOpcionDos = false;
     boolean isCheckedOpcionTres = false;
     boolean isCheckedOpcionCuatro = false;
-    ImageButton opcionBoton1, opcionBoton2, opcionBoton3, opcionBoton4, editarPregunta, preguntaSiguiente, preguntaAnterior;
+    ImageButton opcionBoton1, opcionBoton2, opcionBoton3, opcionBoton4, editarPregunta, borrarPregunta, preguntaSiguiente, preguntaAnterior;
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
@@ -65,6 +65,7 @@ public class VisorPregunta extends AppCompatActivity {
         setContentView(R.layout.activity_visor_pregunta);
         nuevapregunta = findViewById(R.id.nueva_pregunta_visor);
         editarPregunta = findViewById(R.id.editar_pregunta);
+        borrarPregunta = findViewById(R.id.eliminar_pregunta);
         preguntaAnterior = findViewById(R.id.pregunta_anterior);
         preguntaSiguiente = findViewById(R.id.siguiente_pregunta);
         tituloJuego = findViewById(R.id.editNombreJuegoVisor);
@@ -93,11 +94,12 @@ public class VisorPregunta extends AppCompatActivity {
         listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
             @Override
             public void onChanged(List<Pregunta> preguntas) {
-
+                posicion = 0;
                 tituloPregunta.setText(preguntas.get(0).getTitulo_pregunta());
                 tituloJuego.setText(juego.getJuego_nombre());
                 setearOpciones(preguntas.get(0).getPregunta_id());
-                contadorPreguntas.setText("1 / " + preguntas.size());
+                contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
+
 
             }
         });
@@ -128,43 +130,46 @@ public class VisorPregunta extends AppCompatActivity {
 
         //EDITAR PREGUNTA
 
-        editarPregunta.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Editar: en proceso de edicion",
+        editarPregunta.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Editar: en desarrollo",
+                Toast.LENGTH_LONG).show());
+
+        //BORRAR PREGUNTA
+        borrarPregunta.setOnClickListener(v -> Toast.makeText(getApplicationContext(),"Borrar: en desarrollo",
                 Toast.LENGTH_LONG).show());
 
         //PREGUNTA SIGUIENTE
 
         preguntaSiguiente.setOnClickListener(v -> {
-
-            while (posicion <= 10) {
-                posicion++;
-                listaOpciones.observe(VisorPregunta.this, opciones -> {
-                    if (opciones.get(posicion) != null) {
-                        pictograma = pictogramaViewModel.getPictogramaById(opciones.get(posicion).getPictograma_id());
-
-                        //seteado de imagen y texto del pictograma
-                        pictograma.observe(VisorPregunta.this, pictograma -> {
-                            opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                            txt2.setText(pictograma.getPictograma_nombre());
-
-                        });
-                        //seteado de checkbox
-                        if (opciones.get(posicion).isOpcion_respuesta()) {
-                            checkedDone2.setMinAndMaxProgress(1.0f, 1.0f);
-                            checkedDone2.playAnimation();
-                        } else {
-                            checkedDone2.setMinAndMaxProgress(0.0f, 0.0f);
-                            checkedDone2.playAnimation();
-                        }
-
-                    }
-                });
+            posicion++;
+            listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
+                int sizePreguntas = preguntas.size();
+                if (posicion <= sizePreguntas - 1) {
+                    tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
+                    tituloJuego.setText(juego.getJuego_nombre());
+                    setearOpciones(preguntas.get(posicion).getPregunta_id());
+                    contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
+                } else {
+                    posicion--;
+                }
+            });
 
 
-            }
         });
 
         //PREGUNTA ANTERIOR
         preguntaAnterior.setOnClickListener(v -> {
+            posicion--;
+            listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
+
+                if (0 <= posicion) {
+                    tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
+                    tituloJuego.setText(juego.getJuego_nombre());
+                    setearOpciones(preguntas.get(posicion).getPregunta_id());
+                    contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
+                } else {
+                    posicion++;
+                }
+            });
 
         });
 
@@ -190,11 +195,10 @@ public class VisorPregunta extends AppCompatActivity {
                             // seteado de checkbox
                             if (opciones.get(0).isOpcion_respuesta()) {
                                 checkedDone1.setMinAndMaxProgress(1.0f, 1.0f);
-                                checkedDone1.playAnimation();
                             } else {
                                 checkedDone1.setMinAndMaxProgress(0.0f, 0.0f);
-                                checkedDone1.playAnimation();
                             }
+                            checkedDone1.playAnimation();
                             break;
 
                         case 1:
@@ -203,11 +207,10 @@ public class VisorPregunta extends AppCompatActivity {
                             // seteado de checkbox
                             if (opciones.get(1).isOpcion_respuesta()) {
                                 checkedDone2.setMinAndMaxProgress(1.0f, 1.0f);
-                                checkedDone2.playAnimation();
                             } else {
                                 checkedDone2.setMinAndMaxProgress(0.0f, 0.0f);
-                                checkedDone2.playAnimation();
                             }
+                            checkedDone2.playAnimation();
                             break;
 
 
@@ -217,11 +220,10 @@ public class VisorPregunta extends AppCompatActivity {
                             // seteado de checkbox
                             if (opciones.get(2).isOpcion_respuesta()) {
                                 checkedDone3.setMinAndMaxProgress(1.0f, 1.0f);
-                                checkedDone3.playAnimation();
                             } else {
                                 checkedDone3.setMinAndMaxProgress(0.0f, 0.0f);
-                                checkedDone3.playAnimation();
                             }
+                            checkedDone3.playAnimation();
                             break;
 
                         case 3:
@@ -230,11 +232,10 @@ public class VisorPregunta extends AppCompatActivity {
                             // seteado de checkbox
                             if (opciones.get(3).isOpcion_respuesta()) {
                                 checkedDone4.setMinAndMaxProgress(1.0f, 1.0f);
-                                checkedDone4.playAnimation();
                             } else {
                                 checkedDone4.setMinAndMaxProgress(0.0f, 0.0f);
-                                checkedDone4.playAnimation();
                             }
+                            checkedDone4.playAnimation();
                             break;
 
                     }
@@ -252,8 +253,13 @@ public class VisorPregunta extends AppCompatActivity {
         super.onDestroy();
         listadoPreguntas = null;
         listaOpciones = null;
+        preguntaViewModel=null;
+        pictograma=null;
+        juego=null;
+        pictogramaViewModel=null;
+        opcionViewModel=null;
 
         Runtime.getRuntime().gc();
-        Log.d("life", "Ondestroy visorpregunta");
+
     }
 }

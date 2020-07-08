@@ -10,11 +10,6 @@
 
 package com.example.apptea.ui.juego;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,11 +19,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.airbnb.lottie.LottieAnimationView;
-import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -43,20 +41,22 @@ public class VisorPregunta extends AppCompatActivity {
     boolean isCheckedOpcionDos = false;
     boolean isCheckedOpcionTres = false;
     boolean isCheckedOpcionCuatro = false;
-    ImageButton opcionBoton1,opcionBoton2,opcionBoton3,opcionBoton4;
+    ImageButton opcionBoton1, opcionBoton2, opcionBoton3, opcionBoton4, editarPregunta, preguntaSiguiente, preguntaAnterior;
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
     Button nuevapregunta;
-    TextView tituloPregunta, tituloJuego, contadorPreguntas,txt1,txt2,txt3,txt4;
+    TextView tituloPregunta, tituloJuego, contadorPreguntas, txt1, txt2, txt3, txt4;
     LiveData<List<Pregunta>> listadoPreguntas;
     LiveData<List<Opcion>> listaOpciones;
+    LiveData<Pictograma> pictograma;
     Juego juego = new Juego();
-    LottieAnimationView checkedDone1 ;
-    LottieAnimationView checkedDone2 ;
-    LottieAnimationView checkedDone3 ;
-    LottieAnimationView checkedDone4 ;
-
+    LottieAnimationView checkedDone1;
+    LottieAnimationView checkedDone2;
+    LottieAnimationView checkedDone3;
+    LottieAnimationView checkedDone4;
+    int posicion;
+    public int contador = 0;
 
 
     @Override
@@ -64,6 +64,9 @@ public class VisorPregunta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visor_pregunta);
         nuevapregunta = findViewById(R.id.nueva_pregunta_visor);
+        editarPregunta = findViewById(R.id.editar_pregunta);
+        preguntaAnterior = findViewById(R.id.pregunta_anterior);
+        preguntaSiguiente = findViewById(R.id.siguiente_pregunta);
         tituloJuego = findViewById(R.id.editNombreJuegoVisor);
         tituloPregunta = findViewById(R.id.nombre_pregunta_visor);
         contadorPreguntas = findViewById(R.id.contador_preguntas);
@@ -81,8 +84,8 @@ public class VisorPregunta extends AppCompatActivity {
         txt4 = findViewById(R.id.nombre_opcion_cuatro_visor);
         checkedDone1 = findViewById(R.id.check_opcion_uno_visor);
         checkedDone2 = findViewById(R.id.check_opcion_dos_visor);
-         checkedDone3 = findViewById(R.id.check_opcion_tres_visor);
-         checkedDone4 = findViewById(R.id.check_opcion_cuatro_visor);
+        checkedDone3 = findViewById(R.id.check_opcion_tres_visor);
+        checkedDone4 = findViewById(R.id.check_opcion_cuatro_visor);
 
 
         listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
@@ -90,10 +93,11 @@ public class VisorPregunta extends AppCompatActivity {
         listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
             @Override
             public void onChanged(List<Pregunta> preguntas) {
-                    tituloPregunta.setText(preguntas.get(0).getTitulo_pregunta());
-                    tituloJuego.setText(juego.getJuego_nombre());
-                    setearOpciones(preguntas.get(0).getPregunta_id());
-                    contadorPreguntas.setText("1 / " + preguntas.size());
+
+                tituloPregunta.setText(preguntas.get(0).getTitulo_pregunta());
+                tituloJuego.setText(juego.getJuego_nombre());
+                setearOpciones(preguntas.get(0).getPregunta_id());
+                contadorPreguntas.setText("1 / " + preguntas.size());
 
             }
         });
@@ -106,12 +110,12 @@ public class VisorPregunta extends AppCompatActivity {
                 listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
                     @Override
                     public void onChanged(List<Pregunta> preguntas) {
-                        if ((preguntas.size())+1<=10){
-                            Intent intent = new Intent(getApplicationContext(),DefinirPregunta.class);
-                            intent.putExtra("juegoNuevo",juego);
+                        if ((preguntas.size()) + 1 <= 10) {
+                            Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
+                            intent.putExtra("juegoNuevo", juego);
                             startActivity(intent);
                             finish();
-                        }else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más preguntas",
                                     Toast.LENGTH_LONG).show();
                         }
@@ -122,55 +126,134 @@ public class VisorPregunta extends AppCompatActivity {
             }
         });
 
+        //EDITAR PREGUNTA
+
+        editarPregunta.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Editar: en proceso de edicion",
+                Toast.LENGTH_LONG).show());
+
+        //PREGUNTA SIGUIENTE
+
+        preguntaSiguiente.setOnClickListener(v -> {
+
+            while (posicion <= 10) {
+                posicion++;
+                listaOpciones.observe(VisorPregunta.this, opciones -> {
+                    if (opciones.get(posicion) != null) {
+                        pictograma = pictogramaViewModel.getPictogramaById(opciones.get(posicion).getPictograma_id());
+
+                        //seteado de imagen y texto del pictograma
+                        pictograma.observe(VisorPregunta.this, pictograma -> {
+                            opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            txt2.setText(pictograma.getPictograma_nombre());
+
+                        });
+                        //seteado de checkbox
+                        if (opciones.get(posicion).isOpcion_respuesta()) {
+                            checkedDone2.setMinAndMaxProgress(1.0f, 1.0f);
+                            checkedDone2.playAnimation();
+                        } else {
+                            checkedDone2.setMinAndMaxProgress(0.0f, 0.0f);
+                            checkedDone2.playAnimation();
+                        }
+
+                    }
+                });
+
+
+            }
+        });
+
+        //PREGUNTA ANTERIOR
+        preguntaAnterior.setOnClickListener(v -> {
+
+        });
+
     }
 
+
     private void setearOpciones(int id) {
+
         listaOpciones = opcionViewModel.getOcionesByIdPregunta(id);
-        listaOpciones.observe(VisorPregunta.this, new Observer<List<Opcion>>() {
-            @Override
-            public void onChanged(List<Opcion> opciones) {
-                if (opciones.get(0)!=null){
-//                    opcionBoton1.setImageBitmap(opciones.get(0));
-
-                    LiveData<Pictograma> pictograma;
-
-                    pictograma = pictogramaViewModel.getPictogramaById(opciones.get(0).getPictograma_id());
-
-                    //seteado de imagen y texto del pictograma
-                    pictograma.observe(VisorPregunta.this, new Observer<Pictograma>() {
-                        @Override
-                        public void onChanged(Pictograma pictograma) {
+        listaOpciones.observe(VisorPregunta.this, opciones -> {
+            int size = (opciones.size()) - 1;
+            int count = contador;
+            while (count <= size) {
+                pictograma = pictogramaViewModel.getPictogramaById(opciones.get(count).getPictograma_id());
+                //seteado de imagen y texto del pictograma
+                int finalCount = count;
+                pictograma.observe(VisorPregunta.this, pictograma -> {
+                    switch (finalCount) {
+                        case 0:
                             opcionBoton1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                             txt1.setText(pictograma.getPictograma_nombre());
 
-                        }
-                    });
-                    //seteado de checkbox
-                    if (opciones.get(0).isOpcion_respuesta()){
-                        checkedDone1.setMinAndMaxProgress(1.0f,1.0f);
-                        checkedDone1.playAnimation();
-                    }else {
-                        checkedDone1.setMinAndMaxProgress(0.0f,0.0f);
-                        checkedDone1.playAnimation();
+                            // seteado de checkbox
+                            if (opciones.get(0).isOpcion_respuesta()) {
+                                checkedDone1.setMinAndMaxProgress(1.0f, 1.0f);
+                                checkedDone1.playAnimation();
+                            } else {
+                                checkedDone1.setMinAndMaxProgress(0.0f, 0.0f);
+                                checkedDone1.playAnimation();
+                            }
+                            break;
+
+                        case 1:
+                            opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            txt2.setText(pictograma.getPictograma_nombre());
+                            // seteado de checkbox
+                            if (opciones.get(1).isOpcion_respuesta()) {
+                                checkedDone2.setMinAndMaxProgress(1.0f, 1.0f);
+                                checkedDone2.playAnimation();
+                            } else {
+                                checkedDone2.setMinAndMaxProgress(0.0f, 0.0f);
+                                checkedDone2.playAnimation();
+                            }
+                            break;
+
+
+                        case 2:
+                            opcionBoton3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            txt3.setText(pictograma.getPictograma_nombre());
+                            // seteado de checkbox
+                            if (opciones.get(2).isOpcion_respuesta()) {
+                                checkedDone3.setMinAndMaxProgress(1.0f, 1.0f);
+                                checkedDone3.playAnimation();
+                            } else {
+                                checkedDone3.setMinAndMaxProgress(0.0f, 0.0f);
+                                checkedDone3.playAnimation();
+                            }
+                            break;
+
+                        case 3:
+                            opcionBoton4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            txt4.setText(pictograma.getPictograma_nombre());
+                            // seteado de checkbox
+                            if (opciones.get(3).isOpcion_respuesta()) {
+                                checkedDone4.setMinAndMaxProgress(1.0f, 1.0f);
+                                checkedDone4.playAnimation();
+                            } else {
+                                checkedDone4.setMinAndMaxProgress(0.0f, 0.0f);
+                                checkedDone4.playAnimation();
+                            }
+                            break;
+
                     }
 
 
-
-
-                }
+                });
+                count++;
             }
         });
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        listadoPreguntas=null;
-        listaOpciones=null;
+        listadoPreguntas = null;
+        listaOpciones = null;
 
         Runtime.getRuntime().gc();
-        Log.d("life","Ondestroy visorpregunta");
+        Log.d("life", "Ondestroy visorpregunta");
     }
 }

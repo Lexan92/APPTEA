@@ -227,7 +227,7 @@
     </ScrollView>
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/siguiente_pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -238,7 +238,7 @@
         app:srcCompat="@drawable/ic_siguiente" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/pregunta_anterior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -261,7 +261,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/editar_pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -270,11 +270,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        app:layout_constraintStart_toEndOf="@+id/eliminar_pregunta"
         app:srcCompat="@drawable/ic_edit_48" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/eliminar_pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"

@@ -47,23 +47,22 @@ public class DefinirPregunta extends AppCompatActivity {
     boolean isCheckedOpcionDos = false;
     boolean isCheckedOpcionTres = false;
     boolean isCheckedOpcionCuatro = false;
-    boolean agrego1=false,agrego2=false,agrego3=false,agrego4=false;
+    boolean agrego1 = false, agrego2 = false, agrego3 = false, agrego4 = false;
     JuegoViewModel juegoViewModel;
     PictogramaViewModel pictogramaViewModel;
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
-    LiveData<Pictograma> pictogramaUno, pictogramaDos,pictogramaTres,pictogramaCuatro;
+    LiveData<Pictograma> pictogramaUno, pictogramaDos, pictogramaTres, pictogramaCuatro;
     LiveData<Juego> juego;
     Juego juegoNuevo = new Juego();
-    EditText  tituloPregunta;
-    ImageButton opcionBoton1,opcionBoton2,opcionBoton3,opcionBoton4;
+    EditText tituloPregunta;
+    ImageButton opcionBoton1, opcionBoton2, opcionBoton3, opcionBoton4;
     Button guardar;
-    TextView txt1,txt2,txt3,txt4, nombreJuego;
+    TextView txt1, txt2, txt3, txt4, nombreJuego;
     public static final int UNO = 1;
     public static final int DOS = 2;
     public static final int TRES = 3;
     public static final int CUATRO = 4;
-
 
 
     @Override
@@ -91,22 +90,20 @@ public class DefinirPregunta extends AppCompatActivity {
         validarObjeto();
 
 
-
-
         //Escucha del boton guardar
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(!tituloPregunta.getText().toString().isEmpty()){
+                if (!tituloPregunta.getText().toString().isEmpty()) {
                     preguntaNueva.setTitulo_pregunta(tituloPregunta.getText().toString());
-                    if (getIntent()==null) {
-                    juego.observe(DefinirPregunta.this, new Observer<Juego>() {
-                        @Override
-                        public void onChanged(Juego juego) {
-                            preguntaNueva.setJuego_id(juego.getJuego_id());
-                        }
-                    });
+                    if (getIntent() == null) {
+                        juego.observe(DefinirPregunta.this, new Observer<Juego>() {
+                            @Override
+                            public void onChanged(Juego juego) {
+                                preguntaNueva.setJuego_id(juego.getJuego_id());
+                            }
+                        });
                     } else {
                         preguntaNueva.setJuego_id(juegoNuevo.getJuego_id());
                     }
@@ -120,19 +117,19 @@ public class DefinirPregunta extends AppCompatActivity {
 
                     //seteado de valores para la opcion 1
 
-                    if(agrego1){
+                    if (agrego1) {
                         final Opcion opcion1 = new Opcion();
-                    opcion1.setOpcion_respuesta(isCheckedOpcionUno);
-                    opcion1.setPregunta_id(pregunta1.getPregunta_id());
-                    pictogramaUno.observe(DefinirPregunta.this, new Observer<Pictograma>() {
-                        @Override
-                        public void onChanged(Pictograma pictograma) {
-                            opcion1.setPictograma_id(pictograma.getPictograma_id());
-                        }
-                    });
+                        opcion1.setOpcion_respuesta(isCheckedOpcionUno);
+                        opcion1.setPregunta_id(pregunta1.getPregunta_id());
+                        pictogramaUno.observe(DefinirPregunta.this, new Observer<Pictograma>() {
+                            @Override
+                            public void onChanged(Pictograma pictograma) {
+                                opcion1.setPictograma_id(pictograma.getPictograma_id());
+                            }
+                        });
 
-                    //insert de opcion 1
-                    opcionViewModel.insert(opcion1);
+                        //insert de opcion 1
+                        opcionViewModel.insert(opcion1);
                     }
 
                     //seteado de valores para la opcion 2
@@ -183,8 +180,8 @@ public class DefinirPregunta extends AppCompatActivity {
                     }
 
                     finish();
-                }else {
-                    Snackbar.make(findViewById(R.id.definir_pregunta_view) ,"Debe ingresar un titulo para la pregunta",Snackbar.LENGTH_LONG).show();
+                } else {
+                    Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe ingresar un titulo para la pregunta", Snackbar.LENGTH_LONG).show();
                 }
 
             }
@@ -195,7 +192,7 @@ public class DefinirPregunta extends AppCompatActivity {
         opcionBoton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),BuscarPictograma.class);
+                Intent intent = new Intent(getApplicationContext(), BuscarPictograma.class);
                 startActivityForResult(intent, UNO);
             }
         });
@@ -204,26 +201,25 @@ public class DefinirPregunta extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BuscarPictograma.class);
-                startActivityForResult(intent,DOS);
+                startActivityForResult(intent, DOS);
             }
         });
 
         opcionBoton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),BuscarPictograma.class);
-                startActivityForResult(intent,TRES);
+                Intent intent = new Intent(getApplicationContext(), BuscarPictograma.class);
+                startActivityForResult(intent, TRES);
             }
         });
 
         opcionBoton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),BuscarPictograma.class);
-                startActivityForResult(intent,CUATRO);
+                Intent intent = new Intent(getApplicationContext(), BuscarPictograma.class);
+                startActivityForResult(intent, CUATRO);
             }
         });
-
 
 
         //elementos de lottiAnimation, uno por cada checkbox
@@ -236,15 +232,15 @@ public class DefinirPregunta extends AppCompatActivity {
         checkedDone1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isCheckedOpcionUno){
+                if (isCheckedOpcionUno) {
 
                     checkedDone1.setSpeed(-3);
                     checkedDone1.playAnimation();
-                    isCheckedOpcionUno=false;
-                }else {
+                    isCheckedOpcionUno = false;
+                } else {
                     checkedDone1.setSpeed(2);
                     checkedDone1.playAnimation();
-                    isCheckedOpcionUno=true;
+                    isCheckedOpcionUno = true;
                 }
             }
         });
@@ -252,14 +248,14 @@ public class DefinirPregunta extends AppCompatActivity {
         checkedDone2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isCheckedOpcionDos){
+                if (isCheckedOpcionDos) {
                     checkedDone2.setSpeed(-3);
                     checkedDone2.playAnimation();
-                    isCheckedOpcionDos=false;
+                    isCheckedOpcionDos = false;
                 } else {
                     checkedDone2.setSpeed(2);
                     checkedDone2.playAnimation();
-                    isCheckedOpcionDos=true;
+                    isCheckedOpcionDos = true;
                 }
             }
         });
@@ -267,14 +263,14 @@ public class DefinirPregunta extends AppCompatActivity {
         checkedDone3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isCheckedOpcionTres){
+                if (isCheckedOpcionTres) {
                     checkedDone3.setSpeed(-3);
                     checkedDone3.playAnimation();
-                    isCheckedOpcionTres=false;
+                    isCheckedOpcionTres = false;
                 } else {
                     checkedDone3.setSpeed(2);
                     checkedDone3.playAnimation();
-                    isCheckedOpcionTres=true;
+                    isCheckedOpcionTres = true;
                 }
             }
 
@@ -283,21 +279,21 @@ public class DefinirPregunta extends AppCompatActivity {
         checkedDone4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isCheckedOpcionCuatro){
+                if (isCheckedOpcionCuatro) {
                     checkedDone4.setSpeed(-3);
                     checkedDone4.playAnimation();
-                    isCheckedOpcionCuatro=false;
+                    isCheckedOpcionCuatro = false;
                 } else {
                     checkedDone4.setSpeed(2);
                     checkedDone4.playAnimation();
-                    isCheckedOpcionCuatro=true;
+                    isCheckedOpcionCuatro = true;
                 }
             }
         });
     }
 
     private void validarObjeto() {
-        if(getIntent()==null) {
+        if (getIntent() == null) {
             juego = juegoViewModel.obtenerUltimoJuego();
 
             //observando el elemento del nombre del juego en pantalla
@@ -310,7 +306,7 @@ public class DefinirPregunta extends AppCompatActivity {
         } else {
 
             juegoNuevo = (Juego) getIntent().getSerializableExtra("juegoNuevo");
-            Log.d("Pregunta","definir pregunta, titulo: "+juegoNuevo.getJuego_nombre());
+            Log.d("Pregunta", "definir pregunta, titulo: " + juegoNuevo.getJuego_nombre());
             nombreJuego.setText(juegoNuevo.getJuego_nombre());
         }
 
@@ -321,58 +317,58 @@ public class DefinirPregunta extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == UNO){
-            if(resultCode == Activity.RESULT_OK){
-                pictogramaUno = pictogramaViewModel.getPictogramaById(data.getIntExtra("id",0));
+        if (requestCode == UNO) {
+            if (resultCode == Activity.RESULT_OK) {
+                pictogramaUno = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaUno.observe(this, new Observer<Pictograma>() {
                     @Override
                     public void onChanged(Pictograma pictograma) {
                         Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton1);
                         txt1.setText(pictograma.getPictograma_nombre());
-                        agrego1=true;
+                        agrego1 = true;
                     }
                 });
             }
 
         }
 
-        if (requestCode == DOS){
-            if(resultCode == Activity.RESULT_OK){
-                pictogramaDos = pictogramaViewModel.getPictogramaById(data.getIntExtra("id",0));
+        if (requestCode == DOS) {
+            if (resultCode == Activity.RESULT_OK) {
+                pictogramaDos = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaDos.observe(this, new Observer<Pictograma>() {
                     @Override
                     public void onChanged(Pictograma pictograma) {
                         Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton2);
                         txt2.setText(pictograma.getPictograma_nombre());
-                        agrego2=true;
+                        agrego2 = true;
                     }
                 });
             }
         }
 
-        if (requestCode == TRES){
-            if(resultCode == Activity.RESULT_OK){
-                pictogramaTres = pictogramaViewModel.getPictogramaById(data.getIntExtra("id",0));
+        if (requestCode == TRES) {
+            if (resultCode == Activity.RESULT_OK) {
+                pictogramaTres = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaTres.observe(this, new Observer<Pictograma>() {
                     @Override
                     public void onChanged(Pictograma pictograma) {
                         Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton3);
                         txt3.setText(pictograma.getPictograma_nombre());
-                        agrego3=true;
+                        agrego3 = true;
                     }
                 });
             }
         }
 
-        if (requestCode == CUATRO){
-            if(resultCode == Activity.RESULT_OK){
-                pictogramaCuatro = pictogramaViewModel.getPictogramaById(data.getIntExtra("id",0));
+        if (requestCode == CUATRO) {
+            if (resultCode == Activity.RESULT_OK) {
+                pictogramaCuatro = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaCuatro.observe(this, new Observer<Pictograma>() {
                     @Override
                     public void onChanged(Pictograma pictograma) {
                         Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton4);
                         txt4.setText(pictograma.getPictograma_nombre());
-                        agrego4=true;
+                        agrego4 = true;
                     }
                 });
             }

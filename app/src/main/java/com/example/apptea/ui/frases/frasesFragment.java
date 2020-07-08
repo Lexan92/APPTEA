@@ -32,11 +32,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriapictograma.CategoriaPictogramaViewModel;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.TTSManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,9 @@ public class frasesFragment extends Fragment {
     RecyclerView recyclerView1;
     RecyclerView recyclerView2;
     RecyclerView recyclerView3;
+    private Button play;
+    private Button backspace;
+    TTSManager ttsManager=null;
 
     private CategoriaPictogramaViewModel ModelCatPicto;
     private CatPictoFrasesAdapter adapterCatPicto;
@@ -60,6 +65,7 @@ public class frasesFragment extends Fragment {
     private PictoFrasesAdapter adapterPicto;
 
     private frasesAdapter adapterFrases;
+
 
     public frasesFragment() {
         // Required empty public constructor
@@ -72,11 +78,13 @@ public class frasesFragment extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_frases, container, false);
 
-
+        ttsManager= new TTSManager();
+        ttsManager.init(getActivity());
         recyclerView1 = vista.findViewById(R.id.recycler_frases);
         recyclerView2 = vista.findViewById(R.id.recycler_categorias);
         recyclerView3 = vista.findViewById(R.id.recycler_picto);
-
+        play = vista.findViewById(R.id.btn_play);
+        backspace = vista.findViewById(R.id.btn_backspace);
 
         //RECYCLER FRASES
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
@@ -123,12 +131,38 @@ public class frasesFragment extends Fragment {
             @Override
             public void PictoClicked(Pictograma pictograma) {
                 System.out.println("en el fragment"+ pictograma.getPictograma_nombre());
+                //REPRODUCIENDO NOMBRE
+                ttsManager.initQueue(pictograma.getPictograma_nombre());
+                //FRASE
                 adapterFrases = new frasesAdapter((ArrayList<Pictograma>) pictoFraseList);
                 pictoFraseList.add(pictograma);
                 recyclerView1.setAdapter(adapterFrases);
+                recyclerView1.scrollToPosition(adapterFrases.getItemCount()-1);
             }
         });
 
+        backspace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictoFraseList.remove(pictoFraseList.size()-1);
+                adapterFrases.notifyDataSetChanged();
+            }
+        });
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String frase ="";
+
+                for(Pictograma palabra: pictoFraseList){
+                    System.out.println("la palabra es "+ palabra.getPictograma_nombre());
+                    frase+=palabra.getPictograma_nombre() +"\n";
+                }
+                System.out.println("la frase es "+ frase);
+                //REPRODUCTOR DE TEXTO A VOZ
+                ttsManager.initQueue(frase);
+            }
+        });
 
         return vista;
 
@@ -145,5 +179,7 @@ public class frasesFragment extends Fragment {
             }
         });
     }
+
+
 
 }

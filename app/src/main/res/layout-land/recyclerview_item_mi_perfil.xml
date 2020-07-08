@@ -119,6 +119,7 @@
                     android:fontFamily="@font/capriola"/>
 
             </LinearLayout>
+            <!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -200,7 +201,7 @@
                     android:fontFamily="@font/capriola"
                    />
             </LinearLayout>
-
+-->
 
         </LinearLayout>
 

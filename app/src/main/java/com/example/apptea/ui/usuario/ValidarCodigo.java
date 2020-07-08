@@ -50,11 +50,12 @@ public class ValidarCodigo extends Activity {
                     } else {
                             int cod = Integer.parseInt(codigo.getText().toString());
                             if (codigovalidar == cod) {
-                                Toast.makeText(getApplicationContext(), "Iguales", Toast.LENGTH_LONG).show();
-                                finish();
+                                //Toast.makeText(getApplicationContext(), , Toast.LENGTH_LONG).show();
+
                                 //Navigation.findNavController(view).navigate(R.id.editar_contraseña,bundleBanderaToolbar);
                                 Intent intent2 = new Intent(getApplicationContext(), EditContrasenia.class);
                                 startActivity(intent2);
+                                finish();
                             } else {
                               Toast.makeText(getApplicationContext(), "El Codigo es incorrecto", Toast.LENGTH_LONG).show();
                             }

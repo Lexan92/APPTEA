@@ -53,6 +53,7 @@ import roomsqlite.repositorios.UsuarioRepository;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
+import static android.view.View.VISIBLE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -100,12 +101,10 @@ public class UsuarioFragment extends Fragment {
         //CardView para enviar correo y abrir nueva modal de captura de codigo
         CardView cardCorreo = vista.findViewById(R.id.cambiarContra);
         cardCorreo.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 int codigo;
-                progressBar.setVisibility(View.VISIBLE);
 
-
+                progressBar.setVisibility(VISIBLE);
 
                 //Se obtiene el usuario guardado se obtiene la primera fila.
                 UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
@@ -117,7 +116,7 @@ public class UsuarioFragment extends Fragment {
                 //Se inicializa el metodo para enviar correo
                 EnviarCorreo enviarCorreo = new EnviarCorreo();
                 enviarCorreo.Enviar(codigo,usuario.getCorreo());
-                progressBar.setVisibility(View.INVISIBLE);
+
                 Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getActivity(),ValidarCodigo.class);

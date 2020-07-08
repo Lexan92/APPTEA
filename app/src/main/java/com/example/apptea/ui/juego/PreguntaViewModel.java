@@ -48,4 +48,8 @@ public class PreguntaViewModel extends AndroidViewModel {
         return preguntaRepository.numeroPreguntas(id);
     }
 
+    public LiveData<Pregunta> obtenerPreguntaPorID(int id){
+        return  preguntaRepository.obtenerPreguntaporID(id);
+    }
+
 }

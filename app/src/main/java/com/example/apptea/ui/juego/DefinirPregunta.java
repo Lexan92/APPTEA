@@ -141,7 +141,7 @@ public class DefinirPregunta extends AppCompatActivity {
                         final Opcion opcion2 = new Opcion();
                         opcion2.setPregunta_id(pregunta1.getPregunta_id());
                         opcion2.setOpcion_respuesta(isCheckedOpcionDos);
-                        pictogramaUno.observe(DefinirPregunta.this, new Observer<Pictograma>() {
+                        pictogramaDos.observe(DefinirPregunta.this, new Observer<Pictograma>() {
                             @Override
                             public void onChanged(Pictograma pictograma) {
                                 opcion2.setPictograma_id(pictograma.getPictograma_id());

@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
@@ -31,9 +32,9 @@ import roomsqlite.entidades.Juego;
 
 public class JuegoPrincipal extends AppCompatActivity {
 
-    EditText nombreJuego;
+    TextView nombreJuego;
     JuegoViewModel juegoViewModel;
-    Button guardar, nuevaPregunta;
+    Button  nuevaPregunta;
     Juego juegoNuevo = new Juego();
 
     @Override
@@ -41,26 +42,13 @@ public class JuegoPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_principal);
         nombreJuego = findViewById(R.id.editNombreJuego);
-        guardar = findViewById(R.id.guardar_nombre_juego);
+
         nuevaPregunta = findViewById(R.id.nueva_pregunta);
         juegoViewModel = new ViewModelProvider(this).get(JuegoViewModel.class);
 
-
-
-            //setea el nombre del juego
-            juegoNuevo = (Juego) getIntent().getSerializableExtra("juego");
-            nombreJuego.setText(juegoNuevo.getJuego_nombre());
-
-
-
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                juegoNuevo.setJuego_nombre(nombreJuego.getText().toString());
-                juegoViewModel.update(juegoNuevo);
-
-            }
-        });
+        //setea el nombre del juego
+        juegoNuevo = (Juego) getIntent().getSerializableExtra("juego");
+        nombreJuego.setText(juegoNuevo.getJuego_nombre());
 
 
         nuevaPregunta.setOnClickListener(new View.OnClickListener() {

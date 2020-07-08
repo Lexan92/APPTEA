@@ -48,4 +48,8 @@ public class PreguntaRepository {
     public int numeroPreguntas(int id){
         return preguntaDAO.numeroPreguntas(id);
     }
+
+    public LiveData<Pregunta> obtenerPreguntaporID(int id){
+        return  preguntaDAO.obtenerPreguntaPorID(id);
+    }
 }

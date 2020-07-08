@@ -22,7 +22,7 @@
         android:id="@+id/editNombreJuegoVisor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="Nombre Juego"
         android:textColor="@color/colorSplash"
         android:textSize="18sp"
@@ -37,10 +37,10 @@
         android:id="@+id/nombre_pregunta_visor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
         android:hint="Titulo de la Pregunta"
         android:singleLine="true"
-        android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="21sp"
         android:textStyle="bold"
@@ -53,7 +53,7 @@
         android:id="@+id/nueva_pregunta_visor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="Nueva Pregunta"
         android:textColor="@color/colorSplash"
@@ -61,7 +61,7 @@
         app:iconTint="@color/colorSplash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
@@ -74,28 +74,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <ImageButton
                 android:id="@+id/opcion_uno_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_agregar"
-                app:layout_constraintEnd_toStartOf="@+id/opcion_dos_visor"
-                app:layout_constraintHorizontal_bias="0.354"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <TextView
                 android:id="@+id/nombre_opcion_uno_visor"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
 
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.147"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/opcion_uno_visor">
 
@@ -105,12 +104,14 @@
                 android:id="@+id/check_opcion_uno_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="140dp"
+                android:scaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.17"
+                app:layout_constraintHorizontal_bias="0.066"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:lottie_rawRes="@raw/checked_done">
+                app:lottie_rawRes="@raw/checked_done"
+                app:lottie_scale="0.8">
 
             </com.airbnb.lottie.LottieAnimationView>
 
@@ -118,12 +119,11 @@
                 android:id="@+id/opcion_dos_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_agregar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.833"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/opcion_uno_visor"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -131,12 +131,12 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
 
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="148dp"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.861"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_dos_visor">
+                app:layout_constraintStart_toEndOf="@+id/nombre_opcion_uno_visor"
+                app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
 
@@ -144,9 +144,9 @@
                 android:id="@+id/check_opcion_dos_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="140dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.83"
+                app:layout_constraintHorizontal_bias="0.342"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_rawRes="@raw/checked_done" />
@@ -155,25 +155,24 @@
                 android:id="@+id/opcion_tres_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="60dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_agregar"
                 app:layout_constraintEnd_toStartOf="@+id/opcion_cuatro_visor"
-                app:layout_constraintHorizontal_bias="0.354"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_uno_visor" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/nombre_opcion_tres_visor"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
 
+                android:layout_marginTop="148dp"
+                android:layout_marginEnd="32dp"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.141"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_tres_visor">
+                app:layout_constraintEnd_toStartOf="@+id/nombre_opcion_cuatro_visor"
+                app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
 
@@ -181,9 +180,9 @@
                 android:id="@+id/check_opcion_tres_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="350dp"
+                android:layout_marginTop="140dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.166"
+                app:layout_constraintHorizontal_bias="0.623"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_rawRes="@raw/checked_done" />
@@ -192,25 +191,24 @@
                 android:id="@+id/opcion_cuatro_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_agregar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.833"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_dos_visor" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/nombre_opcion_cuatro_visor"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
 
+                android:layout_marginTop="148dp"
+                android:layout_marginEnd="32dp"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.861"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_cuatro_visor">
+                app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
 
@@ -218,9 +216,9 @@
                 android:id="@+id/check_opcion_cuatro_visor"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginTop="350dp"
+                android:layout_marginTop="140dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.83"
+                app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_rawRes="@raw/checked_done" />
@@ -232,10 +230,10 @@
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintHorizontal_bias="0.912"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_siguiente" />
 
@@ -243,10 +241,10 @@
         android:id="@+id/imageButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.691"
+        app:layout_constraintHorizontal_bias="0.72"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_anterior" />
 
@@ -254,38 +252,39 @@
         android:id="@+id/contador_preguntas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="32dp"
         android:text="1 / N"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:background="@color/colorSplash"
-        android:tint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton6"
-        app:layout_constraintHorizontal_bias="0.781"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_delete_48" />
-
-    <ImageButton
         android:id="@+id/imageButton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorSplash"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.308"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toEndOf="@+id/imageButton5"
         app:srcCompat="@drawable/ic_edit_48" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorSplash"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_delete_48" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

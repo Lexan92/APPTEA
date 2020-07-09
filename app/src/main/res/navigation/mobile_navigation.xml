@@ -103,7 +103,7 @@
         android:id="@+id/habilidadCotidianaFragment4"
         android:name="com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment"
         android:label="HabilidadCotidianaFragment"
-        tools:layout="@layout/fragment_habilidad_cotidiana" />
+        tools:layout="@layout/fragment_detalle_habilidad_cotidiana" />
     <activity
         android:id="@+id/juegoPrincipal"
         android:name="com.example.apptea.ui.juego.JuegoPrincipal"

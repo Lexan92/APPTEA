@@ -72,7 +72,7 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main2,menu);
         MenuItem item = menu.findItem(R.id.app_bar_search);
         androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

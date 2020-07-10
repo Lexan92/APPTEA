@@ -18,6 +18,10 @@ public interface HabilidadCotidianaDao {
     @Query("SELECT * FROM habilidad_cotidiana ORDER BY habilidad_cotidiana_nombre ASC")
     LiveData<List<HabilidadCotidiana>> getHabilidadCotidiana();
 
+    //metodo donde se recuperan todas  habilidades cotidianas por ID de catgoria de habilidad
+    @Query("SELECT * FROM habilidad_cotidiana WHERE cat_hab_cotidiana_id = :id ORDER BY habilidad_cotidiana_nombre ASC")
+    LiveData<List<HabilidadCotidiana>> getHabilidadCotidianaByCatHabilidad(int id);
+
     @Query("DELETE FROM habilidad_cotidiana")
     public void deleteAll();
 

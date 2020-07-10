@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Entity(tableName= "cat_habilidad_cotidiana")
 public class CategoriaHabCotidiana implements Serializable{
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index=true, name="cat_hab_cotidiana_id")
     private int cat_hab_cotidiana_id;
 
     @NonNull

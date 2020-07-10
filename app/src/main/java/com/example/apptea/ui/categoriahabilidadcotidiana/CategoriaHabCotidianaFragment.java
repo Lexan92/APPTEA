@@ -33,6 +33,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriapictograma.CategoriaPictogramaAdapter;
+import com.example.apptea.ui.habilidadCotidiana.Detalle_Habilidad_Cotidiana;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment;
 import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
 import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
@@ -60,6 +62,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static final int CAT_UPDATE_REQUEST_CODE = 2;
+    private CategoriaHabCotidianaAdapter adapter;
 
     public CategoriaHabCotidianaFragment() {
         //requiere un constructor vacio
@@ -141,14 +144,14 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             public void onClick(View v) {
 
                 //Instancia de fragment al cual se dirigira
-                HabilidadCotidianaFragment habilidadCotidiana = new HabilidadCotidianaFragment();
+                Detalle_Habilidad_Cotidiana detalle_habilidad_cotidiana = new Detalle_Habilidad_Cotidiana();
                 //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
                 Bundle  bundleEnvio = new Bundle();
                 bundleEnvio.putSerializable("elementos",categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)));
-                habilidadCotidiana.setArguments(bundleEnvio);
+                detalle_habilidad_cotidiana.setArguments(bundleEnvio);
 
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-               // Navigation.findNavController(v).navigate(R.id.,bundleEnvio);
+                Navigation.findNavController(v).navigate(R.id.habilidadCotidianaFragment4,bundleEnvio);
 
             }
         });

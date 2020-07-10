@@ -31,11 +31,13 @@ import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.PersonaTea;
 
-public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> {
+public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> implements View.OnClickListener{
 
     private  View.OnClickListener listener;
 
     private CategoriaHabCotidianaAdapter.ButtonClicked buttonClicked;
+
+
 
     public interface ButtonClicked{
         void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);
@@ -77,6 +79,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     private final LayoutInflater mInflater;
     private List<CategoriaHabCotidiana> categoriaHabCotidianaList;
 
+
     CategoriaHabCotidianaAdapter(Context context){
         mInflater = LayoutInflater.from(context);
     }
@@ -87,7 +90,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     public CategoriaHabCotidianaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = mInflater.inflate(R.layout.recyclerview_item_categoria_hab_cotidiana,parent, false);
 
-
+        itemview.setOnClickListener(this);
 
         return new CategoriaHabCotidianaHolder(itemview);
     }
@@ -128,6 +131,13 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
             return categoriaHabCotidianaList.size();
        else
         return 0;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
     }
 
     @Override

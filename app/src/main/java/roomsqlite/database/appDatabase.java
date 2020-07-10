@@ -22,6 +22,7 @@ import roomsqlite.dao.PaisDao;
 import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.PreguntaDAO;
+import roomsqlite.dao.SecuenciaDao;
 import roomsqlite.dao.UsuarioDao;
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaJuego;
@@ -33,10 +34,11 @@ import roomsqlite.entidades.Pais;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Pregunta;
+import roomsqlite.entidades.Secuencia;
 import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
-        Pais.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class}, version = 1, exportSchema = false)
+        Pais.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
@@ -58,6 +60,7 @@ public abstract class appDatabase extends RoomDatabase {
    /* public abstract MunicipioDao municipioDao();*/
     public abstract UsuarioDao usuarioDao();
     public  abstract PersonaTeaDao personaTeaDao();
+    public abstract SecuenciaDao secuenciaDao();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     public static appDatabase getDatabase(final Context context){

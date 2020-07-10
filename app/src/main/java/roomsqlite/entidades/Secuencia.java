@@ -21,9 +21,9 @@ public class Secuencia {
     private int habilidad_cotidiana_id;
     @NonNull
     private int pictograma_id;
-
+/*
     public Secuencia() {
-    }
+    }*/
 
     public Secuencia(int secuencia_id, int secuencia_orden, int habilidad_cotidiana_id, int pictograma_id) {
         this.secuencia_id = secuencia_id;

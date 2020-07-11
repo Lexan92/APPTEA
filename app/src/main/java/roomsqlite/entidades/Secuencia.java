@@ -2,6 +2,7 @@ package roomsqlite.entidades;
 
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -14,12 +15,15 @@ import static androidx.room.ForeignKey.CASCADE;
 
 public class Secuencia {
     @PrimaryKey
+    @ColumnInfo(index = true)
     private int secuencia_id;
     @NonNull
     private int secuencia_orden;
     @NonNull
+    @ColumnInfo(index = true)
     private int habilidad_cotidiana_id;
     @NonNull
+    @ColumnInfo(index = true)
     private int pictograma_id;
 /*
     public Secuencia() {

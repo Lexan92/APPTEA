@@ -10,50 +10,37 @@
 
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
-import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
 import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
-import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
-import com.example.apptea.ui.pictograma.Detalle_Pictograma;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.transition.MaterialContainerTransform;
 
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Juego;
-import roomsqlite.entidades.Opcion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,8 +52,10 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     private JuegoViewModel juegoViewModel;
     RecyclerView recyclerView;
     JuegoAdapter adapter;
-    CategoriaJuego categoriaJuego=null;
+    CategoriaViewModel categoriaJuegoViewModel;
     PreguntaViewModel preguntaViewModel;
+    LiveData<CategoriaJuego> categoriaJuegoLiveData;
+    int key=0;
 
 
 
@@ -101,12 +90,14 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         recyclerView.setAdapter(adapter);
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
         preguntaViewModel= new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
+        categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
 
         Bundle objetoCategoriaJuego=getArguments();
 
         if(objetoCategoriaJuego!= null){
-            categoriaJuego = (CategoriaJuego) objetoCategoriaJuego.getSerializable("objeto");
-            juegoViewModel.findJuegosByCategoriaId(categoriaJuego.getCategoriaJuegoId()).observe(getActivity(), new Observer<List<Juego>>() {
+//            categoriaJuego = (CategoriaJuego) objetoCategoriaJuego.getSerializable("objeto");
+            key =objetoCategoriaJuego.getInt("objeto",-1);
+            juegoViewModel.findJuegosByCategoriaId(key).observe(getActivity(), new Observer<List<Juego>>() {
                 @Override
                 public void onChanged(List<Juego> juegos) {
                     adapter.setJuegos(juegos);
@@ -118,7 +109,16 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
         //Definiendo nombre para el toolbar
         Toolbar  toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+//        toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+
+        categoriaJuegoLiveData = categoriaJuegoViewModel.findById(key);
+        categoriaJuegoLiveData.observe(getActivity(), new Observer<CategoriaJuego>() {
+            @Override
+            public void onChanged(CategoriaJuego categoriaJuego) {
+                toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+            }
+        });
+
 
         //Boton de + para agregar un nuevo juego
         FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
@@ -128,7 +128,8 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NuevoJuego.class);
                 //envia ID de categoria de juego
-                intent.putExtra("categoriaJuego", categoriaJuego.getCategoriaJuegoId());
+//                intent.putExtra("categoriaJuego", categoriaJuego.getCategoriaJuegoId());
+                intent.putExtra("categoriaJuego", key);
                 startActivity(intent);
 
             }
@@ -195,6 +196,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
             Intent intent = new Intent(getActivity(), VisorPregunta.class);
             intent.putExtra("juego",juego);
             startActivity(intent);
+
 
 
         } else if (numero==0){

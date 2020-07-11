@@ -8,6 +8,7 @@
  *
  */
 
+
 package com.example.apptea.ui.categoriahabilidadcotidiana;
 
 import android.app.Activity;

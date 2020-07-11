@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,8 +84,10 @@ public class CategoriaJuegoFragment extends Fragment {
                 //Instancia de fragment al cual se dirigira
                 Detalle_Juego detalle_juego =new Detalle_Juego();
                 //objeto Bundle que encapsula el objeto de tipo CategoriaJuego
+                CategoriaJuego categoriaJuego = categoriaViewModel.getAllCategoriasJuegos().getValue().get(recyclerView.getChildAdapterPosition(v));
+
                 Bundle  bundleEnvio = new Bundle();
-                bundleEnvio.putSerializable("objeto",categoriaViewModel.getAllCategoriasJuegos().getValue().get(recyclerView.getChildAdapterPosition(v)));
+                bundleEnvio.putInt("objeto",categoriaJuego.getCategoriaJuegoId());
                 detalle_juego.setArguments(bundleEnvio);
 
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle

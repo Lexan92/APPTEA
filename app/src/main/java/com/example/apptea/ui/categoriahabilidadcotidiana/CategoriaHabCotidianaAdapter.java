@@ -159,7 +159,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         holder.setIsRecyclable(false);
     }
 
-    //////////////////////////////////////////////
+
 
     @Override
     public Filter getFilter() {
@@ -207,6 +207,6 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         void onCategorHabCotiClick(CategoriaHabCotidiana posicion);
     }
 
-///////////////////////////////////////
+
 
 }

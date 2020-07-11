@@ -13,10 +13,10 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lista_de_habilidades"
+        android:id="@+id/recyclerview_hab_cotidiana"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/recyclerview_item_categoria_hab_cotidiana">
+        tools:listitem="@layout/recyclerview_item_hab_cotidiana">
 
     </androidx.recyclerview.widget.RecyclerView>
 

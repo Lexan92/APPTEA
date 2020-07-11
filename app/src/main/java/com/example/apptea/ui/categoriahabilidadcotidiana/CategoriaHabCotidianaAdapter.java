@@ -10,32 +10,38 @@
 
 package com.example.apptea.ui.categoriahabilidadcotidiana;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
-import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
+import com.example.apptea.ui.pictograma.PictogramaAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
-import roomsqlite.entidades.CategoriaPictograma;
-import roomsqlite.entidades.PersonaTea;
+import roomsqlite.entidades.Pictograma;
 
-public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> implements View.OnClickListener{
+public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> implements View.OnClickListener, Filterable {
 
     private  View.OnClickListener listener;
-
+    private final LayoutInflater mInflater;
+    private String mSearchTerm;
+    private List<CategoriaHabCotidiana> categoriaHabCotidianaList;
+    private List<CategoriaHabCotidiana> categoriaHabCotidianaListFull;
     private CategoriaHabCotidianaAdapter.ButtonClicked buttonClicked;
+    OnCategoriaHabiCotiListener onCategoriaHabiCotiListener;
+
+
 
 
 
@@ -49,9 +55,10 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     }
 
 
-    class CategoriaHabCotidianaHolder extends RecyclerView.ViewHolder{
+    class CategoriaHabCotidianaHolder extends RecyclerView.ViewHolder {
         private final TextView categoriaItemView;
         private final Button btnEdit, btnDelete;
+
 
 
         private CategoriaHabCotidianaHolder(View itemView){
@@ -59,6 +66,9 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
             categoriaItemView = itemView.findViewById((R.id.txt_categoria_hab_cotidiana));
             btnEdit = itemView.findViewById(R.id.btn_editar_cat_hab);
             btnDelete = itemView.findViewById(R.id.btn_delete_cat_hab);
+
+
+
 
             btnDelete.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -76,12 +86,12 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         }
     }
 
-    private final LayoutInflater mInflater;
-    private List<CategoriaHabCotidiana> categoriaHabCotidianaList;
+
 
 
     CategoriaHabCotidianaAdapter(Context context){
         mInflater = LayoutInflater.from(context);
+
     }
 
 
@@ -116,7 +126,9 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     }
 
     void setCategoria(List<CategoriaHabCotidiana> categorias){
+
         categoriaHabCotidianaList = categorias;
+        categoriaHabCotidianaListFull= new ArrayList<>(categoriaHabCotidianaList);
         notifyDataSetChanged();
     }
 
@@ -143,6 +155,58 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     @Override
     public void onViewRecycled(@NonNull CategoriaHabCotidianaHolder holder) {
         super.onViewRecycled(holder);
+        holder.categoriaItemView.setText(null);
         holder.setIsRecyclable(false);
     }
+
+    //////////////////////////////////////////////
+
+    @Override
+    public Filter getFilter() {
+        return categoricalHabitCarotidFilter;
+    }
+
+    private Filter categoricalHabitCarotidFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<CategoriaHabCotidiana> listaFiltrada = new ArrayList<>();
+
+         if (constraint != null||constraint.length() != 0){
+
+                String patronDeFiltrado = constraint.toString().toLowerCase().trim();
+
+                for(CategoriaHabCotidiana item:categoriaHabCotidianaListFull){
+                    if (item.getCat_hab_cotidiana_nombre().toLowerCase().contains(patronDeFiltrado)){
+
+                        listaFiltrada.add(item);
+                    }
+                }
+            }
+
+
+            FilterResults results = new FilterResults();
+            results.values = listaFiltrada;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            categoriaHabCotidianaList.clear();
+            categoriaHabCotidianaList.addAll((List)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
+
+    public void setTextQueryChanged(String newText) {
+        mSearchTerm = newText;
+    }
+
+
+    public interface OnCategoriaHabiCotiListener{
+        void onCategorHabCotiClick(CategoriaHabCotidiana posicion);
+    }
+
+///////////////////////////////////////
+
 }

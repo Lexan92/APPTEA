@@ -12,12 +12,15 @@ package com.example.apptea.ui.categoriahabilidadcotidiana;
 
 import android.app.AlertDialog;
 import android.app.Application;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -27,7 +30,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -39,6 +46,8 @@ import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment;
 import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
 import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
+import com.example.apptea.ui.pictograma.PictogramaAdapter;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -53,7 +62,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CategoriaHabCotidianaFragment extends Fragment {
+public class CategoriaHabCotidianaFragment extends Fragment  {
 
 
     private CategoriaHabCotidianaRepository categoriaHabCotidianaRepository;
@@ -62,7 +71,9 @@ public class CategoriaHabCotidianaFragment extends Fragment {
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static final int CAT_UPDATE_REQUEST_CODE = 2;
-    private CategoriaHabCotidianaAdapter adapter;
+    private CategoriaHabCotidianaAdapter adapter=null;
+    private SearchView searchView;
+    private SearchView.OnQueryTextListener queryTextListener;
 
     public CategoriaHabCotidianaFragment() {
         //requiere un constructor vacio
@@ -74,17 +85,25 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_gestion_habilidad, container, false);
 
+
+        //App bar de busqueda
+        setHasOptionsMenu(true);
+
+
+
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_cat_hab_cotidiana);
-        final CategoriaHabCotidianaAdapter adapter = new CategoriaHabCotidianaAdapter(getActivity());
+        this.adapter = new CategoriaHabCotidianaAdapter(getActivity());
         recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         categoriaHabCotidianaViewModel = new ViewModelProvider(getActivity()).get(CategoriaHabCotidianaViewModel.class);
         categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().observe(getActivity(), new Observer<List<CategoriaHabCotidiana>>() {
             @Override
-            public void onChanged(@Nullable final List<CategoriaHabCotidiana> categoriaHabCotidianaList) {
+            public void onChanged(List<CategoriaHabCotidiana> categoriaHabCotidianaList) {
                 // Update the cached copy of the words in the adapter.
                 adapter.setCategoria(categoriaHabCotidianaList);
+
             }
         });
 //Boton de + para agregar una nueva categoria
@@ -160,10 +179,67 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         return vista;
     }
 
+    /////////
+    @Override
+    public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.main2, menu);
+        MenuItem searchItem= menu.findItem(R.id.app_bar_search);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+
+            queryTextListener = new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                   // Log.i("onQueryTextChange", newText);
+
+
+                    adapter.getFilter().filter(newText);
+                   // Log.i("valor adapter:", String.valueOf(adapter));
+
+                   return true;
+
+
+                }
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                   // Log.i("onQueryTextSubmit", query);
+                  adapter.getFilter().filter(query);
+                   // Log.i("valor query:", String.valueOf(query));
+
+                    return true;
+                }
+            };
+            searchView.setOnQueryTextListener(queryTextListener);
+        }
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.app_bar_search) {
+            return true;
+        }
+
+        searchView.setOnQueryTextListener(queryTextListener);
+        return super.onOptionsItemSelected(item);
+    }
+/////////
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
     }
 

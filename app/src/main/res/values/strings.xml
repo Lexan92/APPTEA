@@ -100,4 +100,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="frases">Frases</string>
 
 
+    --Nueva habilidad
+    <string name="titulo_dialog_nueva_hab">Nueva Habilidad Cotidiana</string>
+    <string name="hint_dialog_nueva_habilidad">Nombre Habilidad Cotidiana</string>
 </resources>

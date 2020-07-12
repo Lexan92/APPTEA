@@ -92,7 +92,9 @@
         <activity
             android:name=".ui.usuario.ValidarCodigo"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
-
+        <activity
+            android:name=".ui.habilidadCotidiana.NuevaHabilidadCotidianaDialog"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

@@ -10,6 +10,7 @@
 
 package com.example.apptea.ui.habilidadCotidiana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -81,6 +84,19 @@ public class HabilidadCotidianaFragment extends Fragment {
         //Setteando Toolbar para categorias
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Categoria: " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+
+
+        //Boton de + para agregar una nueva categoria
+        FloatingActionButton fab = vista.findViewById(R.id.fabHab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NuevaHabilidadCotidianaDialog.class);
+                startActivityForResult(intent, NEW_HAB_REQUEST_CODE);
+            }
+        });
+
+
 
         return vista;
     }

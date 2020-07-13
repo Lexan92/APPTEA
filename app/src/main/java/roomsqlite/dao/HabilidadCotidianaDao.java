@@ -29,8 +29,9 @@ public interface HabilidadCotidianaDao {
     void updateHabilidadCotidiana(HabilidadCotidiana habilidadCotidiana);
 
     //metodo donde se inserta habilidades cotidianas
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insert(HabilidadCotidiana habilidadCotidiana);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertHabilidad(HabilidadCotidiana habilidadCotidiana);
 
     //Metodo de prueba de eliminar se ocupara el metodo deleteHabilidadCotidiana
     @Delete

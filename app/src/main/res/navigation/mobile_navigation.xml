@@ -53,7 +53,7 @@
             app:destination="@id/nav_home" />
         <action
             android:id="@+id/action_nav_gestion_habilidad_to_habilidadCotidianaFragment4"
-            app:destination="@id/habilidadCotidianaFragment4" />
+            app:destination="@id/detalle_habilidad_Cotidiana" />
     </fragment>
 
     <fragment
@@ -100,7 +100,7 @@
             app:destination="@id/nav_gestion_pictograma" />
     </fragment>
     <fragment
-        android:id="@+id/habilidadCotidianaFragment4"
+        android:id="@+id/detalle_habilidad_Cotidiana"
         android:name="com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment"
         android:label="HabilidadCotidianaFragment"
         tools:layout="@layout/fragment_detalle_habilidad_cotidiana" />

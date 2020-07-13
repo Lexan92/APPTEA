@@ -13,6 +13,7 @@ package com.example.apptea.ui.juego;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -57,6 +58,7 @@ public class VisorPregunta extends AppCompatActivity {
     LottieAnimationView checkedDone2;
     LottieAnimationView checkedDone3;
     LottieAnimationView checkedDone4;
+    Pregunta preguntaEditar = new Pregunta();
 
     int posicion;
     public int contador = 0;
@@ -65,8 +67,6 @@ public class VisorPregunta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_visor_pregunta);
         nuevapregunta = findViewById(R.id.nueva_pregunta_visor);
         editarPregunta = findViewById(R.id.editar_pregunta);
@@ -100,11 +100,9 @@ public class VisorPregunta extends AppCompatActivity {
         aviso.setVisibility(View.GONE);
 
 
-
-
-
         listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
 
+        //verifica si el juego posee preguntas
         listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
 
             if (preguntas.size() != 0) {
@@ -139,8 +137,19 @@ public class VisorPregunta extends AppCompatActivity {
 
         //EDITAR PREGUNTA
 
-        editarPregunta.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Editar: en desarrollo",
-                Toast.LENGTH_LONG).show());
+        editarPregunta.setOnClickListener(v -> {
+            Intent intent = new Intent(this,EditarPregunta.class);
+            intent.putExtra("juego", juego);
+            listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
+                @Override
+                public void onChanged(List<Pregunta> preguntas) {
+                    preguntaEditar = preguntas.get(posicion);
+                }
+            });
+            intent.putExtra("pregunta",preguntaEditar);
+            startActivity(intent);
+
+        });
 
         //BORRAR PREGUNTA
 
@@ -301,9 +310,6 @@ public class VisorPregunta extends AppCompatActivity {
 
                 aviso.setText("Esta pregunta no tiene opciones, presiona el botón de editar para agregar opciones");
                 aviso.setVisibility(View.VISIBLE);
-
-
-
             }
 
         });

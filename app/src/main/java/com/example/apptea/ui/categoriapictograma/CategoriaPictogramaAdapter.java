@@ -7,6 +7,8 @@ import android.net.sip.SipSession;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 
@@ -20,14 +22,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.Pictograma;
 
-public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPictogramaViewHolder> implements View.OnClickListener {
+public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPictogramaViewHolder> implements View.OnClickListener, Filterable {
 
     private List<CategoriaPictograma> categoriaPictogramaList;
     private final LayoutInflater mInflater;
     private  View.OnClickListener listener;
+
+    private List<CategoriaPictograma> categoriaPictogramaListFull;
 
 
     private ArrayList<Pictograma> pictogramas;
@@ -72,6 +77,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
 
    public void setCategoria(List<CategoriaPictograma> categorias){
         categoriaPictogramaList = categorias;
+       categoriaPictogramaListFull= new ArrayList<>(categoriaPictogramaList);
         notifyDataSetChanged();
     }
 
@@ -101,4 +107,49 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
         holder.nombreCategoria.setText(null);
         holder.setIsRecyclable(false);
     }
+
+
+
+
+
+    ////////////////
+    @Override
+    public Filter getFilter() {
+        return categoriaPictogramaFilter;
+    }
+
+    private Filter categoriaPictogramaFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<CategoriaPictograma> listaFiltrada = new ArrayList<>();
+
+            if (constraint != null||constraint.length() != 0){
+
+                String patronDeFiltrado = constraint.toString().toLowerCase().trim();
+
+                for(CategoriaPictograma item:categoriaPictogramaListFull){
+                    if (item.getCat_pictograma_nombre().toLowerCase().contains(patronDeFiltrado)){
+
+                        listaFiltrada.add(item);
+                    }
+                }
+            }
+
+
+            FilterResults results = new FilterResults();
+            results.values = listaFiltrada;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            categoriaPictogramaList.clear();
+            categoriaPictogramaList.addAll((List)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
+
+/////////////////////
+
 }

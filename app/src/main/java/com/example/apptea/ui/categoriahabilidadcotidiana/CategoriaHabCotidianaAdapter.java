@@ -160,7 +160,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     }
 
 
-
+////////////////
     @Override
     public Filter getFilter() {
         return categoricalHabitCarotidFilter;
@@ -207,6 +207,6 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         void onCategorHabCotiClick(CategoriaHabCotidiana posicion);
     }
 
-
+/////////////////////
 
 }

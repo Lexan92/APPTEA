@@ -10,19 +10,46 @@
 
 package com.example.apptea.ui.habilidadCotidiana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
+
+import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.HabilidadCotidiana;
+import roomsqlite.entidades.Pictograma;
+import roomsqlite.repositorios.HabilidadCotidianaRepository;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HabilidadCotidianaFragment extends Fragment {
+
+    private HabilidadCotidianaRepository habilidadCotidianaRepository;
+    private LiveData<List<HabilidadCotidiana>> HabCotidianaAll;
+    RecyclerView recyclerView;
+    private HabilidadCotidianaAdapter adapter= null;
+    private HabilidadCotidianaViewModel habilidadCotidianaViewModel;
+    private CategoriaHabCotidiana categoriaHabCotidiana = null;
+    public static final int NEW_HAB_REQUEST_CODE = 1;
+    public static final int HAB_UPDATE_REQUEST_CODE = 2;
+
 
     public HabilidadCotidianaFragment(){
         //constructor vacio
@@ -33,8 +60,45 @@ public class HabilidadCotidianaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle_habilidad_cotidiana, container, false);
+        View vista = inflater.inflate(R.layout.fragment_detalle_habilidad_cotidiana, container, false);
 
+        recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_hab_cotidiana);
+        this.adapter = new HabilidadCotidianaAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+        habilidadCotidianaViewModel = new ViewModelProvider(getActivity()).get(HabilidadCotidianaViewModel.class);
+
+        Bundle objetoHabilidad = getArguments();
+        if(objetoHabilidad != null){
+           categoriaHabCotidiana = (CategoriaHabCotidiana) objetoHabilidad.getSerializable("elementos");
+            habilidadCotidianaViewModel.getHabilidadCotidianaAll(categoriaHabCotidiana.getCat_hab_cotidiana_id()).observe(getActivity(), new Observer<List<HabilidadCotidiana>>() {
+                @Override
+                public void onChanged(List<HabilidadCotidiana> habilidadCotidianas) {
+                    adapter.setHabiilidad(habilidadCotidianas);
+                }
+            });
+        }
+
+        //Setteando Toolbar para categorias
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Categoria: " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+
+
+        //Boton de + para agregar una nueva categoria
+        FloatingActionButton fab = vista.findViewById(R.id.fabHab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NuevaHabilidadCotidianaDialog.class);
+                startActivityForResult(intent, NEW_HAB_REQUEST_CODE);
+            }
+        });
+
+
+
+        return vista;
     }
 
 

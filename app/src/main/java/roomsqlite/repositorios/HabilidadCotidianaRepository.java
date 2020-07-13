@@ -37,6 +37,10 @@ public class HabilidadCotidianaRepository {
         return habilidadCotidianaAll;
     }
 
+    public LiveData<List<HabilidadCotidiana>> findHabilidadCotidianaByCategoriaHab(int id){
+        return habilidadCotidianaDao.getHabilidadCotidianaByCatHabilidad(id);
+    }
+
     public void insert(HabilidadCotidiana habilidadCotidiana){
         appDatabase.databaseWriteExecutor.execute(()-> habilidadCotidianaDao.insert(habilidadCotidiana));
     }

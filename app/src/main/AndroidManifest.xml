@@ -84,7 +84,7 @@
             android:windowSoftInputMode="adjustPan|stateVisible">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.usuario.RegistroUsuarioActivity" />
+                android:value=".ui.usuario.EditContrasenia" />
         </activity>
         <activity
             android:name=".ui.usuario.EditContrasenia"
@@ -95,7 +95,11 @@
         <activity
             android:name=".ui.usuario.ValidarCodigo"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
-
+        <activity
+            android:name=".ui.habilidadCotidiana.NuevaHabilidadCotidianaDialog"
+            android:label=" "
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
+          />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

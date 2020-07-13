@@ -1,10 +1,15 @@
 
 package com.example.apptea.ui.categoriapictograma;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -12,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -24,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 
 
+import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -49,6 +56,9 @@ public class CategoriaPictogramaFragment extends Fragment {
     private CategoriaPictogramaViewModel categoriaPictogramaViewModel;
     private CategoriaPictogramaAdapter adapter;
 
+    private SearchView searchView;
+    private SearchView.OnQueryTextListener queryTextListener;
+
 
     public CategoriaPictogramaFragment() {
         //constructor vacio
@@ -60,6 +70,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_gestion_pictograma, container, false);
+        //App bar de busqueda
 
     }
 
@@ -68,8 +79,11 @@ public class CategoriaPictogramaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setHasOptionsMenu(true);
+
         recyclerView =  view.findViewById(R.id.lista_categoria_pictograma);
         adapter = new CategoriaPictogramaAdapter(getActivity());
+
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(adapter);
@@ -129,6 +143,63 @@ public class CategoriaPictogramaFragment extends Fragment {
 
 
     }
+
+    /////////
+    @Override
+    public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.main2, menu);
+        MenuItem searchItem= menu.findItem(R.id.app_bar_search);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+
+            queryTextListener = new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    // Log.i("onQueryTextChange", newText);
+
+
+                    adapter.getFilter().filter(newText);
+                    // Log.i("valor adapter:", String.valueOf(adapter));
+
+                    return true;
+
+
+                }
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    // Log.i("onQueryTextSubmit", query);
+                    adapter.getFilter().filter(query);
+                    // Log.i("valor query:", String.valueOf(query));
+
+                    return true;
+                }
+            };
+            searchView.setOnQueryTextListener(queryTextListener);
+        }
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.app_bar_search) {
+            return true;
+        }
+
+        searchView.setOnQueryTextListener(queryTextListener);
+        return super.onOptionsItemSelected(item);
+    }
+/////////
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

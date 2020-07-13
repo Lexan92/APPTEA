@@ -14,6 +14,7 @@ import com.example.apptea.R;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaAdapter;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.entidades.HabilidadCotidiana;
@@ -44,10 +45,14 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         }
     }
 
+    public HabilidadCotidianaAdapter(Context context){
+        mInflater = LayoutInflater.from(context);
+    }
+/*
     public HabilidadCotidianaAdapter(Context context, OnHabilidadListener onHabilidadListener){
         mInflater = LayoutInflater.from(context);
         this.mOnHabilidadListener = onHabilidadListener;
-    }
+    }*/
 
 
     @Override
@@ -71,5 +76,11 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
 
     public interface OnHabilidadListener{
         void onHabilidadClick(HabilidadCotidiana posicion);
+    }
+
+    void setHabiilidad(List<HabilidadCotidiana> habilidadesCotidianas){
+        habilidadCotidianaList = habilidadesCotidianas;
+        habilidadCotidianaListBusqueda = new ArrayList<>(habilidadCotidianaList);
+        notifyDataSetChanged();
     }
 }

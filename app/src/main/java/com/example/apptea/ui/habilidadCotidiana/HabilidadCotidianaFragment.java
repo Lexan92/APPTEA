@@ -39,7 +39,7 @@ import roomsqlite.repositorios.HabilidadCotidianaRepository;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HabilidadCotidianaFragment extends Fragment {
+public class HabilidadCotidianaFragment extends Fragment implements HabilidadCotidianaAdapter.OnHabilidadListener{
 
     private HabilidadCotidianaRepository habilidadCotidianaRepository;
     private LiveData<List<HabilidadCotidiana>> HabCotidianaAll;
@@ -63,16 +63,16 @@ public class HabilidadCotidianaFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_detalle_habilidad_cotidiana, container, false);
 
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_hab_cotidiana);
-        this.adapter = new HabilidadCotidianaAdapter(getActivity());
+        adapter = new HabilidadCotidianaAdapter(getActivity(), HabilidadCotidianaFragment.this);
         recyclerView.setAdapter(adapter);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         habilidadCotidianaViewModel = new ViewModelProvider(getActivity()).get(HabilidadCotidianaViewModel.class);
 
         Bundle objetoHabilidad = getArguments();
         if(objetoHabilidad != null){
-           categoriaHabCotidiana = (CategoriaHabCotidiana) objetoHabilidad.getSerializable("elementos");
+            categoriaHabCotidiana = (CategoriaHabCotidiana) objetoHabilidad.getSerializable("elementos");
             habilidadCotidianaViewModel.getHabilidadCotidianaAll(categoriaHabCotidiana.getCat_hab_cotidiana_id()).observe(getActivity(), new Observer<List<HabilidadCotidiana>>() {
                 @Override
                 public void onChanged(List<HabilidadCotidiana> habilidadCotidianas) {
@@ -92,6 +92,7 @@ public class HabilidadCotidianaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NuevaHabilidadCotidianaDialog.class);
+                intent.putExtra("llaveCatHabilidad", categoriaHabCotidiana.getCat_hab_cotidiana_id());
                 startActivityForResult(intent, NEW_HAB_REQUEST_CODE);
             }
         });
@@ -102,4 +103,8 @@ public class HabilidadCotidianaFragment extends Fragment {
     }
 
 
+    @Override
+    public void onHabilidadClick(HabilidadCotidiana posicion) {
+
+    }
 }

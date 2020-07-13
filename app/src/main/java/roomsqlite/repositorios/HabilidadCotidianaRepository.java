@@ -18,7 +18,6 @@ import java.util.List;
 
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.database.appDatabase;
-import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.HabilidadCotidiana;
 
 public class HabilidadCotidianaRepository {
@@ -42,15 +41,15 @@ public class HabilidadCotidianaRepository {
     }
 
     public void insert(HabilidadCotidiana habilidadCotidiana){
-        appDatabase.databaseWriteExecutor.execute(()-> habilidadCotidianaDao.insert(habilidadCotidiana));
+      habilidadCotidianaDao.insertHabilidad(habilidadCotidiana);
     }
 
     public void update(HabilidadCotidiana habilidadCotidiana){
-        appDatabase.databaseWriteExecutor.execute(()-> habilidadCotidianaDao.updateHabilidadCotidiana(habilidadCotidiana));
+       habilidadCotidianaDao.updateHabilidadCotidiana(habilidadCotidiana);
     }
 
     public void delete(HabilidadCotidiana habilidadCotidiana){
-        appDatabase.databaseWriteExecutor.execute(()-> habilidadCotidianaDao.deleteHabilidadCotidiana(habilidadCotidiana));
+        habilidadCotidianaDao.deleteHabilidadCotidiana(habilidadCotidiana);
     }
 
 

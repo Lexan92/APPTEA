@@ -141,7 +141,7 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
                     public void onClick(DialogInterface dialog, int which) {
                         System.out.println("La Categoria de Habilidad Cotidiana" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
 
-                       categoriaHabCotidianaViewModel.delete(categoriaHabCotidiana);
+                        categoriaHabCotidianaViewModel.delete(categoriaHabCotidiana);
                         adapter.notifyDataSetChanged();
                     }
                 });
@@ -163,14 +163,14 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
             public void onClick(View v) {
 
                 //Instancia de fragment al cual se dirigira
-                Detalle_Habilidad_Cotidiana detalle_habilidad_cotidiana = new Detalle_Habilidad_Cotidiana();
+                HabilidadCotidianaFragment detalle_habilidad_cotidiana = new HabilidadCotidianaFragment();
                 //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
                 Bundle  bundleEnvio = new Bundle();
                 bundleEnvio.putSerializable("elementos",categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)));
                 detalle_habilidad_cotidiana.setArguments(bundleEnvio);
 
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                Navigation.findNavController(v).navigate(R.id.habilidadCotidianaFragment4,bundleEnvio);
+                Navigation.findNavController(v).navigate(R.id.detalle_habilidad_Cotidiana,bundleEnvio);
 
             }
         });

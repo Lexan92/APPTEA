@@ -114,7 +114,7 @@ public class Detalle_Habilidad_Cotidiana extends Fragment implements PictogramaA
 
         //Definiendo nombre para el toolbar
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Categoria: " + categoriaPictograma.getCat_pictograma_nombre());
+        toolbar.setTitle("Categoreeeia: " + categoriaPictograma.getCat_pictograma_nombre());
 
 
         //Boton de + para agregar un nuevo pictograma

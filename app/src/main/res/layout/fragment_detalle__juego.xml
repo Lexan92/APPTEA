@@ -34,6 +34,7 @@
   </TextView>
 
 
+
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/lista_juegos"
       android:layout_width="332dp"

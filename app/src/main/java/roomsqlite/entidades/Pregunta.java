@@ -10,6 +10,9 @@
 
 package roomsqlite.entidades;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -19,7 +22,7 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = Pregunta.TABLE_NAME,foreignKeys = @ForeignKey(entity = Juego.class, parentColumns = "juego_id",childColumns = "juego_id",onDelete = CASCADE,onUpdate = CASCADE))
-public class Pregunta {
+public class Pregunta implements Parcelable {
     public static final String TABLE_NAME = "pregunta";
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true)
@@ -53,4 +56,38 @@ public class Pregunta {
     public void setTitulo_pregunta(@NonNull String titulo_pregunta) {
         this.titulo_pregunta = titulo_pregunta;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.pregunta_id);
+        dest.writeInt(this.juego_id);
+        dest.writeString(this.titulo_pregunta);
+    }
+
+    public Pregunta() {
+    }
+
+    protected Pregunta(Parcel in) {
+        this.pregunta_id = in.readInt();
+        this.juego_id = in.readInt();
+        this.titulo_pregunta = in.readString();
+    }
+
+    public static final Parcelable.Creator<Pregunta> CREATOR = new Parcelable.Creator<Pregunta>() {
+        @Override
+        public Pregunta createFromParcel(Parcel source) {
+            return new Pregunta(source);
+        }
+
+        @Override
+        public Pregunta[] newArray(int size) {
+            return new Pregunta[size];
+        }
+    };
 }

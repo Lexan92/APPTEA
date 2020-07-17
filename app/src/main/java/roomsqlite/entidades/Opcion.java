@@ -10,7 +10,6 @@
 
 package roomsqlite.entidades;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -18,7 +17,7 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = Opcion.TABLE_NAME,foreignKeys = @ForeignKey(entity = Pregunta.class,parentColumns = "pregunta_id",childColumns = "pregunta_id",onDelete = CASCADE, onUpdate = CASCADE))
+@Entity(tableName = Opcion.TABLE_NAME, foreignKeys = @ForeignKey(entity = Pregunta.class, parentColumns = "pregunta_id", childColumns = "pregunta_id", onDelete = CASCADE, onUpdate = CASCADE))
 public class Opcion {
     public static final String TABLE_NAME = "opcion";
     @PrimaryKey(autoGenerate = true)

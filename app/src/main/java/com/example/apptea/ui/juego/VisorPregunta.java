@@ -10,9 +10,10 @@
 
 package com.example.apptea.ui.juego;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,13 +21,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 
@@ -37,16 +44,12 @@ import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Pregunta;
 
 public class VisorPregunta extends AppCompatActivity {
-    boolean isCheckedOpcionUno = false;
-    boolean isCheckedOpcionDos = false;
-    boolean isCheckedOpcionTres = false;
-    boolean isCheckedOpcionCuatro = false;
     ImageButton opcionBoton1, opcionBoton2, opcionBoton3, opcionBoton4, editarPregunta, borrarPregunta, preguntaSiguiente, preguntaAnterior;
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
     Button nuevapregunta;
-    TextView tituloPregunta, tituloJuego, contadorPreguntas, txt1, txt2, txt3, txt4;
+    TextView tituloPregunta, tituloJuego, contadorPreguntas, txt1, txt2, txt3, txt4, aviso;
     LiveData<List<Pregunta>> listadoPreguntas;
     LiveData<List<Opcion>> listaOpciones;
     LiveData<Pictograma> pictograma;
@@ -55,6 +58,8 @@ public class VisorPregunta extends AppCompatActivity {
     LottieAnimationView checkedDone2;
     LottieAnimationView checkedDone3;
     LottieAnimationView checkedDone4;
+    Pregunta preguntaEditar = new Pregunta();
+
     int posicion;
     public int contador = 0;
 
@@ -87,55 +92,90 @@ public class VisorPregunta extends AppCompatActivity {
         checkedDone2 = findViewById(R.id.check_opcion_dos_visor);
         checkedDone3 = findViewById(R.id.check_opcion_tres_visor);
         checkedDone4 = findViewById(R.id.check_opcion_cuatro_visor);
+        checkedDone1.setVisibility(View.GONE);
+        checkedDone2.setVisibility(View.GONE);
+        checkedDone3.setVisibility(View.GONE);
+        checkedDone4.setVisibility(View.GONE);
+        aviso = findViewById(R.id.aviso_opcion_vacio);
+        aviso.setVisibility(View.GONE);
 
 
         listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
 
-        listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
-            @Override
-            public void onChanged(List<Pregunta> preguntas) {
+        //verifica si el juego posee preguntas
+        listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
+
+            if (preguntas.size() != 0) {
                 posicion = 0;
                 tituloPregunta.setText(preguntas.get(0).getTitulo_pregunta());
                 tituloJuego.setText(juego.getJuego_nombre());
                 setearOpciones(preguntas.get(0).getPregunta_id());
                 contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
-
-
+            } else {
+                Intent intent = new Intent(this, JuegoPrincipal.class);
+                intent.putExtra("juego", juego);
+                startActivity(intent);
+                finish();
             }
+
         });
+
 
         //NUEVA PREGUNTA
-        nuevapregunta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
-                    @Override
-                    public void onChanged(List<Pregunta> preguntas) {
-                        if ((preguntas.size()) + 1 <= 10) {
-                            Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
-                            intent.putExtra("juegoNuevo", juego);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más preguntas",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-
+        nuevapregunta.setOnClickListener(v -> listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
+            if ((preguntas.size()) + 1 <= 10) {
+                Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
+                intent.putExtra("juegoNuevo", juego);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más preguntas",
+                        Toast.LENGTH_LONG).show();
             }
-        });
+        }));
+
 
         //EDITAR PREGUNTA
 
-        editarPregunta.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Editar: en desarrollo",
-                Toast.LENGTH_LONG).show());
+        editarPregunta.setOnClickListener(v -> {
+            Intent intent = new Intent(this, EditarPregunta.class);
+            intent.putExtra("juego", juego);
+            listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
+                @Override
+                public void onChanged(List<Pregunta> preguntas) {
+                    preguntaEditar = preguntas.get(posicion);
+                }
+            });
+            intent.putExtra("pregunta", preguntaEditar);
+            startActivity(intent);
+
+        });
 
         //BORRAR PREGUNTA
-        borrarPregunta.setOnClickListener(v -> Toast.makeText(getApplicationContext(),"Borrar: en desarrollo",
-                Toast.LENGTH_LONG).show());
+
+        borrarPregunta.setOnClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(VisorPregunta.this);
+
+            builder.setTitle("Eliminar Pregunta");
+            builder.setMessage("La pregunta será eliminada del juego actual ¿Desea continuar?");
+            builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.setPositiveButton("ACEPTAR", (dialog, which) -> {
+                listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
+                    if (preguntas.size() != 0) {
+                        borrarPregunta(preguntas.get(posicion));
+                    }
+                    finish();
+                });
+            });
+
+            builder.show();
+
+        });
 
         //PREGUNTA SIGUIENTE
 
@@ -175,89 +215,132 @@ public class VisorPregunta extends AppCompatActivity {
 
     }
 
+    private void borrarPregunta(Pregunta pregunta) {
+        preguntaViewModel.delete(pregunta);
+    }
+
 
     private void setearOpciones(int id) {
-
+        reiniciarVistaopciones();
         listaOpciones = opcionViewModel.getOcionesByIdPregunta(id);
         listaOpciones.observe(VisorPregunta.this, opciones -> {
-            int size = (opciones.size()) - 1;
-            int count = contador;
-            while (count <= size) {
-                pictograma = pictogramaViewModel.getPictogramaById(opciones.get(count).getPictograma_id());
-                //seteado de imagen y texto del pictograma
-                int finalCount = count;
-                pictograma.observe(VisorPregunta.this, pictograma -> {
-                    switch (finalCount) {
-                        case 0:
-                            opcionBoton1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                            txt1.setText(pictograma.getPictograma_nombre());
+            if (opciones.size() != 0) {
+                aviso.setVisibility(View.GONE);
+                //seteado opciones si la pregunta tiene al menos una opcion asociada
+                int size = (opciones.size()) - 1;
+                int count = contador;
+                while (count <= size) {
+                    pictograma = pictogramaViewModel.getPictogramaById(opciones.get(count).getPictograma_id());
+                    //seteado de imagen y texto del pictograma
+                    int finalCount = count;
+                    pictograma.observe(VisorPregunta.this, pictograma -> {
+                        switch (finalCount) {
+                            case 0:
+                                opcionBoton1.setVisibility(View.VISIBLE);
+                                txt1.setVisibility(View.VISIBLE);
+                                checkedDone1.setVisibility(View.VISIBLE);
+                                opcionBoton1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                                txt1.setText(pictograma.getPictograma_nombre());
 
-                            // seteado de checkbox
-                            if (opciones.get(0).isOpcion_respuesta()) {
-                                checkedDone1.setMinAndMaxProgress(1.0f, 1.0f);
-                            } else {
-                                checkedDone1.setMinAndMaxProgress(0.0f, 0.0f);
-                            }
-                            checkedDone1.playAnimation();
-                            break;
+                                // seteado de checkbox
+                                if (opciones.get(0).isOpcion_respuesta()) {
+                                    checkedDone1.setMinAndMaxProgress(1.0f, 1.0f);
+                                } else {
+                                    checkedDone1.setMinAndMaxProgress(0.0f, 0.0f);
+                                }
+                                checkedDone1.playAnimation();
+                                break;
 
-                        case 1:
-                            opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                            txt2.setText(pictograma.getPictograma_nombre());
-                            // seteado de checkbox
-                            if (opciones.get(1).isOpcion_respuesta()) {
-                                checkedDone2.setMinAndMaxProgress(1.0f, 1.0f);
-                            } else {
-                                checkedDone2.setMinAndMaxProgress(0.0f, 0.0f);
-                            }
-                            checkedDone2.playAnimation();
-                            break;
+                            case 1:
+                                opcionBoton2.setVisibility(View.VISIBLE);
+                                txt2.setVisibility(View.VISIBLE);
+                                checkedDone2.setVisibility(View.VISIBLE);
+                                opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                                txt2.setText(pictograma.getPictograma_nombre());
 
-
-                        case 2:
-                            opcionBoton3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                            txt3.setText(pictograma.getPictograma_nombre());
-                            // seteado de checkbox
-                            if (opciones.get(2).isOpcion_respuesta()) {
-                                checkedDone3.setMinAndMaxProgress(1.0f, 1.0f);
-                            } else {
-                                checkedDone3.setMinAndMaxProgress(0.0f, 0.0f);
-                            }
-                            checkedDone3.playAnimation();
-                            break;
-
-                        case 3:
-                            opcionBoton4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                            txt4.setText(pictograma.getPictograma_nombre());
-                            // seteado de checkbox
-                            if (opciones.get(3).isOpcion_respuesta()) {
-                                checkedDone4.setMinAndMaxProgress(1.0f, 1.0f);
-                            } else {
-                                checkedDone4.setMinAndMaxProgress(0.0f, 0.0f);
-                            }
-                            checkedDone4.playAnimation();
-                            break;
-
-                    }
+                                // seteado de checkbox
+                                if (opciones.get(1).isOpcion_respuesta()) {
+                                    checkedDone2.setMinAndMaxProgress(1.0f, 1.0f);
+                                } else {
+                                    checkedDone2.setMinAndMaxProgress(0.0f, 0.0f);
+                                }
+                                checkedDone2.playAnimation();
+                                break;
 
 
-                });
-                count++;
+                            case 2:
+                                opcionBoton3.setVisibility(View.VISIBLE);
+                                txt3.setVisibility(View.VISIBLE);
+                                checkedDone3.setVisibility(View.VISIBLE);
+                                opcionBoton3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                                txt3.setText(pictograma.getPictograma_nombre());
+
+                                // seteado de checkbox
+                                if (opciones.get(2).isOpcion_respuesta()) {
+                                    checkedDone3.setMinAndMaxProgress(1.0f, 1.0f);
+                                } else {
+                                    checkedDone3.setMinAndMaxProgress(0.0f, 0.0f);
+                                }
+                                checkedDone3.playAnimation();
+                                break;
+
+                            case 3:
+                                opcionBoton4.setVisibility(View.VISIBLE);
+                                txt4.setVisibility(View.VISIBLE);
+                                checkedDone4.setVisibility(View.VISIBLE);
+                                opcionBoton4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                                txt4.setText(pictograma.getPictograma_nombre());
+
+                                // seteado de checkbox
+                                if (opciones.get(3).isOpcion_respuesta()) {
+                                    checkedDone4.setMinAndMaxProgress(1.0f, 1.0f);
+                                } else {
+                                    checkedDone4.setMinAndMaxProgress(0.0f, 0.0f);
+                                }
+                                checkedDone4.playAnimation();
+                                break;
+
+                        }
+
+
+                    });
+                    count++;
+                }
+            } else {
+
+                aviso.setText("Esta pregunta no tiene opciones, presiona el botón de editar para agregar opciones");
+                aviso.setVisibility(View.VISIBLE);
             }
+
         });
+    }
+
+    private void reiniciarVistaopciones() {
+        //seteado de preguntas en el caso que no tenga opciones agregadas
+        //seteado opcion 1
+
+        opcionBoton1.setVisibility(View.INVISIBLE);
+        txt1.setVisibility(View.INVISIBLE);
+        checkedDone1.setVisibility(View.INVISIBLE);
+
+        opcionBoton2.setVisibility(View.INVISIBLE);
+        txt2.setVisibility(View.INVISIBLE);
+        checkedDone2.setVisibility(View.INVISIBLE);
+
+        opcionBoton3.setVisibility(View.INVISIBLE);
+        txt3.setVisibility(View.INVISIBLE);
+        checkedDone3.setVisibility(View.INVISIBLE);
+
+        opcionBoton4.setVisibility(View.INVISIBLE);
+        txt4.setVisibility(View.INVISIBLE);
+        checkedDone4.setVisibility(View.INVISIBLE);
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        listadoPreguntas = null;
-        listaOpciones = null;
-        preguntaViewModel=null;
-        pictograma=null;
-        juego=null;
-        pictogramaViewModel=null;
-        opcionViewModel=null;
+
 
         Runtime.getRuntime().gc();
 

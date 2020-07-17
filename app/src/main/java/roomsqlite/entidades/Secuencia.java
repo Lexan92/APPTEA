@@ -25,6 +25,7 @@ public class Secuencia implements Serializable {
     @NonNull
     private int habilidad_cotidiana_id;
     @NonNull
+    @ColumnInfo(index = true)
     private int pictograma_id;
     @NonNull
     private boolean sec_predeterminado;

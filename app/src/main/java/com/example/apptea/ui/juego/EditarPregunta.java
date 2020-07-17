@@ -3,7 +3,6 @@ package com.example.apptea.ui.juego;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -39,7 +38,6 @@ public class EditarPregunta extends AppCompatActivity {
     boolean agrego1 = false, agrego2 = false, agrego3 = false, agrego4 = false;
 
     LiveData<List<Opcion>> listaOpciones;
-    LiveData<Juego> juegoLiveData;
     LiveData<Pictograma> pictograma, pictogramaUno, pictogramaDos, pictogramaTres, pictogramaCuatro;
     int picto_uno, picto_dos, picto_tres, picto_cuatro, opcion_uno = 0, opcion_dos = 0, opcion_tres = 0, opcion_cuatro = 0;
     Juego juego = new Juego();

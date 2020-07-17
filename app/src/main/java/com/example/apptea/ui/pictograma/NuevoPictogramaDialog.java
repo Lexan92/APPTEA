@@ -219,8 +219,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
 
 
     private void cargarImagen() {
-
-
         final CharSequence[] opciones = {"Tomar Foto", "Cargar Imagen", "Cancelar"};
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(NuevoPictogramaDialog.this);
         builder.setTitle("Seleccione una opción");
@@ -238,8 +236,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 }
-
-
             }
         });
         builder.show();
@@ -281,7 +277,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                     break;
 
                 case COD_FOTO:
-                    ContentResolver cr = this.getContentResolver();
 
                     Bitmap bit = BitmapFactory.decodeByteArray((byte[])data.getExtras().get("data"), 0, ((byte[])data.getExtras().get("data")).length, null);
                     int rotation = (int) data.getExtras().get("rotation");

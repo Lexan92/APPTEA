@@ -138,7 +138,7 @@ public class VisorPregunta extends AppCompatActivity {
         //EDITAR PREGUNTA
 
         editarPregunta.setOnClickListener(v -> {
-            Intent intent = new Intent(this,EditarPregunta.class);
+            Intent intent = new Intent(this, EditarPregunta.class);
             intent.putExtra("juego", juego);
             listadoPreguntas.observe(VisorPregunta.this, new Observer<List<Pregunta>>() {
                 @Override
@@ -146,7 +146,7 @@ public class VisorPregunta extends AppCompatActivity {
                     preguntaEditar = preguntas.get(posicion);
                 }
             });
-            intent.putExtra("pregunta",preguntaEditar);
+            intent.putExtra("pregunta", preguntaEditar);
             startActivity(intent);
 
         });

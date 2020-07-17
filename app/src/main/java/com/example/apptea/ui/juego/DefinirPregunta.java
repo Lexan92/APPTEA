@@ -270,7 +270,7 @@ public class DefinirPregunta extends AppCompatActivity {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton1);
                     txt1.setText(pictograma.getPictograma_nombre());
                     checkedDone1.setVisibility(View.VISIBLE);
-                            agrego1 = true;
+                    agrego1 = true;
                 });
             }
 

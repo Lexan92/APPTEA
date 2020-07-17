@@ -1,17 +1,17 @@
 package com.example.apptea.ui.juego;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
@@ -41,6 +41,7 @@ public class EditarPregunta extends AppCompatActivity {
     LiveData<List<Opcion>> listaOpciones;
     LiveData<Juego> juegoLiveData;
     LiveData<Pictograma> pictograma, pictogramaUno, pictogramaDos, pictogramaTres, pictogramaCuatro;
+    int picto_uno, picto_dos, picto_tres, picto_cuatro, opcion_uno = 0, opcion_dos = 0, opcion_tres = 0, opcion_cuatro = 0;
     Juego juego = new Juego();
     Pregunta pregunta = new Pregunta();
     LottieAnimationView checkedDone1;
@@ -84,15 +85,13 @@ public class EditarPregunta extends AppCompatActivity {
         checkedDone4 = findViewById(R.id.check_opcion_cuatro);
 
 
-
         tituloJuego.setText(juego.getJuego_nombre());
         tituloPregunta.setText(pregunta.getTitulo_pregunta());
-        setearOpciones(pregunta.getPregunta_id());
+        setearOpcionesEditar(pregunta.getPregunta_id());
 
 
         //Escucha del boton guardar
         guardar.setOnClickListener(v -> {
-
 
             if (!tituloPregunta.getText().toString().isEmpty()) {
                 pregunta.setTitulo_pregunta(tituloPregunta.getText().toString());
@@ -100,44 +99,105 @@ public class EditarPregunta extends AppCompatActivity {
 
                 //seteado de valores para la opcion 1
 
-                if (agrego1) {
+                if (agrego1 && picto_uno == -1) {
                     final Opcion opcion1 = new Opcion();
+
                     opcion1.setOpcion_respuesta(isCheckedOpcionUno);
                     opcion1.setPregunta_id(pregunta.getPregunta_id());
                     pictogramaUno.observe(EditarPregunta.this, pictograma -> opcion1.setPictograma_id(pictograma.getPictograma_id()));
 
+                    if (opcion_uno == 0) {
+                        opcionViewModel.insert(opcion1);
+                    } else {
+                        //insert de opcion 1
+                        opcion1.setOpcion_id(opcion_uno);
+                        opcionViewModel.update(opcion1);
+                    }
+
+                } else if (agrego1 && picto_uno > 0) {
+                    final Opcion opcion1 = new Opcion();
+                    opcion1.setOpcion_id(opcion_uno);
+                    opcion1.setOpcion_respuesta(isCheckedOpcionUno);
+                    opcion1.setPregunta_id(pregunta.getPregunta_id());
+                    opcion1.setPictograma_id(picto_uno);
                     //insert de opcion 1
-                    opcionViewModel.insert(opcion1);
+                    opcionViewModel.update(opcion1);
+
                 }
 
                 //seteado de valores para la opcion 2
 
-                if (agrego2) {
+                if (agrego2 && picto_dos == -1) {
                     final Opcion opcion2 = new Opcion();
+
                     opcion2.setPregunta_id(pregunta.getPregunta_id());
                     opcion2.setOpcion_respuesta(isCheckedOpcionDos);
-                    pictogramaDos.observe(EditarPregunta.this, pictograma -> opcion2.setPictograma_id(pictograma.getPictograma_id()));
+                    pictogramaDos.observe(this, pictograma -> opcion2.setPictograma_id(pictograma.getPictograma_id()));
+
+                    if (opcion_dos == 0) {
+                        opcionViewModel.insert(opcion2);
+                    } else {
+                        //insert de opcion 1
+                        opcion2.setOpcion_id(opcion_dos);
+                        opcionViewModel.update(opcion2);
+                    }
+                } else if (agrego2 && picto_dos > 0) {
+                    final Opcion opcion2 = new Opcion();
+                    opcion2.setOpcion_id(opcion_dos);
+                    opcion2.setPregunta_id(pregunta.getPregunta_id());
+                    opcion2.setOpcion_respuesta(isCheckedOpcionDos);
+                    opcion2.setPictograma_id(picto_dos);
                     //insert opcion 2
-                    opcionViewModel.insert(opcion2);
+                    opcionViewModel.update(opcion2);
+
                 }
 
                 //seteado de valores para la opcion 3
-                if (agrego3) {
+                if (agrego3 && picto_tres == -1) {
                     final Opcion opcion3 = new Opcion();
+
                     opcion3.setPregunta_id(pregunta.getPregunta_id());
                     opcion3.setOpcion_respuesta(isCheckedOpcionTres);
                     pictogramaTres.observe(EditarPregunta.this, pictograma -> opcion3.setPictograma_id(pictograma.getPictograma_id()));
+
+                    if (opcion_tres == 0) {
+                        opcionViewModel.insert(opcion3);
+                    } else {
+                        opcion3.setOpcion_id(opcion_tres);
+                        opcionViewModel.update(opcion3);
+                    }
+                } else if (agrego3 && picto_tres > 0) {
+                    final Opcion opcion3 = new Opcion();
+                    opcion3.setOpcion_id(opcion_tres);
+                    opcion3.setPregunta_id(pregunta.getPregunta_id());
+                    opcion3.setOpcion_respuesta(isCheckedOpcionTres);
+                    opcion3.setPictograma_id(picto_tres);
 
                     //insert opcion 3
                     opcionViewModel.update(opcion3);
                 }
 
                 //seteado de valores para la opcion 4
-                if (agrego4) {
+                if (agrego4 && picto_cuatro == -1) {
                     final Opcion opcion4 = new Opcion();
+
                     opcion4.setPregunta_id(pregunta.getPregunta_id());
                     opcion4.setOpcion_respuesta(isCheckedOpcionCuatro);
                     pictogramaCuatro.observe(EditarPregunta.this, pictograma -> opcion4.setPictograma_id(pictograma.getPictograma_id()));
+                    if (opcion_cuatro == 0) {
+                        opcionViewModel.insert(opcion4);
+                    } else {
+                        //insert de opcion 4
+                        opcion4.setOpcion_id(opcion_dos);
+                        opcion4.setOpcion_id(opcion_cuatro);
+                        opcionViewModel.update(opcion4);
+                    }
+                } else if (agrego4 && picto_cuatro > 0) {
+                    final Opcion opcion4 = new Opcion();
+                    opcion4.setOpcion_id(opcion_cuatro);
+                    opcion4.setPregunta_id(pregunta.getPregunta_id());
+                    opcion4.setOpcion_respuesta(isCheckedOpcionCuatro);
+                    opcion4.setPictograma_id(picto_cuatro);
                     //insert opcion 4
                     opcionViewModel.update(opcion4);
                 }
@@ -146,9 +206,8 @@ public class EditarPregunta extends AppCompatActivity {
             } else {
                 Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe ingresar un titulo para la pregunta", Snackbar.LENGTH_LONG).show();
             }
-
+            finish();
         });
-
 
 
         //actividades para buscar pictogramas
@@ -225,95 +284,98 @@ public class EditarPregunta extends AppCompatActivity {
     }
 
 
-
-
-    private void setearOpciones(int id) {
+    private void setearOpcionesEditar(int id) {
 
         listaOpciones = opcionViewModel.getOcionesByIdPregunta(id);
         listaOpciones.observe(EditarPregunta.this, opciones -> {
 
 
-                //seteado opciones si la pregunta tiene al menos una opcion asociada
-                int size = (opciones.size()) - 1;
-                int count = 0;
-                while (count <= size) {
-                    pictograma = pictogramaViewModel.getPictogramaById(opciones.get(count).getPictograma_id());
-                    //seteado de imagen y texto del pictograma
-                    int finalCount = count;
-                    pictograma.observe(EditarPregunta.this, pictograma -> {
-                        switch (finalCount) {
-                            case 0:
-                                opcionBoton1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt1.setText(pictograma.getPictograma_nombre());
+            //seteado opciones si la pregunta tiene al menos una opcion asociada
+            int size = (opciones.size()) - 1;
+            int count = 0;
+            while (count <= size) {
+                pictograma = pictogramaViewModel.getPictogramaById(opciones.get(count).getPictograma_id());
+                //seteado de imagen y texto del pictograma
+                int finalCount = count;
+                int finalID = opciones.get(count).getOpcion_id();
+                pictograma.observe(EditarPregunta.this, pictograma -> {
+                    switch (finalCount) {
+                        case 0:
+                            opcionBoton1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            picto_uno = pictograma.getPictograma_id();
+                            txt1.setText(pictograma.getPictograma_nombre());
+                            agrego1 = true;
+                            opcion_uno = finalID;
+                            // seteado de checkbox
+                            if (opciones.get(0).isOpcion_respuesta()) {
+                                checkedDone1.setSpeed(4);
+                                isCheckedOpcionUno = true;
+                            } else {
+                                checkedDone1.setSpeed(-4);
+                                isCheckedOpcionUno = false;
+                            }
+                            checkedDone1.playAnimation();
 
-                                // seteado de checkbox
-                                if (opciones.get(0).isOpcion_respuesta()) {
-                                   // checkedDone1.setMinAndMaxProgress(1.0f, 1.0f);
-                                    checkedDone1.setSpeed(2);
-                                    isCheckedOpcionUno = true;
-                                } else {
-                                    //checkedDone1.setMinAndMaxProgress(0.0f, 0.0f);
-                                    checkedDone1.setSpeed(-4);
-                                    isCheckedOpcionUno = false;
-                                }
-                                checkedDone1.playAnimation();
-                                
-                                break;
+                            break;
 
-                            case 1:
+                        case 1:
 
-                                opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt2.setText(pictograma.getPictograma_nombre());
-
-                                // seteado de checkbox
-                                if (opciones.get(1).isOpcion_respuesta()) {
-                                    checkedDone2.setSpeed(4);
-                                    isCheckedOpcionDos = true;
-                                } else {
-                                    checkedDone2.setSpeed(-4);
-                                    isCheckedOpcionDos = false;
-                                }
-                                checkedDone2.playAnimation();
-                                break;
-
-
-                            case 2:
-                                opcionBoton3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt3.setText(pictograma.getPictograma_nombre());
-
-                                // seteado de checkbox
-                                if (opciones.get(2).isOpcion_respuesta()) {
-                                    checkedDone3.setSpeed(4);
-                                    isCheckedOpcionTres = true;
-                                } else {
-                                    checkedDone3.setSpeed(-4);
-                                    isCheckedOpcionTres = false;
-                                }
-                                checkedDone3.playAnimation();
-
-                                break;
-
-                            case 3:
-                                opcionBoton4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt4.setText(pictograma.getPictograma_nombre());
-
-                                // seteado de checkbox
-                                if (opciones.get(3).isOpcion_respuesta()) {
-                                    checkedDone4.setSpeed(4);
-                                    isCheckedOpcionCuatro = true;
-                                } else {
-                                    checkedDone4.setSpeed(-4);
-                                    isCheckedOpcionCuatro = false;
-                                }
-                                checkedDone4.playAnimation();
-                                break;
-
-                        }
+                            opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            picto_dos = pictograma.getPictograma_id();
+                            txt2.setText(pictograma.getPictograma_nombre());
+                            agrego2 = true;
+                            opcion_dos = finalID;
+                            // seteado de checkbox
+                            if (opciones.get(1).isOpcion_respuesta()) {
+                                checkedDone2.setSpeed(4);
+                                isCheckedOpcionDos = true;
+                            } else {
+                                checkedDone2.setSpeed(-4);
+                                isCheckedOpcionDos = false;
+                            }
+                            checkedDone2.playAnimation();
+                            break;
 
 
-                    });
-                    count++;
-                }
+                        case 2:
+                            opcionBoton3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            picto_tres = pictograma.getPictograma_id();
+                            txt3.setText(pictograma.getPictograma_nombre());
+                            agrego3 = true;
+                            opcion_tres = finalID;
+                            // seteado de checkbox
+                            if (opciones.get(2).isOpcion_respuesta()) {
+                                checkedDone3.setSpeed(4);
+                                isCheckedOpcionTres = true;
+                            } else {
+                                checkedDone3.setSpeed(-4);
+                                isCheckedOpcionTres = false;
+                            }
+                            checkedDone3.playAnimation();
+
+                            break;
+
+                        case 3:
+                            opcionBoton4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
+                            picto_cuatro = pictograma.getPictograma_id();
+                            txt4.setText(pictograma.getPictograma_nombre());
+                            agrego4 = true;
+                            opcion_cuatro = finalID;
+                            // seteado de checkbox
+                            if (opciones.get(3).isOpcion_respuesta()) {
+                                checkedDone4.setSpeed(4);
+                                isCheckedOpcionCuatro = true;
+                            } else {
+                                checkedDone4.setSpeed(-4);
+                                isCheckedOpcionCuatro = false;
+                            }
+                            checkedDone4.playAnimation();
+                            break;
+
+                    }
+                });
+                count++;
+            }
 
 
         });
@@ -329,8 +391,8 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaUno.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton1);
                     txt1.setText(pictograma.getPictograma_nombre());
-
                     agrego1 = true;
+                    picto_uno = -1;
                 });
             }
 
@@ -342,8 +404,8 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaDos.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton2);
                     txt2.setText(pictograma.getPictograma_nombre());
-
                     agrego2 = true;
+                    picto_dos = -1;
                 });
             }
         }
@@ -354,8 +416,8 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaTres.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton3);
                     txt3.setText(pictograma.getPictograma_nombre());
-
                     agrego3 = true;
+                    picto_tres = -1;
                 });
             }
         }
@@ -366,8 +428,8 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaCuatro.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton4);
                     txt4.setText(pictograma.getPictograma_nombre());
-                
                     agrego4 = true;
+                    picto_cuatro = -1;
                 });
             }
         }

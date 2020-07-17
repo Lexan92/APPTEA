@@ -97,6 +97,9 @@
             android:label=" "
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
           />
+        <activity
+            android:name=".ui.habilidadCotidiana.AgregarSecuenciaDialog"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

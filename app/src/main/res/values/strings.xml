@@ -103,4 +103,8 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     --Nueva habilidad
     <string name="titulo_dialog_nueva_hab">Nueva Habilidad Cotidiana</string>
     <string name="hint_dialog_nueva_habilidad">Nombre Habilidad Cotidiana</string>
+    <string name="pregunta_agregar_hab">¿Desea agregar un paso a la habilidad creada?</string>
+    <string name="comentario_hab">**Si selecciona -Más tarde- podra despues agregar los pasos**</string>
+    <string name="button_mas_tarde">Más tarde</string>
+    <string name="button_si_agregar">Si</string>
 </resources>

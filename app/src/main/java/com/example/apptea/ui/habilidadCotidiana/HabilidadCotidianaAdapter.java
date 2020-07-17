@@ -74,9 +74,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             HabilidadCotidiana current = habilidadCotidianaList.get(position);
 
             if(current.isPredeterminado()){
-
-                // holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
-                // holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
                 Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
                         .thumbnail(0.5f)
@@ -88,9 +85,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
                 holder.setIsRecyclable(false);
             }
             else {
-                //holder.imagen.setImageBitmap(BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.predeterminada));
-                //  holder.imagen.setImageBitmap(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()));
-
                 Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
                         .thumbnail(0.5f)

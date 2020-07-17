@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Oscar Turish
+  ~ 17/07/2020
+  ~ Este fragment se utilizara para la creacion de las secuencias
+  ~ */
+  ~
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.frases.frasesFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight=".25">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_frases"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:layout_weight=".75"
+            tools:listitem="@layout/fragment_item_pic_frases" />
+        <ImageView
+            android:id="@+id/img_pictograma"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="-12dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:srcCompat="@drawable/ic_next_hab" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_play"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".50"
+                app:icon="@drawable/ic_play"
+                app:iconSize="@android:dimen/app_icon_size"
+                app:iconGravity="textStart"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_backspace"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".50"
+                app:icon="@drawable/ic_backspace"
+                app:iconSize="@android:dimen/app_icon_size"
+                app:iconGravity="textStart"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_categorias"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:layout_weight=".25"
+        tools:listitem="@layout/fragment_item_frases" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_picto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".50"
+        tools:listitem="@layout/fragment_item_pic_frases" />
+
+
+
+</LinearLayout>

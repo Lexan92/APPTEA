@@ -35,6 +35,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.Utilities.UtilCamara;
+import com.example.apptea.ui.usuario.ValidarCodigo;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -123,6 +124,9 @@ public class NuevaHabilidadCotidianaDialog extends AppCompatActivity{
                             habilidadCotidiana.setHab_predeterminado(false);
                             habilidadCotidianaViewModel.insert(habilidadCotidiana);
                             Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(), AgregarSecuenciaDialog.class);
+                            intent.putExtra("hab_cotidiana_id", habilidadCotidiana.getHabilidad_cotidiana_id());
+                            startActivity(intent);
                             finish();
 
                         }

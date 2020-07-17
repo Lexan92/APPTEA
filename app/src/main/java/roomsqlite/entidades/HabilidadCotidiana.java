@@ -45,21 +45,6 @@ public class HabilidadCotidiana implements Serializable {
         this.habilidad_cotidiana_nombre = habilidad_cotidiana_nombre;
         this.hab_predeterminado = hab_predeterminado;
     }
-    /*
-    public HabilidadCotidiana(int habilidad_cotidiana_id, int cat_hab_cotidiana_id, @NonNull String habilidad_cotidiana_nombre, byte[] pictograma_imagen, boolean hab_predeterminado) {
-        this.habilidad_cotidiana_id = habilidad_cotidiana_id;
-        this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
-        this.habilidad_cotidiana_nombre = habilidad_cotidiana_nombre;
-        this.pictograma_imagen = pictograma_imagen;
-        this.hab_predeterminado = hab_predeterminado;
-    }
-
-    public HabilidadCotidiana(int habilidad_cotidiana_id, int cat_hab_cotidiana_id, @NonNull String habilidad_cotidiana_nombre, boolean hab_predeterminado) {
-        this.habilidad_cotidiana_id = habilidad_cotidiana_id;
-        this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
-        this.habilidad_cotidiana_nombre = habilidad_cotidiana_nombre;
-        this.hab_predeterminado = hab_predeterminado;
-    }*/
 
     public int getHabilidad_cotidiana_id() {
         return habilidad_cotidiana_id;

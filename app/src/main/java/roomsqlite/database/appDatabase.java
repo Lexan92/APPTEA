@@ -56,8 +56,6 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract OpcionDAO opcionDAO();
 
     public abstract PaisDao paisDao();
-    /*public abstract DepartamentoDao departamentoDao();*/
-   /* public abstract MunicipioDao municipioDao();*/
     public abstract UsuarioDao usuarioDao();
     public  abstract PersonaTeaDao personaTeaDao();
     public abstract SecuenciaDao secuenciaDao();
@@ -87,8 +85,25 @@ public abstract class appDatabase extends RoomDatabase {
                 databaseWriteExecutor.execute(() -> {
                     System.out.println("registro inicial");
 
-
+                    //INSTANCIAS
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
+                    PaisDao paisesdao = INSTANCE.paisDao();
+                    CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
+                    JuegoDAO juegoDAO = INSTANCE.juegoDAO();
+                    CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
+                    PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
+                    UsuarioDao usuarioDao = INSTANCE.usuarioDao();
+                    PersonaTeaDao personaTeaDao =INSTANCE.personaTeaDao();
+
+                    //DELETEALL - primero de borran las entidades dependientes - segundo se borran la entidades independientes
+                    paisesdao.deletePaisAll();
+                    categoriaJuegoDAO.deleteAllCategoriaJuegos();
+                    pictogramaDAO.deleteAllPictogramas();
+                    categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
+                    personaTeaDao.deletePersonaAll();
+                    usuarioDao.deleteUsuarioAll();
+
+                    //INSERT
                     System.out.println("categorias habilidades");
 
                     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo personal",true);
@@ -116,8 +131,8 @@ public abstract class appDatabase extends RoomDatabase {
                     categoriaHabCotidiana = new CategoriaHabCotidiana(12, "La escuela",true);
                     dao.insert(categoriaHabCotidiana);
 
-                    PaisDao paisesdao = INSTANCE.paisDao();
-                    paisesdao.deletePaisAll();
+
+
                     System.out.println("paises");
 
                     Pais pais = new Pais(1, "El Salvador");
@@ -129,14 +144,14 @@ public abstract class appDatabase extends RoomDatabase {
 
 
                     //CATEGORIAS JUEGOS
-                    CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
-                    categoriaJuegoDAO.deleteAllCategoriaJuegos();
+
+
                     CategoriaJuego cate = new CategoriaJuego(1, "Juegos de Selección", true);
                     categoriaJuegoDAO.insertCategoriaJuego(cate);
 
                     //LISTADO DE JUEGOS
 
-                    JuegoDAO juegoDAO = INSTANCE.juegoDAO();
+
                     Juego juego = new Juego(1,1,"Juego Vocales",true);
                     juegoDAO.insertJuego(juego);
                     Juego juego1 = new Juego(2,1,"Juego Numeros",true);
@@ -149,11 +164,10 @@ public abstract class appDatabase extends RoomDatabase {
 
 
 
-                   // CategoriaPictogramaDAO pict  = INSTANCE.categoriaPictogramaDAO();
 
 
-                CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
-                categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
+
+
                     System.out.println("categorias pictogramas");
 
                 CategoriaPictograma pic= new CategoriaPictograma(1,"Colores", true);
@@ -226,8 +240,8 @@ public abstract class appDatabase extends RoomDatabase {
 
                 /*
 
-             /*   PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
-                pictogramaDAO.deleteAllPictogramas();
+             /*
+
 
                 Pictograma picto= new Pictograma(1,  1,"Verde",true);
                 pictogramaDAO.insert(picto);
@@ -243,13 +257,8 @@ public abstract class appDatabase extends RoomDatabase {
 
 
 
-                    UsuarioDao usuarioDao = INSTANCE.usuarioDao();
-                    PersonaTeaDao personaTeaDao =INSTANCE.personaTeaDao();
-                    //primero de borran las entidades dependientes
-                      personaTeaDao.deletePersonaAll();
 
-                    //segundo se borran la entidades independientes
-                    usuarioDao.deleteUsuarioAll();
+
 
 
                  /*   Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);

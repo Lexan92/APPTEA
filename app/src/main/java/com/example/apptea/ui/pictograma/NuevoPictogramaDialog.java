@@ -46,9 +46,10 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class NuevoPictogramaDialog extends AppCompatActivity {
 
-    private static final String CARPETA_PRINCIPAL = "misImagenesApp/";//directorio principal
+   /* private static final String CARPETA_PRINCIPAL = "misImagenesApp/";//directorio principal
     private static final String CARPETA_IMAGEN = "imagenes";//carpeta donde se guardan las fotos
-    private static final String DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN;//ruta carpeta de directorios
+    private static final String DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN;//ruta carpeta de directorios*/
+
     private static final int COD_SELECCIONA = 10;
     private static final int COD_FOTO = 20;
     MaterialButton botonRegistrar, botonSeleccionar, botonCancelar;
@@ -76,11 +77,11 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
 
 
 
-        if (validaPermisos()) {
+     /*  if (validaPermisos()) {
             botonSeleccionar.setEnabled(true);
         } else {
             botonSeleccionar.setEnabled(false);
-        }
+        }*/
 
         botonSeleccionar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +135,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     }
 
 
-    private boolean validaPermisos() {
+   /* private boolean validaPermisos() {
         //se validan permisos para versiones de android menores a Marshmellow
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
@@ -176,9 +177,9 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
             }
         });
         builder.show();
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -215,7 +216,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
             }
         });
         builder.show();
-    }
+    }*/
 
 
     private void cargarImagen() {

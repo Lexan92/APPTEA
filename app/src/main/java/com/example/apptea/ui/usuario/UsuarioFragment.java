@@ -15,7 +15,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -31,27 +30,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
-import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
-import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
-import com.example.apptea.ui.pais.PaisViewModel;
-import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
-import com.example.apptea.ui.personaTea.NuevaPersonaTea;
 import com.example.apptea.utilidades.EnviarCorreo;
 import com.example.apptea.utilidades.GenerarNumAleatorio;
-
-import org.w3c.dom.Attr;
 
 import java.util.List;
 
 import roomsqlite.dao.UsuarioDao;
 import roomsqlite.database.appDatabase;
-import roomsqlite.entidades.CategoriaHabCotidiana;
-import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Usuario;
 import roomsqlite.repositorios.UsuarioRepository;
 
-import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static android.view.View.VISIBLE;
 

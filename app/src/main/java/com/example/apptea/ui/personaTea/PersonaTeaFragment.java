@@ -153,7 +153,7 @@ public class PersonaTeaFragment extends Fragment{
             personaTeaViewModel.insert(personaTea);
         } else
             if (requestCode == PERSONAS_UPDATE_REQUEST_CODE && resultCode == RESULT_OK){
-                personaTea = (PersonaTea) data.getSerializableExtra(ActualizarPersonaTeaActivity.EXTRA_PERSONA_UPDATE);
+                personaTea = (PersonaTea) data.getSerializableExtra(NuevaPersonaTea.EXTRA_PERSONA_UPDATE);
                 personaTeaViewModel.update(personaTea);
             } else {
             Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();

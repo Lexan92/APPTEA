@@ -42,7 +42,7 @@
         <activity
             android:name=".ui.juego.NuevoJuego"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.personaTea.ActualizarPersonaTeaActivity" />
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">

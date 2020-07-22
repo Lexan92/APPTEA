@@ -16,6 +16,18 @@ import roomsqlite.entidades.Pais;
 @Dao
 public interface PaisDao {
 
+    @Insert
+    void insertAllPais(Pais[] paises);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertPais(Pais pais);
+
+    @Update
+    void updatePais(Pais pais);
+
+    @Delete
+    void deletePais(Pais pais);
+
     @Query("SELECT * FROM pais")
     LiveData<List<Pais>> getAllPais();
 
@@ -27,12 +39,4 @@ public interface PaisDao {
     @Nullable
     Pais findPaisById(@Nullable int id);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertPais(Pais pais);
-
-    @Update
-    void updatePais(Pais pais);
-
-    @Delete
-    void deletePais(Pais pais);
 }

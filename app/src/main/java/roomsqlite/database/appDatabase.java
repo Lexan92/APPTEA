@@ -105,8 +105,9 @@ public abstract class appDatabase extends RoomDatabase {
 
                     //INSERT
                     System.out.println("categorias habilidades");
+                    dao.insertAllCatHabCotidiana(Data.catHabCotidianasData());
 
-                    CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo personal",true);
+                    /*CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo personal",true);
                     dao.insert(categoriaHabCotidiana);
                     categoriaHabCotidiana = new CategoriaHabCotidiana(2, "El baño",true);
                     dao.insert(categoriaHabCotidiana);
@@ -129,48 +130,42 @@ public abstract class appDatabase extends RoomDatabase {
                     categoriaHabCotidiana = new CategoriaHabCotidiana(11, "La cuidad",true);
                     dao.insert(categoriaHabCotidiana);
                     categoriaHabCotidiana = new CategoriaHabCotidiana(12, "La escuela",true);
-                    dao.insert(categoriaHabCotidiana);
-
-
+                    dao.insert(categoriaHabCotidiana);*/
 
                     System.out.println("paises");
+                    paisesdao.insertAllPais(Data.paises());
 
-                    Pais pais = new Pais(1, "El Salvador");
+                    /*Pais pais = new Pais(1, "El Salvador");
                     paisesdao.insertPais(pais);
                     pais = new Pais(2, "Guatemala");
                     paisesdao.insertPais(pais);
                     pais = new Pais(3, "Honduras");
-                    paisesdao.insertPais(pais);
+                    paisesdao.insertPais(pais);*/
 
 
                     //CATEGORIAS JUEGOS
+                    categoriaJuegoDAO.insertAllCategoriaJuego(Data.categoriaJuegos());
 
-
-                    CategoriaJuego cate = new CategoriaJuego(1, "Juegos de Selección", true);
-                    categoriaJuegoDAO.insertCategoriaJuego(cate);
+                    /*CategoriaJuego cate = new CategoriaJuego(1, "Juegos de Selección", true);
+                    categoriaJuegoDAO.insertCategoriaJuego(cate);*/
 
                     //LISTADO DE JUEGOS
+                    juegoDAO.insertAllJuego(Data.juegos());
 
-
-                    Juego juego = new Juego(1,1,"Juego Vocales",true);
+                    /*Juego juego = new Juego(1,1,"Juego Vocales",true);
                     juegoDAO.insertJuego(juego);
                     Juego juego1 = new Juego(2,1,"Juego Numeros",true);
                     juegoDAO.insertJuego(juego1);
                     Juego juego2 = new Juego(3,1,"Juego de la Frutas", true);
                     juegoDAO.insertJuego(juego2);
                     Juego juego3 = new Juego(4,1,"Juego de las Verduras", false);
-                    juegoDAO.insertJuego(juego3);
-
-
-
-
-
-
+                    juegoDAO.insertJuego(juego3);*/
 
 
                     System.out.println("categorias pictogramas");
+                    categoriaPictogramaDAO.insertAllCategoriaPictograma(Data.categoriaPictogramas());
 
-                CategoriaPictograma pic= new CategoriaPictograma(1,"Colores", true);
+                /*CategoriaPictograma pic= new CategoriaPictograma(1,"Colores", true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic);
                 CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas", true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic1);
@@ -236,14 +231,9 @@ public abstract class appDatabase extends RoomDatabase {
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic31);
                 CategoriaPictograma pic32= new CategoriaPictograma(33,"Verbos",true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic32);
+                */
 
-
-                /*
-
-             /*
-
-
-                Pictograma picto= new Pictograma(1,  1,"Verde",true);
+                /*Pictograma picto= new Pictograma(1,  1,"Verde",true);
                 pictogramaDAO.insert(picto);
                 Pictograma picto1= new Pictograma(2, 1,"Azul",true);
                 pictogramaDAO.insert(picto1);
@@ -253,19 +243,15 @@ public abstract class appDatabase extends RoomDatabase {
                 pictogramaDAO.insert(picto3);
                 Pictograma picto4 = new Pictograma(5,2,"Uva",false);
                 pictogramaDAO.insert(picto4);
-*/
+                */
 
+                /*
+                 Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
+                 usuarioDao.insertUsuario(usuario);
 
-
-
-
-
-
-                 /*   Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
-                    usuarioDao.insertUsuario(usuario);
-
-                    PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
-                    personaTeaDao.insertPersonaTea(personaTea);*/
+                 PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
+                 personaTeaDao.insertPersonaTea(personaTea);
+                 */
 
                     System.out.println("registro inicial finalizado");
                 });

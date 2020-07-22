@@ -45,36 +45,33 @@ public class Pictograma implements Serializable {
 
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] pictograma_imagen;
-    private String pictograma_sonido;
     private boolean predeterminado;
 
 //CONSTRUCTOR
 
-/*
-    public Pictograma(int pictograma_id, int categoria_pictograma_id, @NonNull String pictograma_nombre, String pictograma_imagen, String pictograma_sonido, int pictograma_ban) {
+    @Ignore
+    public Pictograma(int pictograma_id, int cat_pictograma_id, @NonNull String pictograma_nombre, byte[] pictograma_imagen, boolean predeterminado) {
         this.pictograma_id = pictograma_id;
-        this.categoria_pictograma_id = categoria_pictograma_id;
+        this.cat_pictograma_id = cat_pictograma_id;
         this.pictograma_nombre = pictograma_nombre;
         this.pictograma_imagen = pictograma_imagen;
-        this.pictograma_sonido = pictograma_sonido;
-        this.pictograma_ban = pictograma_ban;
-    }*/
+        this.predeterminado = predeterminado;
+    }
 
-
-    @Ignore
+    /*@Ignore
     public Pictograma(@NonNull int pictograma_id, int cat_pictograma_id, @NonNull String pictograma_nombre, @NonNull boolean predeterminado) {
         this.pictograma_id = pictograma_id;
         this.cat_pictograma_id = cat_pictograma_id;
         this.pictograma_nombre = pictograma_nombre;
         this.predeterminado = predeterminado;
-    }
+    }*/
 
     public Pictograma() {
 
     }
 
 
-    //GETE Y SET
+    //GET Y SET
 
 
     public int getPictograma_id() {
@@ -110,13 +107,6 @@ public class Pictograma implements Serializable {
         this.pictograma_imagen = pictograma_imagen;
     }
 
-    public String getPictograma_sonido() {
-        return pictograma_sonido;
-    }
-
-    public void setPictograma_sonido(String pictograma_sonido) {
-        this.pictograma_sonido = pictograma_sonido;
-    }
 
     public boolean isPredeterminado() {
         return predeterminado;

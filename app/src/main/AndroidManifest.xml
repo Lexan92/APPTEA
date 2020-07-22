@@ -45,7 +45,7 @@
         <activity
             android:name=".ui.juego.NuevoJuego"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.personaTea.ActualizarPersonaTeaActivity" />
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -103,7 +103,12 @@
             android:label=" "
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
+            android:name=".ui.habilidadCotidiana.SecuenciaFragment"
+            android:label=" "
+            />
+        <activity
             android:name=".ui.habilidadCotidiana.AgregarSecuenciaDialog"
+            android:label=" "
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
 
         <provider

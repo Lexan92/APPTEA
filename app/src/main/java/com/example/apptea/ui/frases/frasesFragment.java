@@ -144,8 +144,10 @@ public class frasesFragment extends Fragment {
         backspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pictoFraseList.remove(pictoFraseList.size()-1);
-                adapterFrases.notifyDataSetChanged();
+                if (pictoFraseList.size()>0) {
+                    pictoFraseList.remove(pictoFraseList.size() - 1);
+                    adapterFrases.notifyDataSetChanged();
+                }
             }
         });
 

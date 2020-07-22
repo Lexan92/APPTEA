@@ -103,7 +103,11 @@
         android:id="@+id/detalle_habilidad_Cotidiana"
         android:name="com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment"
         android:label="HabilidadCotidianaFragment"
-        tools:layout="@layout/fragment_detalle_habilidad_cotidiana" />
+        tools:layout="@layout/fragment_detalle_habilidad_cotidiana" >
+        <action
+            android:id="@+id/action_detalle_habilidad_Cotidiana_to_agregarSecuenciaDialog"
+            app:destination="@id/agregarSecuenciaDialog" />
+    </fragment>
     <activity
         android:id="@+id/juegoPrincipal"
         android:name="com.example.apptea.ui.juego.JuegoPrincipal"
@@ -127,6 +131,25 @@
         android:name="com.example.apptea.ui.juego.VisorPregunta"
         android:label="activity_visor_pregunta"
         tools:layout="@layout/activity_visor_pregunta" />
+    <fragment
+        android:id="@+id/secuenciaFragment"
+        android:name="com.example.apptea.ui.habilidadCotidiana.SecuenciaFragment"
+        android:label="SecuenciaFragment"
+        tools:layout="@layout/fragment_crear_secuencia">
+        <action
+            android:id="@+id/action_secuenciaFragment_to_agregarSecuenciaDialog2"
+            app:destination="@id/agregarSecuenciaDialog" />
+        <action
+            android:id="@+id/action_secuenciaFragment_to_detalle_habilidad_Cotidiana"
+            app:destination="@id/detalle_habilidad_Cotidiana" />
+    </fragment>
+
+    <activity
+        android:id="@+id/agregarSecuenciaDialog"
+        android:name="com.example.apptea.ui.habilidadCotidiana.AgregarSecuenciaDialog"
+        android:label="AgregarSecuenciaDialog"
+        tools:layout="@layout/confimar_agregar_hab_dialog"/>
+
 
 
 </navigation>

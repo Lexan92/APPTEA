@@ -40,8 +40,8 @@ import roomsqlite.entidades.Pictograma;
         @Query("SELECT * FROM pictograma ORDER BY pictograma_nombre ASC")
         LiveData<List<Pictograma>> getPictograma_nombre();
 
-        @Insert(onConflict = OnConflictStrategy.IGNORE)
-        public void insert(Pictograma pictograma);
+       /* @Insert(onConflict = OnConflictStrategy.IGNORE)
+        public void insert(Pictograma pictograma);*/
 
         //metodo que devuelve todos los pictogramas segun una categoria especifica
         @Query("SELECT * FROM " + Pictograma.TABLE_NAME + " WHERE cat_pictograma_id = :id")

@@ -91,7 +91,7 @@ public class PictoFrasesAdapter extends RecyclerView.Adapter<PictoFrasesAdapter.
         }
     }
 
-    void setPictograma(List<Pictograma> pic){
+   public void setPictograma(List<Pictograma> pic){
         pictogramaList = pic;
         notifyDataSetChanged();
     }

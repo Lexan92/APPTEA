@@ -19,6 +19,9 @@ import roomsqlite.entidades.CategoriaJuego;
 @Dao
 public interface CategoriaJuegoDAO {
 
+    @Insert
+    void insertAllCategoriaJuego(CategoriaJuego[] categoriaJuegos);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCategoriaJuego(CategoriaJuego categoriaJuego);
 

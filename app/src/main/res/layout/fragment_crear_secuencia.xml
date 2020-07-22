@@ -13,8 +13,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/secuenciaFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.frases.frasesFragment"
+    tools:context=".ui.habilidadCotidiana.SecuenciaFragment"
     android:orientation="vertical">
 
     <LinearLayout
@@ -24,26 +25,14 @@
         android:layout_weight=".25">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_frases"
+            android:id="@+id/recycler_secuencia"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
             android:layout_weight=".75"
-            tools:listitem="@layout/fragment_item_pic_frases" />
-        <ImageView
-            android:id="@+id/img_pictograma"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="-12dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            app:srcCompat="@drawable/ic_next_hab" />
+            tools:listitem="@layout/fragment_item_pic_secuencia" />
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -52,11 +41,11 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_play"
+                android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".50"
-                app:icon="@drawable/ic_play"
+                app:icon="@drawable/ic_save"
                 app:iconSize="@android:dimen/app_icon_size"
                 app:iconGravity="textStart"/>
 

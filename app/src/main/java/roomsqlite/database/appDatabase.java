@@ -44,6 +44,7 @@ public abstract class appDatabase extends RoomDatabase {
     private static volatile appDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    private static String [] picto;
     //DECLARACION DE DAOS
 
     public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
@@ -232,6 +233,12 @@ public abstract class appDatabase extends RoomDatabase {
                 CategoriaPictograma pic32= new CategoriaPictograma(33,"Verbos",true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic32);
                 */
+
+                //PICTOGRAMA
+                picto= Data.getPictogramaData();
+                for(int i=0; i<picto.length;i++){
+                        db.execSQL(picto[i]);
+                }
 
                 /*Pictograma picto= new Pictograma(1,  1,"Verde",true);
                 pictogramaDAO.insert(picto);

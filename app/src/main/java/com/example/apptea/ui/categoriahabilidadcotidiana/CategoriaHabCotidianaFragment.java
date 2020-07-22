@@ -11,7 +11,6 @@
 package com.example.apptea.ui.categoriahabilidadcotidiana;
 
 import android.app.AlertDialog;
-import android.app.Application;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,10 +26,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,21 +37,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriapictograma.CategoriaPictogramaAdapter;
-import com.example.apptea.ui.habilidadCotidiana.Detalle_Habilidad_Cotidiana;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment;
-import com.example.apptea.ui.personaTea.ActualizarPersonaTeaActivity;
-import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
-import com.example.apptea.ui.pictograma.Detalle_Pictograma;
-import com.example.apptea.ui.pictograma.PictogramaAdapter;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
-import roomsqlite.entidades.PersonaTea;
 import roomsqlite.repositorios.CategoriaHabCotidianaRepository;
 
 import static android.app.Activity.RESULT_OK;

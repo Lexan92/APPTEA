@@ -10,10 +10,8 @@
 
 package com.example.apptea.ui.juego;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,17 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
-import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -60,7 +53,9 @@ public class VisorPregunta extends AppCompatActivity {
     LottieAnimationView checkedDone4;
     Pregunta preguntaEditar = new Pregunta();
 
+    //posicion de la pregunta
     int posicion;
+
     public int contador = 0;
 
 
@@ -158,19 +153,18 @@ public class VisorPregunta extends AppCompatActivity {
 
             builder.setTitle("Eliminar Pregunta");
             builder.setMessage("La pregunta será eliminada del juego actual ¿Desea continuar?");
-            builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
+            builder.setNegativeButton("CANCELAR", (dialog, which) -> {
             });
             builder.setPositiveButton("ACEPTAR", (dialog, which) -> {
                 listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
                     if (preguntas.size() != 0) {
-                        borrarPregunta(preguntas.get(posicion));
+                        Pregunta preguntaBorrar = preguntas.get(posicion);
+                        borrarPregunta(preguntaBorrar);
+                        finish();
                     }
-                    finish();
+
                 });
+                listadoPreguntas.removeObservers(VisorPregunta.this);
             });
 
             builder.show();
@@ -217,6 +211,10 @@ public class VisorPregunta extends AppCompatActivity {
 
     private void borrarPregunta(Pregunta pregunta) {
         preguntaViewModel.delete(pregunta);
+        Intent intent = new Intent(VisorPregunta.this, VisorPregunta.class);
+        intent.putExtra("juego", juego);
+        startActivity(intent);
+        finish();
     }
 
 
@@ -340,9 +338,10 @@ public class VisorPregunta extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-
         Runtime.getRuntime().gc();
 
     }
+
+
 }
+

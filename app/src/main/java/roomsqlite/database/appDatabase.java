@@ -44,6 +44,7 @@ public abstract class appDatabase extends RoomDatabase {
     private static volatile appDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    private static String [] picto;
     //DECLARACION DE DAOS
 
     public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
@@ -56,8 +57,6 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract OpcionDAO opcionDAO();
 
     public abstract PaisDao paisDao();
-    /*public abstract DepartamentoDao departamentoDao();*/
-   /* public abstract MunicipioDao municipioDao();*/
     public abstract UsuarioDao usuarioDao();
     public  abstract PersonaTeaDao personaTeaDao();
     public abstract SecuenciaDao secuenciaDao();
@@ -87,11 +86,29 @@ public abstract class appDatabase extends RoomDatabase {
                 databaseWriteExecutor.execute(() -> {
                     System.out.println("registro inicial");
 
-
+                    //INSTANCIAS
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
-                    System.out.println("categorias habilidades");
+                    PaisDao paisesdao = INSTANCE.paisDao();
+                    CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
+                    JuegoDAO juegoDAO = INSTANCE.juegoDAO();
+                    CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
+                    PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
+                    UsuarioDao usuarioDao = INSTANCE.usuarioDao();
+                    PersonaTeaDao personaTeaDao =INSTANCE.personaTeaDao();
 
-                    CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo personal",true);
+                    //DELETEALL - primero de borran las entidades dependientes - segundo se borran la entidades independientes
+                    paisesdao.deletePaisAll();
+                    categoriaJuegoDAO.deleteAllCategoriaJuegos();
+                    pictogramaDAO.deleteAllPictogramas();
+                    categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
+                    personaTeaDao.deletePersonaAll();
+                    usuarioDao.deleteUsuarioAll();
+
+                    //INSERT
+                    System.out.println("categorias habilidades");
+                    dao.insertAllCatHabCotidiana(Data.catHabCotidianasData());
+
+                    /*CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo personal",true);
                     dao.insert(categoriaHabCotidiana);
                     categoriaHabCotidiana = new CategoriaHabCotidiana(2, "El baño",true);
                     dao.insert(categoriaHabCotidiana);
@@ -114,49 +131,42 @@ public abstract class appDatabase extends RoomDatabase {
                     categoriaHabCotidiana = new CategoriaHabCotidiana(11, "La cuidad",true);
                     dao.insert(categoriaHabCotidiana);
                     categoriaHabCotidiana = new CategoriaHabCotidiana(12, "La escuela",true);
-                    dao.insert(categoriaHabCotidiana);
+                    dao.insert(categoriaHabCotidiana);*/
 
-                    PaisDao paisesdao = INSTANCE.paisDao();
-                    paisesdao.deletePaisAll();
                     System.out.println("paises");
+                    paisesdao.insertAllPais(Data.paises());
 
-                    Pais pais = new Pais(1, "El Salvador");
+                    /*Pais pais = new Pais(1, "El Salvador");
                     paisesdao.insertPais(pais);
                     pais = new Pais(2, "Guatemala");
                     paisesdao.insertPais(pais);
                     pais = new Pais(3, "Honduras");
-                    paisesdao.insertPais(pais);
+                    paisesdao.insertPais(pais);*/
 
 
                     //CATEGORIAS JUEGOS
-                    CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
-                    categoriaJuegoDAO.deleteAllCategoriaJuegos();
-                    CategoriaJuego cate = new CategoriaJuego(1, "Juegos de Selección", true);
-                    categoriaJuegoDAO.insertCategoriaJuego(cate);
+                    categoriaJuegoDAO.insertAllCategoriaJuego(Data.categoriaJuegos());
+
+                    /*CategoriaJuego cate = new CategoriaJuego(1, "Juegos de Selección", true);
+                    categoriaJuegoDAO.insertCategoriaJuego(cate);*/
 
                     //LISTADO DE JUEGOS
+                    juegoDAO.insertAllJuego(Data.juegos());
 
-                    JuegoDAO juegoDAO = INSTANCE.juegoDAO();
-                    Juego juego = new Juego(1,1,"Juego Vocales",true);
+                    /*Juego juego = new Juego(1,1,"Juego Vocales",true);
                     juegoDAO.insertJuego(juego);
                     Juego juego1 = new Juego(2,1,"Juego Numeros",true);
                     juegoDAO.insertJuego(juego1);
                     Juego juego2 = new Juego(3,1,"Juego de la Frutas", true);
                     juegoDAO.insertJuego(juego2);
                     Juego juego3 = new Juego(4,1,"Juego de las Verduras", false);
-                    juegoDAO.insertJuego(juego3);
+                    juegoDAO.insertJuego(juego3);*/
 
 
-
-
-                   // CategoriaPictogramaDAO pict  = INSTANCE.categoriaPictogramaDAO();
-
-
-                CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
-                categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
                     System.out.println("categorias pictogramas");
+                    categoriaPictogramaDAO.insertAllCategoriaPictograma(Data.categoriaPictogramas());
 
-                CategoriaPictograma pic= new CategoriaPictograma(1,"Colores", true);
+                /*CategoriaPictograma pic= new CategoriaPictograma(1,"Colores", true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic);
                 CategoriaPictograma pic1= new CategoriaPictograma(2,"Frutas", true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic1);
@@ -222,14 +232,15 @@ public abstract class appDatabase extends RoomDatabase {
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic31);
                 CategoriaPictograma pic32= new CategoriaPictograma(33,"Verbos",true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic32);
+                */
 
+                //PICTOGRAMA
+                picto= Data.getPictogramaData();
+                for(int i=0; i<picto.length;i++){
+                        db.execSQL(picto[i]);
+                }
 
-                /*
-
-             /*   PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
-                pictogramaDAO.deleteAllPictogramas();
-
-                Pictograma picto= new Pictograma(1,  1,"Verde",true);
+                /*Pictograma picto= new Pictograma(1,  1,"Verde",true);
                 pictogramaDAO.insert(picto);
                 Pictograma picto1= new Pictograma(2, 1,"Azul",true);
                 pictogramaDAO.insert(picto1);
@@ -239,24 +250,15 @@ public abstract class appDatabase extends RoomDatabase {
                 pictogramaDAO.insert(picto3);
                 Pictograma picto4 = new Pictograma(5,2,"Uva",false);
                 pictogramaDAO.insert(picto4);
-*/
+                */
 
+                /*
+                 Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
+                 usuarioDao.insertUsuario(usuario);
 
-
-                    UsuarioDao usuarioDao = INSTANCE.usuarioDao();
-                    PersonaTeaDao personaTeaDao =INSTANCE.personaTeaDao();
-                    //primero de borran las entidades dependientes
-                      personaTeaDao.deletePersonaAll();
-
-                    //segundo se borran la entidades independientes
-                    usuarioDao.deleteUsuarioAll();
-
-
-                 /*   Usuario usuario = new Usuario(1,1,"juan","flores","123","juan@correo.com",12345678,"aqui",12);
-                    usuarioDao.insertUsuario(usuario);
-
-                    PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
-                    personaTeaDao.insertPersonaTea(personaTea);*/
+                 PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
+                 personaTeaDao.insertPersonaTea(personaTea);
+                 */
 
                     System.out.println("registro inicial finalizado");
                 });

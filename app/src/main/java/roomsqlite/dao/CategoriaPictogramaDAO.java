@@ -18,6 +18,9 @@ import roomsqlite.entidades.CategoriaPictograma;
 public interface CategoriaPictogramaDAO {
     public static final String TABLE_NAME = "CategoriaPictograma";
 
+    @Insert
+    void insertAllCategoriaPictograma(CategoriaPictograma[] categoriaPictogramas);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCategoriaPictograma(CategoriaPictograma categoriaPictograma);
 

@@ -37,6 +37,9 @@ public interface CategoriaHabCotidianaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insert(CategoriaHabCotidiana cathabilidades);
 
+    @Insert
+    void insertAllCatHabCotidiana(CategoriaHabCotidiana[] categoriaHabCotidianas);
+
     //Metodo de prueba de eliminar se ocupara el metodo deleteCategoriaHabCotidiana
     @Delete
     void deleteCategoriaHab(CategoriaHabCotidiana cathabilidades);

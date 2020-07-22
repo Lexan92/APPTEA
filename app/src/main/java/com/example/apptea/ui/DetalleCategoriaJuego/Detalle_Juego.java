@@ -34,6 +34,7 @@ import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
+import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -47,7 +48,7 @@ import roomsqlite.entidades.Juego;
  * Use the {@link Detalle_Juego} factory method to
  * create an instance of this fragment.
  */
-public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListener{
+public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListener {
 
     private JuegoViewModel juegoViewModel;
     RecyclerView recyclerView;
@@ -55,15 +56,12 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     CategoriaViewModel categoriaJuegoViewModel;
     PreguntaViewModel preguntaViewModel;
     LiveData<CategoriaJuego> categoriaJuegoLiveData;
-    int key=0;
-
-
+    int key = 0;
 
 
     public Detalle_Juego() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -77,7 +75,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         return inflater.inflate(R.layout.fragment_detalle__juego, container, false);
+        return inflater.inflate(R.layout.fragment_detalle__juego, container, false);
     }
 
     @Override
@@ -85,18 +83,18 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.lista_juegos);
-        adapter = new JuegoAdapter(getActivity(),this);
+        adapter = new JuegoAdapter(getActivity(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
-        preguntaViewModel= new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
+        preguntaViewModel = new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
         categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
 
-        Bundle objetoCategoriaJuego=getArguments();
+        Bundle objetoCategoriaJuego = getArguments();
 
-        if(objetoCategoriaJuego!= null){
+        if (objetoCategoriaJuego != null) {
 //            categoriaJuego = (CategoriaJuego) objetoCategoriaJuego.getSerializable("objeto");
-            key =objetoCategoriaJuego.getInt("objeto",-1);
+            key = objetoCategoriaJuego.getInt("objeto", -1);
             juegoViewModel.findJuegosByCategoriaId(key).observe(getActivity(), new Observer<List<Juego>>() {
                 @Override
                 public void onChanged(List<Juego> juegos) {
@@ -108,7 +106,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         }
 
         //Definiendo nombre para el toolbar
-        Toolbar  toolbar = getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
 //        toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
 
         categoriaJuegoLiveData = categoriaJuegoViewModel.findById(key);
@@ -143,7 +141,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
                 builder.setTitle("Alerta");
-                builder.setMessage("¿Está seguro de eliminar el Juego :\n"+juego.getJuego_nombre()+"?");
+                builder.setMessage("¿Está seguro de eliminar el Juego :\n" + juego.getJuego_nombre() + "?");
                 builder.setIcon(android.R.drawable.ic_delete);
 
                 builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
@@ -154,9 +152,6 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
                     }
                 });
-
-
-
 
 
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -175,13 +170,12 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
             @Override
             public void updateClickedCatHab(Juego juego) {
 
-            //PENDIENTE
+                //PENDIENTE
 
             }
 
 
         });
-
 
 
     }
@@ -190,23 +184,34 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     @Override
     public void onJuegoClick(Juego juego) {
 
-        int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
-        Log.d("DetalleJuego","NUMERO "+numero);
-        if (numero>0){
-            Intent intent = new Intent(getActivity(), VisorPregunta.class);
-            intent.putExtra("juego",juego);
-            startActivity(intent);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+
+            //se verifica la cantidad de preguntas que tiene el juego seleccionado
+            int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
+            if (numero > 0) {
+                if (bundle.getBoolean("bandera")) {
+                    Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
+                    intent.putExtra("juego", juego);
+                    startActivity(intent);
+
+                } else {
+                    Intent intent = new Intent(getActivity(), VisorPregunta.class);
+                    intent.putExtra("juego", juego);
+                    startActivity(intent);
+                }
 
 
+            } else if (numero == 0) {
+                Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
+                intent.putExtra("juego", juego);
+                startActivity(intent);
 
-        } else if (numero==0){
-            Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
-            intent.putExtra("juego",juego);
-            startActivity(intent);
-
+            }
         }
 
     }
+
 
     @Override
     public void onDestroy() {

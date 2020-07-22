@@ -2,6 +2,7 @@
 
 package com.example.apptea.ui.categoriajuego;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
+import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 
 import java.util.List;
 
@@ -30,7 +32,7 @@ import roomsqlite.repositorios.CategoriaJuegoRepository;
 
 /**
  * A simple {@link Fragment} subclass.
-
+ * <p>
  * create an instance of this fragment.
  */
 public class CategoriaJuegoFragment extends Fragment {
@@ -40,35 +42,24 @@ public class CategoriaJuegoFragment extends Fragment {
     private CategoriaViewModel categoriaViewModel;
 
 
-
     public CategoriaJuegoFragment() {
         // Required empty public constructor
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_categoria_juego, container, false);
-
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        recyclerView =  view.findViewById(R.id.lista_categoria_juego);
+        recyclerView = view.findViewById(R.id.lista_categoria_juego);
         final CategoriaJuegoAdapter adapter = new CategoriaJuegoAdapter(getActivity());
-
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
-
-
         categoriaViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         categoriaViewModel.getAllCategoriasJuegos().observe(getActivity(), new Observer<List<CategoriaJuego>>() {
             @Override
@@ -82,20 +73,22 @@ public class CategoriaJuegoFragment extends Fragment {
             public void onClick(View v) {
 
                 //Instancia de fragment al cual se dirigira
-                Detalle_Juego detalle_juego =new Detalle_Juego();
+                Detalle_Juego detalle_juego = new Detalle_Juego();
                 //objeto Bundle que encapsula el objeto de tipo CategoriaJuego
                 CategoriaJuego categoriaJuego = categoriaViewModel.getAllCategoriasJuegos().getValue().get(recyclerView.getChildAdapterPosition(v));
-
-                Bundle  bundleEnvio = new Bundle();
-                bundleEnvio.putInt("objeto",categoriaJuego.getCategoriaJuegoId());
+                Bundle bundleEnvio = new Bundle();
+                bundleEnvio.putInt("objeto", categoriaJuego.getCategoriaJuegoId());
+                boolean bandera = false;
+                Bundle bundle = getArguments();
+                if(bundle != null){
+                   bandera = bundle.getBoolean("bandera");
+                }
+                bundleEnvio.putBoolean("bandera",bandera);
                 detalle_juego.setArguments(bundleEnvio);
-
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                Navigation.findNavController(v).navigate(R.id.detalle_Juego,bundleEnvio);
-
+                Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
             }
+
         });
-
     }
-
 }

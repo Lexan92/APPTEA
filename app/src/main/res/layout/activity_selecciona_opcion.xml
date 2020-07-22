@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.juegoSeleccion.SeleccionaOpcion"
+    android:background="@drawable/background_juego">
+
+
+    <TextView
+        android:id="@+id/titulo_juego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorSplash"
+        android:text="Titulo Juego"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titulo_pregunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:hint="Titulo de la Pregunta"
+        android:singleLine="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_juego" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_1"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/pictograma_uno"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_juegos"/>
+
+            <TextView
+                android:id="@+id/titulo_pictograma_uno"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/pictograma_uno"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/capriola"
+                android:text="Pictograma"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/colorPrimary" />
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_2"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/pictograma_dos"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_juegos"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/titulo_pictograma_dos"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/pictograma_dos"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="7dp"
+                android:text="Pictograma"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/capriola"
+                />
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_3"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.819">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/pictograma_tres"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_juegos"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/titulo_pictograma_tres"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/pictograma_tres"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="7dp"
+                android:text="Pictograma"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/capriola"/>
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_4"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.819" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/pictograma_cuatro"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_juegos"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/titulo_pictograma_cuatro"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/pictograma_cuatro"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="7dp"
+                android:text="Pictograma"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/capriola"/>
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/pregunta_siguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Siguiente"
+        app:icon="@drawable/ic_flecha_siguiente"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

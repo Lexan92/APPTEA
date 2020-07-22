@@ -62,16 +62,14 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CategoriaHabCotidianaFragment extends Fragment  {
+public class CategoriaHabCotidianaFragment extends Fragment {
 
 
-    private CategoriaHabCotidianaRepository categoriaHabCotidianaRepository;
-    private LiveData<List<CategoriaHabCotidiana>> categoriaHabCotidianaAll;
     RecyclerView recyclerView;
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static final int CAT_UPDATE_REQUEST_CODE = 2;
-    private CategoriaHabCotidianaAdapter adapter=null;
+    private CategoriaHabCotidianaAdapter adapter = null;
     private SearchView searchView;
     private SearchView.OnQueryTextListener queryTextListener;
 
@@ -88,7 +86,6 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
 
         //App bar de busqueda
         setHasOptionsMenu(true);
-
 
 
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_cat_hab_cotidiana);
@@ -121,19 +118,19 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
         adapter.setButtonClicked(new CategoriaHabCotidianaAdapter.ButtonClicked() {
             @Override
             public void updateClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
-                System.out.println("en el fragment"+categoriaHabCotidiana.getCat_hab_cotidiana_id());
-                Intent intentUpdate = new Intent(getActivity(),EditCategoriaHab.class);
+                System.out.println("en el fragment" + categoriaHabCotidiana.getCat_hab_cotidiana_id());
+                Intent intentUpdate = new Intent(getActivity(), EditCategoriaHab.class);
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_ID_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_id());
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_NOMBRE_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaHabCotidiana.isCat_predeterminado());
-                startActivityForResult(intentUpdate,CAT_UPDATE_REQUEST_CODE);
+                startActivityForResult(intentUpdate, CAT_UPDATE_REQUEST_CODE);
             }
 
             @Override
             public void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Alerta");
-                builder.setMessage("¿Esta seguro de eliminar a la Categoria de:\n"+categoriaHabCotidiana.getCat_hab_cotidiana_nombre()+"?");
+                builder.setMessage("¿Esta seguro de eliminar a la Categoria de:\n" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre() + "?");
                 builder.setIcon(android.R.drawable.ic_delete);
 
                 builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
@@ -155,7 +152,7 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
                 AlertDialog deleteDialog = builder.create();
                 deleteDialog.show();
             }
-            });
+        });
 
 
         adapter.setOnClickListener(new View.OnClickListener() {
@@ -165,12 +162,12 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
                 //Instancia de fragment al cual se dirigira
                 HabilidadCotidianaFragment detalle_habilidad_cotidiana = new HabilidadCotidianaFragment();
                 //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
-                Bundle  bundleEnvio = new Bundle();
-                bundleEnvio.putSerializable("elementos",categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)));
+                Bundle bundleEnvio = new Bundle();
+                bundleEnvio.putSerializable("elementos", categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)));
                 detalle_habilidad_cotidiana.setArguments(bundleEnvio);
 
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                Navigation.findNavController(v).navigate(R.id.detalle_habilidad_Cotidiana,bundleEnvio);
+                Navigation.findNavController(v).navigate(R.id.detalle_habilidad_Cotidiana, bundleEnvio);
 
             }
         });
@@ -181,11 +178,11 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
 
     /////////
     @Override
-    public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         inflater.inflate(R.menu.main2, menu);
-        MenuItem searchItem= menu.findItem(R.id.app_bar_search);
+        MenuItem searchItem = menu.findItem(R.id.app_bar_search);
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
 
         if (searchItem != null) {
@@ -197,21 +194,22 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
             queryTextListener = new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                   // Log.i("onQueryTextChange", newText);
+                    // Log.i("onQueryTextChange", newText);
 
 
                     adapter.getFilter().filter(newText);
-                   // Log.i("valor adapter:", String.valueOf(adapter));
+                    // Log.i("valor adapter:", String.valueOf(adapter));
 
-                   return true;
+                    return true;
 
 
                 }
+
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                   // Log.i("onQueryTextSubmit", query);
-                  adapter.getFilter().filter(query);
-                   // Log.i("valor query:", String.valueOf(query));
+                    // Log.i("onQueryTextSubmit", query);
+                    adapter.getFilter().filter(query);
+                    // Log.i("valor query:", String.valueOf(query));
 
                     return true;
                 }
@@ -249,9 +247,8 @@ public class CategoriaHabCotidianaFragment extends Fragment  {
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             CategoriaHabCotidiana categoria = (CategoriaHabCotidiana) data.getSerializableExtra(NuevaCategoriaDialog.EXTRA_REPLY);
             categoriaHabCotidianaViewModel.insert(categoria);
-        } else
-        if (requestCode == CAT_UPDATE_REQUEST_CODE && resultCode == RESULT_OK){
-           CategoriaHabCotidiana categoriaHabCotidiana = (CategoriaHabCotidiana) data.getSerializableExtra(EditCategoriaHab.EXTRA_CAT_HAB_UPDATE);
+        } else if (requestCode == CAT_UPDATE_REQUEST_CODE && resultCode == RESULT_OK) {
+            CategoriaHabCotidiana categoriaHabCotidiana = (CategoriaHabCotidiana) data.getSerializableExtra(EditCategoriaHab.EXTRA_CAT_HAB_UPDATE);
             categoriaHabCotidianaViewModel.update(categoriaHabCotidiana);
         } else {
             Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,

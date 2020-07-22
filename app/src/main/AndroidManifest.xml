@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.juegoSeleccion.SeleccionaOpcion"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.juego.EditarPregunta"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -98,11 +101,11 @@
         <activity
             android:name=".ui.habilidadCotidiana.NuevaHabilidadCotidianaDialog"
             android:label=" "
-            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
-          />
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
             android:name=".ui.habilidadCotidiana.AgregarSecuenciaDialog"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

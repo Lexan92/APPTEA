@@ -45,6 +45,7 @@ public abstract class appDatabase extends RoomDatabase {
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private static String [] picto;
+    public static DataTea dataTea;
     //DECLARACION DE DAOS
 
     public abstract CategoriaHabCotidianaDao categoriaHabCotidianaDao();
@@ -106,7 +107,7 @@ public abstract class appDatabase extends RoomDatabase {
 
                     //INSERT
                     System.out.println("categorias habilidades");
-                    dao.insertAllCatHabCotidiana(Data.catHabCotidianasData());
+                    dao.insertAllCatHabCotidiana(DataTea.catHabCotidianasData());
 
                     /*CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana(1, "Aseo personal",true);
                     dao.insert(categoriaHabCotidiana);
@@ -134,7 +135,7 @@ public abstract class appDatabase extends RoomDatabase {
                     dao.insert(categoriaHabCotidiana);*/
 
                     System.out.println("paises");
-                    paisesdao.insertAllPais(Data.paises());
+                    paisesdao.insertAllPais(DataTea.paises());
 
                     /*Pais pais = new Pais(1, "El Salvador");
                     paisesdao.insertPais(pais);
@@ -145,13 +146,13 @@ public abstract class appDatabase extends RoomDatabase {
 
 
                     //CATEGORIAS JUEGOS
-                    categoriaJuegoDAO.insertAllCategoriaJuego(Data.categoriaJuegos());
+                    categoriaJuegoDAO.insertAllCategoriaJuego(DataTea.categoriaJuegos());
 
                     /*CategoriaJuego cate = new CategoriaJuego(1, "Juegos de Selección", true);
                     categoriaJuegoDAO.insertCategoriaJuego(cate);*/
 
                     //LISTADO DE JUEGOS
-                    juegoDAO.insertAllJuego(Data.juegos());
+                    juegoDAO.insertAllJuego(DataTea.juegos());
 
                     /*Juego juego = new Juego(1,1,"Juego Vocales",true);
                     juegoDAO.insertJuego(juego);
@@ -164,7 +165,7 @@ public abstract class appDatabase extends RoomDatabase {
 
 
                     System.out.println("categorias pictogramas");
-                    categoriaPictogramaDAO.insertAllCategoriaPictograma(Data.categoriaPictogramas());
+                    categoriaPictogramaDAO.insertAllCategoriaPictograma(DataTea.categoriaPictogramas());
 
                 /*CategoriaPictograma pic= new CategoriaPictograma(1,"Colores", true);
                 categoriaPictogramaDAO.insertCategoriaPictograma(pic);
@@ -235,7 +236,7 @@ public abstract class appDatabase extends RoomDatabase {
                 */
 
                 //PICTOGRAMA
-                picto= Data.getPictogramaData();
+                picto= DataTea.getPictogramaData();
                 for(int i=0; i<picto.length;i++){
                         db.execSQL(picto[i]);
                 }

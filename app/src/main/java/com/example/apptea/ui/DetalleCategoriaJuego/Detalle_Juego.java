@@ -107,8 +107,6 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
         //Definiendo nombre para el toolbar
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-//        toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
-
         categoriaJuegoLiveData = categoriaJuegoViewModel.findById(key);
         categoriaJuegoLiveData.observe(getActivity(), new Observer<CategoriaJuego>() {
             @Override
@@ -126,7 +124,6 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NuevoJuego.class);
                 //envia ID de categoria de juego
-//                intent.putExtra("categoriaJuego", categoriaJuego.getCategoriaJuegoId());
                 intent.putExtra("categoriaJuego", key);
                 startActivity(intent);
 
@@ -169,12 +166,8 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
             @Override
             public void updateClickedCatHab(Juego juego) {
-
                 //PENDIENTE
-
             }
-
-
         });
 
 

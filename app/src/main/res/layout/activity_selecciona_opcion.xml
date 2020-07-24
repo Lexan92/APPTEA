@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.juegoSeleccion.SeleccionaOpcion"
-    android:background="@drawable/background_juego">
+    android:background="@drawable/background_juego"
+    tools:context=".ui.juegoSeleccion.SeleccionaOpcion">
 
 
     <TextView
@@ -13,10 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:text="Titulo Juego"
+        android:textColor="@color/colorSplash"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/colorSplash"
-        android:text="Titulo Juego"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
         app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" >
+        app:layout_constraintVertical_bias="0.387">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_juegos"/>
+                android:src="@drawable/ic_juegos" />
 
             <TextView
                 android:id="@+id/titulo_pictograma_uno"
@@ -110,8 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_juegos"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_juegos" />
 
             <TextView
                 android:id="@+id/titulo_pictograma_dos"
@@ -121,12 +121,11 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="7dp"
+                android:fontFamily="@font/capriola"
                 android:text="Pictograma"
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/capriola"
-                />
+                android:textColor="@color/colorPrimary" />
 
 
         </RelativeLayout>
@@ -158,8 +157,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_juegos"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_juegos" />
 
             <TextView
                 android:id="@+id/titulo_pictograma_tres"
@@ -169,11 +168,11 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="7dp"
+                android:fontFamily="@font/capriola"
                 android:text="Pictograma"
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/capriola"/>
+                android:textColor="@color/colorPrimary" />
 
 
         </RelativeLayout>
@@ -194,7 +193,8 @@
         app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" >
+        app:layout_constraintVertical_bias="0.819">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -204,8 +204,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_juegos"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_juegos" />
 
             <TextView
                 android:id="@+id/titulo_pictograma_cuatro"
@@ -215,11 +215,11 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="7dp"
+                android:fontFamily="@font/capriola"
                 android:text="Pictograma"
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/capriola"/>
+                android:textColor="@color/colorPrimary" />
 
 
         </RelativeLayout>
@@ -227,8 +227,8 @@
 
     <Button
         android:id="@+id/pregunta_siguiente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:text="Siguiente"
         app:icon="@drawable/ic_flecha_siguiente"
@@ -237,5 +237,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.855"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_globos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/globos" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -42,7 +43,7 @@ import roomsqlite.entidades.Pictograma;
 
 public class SecuenciaFragment extends AppCompatActivity{
 
-    private List<Pictograma> pictoFraseList;
+    private List<Pictograma> pictoFraseList = null;
     RecyclerView recyclerView1;
     RecyclerView recyclerView2;
     RecyclerView recyclerView3;
@@ -138,12 +139,19 @@ public class SecuenciaFragment extends AppCompatActivity{
         }
     });
 
+
     ver.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), VistaPreviaActivity.class);
-            intent.putExtra("listaSecuencia",(Serializable) pictoFraseList);
-            startActivity(intent);
+            if(pictoFraseList.isEmpty() || pictoFraseList.size() == 0){
+                Toast.makeText(getApplicationContext(), "Para visualizar debes agregar al menos un pictograma.",
+                        Toast.LENGTH_LONG).show();
+            }else{
+                Intent intent = new Intent(getApplicationContext(), VistaPreviaActivity.class);
+                intent.putExtra("listaSecuencia",(Serializable) pictoFraseList);
+                startActivity(intent);
+            }
+
         }
     });
 

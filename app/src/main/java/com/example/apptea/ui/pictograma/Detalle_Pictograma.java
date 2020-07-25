@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -50,6 +51,8 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
     RecyclerView recyclerView;
     CategoriaPictograma categoriaPictograma = null;
     PictogramaAdapter adapter;
+    boolean bandera =false;
+    TTSManager ttsManager=null;
 
 
     public Detalle_Pictograma() {
@@ -97,7 +100,8 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
-
+        ttsManager= new TTSManager();
+        ttsManager.init(getActivity());
 
         Bundle objetoCategoriaPictograma = getArguments();
 
@@ -116,7 +120,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         toolbar.setTitle("Categoria: " + categoriaPictograma.getCat_pictograma_nombre());
 
 
-        //Boton de + para agregar un nuevo pictograma
+        //NUEVO PICTOGRAMA
         FloatingActionButton fab = view.findViewById(R.id.fab2);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +132,37 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
             }
         });
 
+        // ONCLICK ITEM, ACTUALIZAR, ELIMINAR
+        adapter.setButtonClickedPictograma(new PictogramaAdapter.ButtonClickedPictograma() {
+            @Override
+            public void deleteClickedPictograma(Pictograma pictograma) {
+
+            }
+
+            @Override
+            public void updateClicledPictograma(Pictograma pictograma) {
+
+            }
+
+            @Override
+            public void itemClickedPictograma(Pictograma pictograma) {
+                ttsManager.initQueue(pictograma.getPictograma_nombre());
+            }
+        });
+
+
+        //COMPROBANDO SI LA PANTALLA ES DE VOCABULARIO
+        if (objetoCategoriaPictograma !=null){
+            bandera = objetoCategoriaPictograma.getBoolean("bandera");
+
+            if(bandera==true){
+                fab.setVisibility(View.INVISIBLE);
+                adapter.isVocabulary=true;
+            }
+        }
 
     }
+
 
     @Override
     public void onDestroyView() {

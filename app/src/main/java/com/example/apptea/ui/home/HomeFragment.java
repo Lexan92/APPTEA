@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
                Bundle bundleBanderaToolbar = new Bundle();
                bundleBanderaToolbar.putBoolean("bandera",banderaToolbar);
                Navigation.findNavController(v).navigate(R.id.nav_gestion_pictograma,bundleBanderaToolbar);
+
            }
        });
 

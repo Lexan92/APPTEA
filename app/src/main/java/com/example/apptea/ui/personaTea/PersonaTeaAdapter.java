@@ -61,7 +61,6 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
             personaItemEdad = itemView.findViewById((R.id.fecha_tea));
             personaItemFoto = itemView.findViewById(R.id.foto_persona);
 
-
             eliminar= itemView.findViewById(R.id.btn_eliminar_persona);
             editar = itemView.findViewById(R.id.btn_editar_persona);
 

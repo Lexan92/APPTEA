@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriajuego.CategoriaJuegoViewHolder;
+import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,20 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
     private List<CategoriaPictograma> categoriaPictogramaList;
     private final LayoutInflater mInflater;
     private  View.OnClickListener listener;
-
+    public boolean isVocabulary;
     private List<CategoriaPictograma> categoriaPictogramaListFull;
-
-
     private ArrayList<Pictograma> pictogramas;
+    private ButtonClickedCatPicto buttonClickedCatPicto;
+
+    public interface ButtonClickedCatPicto{
+        void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma);
+        void updateClickedCatPicto(CategoriaPictograma categoriaPictograma);
+        void itemClickedCatPicto(CategoriaPictograma categoriaPictograma, View v);
+    }
+
+    public void setButtonClickedCatPicto (ButtonClickedCatPicto buttonClickedCatPicto){
+        this.buttonClickedCatPicto= buttonClickedCatPicto;
+    }
 
 
     public CategoriaPictogramaAdapter(Context context) {
@@ -50,7 +60,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
     public CategoriaPictogramaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View layoutView = mInflater.inflate(R.layout.fragment_item_categoria_pictograma,parent, false);
 
-        layoutView.setOnClickListener(this);
+        //layoutView.setOnClickListener(this);
         return new CategoriaPictogramaViewHolder(layoutView);
     }
 
@@ -59,16 +69,30 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
         if (categoriaPictogramaList != null && position < categoriaPictogramaList.size()) {
 
             CategoriaPictograma categoriaPictograma = categoriaPictogramaList.get(position);
-            if (categoriaPictograma.isPredeterminado()==true){
+            if(isVocabulary==true){
                 holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-               // holder.editar.setVisibility(View.INVISIBLE);
-                holder.cancelar.setVisibility(View.GONE);
+                holder.cancelar.setVisibility(View.INVISIBLE);
+                holder.editar.setVisibility(View.INVISIBLE);
                 holder.setIsRecyclable(false);
+
+            }else{
+                if (categoriaPictograma.isPredeterminado()==true){
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                   // holder.editar.setVisibility(View.INVISIBLE);
+                    holder.cancelar.setVisibility(View.GONE);
+                    holder.setIsRecyclable(false);
+                }
+                else {
+                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                holder.setIsRecyclable(false);
+                }
             }
-            else {
-            holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-            holder.setIsRecyclable(false);
-            }
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClickedCatPicto.itemClickedCatPicto(categoriaPictograma,v);
+                }
+            });
         } else {
             // Covers the case of data not being ready yet.
             holder.nombreCategoria.setText("No existe ninguna categoria de pictogramas");

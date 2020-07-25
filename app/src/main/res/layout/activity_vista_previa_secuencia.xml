@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Oscar Turish
+  ~ 17/07/2020
+  ~ Este fragment se utilizara para la creacion de las secuencias
+  ~ */
+  ~
+  ~
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/secuenciaFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.habilidadCotidiana.VistaPreviaActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:id="@+id/btn_back"
+        android:layout_width="48dip"
+        android:layout_height="48dip"
+        android:padding="0dp"
+        app:cornerRadius="30dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:insetLeft="3dp"
+        android:insetRight="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="30dp"
+        app:elevation="10dp"
+        app:strokeWidth="0dp"
+        app:icon="@drawable/ic_left_arrow"
+        app:iconGravity="start|textStart"
+        app:iconSize="@android:dimen/app_icon_size" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:id="@+id/btn_save"
+            android:layout_width="48dip"
+            android:layout_height="48dip"
+            android:layout_marginLeft="550dp"
+            android:layout_marginTop="0dp"
+            android:insetLeft="5dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            app:cornerRadius="30dp"
+            app:elevation="10dp"
+            app:strokeWidth="0dp"
+            app:icon="@drawable/ic_guardar"
+            app:iconGravity="textStart"
+            app:iconSize="@android:dimen/app_icon_size" />
+    </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+          android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_viewSecuencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/layout_fall_down"
+            android:layout_weight=".70"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            tools:listitem="@layout/fragment_item_pic_view_secuencia" />
+
+
+    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:id="@+id/btn_play"
+        android:layout_width="60dip"
+        android:layout_height="60dip"
+        android:padding="0dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:insetLeft="3dp"
+        android:insetRight="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimaryDark"
+        app:cornerRadius="30dp"
+        app:icon="@drawable/ic_play_button"
+        app:iconGravity="textStart"
+        app:iconSize="@android:dimen/app_icon_size" />
+
+
+</LinearLayout>

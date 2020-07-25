@@ -1,7 +1,9 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import com.example.apptea.ui.frases.frasesAdapter;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.example.apptea.utilidades.TTSManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +46,7 @@ public class SecuenciaFragment extends AppCompatActivity{
     RecyclerView recyclerView1;
     RecyclerView recyclerView2;
     RecyclerView recyclerView3;
-    private Button save;
+    private Button ver;
     private Button backspace;
     TTSManager ttsManager=null;
 
@@ -70,7 +73,7 @@ public class SecuenciaFragment extends AppCompatActivity{
     recyclerView1 = findViewById(R.id.recycler_secuencia);
     recyclerView2 = findViewById(R.id.recycler_categorias);
     recyclerView3 = findViewById(R.id.recycler_picto);
-    save = findViewById(R.id.btn_save);
+    ver = findViewById(R.id.btn_save);
     backspace = findViewById(R.id.btn_backspace);
 
     //RECYCLER FRASES
@@ -135,7 +138,17 @@ public class SecuenciaFragment extends AppCompatActivity{
         }
     });
 
-    save.setOnClickListener(new View.OnClickListener() {
+    ver.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getApplicationContext(), VistaPreviaActivity.class);
+            intent.putExtra("listaSecuencia",(Serializable) pictoFraseList);
+            startActivity(intent);
+        }
+    });
+
+    /* METODO PARA REPRODUCIR COPIARLO EN LA OTRA ACTIVITY
+    ver.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             String frase = "";
@@ -148,9 +161,7 @@ public class SecuenciaFragment extends AppCompatActivity{
             //REPRODUCTOR DE TEXTO A VOZ
             ttsManager.initQueue(frase);
         }
-    });
-
-
+    });*/
 
 }
 

@@ -204,7 +204,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                     adapter.getFilter().filter(newText);
                     // Log.i("valor adapter:", String.valueOf(adapter));
 
-                    return true;
+                    return false;
 
 
                 }
@@ -214,7 +214,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                     adapter.getFilter().filter(query);
                     // Log.i("valor query:", String.valueOf(query));
 
-                    return true;
+                    return false;
                 }
             };
             searchView.setOnQueryTextListener(queryTextListener);

@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaPictograma;
 
 import roomsqlite.repositorios.CategoriaPictogramaRepository;
@@ -29,6 +30,14 @@ public class CategoriaPictogramaViewModel extends AndroidViewModel {
 
     public void insert(CategoriaPictograma categoriaPictograma){
         categoriaPictogramaRepository.insert(categoriaPictograma);
+    }
+
+    public void update(CategoriaPictograma categoriaPictograma){
+        categoriaPictogramaRepository.update(categoriaPictograma);
+    }
+
+    public void delete(CategoriaPictograma categoriaPictograma){
+        categoriaPictogramaRepository.delete(categoriaPictograma);
     }
 
     public LiveData<CategoriaPictograma> findById(int id){

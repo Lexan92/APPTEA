@@ -18,6 +18,7 @@ import java.util.List;
 
 import roomsqlite.dao.CategoriaPictogramaDAO;
 import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.Pictograma;
 
@@ -50,6 +51,14 @@ public class CategoriaPictogramaRepository {
    /* public void insert(CategoriaPictograma categoriaPictograma){
         appDatabase.databaseWriteExecutor.execute(()-> categoriaPictogramaDAO.insert(categoriaPictograma));
     }*/
+
+    public void update(CategoriaPictograma categoriaPictograma){
+        appDatabase.databaseWriteExecutor.execute(()-> categoriaPictogramaDAO.updateCategoriaPictograma(categoriaPictograma));
+    }
+
+    public void delete(CategoriaPictograma categoriaPictograma){
+        appDatabase.databaseWriteExecutor.execute(()-> categoriaPictogramaDAO.deleteCategoriaPictograma(categoriaPictograma));
+    }
 
 
 

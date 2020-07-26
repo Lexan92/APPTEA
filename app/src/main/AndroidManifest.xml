@@ -82,6 +82,9 @@
             android:name=".ui.categoriahabilidadcotidiana.EditCategoriaHab"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
+            android:name=".ui.categoriapictograma.EditCategoriaPictograma"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+        <activity
             android:name=".ui.usuario.EditUsuario"
             android:parentActivityName=".ui.usuario.RegistroUsuarioActivity"
             android:windowSoftInputMode="adjustPan|stateVisible">

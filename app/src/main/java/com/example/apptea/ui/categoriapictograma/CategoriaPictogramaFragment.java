@@ -1,8 +1,10 @@
 
 package com.example.apptea.ui.categoriapictograma;
 
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,12 +33,14 @@ import com.example.apptea.R;
 
 
 import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
+import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
 import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.repositorios.CategoriaPictogramaRepository;
 
@@ -49,11 +53,9 @@ public class CategoriaPictogramaFragment extends Fragment {
 
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int CAT_UPDATE_REQUEST_CODE = 2;
     private CategoriaPictogramaRepository categoriaPictogramaRepository;
     private LiveData<List<CategoriaPictograma>> categoriaPictogramaAll;
-
-    RecyclerView recyclerView;
-
     private CategoriaPictogramaViewModel categoriaPictogramaViewModel;
     private CategoriaPictogramaAdapter adapter;
     CategoriaPictograma categoriaPictograma;
@@ -61,7 +63,7 @@ public class CategoriaPictogramaFragment extends Fragment {
     boolean bandera = false;
     private SearchView searchView;
     private SearchView.OnQueryTextListener queryTextListener;
-
+    RecyclerView recyclerView;
 
     public CategoriaPictogramaFragment() {
         //constructor vacio
@@ -121,13 +123,41 @@ public class CategoriaPictogramaFragment extends Fragment {
         // ONCLICK ITEM , ACTUALIZAR , ELIMINAR
         adapter.setButtonClickedCatPicto(new CategoriaPictogramaAdapter.ButtonClickedCatPicto() {
             @Override
-            public void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma) {
+            public void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma, View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Alerta");
+                builder.setMessage("¿Esta seguro de eliminar la Categoria de:\n" + categoriaPictograma.getCat_pictograma_nombre() + "?");
+                builder.setIcon(android.R.drawable.ic_delete);
+
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.out.println("La Categoria de Pictograma" + categoriaPictograma.getCat_pictograma_nombre());
+
+                        categoriaPictogramaViewModel.delete(categoriaPictograma);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog deleteDialog = builder.create();
+                deleteDialog.show();
 
             }
 
             @Override
-            public void updateClickedCatPicto(CategoriaPictograma categoriaPictograma) {
-
+            public void updateClickedCatPicto(CategoriaPictograma categoriaPictograma, View v) {
+                System.out.println("en el fragment" + categoriaPictograma.getCat_pictograma_id());
+                Intent intentUpdate = new Intent(getActivity(), EditCategoriaPictograma.class);
+                intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_ID_CAT_UPDATE, categoriaPictograma.getCat_pictograma_id());
+                intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_NOMBRE_CAT_UPDATE, categoriaPictograma.getCat_pictograma_nombre());
+                intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaPictograma.isPredeterminado());
+                startActivityForResult(intentUpdate, CAT_UPDATE_REQUEST_CODE);
             }
 
             @Override
@@ -244,7 +274,10 @@ public class CategoriaPictogramaFragment extends Fragment {
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             CategoriaPictograma categoria = (CategoriaPictograma) data.getSerializableExtra(CategoriaNueva.EXTRA_REPLY);
             categoriaPictogramaViewModel.insert(categoria);
-        } else {
+        } else if (requestCode == CAT_UPDATE_REQUEST_CODE && resultCode == RESULT_OK) {
+            CategoriaPictograma categoria = (CategoriaPictograma) data.getSerializableExtra(EditCategoriaPictograma.EXTRA_CAT_HAB_UPDATE);
+            categoriaPictogramaViewModel.update(categoria);
+        }else {
             Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
                     Toast.LENGTH_LONG).show();
         }

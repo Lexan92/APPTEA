@@ -7,6 +7,7 @@ import android.net.sip.SipSession;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -35,11 +36,12 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
     public boolean isVocabulary;
     private List<CategoriaPictograma> categoriaPictogramaListFull;
     private ArrayList<Pictograma> pictogramas;
-    private ButtonClickedCatPicto buttonClickedCatPicto;
+    private CategoriaPictogramaAdapter.ButtonClickedCatPicto buttonClickedCatPicto;
+
 
     public interface ButtonClickedCatPicto{
-        void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma);
-        void updateClickedCatPicto(CategoriaPictograma categoriaPictograma);
+        void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma, View v);
+        void updateClickedCatPicto(CategoriaPictograma categoriaPictograma, View v);
         void itemClickedCatPicto(CategoriaPictograma categoriaPictograma, View v);
     }
 
@@ -78,7 +80,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
             }else{
                 if (categoriaPictograma.isPredeterminado()==true){
                     holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-                   // holder.editar.setVisibility(View.INVISIBLE);
+                    holder.editar.setVisibility(View.GONE);
                     holder.cancelar.setVisibility(View.GONE);
                     holder.setIsRecyclable(false);
                 }
@@ -93,6 +95,22 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                     buttonClickedCatPicto.itemClickedCatPicto(categoriaPictograma,v);
                 }
             });
+
+            holder.editar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClickedCatPicto.updateClickedCatPicto(categoriaPictograma, v);
+                }
+            });
+
+            holder.cancelar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClickedCatPicto.deleteClickedCatPicto(categoriaPictograma, v);
+                }
+            });
+
+
         } else {
             // Covers the case of data not being ready yet.
             holder.nombreCategoria.setText("No existe ninguna categoria de pictogramas");

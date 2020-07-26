@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,6 +22,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.database.ImageConverter;
@@ -44,6 +46,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
     Juego juego = new Juego();
+    List<Opcion> opciones = new ArrayList<>(4);
     int longitudPreguntas;
     int posicion = 0;
     int contador = 0;
@@ -177,11 +180,12 @@ public class SeleccionaOpcion extends AppCompatActivity {
             tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
             listaOpciones = opcionViewModel.getOcionesByIdPregunta(preguntas.get(posicion).getPregunta_id());
             listaOpciones.observe(SeleccionaOpcion.this, opciones -> {
-                int size = (opciones.size()) - 1;
+                List<Opcion> nuevaListaOpcion = ordenarAleatoriamente(opciones);
+                int size = (nuevaListaOpcion.size()) - 1;
                 int count = contador;
                 //seteado de las opciones
                 while (count <= size) {
-                    pictograma = pictogramaViewModel.getPictogramaById(opciones.get(count).getPictograma_id());
+                    pictograma = pictogramaViewModel.getPictogramaById(nuevaListaOpcion.get(count).getPictograma_id());
                     //seteado de imagenes y texto del pictograma
                     int finalCount = count;
                     pictograma.observe(SeleccionaOpcion.this, pictograma1 -> {
@@ -236,5 +240,26 @@ public class SeleccionaOpcion extends AppCompatActivity {
         txt3.setTextColor(getResources().getColor(R.color.colorPrimary));
         opcion4.setCardBackgroundColor(getResources().getColor(R.color.colorSplash));
         txt4.setTextColor(getResources().getColor(R.color.colorPrimary));
+    }
+
+
+    private List<Opcion> ordenarAleatoriamente(List<Opcion> opciones) {
+
+        /* Función de barajamiento usando el algoritmo Fisher Yates
+         *  Se recibe un arreglo de Preguntas (ordenado o no) y se aplica
+         *  el algoritmo de Fisher - Yates
+         *
+         *  Se devuelve un arreglo de preguntas desordenado aleatoriamente
+         */
+
+        for(int i = opciones.size()-1;i>0;i--){
+            int indice = (int) Math.floor(Math.random()*(i+1));
+            Opcion tmp = opciones.get(i);
+            opciones.set(i,opciones.get(indice));
+            opciones.set(indice,tmp);
+        }
+
+        return opciones;
+
     }
 }

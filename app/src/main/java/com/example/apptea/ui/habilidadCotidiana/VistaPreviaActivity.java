@@ -4,16 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.apptea.R;
-
+import com.example.apptea.utilidades.TTSManagerSecuencia;
 import java.util.ArrayList;
-import java.util.List;
-
 import roomsqlite.entidades.Pictograma;
 
 public class VistaPreviaActivity extends AppCompatActivity {
@@ -24,6 +20,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
     private Button atras;
     private Button play;
     private Button guardar;
+    TTSManagerSecuencia ttsManagerSecuencia=null;
 
     public VistaPreviaActivity(){
     }
@@ -34,6 +31,8 @@ public class VistaPreviaActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme_NoActionBar);
         setContentView(R.layout.activity_vista_previa_secuencia);
 
+        ttsManagerSecuencia = new TTSManagerSecuencia();
+        ttsManagerSecuencia.init(getApplicationContext());
         atras = findViewById(R.id.btn_atras);
         play = findViewById(R.id.btn_play);
         guardar= findViewById(R.id.btn_save);
@@ -62,8 +61,13 @@ public class VistaPreviaActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Boton reproducir",
-                        Toast.LENGTH_LONG).show();
+                String frase = "";
+                for(Pictograma palabra: pictoSecuenciaList){
+                    frase+=palabra.getPictograma_nombre();
+
+                }
+                //REPRODUCTOR DE TEXTO A VOZ
+                ttsManagerSecuencia.initQueue(frase);
             }
         });
 

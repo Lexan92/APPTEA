@@ -43,7 +43,7 @@ import roomsqlite.entidades.Pictograma;
 
 public class SecuenciaFragment extends AppCompatActivity{
 
-    private List<Pictograma> pictoFraseList = null;
+    private List<Pictograma> pictoFraseList;
     RecyclerView recyclerView1;
     RecyclerView recyclerView2;
     RecyclerView recyclerView3;
@@ -134,8 +134,10 @@ public class SecuenciaFragment extends AppCompatActivity{
     backspace.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            pictoFraseList.remove(pictoFraseList.size() - 1);
-            adapterFrases.notifyDataSetChanged();
+            if (pictoFraseList.size()>0) {
+                pictoFraseList.remove(pictoFraseList.size() - 1);
+                adapterFrases.notifyDataSetChanged();
+            }
         }
     });
 

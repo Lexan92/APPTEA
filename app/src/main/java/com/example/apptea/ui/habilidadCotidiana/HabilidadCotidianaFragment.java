@@ -91,7 +91,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NuevaHabilidadCotidianaDialog.class);
+                Intent intent = new Intent(getActivity(), SecuenciaFragment.class);
                 intent.putExtra("llaveCatHabilidad", categoriaHabCotidiana.getCat_hab_cotidiana_id());
                 startActivityForResult(intent, NEW_HAB_REQUEST_CODE);
             }

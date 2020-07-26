@@ -1,11 +1,14 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -30,6 +33,7 @@ import com.example.apptea.ui.frases.frasesAdapter;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.example.apptea.utilidades.TTSManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +47,7 @@ public class SecuenciaFragment extends AppCompatActivity{
     RecyclerView recyclerView1;
     RecyclerView recyclerView2;
     RecyclerView recyclerView3;
-    private Button save;
+    private Button ver;
     private Button backspace;
     TTSManager ttsManager=null;
 
@@ -70,7 +74,7 @@ public class SecuenciaFragment extends AppCompatActivity{
     recyclerView1 = findViewById(R.id.recycler_secuencia);
     recyclerView2 = findViewById(R.id.recycler_categorias);
     recyclerView3 = findViewById(R.id.recycler_picto);
-    save = findViewById(R.id.btn_save);
+    ver = findViewById(R.id.btn_save);
     backspace = findViewById(R.id.btn_backspace);
 
     //RECYCLER FRASES
@@ -130,12 +134,31 @@ public class SecuenciaFragment extends AppCompatActivity{
     backspace.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            pictoFraseList.remove(pictoFraseList.size() - 1);
-            adapterFrases.notifyDataSetChanged();
+            if (pictoFraseList.size()>0) {
+                pictoFraseList.remove(pictoFraseList.size() - 1);
+                adapterFrases.notifyDataSetChanged();
+            }
         }
     });
 
-    save.setOnClickListener(new View.OnClickListener() {
+
+    ver.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(pictoFraseList.isEmpty() || pictoFraseList.size() == 0){
+                Toast.makeText(getApplicationContext(), "Para visualizar debes agregar al menos un pictograma.",
+                        Toast.LENGTH_LONG).show();
+            }else{
+                Intent intent = new Intent(getApplicationContext(), VistaPreviaActivity.class);
+                intent.putExtra("listaSecuencia",(Serializable) pictoFraseList);
+                startActivity(intent);
+            }
+
+        }
+    });
+
+    /* METODO PARA REPRODUCIR COPIARLO EN LA OTRA ACTIVITY
+    ver.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             String frase = "";
@@ -148,9 +171,7 @@ public class SecuenciaFragment extends AppCompatActivity{
             //REPRODUCTOR DE TEXTO A VOZ
             ttsManager.initQueue(frase);
         }
-    });
-
-
+    });*/
 
 }
 

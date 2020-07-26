@@ -39,15 +39,16 @@ public class HomeFragment extends Fragment {
         });
 
 
-        vocabulario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean banderaToolbar = true;
-                Bundle bundleBanderaToolbar = new Bundle();
-                bundleBanderaToolbar.putBoolean("bandera", banderaToolbar);
-                Navigation.findNavController(v).navigate(R.id.nav_gestion_pictograma, bundleBanderaToolbar);
-            }
-        });
+       vocabulario.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               boolean banderaToolbar = true;
+               Bundle bundleBanderaToolbar = new Bundle();
+               bundleBanderaToolbar.putBoolean("bandera",banderaToolbar);
+               Navigation.findNavController(v).navigate(R.id.nav_gestion_pictograma,bundleBanderaToolbar);
+
+           }
+       });
 
         habilidades.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -32,6 +32,7 @@ import com.example.apptea.R;
 
 import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
+import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -55,7 +56,9 @@ public class CategoriaPictogramaFragment extends Fragment {
 
     private CategoriaPictogramaViewModel categoriaPictogramaViewModel;
     private CategoriaPictogramaAdapter adapter;
-
+    CategoriaPictograma categoriaPictograma;
+    TTSManager ttsManager =null;
+    boolean bandera = false;
     private SearchView searchView;
     private SearchView.OnQueryTextListener queryTextListener;
 
@@ -72,6 +75,8 @@ public class CategoriaPictogramaFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_gestion_pictograma, container, false);
         //App bar de busqueda
 
+
+
     }
 
 
@@ -80,7 +85,8 @@ public class CategoriaPictogramaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         setHasOptionsMenu(true);
-
+        ttsManager = new TTSManager();
+        ttsManager.init(getActivity());
         recyclerView =  view.findViewById(R.id.lista_categoria_pictograma);
         adapter = new CategoriaPictogramaAdapter(getActivity());
 
@@ -97,6 +103,10 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
+        //OBTENIENDO SI EL LLAMADO ES DE VOCABULARIO O DE GESTION
+        Bundle objetoBundle = getArguments();
+
+        // NUEVA CATEGORIA
         FloatingActionButton fab1 = view.findViewById(R.id.fab1);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +117,34 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
-        adapter.setOnClickListener(new View.OnClickListener() {
+
+        // ONCLICK ITEM , ACTUALIZAR , ELIMINAR
+        adapter.setButtonClickedCatPicto(new CategoriaPictogramaAdapter.ButtonClickedCatPicto() {
+            @Override
+            public void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma) {
+
+            }
+
+            @Override
+            public void updateClickedCatPicto(CategoriaPictograma categoriaPictograma) {
+
+            }
+
+            @Override
+            public void itemClickedCatPicto(CategoriaPictograma categoriaPictograma, View v) {
+                Detalle_Pictograma detalle_pictograma = new Detalle_Pictograma(); //Instancia de fragment al cual se dirigira
+                Bundle bundleEnvio = new Bundle(); //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
+                bundleEnvio.putBoolean("bandera", bandera);
+                bundleEnvio.putSerializable("elementos",categoriaPictograma);
+                detalle_pictograma.setArguments(bundleEnvio);
+                System.out.println("en el fragment"+ categoriaPictograma.getCat_pictograma_nombre());
+                ttsManager.initQueue(categoriaPictograma.getCat_pictograma_nombre());
+                Navigation.findNavController(v).navigate(R.id.detalle_Pictograma,bundleEnvio); //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
+            }
+        });
+
+
+      /*  adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -122,11 +159,9 @@ public class CategoriaPictogramaFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.detalle_Pictograma,bundleEnvio);
 
             }
-        });
+        });*/
 
         //Comprobacion para pintar el nombre del toolbar proveniente del menu principal y quitar el FAB
-        Bundle objetoBundle = getArguments();
-        boolean bandera = false;
         if (objetoBundle!=null){
             bandera =  objetoBundle.getBoolean("bandera");
 
@@ -136,6 +171,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 toolbar.setTitle("Vocabulario");
                 // el FAB se hace invisible
                 fab1.setVisibility(View.INVISIBLE);
+                adapter.isVocabulary=true;
             }
         }
 
@@ -224,7 +260,7 @@ public class CategoriaPictogramaFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        if(adapter!=null && recyclerView!=null){
+       /* if(adapter!=null && recyclerView!=null){
             recyclerView.setAdapter(null);
             adapter.setOnClickListener(null);
             adapter = null;
@@ -232,15 +268,15 @@ public class CategoriaPictogramaFragment extends Fragment {
         }
         categoriaPictogramaViewModel=null;
         categoriaPictogramaAll=null;
-        categoriaPictogramaRepository=null;
-
+        categoriaPictogramaRepository=null;*/
+        Runtime.getRuntime().gc();
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        if(adapter!=null && recyclerView!=null){
+       /* if(adapter!=null && recyclerView!=null){
             recyclerView.setAdapter(null);
             adapter.setOnClickListener(null);
             Log.d("lifecycle","onStop Categoria");
@@ -248,7 +284,7 @@ public class CategoriaPictogramaFragment extends Fragment {
         }
         categoriaPictogramaViewModel=null;
         categoriaPictogramaAll=null;
-        categoriaPictogramaRepository=null;
+        categoriaPictogramaRepository=null;*/
         Runtime.getRuntime().gc();
     }
 }

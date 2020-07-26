@@ -158,7 +158,7 @@ public class frasesFragment extends Fragment {
 
                 for(Pictograma palabra: pictoFraseList){
                     System.out.println("la palabra es "+ palabra.getPictograma_nombre());
-                    frase+=palabra.getPictograma_nombre() +"\n";
+                    frase+=palabra.getPictograma_nombre() +" ";
                 }
                 System.out.println("la frase es "+ frase);
                 //REPRODUCTOR DE TEXTO A VOZ

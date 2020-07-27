@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
@@ -168,10 +170,14 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 reiniciarCards();
                 setearOpciones(posicion);
             } else {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(SeleccionaOpcion.this);
-                builder.setTitle("¡BIEN HECHO!");
-                builder.setMessage("Has terminado el juego");
-                builder.show();
+//                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(SeleccionaOpcion.this);
+//                builder.setTitle("¡BIEN HECHO!");
+//                builder.setMessage("Has terminado el juego");
+//                builder.show();
+
+                Intent intent = new Intent(this, FinJuego.class);
+                startActivity(intent);
+                finish();
             }
 
 

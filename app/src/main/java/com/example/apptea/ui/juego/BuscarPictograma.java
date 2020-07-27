@@ -56,6 +56,7 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
         setSupportActionBar(toolbar);
         recyclerView = findViewById(R.id.lista_pictograma_busqueda);
          adapter = new PictogramaAdapter(this,this);
+
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(BuscarPictograma.this).get(PictogramaViewModel.class);
@@ -93,6 +94,7 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
 
     @Override
     public void onPictogramaClick(Pictograma posicion) {
+
         Intent intentRespuesta = new Intent();
         intentRespuesta.putExtra("id",posicion.getPictograma_id());
         setResult(Activity.RESULT_OK,intentRespuesta);

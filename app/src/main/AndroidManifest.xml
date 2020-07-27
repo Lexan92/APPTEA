@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.juego.FinJuego"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.juegoSeleccion.SeleccionaOpcion"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -45,7 +48,6 @@
         <activity
             android:name=".ui.juego.NuevoJuego"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -107,8 +109,7 @@
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
             android:name=".ui.habilidadCotidiana.SecuenciaFragment"
-            android:label=" "
-            />
+            android:label=" " />
         <activity
             android:name=".ui.habilidadCotidiana.AgregarSecuenciaDialog"
             android:label=" "
@@ -118,6 +119,7 @@
             android:label=" "
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

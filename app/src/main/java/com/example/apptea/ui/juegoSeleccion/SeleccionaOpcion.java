@@ -50,6 +50,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     int longitudPreguntas;
     int posicion = 0;
     int contador = 0;
+    int numeroCorrectas = 0;
 
 
     @Override
@@ -100,7 +101,9 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 txt1.setTextColor(getResources().getColor(R.color.colorSplash));
                 globos.setSpeed(2);
                 globos.playAnimation();
-                siguiente.setVisibility(View.VISIBLE);
+                numeroCorrectas--;
+                if (numeroCorrectas <= 0)
+                    siguiente.setVisibility(View.VISIBLE);
 
             } else {
                 opcion1.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
@@ -114,7 +117,10 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion2.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
-                siguiente.setVisibility(View.VISIBLE);
+                numeroCorrectas--;
+                if (numeroCorrectas <= 0)
+                    siguiente.setVisibility(View.VISIBLE);
+
             } else {
                 opcion2.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
             }
@@ -127,7 +133,9 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
-                siguiente.setVisibility(View.VISIBLE);
+                numeroCorrectas--;
+                if (numeroCorrectas <= 0)
+                    siguiente.setVisibility(View.VISIBLE);
             } else {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
             }
@@ -140,7 +148,9 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
-                siguiente.setVisibility(View.VISIBLE);
+                numeroCorrectas--;
+                if (numeroCorrectas <= 0)
+                    siguiente.setVisibility(View.VISIBLE);
             } else {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
             }
@@ -153,11 +163,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
             posicion++;
 
-            if(posicion<=longitudPreguntas-1){
+            if (posicion <= longitudPreguntas - 1) {
                 //TRUE:
                 reiniciarCards();
                 setearOpciones(posicion);
-            }else{
+            } else {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(SeleccionaOpcion.this);
                 builder.setTitle("¡BIEN HECHO!");
                 builder.setMessage("Has terminado el juego");
@@ -169,8 +179,6 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
 
     }
-
-
 
 
     //funcion que setea cardviews con pictogramas, recibe la posicion en la lista de las preguntas
@@ -195,24 +203,32 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 txt1.setText(pictograma1.getPictograma_nombre());
                                 bandera1 = opciones.get(0).isOpcion_respuesta();
                                 opcion1.setVisibility(View.VISIBLE);
+                                if (opciones.get(0).isOpcion_respuesta())
+                                    numeroCorrectas++;
                                 break;
                             case 1:
                                 imagen2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
                                 txt2.setText(pictograma1.getPictograma_nombre());
                                 bandera2 = opciones.get(1).isOpcion_respuesta();
                                 opcion2.setVisibility(View.VISIBLE);
+                                if (opciones.get(1).isOpcion_respuesta())
+                                    numeroCorrectas++;
                                 break;
                             case 2:
                                 imagen3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
                                 txt3.setText(pictograma1.getPictograma_nombre());
                                 bandera3 = opciones.get(2).isOpcion_respuesta();
                                 opcion3.setVisibility(View.VISIBLE);
+                                if (opciones.get(2).isOpcion_respuesta())
+                                    numeroCorrectas++;
                                 break;
                             case 3:
                                 imagen4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
                                 txt4.setText(pictograma1.getPictograma_nombre());
                                 bandera4 = opciones.get(3).isOpcion_respuesta();
                                 opcion4.setVisibility(View.VISIBLE);
+                                if (opciones.get(3).isOpcion_respuesta())
+                                    numeroCorrectas++;
                                 break;
                         }
                     });
@@ -252,11 +268,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
          *  Se devuelve un arreglo de preguntas desordenado aleatoriamente
          */
 
-        for(int i = opciones.size()-1;i>0;i--){
-            int indice = (int) Math.floor(Math.random()*(i+1));
+        for (int i = opciones.size() - 1; i > 0; i--) {
+            int indice = (int) Math.floor(Math.random() * (i + 1));
             Opcion tmp = opciones.get(i);
-            opciones.set(i,opciones.get(indice));
-            opciones.set(indice,tmp);
+            opciones.set(i, opciones.get(indice));
+            opciones.set(indice, tmp);
         }
 
         return opciones;

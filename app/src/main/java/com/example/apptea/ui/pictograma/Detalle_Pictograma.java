@@ -138,7 +138,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         adapter.setButtonClickedPictograma(new PictogramaAdapter.ButtonClickedPictograma() {
             @Override
             public void deleteClickedPictograma(Pictograma pictograma) {
-//                int numpicto= opcionViewModel.numeroPictogramaO(pictograma.getPictograma_id());
+
             }
 
             @Override

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -27,16 +28,17 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
     private List<Pictograma> pictoFraseList;
 
 
-
     public class PictoSecuenciaHolder extends RecyclerView.ViewHolder{
         private final TextView nombrePictograma;
         public ImageView imagen;
+        public ImageView flecha;
 
 
         private PictoSecuenciaHolder(View itemView){
             super(itemView);
             nombrePictograma = itemView.findViewById(R.id.nombre_pictograma);
             imagen = itemView.findViewById(R.id.img_pictograma);
+            flecha = itemView.findViewById(R.id.img_flecha);
 
         }
 
@@ -55,6 +57,9 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
 
     @Override
     public void onBindViewHolder(PictoSecuenciaAdapter.PictoSecuenciaHolder holder, int position) {
+        if (position == pictoFraseList.size() - 1) {
+            holder.flecha.setVisibility(View.GONE);
+        }
         if (pictoFraseList != null) {
             Pictograma current = pictoFraseList.get(position);
 
@@ -71,6 +76,15 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
             Glide.with(holder.itemView.getContext()).clear(holder.imagen);
             holder.nombrePictograma.setText("No existe pictogramas");
         }
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(holder.itemView.getContext(), "Se ha seleccionado algo!!",
+                        Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
     }
 
     void setPictograma(List<Pictograma> pic){

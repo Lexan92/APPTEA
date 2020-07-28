@@ -117,7 +117,7 @@
             android:name=".ui.habilidadCotidiana.VistaPreviaActivity"
             android:label=" "
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+            />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

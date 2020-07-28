@@ -91,6 +91,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
     private ImageView foto;
     private Uri output;
     private boolean tomarfoto=false;
+    private  Button cancelar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
         spinnerSexo = (Spinner)findViewById(R.id.SexoTea);
         foto = (ImageView)findViewById(R.id.fotoPersona);
         camara=(Button)findViewById(R.id.btn_camara);
+        cancelar=(Button)findViewById(R.id.cancelarPersona);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
         ArrayList<String> sexo = new ArrayList<String>();
@@ -235,6 +237,14 @@ public class NuevaPersonaTea extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
 
+        });
+
+        //CANCELAR
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
         });
     }
 

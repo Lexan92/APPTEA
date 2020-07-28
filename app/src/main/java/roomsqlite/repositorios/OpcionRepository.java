@@ -43,4 +43,7 @@ public class OpcionRepository {
     public int numeroOpciones(int id){
         return opcionDAO.numeroOpciones(id);
     }
+
+    public int numeroPictogramaO(int id) {return opcionDAO.numeroPictogramaO(id);}
+
 }

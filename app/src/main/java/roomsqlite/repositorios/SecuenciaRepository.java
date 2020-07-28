@@ -44,6 +44,7 @@ public class SecuenciaRepository {
         appDatabase.databaseWriteExecutor.execute(()-> secuenciaDao.deleteSecuencia(secuencia));
     }
 
+    public int numeroPictogramaS(int id) {return secuenciaDao.numeroPictogramaS(id);}
 
 
 }

@@ -24,7 +24,7 @@ import roomsqlite.entidades.Pictograma;
         void updatePictograma(Pictograma pictograma);
 
         @Delete
-        void Pictograma(Pictograma pictograma);
+        void deletePictograma(Pictograma pictograma);
 
 
         @Query("SELECT * FROM " +Pictograma.TABLE_NAME)

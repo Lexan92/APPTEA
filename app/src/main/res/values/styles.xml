@@ -30,7 +30,10 @@
     <style name="capriolastyle" parent="@android:style/TextAppearance.Small">
         <item name="android:fontFamily">@font/capriola</item>
     </style>
-
+    <style name="temaHabilidad" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
 
 
 

@@ -113,6 +113,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
             if (current.isCat_predeterminado() == true) {
                 holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
                 holder.btnDelete.setVisibility(View.GONE);
+                holder.btnEdit.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
 
             } else {

@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -48,6 +49,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
     private static final int ACTIVITY_REQUEST_CODE = 10;
 
     private PictogramaViewModel pictogramaViewModel;
+    private OpcionViewModel opcionViewModel;
     RecyclerView recyclerView;
     CategoriaPictograma categoriaPictograma = null;
     PictogramaAdapter adapter;
@@ -136,7 +138,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         adapter.setButtonClickedPictograma(new PictogramaAdapter.ButtonClickedPictograma() {
             @Override
             public void deleteClickedPictograma(Pictograma pictograma) {
-
+                int numpicto= opcionViewModel.numeroPictogramaO(pictograma.getPictograma_id());
             }
 
             @Override

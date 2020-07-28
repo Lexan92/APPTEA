@@ -77,6 +77,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                 holder.editar.setVisibility(View.INVISIBLE);
                 holder.setIsRecyclable(false);
 
+
             }else{
                 if (categoriaPictograma.isPredeterminado()==true){
                     holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());

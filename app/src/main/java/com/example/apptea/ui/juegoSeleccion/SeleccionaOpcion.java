@@ -20,6 +20,7 @@ import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -48,6 +49,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
     Juego juego = new Juego();
+    TTSManager ttsManager=null;
     List<Opcion> opciones = new ArrayList<>(4);
     int longitudPreguntas;
     int posicion = 0;
@@ -80,6 +82,9 @@ public class SeleccionaOpcion extends AppCompatActivity {
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
         pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
 
+        ttsManager = new TTSManager();
+        ttsManager.init(getApplicationContext());
+
         //boton oculto
         siguiente.setVisibility(View.INVISIBLE);
         //reiniciar vistas
@@ -98,6 +103,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
         //LISTENERS DE CARDVIEWS
         opcion1.setOnClickListener(v -> {
+            ttsManager.initQueue(txt1.getText().toString());
             if (bandera1) {
                 opcion1.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 txt1.setTextColor(getResources().getColor(R.color.colorSplash));
@@ -115,6 +121,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         });
 
         opcion2.setOnClickListener(v -> {
+            ttsManager.initQueue(txt2.getText().toString());
             if (bandera2) {
                 opcion2.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
@@ -131,6 +138,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         });
 
         opcion3.setOnClickListener(v -> {
+            ttsManager.initQueue(txt3.getText().toString());
             if (bandera3) {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
@@ -146,6 +154,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         });
 
         opcion4.setOnClickListener(v -> {
+            ttsManager.initQueue(txt4.getText().toString());
             if (bandera4) {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);

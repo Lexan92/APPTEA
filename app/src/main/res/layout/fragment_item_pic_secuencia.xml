@@ -70,7 +70,7 @@
 
         </com.google.android.material.card.MaterialCardView>
         <ImageView
-            android:id="@+id/img_pictograma2"
+            android:id="@+id/img_flecha"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_gravity="center"

@@ -105,7 +105,11 @@ public class DefinirPregunta extends AppCompatActivity {
         //Escucha del boton guardar
         guardar.setOnClickListener(v -> {
 
-            if (!tituloPregunta.getText().toString().isEmpty()) {
+            if (!agrego1 && !agrego2 && !agrego3 && !agrego4) {
+                Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debes agregar pictogramas a las opciones de respuesta", Snackbar.LENGTH_LONG).show();
+            } else if (!isCheckedOpcionUno && !isCheckedOpcionDos && !isCheckedOpcionTres && !isCheckedOpcionCuatro) {
+                Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe marcar al menos una opción como correcta", Snackbar.LENGTH_LONG).show();
+            } else if (!tituloPregunta.getText().toString().isEmpty()) {
                 preguntaNueva.setTitulo_pregunta(tituloPregunta.getText().toString());
                 if (getIntent() == null) {
                     juego.observe(DefinirPregunta.this, juego -> preguntaNueva.setJuego_id(juego.getJuego_id()));
@@ -167,8 +171,8 @@ public class DefinirPregunta extends AppCompatActivity {
                 finish();
             } else {
                 Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe ingresar un titulo para la pregunta", Snackbar.LENGTH_LONG).show();
-            }
 
+            }
         });
 
         //actividades para buscar pictogramas

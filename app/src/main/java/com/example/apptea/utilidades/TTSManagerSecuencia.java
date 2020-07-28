@@ -9,17 +9,19 @@ import java.util.Locale;
 public class TTSManagerSecuencia {
 
     private TextToSpeech mTts = null;
+    private TextToSpeech mTts2 = null;
     private boolean isLoaded = false;
 
     public void init(Context context) {
         try {
             mTts = new TextToSpeech(context, onInitListener);
+            mTts2 = new TextToSpeech(context, onInit2Listener);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
+     private TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
         @Override
         public void onInit(int status) {
             //ESTABLECIENDO IDIOMA
@@ -27,7 +29,28 @@ public class TTSManagerSecuencia {
             if (status == TextToSpeech.SUCCESS) {
                 int result = mTts.setLanguage(spanish);
                 //mTts.setPitch(1f); //tono de voz
-                mTts.setSpeechRate(0.5f); //velocidad de voz
+                mTts.setSpeechRate(0.6f); //velocidad de voz
+
+                isLoaded = true;
+
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e("error", "Este Lenguaje no esta permitido");
+                }
+            } else {
+                Log.e("error", "Fallo al Inicializar!");
+            }
+        }
+    };
+
+    private TextToSpeech.OnInitListener onInit2Listener = new TextToSpeech.OnInitListener() {
+        @Override
+        public void onInit(int status) {
+            //ESTABLECIENDO IDIOMA
+            Locale spanish = new Locale("es", "ES");
+            if (status == TextToSpeech.SUCCESS) {
+                int result = mTts.setLanguage(spanish);
+                //mTts.setPitch(1f); //tono de voz
+                mTts.setSpeechRate(1f); //velocidad de voz
 
                 isLoaded = true;
 

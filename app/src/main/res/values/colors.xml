@@ -9,6 +9,8 @@
     <color name="colorSplash">#FFFFFF</color>
     <color name = "correcto">#66BB6A</color>
     <color name = "incorrecto">#EF5350</color>
+    <color name = "fondoHab">#CFCFCF</color>
+
 
 
 </resources>

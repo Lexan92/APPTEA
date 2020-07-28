@@ -20,6 +20,7 @@ import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -48,7 +49,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
     Juego juego = new Juego();
-    List<Opcion> opciones = new ArrayList<>(4);
+    TTSManager ttsManager = null;
     int longitudPreguntas;
     int posicion = 0;
     int contador = 0;
@@ -80,6 +81,9 @@ public class SeleccionaOpcion extends AppCompatActivity {
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
         pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
 
+        ttsManager = new TTSManager();
+        ttsManager.init(getApplicationContext());
+
         //boton oculto
         siguiente.setVisibility(View.INVISIBLE);
         //reiniciar vistas
@@ -98,6 +102,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
         //LISTENERS DE CARDVIEWS
         opcion1.setOnClickListener(v -> {
+            ttsManager.initQueue(txt1.getText().toString());
             if (bandera1) {
                 opcion1.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 txt1.setTextColor(getResources().getColor(R.color.colorSplash));
@@ -115,6 +120,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         });
 
         opcion2.setOnClickListener(v -> {
+            ttsManager.initQueue(txt2.getText().toString());
             if (bandera2) {
                 opcion2.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
@@ -131,6 +137,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         });
 
         opcion3.setOnClickListener(v -> {
+            ttsManager.initQueue(txt3.getText().toString());
             if (bandera3) {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
@@ -146,6 +153,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         });
 
         opcion4.setOnClickListener(v -> {
+            ttsManager.initQueue(txt4.getText().toString());
             if (bandera4) {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
@@ -166,15 +174,9 @@ public class SeleccionaOpcion extends AppCompatActivity {
             posicion++;
 
             if (posicion <= longitudPreguntas - 1) {
-                //TRUE:
                 reiniciarCards();
                 setearOpciones(posicion);
             } else {
-//                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(SeleccionaOpcion.this);
-//                builder.setTitle("¡BIEN HECHO!");
-//                builder.setMessage("Has terminado el juego");
-//                builder.show();
-
                 Intent intent = new Intent(this, FinJuego.class);
                 startActivity(intent);
                 finish();
@@ -193,6 +195,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         listadoPreguntas.observe(SeleccionaOpcion.this, preguntas -> {
             tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
             listaOpciones = opcionViewModel.getOcionesByIdPregunta(preguntas.get(posicion).getPregunta_id());
+
             listaOpciones.observe(SeleccionaOpcion.this, opciones -> {
                 List<Opcion> nuevaListaOpcion = ordenarAleatoriamente(opciones);
                 int size = (nuevaListaOpcion.size()) - 1;
@@ -248,6 +251,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     }
 
 
+    //metodo que reinicia las vistas de cada cardview
     private void reiniciarCards() {
         opcion1.setVisibility(View.INVISIBLE);
         opcion2.setVisibility(View.INVISIBLE);
@@ -265,6 +269,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     }
 
 
+    //funcion que devuelve una lista ordenada de forma aleatoria de opciones
     private List<Opcion> ordenarAleatoriamente(List<Opcion> opciones) {
 
         /* Función de barajamiento usando el algoritmo Fisher Yates

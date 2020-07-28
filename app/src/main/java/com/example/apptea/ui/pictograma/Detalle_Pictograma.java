@@ -141,6 +141,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         adapter.setButtonClickedPictograma(new PictogramaAdapter.ButtonClickedPictograma() {
             @Override
             public void deleteClickedPictograma(Pictograma pictograma) {
+<<<<<<< HEAD
                 System.out.println("id pictograma "+pictograma.getPictograma_id());
                 int numpictoS=0;
                 int numpictoO= opcionViewModel.numeroPictogramaO(pictograma.getPictograma_id());
@@ -164,6 +165,9 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
                    }
 
                }
+=======
+
+>>>>>>> f13a6f8444d1496a59b68d2504943a4f40bc07ad
             }
 
             @Override

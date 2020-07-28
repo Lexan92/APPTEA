@@ -167,8 +167,10 @@ public class CategoriaPictogramaFragment extends Fragment {
                 bundleEnvio.putBoolean("bandera", bandera);
                 bundleEnvio.putSerializable("elementos",categoriaPictograma);
                 detalle_pictograma.setArguments(bundleEnvio);
-                System.out.println("en el fragment"+ categoriaPictograma.getCat_pictograma_nombre());
-                ttsManager.initQueue(categoriaPictograma.getCat_pictograma_nombre());
+                if(bandera==true){
+                    System.out.println("en el fragment"+ categoriaPictograma.getCat_pictograma_nombre());
+                    ttsManager.initQueue(categoriaPictograma.getCat_pictograma_nombre());
+                }
                 Navigation.findNavController(v).navigate(R.id.detalle_Pictograma,bundleEnvio); //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
             }
         });

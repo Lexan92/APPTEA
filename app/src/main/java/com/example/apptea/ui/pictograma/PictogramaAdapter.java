@@ -44,7 +44,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
     private OnPictogramaListener mOnPictogramaListener;
     private final LayoutInflater mInflater;
-    public boolean isVocabulary;
+    public boolean isVocabulary=false;
     private List<Pictograma> pictogramaList;
     private List<Pictograma> pictogramaListBusqueda;
     private ButtonClickedPictograma buttonClickedPictograma;
@@ -113,6 +113,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     public void onBindViewHolder(PictogramaAdapter.PictogramaHolder holder, int position) {
         if (pictogramaList != null) {
             Pictograma current = pictogramaList.get(position);
+
             if(isVocabulary==true){
                 Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
@@ -122,6 +123,12 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                 holder.eliminar.setVisibility(View.INVISIBLE);
                 holder.editar.setVisibility(View.INVISIBLE);
                 holder.setIsRecyclable(false);
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        buttonClickedPictograma.itemClickedPictograma(current);
+                    }
+                });
             }else{
                 if(current.isPredeterminado()){
 
@@ -133,8 +140,8 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                             .into(holder.imagen);
 
                     holder.pictogramaItemView.setText(current.getPictograma_nombre());
-                    holder.editar.setVisibility(View.INVISIBLE);
-                    holder.eliminar.setVisibility(View.INVISIBLE);
+                    holder.editar.setVisibility(View.GONE);
+                    holder.eliminar.setVisibility(View.GONE);
                     holder.setIsRecyclable(false);
                 }
                 else {
@@ -149,14 +156,6 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                     holder.setIsRecyclable(false);
                 }
             }
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    buttonClickedPictograma.itemClickedPictograma(current);
-                }
-            });
-
-
 
 
         } else {

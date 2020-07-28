@@ -44,6 +44,7 @@ public class SecuenciaRepository {
         appDatabase.databaseWriteExecutor.execute(()-> secuenciaDao.deleteSecuencia(secuencia));
     }
 
-
-
+    public LiveData<List<Secuencia>> findSecuenciaByHabilidadCotidiana(int id) {
+        return secuenciaDao.getSecuenciaByHabilidad(id);
+    }
 }

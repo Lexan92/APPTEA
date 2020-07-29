@@ -1,13 +1,16 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
 import android.animation.ObjectAnimator;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
@@ -16,7 +19,10 @@ import com.example.apptea.utilidades.TTSManagerSecuencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.database.ImageConverter;
+import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
+import roomsqlite.entidades.Secuencia;
 
 public class VistaPreviaActivity extends AppCompatActivity {
 
@@ -50,6 +56,9 @@ public class VistaPreviaActivity extends AppCompatActivity {
         guardar.setVisibility(View.INVISIBLE);
         nombreHabilidad = findViewById(R.id.nombreSecuencia);
         recyclerView1 = findViewById(R.id.recycler_viewSecuencia);
+        int idCategoriaHab = getIntent().getIntExtra("idCatHabilidad",0);
+        HabilidadCotidianaViewModel habilidadCotidianaViewModel;
+        habilidadCotidianaViewModel= new ViewModelProvider(this).get(HabilidadCotidianaViewModel.class);
 
         //RECYCLER FRASES
         recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -105,8 +114,33 @@ public class VistaPreviaActivity extends AppCompatActivity {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Boton guardar",
-                        Toast.LENGTH_LONG).show();
+                int orden =0;
+                if(TextUtils.isEmpty(nombreHabilidad.getText())){
+                    Toast.makeText(getApplicationContext(), "Debes agregar un nombre",
+                            Toast.LENGTH_LONG).show();
+                }else{
+
+                    HabilidadCotidiana habilidadCotidiana = new HabilidadCotidiana();
+                    habilidadCotidiana.setCat_hab_cotidiana_id(idCategoriaHab);
+                    habilidadCotidiana.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
+                    habilidadCotidiana.setHab_predeterminado(false);
+                    habilidadCotidianaViewModel.insert(habilidadCotidiana);
+
+
+                    for(Pictograma pictograma: pictoSecuenciaList){
+                        //guardado de secuencia
+
+                        Secuencia secuencia = new Secuencia();
+                        secuencia.setHabilidad_cotidiana_id(habilidadCotidiana.getHabilidad_cotidiana_id());
+                        secuencia.setPictograma_id(pictograma.getPictograma_id());
+                        secuencia.setSec_predeterminado(false);
+                        secuencia.setSecuencia_orden(orden);
+                        orden +=1;
+                    }
+
+                    Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada ", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
 

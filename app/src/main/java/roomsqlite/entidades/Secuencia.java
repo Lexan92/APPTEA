@@ -29,9 +29,9 @@ public class Secuencia implements Serializable {
     private int pictograma_id;
     @NonNull
     private boolean sec_predeterminado;
-/*
+
     public Secuencia() {
-    }*/
+    }
 
     public Secuencia(int secuencia_id, int secuencia_orden, int habilidad_cotidiana_id, int pictograma_id, boolean sec_predeterminado) {
         this.secuencia_id = secuencia_id;

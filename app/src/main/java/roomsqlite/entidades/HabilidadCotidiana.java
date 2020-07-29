@@ -26,9 +26,9 @@ public class HabilidadCotidiana implements Serializable {
     @NonNull
     private String habilidad_cotidiana_nombre;
 
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    /*@ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] pictograma_imagen;
-    private String pictograma_sonido;
+    private String pictograma_sonido;*/
     private boolean predeterminado;
 
     @NonNull
@@ -79,6 +79,7 @@ public class HabilidadCotidiana implements Serializable {
         this.hab_predeterminado = hab_predeterminado;
     }
 
+    /*
     public byte[] getPictograma_imagen() {
         return pictograma_imagen;
     }
@@ -93,7 +94,7 @@ public class HabilidadCotidiana implements Serializable {
 
     public void setPictograma_sonido(String pictograma_sonido) {
         this.pictograma_sonido = pictograma_sonido;
-    }
+    }*/
 
     public boolean isPredeterminado() {
         return predeterminado;

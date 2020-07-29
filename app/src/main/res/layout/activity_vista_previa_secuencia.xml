@@ -18,6 +18,7 @@
     tools:context=".ui.habilidadCotidiana.VistaPreviaActivity"
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
+    android:fitsSystemWindows="true"
    >
 
     <LinearLayout
@@ -54,12 +55,27 @@
         app:iconSize="@android:dimen/app_icon_size" />
 
 
+        <EditText
+            android:id="@+id/nombreSecuencia"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="125dp"
+            android:hint="@string/hint_dialog_nueva_habilidad"
+            android:textAlignment="center"
+            android:maxLength="30"
+            android:inputType="text"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark"
+            tools:ignore="RtlCompat" />
+
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:id="@+id/btn_save"
             android:layout_width="40dip"
             android:layout_height="40dip"
-            android:layout_marginLeft="555dp"
+            android:layout_marginLeft="145dp"
             android:insetLeft="5dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
@@ -86,7 +102,7 @@
             android:id="@+id/recycler_viewSecuencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layoutAnimation="@anim/layout_fall_down"
+           android:layoutAnimation="@anim/layout_fall_down"
             android:layout_weight=".70"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
@@ -104,7 +120,7 @@
         android:insetBottom="0dp"
         android:insetLeft="3dp"
         android:insetRight="0dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="0dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimaryDark"
         app:cornerRadius="30dp"

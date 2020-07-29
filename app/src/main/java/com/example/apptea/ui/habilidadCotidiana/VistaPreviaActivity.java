@@ -1,9 +1,11 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +26,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
     private Button atras;
     private Button play;
     private Button guardar;
+    private EditText nombreHabilidad;
     TTSManager ttsManager=null;
     TTSManagerSecuencia ttsManagerSecuencia2=null;
 
@@ -45,6 +48,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
         play.setVisibility(View.INVISIBLE);
         guardar= findViewById(R.id.btn_save);
         guardar.setVisibility(View.INVISIBLE);
+        nombreHabilidad = findViewById(R.id.nombreSecuencia);
         recyclerView1 = findViewById(R.id.recycler_viewSecuencia);
 
         //RECYCLER FRASES
@@ -75,6 +79,8 @@ public class VistaPreviaActivity extends AppCompatActivity {
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ttsManager.shutDown();
+                ttsManagerSecuencia2.shutDown();
                 finish();
             }
         });

@@ -10,10 +10,28 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import roomsqlite.entidades.Opcion;
 import roomsqlite.entidades.Secuencia;
 
 @Dao
 public interface SecuenciaDao {
+
+    @Insert
+    void insertAllSecuencia (Secuencia[] secuencias);
+
+    //metodo donde se inserta secuencia
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    public void insert(Secuencia secuencia);
+
+    @Update
+    void updateSecuencia(Secuencia secuencia);
+
+    @Query("DELETE FROM secuencia")
+    public void deleteAll();
+
+    //Metodo para eliminar
+    @Delete
+    void deleteSecuencia(Secuencia secuencia);
 
     //metodo donde se recuperan todas  habilidades cotidianas
     @Query("SELECT * FROM secuencia ORDER BY secuencia_orden ASC")
@@ -23,17 +41,8 @@ public interface SecuenciaDao {
     @Query("SELECT * FROM secuencia WHERE habilidad_cotidiana_id = :id ORDER BY secuencia_orden ASC")
     LiveData<List<Secuencia>> getSecuenciaByHabilidad(int id);
 
-    @Query("DELETE FROM secuencia")
-    public void deleteAll();
+    @Query("SELECT COUNT ( pictograma_id ) FROM  secuencia WHERE pictograma_id =:id ")
+    int numeroPictogramaS(int id);
 
-    @Update
-    void updateSecuencia(Secuencia secuencia);
 
-    //metodo donde se inserta secuencia
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void insert(Secuencia secuencia);
-
-    //Metodo para eliminar
-    @Delete
-    void deleteSecuencia(Secuencia secuencia);
 }

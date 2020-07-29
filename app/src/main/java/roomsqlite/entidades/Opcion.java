@@ -17,7 +17,10 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = Opcion.TABLE_NAME, foreignKeys = @ForeignKey(entity = Pregunta.class, parentColumns = "pregunta_id", childColumns = "pregunta_id", onDelete = CASCADE, onUpdate = CASCADE))
+@Entity(tableName = Opcion.TABLE_NAME,
+        foreignKeys = { @ForeignKey(entity = Pregunta.class, parentColumns = "pregunta_id", childColumns = "pregunta_id", onDelete = CASCADE, onUpdate = CASCADE),
+                        @ForeignKey(entity = Pictograma.class, parentColumns = "pictograma_id", childColumns = "pictograma_id",onDelete = CASCADE,onUpdate = CASCADE)})
+
 public class Opcion {
     public static final String TABLE_NAME = "opcion";
     @PrimaryKey(autoGenerate = true)

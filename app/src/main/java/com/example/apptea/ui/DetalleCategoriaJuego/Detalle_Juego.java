@@ -38,6 +38,7 @@ import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
@@ -56,6 +57,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     CategoriaViewModel categoriaJuegoViewModel;
     PreguntaViewModel preguntaViewModel;
     LiveData<CategoriaJuego> categoriaJuegoLiveData;
+    List<Juego> juegosConPregunta = new ArrayList<>();
     int key = 0;
 
 
@@ -93,12 +95,29 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         Bundle objetoCategoriaJuego = getArguments();
 
         if (objetoCategoriaJuego != null) {
-//            categoriaJuego = (CategoriaJuego) objetoCategoriaJuego.getSerializable("objeto");
             key = objetoCategoriaJuego.getInt("objeto", -1);
             juegoViewModel.findJuegosByCategoriaId(key).observe(getActivity(), new Observer<List<Juego>>() {
                 @Override
                 public void onChanged(List<Juego> juegos) {
-                    adapter.setJuegos(juegos);
+
+                    //se verifica si la llamada proviene del menu principal
+                    Bundle bundle = getArguments();
+                    if (bundle != null){
+                        if(bundle.getBoolean("bandera")){
+                            //se recorre los juegos colocando en el adapter aquellos que si tengan preguntas
+                            for(int i=0;i<=juegos.size()-1;i++){
+                                int numero = preguntaViewModel.numeroPreguntas(juegos.get(i).getJuego_id());
+                                if(numero>0)
+                                    juegosConPregunta.add(juegos.get(i));
+                            }
+                            adapter.setJuegos(juegosConPregunta);
+                        }else{
+                            //si la llamada  proviene del menu lateral, se agregan todos los juegos al adaptador
+                            adapter.setJuegos(juegos);
+                        }
+                    }
+
+
                 }
             });
 
@@ -163,11 +182,6 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
                 builder.show();
             }
 
-
-            @Override
-            public void updateClickedCatHab(Juego juego) {
-                //PENDIENTE
-            }
         });
 
 

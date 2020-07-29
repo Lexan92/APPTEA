@@ -11,6 +11,8 @@
 
 package com.example.apptea.ui.pictograma;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -102,6 +104,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
+        opcionViewModel = new ViewModelProvider(getActivity()).get(OpcionViewModel.class);
         ttsManager= new TTSManager();
         ttsManager.init(getActivity());
 
@@ -139,6 +142,30 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
             @Override
             public void deleteClickedPictograma(Pictograma pictograma) {
 
+                System.out.println("id pictograma "+pictograma.getPictograma_id());
+                int numpictoS=0;
+                int numpictoO= opcionViewModel.numeroPictogramaO(pictograma.getPictograma_id());
+               if (numpictoO>0){
+                    System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
+                    if(numpictoS>0){
+                        AlertaDelete(pictograma,"¿Esta seguro? \n Esta imagen es utilizada la cantidad de: \n" +
+                                numpictoS + "veces por las habilidades cotidianas \n"+
+                                numpictoO + "veces por los juegos interactivos");
+                    }else{
+                        AlertaDelete(pictograma,"¿Esta seguro? \n Esta imagen es utilizada la cantidad de: \n" +
+                                numpictoO + " veces por los juegos interactivos");
+                    }
+
+               }else{
+                   if(numpictoS>0){
+                       AlertaDelete(pictograma,"¿Esta seguro? \n Esta imagen es utilizada la cantidad de: \n" +
+                               numpictoS + "veces por las habilidades cotidianas \n");
+                   }else{
+                       AlertaDelete( pictograma,"¿Esta seguro? Se eliminara el pictograma");
+                   }
+
+               }
+
             }
 
             @Override
@@ -164,6 +191,34 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         }
 
     }
+
+    //ALERTA
+    public void AlertaDelete(Pictograma pictograma, String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Alerta");
+        builder.setMessage(mensaje);
+        builder.setIcon(android.R.drawable.ic_delete);
+
+        builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //DELETE CASCADE
+                pictogramaViewModel.deletePictograma(pictograma);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog deleteDialog = builder.create();
+        deleteDialog.show();
+    }
+
+
 
 
     @Override

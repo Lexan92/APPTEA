@@ -49,8 +49,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
     Juego juego = new Juego();
-    TTSManager ttsManager=null;
-    List<Opcion> opciones = new ArrayList<>(4);
+    TTSManager ttsManager = null;
     int longitudPreguntas;
     int posicion = 0;
     int contador = 0;
@@ -175,15 +174,9 @@ public class SeleccionaOpcion extends AppCompatActivity {
             posicion++;
 
             if (posicion <= longitudPreguntas - 1) {
-                //TRUE:
                 reiniciarCards();
                 setearOpciones(posicion);
             } else {
-//                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(SeleccionaOpcion.this);
-//                builder.setTitle("¡BIEN HECHO!");
-//                builder.setMessage("Has terminado el juego");
-//                builder.show();
-
                 Intent intent = new Intent(this, FinJuego.class);
                 startActivity(intent);
                 finish();
@@ -202,6 +195,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         listadoPreguntas.observe(SeleccionaOpcion.this, preguntas -> {
             tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
             listaOpciones = opcionViewModel.getOcionesByIdPregunta(preguntas.get(posicion).getPregunta_id());
+
             listaOpciones.observe(SeleccionaOpcion.this, opciones -> {
                 List<Opcion> nuevaListaOpcion = ordenarAleatoriamente(opciones);
                 int size = (nuevaListaOpcion.size()) - 1;
@@ -257,6 +251,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     }
 
 
+    //metodo que reinicia las vistas de cada cardview
     private void reiniciarCards() {
         opcion1.setVisibility(View.INVISIBLE);
         opcion2.setVisibility(View.INVISIBLE);
@@ -274,6 +269,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     }
 
 
+    //funcion que devuelve una lista ordenada de forma aleatoria de opciones
     private List<Opcion> ordenarAleatoriamente(List<Opcion> opciones) {
 
         /* Función de barajamiento usando el algoritmo Fisher Yates

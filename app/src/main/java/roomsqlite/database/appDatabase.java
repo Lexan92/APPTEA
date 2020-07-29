@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
+import androidx.room.Insert;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
@@ -96,6 +97,8 @@ public abstract class appDatabase extends RoomDatabase {
                     PictogramaDAO pictogramaDAO = INSTANCE.pictogramaDAO();
                     UsuarioDao usuarioDao = INSTANCE.usuarioDao();
                     PersonaTeaDao personaTeaDao =INSTANCE.personaTeaDao();
+                    HabilidadCotidianaDao habilidadCotidianaDao = INSTANCE.habilidadCotidianaDao();
+                    SecuenciaDao secuenciaDao = INSTANCE.secuenciaDao();
 
                     //DELETEALL - primero de borran las entidades dependientes - segundo se borran la entidades independientes
                     paisesdao.deletePaisAll();
@@ -260,6 +263,10 @@ public abstract class appDatabase extends RoomDatabase {
                  PersonaTea personaTea = new PersonaTea(1,1,"jose","flores",DateConverter.fromTimestamp("2000/05/12"),"Masculino","");
                  personaTeaDao.insertPersonaTea(personaTea);
                  */
+
+                    System.out.println(" habilidades");
+                    habilidadCotidianaDao.insertAllHabilidadCotidiana(DataTea.habilidadCotidianas());
+                    secuenciaDao.insertAllSecuencia(DataTea.secuencias());
 
                     System.out.println("registro inicial finalizado");
                 });

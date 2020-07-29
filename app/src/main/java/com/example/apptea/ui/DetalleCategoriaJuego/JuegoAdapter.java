@@ -51,7 +51,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
     public interface ButtonClicked{
         void deleteClickedCatHab(Juego juego);
-        void updateClickedCatHab(Juego juego);
     }
 
     public void setButtonClicked(JuegoAdapter.ButtonClicked buttonClicked){
@@ -60,7 +59,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
     class JuegoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView nombreJuego;
-        public MaterialButton editar;
         public MaterialButton eliminar;
         OnJuegoListener onJuegoListener;
 
@@ -71,7 +69,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
         public JuegoViewHolder(@NonNull View itemView, OnJuegoListener onJuegoListener) {
             super(itemView);
             nombreJuego = itemView.findViewById(R.id.nombre_item_juego);
-            editar = itemView.findViewById(R.id.btn_editar_juego_lista);
             eliminar = itemView.findViewById(R.id.btn_eliminar_juego_lista);
             this.onJuegoListener = onJuegoListener;
             itemView.setOnClickListener(this);
@@ -103,9 +100,8 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     public void onBindViewHolder(@NonNull JuegoViewHolder holder, int position) {
         if (juegos != null && position < juegos.size()) {
             Juego juego = juegos.get(position);
-            if (juego.isJuego_predeterminado() == true) {
+            if (juego.isJuego_predeterminado()) {
                 holder.nombreJuego.setText(juego.getJuego_nombre());
-                holder.editar.setVisibility(View.GONE);
                 holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(true);
 

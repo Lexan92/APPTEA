@@ -14,6 +14,19 @@ import roomsqlite.entidades.HabilidadCotidiana;
 @Dao
 public interface HabilidadCotidianaDao {
 
+    @Insert
+    void insertAllHabilidadCotidiana (HabilidadCotidiana[] habilidadCotidianas);
+
+    //metodo donde se inserta habilidades cotidianas
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertHabilidad(HabilidadCotidiana habilidadCotidiana);
+
+    @Update
+    void updateHabilidadCotidiana(HabilidadCotidiana habilidadCotidiana);
+
+    @Query("DELETE FROM habilidad_cotidiana")
+    public void deleteAll();
+
     //metodo donde se recuperan todas  habilidades cotidianas
     @Query("SELECT * FROM habilidad_cotidiana ORDER BY habilidad_cotidiana_nombre ASC")
     LiveData<List<HabilidadCotidiana>> getHabilidadCotidiana();
@@ -21,17 +34,6 @@ public interface HabilidadCotidianaDao {
     //metodo donde se recuperan todas  habilidades cotidianas por ID de catgoria de habilidad
     @Query("SELECT * FROM habilidad_cotidiana WHERE cat_hab_cotidiana_id = :id ORDER BY habilidad_cotidiana_nombre ASC")
     LiveData<List<HabilidadCotidiana>> getHabilidadCotidianaByCatHabilidad(int id);
-
-    @Query("DELETE FROM habilidad_cotidiana")
-    public void deleteAll();
-
-    @Update
-    void updateHabilidadCotidiana(HabilidadCotidiana habilidadCotidiana);
-
-    //metodo donde se inserta habilidades cotidianas
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertHabilidad(HabilidadCotidiana habilidadCotidiana);
 
     //Metodo de prueba de eliminar se ocupara el metodo deleteHabilidadCotidiana
     @Delete

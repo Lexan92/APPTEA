@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="256dp"
         android:fontFamily="sans-serif-black"
-        android:text="Acceso con PIN"
+        android:text="Acceso con Contraseña"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:ems="10"
-        android:hint="Ingrese el PIN"
+        android:hint="Ingrese la Contraseña"
         android:textSize="15sp"
         app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:inputType="number" />
+             />
 
     </com.google.android.material.textfield.TextInputLayout>
 

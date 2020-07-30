@@ -22,7 +22,8 @@
         <action
             android:id="@+id/menu_a_accesoPin"
             app:destination="@id/accesoPin"
-            app:popEnterAnim="@anim/fragment_open_enter" />
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_enter" />
 
     </fragment>
 

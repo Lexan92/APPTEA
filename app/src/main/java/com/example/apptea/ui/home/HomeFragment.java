@@ -73,8 +73,8 @@ public class HomeFragment extends Fragment {
         });
 
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Acceso A juegos")
-                .setDescription("Usa tu huella dactilar para ingresar a esta opcion")
+                .setTitle("Acceso a Juegos Interactivos")
+                .setDescription("Usa tu huella dactilar para ingresar a esta opción")
                 .setNegativeButtonText("Cancelar")
                 .build();
 

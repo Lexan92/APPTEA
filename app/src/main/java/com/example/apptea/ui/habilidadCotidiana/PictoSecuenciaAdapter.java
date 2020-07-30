@@ -26,12 +26,14 @@ import roomsqlite.entidades.Pictograma;
 
 public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAdapter.PictoSecuenciaHolder> {
     private List<Pictograma> pictoFraseList;
+    private int posicionMarcada = 0;
 
 
     public class PictoSecuenciaHolder extends RecyclerView.ViewHolder{
         private final TextView nombrePictograma;
         public ImageView imagen;
         public ImageView flecha;
+        public ImageView check;
 
 
         private PictoSecuenciaHolder(View itemView){
@@ -39,6 +41,7 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
             nombrePictograma = itemView.findViewById(R.id.nombre_pictograma);
             imagen = itemView.findViewById(R.id.img_pictograma);
             flecha = itemView.findViewById(R.id.img_flecha);
+            check = itemView.findViewById(R.id.img_check);
 
         }
 
@@ -57,6 +60,7 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
 
     @Override
     public void onBindViewHolder(PictoSecuenciaAdapter.PictoSecuenciaHolder holder, int position) {
+        final int pos = position;
         if (position == pictoFraseList.size() - 1) {
             holder.flecha.setVisibility(View.GONE);
         }
@@ -79,11 +83,17 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(holder.itemView.getContext(), "Se ha seleccionado algo!!",
-                        Toast.LENGTH_LONG).show();
+                System.out.println("Seleccion:"+pictoFraseList.get(pos).getPictograma_nombre());
+                posicionMarcada = pos;
+                notifyDataSetChanged();
                 return true;
             }
         });
+        if(posicionMarcada == position){
+            holder.check.setVisibility(View.VISIBLE);
+        }else{
+            holder.check.setVisibility(View.GONE);
+        }
 
     }
 

@@ -76,6 +76,7 @@ public class SecuenciaFragment extends AppCompatActivity{
     recyclerView3 = findViewById(R.id.recycler_picto);
     ver = findViewById(R.id.btn_save);
     backspace = findViewById(R.id.btn_backspace);
+    int catHabilidadId = getIntent().getIntExtra("llaveCatHabilidad",0);
 
     //RECYCLER FRASES
     recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -151,6 +152,7 @@ public class SecuenciaFragment extends AppCompatActivity{
             }else{
                 Intent intent = new Intent(getApplicationContext(), VistaPreviaActivity.class);
                 intent.putExtra("listaSecuencia",(Serializable) pictoFraseList);
+                intent.putExtra("idCatHabilidad",catHabilidadId);
                 startActivity(intent);
             }
 

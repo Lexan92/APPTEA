@@ -11,9 +11,9 @@ import java.io.Serializable;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "secuencia",foreignKeys = @ForeignKey(entity = HabilidadCotidiana.class,
-        parentColumns = "habilidad_cotidiana_id",childColumns = "habilidad_cotidiana_id",
-        onDelete = CASCADE, onUpdate = CASCADE))
+@Entity(tableName = "secuencia",
+        foreignKeys = { @ForeignKey(entity = HabilidadCotidiana.class, parentColumns = "habilidad_cotidiana_id",childColumns = "habilidad_cotidiana_id", onDelete = CASCADE, onUpdate = CASCADE),
+                        @ForeignKey(entity = Pictograma.class, parentColumns = "pictograma_id", childColumns = "pictograma_id",onDelete = CASCADE,onUpdate = CASCADE)})
 
 public class Secuencia implements Serializable {
     @PrimaryKey(autoGenerate = true)
@@ -29,9 +29,9 @@ public class Secuencia implements Serializable {
     private int pictograma_id;
     @NonNull
     private boolean sec_predeterminado;
-/*
+
     public Secuencia() {
-    }*/
+    }
 
     public Secuencia(int secuencia_id, int secuencia_orden, int habilidad_cotidiana_id, int pictograma_id, boolean sec_predeterminado) {
         this.secuencia_id = secuencia_id;

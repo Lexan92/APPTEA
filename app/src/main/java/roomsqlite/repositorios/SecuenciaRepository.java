@@ -44,7 +44,13 @@ public class SecuenciaRepository {
         appDatabase.databaseWriteExecutor.execute(()-> secuenciaDao.deleteSecuencia(secuencia));
     }
 
+
+    public int numeroPictogramaS(int id) {return secuenciaDao.numeroPictogramaS(id);}
+
+
+
     public LiveData<List<Secuencia>> findSecuenciaByHabilidadCotidiana(int id) {
         return secuenciaDao.getSecuenciaByHabilidad(id);
     }
+
 }

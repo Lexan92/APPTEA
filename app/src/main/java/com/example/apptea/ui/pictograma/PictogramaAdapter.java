@@ -80,6 +80,20 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
             imagen = itemView.findViewById(R.id.img_pictograma);
             this.onPictogramaListener = onPictogramaListener;
             itemView.setOnClickListener(this);
+
+            eliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClickedPictograma.deleteClickedPictograma(pictogramaList.get(getAdapterPosition()));
+                }
+            });
+
+            editar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClickedPictograma.updateClicledPictograma(pictogramaList.get(getAdapterPosition()));
+                }
+            });
         }
 
         @Override
@@ -120,8 +134,8 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                         .thumbnail(0.5f)
                         .into(holder.imagen);
                 holder.pictogramaItemView.setText(current.getPictograma_nombre());
-                holder.eliminar.setVisibility(View.INVISIBLE);
-                holder.editar.setVisibility(View.INVISIBLE);
+                holder.eliminar.setVisibility(View.GONE);
+                holder.editar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

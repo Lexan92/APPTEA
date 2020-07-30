@@ -12,7 +12,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="160dp"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -24,7 +24,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_pictoFrases"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:layout_margin="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
@@ -36,7 +36,11 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorFondo"
                 android:orientation="vertical">
-
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorFondo"
+                android:orientation="horizontal">
                 <!-- Media -->
                 <ImageView
                     android:id="@+id/img_pictograma"
@@ -51,7 +55,19 @@
                     android:paddingRight="5dp"
                     android:paddingBottom="5dp"
                     app:srcCompat="@drawable/ic_linda" />
-
+                <ImageView
+                    android:id="@+id/img_check"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="-45dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
+                    app:srcCompat="@drawable/ic_check" />
+            </LinearLayout>
                 <TextView
                     android:id="@+id/nombre_pictograma"
                     android:layout_width="wrap_content"

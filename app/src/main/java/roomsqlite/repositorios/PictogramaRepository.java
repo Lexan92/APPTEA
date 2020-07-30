@@ -46,4 +46,9 @@ public class PictogramaRepository {
     public LiveData<List<Pictograma>> findPictogramasByCategoria(int id){
         return pictogramaDAO.allPictogramaByCategoria(id);
     }
+
+    public void deletePictograma(Pictograma pictograma){
+        pictogramaDAO.deletePictograma(pictograma);
+    }
+
 }

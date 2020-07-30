@@ -40,4 +40,7 @@ public class OpcionViewModel extends AndroidViewModel {
         return opcionRepository.numeroOpciones(id);
     }
 
+    public int numeroPictogramaO(int id){return opcionRepository.numeroPictogramaO(id);}
+
+
 }

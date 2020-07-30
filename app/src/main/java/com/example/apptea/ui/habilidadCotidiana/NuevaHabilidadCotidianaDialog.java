@@ -121,7 +121,6 @@ public class NuevaHabilidadCotidianaDialog extends AppCompatActivity{
                             HabilidadCotidiana habilidadCotidiana = new HabilidadCotidiana();
                             habilidadCotidiana.setCat_hab_cotidiana_id(keyCategoria);
                             habilidadCotidiana.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
-                            habilidadCotidiana.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable)imgFoto.getDrawable()).getBitmap()));
                             habilidadCotidiana.setHab_predeterminado(false);
                             habilidadCotidianaViewModel.insert(habilidadCotidiana);
                             Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada", Toast.LENGTH_LONG).show();

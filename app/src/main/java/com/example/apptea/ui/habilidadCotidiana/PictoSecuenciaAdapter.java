@@ -1,5 +1,5 @@
 
-/* Clase Java para crear el pictograma que ira en la aprte superior de la pantalla*/
+
 
 package com.example.apptea.ui.habilidadCotidiana;
 

@@ -19,6 +19,10 @@
         <action
             android:id="@+id/action_nav_home_to_nav_gestion_juego"
             app:destination="@id/nav_gestion_juego" />
+        <action
+            android:id="@+id/menu_a_accesoPin"
+            app:destination="@id/accesoPin"
+            app:popEnterAnim="@anim/fragment_open_enter" />
 
     </fragment>
 
@@ -64,6 +68,9 @@
         <action
             android:id="@+id/action_nav_gestion_juego_to_detalle_Juego"
             app:destination="@id/detalle_Juego" />
+        <action
+            android:id="@+id/CategoriaJuego_a_Menu"
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment
@@ -149,7 +156,15 @@
         android:name="com.example.apptea.ui.habilidadCotidiana.AgregarSecuenciaDialog"
         android:label="AgregarSecuenciaDialog"
         tools:layout="@layout/confimar_agregar_hab_dialog"/>
-
+    <fragment
+        android:id="@+id/accesoPin"
+        android:name="com.example.apptea.ui.verificarPin.AccesoPin"
+        android:label="fragment_acceso_pin"
+        tools:layout="@layout/fragment_acceso_pin" >
+        <action
+            android:id="@+id/accesoPin_a_CategoriaJuego"
+            app:destination="@id/nav_gestion_juego" />
+    </fragment>
 
 
 </navigation>

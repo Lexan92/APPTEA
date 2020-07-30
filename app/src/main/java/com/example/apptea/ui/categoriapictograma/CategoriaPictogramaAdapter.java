@@ -176,6 +176,9 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                         listaFiltrada.add(item);
                     }
                 }
+            } else {
+                listaFiltrada= new ArrayList<>(categoriaPictogramaList);
+                notifyDataSetChanged();
             }
 
 

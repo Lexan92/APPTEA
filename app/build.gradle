@@ -78,5 +78,7 @@ dependencies {
     implementation "androidx.camera:camera-core:${camerax_version}"
     implementation "androidx.camera:camera-camera2:${camerax_version}"
 
+    //autenticacion biometrica
+    implementation 'androidx.biometric:biometric:1.0.1'
 
 }

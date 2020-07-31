@@ -117,17 +117,24 @@ public class VisorPregunta extends AppCompatActivity {
 
 
         //NUEVA PREGUNTA
-        nuevapregunta.setOnClickListener(v -> listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
-            if ((preguntas.size()) + 1 <= 10) {
-                Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
-                intent.putExtra("juegoNuevo", juego);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más preguntas",
-                        Toast.LENGTH_LONG).show();
+        nuevapregunta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
+                    if ((preguntas.size()) + 1 <= 10) {
+                        Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
+                        intent.putExtra("juegoNuevo", juego);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más preguntas",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+                listadoPreguntas.removeObservers(VisorPregunta.this);
             }
-        }));
+        });
 
 
         //EDITAR PREGUNTA

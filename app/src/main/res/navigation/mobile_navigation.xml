@@ -69,10 +69,7 @@
             app:destination="@id/detalle_Juego" />
         <action
             android:id="@+id/CategoriaJuego_a_Menu"
-            app:destination="@id/nav_home"
-            app:launchSingleTop="false"
-            app:popUpTo="@id/nav_home"
-            app:popUpToInclusive="true" />
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment
@@ -168,6 +165,9 @@
             app:destination="@id/nav_gestion_juego"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_accesoPin_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 
 

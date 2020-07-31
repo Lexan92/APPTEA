@@ -32,7 +32,7 @@ import roomsqlite.entidades.Usuario;
 public class AccesoPin extends Fragment {
 
     EditText entradaPin;
-    Button acceder;
+    Button acceder, cancelar;
     UsuarioViewModel usuarioViewModel;
     LiveData<List<Usuario>> usuario;
 
@@ -61,6 +61,7 @@ public class AccesoPin extends Fragment {
 
         entradaPin = view.findViewById(R.id.edit_word);
         acceder = view.findViewById(R.id.boton_acceder);
+        cancelar = view.findViewById(R.id.boton_cancelar);
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
 
         MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar);
@@ -83,6 +84,14 @@ public class AccesoPin extends Fragment {
                     entradaPin.setError("Contraseña Incorrecta");
                 }
             });
+        });
+
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getView()).navigate(R.id.action_accesoPin_to_nav_home);
+            }
         });
     }
 

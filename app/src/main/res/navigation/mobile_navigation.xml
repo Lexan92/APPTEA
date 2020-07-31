@@ -21,9 +21,7 @@
             app:destination="@id/nav_gestion_juego" />
         <action
             android:id="@+id/menu_a_accesoPin"
-            app:destination="@id/accesoPin"
-            app:popEnterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_close_enter" />
+            app:destination="@id/accesoPin" />
 
     </fragment>
 
@@ -71,7 +69,10 @@
             app:destination="@id/detalle_Juego" />
         <action
             android:id="@+id/CategoriaJuego_a_Menu"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -164,7 +165,9 @@
         tools:layout="@layout/fragment_acceso_pin" >
         <action
             android:id="@+id/accesoPin_a_CategoriaJuego"
-            app:destination="@id/nav_gestion_juego" />
+            app:destination="@id/nav_gestion_juego"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="false" />
     </fragment>
 
 

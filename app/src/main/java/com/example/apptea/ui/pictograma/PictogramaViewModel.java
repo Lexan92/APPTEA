@@ -46,7 +46,7 @@ public class PictogramaViewModel extends AndroidViewModel {
     public LiveData<Pictograma> getPictogramaById(int id){
         return pictogramaRepository.finfByIdPictograma(id);
     }
-
+    
     public void deletePictograma (Pictograma pictograma){
         pictogramaRepository.deletePictograma(pictograma);
     }

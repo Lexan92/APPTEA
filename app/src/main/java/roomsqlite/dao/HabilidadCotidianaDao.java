@@ -10,6 +10,7 @@ import androidx.room.Update;
 
 import java.util.List;
 import roomsqlite.entidades.HabilidadCotidiana;
+import roomsqlite.entidades.Pregunta;
 
 @Dao
 public interface HabilidadCotidianaDao {
@@ -34,6 +35,10 @@ public interface HabilidadCotidianaDao {
     //metodo donde se recuperan todas  habilidades cotidianas por ID de catgoria de habilidad
     @Query("SELECT * FROM habilidad_cotidiana WHERE cat_hab_cotidiana_id = :id ORDER BY habilidad_cotidiana_nombre ASC")
     LiveData<List<HabilidadCotidiana>> getHabilidadCotidianaByCatHabilidad(int id);
+
+    @Query("SELECT * FROM habilidad_cotidiana ORDER BY habilidad_cotidiana_id DESC LIMIT 1")
+    HabilidadCotidiana obtenerHabilidadCotidiana();
+
 
     //Metodo de prueba de eliminar se ocupara el metodo deleteHabilidadCotidiana
     @Delete

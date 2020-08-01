@@ -40,7 +40,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
 
 
     public interface ButtonClickedCatPicto{
-        void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma, View v);
+        void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma);
         void updateClickedCatPicto(CategoriaPictograma categoriaPictograma, View v);
         void itemClickedCatPicto(CategoriaPictograma categoriaPictograma, View v);
     }
@@ -107,7 +107,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
             holder.cancelar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    buttonClickedCatPicto.deleteClickedCatPicto(categoriaPictograma, v);
+                    buttonClickedCatPicto.deleteClickedCatPicto(categoriaPictograma);
                 }
             });
 

@@ -45,7 +45,7 @@ public class SecuenciaRepository {
     }
 
 
-    public int numeroPictogramaS(int id) {return secuenciaDao.numeroPictogramaS(id);}
+    /*public int numeroPictogramaS(int id) {return secuenciaDao.numeroPictogramaS(id);}*/
 
 
 

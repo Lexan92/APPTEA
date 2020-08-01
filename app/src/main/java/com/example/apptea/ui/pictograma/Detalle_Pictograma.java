@@ -104,7 +104,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
-        opcionViewModel = new ViewModelProvider(getActivity()).get(OpcionViewModel.class);
+        //opcionViewModel = new ViewModelProvider(getActivity()).get(OpcionViewModel.class);
         ttsManager= new TTSManager();
         ttsManager.init(getActivity());
 
@@ -142,26 +142,26 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
             @Override
             public void deleteClickedPictograma(Pictograma pictograma) {
 
-                System.out.println("id pictograma "+pictograma.getPictograma_id());
-                int numpictoS=0;
-                int numpictoO= opcionViewModel.numeroPictogramaO(pictograma.getPictograma_id());
+               // System.out.println("id pictograma "+pictograma.getPictograma_id());
+                int numHabPicto= pictogramaViewModel.numHabPicto(pictograma.getPictograma_id());
+                int numpictoO= pictogramaViewModel.numJuegoPicto(pictograma.getPictograma_id());
                if (numpictoO>0){
-                    System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
-                    if(numpictoS>0){
-                        AlertaDelete(pictograma,"¿Esta seguro? \n Esta imagen es utilizada la cantidad de: \n" +
-                                numpictoS + "veces por las habilidades cotidianas \n"+
-                                numpictoO + "veces por los juegos interactivos");
+                    //System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
+                    if(numHabPicto>0){
+                        MensajeAlerta("Esta imagen no se puede eliminar \n  Imagen utilizada en: \n \n" +
+                                numHabPicto + " habilidades cotidianas \n"+
+                                numpictoO + " juegos interactivos");
                     }else{
-                        AlertaDelete(pictograma,"¿Esta seguro? \n Esta imagen es utilizada la cantidad de: \n" +
-                                numpictoO + " veces por los juegos interactivos");
+                        MensajeAlerta("Esta imagen no se puede eliminar \n  Imagen utilizada en: \n \n" +
+                                numpictoO + "  juegos interactivos");
                     }
 
                }else{
-                   if(numpictoS>0){
-                       AlertaDelete(pictograma,"¿Esta seguro? \n Esta imagen es utilizada la cantidad de: \n" +
-                               numpictoS + "veces por las habilidades cotidianas \n");
+                   if(numHabPicto>0){
+                       MensajeAlerta("Esta imagen no se puede eliminar \n  Imagen utilizada en: \n \n" +
+                               numHabPicto+ " habilidades cotidianas ");
                    }else{
-                       AlertaDelete( pictograma,"¿Esta seguro? Se eliminara el pictograma");
+                       MensajeDelete( pictograma,"¿Esta seguro? \n Se eliminara la imagen");
                    }
 
                }
@@ -192,8 +192,8 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
 
     }
 
-    //ALERTA
-    public void AlertaDelete(Pictograma pictograma, String mensaje){
+    //ALERTA DELETE
+    public void MensajeDelete(Pictograma pictograma, String mensaje){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Alerta");
         builder.setMessage(mensaje);
@@ -217,8 +217,15 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         AlertDialog deleteDialog = builder.create();
         deleteDialog.show();
     }
-
-
+    //ALERTA
+    public void MensajeAlerta(String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Alerta");
+        builder.setMessage(mensaje);
+        builder.setIcon(android.R.drawable.ic_delete);
+        builder.setPositiveButton("Cerrar",null);
+        builder.show();
+    }
 
 
     @Override

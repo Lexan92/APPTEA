@@ -60,7 +60,9 @@ public class CategoriaPictogramaRepository {
         appDatabase.databaseWriteExecutor.execute(()-> categoriaPictogramaDAO.deleteCategoriaPictograma(categoriaPictograma));
     }
 
+    public int numPictoJuego(int id) {return categoriaPictogramaDAO.numPictoJuego(id);}
 
+    public int numPictoHabilidad(int id) {return categoriaPictogramaDAO.numPictoHabilidad(id);}
 
 
 

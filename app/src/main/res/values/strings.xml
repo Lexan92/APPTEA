@@ -11,11 +11,11 @@
 
     <string name="menu_inicio">Inicio</string>
 
-    <string name="menu_gestion_pictograma">Gestión de Pictogramas</string>
+    <string name="menu_gestion_pictograma">Gestión de Imagenes</string>
     <string name="menu_mi_perfil">Mi perfil</string>
     <string name="menu_gestion_habilidad">Categorias de Habilidades Cotidianas</string>
     <string name="menu_gestion_juego">Gestión de Juegos Interactivos</string>
-    <string name="menu_persona_tea">Listado de niños y niñas</string>
+    <string name="menu_persona_tea">Lista de niños y niñas</string>
 
     <string name="home_second">Home Second</string>
     <string name="nombre_opcion_menu">nombre_opcion_menu</string>
@@ -45,13 +45,11 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="correoUsuario">Correo</string>
     <string name="telefonoUsuario">Telefono</string>
     <string name="spinnerPais">Pais</string>
-    <string name="spinnerDepto">Departamento</string>
-    <string name="spinnerMunicipio">Municipio</string>
     <string name="direccionUsuario">Direccion</string>
     <string name="contraUsuario">Contraseña</string>
     <string name="siguienteUsuario">Siguiente</string>
     <string name="regresarUsuario">Regresar</string>
-    <string name="titulo_validar_codigo">Ingresar código de validación</string>
+    <string name="titulo_validar_codigo">Ingresar código de protección</string>
     <string name="campo_codigo">Código</string>
     <string name="button_validar">Validar</string>
 
@@ -90,8 +88,8 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="actualizarPersona">Actualizar</string>
 
     --nuevo pictograma
-    <string name="titulo_dialog_nuevo_pictograma">Nuevo Pictograma</string>
-    <string name="hint_dialog_nuevo_pictograma">Nombre Pictograma</string>
+    <string name="titulo_dialog_nuevo_pictograma">Nueva Imagen</string>
+    <string name="hint_dialog_nuevo_pictograma">Nombre Imagen</string>
     <string name="button_elegir_imagen_nuevo_pictograma">Selecciona Imagen</string>
     <string name="button_guardar_imagen_nuevo_pictograma">Guardar</string>
     <string name="juegos_interactivos">Juegos Interactivos</string>

@@ -51,4 +51,7 @@ public class PictogramaRepository {
         pictogramaDAO.deletePictograma(pictograma);
     }
 
+    public int numHabPicto(int id) {return pictogramaDAO.numHabPicto(id);}
+
+    public  int numJuegoPicto (int id) {return pictogramaDAO.numJuegoPicto(id);}
 }

@@ -92,7 +92,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
                             pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
                             pictogramaViewModel.insert(pictograma);
-                            Toast.makeText(getApplicationContext(), "Pictograma Guardado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Imagen Guardada", Toast.LENGTH_LONG).show();
                             finish();
 
                         }
@@ -170,6 +170,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+                    bitmap= ImageConverter.redimensionarImagen(bitmap,250,250);
                     imgFoto.setImageBitmap(bitmap);
                     imagen = true;
                     break;

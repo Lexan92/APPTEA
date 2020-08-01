@@ -41,8 +41,8 @@ public interface SecuenciaDao {
     @Query("SELECT * FROM secuencia WHERE habilidad_cotidiana_id = :id ORDER BY secuencia_orden ASC")
     LiveData<List<Secuencia>> getSecuenciaByHabilidad(int id);
 
-    @Query("SELECT COUNT ( pictograma_id ) FROM  secuencia WHERE pictograma_id =:id ")
-    int numeroPictogramaS(int id);
+   /* @Query("SELECT COUNT ( pictograma_id ) FROM  secuencia WHERE pictograma_id =:id ")
+    int numeroPictogramaS(int id);*/
 
 
 }

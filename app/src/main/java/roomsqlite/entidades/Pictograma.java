@@ -20,9 +20,11 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 
 @Entity(tableName= "pictograma",
-        foreignKeys = @ForeignKey(entity = CategoriaPictograma.class, parentColumns = "cat_pictograma_id", childColumns = "cat_pictograma_id"))
+        foreignKeys = @ForeignKey(entity = CategoriaPictograma.class, parentColumns = "cat_pictograma_id", childColumns = "cat_pictograma_id", onDelete = CASCADE, onUpdate = CASCADE))
 
 
 

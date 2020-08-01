@@ -35,7 +35,7 @@ public interface OpcionDAO {
     @Query("SELECT COUNT (pregunta_id) FROM "+ Opcion.TABLE_NAME+ " WHERE pregunta_id=:id")
     int numeroOpciones(int id);
 
-    @Query("SELECT COUNT ( pictograma_id ) FROM " + Opcion.TABLE_NAME + " WHERE pictograma_id =:id ")
-    int numeroPictogramaO(int id);
+    /*@Query("SELECT COUNT ( pictograma_id ) FROM " + Opcion.TABLE_NAME + " WHERE pictograma_id =:id ")
+    int numeroPictogramaO(int id);*/
 
 }

@@ -50,4 +50,8 @@ public class PictogramaViewModel extends AndroidViewModel {
     public void deletePictograma (Pictograma pictograma){
         pictogramaRepository.deletePictograma(pictograma);
     }
+
+    public int numHabPicto(int id){return pictogramaRepository.numHabPicto(id);}
+
+    public int numJuegoPicto(int id){return pictogramaRepository.numJuegoPicto(id);}
 }

@@ -19,7 +19,9 @@ import com.example.apptea.utilidades.TTSManagerSecuencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.database.ImageConverter;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Secuencia;
@@ -55,10 +57,16 @@ public class VistaPreviaActivity extends AppCompatActivity {
         guardar= findViewById(R.id.btn_save);
         guardar.setVisibility(View.INVISIBLE);
         nombreHabilidad = findViewById(R.id.nombreSecuencia);
+        nombreHabilidad.setVisibility(View.INVISIBLE);
         recyclerView1 = findViewById(R.id.recycler_viewSecuencia);
         int idCategoriaHab = getIntent().getIntExtra("idCatHabilidad",0);
         HabilidadCotidianaViewModel habilidadCotidianaViewModel;
         habilidadCotidianaViewModel= new ViewModelProvider(this).get(HabilidadCotidianaViewModel.class);
+        SecuenciaViewModel secuenciaViewModel;
+        secuenciaViewModel = new ViewModelProvider(this).get(SecuenciaViewModel.class );
+        HabilidadCotidianaDao habilidadCotidianaDao= appDatabase.getDatabase(getApplicationContext()).habilidadCotidianaDao();
+       int bandera = getIntent().getIntExtra("vistaDeNiño",0);
+       String tituloHabilidad = getIntent().getStringExtra("nombreHabilidad");
 
         //RECYCLER FRASES
         recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -72,11 +80,20 @@ public class VistaPreviaActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+                if(bandera == 1){
+                    nombreHabilidad.setVisibility(View.VISIBLE);
+                    play.setVisibility(View.VISIBLE);
+                    atras.setVisibility(View.VISIBLE);
+                    nombreHabilidad.setText(tituloHabilidad);
+                }else{
                 atras.setVisibility(View.VISIBLE);
+                nombreHabilidad.setVisibility(View.VISIBLE);
                 play.setVisibility(View.VISIBLE);
                 guardar.setVisibility(View.VISIBLE);
+                }
                 recyclerView1.setAdapter(adapterSecuencia);
                 recyclerView1.scrollToPosition(adapterSecuencia.getItemCount());
+
             }
         }, milisegundos);
         reproducirSecuencia(pictoSecuenciaList);
@@ -91,6 +108,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                 ttsManager.shutDown();
                 ttsManagerSecuencia2.shutDown();
                 finish();
+
             }
         });
 
@@ -126,16 +144,19 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     habilidadCotidiana.setHab_predeterminado(false);
                     habilidadCotidianaViewModel.insert(habilidadCotidiana);
 
+                    HabilidadCotidiana habInsertada = habilidadCotidianaDao.obtenerHabilidadCotidiana();
 
                     for(Pictograma pictograma: pictoSecuenciaList){
                         //guardado de secuencia
-
                         Secuencia secuencia = new Secuencia();
-                        secuencia.setHabilidad_cotidiana_id(habilidadCotidiana.getHabilidad_cotidiana_id());
+                        secuencia.setHabilidad_cotidiana_id(habInsertada.getHabilidad_cotidiana_id());
                         secuencia.setPictograma_id(pictograma.getPictograma_id());
                         secuencia.setSec_predeterminado(false);
                         secuencia.setSecuencia_orden(orden);
+                        secuenciaViewModel.insert(secuencia);
                         orden +=1;
+
+
                     }
 
                     Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada ", Toast.LENGTH_LONG).show();

@@ -1,12 +1,14 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,19 +19,27 @@ import com.example.apptea.R;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaAdapter;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.database.ImageConverter;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
+import roomsqlite.entidades.Secuencia;
+import roomsqlite.repositorios.SecuenciaRepository;
 
-public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCotidianaAdapter.HabilidadCotidianaHolder> {
+import static androidx.camera.core.CameraX.getContext;
 
+public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCotidianaAdapter.HabilidadCotidianaHolder>{
+
+    private  View.OnClickListener listener;
     private OnHabilidadListener mOnHabilidadListener;
     private final LayoutInflater mInflater;
     private List<HabilidadCotidiana> habilidadCotidianaList;
     private List<HabilidadCotidiana> habilidadCotidianaListBusqueda;
+    private List<Secuencia> pictoFraseList;
+
 
 
     class HabilidadCotidianaHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -52,6 +62,7 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         @Override
         public void onClick(View v) {
             onHabilidadListener.onHabilidadClick(habilidadCotidianaList.get(getAdapterPosition()));
+            notifyDataSetChanged();
         }
     }
 
@@ -70,6 +81,7 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
 
     @Override
     public void onBindViewHolder(HabilidadCotidianaAdapter.HabilidadCotidianaHolder holder, int position) {
+
         if (habilidadCotidianaList != null) {
             HabilidadCotidiana current = habilidadCotidianaList.get(position);
 
@@ -94,8 +106,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             }
 
 
-
-
         } else {
             // Covers the case of data not being ready yet.
             Glide.with(holder.itemView.getContext()).clear(holder.imagen);
@@ -103,8 +113,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         }
 
     }
-
-
 
     @Override
     public int getItemCount() {

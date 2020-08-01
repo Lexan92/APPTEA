@@ -19,10 +19,11 @@ public class SecuenciaViewModel extends AndroidViewModel {
 
     public SecuenciaViewModel(@NonNull Application application) {
         super(application);
+        secuenciaRepository = new SecuenciaRepository(application);
     }
 
-    public LiveData<List<Secuencia>> getHabilidadCotidianaAll(int id){
-        return secuenciaRepository.findSecuenciaByHabilidadCotidiana(id);
+    public List<Secuencia> getSecuenciaById(int id){
+        return secuenciaRepository.getSecuenciaByHabilidadCotidiana(id);
     }
 
     public void insert(Secuencia secuencia){

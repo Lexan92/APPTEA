@@ -42,6 +42,7 @@ import java.util.List;
 
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaPictograma;
+import roomsqlite.entidades.Pictograma;
 import roomsqlite.repositorios.CategoriaPictogramaRepository;
 
 import static android.app.Activity.RESULT_OK;
@@ -123,30 +124,29 @@ public class CategoriaPictogramaFragment extends Fragment {
         // ONCLICK ITEM , ACTUALIZAR , ELIMINAR
         adapter.setButtonClickedCatPicto(new CategoriaPictogramaAdapter.ButtonClickedCatPicto() {
             @Override
-            public void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma, View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Alerta");
-                builder.setMessage("¿Esta seguro de eliminar la Categoria de:\n" + categoriaPictograma.getCat_pictograma_nombre() + "?");
-                builder.setIcon(android.R.drawable.ic_delete);
-
-                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        System.out.println("La Categoria de Pictograma" + categoriaPictograma.getCat_pictograma_nombre());
-
-                        categoriaPictogramaViewModel.delete(categoriaPictograma);
-                        adapter.notifyDataSetChanged();
+            public void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma) {
+                int numPictoHab = categoriaPictogramaViewModel.numPictoHabilidad(categoriaPictograma.getCat_pictograma_id());
+                int numPictoJue = categoriaPictogramaViewModel.numPictoJuego(categoriaPictograma.getCat_pictograma_id());
+                if (numPictoHab>0){
+                    //System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
+                    if(numPictoJue>0){
+                        MensajeAlerta("Esta categoria no se puede eliminar ,\n  existen: \n \n" +
+                                numPictoHab + " imagenes usadas en habilidades cotidianas \n"+
+                                numPictoJue + " imagenes usadas en juegos interactivos");
+                    }else{
+                        MensajeAlerta("E\"Esta categoria no se puede eliminar ,\n  existen: \n \n" +
+                                numPictoHab+ " imagenes usadas en habilidades cotidianas ");
                     }
-                });
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                }else{
+                    if(numPictoJue>0){
+                        MensajeAlerta("Esta categoria no se puede eliminar ,\n  existen: \n \n" +
+                                numPictoJue + " imagenes usadas en juegos interactivos");
+                    }else{
+                        MensajeDelete( categoriaPictograma,"¿Esta seguro? \n Se eliminara la Categoria de imagenes con todas sus imagenes");
                     }
-                });
-                AlertDialog deleteDialog = builder.create();
-                deleteDialog.show();
+
+                }
 
             }
 
@@ -283,6 +283,42 @@ public class CategoriaPictogramaFragment extends Fragment {
             Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+
+    //ALERTA DELETE
+    public void MensajeDelete(CategoriaPictograma categoriaPictograma, String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Alerta");
+        builder.setMessage(mensaje);
+        builder.setIcon(android.R.drawable.ic_delete);
+
+        builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //DELETE CASCADE
+                categoriaPictogramaViewModel.delete(categoriaPictograma);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog deleteDialog = builder.create();
+        deleteDialog.show();
+    }
+    //ALERTA
+    public void MensajeAlerta(String mensaje){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Alerta");
+        builder.setMessage(mensaje);
+        builder.setIcon(android.R.drawable.ic_delete);
+        builder.setPositiveButton("Cerrar",null);
+        builder.show();
     }
 
     @Override

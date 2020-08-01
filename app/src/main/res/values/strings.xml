@@ -90,8 +90,8 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="actualizarPersona">Actualizar</string>
 
     --nuevo pictograma
-    <string name="titulo_dialog_nuevo_pictograma">Nuevo Pictograma</string>
-    <string name="hint_dialog_nuevo_pictograma">Nombre Pictograma</string>
+    <string name="titulo_dialog_nuevo_pictograma">Nueva Imagen</string>
+    <string name="hint_dialog_nuevo_pictograma">Nombre Imagen</string>
     <string name="button_elegir_imagen_nuevo_pictograma">Selecciona Imagen</string>
     <string name="button_guardar_imagen_nuevo_pictograma">Guardar</string>
     <string name="juegos_interactivos">Juegos Interactivos</string>

@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 public class CategoriaPictograma implements Serializable {
 
-    public static final String TABLE_NAME = "CategoriaPictograma";
+    public static final String TABLE_NAME = "categoria_pictograma";
 
     /*@PrimaryKey (autoGenerate = true)
     @ColumnInfo (index = true, name="cat_pictograma_id")

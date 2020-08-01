@@ -32,20 +32,21 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-black"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:text="@string/titulo_dialog_nuevo_pictograma"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.535"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/cardview_light_background"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img_nuevo_pictograma"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="12dp"
+            android:layout_gravity="center"
             android:src="@drawable/ic_wallpaper"
             app:layout_constraintEnd_toEndOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />

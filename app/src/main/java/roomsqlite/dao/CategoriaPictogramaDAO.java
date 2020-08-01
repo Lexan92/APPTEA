@@ -32,7 +32,7 @@ public interface CategoriaPictogramaDAO {
 
 
     //recupera todas las categorias de pictogramas
-    @Query("SELECT * FROM categoriapictograma ORDER BY cat_pictograma_nombre ASC" )
+    @Query("SELECT * FROM categoria_pictograma ORDER BY cat_pictograma_nombre ASC" )
     LiveData<List<CategoriaPictograma>> getAllCategoriasPictogramas();
 
     @Query("DELETE FROM " + CategoriaPictograma.TABLE_NAME)
@@ -40,6 +40,20 @@ public interface CategoriaPictogramaDAO {
 
     @Query("SELECT * FROM " + CategoriaPictograma.TABLE_NAME + " WHERE cat_pictograma_id = :id")
     LiveData<CategoriaPictograma> findbyCategoriaPictograma(int id);
+
+    //CUANTOS PICTOGRAMAS DE UNA CATEGORIA ESPECIFICA SE USAN EN JUEGOS
+    @Query("SELECT COUNT(p.pictograma_id) FROM categoria_pictograma cp " +
+            "INNER JOIN pictograma p ON p.cat_pictograma_id = cp.cat_pictograma_id "+
+            " WHERE (SELECT p.pictograma_id FROM pictograma INNER JOIN opcion o ON o.pictograma_id=p.pictograma_id )" +
+            "AND cp.cat_pictograma_id = :id")
+    int numPictoJuego (int id);
+
+    //CUANTOS PICTOGRAMAS DE UNA CATEGORIA ESPECIFICA SE USAN EN HABILIDADES
+    @Query("SELECT COUNT(p.pictograma_id) FROM categoria_pictograma cp " +
+            "INNER JOIN pictograma p ON p.cat_pictograma_id = cp.cat_pictograma_id "+
+            " WHERE (SELECT p.pictograma_id FROM pictograma INNER JOIN secuencia s ON s.pictograma_id=p.pictograma_id )" +
+            "AND cp.cat_pictograma_id = :id")
+    int numPictoHabilidad (int id);
 
 }
 

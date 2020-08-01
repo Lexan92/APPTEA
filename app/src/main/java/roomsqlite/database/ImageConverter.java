@@ -37,7 +37,7 @@ public class ImageConverter {
 
     }
 
-    private static Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
+    public static Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
         int ancho=bitmap.getWidth();
         int alto=bitmap.getHeight();
 

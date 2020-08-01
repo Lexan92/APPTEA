@@ -153,6 +153,7 @@ public class SecuenciaFragment extends AppCompatActivity{
                 Intent intent = new Intent(getApplicationContext(), VistaPreviaActivity.class);
                 intent.putExtra("listaSecuencia",(Serializable) pictoFraseList);
                 intent.putExtra("idCatHabilidad",catHabilidadId);
+                intent.putExtra("definirPantalla",false);
                 startActivity(intent);
             }
 

@@ -23,6 +23,7 @@ import java.util.List;
 
 import roomsqlite.database.ImageConverter;
 import roomsqlite.entidades.Pictograma;
+import roomsqlite.entidades.Secuencia;
 
 public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAdapter.PictoSecuenciaHolder> {
     private List<Pictograma> pictoFraseList;

@@ -24,11 +24,8 @@ public class SecuenciaRepository {
         secuenciaAll = secuenciaDao.getSecuencia();
     }
 
-    public LiveData<List<Secuencia>> getSecuenciaByHabCotidiana(){
-        return secuenciaAll;
-    }
 
-    public LiveData<List<Secuencia>>getSecuenciaByHabilidadCotidiana(int id){
+    public List<Secuencia>getSecuenciaByHabilidadCotidiana(int id){
         return secuenciaDao.getSecuenciaByHabilidad(id);
     }
 
@@ -48,9 +45,9 @@ public class SecuenciaRepository {
     /*public int numeroPictogramaS(int id) {return secuenciaDao.numeroPictogramaS(id);}*/
 
 
-
+/*
     public LiveData<List<Secuencia>> findSecuenciaByHabilidadCotidiana(int id) {
         return secuenciaDao.getSecuenciaByHabilidad(id);
-    }
+    }*/
 
 }

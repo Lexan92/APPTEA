@@ -103,9 +103,6 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     }
 
 
-
-
-
     public PictogramaAdapter(Context context, OnPictogramaListener onPictogramaListener){
         mInflater = LayoutInflater.from(context);
         this.mOnPictogramaListener = onPictogramaListener;

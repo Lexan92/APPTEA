@@ -27,6 +27,7 @@ public class HomeFragment extends Fragment {
     BiometricManager biometricManager;
     BiometricPrompt biometricPrompt;
     BiometricPrompt.PromptInfo promptInfo;
+    boolean bandera = true;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,9 +46,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-//                Intent intent = new Intent(getContext(), VerificarPIN.class);
-//                startActivity(intent);
-//                Snackbar.make(getView(), "Error", Snackbar.LENGTH_LONG).show();
 
                 Navigation.findNavController(getView()).navigate(R.id.menu_a_accesoPin);
             }
@@ -55,7 +53,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                final boolean bandera = true;
+
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("bandera", bandera);
                 Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_nav_gestion_juego, bundle);
@@ -64,10 +62,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-//                Intent intent = new Intent(getContext(), VerificarPIN.class);
-//                startActivity(intent);
-//                Snackbar.make(getView(), "Error", Snackbar.LENGTH_LONG).show();
-
                 Navigation.findNavController(getView()).navigate(R.id.menu_a_accesoPin);
             }
         });
@@ -75,7 +69,7 @@ public class HomeFragment extends Fragment {
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Acceso a Juegos Interactivos")
                 .setDescription("Usa tu huella dactilar para ingresar a esta opción")
-                .setNegativeButtonText("Usar Contraseña")
+                .setNegativeButtonText("Usar Password")
                 .build();
 
 
@@ -102,8 +96,10 @@ public class HomeFragment extends Fragment {
         habilidades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Habilidades Cotidianas pronto estará disponible",
-                        Toast.LENGTH_LONG).show();
+                boolean banderaToolbar = true;
+                Bundle bundleBanderaToolbar = new Bundle();
+                bundleBanderaToolbar.putBoolean("bandera", banderaToolbar);
+                Navigation.findNavController(v).navigate(R.id.nav_gestion_habilidad,bundleBanderaToolbar);
             }
         });
 

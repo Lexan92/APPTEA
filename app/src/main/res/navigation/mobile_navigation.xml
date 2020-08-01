@@ -68,8 +68,8 @@
             android:id="@+id/action_nav_gestion_juego_to_detalle_Juego"
             app:destination="@id/detalle_Juego" />
         <action
-            android:id="@+id/CategoriaJuego_a_Menu"
-            app:destination="@id/nav_home" />
+            android:id="@+id/action_nav_gestion_juego_to_detalleJuegoPaciente"
+            app:destination="@id/detalleJuegoPaciente" />
     </fragment>
 
     <fragment
@@ -168,6 +168,15 @@
         <action
             android:id="@+id/action_accesoPin_to_nav_home"
             app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleJuegoPaciente"
+        android:name="com.example.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente"
+        android:label="fragment_detalle__juego__paciente"
+        tools:layout="@layout/fragment_detalle__juego__paciente" >
+        <action
+            android:id="@+id/action_detalleJuegoPaciente_to_nav_gestion_juego"
+            app:destination="@id/nav_gestion_juego" />
     </fragment>
 
 

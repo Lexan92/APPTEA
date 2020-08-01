@@ -15,7 +15,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,31 +24,25 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
-import com.example.apptea.ui.juego.PreguntaViewModel;
-import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.PictogramaDAO;
-import roomsqlite.database.ImageConverter;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Secuencia;
 import roomsqlite.repositorios.HabilidadCotidianaRepository;
-import roomsqlite.repositorios.SecuenciaRepository;
+
 
 
 /**
@@ -75,6 +69,18 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         //constructor vacio
     }
 
+    public static HabilidadCotidianaFragment newInstance(String param1, String param2) {
+        HabilidadCotidianaFragment fragment = new HabilidadCotidianaFragment();
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,13 +135,14 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         });
 
         if(objetoHabilidad!=null){
-            bandera = objetoHabilidad.getBoolean("bandera");
-            if(bandera==true){
+            bandera = objetoHabilidad.getBoolean("ban");
+
+            if(bandera == true){
                 fab.setVisibility(View.INVISIBLE);
                 adapter.isHabilidad=true;
             }
-        }
 
+        }
 
     }
 
@@ -161,7 +168,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
         Intent intent = new Intent(getContext(), VistaPreviaActivity.class);
         intent.putExtra("listaSecuencia",(Serializable) pictoFraseList );
-        intent.putExtra("definirPantalla",true);
+        intent.putExtra("definirPantalla",bandera);
         intent.putExtra("nombreHabilidad", habilidadCotidiana.getHabilidad_cotidiana_nombre());
         startActivity(intent);
 

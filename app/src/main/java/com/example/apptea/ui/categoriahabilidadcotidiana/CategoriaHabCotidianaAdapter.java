@@ -40,6 +40,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     private List<CategoriaHabCotidiana> categoriaHabCotidianaListFull;
     private CategoriaHabCotidianaAdapter.ButtonClicked buttonClicked;
     OnCategoriaHabiCotiListener onCategoriaHabiCotiListener;
+    public boolean isVistaNiño = false;
 
 
 
@@ -110,7 +111,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         int mposition = position;
         if (categoriaHabCotidianaList != null && position < categoriaHabCotidianaList.size()) {
             CategoriaHabCotidiana current = categoriaHabCotidianaList.get(position);
-            if (current.isCat_predeterminado() == true) {
+            if (isVistaNiño == true || current.isCat_predeterminado()) {
                 holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
                 holder.btnDelete.setVisibility(View.GONE);
                 holder.btnEdit.setVisibility(View.GONE);

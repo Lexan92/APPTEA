@@ -60,6 +60,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
     private CategoriaHabCotidianaAdapter adapter = null;
     private SearchView searchView;
     private SearchView.OnQueryTextListener queryTextListener;
+    boolean bandera=false;
 
     public CategoriaHabCotidianaFragment() {
         //requiere un constructor vacio
@@ -74,7 +75,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
 
         //App bar de busqueda
         setHasOptionsMenu(true);
-
+        Bundle objetoHabilidad = getArguments();
 
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_cat_hab_cotidiana);
         this.adapter = new CategoriaHabCotidianaAdapter(getActivity());
@@ -100,6 +101,17 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
+
+
+        if(objetoHabilidad!=null){
+            bandera = objetoHabilidad.getBoolean("ban");
+
+            if(bandera == true){
+                fab.setVisibility(View.INVISIBLE);
+                adapter.isVistaNiño = true;
+            }
+
+        }
 
 
         // METODOS PARA ACTUALIZAR Y ELIMINAR
@@ -152,6 +164,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
                 Bundle bundleEnvio = new Bundle();
                 bundleEnvio.putSerializable("elementos", categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)));
+                bundleEnvio.putBoolean("ban",bandera);
                 detalle_habilidad_cotidiana.setArguments(bundleEnvio);
 
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle

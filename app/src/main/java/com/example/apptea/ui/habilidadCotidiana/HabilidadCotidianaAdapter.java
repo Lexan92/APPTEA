@@ -86,15 +86,12 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         if (habilidadCotidianaList != null) {
             HabilidadCotidiana current = habilidadCotidianaList.get(position);
 
-
-
-            if(current.isPredeterminado()){
+        if(isHabilidad==true ||current.isPredeterminado()){
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
                 holder.editar.setVisibility(View.INVISIBLE);
                 holder.eliminar.setVisibility(View.INVISIBLE);
                 holder.setIsRecyclable(false);
-            }
-            else {
+        }else {
                /* Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
                         .thumbnail(0.5f)

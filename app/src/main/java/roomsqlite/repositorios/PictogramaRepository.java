@@ -50,6 +50,9 @@ public class PictogramaRepository {
     public void deletePictograma(Pictograma pictograma){
         pictogramaDAO.deletePictograma(pictograma);
     }
+    public void update(Pictograma pictograma){
+        appDatabase.databaseWriteExecutor.execute(()-> pictogramaDAO.updatePictograma(pictograma));
+    }
 
     public int numHabPicto(int id) {return pictogramaDAO.numHabPicto(id);}
 

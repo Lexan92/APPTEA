@@ -60,13 +60,7 @@ public class Pictograma implements Serializable {
         this.predeterminado = predeterminado;
     }
 
-    /*@Ignore
-    public Pictograma(@NonNull int pictograma_id, int cat_pictograma_id, @NonNull String pictograma_nombre, @NonNull boolean predeterminado) {
-        this.pictograma_id = pictograma_id;
-        this.cat_pictograma_id = cat_pictograma_id;
-        this.pictograma_nombre = pictograma_nombre;
-        this.predeterminado = predeterminado;
-    }*/
+
 
     public Pictograma() {
 
@@ -117,6 +111,7 @@ public class Pictograma implements Serializable {
     public void setPredeterminado(boolean predeterminado) {
         this.predeterminado = predeterminado;
     }
+
 }
 
 

@@ -82,16 +82,16 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
                     //se verifica si la llamada proviene del menu principal
                     Bundle bundle = getArguments();
-                    if (bundle != null){
-                        if(bundle.getBoolean("bandera")){
+                    if (bundle != null) {
+                        if (bundle.getBoolean("bandera")) {
                             //se recorre los juegos colocando en el adapter aquellos que si tengan preguntas
-                            for(int i=0;i<=juegos.size()-1;i++){
+                            for (int i = 0; i <= juegos.size() - 1; i++) {
                                 int numero = preguntaViewModel.numeroPreguntas(juegos.get(i).getJuego_id());
-                                if(numero>0)
+                                if (numero > 0)
                                     juegosConPregunta.add(juegos.get(i));
                             }
                             adapter.setJuegos(juegosConPregunta);
-                        }else{
+                        } else {
                             //si la llamada  proviene del menu lateral, se agregan todos los juegos al adaptador
                             adapter.setJuegos(juegos);
                         }
@@ -116,7 +116,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         //Boton de + para agregar un nuevo juego
         FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
         Bundle bundle = getArguments();
-        if(bundle.getBoolean("bandera")){
+        if (bundle.getBoolean("bandera")) {
             fab.setVisibility(View.INVISIBLE);
         }
 
@@ -130,7 +130,6 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
             }
         });
-
 
 
     }

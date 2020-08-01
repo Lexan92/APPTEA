@@ -19,10 +19,6 @@ import java.util.List;
 import roomsqlite.entidades.Juego;
 
 
-
-
-
-
 public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHolder> {
 
     private OnJuegoListener mOnJuegoListener;
@@ -33,27 +29,23 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
 
     public JuegoAdapter(Context context, OnJuegoListener onJuegoListener) {
-       cjInflater = LayoutInflater.from(context);
-       this.mOnJuegoListener=onJuegoListener;
+        cjInflater = LayoutInflater.from(context);
+        this.mOnJuegoListener = onJuegoListener;
     }
 
 
-
-    public interface ButtonClicked{
+    public interface ButtonClicked {
         void deleteClickedCatHab(Juego juego);
     }
 
-    public void setButtonClicked(JuegoAdapter.ButtonClicked buttonClicked){
+    public void setButtonClicked(JuegoAdapter.ButtonClicked buttonClicked) {
         this.buttonClicked = buttonClicked;
     }
 
-    class JuegoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class JuegoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView nombreJuego;
         public MaterialButton eliminar;
         OnJuegoListener onJuegoListener;
-
-
-
 
 
         public JuegoViewHolder(@NonNull View itemView, OnJuegoListener onJuegoListener) {
@@ -82,8 +74,8 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     @NonNull
     @Override
     public JuegoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layoutView = cjInflater.inflate(R.layout.fragment_item__juego,parent,false);
-        return new JuegoViewHolder(layoutView,mOnJuegoListener);
+        View layoutView = cjInflater.inflate(R.layout.fragment_item__juego, parent, false);
+        return new JuegoViewHolder(layoutView, mOnJuegoListener);
     }
 
     @Override
@@ -97,19 +89,19 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
 
             } else {
                 holder.nombreJuego.setText(juego.getJuego_nombre());
-               holder.setIsRecyclable(true);
+                holder.setIsRecyclable(true);
             }
         }
     }
 
-    public void setJuegos(List<Juego> listjuegos){
-       juegos = listjuegos;
+    public void setJuegos(List<Juego> listjuegos) {
+        juegos = listjuegos;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        if(juegos!=null)
+        if (juegos != null)
             return juegos.size();
         else return 0;
     }
@@ -132,8 +124,8 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
         int centerX = 0;
         int centerY = 0;
         int startRadius = 0;
-        int endRadius = (int) Math.hypot(itemView.getWidth(),itemView.getHeight());
-        Animator animation = ViewAnimationUtils.createCircularReveal(itemView,centerX,centerY,startRadius,endRadius);
+        int endRadius = (int) Math.hypot(itemView.getWidth(), itemView.getHeight());
+        Animator animation = ViewAnimationUtils.createCircularReveal(itemView, centerX, centerY, startRadius, endRadius);
         itemView.setVisibility(View.VISIBLE);
         animation.start();
     }
@@ -145,7 +137,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     }
 
 
-    public interface OnJuegoListener{
+    public interface OnJuegoListener {
         void onJuegoClick(Juego juego);
     }
 }

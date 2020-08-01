@@ -18,7 +18,7 @@ import java.util.List;
 
 import roomsqlite.entidades.Juego;
 
-public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPaciente.JuegoViewHolder>{
+public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPaciente.JuegoViewHolder> {
 
     private OnJuegoListener mOnJuegoListener;
     private List<Juego> juegos;
@@ -27,30 +27,30 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
 
     public JuegoAdapterPaciente(Context context, OnJuegoListener onJuegoListener) {
         cjInflater = LayoutInflater.from(context);
-        this.mOnJuegoListener=onJuegoListener;
+        this.mOnJuegoListener = onJuegoListener;
     }
 
     @NonNull
     @Override
     public JuegoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layoutView = cjInflater.inflate(R.layout.fragment_item__juego,parent,false);
-        return new JuegoViewHolder(layoutView,mOnJuegoListener);
+        View layoutView = cjInflater.inflate(R.layout.fragment_item__juego, parent, false);
+        return new JuegoViewHolder(layoutView, mOnJuegoListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull JuegoViewHolder holder, int position) {
         if (juegos != null && position < juegos.size()) {
             Juego juego = juegos.get(position);
-                holder.nombreJuego.setText(juego.getJuego_nombre());
-                holder.eliminar.setVisibility(View.GONE);
-                holder.setIsRecyclable(true);
+            holder.nombreJuego.setText(juego.getJuego_nombre());
+            holder.eliminar.setVisibility(View.GONE);
+            holder.setIsRecyclable(true);
 
         }
 
     }
 
 
-    class JuegoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class JuegoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView nombreJuego;
         public MaterialButton eliminar;
         OnJuegoListener onJuegoListener;
@@ -70,19 +70,19 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
         }
     }
 
-    public void setJuegos(List<Juego> listjuegos){
+    public void setJuegos(List<Juego> listjuegos) {
         juegos = listjuegos;
         notifyDataSetChanged();
     }
 
 
-    public interface OnJuegoListener{
+    public interface OnJuegoListener {
         void onJuegoClick(Juego juego);
     }
 
     @Override
     public int getItemCount() {
-        if(juegos!=null)
+        if (juegos != null)
             return juegos.size();
         else return 0;
     }
@@ -104,8 +104,8 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
         int centerX = 0;
         int centerY = 0;
         int startRadius = 0;
-        int endRadius = (int) Math.hypot(itemView.getWidth(),itemView.getHeight());
-        Animator animation = ViewAnimationUtils.createCircularReveal(itemView,centerX,centerY,startRadius,endRadius);
+        int endRadius = (int) Math.hypot(itemView.getWidth(), itemView.getHeight());
+        Animator animation = ViewAnimationUtils.createCircularReveal(itemView, centerX, centerY, startRadius, endRadius);
         itemView.setVisibility(View.VISIBLE);
         animation.start();
     }
@@ -115,9 +115,6 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
         super.onViewDetachedFromWindow(holder);
         holder.itemView.clearAnimation();
     }
-
-
-
 
 
 }

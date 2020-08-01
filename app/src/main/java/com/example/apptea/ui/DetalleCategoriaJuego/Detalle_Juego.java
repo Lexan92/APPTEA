@@ -97,16 +97,16 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
                     //se verifica si la llamada proviene del menu principal
                     Bundle bundle = getArguments();
-                    if (bundle != null){
-                        if(bundle.getBoolean("bandera")){
+                    if (bundle != null) {
+                        if (bundle.getBoolean("bandera")) {
                             //se recorre los juegos colocando en el adapter aquellos que si tengan preguntas
-                            for(int i=0;i<=juegos.size()-1;i++){
+                            for (int i = 0; i <= juegos.size() - 1; i++) {
                                 int numero = preguntaViewModel.numeroPreguntas(juegos.get(i).getJuego_id());
-                                if(numero>0)
+                                if (numero > 0)
                                     juegosConPregunta.add(juegos.get(i));
                             }
                             adapter.setJuegos(juegosConPregunta);
-                        }else{
+                        } else {
                             //si la llamada  proviene del menu lateral, se agregan todos los juegos al adaptador
                             adapter.setJuegos(juegos);
                         }

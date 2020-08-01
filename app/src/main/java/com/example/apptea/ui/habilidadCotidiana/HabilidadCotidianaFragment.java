@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -66,6 +68,8 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     private List<Secuencia> secuenciaList= new ArrayList<>();
     private List<Pictograma> pictoFraseList= new ArrayList<>();;
     PictogramaDAO pictogramaDao= appDatabase.getDatabase(getActivity()).pictogramaDAO();
+    boolean bandera=false;
+
 
     public HabilidadCotidianaFragment(){
         //constructor vacio
@@ -76,9 +80,16 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_detalle_habilidad_cotidiana, container, false);
+      return inflater.inflate(R.layout.fragment_detalle_habilidad_cotidiana, container, false);
 
-        recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_hab_cotidiana);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_hab_cotidiana);
         adapter = new HabilidadCotidianaAdapter(getActivity(), HabilidadCotidianaFragment.this);
         recyclerView.setAdapter(adapter);
 
@@ -88,6 +99,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         secuenciaViewModel =  new ViewModelProvider(getActivity()).get(SecuenciaViewModel.class);
 
         Bundle objetoHabilidad = getArguments();
+
         if(objetoHabilidad != null){
             categoriaHabCotidiana = (CategoriaHabCotidiana) objetoHabilidad.getSerializable("elementos");
             habilidadCotidianaViewModel.getHabilidadCotidianaAll(categoriaHabCotidiana.getCat_hab_cotidiana_id()).observe(getActivity(), new Observer<List<HabilidadCotidiana>>() {
@@ -103,8 +115,10 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         toolbar.setTitle("Categoria: " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
 
 
+
+
         //Boton de + para agregar una nueva categoria
-        FloatingActionButton fab = vista.findViewById(R.id.fabHab);
+        FloatingActionButton fab = view.findViewById(R.id.fabHab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,9 +128,17 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
             }
         });
 
+        if(objetoHabilidad!=null){
+            bandera = objetoHabilidad.getBoolean("bandera");
+            if(bandera==true){
+                fab.setVisibility(View.INVISIBLE);
+                adapter.isHabilidad=true;
+            }
+        }
 
-        return vista;
+
     }
+
 
 
     @Override
@@ -139,7 +161,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
         Intent intent = new Intent(getContext(), VistaPreviaActivity.class);
         intent.putExtra("listaSecuencia",(Serializable) pictoFraseList );
-        intent.putExtra("vistaDeNiño",1);
+        intent.putExtra("definirPantalla",true);
         intent.putExtra("nombreHabilidad", habilidadCotidiana.getHabilidad_cotidiana_nombre());
         startActivity(intent);
 

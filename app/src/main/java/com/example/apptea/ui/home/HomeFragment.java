@@ -102,8 +102,10 @@ public class HomeFragment extends Fragment {
         habilidades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Habilidades Cotidianas pronto estará disponible",
-                        Toast.LENGTH_LONG).show();
+                boolean banderaToolbar = true;
+                Bundle bundleBanderaToolbar = new Bundle();
+                bundleBanderaToolbar.putBoolean("bandera", banderaToolbar);
+                Navigation.findNavController(v).navigate(R.id.nav_gestion_habilidad,bundleBanderaToolbar);
             }
         });
 

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente;
 import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
 
 import java.util.List;
@@ -33,6 +34,10 @@ public class CategoriaJuegoFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     RecyclerView recyclerView;
     private CategoriaViewModel categoriaViewModel;
+    boolean bandera = false;
+
+
+
 
 
     public CategoriaJuegoFragment() {
@@ -55,6 +60,9 @@ public class CategoriaJuegoFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         categoriaViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         categoriaViewModel.getAllCategoriasJuegos().observe(getActivity(), new Observer<List<CategoriaJuego>>() {
+
+
+
             @Override
             public void onChanged(List<CategoriaJuego> categoriaJuegos) {
                 adapter.setCategoriasJuegos(categoriaJuegos);
@@ -65,21 +73,35 @@ public class CategoriaJuegoFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //Instancia de fragment al cual se dirigira
-                Detalle_Juego detalle_juego = new Detalle_Juego();
+
                 //objeto Bundle que encapsula el objeto de tipo CategoriaJuego
                 CategoriaJuego categoriaJuego = categoriaViewModel.getAllCategoriasJuegos().getValue().get(recyclerView.getChildAdapterPosition(v));
                 Bundle bundleEnvio = new Bundle();
                 bundleEnvio.putInt("objeto", categoriaJuego.getCategoriaJuegoId());
-                boolean bandera = false;
+
+
                 Bundle bundle = getArguments();
                 if (bundle != null) {
                     bandera = bundle.getBoolean("bandera");
                 }
                 bundleEnvio.putBoolean("bandera", bandera);
-                detalle_juego.setArguments(bundleEnvio);
-                //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
+
+                //direcciona a fragmente proveniente del menu principal
+                if(bandera){
+                    //Instancia de fragment al cual se dirigira
+                    DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
+                    detalle_juego.setArguments(bundleEnvio);
+                    Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente,bundleEnvio);
+
+                }else{
+
+                    //Instancia de fragment al cual se dirigira
+                    Detalle_Juego detalle_juego = new Detalle_Juego();
+                    detalle_juego.setArguments(bundleEnvio);
+                    //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
+                   Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
+                }
+
             }
 
         });

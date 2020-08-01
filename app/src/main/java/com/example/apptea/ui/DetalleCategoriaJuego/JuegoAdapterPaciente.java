@@ -18,66 +18,17 @@ import java.util.List;
 
 import roomsqlite.entidades.Juego;
 
-
-
-
-
-
-public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHolder> {
+public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPaciente.JuegoViewHolder>{
 
     private OnJuegoListener mOnJuegoListener;
     private List<Juego> juegos;
     private final LayoutInflater cjInflater;
 
-    private JuegoAdapter.ButtonClicked buttonClicked;
 
-
-    public JuegoAdapter(Context context, OnJuegoListener onJuegoListener) {
-       cjInflater = LayoutInflater.from(context);
-       this.mOnJuegoListener=onJuegoListener;
+    public JuegoAdapterPaciente(Context context, OnJuegoListener onJuegoListener) {
+        cjInflater = LayoutInflater.from(context);
+        this.mOnJuegoListener=onJuegoListener;
     }
-
-
-
-    public interface ButtonClicked{
-        void deleteClickedCatHab(Juego juego);
-    }
-
-    public void setButtonClicked(JuegoAdapter.ButtonClicked buttonClicked){
-        this.buttonClicked = buttonClicked;
-    }
-
-    class JuegoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView nombreJuego;
-        public MaterialButton eliminar;
-        OnJuegoListener onJuegoListener;
-
-
-
-
-
-        public JuegoViewHolder(@NonNull View itemView, OnJuegoListener onJuegoListener) {
-            super(itemView);
-            nombreJuego = itemView.findViewById(R.id.nombre_item_juego);
-            eliminar = itemView.findViewById(R.id.btn_eliminar_juego_lista);
-            this.onJuegoListener = onJuegoListener;
-            itemView.setOnClickListener(this);
-            eliminar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    buttonClicked.deleteClickedCatHab(juegos.get(getAdapterPosition()));
-                }
-            });
-
-        }
-
-        @Override
-        public void onClick(View v) {
-            onJuegoListener.onJuegoClick(juegos.get(getAdapterPosition()));
-        }
-    }
-
 
     @NonNull
     @Override
@@ -90,21 +41,43 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     public void onBindViewHolder(@NonNull JuegoViewHolder holder, int position) {
         if (juegos != null && position < juegos.size()) {
             Juego juego = juegos.get(position);
-            if (juego.isJuego_predeterminado()) {
                 holder.nombreJuego.setText(juego.getJuego_nombre());
                 holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(true);
 
-            } else {
-                holder.nombreJuego.setText(juego.getJuego_nombre());
-               holder.setIsRecyclable(true);
-            }
+        }
+
+    }
+
+
+    class JuegoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView nombreJuego;
+        public MaterialButton eliminar;
+        OnJuegoListener onJuegoListener;
+
+        public JuegoViewHolder(@NonNull View itemView, OnJuegoListener onJuegoListener) {
+            super(itemView);
+            nombreJuego = itemView.findViewById(R.id.nombre_item_juego);
+            eliminar = itemView.findViewById(R.id.btn_eliminar_juego_lista);
+            eliminar.setVisibility(View.INVISIBLE);
+            this.onJuegoListener = onJuegoListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onJuegoListener.onJuegoClick(juegos.get(getAdapterPosition()));
         }
     }
 
     public void setJuegos(List<Juego> listjuegos){
-       juegos = listjuegos;
+        juegos = listjuegos;
         notifyDataSetChanged();
+    }
+
+
+    public interface OnJuegoListener{
+        void onJuegoClick(Juego juego);
     }
 
     @Override
@@ -113,7 +86,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
             return juegos.size();
         else return 0;
     }
-
 
     @Override
     public void onViewRecycled(@NonNull JuegoViewHolder holder) {
@@ -145,7 +117,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     }
 
 
-    public interface OnJuegoListener{
-        void onJuegoClick(Juego juego);
-    }
+
+
+
 }

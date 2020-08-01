@@ -1,22 +1,7 @@
-/*
- *
- * Nombre del Autor
- * 18/05/2020
- * Esta actividad hace el llamado a la lista de roles
- * /
- *
- *
- */
-
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
 import com.example.apptea.ui.juego.JuegoPrincipal;
@@ -35,7 +24,6 @@ import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -44,43 +32,40 @@ import java.util.List;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Juego;
 
-public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListener {
+public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPaciente.OnJuegoListener {
 
-    private JuegoViewModel juegoViewModel;
     RecyclerView recyclerView;
-    JuegoAdapter adapter;
+    JuegoAdapterPaciente adapter;
     CategoriaViewModel categoriaJuegoViewModel;
     PreguntaViewModel preguntaViewModel;
+    JuegoViewModel juegoViewModel;
     LiveData<CategoriaJuego> categoriaJuegoLiveData;
     List<Juego> juegosConPregunta = new ArrayList<>();
     int key = 0;
 
-
-    public Detalle_Juego() {
+    public DetalleJuegoPaciente() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle__juego, container, false);
+        return inflater.inflate(R.layout.fragment_detalle__juego__paciente, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.lista_juegos);
-        adapter = new JuegoAdapter(getActivity(), this);
+        adapter = new JuegoAdapterPaciente(getActivity(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
@@ -130,6 +115,10 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
         //Boton de + para agregar un nuevo juego
         FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
+        Bundle bundle = getArguments();
+        if(bundle.getBoolean("bandera")){
+            fab.setVisibility(View.INVISIBLE);
+        }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,40 +131,6 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
             }
         });
 
-
-        //METODO PARA ELIMINAR UN JUEGO
-        adapter.setButtonClicked(new JuegoAdapter.ButtonClicked() {
-            @Override
-            public void deleteClickedCatHab(Juego juego) {
-
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
-                builder.setTitle("Alerta");
-                builder.setMessage("¿Está seguro de eliminar el Juego :\n" + juego.getJuego_nombre() + "?");
-                builder.setIcon(android.R.drawable.ic_delete);
-
-                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        juegoViewModel.delete(juego);
-                        adapter.notifyDataSetChanged();
-
-                    }
-                });
-
-
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-                    }
-                });
-
-                builder.show();
-            }
-
-        });
 
 
     }
@@ -210,12 +165,5 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
             }
         }
 
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Runtime.getRuntime().gc();
     }
 }

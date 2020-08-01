@@ -99,6 +99,9 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="vocabulario">Vocabulario</string>
     <string name="frases">Frases</string>
 
+    --Lista vacia
+    <string name="lista_vacia">UPS! ESTA LISTA ESTA VACIA.</string>
+
 
     --Nueva habilidad
     <string name="titulo_dialog_nueva_hab">Nueva Habilidad Cotidiana</string>

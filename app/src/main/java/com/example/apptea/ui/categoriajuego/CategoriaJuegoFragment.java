@@ -2,33 +2,26 @@
 
 package com.example.apptea.ui.categoriajuego;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
-import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 
 import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
-import roomsqlite.repositorios.CategoriaJuegoRepository;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,10 +73,10 @@ public class CategoriaJuegoFragment extends Fragment {
                 bundleEnvio.putInt("objeto", categoriaJuego.getCategoriaJuegoId());
                 boolean bandera = false;
                 Bundle bundle = getArguments();
-                if(bundle != null){
-                   bandera = bundle.getBoolean("bandera");
+                if (bundle != null) {
+                    bandera = bundle.getBoolean("bandera");
                 }
-                bundleEnvio.putBoolean("bandera",bandera);
+                bundleEnvio.putBoolean("bandera", bandera);
                 detalle_juego.setArguments(bundleEnvio);
                 //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
                 Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);

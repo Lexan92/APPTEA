@@ -35,14 +35,14 @@ import roomsqlite.entidades.Pictograma;
         @Query("SELECT * FROM "+Pictograma.TABLE_NAME + " WHERE pictograma_id = :id")
         LiveData<Pictograma> findbyPictogramaId(int id);
 
-<<<<<<< HEAD
+
         //metodo donde se recuperan todos los pictogramas
-=======
+
         @Query("SELECT * FROM "+Pictograma.TABLE_NAME + " WHERE pictograma_id = :id")
         Pictograma findbyPictoId(int id);
 
         //metodo donde se recuperan todos los poctogramas
->>>>>>> d86f08c6f596f2b73576b0bb2bfdfd289909708f
+
         @Query("SELECT * FROM pictograma ORDER BY pictograma_nombre ASC")
         LiveData<List<Pictograma>> getPictograma_nombre();
 

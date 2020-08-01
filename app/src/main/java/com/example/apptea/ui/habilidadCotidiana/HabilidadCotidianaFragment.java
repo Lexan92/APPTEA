@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -53,6 +55,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     private HabilidadCotidianaRepository habilidadCotidianaRepository;
     private LiveData<List<HabilidadCotidiana>> HabCotidianaAll;
     RecyclerView recyclerView;
+    View cajita;
     private HabilidadCotidianaAdapter adapter= null;
     private HabilidadCotidianaViewModel habilidadCotidianaViewModel;
     private CategoriaHabCotidiana categoriaHabCotidiana = null;
@@ -95,10 +98,12 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        LottieAnimationView cajita = view.findViewById(R.id.cajita);
+        TextView mensaje = view.findViewById(R.id.mensaje);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_hab_cotidiana);
         adapter = new HabilidadCotidianaAdapter(getActivity(), HabilidadCotidianaFragment.this);
         recyclerView.setAdapter(adapter);
-
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         habilidadCotidianaViewModel = new ViewModelProvider(getActivity()).get(HabilidadCotidianaViewModel.class);
@@ -111,10 +116,21 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
             habilidadCotidianaViewModel.getHabilidadCotidianaAll(categoriaHabCotidiana.getCat_hab_cotidiana_id()).observe(getActivity(), new Observer<List<HabilidadCotidiana>>() {
                 @Override
                 public void onChanged(List<HabilidadCotidiana> habilidadCotidianas) {
-                    adapter.setHabiilidad(habilidadCotidianas);
+                    if( habilidadCotidianas.size() == 0 || habilidadCotidianas.isEmpty()){
+                        cajita.setVisibility(View.VISIBLE);
+                        mensaje.setVisibility(View.VISIBLE);
+                        cajita.playAnimation();
+                    }else{
+                        cajita.setVisibility(View.INVISIBLE); 
+                        mensaje.setVisibility(View.INVISIBLE);
+                        cajita.cancelAnimation();
+                        adapter.setHabiilidad(habilidadCotidianas);
+                    }
+
                 }
             });
         }
+
 
         //Setteando Toolbar para categorias
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);

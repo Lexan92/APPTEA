@@ -25,6 +25,9 @@ import roomsqlite.entidades.Pregunta;
 @Dao
 public interface PreguntaDAO {
 
+    @Insert
+    void insertAllPreguntas(Pregunta[] preguntas);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPregunta(Pregunta pregunta);
 
@@ -34,15 +37,15 @@ public interface PreguntaDAO {
     @Delete
     void deletePregunta(Pregunta pregunta);
 
-    @Query("SELECT * FROM "+Pregunta.TABLE_NAME + " WHERE juego_id=:id")
+    @Query("SELECT * FROM " + Pregunta.TABLE_NAME + " WHERE juego_id=:id")
     LiveData<List<Pregunta>> getPreguntasByJuego(int id);
 
-    @Query("SELECT * FROM "+Pregunta.TABLE_NAME + " ORDER BY pregunta_id DESC LIMIT 1")
+    @Query("SELECT * FROM " + Pregunta.TABLE_NAME + " ORDER BY pregunta_id DESC LIMIT 1")
     Pregunta obtenerUltimaPregunta();
 
-    @Query("SELECT COUNT (juego_id) FROM "+Pregunta.TABLE_NAME + " WHERE juego_id =:id")
+    @Query("SELECT COUNT (juego_id) FROM " + Pregunta.TABLE_NAME + " WHERE juego_id =:id")
     int numeroPreguntas(int id);
 
-    @Query("SELECT * FROM "+ Pregunta.TABLE_NAME + " WHERE pregunta_id LIMIT 1 =:id")
+    @Query("SELECT * FROM " + Pregunta.TABLE_NAME + " WHERE pregunta_id LIMIT 1 =:id")
     LiveData<Pregunta> obtenerPreguntaPorID(int id);
 }

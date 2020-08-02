@@ -85,11 +85,16 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     play.setVisibility(View.VISIBLE);
                     atras.setVisibility(View.VISIBLE);
                     nombreHabilidad.setText(tituloHabilidad);
+                    nombreHabilidad.setEnabled(false);
                 }else{
                 atras.setVisibility(View.VISIBLE);
                 nombreHabilidad.setVisibility(View.VISIBLE);
                 play.setVisibility(View.VISIBLE);
                 guardar.setVisibility(View.VISIBLE);
+                    if(!nombreHabilidad.getText().toString().isEmpty()){
+                        nombreHabilidad.setText(tituloHabilidad);
+                        nombreHabilidad.setEnabled(false);
+                    }
                 }
                 recyclerView1.setAdapter(adapterSecuencia);
                 recyclerView1.scrollToPosition(adapterSecuencia.getItemCount());

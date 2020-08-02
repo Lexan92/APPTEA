@@ -121,7 +121,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
                         mensaje.setVisibility(View.VISIBLE);
                         cajita.playAnimation();
                     }else{
-                        cajita.setVisibility(View.INVISIBLE); 
+                        cajita.setVisibility(View.INVISIBLE);
                         mensaje.setVisibility(View.INVISIBLE);
                         cajita.cancelAnimation();
                         adapter.setHabiilidad(habilidadCotidianas);

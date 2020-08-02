@@ -26,20 +26,23 @@ import roomsqlite.entidades.Pictograma;
         @Delete
         void deletePictograma(Pictograma pictograma);
 
+        @Query("DELETE FROM "+Pictograma.TABLE_NAME)
+        public void deleteAllPictogramas();
 
         @Query("SELECT * FROM " +Pictograma.TABLE_NAME)
         LiveData<List<Pictograma>> getAllPictogramas();
 
-        @Query("DELETE FROM "+Pictograma.TABLE_NAME)
-        public void deleteAllPictogramas();
-
         @Query("SELECT * FROM "+Pictograma.TABLE_NAME + " WHERE pictograma_id = :id")
         LiveData<Pictograma> findbyPictogramaId(int id);
+
+
+        //metodo donde se recuperan todos los pictogramas
 
         @Query("SELECT * FROM "+Pictograma.TABLE_NAME + " WHERE pictograma_id = :id")
         Pictograma findbyPictoId(int id);
 
         //metodo donde se recuperan todos los poctogramas
+
         @Query("SELECT * FROM pictograma ORDER BY pictograma_nombre ASC")
         LiveData<List<Pictograma>> getPictograma_nombre();
 
@@ -50,5 +53,16 @@ import roomsqlite.entidades.Pictograma;
         @Query("SELECT * FROM " + Pictograma.TABLE_NAME + " WHERE cat_pictograma_id = :id")
         LiveData<List<Pictograma>> allPictogramaByCategoria(int id);
 
+        //EN CUANTAS HABILIDADES SE USA UN PICTOGRAMA ESPECIFICO
+        @Query("SELECT COUNT(DISTINCT s.habilidad_cotidiana_id) FROM pictograma p " +
+                "INNER JOIN secuencia s on s.pictograma_id = p.pictograma_id  WHERE p.pictograma_id = :id")
+        int numHabPicto (int id);
+
+        //EN CUANTOS JUEGOS SE USA UN PICTOGRAMA ESPECIFICO
+        @Query("SELECT COUNT (DISTINCT pr.juego_id ) FROM pictograma p " +
+                "INNER JOIN opcion o ON o.pictograma_id = p.pictograma_id " +
+                "INNER JOIN pregunta pr ON pr.pregunta_id = o.pregunta_id " +
+                "WHERE p.pictograma_id = :id")
+        int numJuegoPicto (int id);
 
     }

@@ -25,7 +25,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.apptea.R;
@@ -48,9 +48,10 @@ public class EditContrasenia extends AppCompatActivity {
 
         setContentView(R.layout.editar_contrasenia);
 
+        UsuarioViewModel usuarioViewModel;
         contra1 = findViewById(R.id.editContrasenia1);
         contra2 =  findViewById(R.id.editContrasenia2);
-
+        usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
 
         //PARA mostrar la actividad de editar contraseña
         final Button button = findViewById(R.id.button_save);
@@ -67,6 +68,7 @@ public class EditContrasenia extends AppCompatActivity {
                         Usuario usuario = usuarioDao.obtenerUsuario();
 
                         usuario.setContrasenia(contra1.getText().toString());
+                        usuarioViewModel.update(usuario);
 
                         Toast.makeText(getApplicationContext(), "Se actualizo la contraseña con exito", Toast.LENGTH_LONG).show();
                         finish();

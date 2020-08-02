@@ -65,8 +65,8 @@ public class VistaPreviaActivity extends AppCompatActivity {
         SecuenciaViewModel secuenciaViewModel;
         secuenciaViewModel = new ViewModelProvider(this).get(SecuenciaViewModel.class );
         HabilidadCotidianaDao habilidadCotidianaDao= appDatabase.getDatabase(getApplicationContext()).habilidadCotidianaDao();
-       int bandera = getIntent().getIntExtra("vistaDeNiño",0);
-       String tituloHabilidad = getIntent().getStringExtra("nombreHabilidad");
+        boolean bandera = getIntent().getBooleanExtra("definirPantalla",true);
+        String tituloHabilidad = getIntent().getStringExtra("nombreHabilidad");
 
         //RECYCLER FRASES
         recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -80,7 +80,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                if(bandera == 1){
+                if(bandera == true){
                     nombreHabilidad.setVisibility(View.VISIBLE);
                     play.setVisibility(View.VISIBLE);
                     atras.setVisibility(View.VISIBLE);

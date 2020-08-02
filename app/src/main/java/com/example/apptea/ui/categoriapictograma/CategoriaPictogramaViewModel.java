@@ -44,6 +44,8 @@ public class CategoriaPictogramaViewModel extends AndroidViewModel {
         return categoriaPictogramaRepository.findByIdCategoria(id);
     }
 
+    public int numPictoJuego(int id){return categoriaPictogramaRepository.numPictoJuego(id);}
 
+    public int numPictoHabilidad(int id){return categoriaPictogramaRepository.numPictoHabilidad(id);}
 
 }

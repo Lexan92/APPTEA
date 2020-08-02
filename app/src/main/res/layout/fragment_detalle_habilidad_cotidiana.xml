@@ -10,19 +10,44 @@
     tools:context=".ui.habilidadCotidiana.Detalle_Habilidad_Cotidiana">
 
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_hab_cotidiana"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="68dp"
         tools:listitem="@layout/recyclerview_item_hab_cotidiana">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/cajita"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerview_hab_cotidiana"
+        app:layout_constraintVertical_bias="0.345"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/empty_box" />
 
-
-
+    <TextView
+        android:id="@+id/mensaje"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerview_hab_cotidiana"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cajita"
+        app:layout_constraintVertical_bias="0.151"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/lista_vacia"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabHab"

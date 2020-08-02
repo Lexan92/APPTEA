@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/contenedorMAyor"
     android:layout_height="match_parent"
     tools:context=".ui.usuario.UsuarioFragment">
 
@@ -19,24 +20,39 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/recyclerview_item_mi_perfil" />
 
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="93dp"
-        android:layout_height="84dp"
-        app:layout_constraintBottom_toTopOf="@+id/cambiarContra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerview_mi_perfil"
-        app:layout_constraintVertical_bias="0.954" />
+    <FrameLayout
+        android:id="@+id/contenedorAnimado"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorFondo"
+
+        >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/sobre"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:elevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil"
+            app:layout_constraintVertical_bias="0.0"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/sobre_circular" />
+    </FrameLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cambiarContra"
         android:layout_width="275dp"
         android:layout_height="75dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="76dp"
         app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil"
         app:strokeColor="@color/colorPrimaryDark"

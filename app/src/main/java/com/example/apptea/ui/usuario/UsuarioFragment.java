@@ -17,6 +17,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -27,11 +28,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.utilidades.EnviarCorreo;
 import com.example.apptea.utilidades.GenerarNumAleatorio;
@@ -62,6 +65,11 @@ public class UsuarioFragment extends Fragment {
     TextView texto_boton;
     ImageView imagen;
     int codigo;
+    public LottieAnimationView sobre;
+    FrameLayout contenedor;
+    CardView cambiarContra;
+    CardView acercaDe;
+
 
     public UsuarioFragment() {
         // Required empty public constructor
@@ -75,14 +83,18 @@ public class UsuarioFragment extends Fragment {
 
 
         View vista = inflater.inflate(R.layout.fragment_mi_perfil, container, false);
-        progressBar = (ProgressBar) vista.findViewById(R.id.progressbar);
+        cambiarContra =vista.findViewById(R.id.cambiarContra);
+        acercaDe = vista.findViewById(R.id.acerca_de);
+        sobre = vista.findViewById(R.id.sobre);
+        contenedor = vista.findViewById(R.id.contenedorAnimado);
+        contenedor.setVisibility(View.GONE);
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_mi_perfil);
         texto_boton = vista.findViewById(R.id.txt_cambiar_contra);
         imagen = vista.findViewById(R.id.img_candado);
         final UsuarioAdapter adapter = new UsuarioAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
-        progressBar.setVisibility(View.INVISIBLE);
+        sobre.setVisibility(View.INVISIBLE);
         usuarioViewModel = new ViewModelProvider(getActivity()).get(UsuarioViewModel.class);
         usuarioViewModel.getUsuarioAll().observe(getActivity(), new Observer<List<Usuario>>() {
             @Override
@@ -164,9 +176,13 @@ public class UsuarioFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            texto_boton.setText("Enviando código de verificación...");
-            imagen.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(VISIBLE);
+            cambiarContra.setVisibility(View.GONE);
+            acercaDe.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.INVISIBLE);
+            contenedor.setVisibility(VISIBLE);
+            sobre.setVisibility(View.VISIBLE);
+            sobre.playAnimation();
+
         }
 
         @Override
@@ -192,9 +208,13 @@ public class UsuarioFragment extends Fragment {
             super.onPostExecute(aVoid);
             Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
 
-            imagen.setVisibility(VISIBLE);
-            texto_boton.setText("Cambiar Contraseña");
-            progressBar.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(VISIBLE);
+            cambiarContra.setVisibility(VISIBLE);
+            acercaDe.setVisibility(VISIBLE);
+            contenedor.setVisibility(View.GONE);
+            sobre.setVisibility(View.INVISIBLE);
+            sobre.cancelAnimation();
+
             Intent intent = new Intent(getActivity(),ValidarCodigo.class);
             intent.putExtra("codigo", codigo);
             startActivity(intent);

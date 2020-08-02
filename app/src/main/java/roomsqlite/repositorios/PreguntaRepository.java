@@ -26,30 +26,30 @@ public class PreguntaRepository {
 
     public PreguntaRepository(Application application) {
         appDatabase db = appDatabase.getDatabase(application);
-        preguntaDAO = db.preguntaDAO();
+        preguntaDAO = db.preguntaDao();
     }
 
-    public void insert(Pregunta pregunta){
+    public void insert(Pregunta pregunta) {
         preguntaDAO.insertPregunta(pregunta);
     }
 
-    public void update(Pregunta pregunta){
+    public void update(Pregunta pregunta) {
         preguntaDAO.updatePregunta(pregunta);
     }
 
-    public void delete(Pregunta pregunta){
+    public void delete(Pregunta pregunta) {
         preguntaDAO.deletePregunta(pregunta);
     }
 
-    public LiveData<List<Pregunta>> findPreguntasByIdJuego(int id){
+    public LiveData<List<Pregunta>> findPreguntasByIdJuego(int id) {
         return preguntaDAO.getPreguntasByJuego(id);
     }
 
-    public int numeroPreguntas(int id){
+    public int numeroPreguntas(int id) {
         return preguntaDAO.numeroPreguntas(id);
     }
 
-    public LiveData<Pregunta> obtenerPreguntaporID(int id){
-        return  preguntaDAO.obtenerPreguntaPorID(id);
+    public LiveData<Pregunta> obtenerPreguntaporID(int id) {
+        return preguntaDAO.obtenerPreguntaPorID(id);
     }
 }

@@ -18,8 +18,8 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = Opcion.TABLE_NAME,
-        foreignKeys = { @ForeignKey(entity = Pregunta.class, parentColumns = "pregunta_id", childColumns = "pregunta_id", onDelete = CASCADE, onUpdate = CASCADE),
-                        @ForeignKey(entity = Pictograma.class, parentColumns = "pictograma_id", childColumns = "pictograma_id")})
+        foreignKeys = {@ForeignKey(entity = Pregunta.class, parentColumns = "pregunta_id", childColumns = "pregunta_id", onDelete = CASCADE, onUpdate = CASCADE),
+                @ForeignKey(entity = Pictograma.class, parentColumns = "pictograma_id", childColumns = "pictograma_id", onDelete = CASCADE, onUpdate = CASCADE)})
 
 public class Opcion {
     public static final String TABLE_NAME = "opcion";
@@ -33,6 +33,16 @@ public class Opcion {
 
     private boolean opcion_respuesta;
 
+    public Opcion(int opcion_id, int pregunta_id, int pictograma_id, boolean opcion_respuesta) {
+        this.opcion_id = opcion_id;
+        this.pregunta_id = pregunta_id;
+        this.pictograma_id = pictograma_id;
+        this.opcion_respuesta = opcion_respuesta;
+    }
+
+    public Opcion() {
+
+    }
 
     public int getOpcion_id() {
         return opcion_id;

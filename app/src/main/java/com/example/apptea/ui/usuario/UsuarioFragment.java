@@ -11,6 +11,7 @@
 package com.example.apptea.ui.usuario;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apptea.R;
@@ -55,7 +58,10 @@ public class UsuarioFragment extends Fragment {
     private LiveData<List<Usuario>> usuarioAll;
     RecyclerView recyclerView;
     private UsuarioViewModel usuarioViewModel;
-    private ProgressBar progressBar;
+    public ProgressBar progressBar;
+    TextView texto_boton;
+    ImageView imagen;
+    int codigo;
 
     public UsuarioFragment() {
         // Required empty public constructor
@@ -71,6 +77,8 @@ public class UsuarioFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_mi_perfil, container, false);
         progressBar = (ProgressBar) vista.findViewById(R.id.progressbar);
         recyclerView = (RecyclerView) vista.findViewById(R.id.recyclerview_mi_perfil);
+        texto_boton = vista.findViewById(R.id.txt_cambiar_contra);
+        imagen = vista.findViewById(R.id.img_candado);
         final UsuarioAdapter adapter = new UsuarioAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
@@ -90,26 +98,8 @@ public class UsuarioFragment extends Fragment {
         CardView cardCorreo = vista.findViewById(R.id.cambiarContra);
         cardCorreo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int codigo;
 
-                progressBar.setVisibility(VISIBLE);
-
-                //Se obtiene el usuario guardado se obtiene la primera fila.
-                UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
-                Usuario usuario = usuarioDao.obtenerUsuario();
-
-                //Se genera el codigo aleatorio y se guarda en variable int codigo
-                codigo = GenerarNumAleatorio.getNumeroAleatorio();
-
-                //Se inicializa el metodo para enviar correo
-                EnviarCorreo enviarCorreo = new EnviarCorreo();
-                enviarCorreo.Enviar(codigo,usuario.getCorreo());
-
-                Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
-
-                Intent intent = new Intent(getActivity(),ValidarCodigo.class);
-                intent.putExtra("codigo", codigo);
-                startActivity(intent);
+                new progreso().execute();
 
             }
 
@@ -163,6 +153,52 @@ public class UsuarioFragment extends Fragment {
             usuarioViewModel.update(usuario);
         } else {
             Toast.makeText(getActivity(),"No completo todos los campos",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    //metodo de llamada asincrona
+    class progreso extends AsyncTask<Void, Integer,Void>{
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            texto_boton.setText("Enviando código de verificación...");
+            imagen.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+
+            //Se obtiene el usuario guardado se obtiene la primera fila.
+            UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
+            Usuario usuario = usuarioDao.obtenerUsuario();
+
+            //Se genera el codigo aleatorio y se guarda en variable int codigo
+            codigo = GenerarNumAleatorio.getNumeroAleatorio();
+
+            //Se inicializa el metodo para enviar correo
+            EnviarCorreo enviarCorreo = new EnviarCorreo();
+            enviarCorreo.Enviar(codigo,usuario.getCorreo());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
+
+            imagen.setVisibility(VISIBLE);
+            texto_boton.setText("Cambiar Contraseña");
+            progressBar.setVisibility(View.INVISIBLE);
+            Intent intent = new Intent(getActivity(),ValidarCodigo.class);
+            intent.putExtra("codigo", codigo);
+            startActivity(intent);
+
         }
     }
 }

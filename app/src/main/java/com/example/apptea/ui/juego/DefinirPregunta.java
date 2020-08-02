@@ -97,7 +97,7 @@ public class DefinirPregunta extends AppCompatActivity {
         txt2 = findViewById(R.id.nombre_opcion_dos);
         txt3 = findViewById(R.id.nombre_opcion_tres);
         txt4 = findViewById(R.id.nombre_opcion_cuatro);
-        PreguntaDAO preguntaDAO = appDatabase.getDatabase(getApplicationContext()).preguntaDAO();
+        PreguntaDAO preguntaDAO = appDatabase.getDatabase(getApplicationContext()).preguntaDao();
         Pregunta preguntaNueva = new Pregunta();
         validarObjeto();
 

@@ -23,6 +23,9 @@ import roomsqlite.entidades.Opcion;
 
 @Dao
 public interface OpcionDAO {
+    @Insert
+    void insertAllOpciones(Opcion[] opcion);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOpcion(Opcion opcion);
 

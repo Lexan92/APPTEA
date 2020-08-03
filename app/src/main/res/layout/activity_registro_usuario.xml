@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +56,6 @@
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/nombreUsuario"
-
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -109,43 +108,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/telefonoUsuarioLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="@string/telefonoUsuario"
-                android:textSize="12sp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/telefonoUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"/>
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="@string/spinnerPais"
-                android:textSize="18sp" />
-
-            <Spinner
-                android:id="@+id/spinnerPais"
-                style="@style/Widget.AppCompat.Spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp" />
-
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contraUsuarioLayout"
@@ -168,7 +130,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -176,28 +138,14 @@
                     android:id="@+id/guardar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="60dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
                     android:text="@string/siguienteUsuario"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    android:layout_marginRight="60dp" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"/>
 
-                <Button
-                    android:id="@+id/regresar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
-                    android:text="@string/regresarUsuario"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guardar"
-                    app:layout_constraintHorizontal_bias="0.364"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

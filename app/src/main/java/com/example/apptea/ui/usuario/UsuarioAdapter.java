@@ -106,7 +106,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
 
         if (usuarioList != null) {
             Usuario current = usuarioList.get(position);
-            int idP= current.getPais_id();
+            //int idP= current.getPais_id();
             holder.nombreItemView.setText("Hola \n"+current.getUsuario_nombre()+" "+current.getUsuario_apellido()+"!");
             holder.correoItemView.setText(current.getCorreo());
           /*  holder.telItemView.setText(String.valueOf(current.getTelefono()));

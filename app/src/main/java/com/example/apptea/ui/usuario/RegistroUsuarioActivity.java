@@ -49,17 +49,17 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
     public static final int REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE = 1;
 
-    private Spinner spinnerPais;
+   // private Spinner spinnerPais;
     int verificacion;
     UsuarioViewModel usuarioViewModel;
     //Se declaran el ViewModel de Pais
-    private PaisViewModel paisViewModel;
+    //private PaisViewModel paisViewModel;
     //Se declara el List<Pais>
-    List<Pais> paisesArray = new ArrayList<>();
+    //List<Pais> paisesArray = new ArrayList<>();
     TextInputEditText nombreUsuario;
     TextInputEditText apellidoUsuario;
     TextInputEditText correoUsuario;
-    TextInputEditText telefonoUsuario;
+    //TextInputEditText telefonoUsuario;
     //TextInputEditText direccionUsuario;
     TextInputEditText contraUsuario;
     private Usuario usuario = new Usuario();
@@ -76,13 +76,13 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         nombreUsuario=  findViewById(R.id.nombreUsuario);
         apellidoUsuario =  findViewById(R.id.apellidoUsuario);
         correoUsuario=  findViewById(R.id.correoUsuario);
-        telefonoUsuario =  findViewById(R.id.telefonoUsuario);
-        spinnerPais = (Spinner) findViewById(R.id.spinnerPais);
+        //telefonoUsuario =  findViewById(R.id.telefonoUsuario);
+        //spinnerPais = (Spinner) findViewById(R.id.spinnerPais);
        // direccionUsuario =  findViewById(R.id.direccionUsuario);
         contraUsuario = findViewById(R.id.contraUsuario);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
-        //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
+      /*  //Se crea el adaptador, referenciando el List<Pais>, que es paisesArray
         ArrayAdapter<Pais> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, paisesArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPais.setAdapter(adapter);
@@ -94,7 +94,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                 adapter.addAll(paises);
                 adapter.notifyDataSetChanged();
             }
-        });
+        });*/
 
         //para insertar
         final Button button = findViewById(R.id.guardar);
@@ -110,12 +110,12 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                     System.out.println("no vacio");
                     usuario.setUsuario_nombre(nombreUsuario.getText().toString());
                     usuario.setUsuario_apellido(apellidoUsuario.getText().toString());
-                    usuario.setTelefono(Integer.parseInt(telefonoUsuario.getText().toString()));
+                   // usuario.setTelefono(Integer.parseInt(telefonoUsuario.getText().toString()));
                     usuario.setCorreo(correoUsuario.getText().toString());
-                    usuario.setPais_id(((Pais) spinnerPais.getSelectedItem()).getPais_id());
+                    //usuario.setPais_id(((Pais) spinnerPais.getSelectedItem()).getPais_id());
                     //usuario.setDireccion(direccionUsuario.getText().toString());
                     usuario.setContrasenia(contraUsuario.getText().toString());
-                    usuario.setCodigo_verificacion((int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000)));
+                    //usuario.setCodigo_verificacion((int)Math.round(Math.floor(Math.random()*(9999-1000+1)+1000)));
 
                     System.out.println("obtuvo los valores");
 
@@ -150,10 +150,10 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                 correoUsuario.setError(error);
        }else{correoUsuario.setError(null); }
 
-        if(TextUtils.isEmpty(telefonoUsuario.getText())){
+        /*if(TextUtils.isEmpty(telefonoUsuario.getText())){
                 validar+=1;
                 telefonoUsuario.setError(error);
-       }else{telefonoUsuario.setError(null); }
+       }else{telefonoUsuario.setError(null); }*/
 
         if(TextUtils.isEmpty(contraUsuario.getText())){
                 validar+=1;

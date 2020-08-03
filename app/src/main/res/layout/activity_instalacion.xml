@@ -88,26 +88,29 @@
                 android:text="@string/textarea"
                 android:textSize="14dp" />
 
+            <TextView
+                android:id="@+id/aceptarTerminos"
+                android:layout_width="322dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Al presionar Siguiente, usted acepta los Terminos y Condiciones de TEAyudo Jugando"
+                app:layout_constraintBottom_toTopOf="@+id/editText"
+                app:layout_constraintStart_toStartOf="@+id/editText"
+                android:textColor="@color/colorPrimary"/>
+
         </LinearLayout>
 
     </ScrollView>
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="acceso"
-        android:text="@string/button2" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:onClick="siguiente"
         android:text="@string/button1"
-        />
+        android:layout_marginEnd="15dp"/>
 
 
 

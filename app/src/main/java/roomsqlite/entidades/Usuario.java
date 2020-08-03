@@ -9,14 +9,13 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.List;
-@Entity(tableName= "usuario",
-        foreignKeys = @ForeignKey(entity = Pais.class, parentColumns = "pais_id", childColumns = "pais_id"))
+@Entity(tableName= "usuario")
 public class Usuario implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int usuario_id;
-    @ColumnInfo(index = true)
+    /*@ColumnInfo(index = true)
     @NonNull
-    private int pais_id;
+    private int pais_id;*/
     @NonNull
     private String usuario_nombre;
     @NonNull
@@ -25,39 +24,36 @@ public class Usuario implements Serializable {
     private String contrasenia;
     @NonNull
     private String correo;
-    @NonNull
-    private int telefono;
    /* @NonNull
-    private  String direccion;*/
+    private int telefono;
     @NonNull
-    private int codigo_verificacion;
+    private  String direccion;*/
+
 
 //CONSTRUCTOR
 
-    @Ignore
-    public Usuario(int usuario_id, int pais_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo, int telefono/*, @NonNull String direccion*/, int codigo_verificacion) {
+    public Usuario(int usuario_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo) {
         this.usuario_id = usuario_id;
-        this.pais_id = pais_id;
         this.usuario_nombre = usuario_nombre;
         this.usuario_apellido = usuario_apellido;
         this.contrasenia = contrasenia;
         this.correo = correo;
-        this.telefono = telefono;
-        //this.direccion = direccion;
-        this.codigo_verificacion = codigo_verificacion;
     }
+
+    @Ignore
+
 
     public Usuario(){}
 
 //GET AND SETTER
 
-    public int getPais_id() {
+   /* public int getPais_id() {
         return pais_id;
     }
 
     public void setPais_id(int pais_id) {
         this.pais_id = pais_id;
-    }
+    }*/
 
     public int getUsuario_id() {
         return usuario_id;
@@ -103,7 +99,7 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    public int getTelefono() {
+   /* public int getTelefono() {
         return telefono;
     }
 
@@ -111,14 +107,14 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
-   /* @NonNull
+    @NonNull
     public String getDireccion() {
         return direccion;
     }
 
     public void setDireccion(@NonNull String direccion) {
         this.direccion = direccion;
-    }*/
+    }
 
     public int getCodigo_verificacion() {
         return codigo_verificacion;
@@ -126,7 +122,7 @@ public class Usuario implements Serializable {
 
     public void setCodigo_verificacion(int codigo_verificacion) {
         this.codigo_verificacion = codigo_verificacion;
-    }
+    }*/
 
 
 }

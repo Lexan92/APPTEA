@@ -48,7 +48,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="spinnerDepto">Departamento</string>
     <string name="spinnerMunicipio">Municipio</string>
     <string name="direccionUsuario">Direccion</string>
-    <string name="contraUsuario">Contraseña</string>
+    <string name="contraUsuario">Contraseña de protección</string>
     <string name="siguienteUsuario">Siguiente</string>
     <string name="regresarUsuario">Regresar</string>
     <string name="titulo_validar_codigo">Ingresar código de validación</string>

@@ -90,8 +90,8 @@ public class EditUsuario extends AppCompatActivity {
                     usuario.setUsuario_nombre(editNombre.getText().toString());
                     usuario.setUsuario_apellido(editApellido.getText().toString());
                     usuario.setCorreo(editCorreo.getText().toString());
-                    usuario.setPais_id(intent.getIntExtra(EXTRA_PAIS_USUARIO_UPDATE, 1));
-                    usuario.setTelefono(intent.getIntExtra(EXTRA_TELEFONO_USUARIO_UPDATE,1));
+                    /*usuario.setPais_id(intent.getIntExtra(EXTRA_PAIS_USUARIO_UPDATE, 1));
+                    usuario.setTelefono(intent.getIntExtra(EXTRA_TELEFONO_USUARIO_UPDATE,1));*/
                     usuario.setContrasenia(intent.getStringExtra(EXTRA_CONTRASEÑA_UPDATE));
                     replyIntent.putExtra(EXTRA_USUARIO_UPDATE, usuario);
                     setResult(RESULT_OK, replyIntent);

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,15 +31,26 @@ public class instalacion extends AppCompatActivity {
         textViewResultados.setMovementMethod(new ScrollingMovementMethod());
     }
 
-    public void acceso(View view){
+   /* public void acceso(View view){
 
         Intent acceso = new Intent(this, MainActivity.class);
         startActivity(acceso);
-    }
+    }*/
 
     public void siguiente(View view){
 
         Intent siguiente = new Intent(this, RegistroUsuarioActivity.class);
         startActivity(siguiente);
+
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("lifecycle", "OnDestroy instalacion");
+    }
+
+
+
 }

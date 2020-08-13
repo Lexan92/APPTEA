@@ -164,7 +164,7 @@ public class UsuarioFragment extends Fragment {
             Usuario usuario = (Usuario) data.getSerializableExtra(EditUsuario.EXTRA_USUARIO_UPDATE);
             usuarioViewModel.update(usuario);
         } else {
-            Toast.makeText(getActivity(),"No completo todos los campos",Toast.LENGTH_LONG).show();
+           System.out.println("No edito");
         }
     }
 

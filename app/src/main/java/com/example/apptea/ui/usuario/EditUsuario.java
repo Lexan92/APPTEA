@@ -100,8 +100,13 @@ public class EditUsuario extends AppCompatActivity {
             }
         });
 
-
-
+        final Button btnRegresar = findViewById(R.id.regresarUs);
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 

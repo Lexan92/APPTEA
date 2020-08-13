@@ -109,24 +109,24 @@
 
 
             </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="40dp"
-        android:layout_gravity="center_horizontal">
                 <Button
-                    android:id="@+id/regresarUs"
+                    android:id="@+id/regresar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/regresarUsuario"
-                    android:layout_marginRight="20dp"
-                     />
+                    android:layout_marginLeft="100dp"
+                    android:text="@string/regresarUsuario" />
                 <Button
                     android:id="@+id/button_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="210dp"
                     android:text="@string/button_save"
                     />
 

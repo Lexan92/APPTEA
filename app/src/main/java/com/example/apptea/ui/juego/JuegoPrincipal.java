@@ -21,7 +21,6 @@ import roomsqlite.entidades.Juego;
 public class JuegoPrincipal extends AppCompatActivity {
 
     TextView nombreJuego;
-    JuegoViewModel juegoViewModel;
     Button nuevaPregunta;
     Juego juegoNuevo = new Juego();
 
@@ -30,9 +29,8 @@ public class JuegoPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_principal);
         nombreJuego = findViewById(R.id.editNombreJuego);
-
         nuevaPregunta = findViewById(R.id.nueva_pregunta);
-        juegoViewModel = new ViewModelProvider(this).get(JuegoViewModel.class);
+
 
         //setea el nombre del juego
         juegoNuevo = (Juego) getIntent().getSerializableExtra("juego");

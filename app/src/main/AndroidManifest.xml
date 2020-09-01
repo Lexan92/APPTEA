@@ -59,7 +59,7 @@
         </activity>
         <activity
             android:name=".ui.usuario.RegistroUsuarioActivity"
-            android:windowSoftInputMode="adjustPan|stateVisible" />
+            android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
             android:name=".instalacion"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -125,7 +125,7 @@
     <fragment
         android:id="@+id/frasesFragment"
         android:name="com.example.apptea.ui.frases.frasesFragment"
-        android:label="fragment_frases"
+        android:label="Frases"
         tools:layout="@layout/fragment_frases" />
     <activity
         android:id="@+id/editUsuario"

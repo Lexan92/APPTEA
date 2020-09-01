@@ -41,14 +41,8 @@ public class instalacion extends AppCompatActivity {
 
         Intent siguiente = new Intent(this, RegistroUsuarioActivity.class);
         startActivity(siguiente);
+        finish();
 
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("lifecycle", "OnDestroy instalacion");
     }
 
 

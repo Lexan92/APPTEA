@@ -129,13 +129,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_below="@+id/imagen_habilidades"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/capriola"
                 android:text="Habilidades Cotidianas"
                 android:textAlignment="center"
-                android:textSize="16sp"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
 
         </RelativeLayout>
@@ -152,7 +152,7 @@
         app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7">
+        app:layout_constraintVertical_bias="0.71000004">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -170,13 +170,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_below="@+id/imagen_juegos"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/capriola"
                 android:text="Juegos Interactivos"
                 android:textAlignment="center"
-                android:textSize="16sp"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
 
 
         </RelativeLayout>

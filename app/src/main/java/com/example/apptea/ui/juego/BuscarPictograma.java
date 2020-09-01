@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
+import com.example.apptea.ui.pictograma.PictogramaAdapterBusqueda;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -43,7 +44,7 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
 
     private MaterialToolbar toolbar;
     RecyclerView recyclerView;
-    PictogramaAdapter adapter=null;
+    PictogramaAdapterBusqueda adapter=null;
 
 
     PictogramaViewModel pictogramaViewModel;
@@ -55,7 +56,7 @@ public class BuscarPictograma extends AppCompatActivity implements PictogramaAda
         toolbar = findViewById(R.id.topAppBarBusqueda);
         setSupportActionBar(toolbar);
         recyclerView = findViewById(R.id.lista_pictograma_busqueda);
-         adapter = new PictogramaAdapter(this,this);
+        adapter = new PictogramaAdapterBusqueda(this,this::onPictogramaClick);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setAdapter(adapter);

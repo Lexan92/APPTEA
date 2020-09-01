@@ -134,6 +134,7 @@ public class DefinirPregunta extends AppCompatActivity {
 
                     //insert de opcion 1
                     opcionViewModel.insert(opcion1);
+                    pictogramaUno.removeObservers(DefinirPregunta.this);
                 }
 
                 //seteado de valores para la opcion 2

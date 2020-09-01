@@ -178,6 +178,11 @@
             android:id="@+id/action_detalleJuegoPaciente_to_nav_gestion_juego"
             app:destination="@id/nav_gestion_juego" />
     </fragment>
+    <activity
+        android:id="@+id/nuevoJuego"
+        android:name="com.example.apptea.ui.juego.NuevoJuego"
+        android:label="activity_nuevo_juego"
+        tools:layout="@layout/activity_nuevo_juego" />
 
 
 </navigation>

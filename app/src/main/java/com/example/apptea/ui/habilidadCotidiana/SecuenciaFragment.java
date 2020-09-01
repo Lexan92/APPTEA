@@ -160,22 +160,6 @@ public class SecuenciaFragment extends AppCompatActivity{
         }
     });
 
-    /* METODO PARA REPRODUCIR COPIARLO EN LA OTRA ACTIVITY
-    ver.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String frase = "";
-
-            for (Pictograma palabra : pictoFraseList) {
-                System.out.println("la palabra es " + palabra.getPictograma_nombre());
-                frase += palabra.getPictograma_nombre() + "\n";
-            }
-            System.out.println("la frase es " + frase);
-            //REPRODUCTOR DE TEXTO A VOZ
-            ttsManager.initQueue(frase);
-        }
-    });*/
-
 }
 
 

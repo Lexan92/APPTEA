@@ -1,10 +1,8 @@
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -85,11 +83,11 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
             if (juego.isJuego_predeterminado()) {
                 holder.nombreJuego.setText(juego.getJuego_nombre());
                 holder.eliminar.setVisibility(View.GONE);
-                holder.setIsRecyclable(true);
+                holder.setIsRecyclable(false);
 
             } else {
                 holder.nombreJuego.setText(juego.getJuego_nombre());
-                holder.setIsRecyclable(true);
+                holder.setIsRecyclable(false);
             }
         }
     }
@@ -107,28 +105,15 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     }
 
 
-    @Override
-    public void onViewRecycled(@NonNull JuegoViewHolder holder) {
-        super.onViewRecycled(holder);
-        holder.setIsRecyclable(false);
-    }
+
 
 
     @Override
     public void onViewAttachedToWindow(@NonNull JuegoViewHolder holder) {
         super.onViewAttachedToWindow(holder);
-        animateCircularReveal(holder.itemView);
+
     }
 
-    private void animateCircularReveal(View itemView) {
-        int centerX = 0;
-        int centerY = 0;
-        int startRadius = 0;
-        int endRadius = (int) Math.hypot(itemView.getWidth(), itemView.getHeight());
-        Animator animation = ViewAnimationUtils.createCircularReveal(itemView, centerX, centerY, startRadius, endRadius);
-        itemView.setVisibility(View.VISIBLE);
-        animation.start();
-    }
 
     @Override
     public void onViewDetachedFromWindow(@NonNull JuegoViewHolder holder) {

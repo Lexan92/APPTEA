@@ -109,11 +109,7 @@
         android:id="@+id/detalle_habilidad_Cotidiana"
         android:name="com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment"
         android:label="HabilidadCotidianaFragment"
-        tools:layout="@layout/fragment_detalle_habilidad_cotidiana" >
-        <action
-            android:id="@+id/action_detalle_habilidad_Cotidiana_to_agregarSecuenciaDialog"
-            app:destination="@id/agregarSecuenciaDialog" />
-    </fragment>
+        tools:layout="@layout/fragment_detalle_habilidad_cotidiana" />
     <activity
         android:id="@+id/juegoPrincipal"
         android:name="com.example.apptea.ui.juego.JuegoPrincipal"
@@ -143,18 +139,10 @@
         android:label="SecuenciaFragment"
         tools:layout="@layout/fragment_crear_secuencia">
         <action
-            android:id="@+id/action_secuenciaFragment_to_agregarSecuenciaDialog2"
-            app:destination="@id/agregarSecuenciaDialog" />
-        <action
             android:id="@+id/action_secuenciaFragment_to_detalle_habilidad_Cotidiana"
             app:destination="@id/detalle_habilidad_Cotidiana" />
     </fragment>
 
-    <activity
-        android:id="@+id/agregarSecuenciaDialog"
-        android:name="com.example.apptea.ui.habilidadCotidiana.AgregarSecuenciaDialog"
-        android:label="AgregarSecuenciaDialog"
-        tools:layout="@layout/confimar_agregar_hab_dialog"/>
     <fragment
         android:id="@+id/accesoPin"
         android:name="com.example.apptea.ui.verificarPin.AccesoPin"
@@ -178,6 +166,11 @@
             android:id="@+id/action_detalleJuegoPaciente_to_nav_gestion_juego"
             app:destination="@id/nav_gestion_juego" />
     </fragment>
+    <activity
+        android:id="@+id/nuevoJuego"
+        android:name="com.example.apptea.ui.juego.NuevoJuego"
+        android:label="activity_nuevo_juego"
+        tools:layout="@layout/activity_nuevo_juego" />
 
 
 </navigation>

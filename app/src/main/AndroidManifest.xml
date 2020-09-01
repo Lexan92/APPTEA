@@ -105,7 +105,8 @@
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
             android:name=".ui.habilidadCotidiana.SecuenciaFragment"
-            android:label=" " />
+            android:label="Crear secuencia"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.habilidadCotidiana.VistaPreviaActivity"
             android:label=" "

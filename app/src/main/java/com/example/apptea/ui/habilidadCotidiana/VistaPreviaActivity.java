@@ -89,11 +89,13 @@ public class VistaPreviaActivity extends AppCompatActivity {
                 }else{
                 atras.setVisibility(View.VISIBLE);
                 nombreHabilidad.setVisibility(View.VISIBLE);
+                nombreHabilidad.setText(tituloHabilidad);
                 play.setVisibility(View.VISIBLE);
                 guardar.setVisibility(View.VISIBLE);
                     if(!nombreHabilidad.getText().toString().isEmpty()){
                         nombreHabilidad.setText(tituloHabilidad);
                         nombreHabilidad.setEnabled(false);
+                        guardar.setVisibility(View.INVISIBLE);
                     }
                 }
                 recyclerView1.setAdapter(adapterSecuencia);
@@ -165,7 +167,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     }
 
                     Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada ", Toast.LENGTH_LONG).show();
-
+                    finish();
                 }
             }
         });

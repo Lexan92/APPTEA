@@ -130,20 +130,20 @@ public class CategoriaPictogramaFragment extends Fragment {
                 if (numPictoHab>0){
                     //System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
                     if(numPictoJue>0){
-                        MensajeAlerta("Esta categoria no se puede eliminar ,\n  existen: \n \n" +
-                                numPictoHab + " imagenes usadas en habilidades cotidianas \n"+
-                                numPictoJue + " imagenes usadas en juegos interactivos");
+                        MensajeAlerta("Esta categoria no se puede eliminar,  existen: \n \n" +
+                                numPictoHab + " pictogramas usados en habilidades cotidianas \n"+
+                                numPictoJue + " pictogramas usados en juegos interactivos");
                     }else{
-                        MensajeAlerta("E\"Esta categoria no se puede eliminar ,\n  existen: \n \n" +
-                                numPictoHab+ " imagenes usadas en habilidades cotidianas ");
+                        MensajeAlerta("E\"Esta categoria no se puede eliminar, existen: \n \n" +
+                                numPictoHab+ " pictogramas usados en habilidades cotidianas ");
                     }
 
                 }else{
                     if(numPictoJue>0){
-                        MensajeAlerta("Esta categoria no se puede eliminar ,\n  existen: \n \n" +
-                                numPictoJue + " imagenes usadas en juegos interactivos");
+                        MensajeAlerta("Esta categoria no se puede eliminar,  existen: \n \n" +
+                                numPictoJue + " pictogramas usados en juegos interactivos");
                     }else{
-                        MensajeDelete( categoriaPictograma,"¿Esta seguro? \n Se eliminara la Categoria de imagenes con todas sus imagenes");
+                        MensajeDelete( categoriaPictograma,"¿Esta seguro? \n Se eliminara la Categoria de pictogramas con todas sus imagenes");
                     }
 
                 }

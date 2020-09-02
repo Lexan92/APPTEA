@@ -157,20 +157,20 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
                if (numpictoO>0){
                     //System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
                     if(numHabPicto>0){
-                        MensajeAlerta("Esta imagen no se puede eliminar \n  Imagen utilizada en: \n \n" +
+                        MensajeAlerta("Este pictograma no se puede eliminar,  pictograma utilizado en: \n \n" +
                                 numHabPicto + " habilidades cotidianas \n"+
                                 numpictoO + " juegos interactivos");
                     }else{
-                        MensajeAlerta("Esta imagen no se puede eliminar \n  Imagen utilizada en: \n \n" +
+                        MensajeAlerta("Este pictograma no se puede eliminar,  pictograma utilizado en: \n \n" +
                                 numpictoO + "  juegos interactivos");
                     }
 
                }else{
                    if(numHabPicto>0){
-                       MensajeAlerta("Esta imagen no se puede eliminar \n  Imagen utilizada en: \n \n" +
+                       MensajeAlerta("Este pictograma no se puede eliminar,  pictograma utilizado en: \n \n" +
                                numHabPicto+ " habilidades cotidianas ");
                    }else{
-                       MensajeDelete( pictograma,"¿Esta seguro? \n Se eliminara la imagen");
+                       MensajeDelete( pictograma,"¿Esta seguro? \n Se eliminara el pictograma");
                    }
 
                }

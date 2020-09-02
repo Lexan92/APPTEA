@@ -75,7 +75,7 @@
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
             android:name=".ui.personaTea.NuevaPersonaTea"
-            android:windowSoftInputMode="adjustPan|stateVisible" />
+            android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
             android:name=".ui.pictograma.NuevoPictogramaDialog"
             android:label=" "

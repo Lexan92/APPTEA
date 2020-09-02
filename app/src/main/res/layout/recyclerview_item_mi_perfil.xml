@@ -54,6 +54,7 @@
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textColor="@color/mi_perfil_titulo"
                     android:textSize="20sp"
+                    android:maxLength="20"
                     android:textStyle="bold" />
             </LinearLayout>
 

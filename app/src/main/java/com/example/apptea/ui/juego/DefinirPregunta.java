@@ -169,6 +169,8 @@ public class DefinirPregunta extends AppCompatActivity {
                     opcionViewModel.insert(opcion4);
                 }
 
+                Intent intentRetorno = new Intent();
+                setResult(Activity.RESULT_OK,intentRetorno);
                 finish();
             } else {
                 Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe ingresar un titulo para la pregunta", Snackbar.LENGTH_LONG).show();

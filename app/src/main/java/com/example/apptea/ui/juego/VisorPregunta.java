@@ -10,6 +10,7 @@
 
 package com.example.apptea.ui.juego;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -57,6 +59,8 @@ public class VisorPregunta extends AppCompatActivity {
     int posicion;
 
     public int contador = 0;
+    private boolean banderaPreguntas;
+    private int SEGUNDA_ACTIVIDAD = 0;
 
 
     @Override
@@ -116,6 +120,7 @@ public class VisorPregunta extends AppCompatActivity {
         });
 
 
+
         //NUEVA PREGUNTA
         nuevapregunta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,16 +128,23 @@ public class VisorPregunta extends AppCompatActivity {
 
                 listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
                     if ((preguntas.size()) + 1 <= 10) {
-                        Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
-                        intent.putExtra("juegoNuevo", juego);
-                        startActivity(intent);
-
+                        banderaPreguntas = true;
                     } else {
-                        Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más preguntas",
+                        banderaPreguntas =false;
+                        Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más",
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+
                 listadoPreguntas.removeObservers(VisorPregunta.this);
+
+                if(banderaPreguntas){
+                    Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
+                    intent.putExtra("juegoNuevo", juego);
+                    startActivityForResult(intent,SEGUNDA_ACTIVIDAD);
+
+                }
+
             }
         });
 
@@ -214,6 +226,22 @@ public class VisorPregunta extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == SEGUNDA_ACTIVIDAD){
+            if(resultCode == Activity.RESULT_OK){
+                listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
+                    contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
+                });
+
+                Toast.makeText(getApplicationContext(), "Guardado Correctamente",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void borrarPregunta(Pregunta pregunta) {

@@ -63,7 +63,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     public static final int HAB_UPDATE_REQUEST_CODE = 2;
     SecuenciaViewModel secuenciaViewModel;
     private List<Secuencia> secuenciaList= new ArrayList<>();
-    private List<Pictograma> pictoFraseList= new ArrayList<>();;
+    private List<Pictograma> pictoFraseList= new ArrayList<>();
     PictogramaDAO pictogramaDao= appDatabase.getDatabase(getActivity()).pictogramaDAO();
     boolean bandera=false;
 
@@ -167,8 +167,10 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     @Override
     public void onHabilidadClick(HabilidadCotidiana habilidadCotidiana) {
         int idHab = habilidadCotidiana.getHabilidad_cotidiana_id();
+       
+        pictoFraseList.clear();
         //Se valida que la lista de pictogramas este vacia (si lo esta se llena) sino se imprime la misma
-        if(pictoFraseList.isEmpty() || pictoFraseList.size() == 0){
+
             secuenciaList = secuenciaViewModel.getSecuenciaById(idHab);
             //Se recorre la lista de secuencias
             for(Secuencia secuencia:secuenciaList){
@@ -178,9 +180,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
                 //lista auxiliar para guardar pictogramas
                 pictoFraseList.add(pictograma);
             }
-        }else{
-            pictoFraseList = pictoFraseList;
-        }
+
 
         Intent intent = new Intent(getContext(), VistaPreviaActivity.class);
         intent.putExtra("listaSecuencia",(Serializable) pictoFraseList );

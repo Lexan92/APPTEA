@@ -156,7 +156,7 @@ public class PersonaTeaFragment extends Fragment{
                 personaTea = (PersonaTea) data.getSerializableExtra(NuevaPersonaTea.EXTRA_PERSONA_UPDATE);
                 personaTeaViewModel.update(personaTea);
             } else {
-            Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();
         }
     }
 

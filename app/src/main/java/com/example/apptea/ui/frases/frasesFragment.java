@@ -20,6 +20,7 @@
 
 package com.example.apptea.ui.frases;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -86,6 +87,8 @@ public class frasesFragment extends Fragment {
         play = vista.findViewById(R.id.btn_play);
         backspace = vista.findViewById(R.id.btn_backspace);
 
+        //ORIENTACION
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //RECYCLER FRASES
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
         pictoFraseList = new ArrayList<Pictograma>();

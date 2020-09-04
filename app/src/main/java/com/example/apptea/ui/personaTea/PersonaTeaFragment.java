@@ -74,7 +74,7 @@ public class PersonaTeaFragment extends Fragment{
 
         personaTeaViewModel = new ViewModelProvider(getActivity()).get(PersonaTeaViewModel.class);
 
-        textpersona.setText(" Lista de niños y niñas");
+        //textpersona.setText(" Lista de niños y niñas");
         personaTeaViewModel.getPersonaTeaAll().observe(getActivity(), new Observer<List<PersonaTea>>() {
             @Override
             public void onChanged(List<PersonaTea> personaTeas) {

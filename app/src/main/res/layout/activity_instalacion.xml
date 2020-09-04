@@ -41,23 +41,17 @@
                 android:text="@string/txt1"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/txt2"
-                android:textSize="18sp" />
+
 
             <ImageView
                 android:id="@+id/imagen"
-                android:layout_width="176dp"
+                android:layout_width="165dp"
                 android:layout_height="178dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/instalacion"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/instalacion2"
                 android:padding="50dp"
                 android:scaleType="fitCenter" />
 

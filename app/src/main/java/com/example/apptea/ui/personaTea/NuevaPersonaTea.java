@@ -210,14 +210,19 @@ public class NuevaPersonaTea extends AppCompatActivity {
                        }
 
                     personaTea.setPersona_sexo(spinnerSexo.getSelectedItem().toString());
-
+                    //ES NUEVO
                     if (intent.getIntExtra(EXTRA_EDIT,-1)==1){
                         replyIntent.putExtra(EXTRA_PERSONA, personaTea);
                         setResult(RESULT_OK, replyIntent);
                         finish();
-                    }   else{
+                    }
+                    // ES ACTUALIZACION
+                    else{
                         personaTea.setPersona_id(intent.getIntExtra(EXTRA_ID_PERSONA_UPDATE,-1));
                         personaTea.setUsuario_id(intent.getIntExtra(EXTRA_ID_USUARIO_UPDATE,-1));
+                        if(tomarfoto==false){
+                            personaTea.setPersona_foto(intent.getByteArrayExtra(EXTRA_FOTO_PERSONA_UPDATE));
+                        }
                         replyIntent.putExtra(EXTRA_PERSONA_UPDATE, personaTea);
                         setResult(RESULT_OK, replyIntent);
                         finish();

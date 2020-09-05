@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     private static final int COD_FOTO = 20;
     MaterialButton botonRegistrar, botonSeleccionar, botonCancelar;
     ImageView imgFoto;
+    Drawable imgvacia;
     EditText nombrePictograma;
     private TextView titulo;
     boolean imagen = false;
@@ -85,6 +87,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         if(intent.getIntExtra(EXTRA_EDIT,-1)==1){
            //ES NUEVO PICTOGRAMA
             titulo.setText("Nueva Imagen");
+            imgvacia = imgFoto.getDrawable();
         }else{
             // ES ACTUALIZACION
             titulo.setText("Actualizar Imagen");
@@ -120,11 +123,11 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
 
                 //inicia guardado de pictogramas
                 //se valida si los campos estan vacios
-                if (nombrePictograma.getText().toString().isEmpty() && !imagen) {
+                if (nombrePictograma.getText().toString().isEmpty() && imgFoto.getDrawable().equals(imgvacia)) {
                     nombrePictograma.setError("Campo Requerido");
                     Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
                 } else {
-                    if (!imagen) {
+                    if (imgFoto.getDrawable().equals(imgvacia)) {
                         Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
                     } else {
                         if (nombrePictograma.getText().toString().isEmpty()) {
@@ -133,20 +136,24 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             Pictograma pictograma = new Pictograma();
                             pictograma.setCat_pictograma_id(keyCategoria);
                             pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
-                            pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
-
+                            if(imagen) {
+                                pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
+                            }
                             Toast.makeText(getApplicationContext(), "Imagen Guardada", Toast.LENGTH_LONG).show();
 
-
+                            // ES NUEVO
                             if(intent.getIntExtra(EXTRA_EDIT,-1 )==1){
                                 replyIntent.putExtra(EXTRA_PICTOGRAMA, pictograma);
                                 setResult(RESULT_OK, replyIntent);
                                 finish();
                             }
-
+                            //ES ACTUALIZACION
                             else {
                                 pictograma.setPictograma_id(intent.getIntExtra(EXTRA_ID_PICTOGRAMA_UPDATE, -1));
                                 pictograma.setCat_pictograma_id(intent.getIntExtra(EXTRA_ID_CATEGORIA_UPDATE, -1));
+                                if(imagen== false){
+                                    pictograma.setPictograma_imagen(intent.getByteArrayExtra(EXTRA_FOTO_PICTOGRAMA_UPDATE));
+                                }
                                 replyIntent.putExtra(EXTRA_PICTOGRAMA_UPDATE, pictograma);
                                 setResult(RESULT_OK, replyIntent);
                                 finish();

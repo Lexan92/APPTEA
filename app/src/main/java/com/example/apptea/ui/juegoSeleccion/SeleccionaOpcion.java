@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +55,8 @@ public class SeleccionaOpcion extends AppCompatActivity {
     int posicion = 0;
     int contador = 0;
     int numeroCorrectas = 0;
+    private int milisegundos = 1000;
+    
 
 
     @Override
@@ -194,6 +197,14 @@ public class SeleccionaOpcion extends AppCompatActivity {
         //seteo del nombre de la pregunta
         listadoPreguntas.observe(SeleccionaOpcion.this, preguntas -> {
             tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ttsManager.initQueue(tituloPregunta.getText().toString());
+                }
+            },milisegundos);
             listaOpciones = opcionViewModel.getOcionesByIdPregunta(preguntas.get(posicion).getPregunta_id());
 
             listaOpciones.observe(SeleccionaOpcion.this, opciones -> {

@@ -3,6 +3,7 @@ package com.example.apptea.ui.juego;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.example.apptea.R;
@@ -16,8 +17,17 @@ public class FinJuego extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fin_juego);
         ttsManager = new TTSManager();
-        ttsManager.init(getApplicationContext());
-        ttsManager.initQueue("Fin del Juego, Bien hecho ");
+        ttsManager.init(getApplication());
+        String frase = "¡Fin del Juego! ¡Bien hecho! ";
+
+        int milisegundos = 1000;
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ttsManager.initQueue(frase);
+            }
+        },milisegundos);
 
     }
 

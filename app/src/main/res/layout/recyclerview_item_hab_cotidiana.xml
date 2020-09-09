@@ -45,7 +45,7 @@
                         android:layout_height="@dimen/card_height_cat_juego"
                         android:layout_marginTop="10dp"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/ic_linda" />
+                        app:srcCompat="@drawable/ic_wallpaper" />
 
                     <TextView
                         android:id="@+id/nombre_hab_cotidiana"

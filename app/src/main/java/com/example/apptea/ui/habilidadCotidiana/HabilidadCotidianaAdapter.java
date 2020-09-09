@@ -58,6 +58,22 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             imagen = itemView.findViewById(R.id.img_hab_cotidiana);
             this.onHabilidadListener = onHabilidadListener;
             itemView.setOnClickListener(this);
+
+
+            eliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),"Opción eliminar en desarrollo",Toast.LENGTH_LONG).show();
+                }
+            });
+
+            editar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),"Opción editar en desarrollo",Toast.LENGTH_LONG).show();
+                }
+            });
+
         }
 
         @Override

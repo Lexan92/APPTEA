@@ -100,7 +100,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="frases">Frases</string>
 
     --Lista vacia
-    <string name="lista_vacia">UPS! ESTA LISTA ESTA VACIA.</string>
+    <string name="lista_vacia">UPS! ESTA CATEGORIA ESTA VACIA.</string>
 
 
     --Nueva habilidad

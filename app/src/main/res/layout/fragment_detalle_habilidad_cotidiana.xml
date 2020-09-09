@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:transitionName="categoriahabilidadcotidiana_transicion"
-    tools:context=".ui.habilidadCotidiana.Detalle_Habilidad_Cotidiana">
+    tools:context=".ui.habilidadCotidiana.HabilidadCotidianaFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

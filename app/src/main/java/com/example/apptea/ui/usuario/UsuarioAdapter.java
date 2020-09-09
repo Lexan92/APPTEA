@@ -114,7 +114,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
            holder.direccionItemView.setText(current.getDireccion());*/
         } else {
             // Covers the case of data not being ready yet.
-            holder.nombreItemView.setText("No existe ninguna categoria para habilidades cotidianas");//mensaje aunq no se debera mostrar ya que es campo obligatorio
+            holder.nombreItemView.setText("UPS a ocurrido un error!!");//mensaje aunq no se debera mostrar ya que es campo obligatorio
            /* holder.correoItemView.setText("Aún no has agregado tu correo"); //mensaje aunq no se debera mostrar ya que es campo obligatorio
             holder.telItemView.setText("Aún no has agregado el telefono");*/
         }

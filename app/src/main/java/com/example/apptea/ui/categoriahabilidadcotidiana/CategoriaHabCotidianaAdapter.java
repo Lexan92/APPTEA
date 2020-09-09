@@ -42,10 +42,6 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     OnCategoriaHabiCotiListener onCategoriaHabiCotiListener;
     public boolean isVistaNiño = false;
 
-
-
-
-
     public interface ButtonClicked{
         void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);
         void updateClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);

@@ -122,7 +122,7 @@ public class UsuarioFragment extends Fragment {
         cardAcercaDe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Acerca de TEAyudo Jugando",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Acerca de TEAyudo Jugando en Desarrollo",Toast.LENGTH_LONG).show();
             }
         });
 

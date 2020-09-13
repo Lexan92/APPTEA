@@ -20,9 +20,6 @@ public class ValidacionCadenas {
 
     //funcion capitaliza una cadena
     public static String capitalizaCadena(String cadena){
-        String cadenaRetorno = null;
-        cadenaRetorno = WordUtils.capitalizeFully(cadena);
-        Log.d("cadena",cadenaRetorno);
-        return cadenaRetorno;
+        return WordUtils.capitalizeFully(cadena);
     }
 }

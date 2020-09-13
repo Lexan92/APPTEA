@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.ValidacionCadenas;
 import com.google.android.material.snackbar.Snackbar;
 
 import roomsqlite.dao.PreguntaDAO;
@@ -109,6 +110,9 @@ public class DefinirPregunta extends AppCompatActivity {
                 Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debes agregar pictogramas a las opciones de respuesta", Snackbar.LENGTH_LONG).show();
             } else if (!isCheckedOpcionUno && !isCheckedOpcionDos && !isCheckedOpcionTres && !isCheckedOpcionCuatro) {
                 Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe marcar al menos una opción como correcta", Snackbar.LENGTH_LONG).show();
+            } else if (ValidacionCadenas.validarTamaño(tituloPregunta.getText().toString(), 30)) {
+                Snackbar.make(v, "El titulo debe ser menor a 30 caracteres", Snackbar.LENGTH_LONG)
+                        .show();
             } else if (!tituloPregunta.getText().toString().isEmpty()) {
                 preguntaNueva.setTitulo_pregunta(tituloPregunta.getText().toString());
                 if (getIntent() == null) {
@@ -170,7 +174,7 @@ public class DefinirPregunta extends AppCompatActivity {
                 }
 
                 Intent intentRetorno = new Intent();
-                setResult(Activity.RESULT_OK,intentRetorno);
+                setResult(Activity.RESULT_OK, intentRetorno);
                 finish();
             } else {
                 Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe ingresar un titulo para la pregunta", Snackbar.LENGTH_LONG).show();

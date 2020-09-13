@@ -13,6 +13,7 @@ package roomsqlite.entidades;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
@@ -40,6 +41,7 @@ public class Opcion {
         this.opcion_respuesta = opcion_respuesta;
     }
 
+    @Ignore
     public Opcion() {
 
     }

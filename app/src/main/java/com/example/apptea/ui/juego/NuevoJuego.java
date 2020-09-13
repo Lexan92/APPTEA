@@ -15,14 +15,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
+import com.example.apptea.utilidades.ValidacionCadenas;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textview.MaterialTextView;
 
 import roomsqlite.entidades.Juego;
 
 public class NuevoJuego extends AppCompatActivity {
 
     Button crear, cancelar;
-    EditText nombreJuego;
+    TextInputEditText nombreJuego;
     JuegoViewModel juegoViewModel;
 
     @Override
@@ -42,9 +45,13 @@ public class NuevoJuego extends AppCompatActivity {
                 if (nombreJuego.getText().toString().isEmpty()) {
                     Snackbar.make(v, "Debe ingresar un Titulo de Juego", Snackbar.LENGTH_LONG)
                             .show();
+                } else if (ValidacionCadenas.validarTamaño(nombreJuego.getText().toString(),25)){
+                    Snackbar.make(v, "El titulo debe ser menor a 25 caracteres", Snackbar.LENGTH_LONG)
+                            .show();
+
                 } else {
                     Juego juego = new Juego();
-                    juego.setJuego_nombre(nombreJuego.getText().toString());
+                    juego.setJuego_nombre(ValidacionCadenas.capitalizaCadena(nombreJuego.getText().toString()));
                     juego.setCategoria_juego_id(keyCategoriaJuego);
                     juego.setJuego_predeterminado(false);
                     juegoViewModel.insert(juego);

@@ -81,4 +81,10 @@ dependencies {
     //autenticacion biometrica
     implementation 'androidx.biometric:biometric:1.0.1'
 
+    //para String Utils o WordUtils
+    implementation 'org.apache.commons:commons-text:1.9'
+
+
+
+
 }

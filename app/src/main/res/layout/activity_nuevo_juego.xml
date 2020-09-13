@@ -17,6 +17,32 @@
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:context=".ui.juego.NuevoJuego">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:counterEnabled="true"
+        app:counterMaxLength="25"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nombre_juego"
+            android:textSize="15sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#4CAF50"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
@@ -36,22 +62,6 @@
     </TextView>
 
 
-
-
-    <EditText
-        android:id="@+id/nombre_juego"
-        android:layout_width="364dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="44dp"
-        android:hint="Titulo del Juego"
-        android:singleLine="true"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.34"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"></EditText>
-
-
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -60,13 +70,12 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_juego"
-        app:layout_constraintVertical_bias="0.051">
+        app:layout_constraintTop_toBottomOf="@+id/text_input"
+        app:layout_constraintVertical_bias="0.094">
 
     </TextView>
-
 
     <Button
         android:id="@+id/crearJuego"

@@ -37,9 +37,6 @@ public class CategoriaJuegoFragment extends Fragment {
     boolean bandera = false;
 
 
-
-
-
     public CategoriaJuegoFragment() {
         // Required empty public constructor
     }
@@ -60,7 +57,6 @@ public class CategoriaJuegoFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         categoriaViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         categoriaViewModel.getAllCategoriasJuegos().observe(getActivity(), new Observer<List<CategoriaJuego>>() {
-
 
 
             @Override
@@ -87,19 +83,19 @@ public class CategoriaJuegoFragment extends Fragment {
                 bundleEnvio.putBoolean("bandera", bandera);
 
                 //direcciona a fragmente proveniente del menu principal
-                if(bandera){
+                if (bandera) {
                     //Instancia de fragment al cual se dirigira
                     DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
                     detalle_juego.setArguments(bundleEnvio);
-                    Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente,bundleEnvio);
+                    Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
 
-                }else{
+                } else {
 
                     //Instancia de fragment al cual se dirigira
                     Detalle_Juego detalle_juego = new Detalle_Juego();
                     detalle_juego.setArguments(bundleEnvio);
                     //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                   Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
+                    Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
                 }
 
             }

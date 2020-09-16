@@ -17,16 +17,14 @@ import java.util.List;
 
 import roomsqlite.entidades.CategoriaJuego;
 
-public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoViewHolder> implements View.OnClickListener  {
+public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoViewHolder> implements View.OnClickListener {
 
     private List<CategoriaJuego> categoriasJuego;
     private final LayoutInflater cjInflater;
     private View.OnClickListener listener;
 
 
-
-    
-     public CategoriaJuegoAdapter(Context context) {
+    public CategoriaJuegoAdapter(Context context) {
 
         cjInflater = LayoutInflater.from(context);
 
@@ -34,7 +32,7 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
 
     @Override
     public CategoriaJuegoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View layoutView = cjInflater.inflate(R.layout.fragment_item_categoria_juego,parent,false);
+        View layoutView = cjInflater.inflate(R.layout.fragment_item_categoria_juego, parent, false);
 
         layoutView.setOnClickListener(this);
         return new CategoriaJuegoViewHolder(layoutView);
@@ -43,18 +41,18 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
 
     @Override
     public void onBindViewHolder(@NonNull CategoriaJuegoViewHolder holder, int position) {
-    if (categoriasJuego != null && position < categoriasJuego.size()){
-        CategoriaJuego categoriaJuego = categoriasJuego.get(position);
-        holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
-        holder.setIsRecyclable(false);
+        if (categoriasJuego != null && position < categoriasJuego.size()) {
+            CategoriaJuego categoriaJuego = categoriasJuego.get(position);
+            holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+            holder.setIsRecyclable(false);
 
-    }else{
-        holder.nombreCategoria.setText("No hay Categorias");
-        holder.setIsRecyclable(false);
-    }
+        } else {
+            holder.nombreCategoria.setText("No hay Categorias");
+            holder.setIsRecyclable(false);
+        }
     }
 
-    public void setCategoriasJuegos(List<CategoriaJuego> categoriasJuegos){
+    public void setCategoriasJuegos(List<CategoriaJuego> categoriasJuegos) {
         categoriasJuego = categoriasJuegos;
         notifyDataSetChanged();
     }
@@ -66,14 +64,14 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
         else return 0;
     }
 
-    public void setOnClickListener(View.OnClickListener listener){
-         this.listener = listener;
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
     }
 
 
     @Override
     public void onClick(View v) {
-        if(listener!=null){
+        if (listener != null) {
             listener.onClick(v);
         }
     }

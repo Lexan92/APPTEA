@@ -24,6 +24,7 @@ import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.PreguntaDAO;
 import roomsqlite.dao.SecuenciaDao;
+import roomsqlite.dao.TerapeutaDao;
 import roomsqlite.dao.UsuarioDao;
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaJuego;
@@ -36,10 +37,11 @@ import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Pregunta;
 import roomsqlite.entidades.Secuencia;
+import roomsqlite.entidades.Terapeuta;
 import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
-        Pais.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class}, version = 1, exportSchema = false)
+        Pais.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class, Terapeuta.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
@@ -72,6 +74,8 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract SecuenciaDao secuenciaDao();
 
     public abstract PreguntaDAO preguntaDao();
+
+    public  abstract TerapeutaDao terapeutaDao();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     public static appDatabase getDatabase(final Context context) {
@@ -111,8 +115,9 @@ public abstract class appDatabase extends RoomDatabase {
                     SecuenciaDao secuenciaDao = INSTANCE.secuenciaDao();
                     PreguntaDAO preguntaDao = INSTANCE.preguntaDao();
                     OpcionDAO opcionDAO = INSTANCE.opcionDAO();
+                    TerapeutaDao terapeutaDao=INSTANCE.terapeutaDao();
 
-
+                    //DELETE
                     paisesdao.deletePaisAll();
                     categoriaJuegoDAO.deleteAllCategoriaJuegos();
                     pictogramaDAO.deleteAllPictogramas();

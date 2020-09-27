@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_home">
+    app:startDestination="@id/personaAutistaFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -171,6 +171,15 @@
         android:name="com.example.apptea.ui.juego.NuevoJuego"
         android:label="activity_nuevo_juego"
         tools:layout="@layout/activity_nuevo_juego" />
+    <fragment
+        android:id="@+id/personaAutistaFragment"
+        android:name="com.example.apptea.ui.personaTea.PersonaAutistaFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" >
+        <action
+            android:id="@+id/action_personaAutistaFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
 
 </navigation>

@@ -56,6 +56,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 if(id>0){
                     System.out.println("no entro");
+                    //salto a listado de persona tea
                     Intent intent =new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                 }

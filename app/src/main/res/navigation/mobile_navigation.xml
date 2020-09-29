@@ -76,7 +76,11 @@
         android:id="@+id/nav_menu_persona_tea"
         android:name="com.example.apptea.ui.personaTea.PersonaTeaFragment"
         android:label="@string/menu_persona_tea"
-        tools:layout="@layout/fragment_gestion_persona_tea" />
+        tools:layout="@layout/fragment_gestion_persona_tea" >
+        <action
+            android:id="@+id/action_nav_menu_persona_tea_to_terapeutaFragment"
+            app:destination="@id/terapeutaFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/menuPrincipalFragment"
@@ -171,6 +175,11 @@
         android:name="com.example.apptea.ui.juego.NuevoJuego"
         android:label="activity_nuevo_juego"
         tools:layout="@layout/activity_nuevo_juego" />
+    <fragment
+        android:id="@+id/terapeutaFragment"
+        android:name="com.example.apptea.ui.terapeuta.TerapeutaFragment"
+        android:label="Terapeutas encargados"
+        tools:layout="@layout/fragment_gestion_terapeuta" />
 
 
 </navigation>

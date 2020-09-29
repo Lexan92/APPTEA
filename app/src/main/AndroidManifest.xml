@@ -77,6 +77,10 @@
             android:name=".ui.personaTea.NuevaPersonaTea"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
+            android:name=".ui.terapeuta.NuevoTerapeuta"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />/>
+        <activity
             android:name=".ui.pictograma.NuevoPictogramaDialog"
             android:label=" "
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
@@ -106,7 +110,7 @@
         <activity
             android:name=".ui.habilidadCotidiana.SecuenciaFragment"
             android:label="Crear secuencia"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.habilidadCotidiana.VistaPreviaActivity"
             android:label=" "

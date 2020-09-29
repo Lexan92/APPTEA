@@ -26,11 +26,13 @@ import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
+import com.example.apptea.ui.terapeuta.TerapeutaFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -48,7 +50,8 @@ public class PersonaTeaFragment extends Fragment{
     RecyclerView recyclerView;
     public static final int PERSONAS_REQUEST_CODE = 1;
     public static final int PERSONAS_UPDATE_REQUEST_CODE = 2;
-    private PersonaTeaAdapter person;
+    public static final int PERSONAS_TERA_REQUEST_CODE = 3;
+   // private PersonaTeaAdapter person;
 
 
 
@@ -115,6 +118,15 @@ public class PersonaTeaFragment extends Fragment{
             }
 
             @Override
+            public void terapeutaClicked(PersonaTea personaTea) {
+                TerapeutaFragment  terapeutaFragment = new TerapeutaFragment();
+                Bundle bundleEnvio= new Bundle();
+                bundleEnvio.putSerializable("persona", personaTea);
+                terapeutaFragment.setArguments(bundleEnvio);
+                Navigation.findNavController(vista).navigate(R.id.terapeutaFragment,bundleEnvio);
+            }
+
+            @Override
             public void deleteClickedPersona(PersonaTea personaTea) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Alerta");
@@ -140,6 +152,9 @@ public class PersonaTeaFragment extends Fragment{
                 AlertDialog deleteDialog = builder.create();
                 deleteDialog.show();
             }
+
+
+
         });
 
         return vista;

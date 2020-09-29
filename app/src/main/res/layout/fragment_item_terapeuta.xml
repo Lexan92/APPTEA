@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /*
-  ~ Nombre del Autor
-  ~ 18/05/2020
-  ~ Esta actividad hace el llamado a la lista de roles
-  ~ */
-  ~
-  ~
-  -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
@@ -29,25 +20,11 @@
             android:background="@color/colorFondo"
             android:orientation="horizontal">
 
-            <!-- Media -->
-            <ImageView
-                android:id="@+id/foto_persona"
-                android:layout_width="100dp"
-                android:layout_height="@dimen/card_height_cat_juego"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/ic_linda" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                >
+               >
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,9 +37,12 @@
                         android:text="Nombre:"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        tools:ignore="RtlSymmetry" />
                     <TextView
-                        android:id="@+id/nombre_persona_tea"
+                        android:id="@+id/nombre_terapeuta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -76,19 +56,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/apellido"
+                        android:id="@+id/correo_tera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Apellido:"
+                        android:text="Correo:"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:paddingStart="10dp"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
-                        android:id="@+id/apellido_persona_tea"
+                        android:id="@+id/correo_terapeuta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:text="Juego"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
@@ -98,23 +80,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                <!-- Title, secondary and supporting text -->
+                    <!-- Title, secondary and supporting text -->
                     <TextView
-                        android:id="@+id/fecha"
+                        android:id="@+id/tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Edad"
+                        android:text="Telefono:"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:paddingStart="10dp"
+                        tools:ignore="RtlSymmetry" />
                     <TextView
-                        android:id="@+id/fecha_tea"
+                        android:id="@+id/telefono_terapeuta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Juego"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -123,19 +107,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    >
+                    android:layout_gravity="right">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_terapeuta"
-                        style="?attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible"
-                        app:icon="@drawable/ic_terapeuta" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_editar_persona"
+                        android:id="@+id/btn_editar_terapeuta"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -143,7 +118,7 @@
                         app:icon="@drawable/ic_mode_edit_black_24dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_eliminar_persona"
+                        android:id="@+id/btn_eliminar_terapeuta"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -158,4 +133,5 @@
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>

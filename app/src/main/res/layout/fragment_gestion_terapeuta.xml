@@ -4,39 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.personaTea.PersonaTeaFragment">
+    tools:context=".ui.terapeuta.TerapeutaFragment">
 
 
     <TextView
-        android:id="@+id/text_persona"
+        android:id="@+id/text_terapeuta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/lista_personasTea"
+        app:layout_constraintBottom_toTopOf="@+id/lista_terapeutas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lista_personasTea"
+        android:id="@+id/lista_terapeutas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"
         android:clipToPadding="false"
         android:paddingStart="@dimen/card_side_margin"
+
         android:paddingTop="@dimen/header_margin"
         android:paddingEnd="@dimen/card_side_margin"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/fragment_item_persona_tea" />
-
-
+        tools:listitem="@layout/fragment_item_terapeuta" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabpersona"
+        android:id="@+id/fabterapeuta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

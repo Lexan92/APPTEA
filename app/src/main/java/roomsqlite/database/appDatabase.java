@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
-import androidx.room.Insert;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
@@ -19,7 +18,7 @@ import roomsqlite.dao.CategoriaPictogramaDAO;
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.JuegoDAO;
 import roomsqlite.dao.OpcionDAO;
-import roomsqlite.dao.PaisDao;
+import roomsqlite.dao.RolDao;
 import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.PreguntaDAO;
@@ -32,7 +31,7 @@ import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Juego;
 import roomsqlite.entidades.Opcion;
-import roomsqlite.entidades.Pais;
+import roomsqlite.entidades.Rol;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Pregunta;
@@ -41,7 +40,7 @@ import roomsqlite.entidades.Terapeuta;
 import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
-        Pais.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class, Terapeuta.class}, version = 1, exportSchema = false)
+        Rol.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class, Terapeuta.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
@@ -65,7 +64,7 @@ public abstract class appDatabase extends RoomDatabase {
 
     public abstract OpcionDAO opcionDAO();
 
-    public abstract PaisDao paisDao();
+    public abstract RolDao rolDao();
 
     public abstract UsuarioDao usuarioDao();
 
@@ -104,7 +103,7 @@ public abstract class appDatabase extends RoomDatabase {
 
                     //INSTANCIAS
                     CategoriaHabCotidianaDao dao = INSTANCE.categoriaHabCotidianaDao();
-                    PaisDao paisesdao = INSTANCE.paisDao();
+                    RolDao roldao = INSTANCE.rolDao();
                     CategoriaJuegoDAO categoriaJuegoDAO = INSTANCE.categoriaJuegoDAO();
                     JuegoDAO juegoDAO = INSTANCE.juegoDAO();
                     CategoriaPictogramaDAO categoriaPictogramaDAO = INSTANCE.categoriaPictogramaDAO();
@@ -118,7 +117,7 @@ public abstract class appDatabase extends RoomDatabase {
                     TerapeutaDao terapeutaDao=INSTANCE.terapeutaDao();
 
                     //DELETE
-                    paisesdao.deletePaisAll();
+                    roldao.deleteRolAll();
                     categoriaJuegoDAO.deleteAllCategoriaJuegos();
                     pictogramaDAO.deleteAllPictogramas();
                     categoriaPictogramaDAO.deleteAllCategoriaPictogramas();
@@ -130,8 +129,8 @@ public abstract class appDatabase extends RoomDatabase {
                     dao.insertAllCatHabCotidiana(DataTea.catHabCotidianasData());
 
 
-                    System.out.println("paises");
-                    paisesdao.insertAllPais(DataTea.paises());
+                    System.out.println("roles");
+                    roldao.insertAllRol(DataTea.roles());
 
 
                     //CATEGORIAS JUEGOS

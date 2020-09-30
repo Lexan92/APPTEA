@@ -9,13 +9,14 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.List;
-@Entity(tableName= "usuario")
+@Entity(tableName= "usuario",
+        foreignKeys = @ForeignKey(entity = Rol.class, parentColumns = "rol_id", childColumns = "rol_id"))
 public class Usuario implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int usuario_id;
-    /*@ColumnInfo(index = true)
+    @ColumnInfo(index = true)
     @NonNull
-    private int pais_id;*/
+    private int rol_id;
     @NonNull
     private String usuario_nombre;
     @NonNull
@@ -24,38 +25,31 @@ public class Usuario implements Serializable {
     private String contrasenia;
     @NonNull
     private String correo;
+
    /* @NonNull
     private int telefono;
     @NonNull
     private  String direccion;*/
 
-
-//CONSTRUCTOR
-
-    public Usuario(int usuario_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo) {
+    //CONSTRUCTOR
+    @Ignore
+    public Usuario(int usuario_id, int rol_id, @NonNull String usuario_nombre, @NonNull String usuario_apellido, @NonNull String contrasenia, @NonNull String correo) {
         this.usuario_id = usuario_id;
+        this.rol_id = rol_id;
         this.usuario_nombre = usuario_nombre;
         this.usuario_apellido = usuario_apellido;
         this.contrasenia = contrasenia;
         this.correo = correo;
     }
 
-    @Ignore
+
 
 
     public Usuario(){}
 
 //GET AND SETTER
 
-   /* public int getPais_id() {
-        return pais_id;
-    }
-
-    public void setPais_id(int pais_id) {
-        this.pais_id = pais_id;
-    }*/
-
-    public int getUsuario_id() {
+   public int getUsuario_id() {
         return usuario_id;
     }
 
@@ -99,30 +93,11 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-   /* public int getTelefono() {
-        return telefono;
+    public int getRol_id() {
+        return rol_id;
     }
 
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public void setRol_id(int rol_id) {
+        this.rol_id = rol_id;
     }
-
-    @NonNull
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(@NonNull String direccion) {
-        this.direccion = direccion;
-    }
-
-    public int getCodigo_verificacion() {
-        return codigo_verificacion;
-    }
-
-    public void setCodigo_verificacion(int codigo_verificacion) {
-        this.codigo_verificacion = codigo_verificacion;
-    }*/
-
-
 }

@@ -14,7 +14,8 @@ import java.util.Date;
 
 import roomsqlite.database.DateConverter;
 
-@Entity(tableName = "persona_tea", foreignKeys = @ForeignKey(entity = Usuario.class,parentColumns = "usuario_id",childColumns = "usuario_id"))
+@Entity(tableName = "persona_tea", foreignKeys ={ @ForeignKey(entity = Usuario.class,parentColumns = "usuario_id",childColumns = "usuario_id"),
+        @ForeignKey(entity = Rol.class,parentColumns = "rol_id",childColumns = "rol_id")})
 @TypeConverters(DateConverter.class)
 public class PersonaTea implements Serializable  {
     @PrimaryKey(autoGenerate = true)
@@ -32,14 +33,14 @@ public class PersonaTea implements Serializable  {
     private String persona_sexo;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] persona_foto;
+    private int rol_id;
 
 // CONSTRUCTOR
 
     public PersonaTea() {
     }
-
     @Ignore
-    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, @NonNull String persona_sexo, byte[] persona_foto) {
+    public PersonaTea(int persona_id, int usuario_id, @NonNull String persona_nombre, @NonNull String persona_apellido, @NonNull Date persona_fecha_nac, @NonNull String persona_sexo, byte[] persona_foto, int rol_id) {
         this.persona_id = persona_id;
         this.usuario_id = usuario_id;
         this.persona_nombre = persona_nombre;
@@ -47,7 +48,11 @@ public class PersonaTea implements Serializable  {
         this.persona_fecha_nac = persona_fecha_nac;
         this.persona_sexo = persona_sexo;
         this.persona_foto = persona_foto;
+        this.rol_id = rol_id;
     }
+
+
+
 
     // GET AND SETTER
 
@@ -108,5 +113,13 @@ public class PersonaTea implements Serializable  {
 
     public void setPersona_foto(byte[] persona_foto) {
         this.persona_foto = persona_foto;
+    }
+
+    public int getRol_id() {
+        return rol_id;
+    }
+
+    public void setRol_id(int rol_id) {
+        this.rol_id = rol_id;
     }
 }

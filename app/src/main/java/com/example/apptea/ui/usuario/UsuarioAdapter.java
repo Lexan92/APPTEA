@@ -18,20 +18,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
-import com.example.apptea.ui.pais.PaisViewModel;
 
 import java.util.List;
 
-import roomsqlite.dao.PaisDao;
+import roomsqlite.dao.RolDao;
 import roomsqlite.database.appDatabase;
-import roomsqlite.entidades.CategoriaHabCotidiana;
-import roomsqlite.entidades.Pais;
 import roomsqlite.entidades.Usuario;
-import roomsqlite.repositorios.PaisRepository;
+import roomsqlite.repositorios.RolRepository;
 
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioHolder> {
@@ -82,7 +77,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
     private final LayoutInflater mInflater;
     private List<Usuario> usuarioList;
 
-    PaisRepository paisRepository;
+   // RolRepository paisRepository;
 
 
    UsuarioAdapter(Context context){
@@ -102,7 +97,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
     public void onBindViewHolder(UsuarioHolder holder, int position) {
 
        //Se obtiene una instancia del DAO (aca no se implementa Repository genera error)
-        PaisDao paisDao = (PaisDao) appDatabase.getDatabase(mInflater.getContext()).paisDao();
+        //RolDao paisDao = (RolDao) appDatabase.getDatabase(mInflater.getContext()).paisDao();
 
         if (usuarioList != null) {
             Usuario current = usuarioList.get(position);

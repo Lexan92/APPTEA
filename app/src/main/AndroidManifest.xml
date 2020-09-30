@@ -79,7 +79,8 @@
         <activity
             android:name=".ui.terapeuta.NuevoTerapeuta"
             android:windowSoftInputMode="adjustResize|stateVisible"
-            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />/>
+            android:label=" "
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
             android:name=".ui.pictograma.NuevoPictogramaDialog"
             android:label=" "

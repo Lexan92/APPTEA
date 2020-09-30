@@ -36,8 +36,7 @@ public class UsuarioRepository {
     }
 
     public  void insert(Usuario usuario){
-       // usuarioDao.insertUsuario(usuario);
-        appDatabase.databaseWriteExecutor.execute(()-> usuarioDao.insertUsuario(usuario));
+       appDatabase.databaseWriteExecutor.execute(()-> usuarioDao.insertUsuario(usuario));
 
     }
 

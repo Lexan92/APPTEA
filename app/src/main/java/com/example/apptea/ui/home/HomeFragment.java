@@ -1,6 +1,7 @@
 package com.example.apptea.ui.home;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
@@ -16,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
+import com.example.apptea.InterfaceDrawer;
 import com.example.apptea.R;
 import com.google.android.material.card.MaterialCardView;
 
@@ -28,7 +31,20 @@ public class HomeFragment extends Fragment {
     BiometricPrompt biometricPrompt;
     BiometricPrompt.PromptInfo promptInfo;
     boolean bandera = true;
+    private InterfaceDrawer interfaceDrawer;
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        interfaceDrawer.bloquearDrawer();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        interfaceDrawer = (InterfaceDrawer) context;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +54,8 @@ public class HomeFragment extends Fragment {
         vocabulario = vista.findViewById(R.id.card_vocabulario);
         habilidades = vista.findViewById(R.id.card_habilidades);
         juegos = vista.findViewById(R.id.card_juegos);
+
+
 
         biometricManager = BiometricManager.from(requireContext());
         verificarEstadoBiometrico(biometricManager);
@@ -109,6 +127,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                    Toast.makeText(getContext(),"Debe cerrar sesión",Toast.LENGTH_LONG).show();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), onBackPressedCallback);
+
         return vista;
     }
 
@@ -129,6 +156,9 @@ public class HomeFragment extends Fragment {
                 break;
         }
     }
+
+
+
 
 
 }

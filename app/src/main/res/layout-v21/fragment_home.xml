@@ -6,21 +6,12 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Iniciar Sesión"
-        app:icon="@drawable/ic_cara"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="415dp"
-        android:layout_height="670dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

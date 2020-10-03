@@ -57,7 +57,7 @@ public class PersonaTeaFragment extends Fragment {
 
         final PersonaTeaAdapter adapter = new PersonaTeaAdapter();
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
         recyclerView.setAdapter(adapter);
 
 

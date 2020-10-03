@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/personaAutistaFragment">
+    app:startDestination="@id/accesoPinInicio">
 
     <fragment
         android:id="@+id/nav_home"
@@ -172,14 +172,22 @@
         android:label="activity_nuevo_juego"
         tools:layout="@layout/activity_nuevo_juego" />
     <fragment
-        android:id="@+id/personaAutistaFragment"
-        android:name="com.example.apptea.ui.personaTea.PersonaAutistaFragment"
-        android:label="fragment_item_list"
-        tools:layout="@layout/fragment_item_list" >
+        android:id="@+id/accesoPinInicio"
+        android:name="com.example.apptea.ui.verificarPin.AccesoPinInicio"
+        android:label="fragment_acceso_pin_inicio"
+        tools:layout="@layout/fragment_acceso_pin_inicio" >
         <action
-            android:id="@+id/action_personaAutistaFragment_to_nav_home"
+            android:id="@+id/action_accesoPinInicio_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_accesoPinInicio_to_listadoInicioSesion"
+            app:destination="@id/listadoInicioSesion" />
     </fragment>
+    <activity
+        android:id="@+id/listadoInicioSesion"
+        android:name="com.example.apptea.ui.inicioSesion.ListadoInicioSesion"
+        android:label="activity_listado_inicio_sesion"
+        tools:layout="@layout/activity_listado_inicio_sesion" />
 
 
 </navigation>

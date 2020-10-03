@@ -10,7 +10,6 @@
 
 package com.example.apptea.ui.personaTea;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,7 +124,7 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
 
     }
 
-    void setPersonas(List<PersonaTea> personaTeas){
+    public void setPersonas(List<PersonaTea> personaTeas){
         personaTeaList = personaTeas;
         notifyDataSetChanged();
     }

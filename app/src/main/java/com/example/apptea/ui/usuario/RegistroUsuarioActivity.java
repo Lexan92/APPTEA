@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.rol.RolViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -108,7 +109,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
                     usuarioViewModel.insert(usuario);
                     System.out.println("en teoria guardo...");
-                    Intent acceso = new Intent(RegistroUsuarioActivity.this, MainActivity.class);
+                    Intent acceso = new Intent(RegistroUsuarioActivity.this, ListadoInicioSesion.class);
                     startActivity(acceso);
                     finish();
                 }

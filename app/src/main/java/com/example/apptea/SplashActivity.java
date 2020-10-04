@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
 
 import java.util.List;
@@ -56,7 +57,8 @@ public class SplashActivity extends AppCompatActivity {
 
                 if(id>0){
                     System.out.println("no entro");
-                    Intent intent =new Intent(SplashActivity.this, MainActivity.class);
+                    //salto a listado de persona tea
+                    Intent intent =new Intent(SplashActivity.this, ListadoInicioSesion.class);
                     startActivity(intent);
                 }
                 else{

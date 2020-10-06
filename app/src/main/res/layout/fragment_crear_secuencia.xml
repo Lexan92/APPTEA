@@ -50,25 +50,25 @@
                 android:insetBottom="0dp"
                 android:insetLeft="3dp"
                 android:insetRight="0dp"
-                app:icon="@drawable/ic_visibility"
+                app:icon="@drawable/ic_ojo"
 
                 app:iconSize="@android:dimen/app_icon_size"
                 app:iconGravity="textStart"/>
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:id="@+id/btn_backspace"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".50"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
                 android:insetLeft="3dp"
+                android:insetTop="0dp"
                 android:insetRight="0dp"
+                android:insetBottom="0dp"
                 app:icon="@drawable/ic_backspace"
 
-                app:iconSize="@android:dimen/app_icon_size"
-                app:iconGravity="textStart"/>
+                app:iconGravity="textStart"
+                app:iconSize="@android:dimen/app_icon_size" />
 
         </LinearLayout>
 

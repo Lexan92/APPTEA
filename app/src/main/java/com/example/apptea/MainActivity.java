@@ -2,27 +2,22 @@ package com.example.apptea;
 
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
-import android.widget.Toast;
 
-import com.example.apptea.utilidades.AdministarSesion;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import java.io.File;
+import com.example.apptea.utilidades.AdministarSesion;
+import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements InterfaceDrawer{
+public class MainActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
@@ -35,14 +30,11 @@ public class MainActivity extends AppCompatActivity implements InterfaceDrawer{
 
     private void verificarSesion() {
         AdministarSesion administarSesion = new AdministarSesion(MainActivity.this);
-        int ID = administarSesion.obtenerSesion();
-        Log.d("LEXAN","HOLA DESDE MAIN ACTIVITY, ID USER: ".concat(Integer.toString(ID)));
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
 
 
         super.onCreate(savedInstanceState);
@@ -54,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements InterfaceDrawer{
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gestion_habilidad,R.id.nav_gestion_juego,R.id.nav_gestion_pictograma,R.id.nav_mi_perfil,R.id.nav_gestion_juego,
-                R.id.nav_menu_persona_tea, R.id.menuPrincipalFragment, R.id.detalle_Juego)
+                R.id.nav_home, R.id.nav_gestion_habilidad, R.id.nav_gestion_juego, R.id.nav_gestion_pictograma, R.id.nav_mi_perfil, R.id.nav_gestion_juego,
+                R.id.nav_menu_persona_tea, R.id.menuPrincipalFragment, R.id.detalle_Juego,R.id.cerrarSesionUsuario)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -64,16 +56,12 @@ public class MainActivity extends AppCompatActivity implements InterfaceDrawer{
 
 
         //se definen opciones segun tipo de usuario
-        if (getIntent().hasExtra("bandera")){
+        if (getIntent().hasExtra("bandera")) {
             Menu menu = navigationView.getMenu();
 
             boolean bandera = getIntent().getBooleanExtra("bandera", false);
 
-            if (bandera){
-                menu.removeItem(R.id.nav_cerrar_sesion);
-
-
-            } else {
+            if (!bandera) {
 
 
                 menu.removeItem(R.id.nav_mi_perfil);
@@ -86,10 +74,8 @@ public class MainActivity extends AppCompatActivity implements InterfaceDrawer{
                 navController.navigate(R.id.action_accesoPinInicio_to_nav_home);
             }
 
+
         }
-
-
-
 
 
     }
@@ -112,13 +98,5 @@ public class MainActivity extends AppCompatActivity implements InterfaceDrawer{
     }
 
 
-    @Override
-    public void bloquearDrawer() {
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, GravityCompat.START);
-    }
 
-    @Override
-    public void desbloquearDrawer() {
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-    }
 }

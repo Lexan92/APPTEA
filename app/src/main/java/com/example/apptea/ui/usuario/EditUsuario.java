@@ -10,38 +10,17 @@
 
 package com.example.apptea.ui.usuario;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.widget.TooltipCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 
 import com.example.apptea.R;
-import com.example.apptea.ui.pais.PaisViewModel;
-import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import roomsqlite.dao.PaisDao;
-
-import roomsqlite.database.appDatabase;
-import roomsqlite.entidades.Pais;
 import roomsqlite.entidades.Usuario;
 
 public class EditUsuario extends AppCompatActivity {

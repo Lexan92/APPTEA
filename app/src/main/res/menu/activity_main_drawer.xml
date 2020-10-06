@@ -30,6 +30,21 @@
             android:icon="@drawable/ic_add_person"
             android:title="@string/menu_persona_tea" />
 
+        <item
+            android:id="@+id/nav_menu_configuracion"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/menu_configuracion" />
+
+        <item
+            android:id="@+id/nav_menu_preguntas_frecuentes"
+            android:icon="@drawable/ic_baseline_help_outline_24"
+            android:title="@string/menu_preguntas_frecuentes" />
+
+        <item
+            android:id="@+id/cerrarSesionUsuario"
+            android:icon="@drawable/ic_cerrar_sesion"
+            android:title="Cerrar Sesión" />
+
 
     </group>
 </menu>

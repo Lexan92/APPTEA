@@ -15,6 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.cerrarSesion.CerrarSesionUsuario"></activity>
+        <activity
+            android:name=".ui.inicioSesion.ListadoInicioSesion"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.juego.FinJuego"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -77,6 +81,11 @@
             android:name=".ui.personaTea.NuevaPersonaTea"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
+            android:name=".ui.terapeuta.NuevoTerapeuta"
+            android:label=" "
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
             android:name=".ui.pictograma.NuevoPictogramaDialog"
             android:label=" "
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
@@ -106,7 +115,7 @@
         <activity
             android:name=".ui.habilidadCotidiana.SecuenciaFragment"
             android:label="Crear secuencia"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.habilidadCotidiana.VistaPreviaActivity"
             android:label=" "

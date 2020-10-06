@@ -10,60 +10,45 @@
 
 package com.example.apptea.ui.usuario;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Room;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
-import com.example.apptea.ui.pais.PaisViewModel;
+import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
+import com.example.apptea.ui.rol.RolViewModel;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import roomsqlite.config.constantes;
-import roomsqlite.database.appDatabase;
-import roomsqlite.entidades.Pais;
+import roomsqlite.entidades.Rol;
 import roomsqlite.entidades.Usuario;
-
-import static java.security.AccessController.getContext;
 
 public class RegistroUsuarioActivity extends AppCompatActivity {
     public static final String EXTRA_USUARIO = "com.example.apptea.EXTRA_USUARIO";
 
     public static final int REGISTRO_USUARIO_ACTIVITY_REQUEST_CODE = 1;
 
-   // private Spinner spinnerPais;
-    int verificacion;
     UsuarioViewModel usuarioViewModel;
-    //Se declaran el ViewModel de Pais
-    //private PaisViewModel paisViewModel;
-    //Se declara el List<Pais>
-    //List<Pais> paisesArray = new ArrayList<>();
+    private RolViewModel rolViewModel;
     TextInputEditText nombreUsuario;
     TextInputEditText apellidoUsuario;
     TextInputEditText correoUsuario;
-    //TextInputEditText telefonoUsuario;
-    //TextInputEditText direccionUsuario;
     TextInputEditText contraUsuario;
     private Usuario usuario = new Usuario();
-    Boolean validar= false;
+    //Boolean validar= false;
+    List<Rol> rolesArray = new ArrayList<>();
+    int rolId;
 
     String error="Campo Obligatorio";
 
@@ -79,6 +64,27 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         contraUsuario = findViewById(R.id.contraUsuario);
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
+        rolViewModel = new ViewModelProvider(this).get(RolViewModel.class);
+        rolViewModel.getRolAll().observe(this, new Observer<List<Rol>>() {
+            @Override
+            public void onChanged(List<Rol> rols) {
+                for(Rol roles:rols){
+                    if(roles.isRol_is_persona_tea()==false){
+                        rolId=roles.getRol_id();
+                        System.out.println("rol arriba"+rolId);
+                    }
+
+                }
+            }
+        });
+
+        //ASIGNANDO ROL
+      /*  for( Rol rol : rolesArray){
+            if(rol.isRol_is_persona_tea()== false){
+                rolId=rol.getRol_id();
+                System.out.println("rol arriba"+rolId);
+            }
+        }*/
 
 
         //para insertar
@@ -97,12 +103,13 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                     usuario.setUsuario_apellido(apellidoUsuario.getText().toString());
                     usuario.setCorreo(correoUsuario.getText().toString());
                     usuario.setContrasenia(contraUsuario.getText().toString());
-
+                    usuario.setRol_id(rolId);
+                    System.out.println("rol"+rolId);
                     System.out.println("obtuvo los valores");
 
                     usuarioViewModel.insert(usuario);
                     System.out.println("en teoria guardo...");
-                    Intent acceso = new Intent(RegistroUsuarioActivity.this, MainActivity.class);
+                    Intent acceso = new Intent(RegistroUsuarioActivity.this, ListadoInicioSesion.class);
                     startActivity(acceso);
                     finish();
                 }

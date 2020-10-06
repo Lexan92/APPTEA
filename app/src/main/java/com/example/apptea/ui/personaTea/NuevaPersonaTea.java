@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.Utilities.UtilCamara;
+import com.example.apptea.ui.rol.RolViewModel;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -55,6 +56,7 @@ import java.util.Locale;
 
 import roomsqlite.database.ImageConverter;
 import roomsqlite.entidades.PersonaTea;
+import roomsqlite.entidades.Rol;
 import roomsqlite.entidades.Usuario;
 
 public class NuevaPersonaTea extends AppCompatActivity {
@@ -73,7 +75,9 @@ public class NuevaPersonaTea extends AppCompatActivity {
     public static final String EXTRA_FOTO_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_FOTO_PERSONA_UPDATE";
     public static final String EXTRA_PERSONA_UPDATE = "com.example.apptea.ui.personaTea.EXTRA_PERSONA_UPDATE";
 
-
+    private RolViewModel rolViewModel;
+    int rolId;
+    List<Rol> rolesArray = new ArrayList<>();
     TextInputEditText nombreTea;
     TextInputEditText apellidoTea;
     TextInputEditText fecha;
@@ -106,6 +110,28 @@ public class NuevaPersonaTea extends AppCompatActivity {
         foto = (ImageView)findViewById(R.id.fotoPersona);
         camara=(Button)findViewById(R.id.btn_camara);
         cancelar=(Button)findViewById(R.id.cancelarPersona);
+
+        rolViewModel = new ViewModelProvider(this).get(RolViewModel.class);
+        rolViewModel.getRolAll().observe(this, new Observer<List<Rol>>() {
+            @Override
+            public void onChanged(List<Rol> rols) {
+                for(Rol roles:rols){
+                    if(roles.isRol_is_persona_tea()==true){
+                        rolId=roles.getRol_id();
+                        System.out.println("rol arriba"+rolId);
+                    }
+
+                }
+
+            }
+        });
+
+        //ASIGNANDO ROL
+       /* for( Rol rol : rolesArray){
+            if(rol.isRol_is_persona_tea()== true){
+                rolId=rol.getRol_id();
+            }
+        }*/
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
         ArrayList<String> sexo = new ArrayList<String>();
@@ -210,6 +236,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
                        }
 
                     personaTea.setPersona_sexo(spinnerSexo.getSelectedItem().toString());
+                    personaTea.setRol_id(rolId);
                     //ES NUEVO
                     if (intent.getIntExtra(EXTRA_EDIT,-1)==1){
                         replyIntent.putExtra(EXTRA_PERSONA, personaTea);
@@ -220,6 +247,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
                     else{
                         personaTea.setPersona_id(intent.getIntExtra(EXTRA_ID_PERSONA_UPDATE,-1));
                         personaTea.setUsuario_id(intent.getIntExtra(EXTRA_ID_USUARIO_UPDATE,-1));
+                        personaTea.setRol_id(rolId);
                         if(tomarfoto==false){
                             personaTea.setPersona_foto(intent.getByteArrayExtra(EXTRA_FOTO_PERSONA_UPDATE));
                         }

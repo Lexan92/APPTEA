@@ -1,13 +1,16 @@
 package com.example.apptea.ui.home;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
@@ -16,7 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
+import com.example.apptea.InterfaceDrawer;
+import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.concurrent.Executor;
@@ -30,6 +36,30 @@ public class HomeFragment extends Fragment {
     boolean bandera = true;
 
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ocultarTeclado();
+
+    }
+
+
+
+    private void ocultarTeclado() {
+        View vieww = getActivity().getCurrentFocus();
+        if (vieww != null) {
+            InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            input.hideSoftInputFromWindow(vieww.getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_home, container, false);
@@ -38,6 +68,7 @@ public class HomeFragment extends Fragment {
         vocabulario = vista.findViewById(R.id.card_vocabulario);
         habilidades = vista.findViewById(R.id.card_habilidades);
         juegos = vista.findViewById(R.id.card_juegos);
+
 
         biometricManager = BiometricManager.from(requireContext());
         verificarEstadoBiometrico(biometricManager);
@@ -98,7 +129,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("ban", bandera);
-                Navigation.findNavController(v).navigate(R.id.nav_gestion_habilidad,bundle);
+                Navigation.findNavController(v).navigate(R.id.nav_gestion_habilidad, bundle);
             }
         });
 
@@ -108,6 +139,15 @@ public class HomeFragment extends Fragment {
                 biometricPrompt.authenticate(promptInfo);
             }
         });
+
+
+        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Toast.makeText(getContext(), "Debe cerrar sesión", Toast.LENGTH_LONG).show();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), onBackPressedCallback);
 
         return vista;
     }

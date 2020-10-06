@@ -32,11 +32,12 @@ public class ListadoInicioSesion extends AppCompatActivity {
     RecyclerView recyclerView;
     Button sesionAdmin;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_inicio_sesion);
-
+        AdministarSesion administarSesion = new AdministarSesion(ListadoInicioSesion.this);
         recyclerView = findViewById(R.id.list_inicio);
         final PersonaListadoInicioAdapter adapter = new PersonaListadoInicioAdapter();
         sesionAdmin = findViewById(R.id.btn_inicio_sesion);
@@ -46,7 +47,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
         Usuario usuario = usuarioDao.obtenerUsuario();
         sesionAdmin.setText("Iniciar como: " + usuario.getUsuario_nombre());
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         recyclerView.setAdapter(adapter);
 
         personaTeaViewModel = new ViewModelProvider(ListadoInicioSesion.this).get(PersonaTeaViewModel.class);
@@ -63,7 +64,9 @@ public class ListadoInicioSesion extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListadoInicioSesion.this, MainActivity.class);
                 intent.putExtra("bandera", true);
+                administarSesion.setearTipoUsuario(0);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -72,10 +75,11 @@ public class ListadoInicioSesion extends AppCompatActivity {
             @Override
             public void itemPersona(PersonaTea personaTea, View v) {
                 Intent intent = new Intent(ListadoInicioSesion.this, MainActivity.class);
-                AdministarSesion administarSesion = new AdministarSesion(ListadoInicioSesion.this);
+               administarSesion.setearTipoUsuario(1);
                 administarSesion.guardarSesionTEA(personaTea);
                 intent.putExtra("bandera", false);
                 startActivity(intent);
+                finish();
 
             }
         });

@@ -15,8 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.inicioSesion.ListadoInicioSesion"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.cerrarSesion.CerrarSesionUsuario"></activity>
+        <activity
+            android:name=".ui.inicioSesion.ListadoInicioSesion"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.juego.FinJuego"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -80,9 +82,9 @@
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
             android:name=".ui.terapeuta.NuevoTerapeuta"
-            android:windowSoftInputMode="adjustResize|stateVisible"
             android:label=" "
-            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
+            android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
             android:name=".ui.pictograma.NuevoPictogramaDialog"
             android:label=" "

@@ -32,6 +32,7 @@ import com.example.apptea.ui.frases.PictoFrasesAdapter;
 import com.example.apptea.ui.frases.frasesAdapter;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.example.apptea.utilidades.TTSManager;
+import com.example.apptea.utilidades.TTSManagerSecuencia;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -26,24 +26,24 @@ public class HabilidadCotidiana implements Serializable {
     @NonNull
     private String habilidad_cotidiana_nombre;
 
-    /*@ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    private byte[] pictograma_imagen;
-    private String pictograma_sonido;*/
     private boolean predeterminado;
 
     @NonNull
     private boolean hab_predeterminado;
+    private int pictograma_id;
+
 
     public HabilidadCotidiana() {
 
     }
 
     @Ignore
-    public HabilidadCotidiana(int habilidad_cotidiana_id, int cat_hab_cotidiana_id, @NonNull String habilidad_cotidiana_nombre, boolean hab_predeterminado) {
+    public HabilidadCotidiana(int habilidad_cotidiana_id, int cat_hab_cotidiana_id, @NonNull String habilidad_cotidiana_nombre, boolean hab_predeterminado, int pictograma_id) {
         this.habilidad_cotidiana_id = habilidad_cotidiana_id;
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.habilidad_cotidiana_nombre = habilidad_cotidiana_nombre;
         this.hab_predeterminado = hab_predeterminado;
+        this.pictograma_id = pictograma_id;
     }
 
     public int getHabilidad_cotidiana_id() {
@@ -79,22 +79,14 @@ public class HabilidadCotidiana implements Serializable {
         this.hab_predeterminado = hab_predeterminado;
     }
 
-    /*
-    public byte[] getPictograma_imagen() {
-        return pictograma_imagen;
+    public int getPictograma_id() {
+        return pictograma_id;
     }
 
-    public void setPictograma_imagen(byte[] pictograma_imagen) {
-        this.pictograma_imagen = pictograma_imagen;
+    public void setPictograma_id(int pictograma_id) {
+        this.pictograma_id = pictograma_id;
     }
 
-    public String getPictograma_sonido() {
-        return pictograma_sonido;
-    }
-
-    public void setPictograma_sonido(String pictograma_sonido) {
-        this.pictograma_sonido = pictograma_sonido;
-    }*/
 
     public boolean isPredeterminado() {
         return predeterminado;

@@ -38,4 +38,8 @@ public class SecuenciaViewModel extends AndroidViewModel {
         secuenciaRepository.delete(secuencia);
     }
 
+      public LiveData<Secuencia> getSecuenciaForImagen(int id){
+        return secuenciaRepository.getSecuenciaForImagen(id);
+    }
+
 }

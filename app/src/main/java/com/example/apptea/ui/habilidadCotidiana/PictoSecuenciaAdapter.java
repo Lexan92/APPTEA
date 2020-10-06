@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.TTSManagerSecuencia;
 
 
 import java.util.ArrayList;
@@ -45,7 +46,6 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
             check = itemView.findViewById(R.id.img_check);
 
         }
-
     }
     public PictoSecuenciaAdapter(ArrayList<Pictograma> pictoFraseList){
         this.pictoFraseList=pictoFraseList;
@@ -81,15 +81,19 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
             Glide.with(holder.itemView.getContext()).clear(holder.imagen);
             holder.nombrePictograma.setText("No existe pictogramas");
         }
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                System.out.println("Seleccion:"+pictoFraseList.get(pos).getPictograma_nombre());
+                System.out.println("Seleccion:"+pictoFraseList.get(pos).getPictograma_id());
                 posicionMarcada = pos;
+                TTSManagerSecuencia.pictogramaSeleccion = pictoFraseList.get(pos);
+                TTSManagerSecuencia.pictogramaIdSeleccion= pos+1;
                 notifyDataSetChanged();
                 return true;
             }
         });
+
         if(posicionMarcada == position){
             holder.check.setVisibility(View.VISIBLE);
         }else{

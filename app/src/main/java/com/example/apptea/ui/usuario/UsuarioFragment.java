@@ -136,8 +136,6 @@ public class UsuarioFragment extends Fragment {
                 intentUpdate.putExtra(EditUsuario.EXTRA_ID_USUARIO_UPDATE, usuario.getUsuario_id());
                 intentUpdate.putExtra(EditUsuario.EXTRA_NOMBRE_USUARIO_UPDATE, usuario.getUsuario_nombre());
                 intentUpdate.putExtra(EditUsuario.EXTRA_APELLIDO_USUARIO_UPDATE, usuario.getUsuario_apellido());
-               /* intentUpdate.putExtra(EditUsuario.EXTRA_PAIS_USUARIO_UPDATE, usuario.getPais_id());
-                intentUpdate.putExtra(EditUsuario.EXTRA_TELEFONO_USUARIO_UPDATE, usuario.getTelefono());*/
                 intentUpdate.putExtra(EditUsuario.EXTRA_CORREO_USUARIO_UPDATE, usuario.getCorreo());
                 intentUpdate.putExtra(EditUsuario. EXTRA_CONTRASEÑA_UPDATE, usuario.getContrasenia());
                 startActivityForResult(intentUpdate,USUARIO_UPDATE_REQUEST_CODE);

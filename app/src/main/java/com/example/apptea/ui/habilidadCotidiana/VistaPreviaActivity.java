@@ -107,7 +107,6 @@ public class VistaPreviaActivity extends AppCompatActivity {
 
 
 
-
 //Boton atras
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +148,12 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     habilidadCotidiana.setCat_hab_cotidiana_id(idCategoriaHab);
                     habilidadCotidiana.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
                     habilidadCotidiana.setHab_predeterminado(false);
+                    if(TTSManagerSecuencia.pictogramaSeleccion == null){
+                        TTSManagerSecuencia.pictogramaSeleccion = pictoSecuenciaList.get(0);
+                        habilidadCotidiana.setPictograma_id(TTSManagerSecuencia.pictogramaSeleccion.getPictograma_id());
+                    }else{
+                        habilidadCotidiana.setPictograma_id(TTSManagerSecuencia.pictogramaSeleccion.getPictograma_id());
+                    }
                     habilidadCotidianaViewModel.insert(habilidadCotidiana);
 
                     HabilidadCotidiana habInsertada = habilidadCotidianaDao.obtenerHabilidadCotidiana();
@@ -158,12 +163,10 @@ public class VistaPreviaActivity extends AppCompatActivity {
                         Secuencia secuencia = new Secuencia();
                         secuencia.setHabilidad_cotidiana_id(habInsertada.getHabilidad_cotidiana_id());
                         secuencia.setPictograma_id(pictograma.getPictograma_id());
-                        secuencia.setSec_predeterminado(false);
+                        secuencia.setSec_predeterminado(true);
                         secuencia.setSecuencia_orden(orden);
                         secuenciaViewModel.insert(secuencia);
                         orden +=1;
-
-
                     }
 
                     Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada ", Toast.LENGTH_LONG).show();

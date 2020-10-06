@@ -6,11 +6,15 @@ import android.util.Log;
 
 import java.util.Locale;
 
+import roomsqlite.entidades.Pictograma;
+
 public class TTSManagerSecuencia {
 
     private TextToSpeech mTts = null;
     private TextToSpeech mTts2 = null;
     private boolean isLoaded = false;
+    public static Pictograma pictogramaSeleccion = null;
+    public static int pictogramaIdSeleccion = 0;
 
     public void init(Context context) {
         try {

@@ -1,5 +1,7 @@
 package roomsqlite.dao;
 
+import android.widget.LinearLayout;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -41,6 +43,15 @@ public interface SecuenciaDao {
     //metodo donde se recuperan todas  secuencias por IDde de habilidad cotidiana
     @Query("SELECT * FROM secuencia WHERE habilidad_cotidiana_id = :id ORDER BY secuencia_orden ASC")
     List<Secuencia> getSecuenciaByHabilidad(int id);
+
+    //metodo donde se recuperan una secuencia segun habilidad y si es predeterminado
+    @Query("SELECT * FROM secuencia WHERE habilidad_cotidiana_id = :id AND sec_predeterminado=1")
+    LiveData<Secuencia> getSecuenciaForImagen(int id);
+
+    //metodo donde se recuperan una secuencia segun habilidad y si es predeterminado
+    @Query("SELECT * FROM secuencia WHERE habilidad_cotidiana_id = :id AND sec_predeterminado = 1")
+    Secuencia getSecuenciaForImagenSec(int id);
+
 
    /* @Query("SELECT COUNT ( pictograma_id ) FROM  secuencia WHERE pictograma_id =:id ")
     int numeroPictogramaS(int id);*/

@@ -41,6 +41,13 @@ public class SecuenciaRepository {
         appDatabase.databaseWriteExecutor.execute(()-> secuenciaDao.deleteSecuencia(secuencia));
     }
 
+    public LiveData<Secuencia> getSecuenciaForImagen(int id){
+        return secuenciaDao.getSecuenciaForImagen(id);
+    }
+
+    public Secuencia getSecuenciaForImagenSec(int id){
+        return secuenciaDao.getSecuenciaForImagenSec(id);
+    }
 
     /*public int numeroPictogramaS(int id) {return secuenciaDao.numeroPictogramaS(id);}*/
 

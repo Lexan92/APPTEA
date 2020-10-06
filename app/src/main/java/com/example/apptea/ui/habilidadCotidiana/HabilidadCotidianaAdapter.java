@@ -11,6 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -18,15 +24,20 @@ import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaAdapter;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
+import com.example.apptea.ui.pictograma.PictogramaViewModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.dao.PictogramaDAO;
+import roomsqlite.dao.SecuenciaDao;
 import roomsqlite.database.ImageConverter;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Secuencia;
+import roomsqlite.repositorios.PictogramaRepository;
 import roomsqlite.repositorios.SecuenciaRepository;
 
 import static androidx.camera.core.CameraX.getContext;
@@ -40,7 +51,11 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
     private List<HabilidadCotidiana> habilidadCotidianaList;
     private List<HabilidadCotidiana> habilidadCotidianaListBusqueda;
     private List<Secuencia> pictoFraseList;
-
+    HabilidadCotidianaViewModel habilidadCotidianaViewModel;
+    private PictogramaRepository pictogramaRepository;
+    private SecuenciaRepository secuenciaRepository;
+    SecuenciaViewModel secuenciaViewModel;
+    private PictogramaViewModel pictogramaViewModel;
 
 
     class HabilidadCotidianaHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -50,6 +65,8 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         public ImageView imagen;
         OnHabilidadListener onHabilidadListener;
 
+
+
         public HabilidadCotidianaHolder( View itemView,OnHabilidadListener onHabilidadListener) {
             super(itemView);
             habilidadItemView = itemView.findViewById((R.id.nombre_hab_cotidiana));
@@ -58,6 +75,8 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             imagen = itemView.findViewById(R.id.img_hab_cotidiana);
             this.onHabilidadListener = onHabilidadListener;
             itemView.setOnClickListener(this);
+
+
 
 
             eliminar.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +92,8 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
                     Toast.makeText(v.getContext(),"Opción editar en desarrollo",Toast.LENGTH_LONG).show();
                 }
             });
+
+
 
         }
 
@@ -97,21 +118,28 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
     }
 
     @Override
-    public void onBindViewHolder(HabilidadCotidianaAdapter.HabilidadCotidianaHolder holder, int position) {
+    public void onBindViewHolder(HabilidadCotidianaHolder holder, int position) {
+
 
         if (habilidadCotidianaList != null) {
             HabilidadCotidiana current = habilidadCotidianaList.get(position);
 
+            PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
+
         if(isHabilidad==true ||current.isPredeterminado()){
+           Glide.with(holder.itemView.getContext())
+                    .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
+                    .thumbnail(0.5f)
+                    .into(holder.imagen);
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
                 holder.editar.setVisibility(View.INVISIBLE);
                 holder.eliminar.setVisibility(View.INVISIBLE);
                 holder.setIsRecyclable(false);
         }else {
-               /* Glide.with(holder.itemView.getContext())
-                        .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
-                        .thumbnail(0.5f)
-                        .into(holder.imagen);*/
+           Glide.with(holder.itemView.getContext())
+                    .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
+                    .thumbnail(0.5f)
+                    .into(holder.imagen);
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
                 holder.setIsRecyclable(false);
             }

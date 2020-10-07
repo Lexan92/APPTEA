@@ -53,6 +53,7 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="siguienteUsuario">Siguiente</string>
     <string name="regresarUsuario">Regresar</string>
     <string name="titulo_validar_codigo">Ingresar código de validación</string>
+    <string name="mensaje_validar_codigo">Se ha enviado un código a tu correo electronico</string>
     <string name="campo_codigo">Código</string>
     <string name="button_validar">Validar</string>
 

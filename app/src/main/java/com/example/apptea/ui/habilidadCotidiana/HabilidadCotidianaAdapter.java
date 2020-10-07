@@ -89,6 +89,7 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             editar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Toast.makeText(v.getContext(),"Opción editar en desarrollo",Toast.LENGTH_LONG).show();
                 }
             });

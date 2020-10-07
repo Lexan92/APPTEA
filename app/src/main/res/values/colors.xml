@@ -10,7 +10,7 @@
     <color name = "correcto">#66BB6A</color>
     <color name = "incorrecto">#EF5350</color>
     <color name = "fondoHab">#CFCFCF</color>
-
+    <color name="colorAzul">#1E508C</color>
 
 
 </resources>

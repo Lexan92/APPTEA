@@ -1,11 +1,15 @@
 package com.example.apptea.ui.verificarPin;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,9 +18,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.ui.usuario.UsuarioFragment;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
+import com.example.apptea.ui.usuario.ValidarCodigo;
 import com.example.apptea.utilidades.AdministarSesion;
+import com.example.apptea.utilidades.EnviarCorreo;
+import com.example.apptea.utilidades.GenerarNumAleatorio;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
@@ -25,12 +34,18 @@ import roomsqlite.dao.UsuarioDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.Usuario;
 
+import static android.view.View.VISIBLE;
+
 public class AccesoPinInicio extends Fragment {
 
     EditText entradaPin;
-    Button acceder, cancelar;
+    Button acceder, cancelar,contraseña;
     UsuarioViewModel usuarioViewModel;
     LiveData<List<Usuario>> usuario;
+    int codigo;
+    public LottieAnimationView sobre;
+    FrameLayout contenedor;
+
 
     public AccesoPinInicio() {
         //constructor
@@ -50,7 +65,11 @@ public class AccesoPinInicio extends Fragment {
         acceder = view.findViewById(R.id.boton_acceder);
         cancelar = view.findViewById(R.id.boton_cancelar);
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
-
+        contraseña = view.findViewById(R.id.boton_olvidar_contra);
+        contenedor = view.findViewById(R.id.contenedorAnimado);
+        contenedor.setVisibility(View.GONE);
+        sobre = view.findViewById(R.id.sobre);
+        sobre.setVisibility(View.INVISIBLE);
 
         MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle(" ");
@@ -86,6 +105,67 @@ public class AccesoPinInicio extends Fragment {
 
             }
         });
+
+        contraseña.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+               new progreso().execute();
+            }
+        });
+
+
+    }
+
+    //metodo de llamada asincrona
+    class progreso extends AsyncTask<Void, Integer,Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            contenedor.setVisibility(VISIBLE);
+            contraseña.setVisibility(View.GONE);
+            cancelar.setVisibility(View.GONE);
+            sobre.setVisibility(View.VISIBLE);
+            sobre.playAnimation();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+
+            //Se obtiene el usuario guardado se obtiene la primera fila.
+            UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
+            Usuario usuario = usuarioDao.obtenerUsuario();
+
+            //Se genera el codigo aleatorio y se guarda en variable int codigo
+            codigo = GenerarNumAleatorio.getNumeroAleatorio();
+
+            //Se inicializa el metodo para enviar correo
+            EnviarCorreo enviarCorreo = new EnviarCorreo();
+            enviarCorreo.Enviar(codigo,usuario.getCorreo());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
+
+            contenedor.setVisibility(View.GONE);
+            sobre.setVisibility(View.INVISIBLE);
+            contraseña.setVisibility(VISIBLE);
+            cancelar.setVisibility(VISIBLE);
+            sobre.cancelAnimation();
+
+            Intent intent = new Intent(getActivity(), ValidarCodigo.class);
+            intent.putExtra("codigo", codigo);
+            startActivity(intent);
+
+        }
     }
 
 }

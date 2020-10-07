@@ -111,4 +111,13 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="comentario_hab">**Si selecciona -Más tarde- podra despues agregar los pasos**</string>
     <string name="button_mas_tarde">Más tarde</string>
     <string name="button_si_agregar">Si</string>
+
+    --terapeuta
+    <string name="datosTera">Nuevo Registro</string>
+    <string name="nombreTera">Nombre</string>
+    <string name="apellidoTera">Apellido</string>
+    <string name="correoTera">Correo</string>
+    <string name="telefonoTera">Telefono</string>
+    <string name="cancelarTera">Cancelar</string>
+    <string name="guardarTera">Guardar</string>
 </resources>

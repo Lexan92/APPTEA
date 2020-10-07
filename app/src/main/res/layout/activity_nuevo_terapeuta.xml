@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
-                android:hint="@string/nombreUsuario"
+                android:hint="@string/nombreTera"
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
-                android:hint="@string/apellidoUsuario"
+                android:hint="@string/apellidoTera"
 
                 android:textSize="12sp">
 
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
-                android:hint="@string/correoUsuario"
+                android:hint="@string/correoTera"
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -105,7 +105,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
                 android:ems="10"
-                android:hint="@string/contraUsuario"
+                android:hint="@string/telefonoTera"
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -130,7 +130,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
-                    android:text="@string/siguienteUsuario" />
+                    android:text="@string/guardarTera" />
 
                 <Button
                     android:id="@+id/cancelarTerapeuta"
@@ -139,7 +139,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
-                    android:text="@string/siguienteUsuario" />
+                    android:text="@string/cancelarTera" />
 
 
             </RelativeLayout>

@@ -15,6 +15,7 @@ import roomsqlite.config.constantes;
 import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
 import roomsqlite.dao.CategoriaPictogramaDAO;
+import roomsqlite.dao.DetalleSesionDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.JuegoDAO;
 import roomsqlite.dao.OpcionDAO;
@@ -23,11 +24,13 @@ import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.PreguntaDAO;
 import roomsqlite.dao.SecuenciaDao;
+import roomsqlite.dao.SesionDao;
 import roomsqlite.dao.TerapeutaDao;
 import roomsqlite.dao.UsuarioDao;
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.CategoriaPictograma;
+import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Juego;
 import roomsqlite.entidades.Opcion;
@@ -36,11 +39,13 @@ import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Pregunta;
 import roomsqlite.entidades.Secuencia;
+import roomsqlite.entidades.Sesion;
 import roomsqlite.entidades.Terapeuta;
 import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
-        Rol.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class, Terapeuta.class}, version = 1, exportSchema = false)
+        Rol.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class,
+        Terapeuta.class, Sesion.class, DetalleSesion.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
@@ -75,6 +80,10 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract PreguntaDAO preguntaDao();
 
     public  abstract TerapeutaDao terapeutaDao();
+
+    public abstract SesionDao sesionDao();
+
+    public abstract DetalleSesionDao detalleSesionDao();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     public static appDatabase getDatabase(final Context context) {
@@ -115,6 +124,8 @@ public abstract class appDatabase extends RoomDatabase {
                     PreguntaDAO preguntaDao = INSTANCE.preguntaDao();
                     OpcionDAO opcionDAO = INSTANCE.opcionDAO();
                     TerapeutaDao terapeutaDao=INSTANCE.terapeutaDao();
+                    SesionDao sesionDao = INSTANCE.sesionDao();
+                    DetalleSesionDao detalleSesionDao = INSTANCE.detalleSesionDao();
 
                     //DELETE
                     roldao.deleteRolAll();

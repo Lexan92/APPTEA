@@ -10,6 +10,7 @@
 
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,6 +62,19 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        ocultarTeclado();
+    }
+
+    private void ocultarTeclado() {
+        View vieww = getActivity().getCurrentFocus();
+        if (vieww != null) {
+            InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            input.hideSoftInputFromWindow(vieww.getWindowToken(), 0);
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

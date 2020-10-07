@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,12 +19,20 @@ import com.example.apptea.ui.personaTea.PersonaListadoInicioAdapter;
 import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 import com.example.apptea.ui.personaTea.PersonaTeaViewModel;
 import com.example.apptea.utilidades.AdministarSesion;
+import com.example.apptea.utilidades.UtilidadFecha;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import roomsqlite.dao.UsuarioDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.PersonaTea;
+import roomsqlite.entidades.Sesion;
 import roomsqlite.entidades.Usuario;
 
 public class ListadoInicioSesion extends AppCompatActivity {
@@ -32,6 +41,14 @@ public class ListadoInicioSesion extends AppCompatActivity {
     RecyclerView recyclerView;
     Button sesionAdmin;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Date ejem = UtilidadFecha.obtenerHoraActual(TimeZone.getDefault().getDisplayName());
+        Log.d("LEXAN", "HORA: "+ejem.toString());
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +92,19 @@ public class ListadoInicioSesion extends AppCompatActivity {
             @Override
             public void itemPersona(PersonaTea personaTea, View v) {
                 Intent intent = new Intent(ListadoInicioSesion.this, MainActivity.class);
-               administarSesion.setearTipoUsuario(1);
+                administarSesion.setearTipoUsuario(1);
                 administarSesion.guardarSesionTEA(personaTea);
+
+                //Datos de hora y fecha
+
+
+                SimpleDateFormat sdf = null;
+                //creacion de sesion
+                Sesion sesion = new Sesion();
+                sesion.setPersona_id(personaTea.getPersona_id());
+
+
+
                 intent.putExtra("bandera", false);
                 startActivity(intent);
                 finish();

@@ -1,5 +1,6 @@
 package com.example.apptea.ui.DetalleCategoriaJuego;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
@@ -45,6 +47,20 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
     public DetalleJuegoPaciente() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ocultarTeclado();
+    }
+
+    private void ocultarTeclado() {
+        View vieww = getActivity().getCurrentFocus();
+        if (vieww != null) {
+            InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            input.hideSoftInputFromWindow(vieww.getWindowToken(), 0);
+        }
     }
 
     @Override

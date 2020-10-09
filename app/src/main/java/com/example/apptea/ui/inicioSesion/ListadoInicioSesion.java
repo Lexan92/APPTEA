@@ -1,6 +1,7 @@
 package com.example.apptea.ui.inicioSesion;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -29,6 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import roomsqlite.dao.SesionDao;
 import roomsqlite.dao.UsuarioDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.PersonaTea;
@@ -45,9 +47,26 @@ public class ListadoInicioSesion extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Date ejem = UtilidadFecha.obtenerHoraActual(TimeZone.getDefault().getDisplayName());
-        Log.d("LEXAN", "HORA: "+ejem.toString());
+        Date date = UtilidadFecha.obtenerFechaHoraActual();
 
+        Log.d("LEXAN", "HORA: "+date.toString());
+
+        Log.d("LEXAN", "HORA con formato: "+UtilidadFecha.obtenerHora(date));
+        Log.d("LEXAN", "Fecha con formato: "+UtilidadFecha.obtenerFecha(date));
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
     }
 
     @Override
@@ -95,15 +114,16 @@ public class ListadoInicioSesion extends AppCompatActivity {
                 administarSesion.setearTipoUsuario(1);
                 administarSesion.guardarSesionTEA(personaTea);
 
-                //Datos de hora y fecha
 
-
-                SimpleDateFormat sdf = null;
                 //creacion de sesion
                 Sesion sesion = new Sesion();
                 sesion.setPersona_id(personaTea.getPersona_id());
+                sesion.setFecha_sesion(UtilidadFecha.obtenerFechaHoraActual());
+                SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
+                sesionDao.insertarSesion(sesion);
 
-
+                Sesion sesion1 = sesionDao.obtenerUltimaSesion();
+                administarSesion.guardarIDSesion(sesion1.getSesion_id());
 
                 intent.putExtra("bandera", false);
                 startActivity(intent);

@@ -19,16 +19,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente;
 import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
+import com.example.apptea.utilidades.AdministarSesion;
+import com.example.apptea.utilidades.UtilidadFecha;
 
 import java.util.List;
 
+import roomsqlite.dao.DetalleSesionDao;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaJuego;
+import roomsqlite.entidades.DetalleSesion;
 
-/**
- * A simple {@link Fragment} subclass.
- * <p>
- * create an instance of this fragment.
- */
+
 public class CategoriaJuegoFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +37,22 @@ public class CategoriaJuegoFragment extends Fragment {
     private CategoriaViewModel categoriaViewModel;
     boolean bandera = false;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        AdministarSesion administarSesion = new AdministarSesion(getContext());
+        //registro de sesion
+        if(administarSesion.obtenerIDSesion()>0){
+            DetalleSesion detalleSesion = new DetalleSesion();
+            detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
+            detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
+            detalleSesion.setNombre_opcion("OPCION MENU: Juegos Interactivos");
+
+            DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
+
+            detalleSesionDao.insertarDetalleSesion(detalleSesion);
+        }
+    }
 
     public CategoriaJuegoFragment() {
         // Required empty public constructor
@@ -84,6 +101,15 @@ public class CategoriaJuegoFragment extends Fragment {
 
                 //direcciona a fragmente proveniente del menu principal
                 if (bandera) {
+                    AdministarSesion administarSesion = new AdministarSesion(getContext());
+                    if (administarSesion.obtenerIDSesion() > 0) {
+                        DetalleSesion detalleSesion = new DetalleSesion();
+                        detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
+                        detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
+                        detalleSesion.setNombre_opcion("CATEGORIA JUEGO: "+ categoriaJuego.getCategoriaJuegoNombre());
+                        DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
+                        detalleSesionDao.insertarDetalleSesion(detalleSesion);
+                    }
                     //Instancia de fragment al cual se dirigira
                     DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
                     detalle_juego.setArguments(bundleEnvio);

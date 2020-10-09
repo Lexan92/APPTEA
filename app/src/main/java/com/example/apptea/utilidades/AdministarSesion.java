@@ -82,7 +82,17 @@ public class AdministarSesion {
 
     }
 
+
     public void cerrarSesionPersonaTea(){
         editor.putInt(persona_Tea,-1).commit();
+    }
+
+    public void guardarIDSesion(int id){
+        editor.putInt("idSesion",id);
+        editor.commit();
+    }
+
+    public int obtenerIDSesion(){
+        return sharedPreferences.getInt("idSesion",-1);
     }
 }

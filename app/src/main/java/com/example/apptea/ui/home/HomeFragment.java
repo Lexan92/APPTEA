@@ -19,8 +19,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
-import com.example.apptea.InterfaceDrawer;
-import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.card.MaterialCardView;
@@ -36,14 +34,12 @@ public class HomeFragment extends Fragment {
     boolean bandera = true;
 
 
-
     @Override
     public void onStart() {
         super.onStart();
         ocultarTeclado();
 
     }
-
 
 
     private void ocultarTeclado() {
@@ -68,6 +64,7 @@ public class HomeFragment extends Fragment {
         vocabulario = vista.findViewById(R.id.card_vocabulario);
         habilidades = vista.findViewById(R.id.card_habilidades);
         juegos = vista.findViewById(R.id.card_juegos);
+        AdministarSesion administarSesion = new AdministarSesion(getContext());
 
 
         biometricManager = BiometricManager.from(requireContext());
@@ -84,6 +81,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
+
 
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("bandera", bandera);

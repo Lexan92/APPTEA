@@ -26,12 +26,17 @@ import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
+import com.example.apptea.utilidades.AdministarSesion;
+import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.dao.DetalleSesionDao;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaJuego;
+import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.Juego;
 
 public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPaciente.OnJuegoListener {
@@ -161,6 +166,20 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
             int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
             if (numero > 0) {
                 if (bundle.getBoolean("bandera")) {
+
+                    AdministarSesion administarSesion = new AdministarSesion(getContext());
+                    if (administarSesion.obtenerIDSesion() > 0) {
+                        DetalleSesion detalleSesion = new DetalleSesion();
+                        detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
+                        detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
+                        detalleSesion.setNombre_opcion("JUEGO: ".concat(juego.getJuego_nombre()));
+
+                        DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
+
+                        detalleSesionDao.insertarDetalleSesion(detalleSesion);
+                    }
+
+
                     Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
                     intent.putExtra("juego", juego);
                     startActivity(intent);

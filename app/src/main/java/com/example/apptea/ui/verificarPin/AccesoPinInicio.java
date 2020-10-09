@@ -1,11 +1,13 @@
 package com.example.apptea.ui.verificarPin;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -46,6 +48,19 @@ public class AccesoPinInicio extends Fragment {
     public LottieAnimationView sobre;
     FrameLayout contenedor;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        ocultarTeclado();
+    }
+
+    private void ocultarTeclado() {
+        View vieww = getActivity().getCurrentFocus();
+        if (vieww != null) {
+            InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            input.hideSoftInputFromWindow(vieww.getWindowToken(), 0);
+        }
+    }
 
     public AccesoPinInicio() {
         //constructor
@@ -168,4 +183,15 @@ public class AccesoPinInicio extends Fragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
+    }
 }

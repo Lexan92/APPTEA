@@ -37,12 +37,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriapictograma.CategoriaPictogramaViewModel;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
+import com.example.apptea.utilidades.UtilidadFecha;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.dao.DetalleSesionDao;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaPictograma;
+import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.Pictograma;
 
 
@@ -69,6 +74,18 @@ public class frasesFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        AdministarSesion administarSesion = new AdministarSesion(getContext());
+        //registro de sesion
+        if(administarSesion.obtenerIDSesion()>0){
+            DetalleSesion detalleSesion = new DetalleSesion();
+            detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
+            detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
+            detalleSesion.setNombre_opcion("OPCION MENU: Frases");
+
+            DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
+
+            detalleSesionDao.insertarDetalleSesion(detalleSesion);
+        }
 
     }
 
@@ -188,5 +205,15 @@ public class frasesFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
+    }
 }

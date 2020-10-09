@@ -26,17 +26,15 @@ public class Sesion {
     @NonNull
     private Date fecha_sesion;
 
-    private Date hora_sesion;
-
     public Sesion() {
     }
 
     @Ignore
-    public Sesion(int sesion_id, int persona_id, @NonNull Date fecha_sesion, Date hora_sesion) {
+    public Sesion(int sesion_id, int persona_id, @NonNull Date fecha_sesion) {
         this.sesion_id = sesion_id;
         this.persona_id = persona_id;
         this.fecha_sesion = fecha_sesion;
-        this.hora_sesion = hora_sesion;
+
     }
 
 
@@ -67,11 +65,5 @@ public class Sesion {
         this.fecha_sesion = fecha_sesion;
     }
 
-    public Date getHora_sesion() {
-        return hora_sesion;
-    }
 
-    public void setHora_sesion(Date hora_sesion) {
-        this.hora_sesion = hora_sesion;
-    }
 }

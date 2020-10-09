@@ -17,33 +17,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
+import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.dao.DetalleSesionDao;
 import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Secuencia;
-import roomsqlite.repositorios.HabilidadCotidianaRepository;
 
 
 
@@ -52,15 +52,12 @@ import roomsqlite.repositorios.HabilidadCotidianaRepository;
  */
 public class HabilidadCotidianaFragment extends Fragment implements HabilidadCotidianaAdapter.OnHabilidadListener{
 
-    private HabilidadCotidianaRepository habilidadCotidianaRepository;
-    private LiveData<List<HabilidadCotidiana>> HabCotidianaAll;
+
     RecyclerView recyclerView;
-    View cajita;
     private HabilidadCotidianaAdapter adapter= null;
     private HabilidadCotidianaViewModel habilidadCotidianaViewModel;
     private CategoriaHabCotidiana categoriaHabCotidiana = null;
     public static final int NEW_HAB_REQUEST_CODE = 1;
-    public static final int HAB_UPDATE_REQUEST_CODE = 2;
     SecuenciaViewModel secuenciaViewModel;
     private List<Secuencia> secuenciaList= new ArrayList<>();
     private List<Pictograma> pictoFraseList= new ArrayList<>();
@@ -108,6 +105,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
         habilidadCotidianaViewModel = new ViewModelProvider(getActivity()).get(HabilidadCotidianaViewModel.class);
         secuenciaViewModel =  new ViewModelProvider(getActivity()).get(SecuenciaViewModel.class);
+
 
         Bundle objetoHabilidad = getArguments();
 
@@ -167,6 +165,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     @Override
     public void onHabilidadClick(HabilidadCotidiana habilidadCotidiana) {
         int idHab = habilidadCotidiana.getHabilidad_cotidiana_id();
+
        
         pictoFraseList.clear();
         //Se valida que la lista de pictogramas este vacia (si lo esta se llena) sino se imprime la misma

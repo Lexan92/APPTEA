@@ -18,11 +18,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -30,20 +28,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
-
-
-import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
-import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
+import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.dao.DetalleSesionDao;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaPictograma;
-import roomsqlite.entidades.Pictograma;
-import roomsqlite.repositorios.CategoriaPictogramaRepository;
+import roomsqlite.entidades.DetalleSesion;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -55,16 +51,14 @@ public class CategoriaPictogramaFragment extends Fragment {
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     public static final int CAT_UPDATE_REQUEST_CODE = 2;
-    private CategoriaPictogramaRepository categoriaPictogramaRepository;
-    private LiveData<List<CategoriaPictograma>> categoriaPictogramaAll;
     private CategoriaPictogramaViewModel categoriaPictogramaViewModel;
     private CategoriaPictogramaAdapter adapter;
-    CategoriaPictograma categoriaPictograma;
-    TTSManager ttsManager =null;
+    TTSManager ttsManager = null;
     boolean bandera = false;
     private SearchView searchView;
     private SearchView.OnQueryTextListener queryTextListener;
     RecyclerView recyclerView;
+
 
     public CategoriaPictogramaFragment() {
         //constructor vacio
@@ -79,7 +73,6 @@ public class CategoriaPictogramaFragment extends Fragment {
         //App bar de busqueda
 
 
-
     }
 
 
@@ -90,11 +83,23 @@ public class CategoriaPictogramaFragment extends Fragment {
         setHasOptionsMenu(true);
         ttsManager = new TTSManager();
         ttsManager.init(getActivity());
-        recyclerView =  view.findViewById(R.id.lista_categoria_pictograma);
+        recyclerView = view.findViewById(R.id.lista_categoria_pictograma);
+        AdministarSesion administarSesion = new AdministarSesion(getContext());
         adapter = new CategoriaPictogramaAdapter(getActivity());
 
+        if (administarSesion.obtenerIDSesion() > 0) {
+            DetalleSesion detalleSesion = new DetalleSesion();
+            detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
+            detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
+            detalleSesion.setNombre_opcion("OPCION MENU: Vocabulario");
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+            DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
+
+            detalleSesionDao.insertarDetalleSesion(detalleSesion);
+        }
+
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
 
 
@@ -127,23 +132,23 @@ public class CategoriaPictogramaFragment extends Fragment {
             public void deleteClickedCatPicto(CategoriaPictograma categoriaPictograma) {
                 int numPictoHab = categoriaPictogramaViewModel.numPictoHabilidad(categoriaPictograma.getCat_pictograma_id());
                 int numPictoJue = categoriaPictogramaViewModel.numPictoJuego(categoriaPictograma.getCat_pictograma_id());
-                if (numPictoHab>0){
+                if (numPictoHab > 0) {
                     //System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
-                    if(numPictoJue>0){
+                    if (numPictoJue > 0) {
                         MensajeAlerta("Esta categoria no se puede eliminar,  existen: \n \n" +
-                                numPictoHab + " pictogramas usados en habilidades cotidianas \n"+
+                                numPictoHab + " pictogramas usados en habilidades cotidianas \n" +
                                 numPictoJue + " pictogramas usados en juegos interactivos");
-                    }else{
+                    } else {
                         MensajeAlerta("E\"Esta categoria no se puede eliminar, existen: \n \n" +
-                                numPictoHab+ " pictogramas usados en habilidades cotidianas ");
+                                numPictoHab + " pictogramas usados en habilidades cotidianas ");
                     }
 
-                }else{
-                    if(numPictoJue>0){
+                } else {
+                    if (numPictoJue > 0) {
                         MensajeAlerta("Esta categoria no se puede eliminar,  existen: \n \n" +
                                 numPictoJue + " pictogramas usados en juegos interactivos");
-                    }else{
-                        MensajeDelete( categoriaPictograma,"¿Esta seguro? \n Se eliminara la Categoria de pictogramas con todas sus imagenes");
+                    } else {
+                        MensajeDelete(categoriaPictograma, "¿Esta seguro? \n Se eliminara la Categoria de pictogramas con todas sus imagenes");
                     }
 
                 }
@@ -165,60 +170,51 @@ public class CategoriaPictogramaFragment extends Fragment {
                 Detalle_Pictograma detalle_pictograma = new Detalle_Pictograma(); //Instancia de fragment al cual se dirigira
                 Bundle bundleEnvio = new Bundle(); //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
                 bundleEnvio.putBoolean("bandera", bandera);
-                bundleEnvio.putSerializable("elementos",categoriaPictograma);
+                bundleEnvio.putSerializable("elementos", categoriaPictograma);
                 detalle_pictograma.setArguments(bundleEnvio);
-                if(bandera==true){
-                    System.out.println("en el fragment"+ categoriaPictograma.getCat_pictograma_nombre());
+                if (bandera == true) {
+                    System.out.println("en el fragment" + categoriaPictograma.getCat_pictograma_nombre());
                     ttsManager.initQueue(categoriaPictograma.getCat_pictograma_nombre());
                 }
-                Navigation.findNavController(v).navigate(R.id.detalle_Pictograma,bundleEnvio); //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
+
+                if (administarSesion.obtenerIDSesion() > 0) {
+                    DetalleSesion detalleSesion = new DetalleSesion();
+                    detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
+                    detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
+                    detalleSesion.setNombre_opcion("CATEGORIA: " + categoriaPictograma.getCat_pictograma_nombre());
+                    DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
+                    detalleSesionDao.insertarDetalleSesion(detalleSesion);
+                }
+
+                Navigation.findNavController(v).navigate(R.id.detalle_Pictograma, bundleEnvio); //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
             }
         });
 
 
-      /*  adapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Instancia de fragment al cual se dirigira
-                Detalle_Pictograma detalle_pictograma =new Detalle_Pictograma();
-                //objeto Bundle que encapsula el objeto de tipo CategoriaPictograma
-                Bundle  bundleEnvio = new Bundle();
-                bundleEnvio.putSerializable("elementos",categoriaPictogramaViewModel.getAllCategoriaPictograma().getValue().get(recyclerView.getChildAdapterPosition(v)));
-                detalle_pictograma.setArguments(bundleEnvio);
-
-                //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                Navigation.findNavController(v).navigate(R.id.detalle_Pictograma,bundleEnvio);
-
-            }
-        });*/
-
         //Comprobacion para pintar el nombre del toolbar proveniente del menu principal y quitar el FAB
-        if (objetoBundle!=null){
-            bandera =  objetoBundle.getBoolean("bandera");
+        if (objetoBundle != null) {
+            bandera = objetoBundle.getBoolean("bandera");
 
-            if (bandera == true){
+            if (bandera == true) {
                 Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
                 //toolbar se setea con VOCABULARIO
                 toolbar.setTitle("Vocabulario");
                 // el FAB se hace invisible
                 fab1.setVisibility(View.INVISIBLE);
-                adapter.isVocabulary=true;
+                adapter.isVocabulary = true;
             }
         }
-
-
 
 
     }
 
     /////////
     @Override
-    public void onCreateOptionsMenu (Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         inflater.inflate(R.menu.main2, menu);
-        MenuItem searchItem= menu.findItem(R.id.app_bar_search);
+        MenuItem searchItem = menu.findItem(R.id.app_bar_search);
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
 
         if (searchItem != null) {
@@ -240,6 +236,7 @@ public class CategoriaPictogramaFragment extends Fragment {
 
 
                 }
+
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     // Log.i("onQueryTextSubmit", query);
@@ -279,7 +276,7 @@ public class CategoriaPictogramaFragment extends Fragment {
         } else if (requestCode == CAT_UPDATE_REQUEST_CODE && resultCode == RESULT_OK) {
             CategoriaPictograma categoria = (CategoriaPictograma) data.getSerializableExtra(EditCategoriaPictograma.EXTRA_CAT_HAB_UPDATE);
             categoriaPictogramaViewModel.update(categoria);
-        }else {
+        } else {
             Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
                     Toast.LENGTH_LONG).show();
         }
@@ -287,7 +284,7 @@ public class CategoriaPictogramaFragment extends Fragment {
 
 
     //ALERTA DELETE
-    public void MensajeDelete(CategoriaPictograma categoriaPictograma, String mensaje){
+    public void MensajeDelete(CategoriaPictograma categoriaPictograma, String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Alerta");
         builder.setMessage(mensaje);
@@ -311,13 +308,14 @@ public class CategoriaPictogramaFragment extends Fragment {
         AlertDialog deleteDialog = builder.create();
         deleteDialog.show();
     }
+
     //ALERTA
-    public void MensajeAlerta(String mensaje){
+    public void MensajeAlerta(String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Alerta");
         builder.setMessage(mensaje);
         builder.setIcon(android.R.drawable.ic_delete);
-        builder.setPositiveButton("Cerrar",null);
+        builder.setPositiveButton("Cerrar", null);
         builder.show();
     }
 
@@ -331,15 +329,7 @@ public class CategoriaPictogramaFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-       /* if(adapter!=null && recyclerView!=null){
-            recyclerView.setAdapter(null);
-            adapter.setOnClickListener(null);
-            adapter = null;
-            Log.d("lifecycle","OnPause Categoria");
-        }
-        categoriaPictogramaViewModel=null;
-        categoriaPictogramaAll=null;
-        categoriaPictogramaRepository=null;*/
+
         Runtime.getRuntime().gc();
     }
 
@@ -347,15 +337,6 @@ public class CategoriaPictogramaFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
-       /* if(adapter!=null && recyclerView!=null){
-            recyclerView.setAdapter(null);
-            adapter.setOnClickListener(null);
-            Log.d("lifecycle","onStop Categoria");
-            adapter=null;
-        }
-        categoriaPictogramaViewModel=null;
-        categoriaPictogramaAll=null;
-        categoriaPictogramaRepository=null;*/
         Runtime.getRuntime().gc();
     }
 }

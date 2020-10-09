@@ -21,4 +21,7 @@ public interface SesionDao {
 
     @Query("SELECT * FROM "+Sesion.NOMBRE_TABLA+" WHERE persona_id=:id")
     LiveData<List<Sesion>> obtenerPersonaTeaPorId(int id);
+
+    @Query("SELECT * FROM "+ Sesion.NOMBRE_TABLA+" ORDER BY sesion_id DESC LIMIT 1")
+    Sesion obtenerUltimaSesion();
 }

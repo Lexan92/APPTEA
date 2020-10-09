@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaAdapter;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
@@ -34,6 +35,7 @@ import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.dao.SecuenciaDao;
 import roomsqlite.database.ImageConverter;
 import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Secuencia;
@@ -42,7 +44,7 @@ import roomsqlite.repositorios.SecuenciaRepository;
 
 import static androidx.camera.core.CameraX.getContext;
 
-public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCotidianaAdapter.HabilidadCotidianaHolder>{
+public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCotidianaAdapter.HabilidadCotidianaHolder> implements View.OnClickListener{
 
     private  View.OnClickListener listener;
     private OnHabilidadListener mOnHabilidadListener;
@@ -56,7 +58,21 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
     private SecuenciaRepository secuenciaRepository;
     SecuenciaViewModel secuenciaViewModel;
     private PictogramaViewModel pictogramaViewModel;
+    private HabilidadCotidianaAdapter.ButtonClicked buttonClicked;
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    public interface ButtonClicked{
+        void deleteClickedHab(HabilidadCotidiana habilidadCotidiana);
+        void updateClickedHab(HabilidadCotidiana habilidadCotidiana);
+    }
+
+    public void setButtonClicked(HabilidadCotidianaAdapter.ButtonClicked buttonClicked) {
+        this.buttonClicked = buttonClicked;
+    }
 
     class HabilidadCotidianaHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView habilidadItemView;
@@ -64,8 +80,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         public Button editar;
         public ImageView imagen;
         OnHabilidadListener onHabilidadListener;
-
-
 
         public HabilidadCotidianaHolder( View itemView,OnHabilidadListener onHabilidadListener) {
             super(itemView);
@@ -82,15 +96,14 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             eliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(),"Opción eliminar en desarrollo",Toast.LENGTH_LONG).show();
+                    buttonClicked.deleteClickedHab(habilidadCotidianaList.get(getAdapterPosition()));
                 }
             });
 
             editar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    Toast.makeText(v.getContext(),"Opción editar en desarrollo",Toast.LENGTH_LONG).show();
+                    buttonClicked.updateClickedHab(habilidadCotidianaList.get(getAdapterPosition()));
                 }
             });
 

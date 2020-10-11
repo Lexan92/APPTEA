@@ -10,12 +10,15 @@
 
 package com.example.apptea.ui.habilidadCotidiana;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
+import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -128,6 +133,42 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
                 }
             });
         }
+
+        // METODOS PARA ACTUALIZAR Y ELIMINAR
+        adapter.setButtonClicked(new HabilidadCotidianaAdapter.ButtonClicked() {
+
+            @Override
+            public void deleteClickedHab(HabilidadCotidiana habilidadCotidiana) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Alerta");
+                builder.setMessage("¿Esta seguro de eliminar a la Habilidad Cotidiana de :\n" + habilidadCotidiana.getHabilidad_cotidiana_nombre()+ "?");
+                builder.setIcon(android.R.drawable.ic_delete);
+                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        habilidadCotidianaViewModel.delete(habilidadCotidiana);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog deleteDialog = builder.create();
+                deleteDialog.show();
+
+            }
+
+            @Override
+            public void updateClickedHab(HabilidadCotidiana habilidadCotidiana) {
+                Toast.makeText(getContext(),"Opción EDIT en desarrollo",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
 
         //Setteando Toolbar para categorias

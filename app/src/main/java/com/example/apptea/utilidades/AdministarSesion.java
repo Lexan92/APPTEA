@@ -58,7 +58,6 @@ public class AdministarSesion {
         editor.commit();
     }
 
-
     public List<Integer> obtenerSesionPersonaTea(){
         //return user id whose session is saved
         int id = sharedPreferences.getInt(persona_Tea,0);
@@ -74,14 +73,9 @@ public class AdministarSesion {
         return Arrays.asList(id,rol);
     }
 
-
     public void cerrarSesionUsuario(){
-
         editor.putInt(user,-1).commit();
-        Log.d("LEXAN", "HOLA DESDE admon sesion, ID USER: ".concat(Integer.toString(sharedPreferences.getInt(user,0))));
-
     }
-
 
     public void cerrarSesionPersonaTea(){
         editor.putInt(persona_Tea,-1).commit();

@@ -15,14 +15,35 @@ import com.example.apptea.R;
 import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.utilidades.AdministarSesion;
 
+import roomsqlite.dao.SesionDao;
+import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.Sesion;
+
 public class CerrarSesionUsuario extends AppCompatActivity {
 
 
     @Override
     protected void onStart() {
         super.onStart();
-
         ocultarTeclado();
+        verificarSesion();
+    }
+
+    private void verificarSesion() {
+        AdministarSesion administarSesion = new AdministarSesion(this);
+        int ban = administarSesion.obtenerTipoUsuario();
+        if (ban == 0) {
+            administarSesion.setearTipoUsuario(-1);
+            administarSesion.cerrarSesionUsuario();
+            Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
+            startActivity(intent);
+            finish();}
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
     }
 
     private void ocultarTeclado() {
@@ -48,6 +69,7 @@ public class CerrarSesionUsuario extends AppCompatActivity {
 
 
 
+        //cancelar guardado de la sesion, direcciona al menu principal
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +81,30 @@ public class CerrarSesionUsuario extends AppCompatActivity {
         });
 
 
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Sesion sesion = new Sesion();
+                int id = administarSesion.obtenerIDSesion();
+                SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
+                sesion = sesionDao.obtenerSesionPorId(id);
+                sesion.setComentario(comentario.getText().toString());
+                sesionDao.actualizarSesion(sesion);
+                administarSesion.setearTipoUsuario(-1);
+                administarSesion.guardarIDSesion(-1);
+                administarSesion.cerrarSesionPersonaTea();
+                Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
     }
+
+
 
 
 }

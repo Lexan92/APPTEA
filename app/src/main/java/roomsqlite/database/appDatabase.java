@@ -19,6 +19,7 @@ import roomsqlite.dao.DetalleSesionDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.JuegoDAO;
 import roomsqlite.dao.OpcionDAO;
+import roomsqlite.dao.ResultadoDao;
 import roomsqlite.dao.RolDao;
 import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.PictogramaDAO;
@@ -34,6 +35,7 @@ import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Juego;
 import roomsqlite.entidades.Opcion;
+import roomsqlite.entidades.Resultado;
 import roomsqlite.entidades.Rol;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
@@ -45,7 +47,7 @@ import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
         Rol.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class,
-        Terapeuta.class, Sesion.class, DetalleSesion.class}, version = 1, exportSchema = false)
+        Terapeuta.class, Sesion.class, DetalleSesion.class, Resultado.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
@@ -84,6 +86,8 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract SesionDao sesionDao();
 
     public abstract DetalleSesionDao detalleSesionDao();
+
+    public  abstract ResultadoDao resultadoDao();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     public static appDatabase getDatabase(final Context context) {
@@ -126,6 +130,7 @@ public abstract class appDatabase extends RoomDatabase {
                     TerapeutaDao terapeutaDao=INSTANCE.terapeutaDao();
                     SesionDao sesionDao = INSTANCE.sesionDao();
                     DetalleSesionDao detalleSesionDao = INSTANCE.detalleSesionDao();
+                    ResultadoDao resultadoDao = INSTANCE.resultadoDao();
 
                     //DELETE
                     roldao.deleteRolAll();

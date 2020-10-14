@@ -22,6 +22,9 @@
         <action
             android:id="@+id/menu_a_accesoPin"
             app:destination="@id/accesoPin" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_menu_preguntas_frecuentes"
+            app:destination="@id/nav_menu_preguntas_frecuentes" />
 
     </fragment>
 
@@ -202,6 +205,14 @@
         android:name="com.example.apptea.ui.cerrarSesion.CerrarSesionUsuario"
         android:label="activity_cerrar_sesion_usuario"
         tools:layout="@layout/activity_cerrar_sesion_usuario" />
+
+    <fragment
+        android:id="@+id/nav_menu_preguntas_frecuentes"
+        android:name="com.example.apptea.ui.preguntasFrecuentes.FaqFragment"
+        android:label="@string/menu_preguntas_frecuentes"
+        tools:layout="@layout/fragment_faq" >
+
+    </fragment>
 
 
 </navigation>

@@ -25,19 +25,12 @@ public class CategoriaHabCotidiana implements Serializable{
     private boolean cat_predeterminado;
 
 
-
-
     @Ignore
     public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, boolean cat_predeterminado) {
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
         this.cat_predeterminado = cat_predeterminado;
     }
-
-
-
-   // private String path;//No va aca se mostrara imagen en la clase habilidad cotidiana
-
 
     public boolean isCat_predeterminado() {
         return cat_predeterminado;
@@ -71,10 +64,4 @@ public class CategoriaHabCotidiana implements Serializable{
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
     }
 
-   /* public String getPath() { //Descomentar si al final se utilizara
-        return path;
-    }
-    public void setPath(String path) {
-        this.path = path;
-    }*/
 }

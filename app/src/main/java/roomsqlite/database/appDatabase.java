@@ -3,6 +3,7 @@ package roomsqlite.database;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -16,9 +17,11 @@ import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
 import roomsqlite.dao.CategoriaPictogramaDAO;
 import roomsqlite.dao.DetalleSesionDao;
+import roomsqlite.dao.FaqDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
 import roomsqlite.dao.JuegoDAO;
 import roomsqlite.dao.OpcionDAO;
+import roomsqlite.dao.RespuestaFaqDao;
 import roomsqlite.dao.RolDao;
 import roomsqlite.dao.PersonaTeaDao;
 import roomsqlite.dao.PictogramaDAO;
@@ -31,9 +34,11 @@ import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.DetalleSesion;
+import roomsqlite.entidades.Faq;
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Juego;
 import roomsqlite.entidades.Opcion;
+import roomsqlite.entidades.RespuestaFaq;
 import roomsqlite.entidades.Rol;
 import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Pictograma;
@@ -45,7 +50,7 @@ import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
         Rol.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class,
-        Terapeuta.class, Sesion.class, DetalleSesion.class}, version = 1, exportSchema = false)
+        Terapeuta.class, Sesion.class, DetalleSesion.class, Faq.class, RespuestaFaq.class}, version = 1, exportSchema = false)
 public abstract class appDatabase extends RoomDatabase {
 
     private static volatile appDatabase INSTANCE;
@@ -84,6 +89,10 @@ public abstract class appDatabase extends RoomDatabase {
     public abstract SesionDao sesionDao();
 
     public abstract DetalleSesionDao detalleSesionDao();
+
+    public abstract FaqDao faqDao();
+
+    public abstract RespuestaFaqDao respuestaFaqDao();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     public static appDatabase getDatabase(final Context context) {
@@ -126,6 +135,8 @@ public abstract class appDatabase extends RoomDatabase {
                     TerapeutaDao terapeutaDao=INSTANCE.terapeutaDao();
                     SesionDao sesionDao = INSTANCE.sesionDao();
                     DetalleSesionDao detalleSesionDao = INSTANCE.detalleSesionDao();
+                    FaqDao faqDao = INSTANCE.faqDao();
+                    RespuestaFaqDao respuestaFaqDao = INSTANCE.respuestaFaqDao();
 
                     //DELETE
                     roldao.deleteRolAll();
@@ -154,6 +165,9 @@ public abstract class appDatabase extends RoomDatabase {
 
                     //LISTADO DE PREGUNTAS
                     preguntaDao.insertAllPreguntas(DataTea.preguntas());
+
+                    //listado de preguntas
+                    faqDao.insertAllFaq(DataTea.faqs());
 
 
                     System.out.println("categorias pictogramas");

@@ -26,14 +26,17 @@ public class Sesion {
     @NonNull
     private Date fecha_sesion;
 
+    private String comentario;
+
     public Sesion() {
     }
 
     @Ignore
-    public Sesion(int sesion_id, int persona_id, @NonNull Date fecha_sesion) {
+    public Sesion(int sesion_id, int persona_id, @NonNull Date fecha_sesion, String comentario) {
         this.sesion_id = sesion_id;
         this.persona_id = persona_id;
         this.fecha_sesion = fecha_sesion;
+        this.comentario = comentario;
 
     }
 
@@ -65,5 +68,11 @@ public class Sesion {
         this.fecha_sesion = fecha_sesion;
     }
 
+    public String getComentario() {
+        return comentario;
+    }
 
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 }

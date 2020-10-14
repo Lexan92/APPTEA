@@ -25,13 +25,9 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onStart() {
         super.onStart();
-        verificarSesion();
-    }
-
-    private void verificarSesion() {
-        AdministarSesion administarSesion = new AdministarSesion(MainActivity.this);
 
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

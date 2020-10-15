@@ -8,23 +8,32 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-@Entity (tableName = "resultado", foreignKeys = @ForeignKey(entity = Pregunta.class, parentColumns = "pregunta_id", childColumns = "pregunta_id"))
+@Entity (tableName = "resultado", foreignKeys = {@ForeignKey(entity = Pregunta.class, parentColumns = "pregunta_id", childColumns = "pregunta_id"),
+            @ForeignKey(entity = Sesion.class, parentColumns = "sesion_id", childColumns = "sesion_id")})
 public class Resultado implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int resulado_id;
     @ColumnInfo(index = true)
     @NonNull
     private int pregunta_id;
+    @ColumnInfo(index = true)
+    @NonNull
+    private int sesion_id;
     @NonNull
     private int contador_fallo;
 
     public Resultado(){}
+
     @Ignore
-    public Resultado(int resulado_id, int pregunta_id, int contador_fallo) {
+    public Resultado(int resulado_id, int pregunta_id, int sesion_id, int contador_fallo) {
         this.resulado_id = resulado_id;
         this.pregunta_id = pregunta_id;
+        this.sesion_id = sesion_id;
         this.contador_fallo = contador_fallo;
     }
+
+
+
 
     public int getResulado_id() {
         return resulado_id;
@@ -48,5 +57,13 @@ public class Resultado implements Serializable {
 
     public void setContador_fallo(int contador_fallo) {
         this.contador_fallo = contador_fallo;
+    }
+
+    public int getSesion_id() {
+        return sesion_id;
+    }
+
+    public void setSesion_id(int sesion_id) {
+        this.sesion_id = sesion_id;
     }
 }

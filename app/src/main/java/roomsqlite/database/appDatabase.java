@@ -186,6 +186,9 @@ public abstract class appDatabase extends RoomDatabase {
                     //listado de preguntas
                     faqDao.insertAllFaq(DataTea.faqs());
 
+                    //Listado de respuestas de Faq
+                    respuestaFaqDao.insertAllRespuestaFaq(DataTea.respuestasFaq());
+
 
                     System.out.println("categorias pictogramas");
                     categoriaPictogramaDAO.insertAllCategoriaPictograma(DataTea.categoriaPictogramas());

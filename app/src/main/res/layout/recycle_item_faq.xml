@@ -3,8 +3,7 @@
   ~ /*
   ~ Oscar Turish
   ~ 24/05/2020
-  ~ Item para categorias de habilidades cotidianas
-  ~ */
+  ~ Item para faqs
   ~
   ~
   -->
@@ -14,7 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardCatHabCotidiana"
+        android:id="@+id/card_faq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

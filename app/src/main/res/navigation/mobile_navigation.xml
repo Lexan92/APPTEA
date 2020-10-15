@@ -213,6 +213,11 @@
         tools:layout="@layout/fragment_faq" >
 
     </fragment>
+    <fragment
+        android:id="@+id/fragment_respuesta_faq"
+        android:name="com.example.apptea.ui.preguntasFrecuentes.RespuestaFaqFragment"
+        android:label="RespuestaFaqFragment"
+        tools:layout="@layout/fragment_respuesta_faq" />
 
 
 </navigation>

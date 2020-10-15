@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~ Oscar Turish
+  ~ 24/05/2020
+  ~ Item para respuestas de faq
+  ~ */
+  ~
+  ~
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_respuesta_faq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="10dp"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="1dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFondo"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txt_respuesta_faq"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/capriola"
+                android:textColor="@color/mi_perfil_titulo"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

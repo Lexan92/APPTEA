@@ -30,10 +30,10 @@ public class RespuestaFaq implements Serializable {
     @NonNull
     private int orden;
 
+    @Ignore
     public RespuestaFaq() {
     }
 
-    @Ignore
     public RespuestaFaq(int respuesta_faq_id, int faq_id, @NonNull String respuesta, int orden) {
         this.respuesta_faq_id = respuesta_faq_id;
         this.faq_id = faq_id;

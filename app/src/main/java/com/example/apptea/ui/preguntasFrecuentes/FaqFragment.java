@@ -9,16 +9,14 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
-import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaViewModel;
 
 import java.util.List;
 
-import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.Faq;
 
 public class FaqFragment extends Fragment {
@@ -55,11 +53,28 @@ public class FaqFragment extends Fragment {
         faqAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Clic para pasos",Toast.LENGTH_LONG).show();
+                RespuestaFaqFragment respuestaFaqFragment = new RespuestaFaqFragment();
+                Bundle bundleEnvio = new Bundle();
+
+                bundleEnvio.putSerializable("elementos",faqViewModel.getFaqAll().getValue().get(recyclerView.getChildAdapterPosition(v)));
+                respuestaFaqFragment.setArguments(bundleEnvio);
+                Navigation.findNavController(v).navigate(R.id.fragment_respuesta_faq,bundleEnvio);
             }
         });
 
 
         return vista;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
     }
 }

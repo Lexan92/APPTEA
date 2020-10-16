@@ -63,6 +63,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     private HabilidadCotidianaViewModel habilidadCotidianaViewModel;
     private CategoriaHabCotidiana categoriaHabCotidiana = null;
     public static final int NEW_HAB_REQUEST_CODE = 1;
+    public static final int UPDATE_HAB_REQUEST_CODE = 2;
     SecuenciaViewModel secuenciaViewModel;
     private List<Secuencia> secuenciaList= new ArrayList<>();
     private List<Pictograma> pictoFraseList= new ArrayList<>();
@@ -164,7 +165,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
             @Override
             public void updateClickedHab(HabilidadCotidiana habilidadCotidiana) {
-                Toast.makeText(getContext(),"Opción EDIT en desarrollo",Toast.LENGTH_LONG).show();
+                onHabilidadClick(habilidadCotidiana);
             }
         });
 

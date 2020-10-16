@@ -140,14 +140,14 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
 
             PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
 
-        if(isHabilidad==true ||current.isPredeterminado()){
+        if(isHabilidad==true || current.isPredeterminado()){
            Glide.with(holder.itemView.getContext())
                     .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
                     .thumbnail(0.5f)
                     .into(holder.imagen);
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
-                holder.editar.setVisibility(View.INVISIBLE);
-                holder.eliminar.setVisibility(View.INVISIBLE);
+                holder.editar.setVisibility(View.GONE);
+                holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
         }else {
            Glide.with(holder.itemView.getContext())

@@ -49,10 +49,10 @@ public class ListadoInicioSesion extends AppCompatActivity {
 
         Date date = UtilidadFecha.obtenerFechaHoraActual();
 
-        Log.d("LEXAN", "HORA: "+date.toString());
+        Log.d("LEXAN", "HORA: " + date.toString());
 
-        Log.d("LEXAN", "HORA con formato: "+UtilidadFecha.obtenerHora(date));
-        Log.d("LEXAN", "Fecha con formato: "+UtilidadFecha.obtenerFecha(date));
+        Log.d("LEXAN", "HORA con formato: " + UtilidadFecha.obtenerHora(date));
+        Log.d("LEXAN", "Fecha con formato: " + UtilidadFecha.obtenerFecha(date));
 
 
     }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -95,12 +96,10 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                 administarSesion.cerrarSesionPersonaTea();
                 Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
                 startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Sesion Guardada",Toast.LENGTH_SHORT).show();
 
             }
         });
-
-
-
 
     }
 

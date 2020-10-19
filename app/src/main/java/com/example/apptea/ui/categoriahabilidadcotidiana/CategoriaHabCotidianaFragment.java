@@ -283,8 +283,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             CategoriaHabCotidiana categoriaHabCotidiana = (CategoriaHabCotidiana) data.getSerializableExtra(EditCategoriaHab.EXTRA_CAT_HAB_UPDATE);
             categoriaHabCotidianaViewModel.update(categoriaHabCotidiana);
         } else {
-            Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
-                    Toast.LENGTH_LONG).show();
+
         }
     }
 

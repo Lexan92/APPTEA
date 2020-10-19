@@ -11,6 +11,5 @@
     <color name = "incorrecto">#EF5350</color>
     <color name = "fondoHab">#CFCFCF</color>
     <color name="colorAzul">#1E508C</color>
-
-
+    <color name="gris">#707070</color>
 </resources>

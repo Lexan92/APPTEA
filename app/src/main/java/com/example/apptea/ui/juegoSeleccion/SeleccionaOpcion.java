@@ -40,7 +40,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     MaterialCardView opcion1, opcion2, opcion3, opcion4;
     LottieAnimationView globos;
     TextView tituloPregunta, tituloJuego, txt1, txt2, txt3, txt4;
-    boolean bandera1, bandera2, bandera3, bandera4;
+    boolean bandera1, bandera2, bandera3, bandera4, duracion=false;
     Button siguiente;
     ImageView imagen1, imagen2, imagen3, imagen4;
     LiveData<List<Pregunta>> listadoPreguntas;
@@ -55,6 +55,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     int posicion = 0;
     int contador = 0;
     int numeroCorrectas = 0;
+    int numeroFallos=0;
     private int milisegundos = 1000;
     
 
@@ -103,18 +104,33 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
         setearOpciones(posicion);
 
-        //LISTENERS DE CARDVIEWS
+        //ONCLICK DE OPCIONES POR PREGUNTA , LISTENER CARDVIEWS,
         opcion1.setOnClickListener(v -> {
             ttsManager.initQueue(txt1.getText().toString());
+            System.out.println("numeroCorrectas inicial " + numeroCorrectas);
+            //SI RESPUESTA ES CORRECTA
             if (bandera1) {
-                opcion1.setCardBackgroundColor(getResources().getColor(R.color.correcto));
-                txt1.setTextColor(getResources().getColor(R.color.colorSplash));
-                globos.setSpeed(2);
-                globos.playAnimation();
+                duracion=true;
+                while(duracion==true){
+                    opcion1.setCardBackgroundColor(getResources().getColor(R.color.correcto));
+                    txt1.setTextColor(getResources().getColor(R.color.colorSplash));
+                    globos.setSpeed(2);
+                    globos.playAnimation();
+                    opcion1.setClickable(false);
+                    opcion2.setClickable(false);
+                    opcion3.setClickable(false);
+                    opcion4.setClickable(false);
+                    duracion=false;
+                    opcion1.setClickable(true);
+                    opcion2.setClickable(true);
+                    opcion3.setClickable(true);
+                    opcion4.setClickable(true);
+                }
                 numeroCorrectas--;
                 if (numeroCorrectas <= 0)
+                    System.out.println("numeroCorrectas op1" + numeroCorrectas);
                     siguiente.setVisibility(View.VISIBLE);
-
+            //SI RESPUESTA ES INCORRECTA
             } else {
                 opcion1.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
                 txt1.setTextColor(getResources().getColor(R.color.colorSplash));
@@ -128,8 +144,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion2.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
+                System.out.println("numeroCorrectas antes 2" + numeroCorrectas);
                 numeroCorrectas--;
+                System.out.println("numeroCorrectas depues 2 del --" + numeroCorrectas);
                 if (numeroCorrectas <= 0)
+                    System.out.println("numeroCorrectas op2" + numeroCorrectas);
                     siguiente.setVisibility(View.VISIBLE);
 
             } else {
@@ -145,8 +164,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
+                System.out.println("numeroCorrectas antes 3" + numeroCorrectas);
                 numeroCorrectas--;
+                System.out.println("numeroCorrectas despues 3 del --" + numeroCorrectas);
                 if (numeroCorrectas <= 0)
+                    System.out.println("numeroCorrectas op3" + numeroCorrectas);
                     siguiente.setVisibility(View.VISIBLE);
             } else {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
@@ -161,8 +183,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
+                System.out.println("numeroCorrectas antes 4" + numeroCorrectas);
                 numeroCorrectas--;
+                System.out.println("numeroCorrectas despues 4 del --" + numeroCorrectas);
                 if (numeroCorrectas <= 0)
+                    System.out.println("numeroCorrectas op4" + numeroCorrectas);
                     siguiente.setVisibility(View.VISIBLE);
             } else {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
@@ -193,6 +218,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
 
     //funcion que setea cardviews con pictogramas, recibe la posicion en la lista de las preguntas
+    //SETEA CANTIDAD DE RESPUESTAS BUENAS POR PREGUNTA
     private void setearOpciones(int posicion) {
         //seteo del nombre de la pregunta
         listadoPreguntas.observe(SeleccionaOpcion.this, preguntas -> {
@@ -225,6 +251,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 opcion1.setVisibility(View.VISIBLE);
                                 if (opciones.get(0).isOpcion_respuesta())
                                     numeroCorrectas++;
+                                System.out.println("numeroCorrectas seteada op1" + numeroCorrectas);
                                 break;
                             case 1:
                                 imagen2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
@@ -233,6 +260,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 opcion2.setVisibility(View.VISIBLE);
                                 if (opciones.get(1).isOpcion_respuesta())
                                     numeroCorrectas++;
+                                System.out.println("numeroCorrectas seteada op2" + numeroCorrectas);
                                 break;
                             case 2:
                                 imagen3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
@@ -241,6 +269,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 opcion3.setVisibility(View.VISIBLE);
                                 if (opciones.get(2).isOpcion_respuesta())
                                     numeroCorrectas++;
+                                System.out.println("numeroCorrectas seteada op3 " + numeroCorrectas);
                                 break;
                             case 3:
                                 imagen4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
@@ -249,6 +278,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 opcion4.setVisibility(View.VISIBLE);
                                 if (opciones.get(3).isOpcion_respuesta())
                                     numeroCorrectas++;
+                                System.out.println("numeroCorrectas seteada op 4 " + numeroCorrectas);
                                 break;
                         }
                     });

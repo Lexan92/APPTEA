@@ -147,7 +147,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     HabilidadCotidiana habilidadCotidiana = new HabilidadCotidiana();
                     habilidadCotidiana.setCat_hab_cotidiana_id(idCategoriaHab);
                     habilidadCotidiana.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
-                    habilidadCotidiana.setHab_predeterminado(false);
+                    habilidadCotidiana.setPredeterminado(false);
                     if(TTSManagerSecuencia.pictogramaSeleccion == null){
                         TTSManagerSecuencia.pictogramaSeleccion = pictoSecuenciaList.get(0);
                         habilidadCotidiana.setPictograma_id(TTSManagerSecuencia.pictogramaSeleccion.getPictograma_id());

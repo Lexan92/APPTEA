@@ -26,11 +26,9 @@ public class HabilidadCotidiana implements Serializable {
     private int cat_hab_cotidiana_id;
     @NonNull
     private String habilidad_cotidiana_nombre;
-
+    @NonNull
     private boolean predeterminado;
 
-    @NonNull
-    private boolean hab_predeterminado;
     private int pictograma_id;
 
 
@@ -39,11 +37,11 @@ public class HabilidadCotidiana implements Serializable {
     }
 
     @Ignore
-    public HabilidadCotidiana(int habilidad_cotidiana_id, int cat_hab_cotidiana_id, @NonNull String habilidad_cotidiana_nombre, boolean hab_predeterminado, int pictograma_id) {
+    public HabilidadCotidiana(int habilidad_cotidiana_id, int cat_hab_cotidiana_id, @NonNull String habilidad_cotidiana_nombre, boolean predeterminado, int pictograma_id) {
         this.habilidad_cotidiana_id = habilidad_cotidiana_id;
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.habilidad_cotidiana_nombre = habilidad_cotidiana_nombre;
-        this.hab_predeterminado = hab_predeterminado;
+        this.predeterminado = predeterminado;
         this.pictograma_id = pictograma_id;
     }
 
@@ -70,14 +68,6 @@ public class HabilidadCotidiana implements Serializable {
 
     public void setHabilidad_cotidiana_nombre(@NonNull String habilidad_cotidiana_nombre) {
         this.habilidad_cotidiana_nombre = habilidad_cotidiana_nombre;
-    }
-
-    public boolean isHab_predeterminado() {
-        return hab_predeterminado;
-    }
-
-    public void setHab_predeterminado(boolean hab_predeterminado) {
-        this.hab_predeterminado = hab_predeterminado;
     }
 
     public int getPictograma_id() {

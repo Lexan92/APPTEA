@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
 
-
     }
-
-
 
 
     @Override
@@ -63,11 +60,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-
-
-
-
-
         //se definen opciones segun tipo de usuario
         if (getIntent().hasExtra("bandera")) {
             Menu menu = navigationView.getMenu();
@@ -82,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 menu.removeItem(R.id.nav_gestion_habilidad);
                 menu.removeItem(R.id.nav_gestion_juego);
                 menu.removeItem(R.id.nav_menu_persona_tea);
+                menu.removeItem(R.id.nav_menu_configuracion);
+                menu.removeItem(R.id.nav_menu_preguntas_frecuentes);
 
                 //llenado de imagen y titulo de usuario de sesion
                 View view = navigationView.getHeaderView(0);
@@ -90,17 +84,17 @@ public class MainActivity extends AppCompatActivity {
                 AdministarSesion administarSesion = new AdministarSesion(getApplicationContext());
                 int idPersona = administarSesion.obtenerIdPersonaTea();
                 PersonaTeaDao personaTeaDao = appDatabase.getDatabase(getApplicationContext()).personaTeaDao();
-                PersonaTea personaTea = new PersonaTea();
+                PersonaTea personaTea;
                 personaTea = personaTeaDao.obtenerPersonaPorId(idPersona);
 
-                if (personaTea.getPersona_foto() ==null){
-                    if (personaTea.getPersona_sexo().equals("Femenino")){
+                if (personaTea.getPersona_foto() == null) {
+                    if (personaTea.getPersona_sexo().equals("Femenino")) {
 
                         Glide.with(MainActivity.this)
                                 .load(R.drawable.ic_linda)
                                 .thumbnail(0.5f)
                                 .into(imageView);
-                    }else{
+                    } else {
                         Glide.with(MainActivity.this)
                                 .load(R.drawable.ic_smile)
                                 .thumbnail(0.5f)
@@ -118,18 +112,13 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(R.id.action_accesoPinInicio_to_nav_home);
             }
 
-
         }
-
 
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-
         // Inflate the menu; this adds items to the action bar if it is present.
 
         getMenuInflater().inflate(R.menu.main, menu);

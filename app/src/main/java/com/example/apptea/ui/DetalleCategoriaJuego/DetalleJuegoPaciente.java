@@ -176,6 +176,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
                         DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
 
+
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
                     }
 

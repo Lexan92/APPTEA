@@ -26,4 +26,7 @@ public interface ResultadoDao {
             "WHERE p.juego_id = :id_juego AND r.sesion_id = :id_sesion ")
     LiveData<List<Resultado>> findAllResultadoByJuegoSesion(int id_juego, int id_sesion);
 
+    @Query("DELETE FROM resultado WHERE sesion_id=:id")
+    void borrarResultadoPorId(int id);
+
 }

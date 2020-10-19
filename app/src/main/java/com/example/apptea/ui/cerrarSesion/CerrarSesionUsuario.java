@@ -7,19 +7,35 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
+import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.example.apptea.utilidades.AdministarSesion;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+
+import roomsqlite.dao.PersonaTeaDao;
+import roomsqlite.dao.ResultadoDao;
 import roomsqlite.dao.SesionDao;
 import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.PersonaTea;
 import roomsqlite.entidades.Sesion;
+import roomsqlite.entidades.Usuario;
 
 public class CerrarSesionUsuario extends AppCompatActivity {
+
+    LiveData<List<Usuario>> usuario;
 
 
     @Override
@@ -37,7 +53,8 @@ public class CerrarSesionUsuario extends AppCompatActivity {
             administarSesion.cerrarSesionUsuario();
             Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
             startActivity(intent);
-            finish();}
+            finish();
+        }
     }
 
     @Override
@@ -61,11 +78,27 @@ public class CerrarSesionUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_cerrar_sesion_usuario);
 
         AdministarSesion administarSesion = new AdministarSesion(this);
-        Button guardar, cancelar;
-        EditText comentario;
+        Button guardar, cancelar, descartar;
+        TextView nombreUsuario;
+        EditText comentario, contraseña;
+        contraseña = findViewById(R.id.editTextTextPassword);
         guardar = findViewById(R.id.btn_guardar_sesion);
         cancelar = findViewById(R.id.btn_cancelar_sesion);
-        comentario= findViewById(R.id.edit_text_guardar_sesion);
+        comentario = findViewById(R.id.edit_text_guardar_sesion);
+        descartar = findViewById(R.id.btn_descartar);
+        UsuarioViewModel usuarioViewModel;
+        usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
+
+        if(administarSesion.obtenerTipoUsuario()==1){
+            nombreUsuario = findViewById(R.id.text_nombre_usuario);
+            int idPersona = administarSesion.obtenerIdPersonaTea();
+            PersonaTeaDao personaTeaDao = appDatabase.getDatabase(getApplicationContext()).personaTeaDao();
+            PersonaTea personaTea;
+            personaTea = personaTeaDao.obtenerPersonaPorId(idPersona);
+            nombreUsuario.setText(personaTea.getPersona_nombre().concat(" ").concat(personaTea.getPersona_apellido()));
+
+        }
+
 
 
 
@@ -84,27 +117,69 @@ public class CerrarSesionUsuario extends AppCompatActivity {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Sesion sesion = new Sesion();
-                int id = administarSesion.obtenerIDSesion();
-                SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
-                sesion = sesionDao.obtenerSesionPorId(id);
-                sesion.setComentario(comentario.getText().toString());
-                sesionDao.actualizarSesion(sesion);
-                administarSesion.setearTipoUsuario(-1);
-                administarSesion.guardarIDSesion(-1);
-                administarSesion.cerrarSesionPersonaTea();
-                Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
-                startActivity(intent);
 
+                if (StringUtils.isAllBlank(contraseña.getText())) {
+                    Toast.makeText(getApplicationContext(), "Escriba la contraseña para continuar", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+
+                    usuario = usuarioViewModel.getUsuarioAll();
+                    usuario.observe(CerrarSesionUsuario.this, usuarios -> {
+                        if (usuarios.get(0).getContrasenia().equals(contraseña.getText().toString())) {
+                            Sesion sesion;
+                            int id = administarSesion.obtenerIDSesion();
+                            SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
+                            sesion = sesionDao.obtenerSesionPorId(id);
+                            sesion.setComentario(comentario.getText().toString());
+                            sesionDao.actualizarSesion(sesion);
+                            administarSesion.setearTipoUsuario(-1);
+                            administarSesion.guardarIDSesion(-1);
+                            administarSesion.cerrarSesionPersonaTea();
+                            Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
+                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(), "Sesion Guardada", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+                            Toast.makeText(getApplicationContext(), "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    });
+
+
+                }
             }
+
+
         });
 
+        descartar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (StringUtils.isAllBlank(contraseña.getText())) {
+                    Toast.makeText(getApplicationContext(), "Escriba la contraseña para DESCARTAR la sesión", Toast.LENGTH_SHORT).show();
+                } else {
 
+                    Sesion sesion;
+                    int id = administarSesion.obtenerIDSesion();
+                    SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
+                    sesion = sesionDao.obtenerSesionPorId(id);
+                    sesionDao.borrarSesion(sesion);
+                    ResultadoDao resultadoDao = appDatabase.getDatabase(getApplicationContext()).resultadoDao();
+                    resultadoDao.borrarResultadoPorId(id);
+                    Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Sesión Descartada", Toast.LENGTH_SHORT).show();
 
+                }
+            }
+        });
 
     }
 
 
-
-
 }
+
+

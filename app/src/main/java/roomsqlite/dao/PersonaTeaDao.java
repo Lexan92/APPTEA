@@ -37,4 +37,7 @@ public interface PersonaTeaDao {
 
     @Delete
     void deletePersonaTea(PersonaTea personaTea);
+
+    @Query("SELECT * FROM persona_tea WHERE persona_id = :id")
+    PersonaTea obtenerPersonaPorId(int id);
 }

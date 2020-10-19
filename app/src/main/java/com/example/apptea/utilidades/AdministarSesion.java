@@ -29,9 +29,7 @@ public class AdministarSesion {
     public void guardarSesionTEA(PersonaTea personaTea){
         //save session of user whenever user is logged in
         int id = personaTea.getPersona_id();
-        int idRol = personaTea.getRol_id();
         editor.putInt(persona_Tea,id);
-        editor.putInt(persona_Rol,idRol);
         editor.commit();
 
     }
@@ -58,16 +56,15 @@ public class AdministarSesion {
         editor.commit();
     }
 
-    public List<Integer> obtenerSesionPersonaTea(){
-        //return user id whose session is saved
+    public int obtenerIdPersonaTea(){
+
         int id = sharedPreferences.getInt(persona_Tea,0);
-        int rol = sharedPreferences.getInt(persona_Rol,0);
-        return Arrays.asList(id,rol);
+        return id;
     }
 
     //no creo que sea necesario usa este metodo......
     public List<Integer> obtenerSesionUsuario(){
-        //return user id whose session is saved
+
         int id = sharedPreferences.getInt(user,0);
         int rol = sharedPreferences.getInt(usuario_Rol,0);
         return Arrays.asList(id,rol);

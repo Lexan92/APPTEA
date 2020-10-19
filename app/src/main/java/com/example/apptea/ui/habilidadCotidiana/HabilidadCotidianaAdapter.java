@@ -97,6 +97,7 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
                 @Override
                 public void onClick(View v) {
                     buttonClicked.deleteClickedHab(habilidadCotidianaList.get(getAdapterPosition()));
+                    notifyDataSetChanged();
                 }
             });
 
@@ -162,7 +163,7 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         } else {
             // Covers the case of data not being ready yet.
             Glide.with(holder.itemView.getContext()).clear(holder.imagen);
-            holder. habilidadItemView.setText("No existe habilidades");
+
         }
 
     }

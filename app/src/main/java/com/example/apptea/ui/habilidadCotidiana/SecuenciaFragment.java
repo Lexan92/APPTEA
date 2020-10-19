@@ -157,7 +157,6 @@ public class SecuenciaFragment extends AppCompatActivity{
                 intent.putExtra("definirPantalla",false);
                 startActivity(intent);
             }
-
         }
     });
 

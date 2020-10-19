@@ -14,7 +14,7 @@ import roomsqlite.entidades.Usuario;
 
 @Dao
 public interface UsuarioDao {
-    @Query("SELECT * FROM usuario")
+    @Query("SELECT * FROM usuario LIMIT 1")
     LiveData<List<Usuario>> getAllUsuario();
 
     @Query("DELETE FROM usuario")

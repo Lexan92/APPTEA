@@ -36,6 +36,9 @@ public interface SecuenciaDao {
     @Delete
     void deleteSecuencia(Secuencia secuencia);
 
+    @Query("DELETE FROM secuencia WHERE habilidad_cotidiana_id = :id")
+    void deleteSecuenciaByHabilidad(int id);
+
     //metodo donde se recuperan todas  habilidades cotidianas
     @Query("SELECT * FROM secuencia ORDER BY secuencia_orden ASC")
     LiveData<List<Secuencia>> getSecuencia();
@@ -51,6 +54,7 @@ public interface SecuenciaDao {
     //metodo donde se recuperan una secuencia segun habilidad y si es predeterminado
     @Query("SELECT * FROM secuencia WHERE habilidad_cotidiana_id = :id AND sec_predeterminado = 1")
     Secuencia getSecuenciaForImagenSec(int id);
+
 
 
    /* @Query("SELECT COUNT ( pictograma_id ) FROM  secuencia WHERE pictograma_id =:id ")

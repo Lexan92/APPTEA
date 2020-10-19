@@ -39,6 +39,8 @@ public interface HabilidadCotidianaDao {
     @Query("SELECT * FROM habilidad_cotidiana ORDER BY habilidad_cotidiana_id DESC LIMIT 1")
     HabilidadCotidiana obtenerHabilidadCotidiana();
 
+    @Query("SELECT * FROM habilidad_cotidiana WHERE habilidad_cotidiana_id=:id")
+    HabilidadCotidiana obtenerUnaHabilidadCotidiana(int id);
 
     //Metodo de prueba de eliminar se ocupara el metodo deleteHabilidadCotidiana
     @Delete

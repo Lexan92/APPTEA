@@ -33,4 +33,7 @@ public interface SesionDao {
 
     @Query("SELECT * FROM "+ Sesion.NOMBRE_TABLA+" ORDER BY sesion_id DESC LIMIT 1")
     Sesion obtenerUltimaSesion();
+
+    @Query("SELECT * FROM "+ Sesion.NOMBRE_TABLA+" WHERE sesion_id=:id")
+    Sesion borrarSesionPorId(int id);
 }

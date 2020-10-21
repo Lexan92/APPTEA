@@ -122,7 +122,10 @@
             android:name=".ui.habilidadCotidiana.VistaPreviaActivity"
             android:label=" "
             android:screenOrientation="landscape" />
-
+        <activity
+            android:name=".ui.habilidadCotidiana.EditSecuencia"
+            android:label="Editar secuencia"
+            android:screenOrientation="portrait" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

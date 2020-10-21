@@ -18,7 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,25 +31,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
-import com.example.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab;
-import com.example.apptea.utilidades.AdministarSesion;
-import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import roomsqlite.dao.DetalleSesionDao;
+
 import roomsqlite.dao.PictogramaDAO;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaHabCotidiana;
-import roomsqlite.entidades.DetalleSesion;
+
 import roomsqlite.entidades.HabilidadCotidiana;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Secuencia;
 
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -124,6 +121,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
                         cajita.setVisibility(View.VISIBLE);
                         mensaje.setVisibility(View.VISIBLE);
                         cajita.playAnimation();
+                        recyclerView.setVisibility(View.GONE);
                     }else{
                         cajita.setVisibility(View.INVISIBLE);
                         mensaje.setVisibility(View.INVISIBLE);
@@ -160,12 +158,11 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
                 });
                 AlertDialog deleteDialog = builder.create();
                 deleteDialog.show();
-
             }
 
             @Override
             public void updateClickedHab(HabilidadCotidiana habilidadCotidiana) {
-                onHabilidadClick(habilidadCotidiana);
+                    editarHabilidad(habilidadCotidiana);
             }
         });
 
@@ -203,6 +200,32 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     }
 
 
+    public void editarHabilidad(HabilidadCotidiana habilidadCotidiana){
+        int idHab = habilidadCotidiana.getHabilidad_cotidiana_id();
+
+
+        pictoFraseList.clear();
+        //Se valida que la lista de pictogramas este vacia (si lo esta se llena) sino se imprime la misma
+
+        secuenciaList = secuenciaViewModel.getSecuenciaById(idHab);
+        //Se recorre la lista de secuencias
+        for(Secuencia secuencia:secuenciaList){
+            //se obtienen mediante referecnia del id de pictogramas
+            int idPicto = secuencia.getPictograma_id();
+            Pictograma pictograma = pictogramaDao.findbyPictoId(idPicto);
+            //lista auxiliar para guardar pictogramas
+            pictoFraseList.add(pictograma);
+        }
+        Intent intent = new Intent(getActivity(), EditSecuencia.class);
+        intent.putExtra("llaveCatHabilidad", categoriaHabCotidiana.getCat_hab_cotidiana_id());
+        intent.putExtra("listaSecuencia",(Serializable) pictoFraseList );
+        intent.putExtra("nombreHabilidad", habilidadCotidiana.getHabilidad_cotidiana_nombre());
+        intent.putExtra("idHabilidad", habilidadCotidiana.getHabilidad_cotidiana_id());
+        intent.putExtra("predeterminadoHabilidad", habilidadCotidiana.isPredeterminado());
+        startActivityForResult(intent, UPDATE_HAB_REQUEST_CODE);
+    }
+
+
 
     @Override
     public void onHabilidadClick(HabilidadCotidiana habilidadCotidiana) {
@@ -230,4 +253,5 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         startActivity(intent);
 
     }
+
 }

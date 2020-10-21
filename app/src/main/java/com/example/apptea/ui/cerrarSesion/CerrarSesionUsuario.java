@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
@@ -36,8 +35,6 @@ import roomsqlite.entidades.Usuario;
 public class CerrarSesionUsuario extends AppCompatActivity {
 
     LiveData<List<Usuario>> usuario;
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -71,7 +68,6 @@ public class CerrarSesionUsuario extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +85,7 @@ public class CerrarSesionUsuario extends AppCompatActivity {
         UsuarioViewModel usuarioViewModel;
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
 
-        if(administarSesion.obtenerTipoUsuario()==1){
+        if (administarSesion.obtenerTipoUsuario() == 1) {
             nombreUsuario = findViewById(R.id.text_nombre_usuario);
             int idPersona = administarSesion.obtenerIdPersonaTea();
             PersonaTeaDao personaTeaDao = appDatabase.getDatabase(getApplicationContext()).personaTeaDao();
@@ -98,9 +94,6 @@ public class CerrarSesionUsuario extends AppCompatActivity {
             nombreUsuario.setText(personaTea.getPersona_nombre().concat(" ").concat(personaTea.getPersona_apellido()));
 
         }
-
-
-
 
         //cancelar guardado de la sesion, direcciona al menu principal
         cancelar.setOnClickListener(new View.OnClickListener() {
@@ -120,10 +113,7 @@ public class CerrarSesionUsuario extends AppCompatActivity {
 
                 if (StringUtils.isAllBlank(contraseña.getText())) {
                     Toast.makeText(getApplicationContext(), "Escriba la contraseña para continuar", Toast.LENGTH_SHORT).show();
-
                 } else {
-
-
                     usuario = usuarioViewModel.getUsuarioAll();
                     usuario.observe(CerrarSesionUsuario.this, usuarios -> {
                         if (usuarios.get(0).getContrasenia().equals(contraseña.getText().toString())) {
@@ -139,16 +129,10 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                             Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
                             startActivity(intent);
                             Toast.makeText(getApplicationContext(), "Sesion Guardada", Toast.LENGTH_SHORT).show();
-
                         } else {
-
                             Toast.makeText(getApplicationContext(), "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
                         }
-
-
                     });
-
-
                 }
             }
 
@@ -161,7 +145,6 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                 if (StringUtils.isAllBlank(contraseña.getText())) {
                     Toast.makeText(getApplicationContext(), "Escriba la contraseña para DESCARTAR la sesión", Toast.LENGTH_SHORT).show();
                 } else {
-
                     Sesion sesion;
                     int id = administarSesion.obtenerIDSesion();
                     SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
@@ -172,7 +155,6 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                     Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Sesión Descartada", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });

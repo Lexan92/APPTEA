@@ -10,7 +10,10 @@
 
 package com.example.apptea.ui.usuario;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -38,6 +41,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.utilidades.EnviarCorreo;
 import com.example.apptea.utilidades.GenerarNumAleatorio;
+import com.example.apptea.utilidades.ValidarConexion;
 
 import java.util.List;
 
@@ -55,6 +59,8 @@ import static android.view.View.VISIBLE;
  * create an instance of this fragment.
  */
 public class UsuarioFragment extends Fragment {
+
+
 
     public static final int USUARIO_UPDATE_REQUEST_CODE = 2;
     private UsuarioRepository usuarioRepository;
@@ -111,8 +117,11 @@ public class UsuarioFragment extends Fragment {
         cardCorreo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                new progreso().execute();
-
+                if (!ValidarConexion.compruebaConexion(getContext())) {
+                    Toast.makeText(getContext(),"Se necesita una conexión a Internet", Toast.LENGTH_SHORT).show();
+                }else {
+                    new progreso().execute();
+                }
             }
 
         });
@@ -187,16 +196,18 @@ public class UsuarioFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
 
 
-            //Se obtiene el usuario guardado se obtiene la primera fila.
-            UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
-            Usuario usuario = usuarioDao.obtenerUsuario();
+                //Se obtiene el usuario guardado se obtiene la primera fila.
+                UsuarioDao usuarioDao = (UsuarioDao) appDatabase.getDatabase(getContext()).usuarioDao();
+                Usuario usuario = usuarioDao.obtenerUsuario();
 
-            //Se genera el codigo aleatorio y se guarda en variable int codigo
-            codigo = GenerarNumAleatorio.getNumeroAleatorio();
+                //Se genera el codigo aleatorio y se guarda en variable int codigo
+                codigo = GenerarNumAleatorio.getNumeroAleatorio();
 
-            //Se inicializa el metodo para enviar correo
-            EnviarCorreo enviarCorreo = new EnviarCorreo();
-            enviarCorreo.Enviar(codigo,usuario.getCorreo());
+                //Se inicializa el metodo para enviar correo
+                EnviarCorreo enviarCorreo = new EnviarCorreo();
+                enviarCorreo.Enviar(codigo,usuario.getCorreo());
+
+
 
             return null;
         }

@@ -1,5 +1,6 @@
 package com.example.apptea.ui.inicioSesion;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
@@ -131,6 +133,16 @@ public class ListadoInicioSesion extends AppCompatActivity {
 
             }
         });
+
+        //manejo de boton fisico de retroceso
+        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                //al presionar se termina la aplicacion
+                finish();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(ListadoInicioSesion.this, onBackPressedCallback);
     }
 
 

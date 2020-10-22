@@ -23,10 +23,6 @@ public class ResultadoRepository {
 
     public LiveData<List<Resultado>> getResultado() { return resultadoAll;}
 
-    public LiveData<List<Resultado>> findResultadoByJuegoSesion(int id_juego, int id_sesion) {
-        return resultadoDao.findAllResultadoByJuegoSesion(id_juego, id_sesion);
-    }
-
     public void insertResultado (Resultado resultado){resultadoDao.insertResultado(resultado);}
 
 

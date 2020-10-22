@@ -6,14 +6,18 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import roomsqlite.database.DateConverter;
 
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity (tableName = "resultado", foreignKeys =
             @ForeignKey(entity = Sesion.class, parentColumns = "sesion_id", childColumns = "sesion_id", onDelete=CASCADE, onUpdate = CASCADE))
+@TypeConverters(DateConverter.class)
 public class Resultado implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int resultado_id;

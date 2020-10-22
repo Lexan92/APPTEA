@@ -28,6 +28,7 @@ import com.example.apptea.ui.usuario.ValidarCodigo;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.EnviarCorreo;
 import com.example.apptea.utilidades.GenerarNumAleatorio;
+import com.example.apptea.utilidades.ValidarConexion;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
@@ -125,7 +126,11 @@ public class AccesoPinInicio extends Fragment {
 
             @Override
             public void onClick(View v) {
-               new progreso().execute();
+                if (!ValidarConexion.compruebaConexion(getContext())) {
+                    Toast.makeText(getContext(),"Se necesita una conexión a Internet", Toast.LENGTH_SHORT).show();
+                }else {
+                    new progreso().execute();
+                }
             }
         });
 

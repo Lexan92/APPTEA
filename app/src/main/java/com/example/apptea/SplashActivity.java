@@ -18,8 +18,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.apptea.ui.inicioSesion.AlertaSesion;
 import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.List;
 
@@ -33,16 +35,13 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        AdministarSesion administarSesion = new AdministarSesion(getApplicationContext());
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
-
         usuarioViewModel.getUsuarioAll().observe(this, new Observer<List<Usuario>>() {
             @Override
             public void onChanged(List<Usuario> usuarios) {
-                for(Usuario user : usuarios){
-                    id= user.getUsuario_id();
-                    System.out.println(user.getUsuario_id());
-                    System.out.println(user.getUsuario_nombre());
+                for (Usuario user : usuarios) {
+                    id = user.getUsuario_id();
                 }
 
             }
@@ -52,23 +51,23 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
+                if (id > 0) {
 
-                System.out.println("este es el id."+ id);
-
-                if(id>0){
-                    System.out.println("no entro");
-                    //salto a listado de persona tea
-                    Intent intent =new Intent(SplashActivity.this, ListadoInicioSesion.class);
-                    startActivity(intent);
-                }
-                else{
-                    System.out.println("se vino aqui");
-                    Intent intent =new Intent(SplashActivity.this, instalacion.class);
+                    if (administarSesion.obtenerIdPersonaTea()>0){
+                        Intent intent = new Intent(SplashActivity.this, AlertaSesion.class);
+                        startActivity(intent);
+                    }else {
+                        //salto a listado de persona tea
+                        Intent intent = new Intent(SplashActivity.this, ListadoInicioSesion.class);
+                        startActivity(intent);
+                    }
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, instalacion.class);
                     startActivity(intent);
                 }
 
                 finish();
             }
-        },3000);
+        }, 3000);
     }
 }

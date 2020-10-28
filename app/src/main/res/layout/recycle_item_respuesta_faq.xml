@@ -53,7 +53,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="3dp"
                 android:fontFamily="@font/capriola"
-                android:textAlignment="center"
+
+
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textColor="@color/mi_perfil_titulo"
                 android:textStyle="bold"

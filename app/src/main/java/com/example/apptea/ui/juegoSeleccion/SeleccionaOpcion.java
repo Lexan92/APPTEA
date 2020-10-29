@@ -21,6 +21,7 @@ import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -30,10 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.database.ImageConverter;
+import roomsqlite.entidades.DetalleResultado;
 import roomsqlite.entidades.Juego;
 import roomsqlite.entidades.Opcion;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Pregunta;
+import roomsqlite.entidades.Resultado;
 
 public class SeleccionaOpcion extends AppCompatActivity {
 
@@ -49,7 +52,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
+    DetalleResultadoViewModel detalleResultadoViewModel;
     Juego juego = new Juego();
+    Resultado resultado = new Resultado();
+    DetalleResultado detalleResultado= new DetalleResultado();
+    AdministarSesion sesion;
     TTSManager ttsManager = null;
     int longitudPreguntas;
     int posicion = 0;
@@ -81,10 +88,12 @@ public class SeleccionaOpcion extends AppCompatActivity {
         siguiente = findViewById(R.id.pregunta_siguiente);
         globos = findViewById(R.id.lottie_globos);
         juego = (Juego) getIntent().getSerializableExtra("juego");
+       // resultado = (Resultado) getIntent().getSerializableExtra("resultado");
         preguntaViewModel = new ViewModelProvider(this).get(PreguntaViewModel.class);
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
         pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
-
+        detalleResultadoViewModel = new ViewModelProvider(this).get(DetalleResultadoViewModel.class);
+        sesion = new AdministarSesion(this);
         ttsManager = new TTSManager();
         ttsManager.init(getApplicationContext());
 
@@ -107,35 +116,21 @@ public class SeleccionaOpcion extends AppCompatActivity {
         //ONCLICK DE OPCIONES POR PREGUNTA , LISTENER CARDVIEWS,
         opcion1.setOnClickListener(v -> {
             ttsManager.initQueue(txt1.getText().toString());
-            System.out.println("numeroCorrectas inicial " + numeroCorrectas);
             //SI RESPUESTA ES CORRECTA
             if (bandera1) {
-                duracion=true;
-                while(duracion==true){
-                    opcion1.setCardBackgroundColor(getResources().getColor(R.color.correcto));
-                    txt1.setTextColor(getResources().getColor(R.color.colorSplash));
-                    globos.setSpeed(2);
-                    globos.playAnimation();
-                    opcion1.setClickable(false);
-                    opcion2.setClickable(false);
-                    opcion3.setClickable(false);
-                    opcion4.setClickable(false);
-                    duracion=false;
-                    opcion1.setClickable(true);
-                    opcion2.setClickable(true);
-                    opcion3.setClickable(true);
-                    opcion4.setClickable(true);
-                }
+                opcion1.setCardBackgroundColor(getResources().getColor(R.color.correcto));
+                globos.setSpeed(2);
+                globos.playAnimation();
                 numeroCorrectas--;
-                if (numeroCorrectas <= 0)
-                    System.out.println("numeroCorrectas op1" + numeroCorrectas);
+                if (numeroCorrectas <= 0){
                     siguiente.setVisibility(View.VISIBLE);
+                }
             //SI RESPUESTA ES INCORRECTA
             } else {
                 opcion1.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
-                txt1.setTextColor(getResources().getColor(R.color.colorSplash));
+                numeroFallos++;
             }
-
+            txt1.setTextColor(getResources().getColor(R.color.colorSplash));
         });
 
         opcion2.setOnClickListener(v -> {
@@ -144,15 +139,13 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion2.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
-                System.out.println("numeroCorrectas antes 2" + numeroCorrectas);
                 numeroCorrectas--;
-                System.out.println("numeroCorrectas depues 2 del --" + numeroCorrectas);
-                if (numeroCorrectas <= 0)
-                    System.out.println("numeroCorrectas op2" + numeroCorrectas);
+                if (numeroCorrectas <= 0) {
                     siguiente.setVisibility(View.VISIBLE);
-
+                }
             } else {
                 opcion2.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
+                numeroFallos++;
             }
             txt2.setTextColor(getResources().getColor(R.color.colorSplash));
 
@@ -164,14 +157,13 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
-                System.out.println("numeroCorrectas antes 3" + numeroCorrectas);
                 numeroCorrectas--;
-                System.out.println("numeroCorrectas despues 3 del --" + numeroCorrectas);
-                if (numeroCorrectas <= 0)
-                    System.out.println("numeroCorrectas op3" + numeroCorrectas);
+                if (numeroCorrectas <= 0) {
                     siguiente.setVisibility(View.VISIBLE);
+                }
             } else {
                 opcion3.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
+                numeroFallos++;
             }
             txt3.setTextColor(getResources().getColor(R.color.colorSplash));
 
@@ -183,14 +175,13 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.correcto));
                 globos.setSpeed(2);
                 globos.playAnimation();
-                System.out.println("numeroCorrectas antes 4" + numeroCorrectas);
                 numeroCorrectas--;
-                System.out.println("numeroCorrectas despues 4 del --" + numeroCorrectas);
-                if (numeroCorrectas <= 0)
-                    System.out.println("numeroCorrectas op4" + numeroCorrectas);
+                if (numeroCorrectas <= 0) {
                     siguiente.setVisibility(View.VISIBLE);
+                }
             } else {
                 opcion4.setCardBackgroundColor(getResources().getColor(R.color.incorrecto));
+                numeroFallos++;
             }
             txt4.setTextColor(getResources().getColor(R.color.colorSplash));
 
@@ -202,6 +193,13 @@ public class SeleccionaOpcion extends AppCompatActivity {
             posicion++;
 
             if (posicion <= longitudPreguntas - 1) {
+               /* if(sesion.obtenerTipoUsuario()==1){
+                    System.out.println("Resultado id "+ resultado.getResultado_id());
+                    detalleResultado.setResultado_id(resultado.getResultado_id());
+                    detalleResultado.setNombre_pregunta(tituloPregunta.toString());
+                    detalleResultado.setCantidad_fallos(numeroFallos);
+                    detalleResultadoViewModel.insertResultado(detalleResultado);
+                }*/
                 reiniciarCards();
                 setearOpciones(posicion);
             } else {
@@ -294,6 +292,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
     //metodo que reinicia las vistas de cada cardview
     private void reiniciarCards() {
+        numeroFallos=0;
         opcion1.setVisibility(View.INVISIBLE);
         opcion2.setVisibility(View.INVISIBLE);
         opcion3.setVisibility(View.INVISIBLE);

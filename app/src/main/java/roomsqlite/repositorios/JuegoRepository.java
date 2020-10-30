@@ -22,7 +22,7 @@ import roomsqlite.entidades.Juego;
 
 public class JuegoRepository {
     private JuegoDAO juegoDAO;
-    private LiveData<List<Juego>> allJuegosByCategoria;
+
 
     public JuegoRepository(Application application) {
         appDatabase db = appDatabase.getDatabase(application);

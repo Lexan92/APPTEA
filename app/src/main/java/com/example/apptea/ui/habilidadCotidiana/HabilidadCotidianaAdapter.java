@@ -1,63 +1,36 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
-import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
-import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaAdapter;
-import com.example.apptea.ui.pictograma.PictogramaAdapter;
-import com.example.apptea.ui.pictograma.PictogramaViewModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.dao.PictogramaDAO;
-import roomsqlite.dao.SecuenciaDao;
 import roomsqlite.database.ImageConverter;
 import roomsqlite.database.appDatabase;
-import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.HabilidadCotidiana;
-import roomsqlite.entidades.Pictograma;
-import roomsqlite.entidades.Secuencia;
-import roomsqlite.repositorios.PictogramaRepository;
-import roomsqlite.repositorios.SecuenciaRepository;
 
-import static androidx.camera.core.CameraX.getContext;
+public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCotidianaAdapter.HabilidadCotidianaHolder> implements View.OnClickListener {
 
-public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCotidianaAdapter.HabilidadCotidianaHolder> implements View.OnClickListener{
-
-    private  View.OnClickListener listener;
+    private View.OnClickListener listener;
     private OnHabilidadListener mOnHabilidadListener;
     private final LayoutInflater mInflater;
     public boolean isHabilidad = false;
     private List<HabilidadCotidiana> habilidadCotidianaList;
     private List<HabilidadCotidiana> habilidadCotidianaListBusqueda;
-    private List<Secuencia> pictoFraseList;
-    HabilidadCotidianaViewModel habilidadCotidianaViewModel;
-    private PictogramaRepository pictogramaRepository;
-    private SecuenciaRepository secuenciaRepository;
-    SecuenciaViewModel secuenciaViewModel;
-    private PictogramaViewModel pictogramaViewModel;
+
     private HabilidadCotidianaAdapter.ButtonClicked buttonClicked;
 
     @Override
@@ -65,8 +38,9 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
 
     }
 
-    public interface ButtonClicked{
+    public interface ButtonClicked {
         void deleteClickedHab(HabilidadCotidiana habilidadCotidiana);
+
         void updateClickedHab(HabilidadCotidiana habilidadCotidiana);
     }
 
@@ -74,14 +48,14 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         this.buttonClicked = buttonClicked;
     }
 
-    class HabilidadCotidianaHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class HabilidadCotidianaHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView habilidadItemView;
         public Button eliminar;
         public Button editar;
         public ImageView imagen;
         OnHabilidadListener onHabilidadListener;
 
-        public HabilidadCotidianaHolder( View itemView,OnHabilidadListener onHabilidadListener) {
+        public HabilidadCotidianaHolder(View itemView, OnHabilidadListener onHabilidadListener) {
             super(itemView);
             habilidadItemView = itemView.findViewById((R.id.nombre_hab_cotidiana));
             eliminar = itemView.findViewById(R.id.btn_eliminar_hab_cotidiana);
@@ -89,8 +63,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             imagen = itemView.findViewById(R.id.img_hab_cotidiana);
             this.onHabilidadListener = onHabilidadListener;
             itemView.setOnClickListener(this);
-
-
 
 
             eliminar.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +81,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
             });
 
 
-
         }
 
         @Override
@@ -119,15 +90,15 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
         }
     }
 
-    public HabilidadCotidianaAdapter(Context context, OnHabilidadListener onHabilidadListener){
+    public HabilidadCotidianaAdapter(Context context, OnHabilidadListener onHabilidadListener) {
         mInflater = LayoutInflater.from(context);
         this.mOnHabilidadListener = onHabilidadListener;
     }
 
 
     @Override
-    public HabilidadCotidianaHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View itemview = mInflater.inflate(R.layout.recyclerview_item_hab_cotidiana,parent, false);
+    public HabilidadCotidianaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemview = mInflater.inflate(R.layout.recyclerview_item_hab_cotidiana, parent, false);
 
         return new HabilidadCotidianaHolder(itemview, mOnHabilidadListener);
     }
@@ -141,20 +112,20 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
 
             PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
 
-        if(isHabilidad==true || current.isPredeterminado()){
-           Glide.with(holder.itemView.getContext())
-                    .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
-                    .thumbnail(0.5f)
-                    .into(holder.imagen);
+            if (isHabilidad == true || current.isPredeterminado()) {
+                Glide.with(holder.itemView.getContext())
+                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
+                        .thumbnail(0.5f)
+                        .into(holder.imagen);
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
                 holder.editar.setVisibility(View.GONE);
                 holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
-        }else {
-           Glide.with(holder.itemView.getContext())
-                    .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
-                    .thumbnail(0.5f)
-                    .into(holder.imagen);
+            } else {
+                Glide.with(holder.itemView.getContext())
+                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
+                        .thumbnail(0.5f)
+                        .into(holder.imagen);
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
                 holder.setIsRecyclable(false);
             }
@@ -170,18 +141,18 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
 
     @Override
     public int getItemCount() {
-        if(habilidadCotidianaList != null)
+        if (habilidadCotidianaList != null)
             return habilidadCotidianaList.size();
         else
             return 0;
     }
 
 
-    public interface OnHabilidadListener{
+    public interface OnHabilidadListener {
         void onHabilidadClick(HabilidadCotidiana posicion);
     }
 
-    void setHabiilidad(List<HabilidadCotidiana> habilidadesCotidianas){
+    void setHabiilidad(List<HabilidadCotidiana> habilidadesCotidianas) {
         habilidadCotidianaList = habilidadesCotidianas;
         habilidadCotidianaListBusqueda = new ArrayList<>(habilidadCotidianaList);
         notifyDataSetChanged();

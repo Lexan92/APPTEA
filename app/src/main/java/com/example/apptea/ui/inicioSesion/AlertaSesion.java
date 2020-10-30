@@ -1,15 +1,14 @@
 package com.example.apptea.ui.inicioSesion;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
-import com.example.apptea.ui.cerrarSesion.CerrarSesionUsuario;
 import com.example.apptea.utilidades.AdministarSesion;
 
 import roomsqlite.dao.ResultadoDao;

@@ -135,6 +135,14 @@
                         app:icon="@drawable/ic_terapeuta" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_ver_sesion"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        app:icon="@drawable/ic_reloj" />
+
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_editar_persona"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"

@@ -19,6 +19,7 @@ import com.example.apptea.R;
 import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.example.apptea.utilidades.AdministarSesion;
+import com.example.apptea.utilidades.UtilidadFecha;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -122,6 +123,7 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                             SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
                             sesion = sesionDao.obtenerSesionPorId(id);
                             sesion.setComentario(comentario.getText().toString());
+                            sesion.setFin_sesion(UtilidadFecha.obtenerFechaHoraActual());
                             sesionDao.actualizarSesion(sesion);
                             administarSesion.setearTipoUsuario(-1);
                             administarSesion.guardarIDSesion(-1);

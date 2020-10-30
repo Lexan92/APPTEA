@@ -48,15 +48,6 @@ public class ListadoInicioSesion extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        Date date = UtilidadFecha.obtenerFechaHoraActual();
-
-        Log.d("LEXAN", "HORA: " + date.toString());
-
-        Log.d("LEXAN", "HORA con formato: " + UtilidadFecha.obtenerHora(date));
-        Log.d("LEXAN", "Fecha con formato: " + UtilidadFecha.obtenerFecha(date));
-
-
     }
 
     @Override
@@ -120,7 +111,8 @@ public class ListadoInicioSesion extends AppCompatActivity {
                 //creacion de sesion
                 Sesion sesion = new Sesion();
                 sesion.setPersona_id(personaTea.getPersona_id());
-                sesion.setFecha_sesion(UtilidadFecha.obtenerFechaHoraActual());
+                sesion.setInicio_sesion(UtilidadFecha.obtenerFechaHoraActual());
+                sesion.setFin_sesion(UtilidadFecha.obtenerFechaHoraActual());
                 SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
                 sesionDao.insertarSesion(sesion);
 

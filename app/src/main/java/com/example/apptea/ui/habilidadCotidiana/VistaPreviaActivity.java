@@ -49,7 +49,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
     TTSManagerSecuencia ttsManagerSecuencia2=null;
     private ArrayList<Secuencia> listaSecuencia;
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
-    public ImageView check;
+
 
 
     public VistaPreviaActivity(){
@@ -93,7 +93,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
         recyclerView1.setAdapter(null);
 
 
-       // check = PictoSecuenciaAdapter.PictoSecuenciaHolder
+
 
         int milisegundos = 3000;
         Handler handler = new Handler();
@@ -105,7 +105,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     atras.setVisibility(View.VISIBLE);
                     nombreHabilidad.setText(tituloHabilidad);
                     nombreHabilidad.setEnabled(false);
-                    check.setVisibility(View.GONE);
+
                 }else{
                 atras.setVisibility(View.VISIBLE);
                 nombreHabilidad.setVisibility(View.VISIBLE);

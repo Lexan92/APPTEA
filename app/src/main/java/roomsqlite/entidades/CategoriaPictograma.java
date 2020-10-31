@@ -40,7 +40,14 @@ public CategoriaPictograma(){
 
 }
 
-//CONSTRUCTOR
+    @Ignore
+    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado) {
+        this.cat_pictograma_id = cat_pictograma_id;
+        this.cat_pictograma_nombre = cat_pictograma_nombre;
+        this.predeterminado = predeterminado;
+    }
+
+    //CONSTRUCTOR
     @Ignore
     public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado, int pictograma_id) {
         this.cat_pictograma_id = cat_pictograma_id;

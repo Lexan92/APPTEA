@@ -77,33 +77,38 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
             PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
 
             CategoriaPictograma categoriaPictograma = categoriaPictogramaList.get(position);
-            if(isVocabulary==true){
+            if(isVocabulary==true || categoriaPictograma.isPredeterminado() == true){
                 Glide.with(holder.itemView.getContext())
                         .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(categoriaPictograma.getPictograma_id()).getPictograma_imagen()))
                         .thumbnail(0.5f)
                         .into(holder.imagen);
                 holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-                holder.cancelar.setVisibility(View.INVISIBLE);
-                holder.editar.setVisibility(View.INVISIBLE);
+                holder.editar.setVisibility(View.GONE);
+                holder.cancelar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
-
-
             }else{
-                if (categoriaPictograma.isPredeterminado()==true){
+                if (categoriaPictograma.getPictograma_id() == 0) {
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                    holder.setIsRecyclable(false);
+                }else {
                     Glide.with(holder.itemView.getContext())
                             .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(categoriaPictograma.getPictograma_id()).getPictograma_imagen()))
                             .thumbnail(0.5f)
                             .into(holder.imagen);
                     holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-                    holder.editar.setVisibility(View.GONE);
-                    holder.cancelar.setVisibility(View.GONE);
                     holder.setIsRecyclable(false);
                 }
-                else {
-                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-                holder.setIsRecyclable(false);
-                }
+                    holder.imagen.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            buttonClickedCatPicto.itemLongClicked(categoriaPictograma);
+                            return true;
+                        }
+                    });
+
+
             }
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -125,7 +130,10 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                 }
             });
 
-            /*  se dejo comentado depende de cual de los dos se selecciones si se deja el card view o solo la imagen
+
+
+             /* if(isVocabulary == false){
+               //se dejo comentado depende de cual de los dos se selecciones si se deja el card view o solo la imagen
 
              holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -133,15 +141,9 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                     buttonClickedCatPicto.itemLongClicked(categoriaPictograma);
                     return true;
                 }
-            });*/
-
-            holder.imagen.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    buttonClickedCatPicto.itemLongClicked(categoriaPictograma);
-                    return true;
-                }
             });
+            }*/
+
 
         } else {
             // Covers the case of data not being ready yet.

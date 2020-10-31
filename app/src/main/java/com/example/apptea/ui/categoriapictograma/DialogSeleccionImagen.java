@@ -1,6 +1,8 @@
 package com.example.apptea.ui.categoriapictograma;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,6 +29,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
 
+import roomsqlite.dao.CategoriaPictogramaDAO;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.Pictograma;
 
@@ -34,9 +39,12 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
     private MaterialToolbar toolbar;
     RecyclerView recyclerView;
     PictogramaAdapterBusqueda adapter=null;
+    private int idCategoriaPicto = 0;
 
 
     PictogramaViewModel pictogramaViewModel;
+    CategoriaPictogramaViewModel categoriaPictogramaViewModel;
+    CategoriaPictogramaDAO categoriaPictogramaDAO = appDatabase.getDatabase(this).categoriaPictogramaDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,7 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
         recyclerView = findViewById(R.id.lista_pictograma_busqueda);
         adapter = new PictogramaAdapterBusqueda(this,this::onPictogramaClick);
 
+
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(DialogSeleccionImagen.this).get(PictogramaViewModel.class);
@@ -57,6 +66,10 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
                 adapter.setPictograma(pictogramas);
             }
         });
+
+        Intent intent = getIntent();
+        idCategoriaPicto = intent.getIntExtra("categoria",0);
+        categoriaPictogramaViewModel = new ViewModelProvider(DialogSeleccionImagen.this).get(CategoriaPictogramaViewModel.class);
     }
 
 
@@ -84,9 +97,36 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
     }
 
     @Override
-    public void onPictogramaClick(Pictograma posicion) {
+    public void onPictogramaClick(Pictograma pictograma) {
 
-        System.out.println("pictograma: "+ posicion.getPictograma_nombre());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Alerta");
+        builder.setMessage("¿Desea guardar como imagen principal el pictograma: \n" + pictograma.getPictograma_nombre() + "?");
+        builder.setIcon(android.R.drawable.ic_dialog_info);
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                CategoriaPictograma categoriaPictograma = categoriaPictogramaDAO.obtenerUnaCategoriaPictograma(idCategoriaPicto);
+
+                categoriaPictograma.setPictograma_id(pictograma.getPictograma_id());
+                categoriaPictogramaViewModel.update(categoriaPictograma);
+                System.out.println("categoria"+ categoriaPictograma.getCat_pictograma_nombre());
+                adapter.notifyDataSetChanged();
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog deleteDialog = builder.create();
+        deleteDialog.show();
+
     }
 
     @Override

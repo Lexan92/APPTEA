@@ -31,6 +31,7 @@ import com.example.apptea.R;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
+import com.example.apptea.utilidades.TTSManagerSecuencia;
 import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -189,15 +190,15 @@ public class CategoriaPictogramaFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.detalle_Pictograma, bundleEnvio); //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
             }
 
-            @Override
-            public void itemLongClicked(CategoriaPictograma categoriaPictograma) {
-                Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagen.class);
-                intentSeleccion.putExtra(EditCategoriaPictograma.EXTRA_ID_CAT_UPDATE, categoriaPictograma.getCat_pictograma_id());
-                intentSeleccion.putExtra(EditCategoriaPictograma.EXTRA_NOMBRE_CAT_UPDATE, categoriaPictograma.getCat_pictograma_nombre());
-                intentSeleccion.putExtra(EditCategoriaPictograma.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaPictograma.isPredeterminado());
-                startActivityForResult(intentSeleccion, CAT_UPDATE_REQUEST_CODE);
-                System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
+
+                @Override
+                public void itemLongClicked(CategoriaPictograma categoriaPictograma) {
+                    Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagen.class);
+                    intentSeleccion.putExtra("categoria",categoriaPictograma.getCat_pictograma_id());
+                    System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
+                    startActivity(intentSeleccion);
             }
+
         });
 
 

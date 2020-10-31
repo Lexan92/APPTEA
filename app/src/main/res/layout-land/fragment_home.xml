@@ -58,7 +58,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Frases"
+                        android:text="@string/frases"
                         android:textAlignment="center"
                         android:layout_marginLeft="5dp"
                         android:textAppearance="?attr/textAppearanceHeadline6"
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:text="Vocabulario"
+                        android:text="@string/vocabulario"
                         android:textAlignment="center"
                         android:layout_marginLeft="5dp"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
@@ -154,8 +154,7 @@
                     <TextView
                         android:layout_width="199dp"
                         android:layout_height="wrap_content"
-                        android:text="Habilidades
-                        Cotidianas"
+                        android:text="@string/habilidades_cotidianas"
                         android:layout_marginLeft="5dp"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         />
@@ -204,8 +203,7 @@
                 android:layout_width="199dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="Juegos
-                        Interactivos"
+                android:text="@string/juegos_interactivos"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
 

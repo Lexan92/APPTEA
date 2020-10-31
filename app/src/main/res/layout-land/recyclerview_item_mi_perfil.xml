@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /*
-  ~ Nombre del Autor
-  ~ 18/05/2020
-  ~ Esta actividad hace el llamado a la lista de roles
-  ~ */
-  ~
-  ~
-  -->
 
-<!--
-  ~ /*
-  ~ Nombre del Autor
-  ~ 18/05/2020
-  ~ Esta actividad hace el llamado a la lista de roles
-  ~ */
-  ~
-  ~
-  -->
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -105,7 +87,7 @@
                     android:textSize="19sp"
                     android:textStyle="bold"
                     android:textColor="@color/mi_perfil_titulo"
-                    android:text="E-mail: "
+                    android:text="@string/txt10"
                     android:fontFamily="@font/capriola"/>
                 <TextView
                     android:id="@+id/txt_correoUsuario"

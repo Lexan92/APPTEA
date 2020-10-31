@@ -145,7 +145,11 @@
     <string name="txt14">Apellido:</string>
     <string name="txt15">Edad:</string>
 
-
+    --Categoria de Pictogramas
+    <string name="agregarImg">¿Desea guardar como imagen principal de Categoria: </string>
+    <string name="agregarImg2">el pictograma: </string>
+    <string name="atencion">Atención </string>
+    <string name="aceptar">Aceptar </string>
 
 
 </resources>

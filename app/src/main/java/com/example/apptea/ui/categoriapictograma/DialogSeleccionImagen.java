@@ -101,24 +101,29 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
 
         CategoriaPictograma categoriaPictograma = categoriaPictogramaDAO.obtenerUnaCategoriaPictograma(idCategoriaPicto);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(" Alerta");
-        builder.setMessage("¿Desea guardar como imagen principal de Categoria: " + categoriaPictograma.getCat_pictograma_nombre()+"\nel pictograma: " + pictograma.getPictograma_nombre() + "?");
+        String p1 = getResources().getString(R.string.agregarImg);
+        String p2 = getResources().getString(R.string.agregarImg2);
+        String atencion = getResources().getString(R.string.atencion);
+        String aceptar = getResources().getString(R.string.aceptar);
+        String cancelar = getResources().getString(R.string.cancelar);
+
+        builder.setTitle(" "+atencion);
+        builder.setMessage(p1+" "+ categoriaPictograma.getCat_pictograma_nombre()+"\n"+p2 +" "+ pictograma.getPictograma_nombre() + "?");
         builder.setIcon(android.R.drawable.ic_dialog_info);
 
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(aceptar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
 
                 categoriaPictograma.setPictograma_id(pictograma.getPictograma_id());
                 categoriaPictogramaViewModel.update(categoriaPictograma);
-                System.out.println("categoria"+ categoriaPictograma.getCat_pictograma_nombre());
                 adapter.notifyDataSetChanged();
                 finish();
             }
         });
 
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(cancelar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

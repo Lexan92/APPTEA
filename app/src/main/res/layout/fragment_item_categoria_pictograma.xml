@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorFondo">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPictograma"
@@ -25,7 +26,7 @@
             android:layout_gravity="center_horizontal">
             <!-- Media -->
             <ImageView
-                android:id="@+id/img_hab_cotidiana"
+                android:id="@+id/img_cat_picto"
                 android:layout_width="106dp"
                 android:layout_height="@dimen/card_height_cat_juego"
                 android:layout_marginTop="10dp"

@@ -188,7 +188,19 @@ public class CategoriaPictogramaFragment extends Fragment {
 
                 Navigation.findNavController(v).navigate(R.id.detalle_Pictograma, bundleEnvio); //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
             }
+
+            @Override
+            public void itemLongClicked(CategoriaPictograma categoriaPictograma) {
+                Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagen.class);
+                intentSeleccion.putExtra(EditCategoriaPictograma.EXTRA_ID_CAT_UPDATE, categoriaPictograma.getCat_pictograma_id());
+                intentSeleccion.putExtra(EditCategoriaPictograma.EXTRA_NOMBRE_CAT_UPDATE, categoriaPictograma.getCat_pictograma_nombre());
+                intentSeleccion.putExtra(EditCategoriaPictograma.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaPictograma.isPredeterminado());
+                startActivityForResult(intentSeleccion, CAT_UPDATE_REQUEST_CODE);
+                System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
+            }
         });
+
+
 
 
         //Comprobacion para pintar el nombre del toolbar proveniente del menu principal y quitar el FAB
@@ -277,8 +289,7 @@ public class CategoriaPictogramaFragment extends Fragment {
             CategoriaPictograma categoria = (CategoriaPictograma) data.getSerializableExtra(EditCategoriaPictograma.EXTRA_CAT_HAB_UPDATE);
             categoriaPictogramaViewModel.update(categoria);
         } else {
-            Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
-                    Toast.LENGTH_LONG).show();
+           //Se cierra modal.
         }
     }
 

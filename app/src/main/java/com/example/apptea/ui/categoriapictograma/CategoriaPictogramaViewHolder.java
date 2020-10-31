@@ -22,6 +22,7 @@ package com.example.apptea.ui.categoriapictograma;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class CategoriaPictogramaViewHolder extends RecyclerView.ViewHolder{
     public TextView nombreCategoria;
     public Button cancelar;
     public Button editar;
+    public ImageView imagen;
 
 
     public CategoriaPictogramaViewHolder(@NonNull View itemView) {
@@ -41,6 +43,7 @@ public class CategoriaPictogramaViewHolder extends RecyclerView.ViewHolder{
         nombreCategoria = itemView.findViewById(R.id.txt_categoria_pictograma);
         cancelar = itemView.findViewById(R.id.btn_cancelarCPic);
         editar = itemView.findViewById(R.id.btn_editarCPic);
+        imagen = itemView.findViewById(R.id.img_cat_picto);
 
     }
 

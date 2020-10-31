@@ -99,16 +99,16 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
     @Override
     public void onPictogramaClick(Pictograma pictograma) {
 
-
+        CategoriaPictograma categoriaPictograma = categoriaPictogramaDAO.obtenerUnaCategoriaPictograma(idCategoriaPicto);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Alerta");
-        builder.setMessage("¿Desea guardar como imagen principal el pictograma: \n" + pictograma.getPictograma_nombre() + "?");
+        builder.setTitle(" Alerta");
+        builder.setMessage("¿Desea guardar como imagen principal de Categoria: " + categoriaPictograma.getCat_pictograma_nombre()+"\nel pictograma: " + pictograma.getPictograma_nombre() + "?");
         builder.setIcon(android.R.drawable.ic_dialog_info);
 
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                CategoriaPictograma categoriaPictograma = categoriaPictogramaDAO.obtenerUnaCategoriaPictograma(idCategoriaPicto);
+
 
                 categoriaPictograma.setPictograma_id(pictograma.getPictograma_id());
                 categoriaPictogramaViewModel.update(categoriaPictograma);

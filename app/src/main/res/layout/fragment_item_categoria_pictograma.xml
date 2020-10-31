@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorFondo">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPictograma"
@@ -21,17 +22,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorFondo"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+            <!-- Media -->
+            <ImageView
+                android:id="@+id/img_cat_picto"
+                android:layout_width="106dp"
+                android:layout_height="@dimen/card_height_cat_juego"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_wallpaper"
+                android:layout_gravity="center_horizontal"/>
 
             <TextView
                 android:id="@+id/txt_categoria_pictograma"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginRight="3dp"
                 android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textColor="@color/mi_perfil_titulo"
@@ -43,7 +54,8 @@
                 android:layout_height="37dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_editarCPic"

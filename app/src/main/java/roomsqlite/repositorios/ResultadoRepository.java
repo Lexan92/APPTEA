@@ -25,6 +25,8 @@ public class ResultadoRepository {
 
     public void insertResultado (Resultado resultado){resultadoDao.insertResultado(resultado);}
 
+    public Resultado obtenerResultado(){ return resultadoDao.obtenerResultado();}
+
 
 
 }

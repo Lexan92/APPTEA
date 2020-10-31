@@ -21,8 +21,11 @@ public interface ResultadoDao {
     LiveData<List<Resultado>> getAllResultado();
 
 
-
     @Query("DELETE FROM resultado WHERE sesion_id=:id")
     void borrarResultadoPorId(int id);
+
+    //OBTIENE EL ULTIMO RESULTADO INGRESADO
+    @Query("SELECT * FROM resultado ORDER BY resultado_id DESC LIMIT 1")
+    Resultado obtenerResultado();
 
 }

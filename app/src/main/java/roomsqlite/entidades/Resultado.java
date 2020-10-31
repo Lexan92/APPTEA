@@ -20,6 +20,7 @@ import static androidx.room.ForeignKey.CASCADE;
 @TypeConverters(DateConverter.class)
 public class Resultado implements Serializable {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index = true, name = "resultado_id")
     private int resultado_id;
 
     @ColumnInfo(index = true)

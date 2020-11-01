@@ -45,6 +45,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
     RecyclerView recyclerView;
     Button sesionAdmin;
 
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -74,6 +75,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String textSesion= getResources().getString(R.string.txt16);
         setContentView(R.layout.activity_listado_inicio_sesion);
         AdministarSesion administarSesion = new AdministarSesion(ListadoInicioSesion.this);
         recyclerView = findViewById(R.id.list_inicio);
@@ -83,7 +85,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
         //Se obtiene el usuario guardado se obtiene la primera fila.
         UsuarioDao usuarioDao = appDatabase.getDatabase(getApplicationContext()).usuarioDao();
         Usuario usuario = usuarioDao.obtenerUsuario();
-        sesionAdmin.setText("Iniciar como: " + usuario.getUsuario_nombre());
+        sesionAdmin.setText(textSesion+ usuario.getUsuario_nombre());
 
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         recyclerView.setAdapter(adapter);

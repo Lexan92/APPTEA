@@ -73,9 +73,8 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     }
 
     public static HabilidadCotidianaFragment newInstance(String param1, String param2) {
-        HabilidadCotidianaFragment fragment = new HabilidadCotidianaFragment();
 
-        return fragment;
+        return new HabilidadCotidianaFragment();
     }
 
     @Override

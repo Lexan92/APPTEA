@@ -36,6 +36,7 @@ public class VerSesion extends Fragment implements SesionAdapter.OnSesionListene
     PersonaTea personaTea = null;
 
 
+
     public VerSesion() {
         // Required empty public constructor
     }
@@ -67,6 +68,8 @@ public class VerSesion extends Fragment implements SesionAdapter.OnSesionListene
         sesionViewModel = new ViewModelProvider(getActivity()).get(SesionViewModel.class);
         Bundle objetoPersona = getArguments();
 
+
+
         if (objetoPersona != null) {
             personaTea = (PersonaTea) objetoPersona.getSerializable("persona");
             sesionViewModel.obtenerSesionesPorIDPersona(personaTea.getPersona_id()).observe(getActivity(), new Observer<List<Sesion>>() {
@@ -86,12 +89,24 @@ public class VerSesion extends Fragment implements SesionAdapter.OnSesionListene
                     }
                 }
             });
+
+
+            Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+            toolbar.setTitle("Perfil: ".concat(personaTea.getPersona_nombre()).concat(" ").concat(personaTea.getPersona_apellido()));
+
         }
 
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Perfil: ".concat(personaTea.getPersona_nombre()).concat(" ").concat(personaTea.getPersona_apellido()));
 
 
+
+        adapter.setButtonClicked(new SesionAdapter.ButtonCliked() {
+            @Override
+            public void comentarioCliked(Sesion sesion) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("sesion",sesion);
+                Navigation.findNavController(getView()).navigate(R.id.action_verSesion_to_comentarioDialogo,bundle);
+            }
+        });
     }
 
     @Override

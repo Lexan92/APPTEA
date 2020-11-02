@@ -74,7 +74,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
         //Se obtiene el usuario guardado se obtiene la primera fila.
         UsuarioDao usuarioDao = appDatabase.getDatabase(getApplicationContext()).usuarioDao();
         Usuario usuario = usuarioDao.obtenerUsuario();
-        sesionAdmin.setText("Iniciar como: " + usuario.getUsuario_nombre());
+
 
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         recyclerView.setAdapter(adapter);

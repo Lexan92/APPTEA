@@ -7,13 +7,14 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import roomsqlite.database.DateConverter;
 
 @Entity(tableName = Sesion.NOMBRE_TABLA)
 @TypeConverters(DateConverter.class)
-public class Sesion {
+public class Sesion implements Serializable {
     public static final String NOMBRE_TABLA="sesion";
 
     @PrimaryKey(autoGenerate = true)

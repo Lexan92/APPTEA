@@ -20,8 +20,6 @@ import roomsqlite.entidades.Sesion;
 public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHolder> implements View.OnClickListener {
 
 
-
-
     private List<Sesion> listaSesiones;
     private OnSesionListener mOnSesionListener;
     private LayoutInflater mInflater;
@@ -37,16 +35,16 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHold
     @Override
     public SesionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-      View itemview = mInflater.inflate(R.layout.fragment_sesion_adapter,parent,false);
+        View itemview = mInflater.inflate(R.layout.fragment_sesion_adapter, parent, false);
 
 
-        return new SesionHolder(itemview,mOnSesionListener);
+        return new SesionHolder(itemview, mOnSesionListener);
     }
 
     @Override
     public void onBindViewHolder(SesionHolder holder, int position) {
 
-        if(listaSesiones!=null){
+        if (listaSesiones != null) {
             Sesion sesionActual = listaSesiones.get(position);
             holder.fecha.setText(UtilidadFecha.obtenerFecha(sesionActual.getInicio_sesion()));
             holder.horaInicio.setText(UtilidadFecha.obtenerHora(sesionActual.getInicio_sesion()));
@@ -57,26 +55,26 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHold
 
     @Override
     public int getItemCount() {
-        if (listaSesiones!= null)
+        if (listaSesiones != null)
             return listaSesiones.size();
         else
             return 0;
     }
-    
+
 
     @Override
     public void onClick(View v) {
 
     }
 
-    public interface OnSesionListener{
+    public interface OnSesionListener {
         void onSesionClick(Sesion posicion);
     }
 
     class SesionHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView fecha ;
-        private TextView horaInicio ;
-        private TextView horaFin ;
+        private final TextView fecha;
+        private final TextView horaInicio;
+        private final TextView horaFin;
         OnSesionListener onSesionListener;
 
         public SesionHolder(View itemView, OnSesionListener onSesionListener) {
@@ -85,7 +83,7 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHold
             fecha = itemView.findViewById(R.id.fecha_sesion);
             horaInicio = itemView.findViewById(R.id.hora_inicio);
             horaFin = itemView.findViewById(R.id.hora_fin);
-            this.onSesionListener=onSesionListener;
+            this.onSesionListener = onSesionListener;
             itemView.setOnClickListener(this);
         }
 
@@ -96,7 +94,7 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHold
         }
     }
 
-    void setSesiones(List<Sesion> sesiones){
+    void setSesiones(List<Sesion> sesiones) {
         listaSesiones = sesiones;
         notifyDataSetChanged();
 

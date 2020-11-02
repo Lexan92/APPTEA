@@ -225,7 +225,16 @@
         android:id="@+id/verSesion"
         android:name="com.example.apptea.ui.sesion.VerSesion"
         android:label="fragment_ver_sesion"
-        tools:layout="@layout/fragment_ver_sesion" />
+        tools:layout="@layout/fragment_ver_sesion" >
+        <action
+            android:id="@+id/action_verSesion_to_verDetalleSesion"
+            app:destination="@id/verDetalleSesion" />
+    </fragment>
+    <fragment
+        android:id="@+id/verDetalleSesion"
+        android:name="com.example.apptea.ui.sesion.VerDetalleSesion"
+        android:label="fragment_ver_detalle_sesion"
+        tools:layout="@layout/fragment_ver_detalle_sesion" />
 
 
 </navigation>

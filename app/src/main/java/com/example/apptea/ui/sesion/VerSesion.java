@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,10 +87,20 @@ public class VerSesion extends Fragment implements SesionAdapter.OnSesionListene
                 }
             });
         }
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Perfil: ".concat(personaTea.getPersona_nombre()).concat(" ").concat(personaTea.getPersona_apellido()));
+
+
     }
 
     @Override
     public void onSesionClick(Sesion sesion) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("sesion",sesion);
+        VerDetalleSesion verDetalleSesion = new VerDetalleSesion();
+        verDetalleSesion.setArguments(bundle);
+        Navigation.findNavController(getView()).navigate(R.id.verDetalleSesion,bundle);
 
     }
 }

@@ -11,7 +11,7 @@ import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.Sesion;
 
 public class SesionRepository {
-    private SesionDao sesionDao;
+    private final SesionDao sesionDao;
 
 
     public SesionRepository(Application application) {

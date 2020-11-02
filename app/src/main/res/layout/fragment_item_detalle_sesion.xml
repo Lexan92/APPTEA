@@ -1,13 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ /*
-  ~ Oscar Turish
-  ~ 24/05/2020
-  ~ Item para habilidades cotidianas
-  ~ */
-  ~
-  ~
-  -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
@@ -38,100 +28,80 @@
 
 
             <TextView
-                android:id="@+id/fecha_sesion"
+                android:id="@+id/nombre_detalle_sesion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
                 android:fontFamily="@font/capriola"
-                android:text="fecha Sesion"
+                android:text="Detalle"
                 android:textAlignment="textStart"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@color/mi_perfil_titulo"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.106"
+                app:layout_constraintHorizontal_bias="0.088"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.4" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_editar_sesion"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                app:icon="@drawable/ic_ojo"
-                app:iconSize="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.555" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/hora_inicio"
+                android:id="@+id/hora_inicio_detalle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="88dp"
                 android:text="Hora Inicio Sesion"
                 android:textColor="#558B2F"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.105"
+                app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fecha_sesion"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/hora_fin"
+                android:id="@+id/fecha_detalle_sesion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:text="Hora Fin Sesion"
-                android:textColor="#C62828"
+                android:layout_marginTop="92dp"
+                android:text="Fecha"
+                android:textColor="#558B2F"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_editar_hab_cotidiana"
-                app:layout_constraintHorizontal_bias="0.523"
-                app:layout_constraintStart_toEndOf="@+id/hora_inicio"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.793" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:text="FECHA"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="4dp"
+                android:text="ACCIÓN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.084"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.166" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
                 android:text="INICIO"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintHorizontal_bias="0.362"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.629" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="124dp"
-                android:text="FIN"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="72dp"
+                android:text="FECHA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.082"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.629" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,8 @@ public class ResultadoRepository {
 
     public LiveData<List<Resultado>> getResultado() { return resultadoAll;}
 
-    public void insertResultado (Resultado resultado){resultadoDao.insertResultado(resultado);}
+    public void insertResultado (Resultado resultado){
+        resultadoDao.insertResultado(resultado);}
 
     public Resultado obtenerResultado(){ return resultadoDao.obtenerResultado();}
 

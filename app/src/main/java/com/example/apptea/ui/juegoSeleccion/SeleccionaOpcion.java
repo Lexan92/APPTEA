@@ -88,7 +88,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         siguiente = findViewById(R.id.pregunta_siguiente);
         globos = findViewById(R.id.lottie_globos);
         juego = (Juego) getIntent().getSerializableExtra("juego");
-       // resultado = (Resultado) getIntent().getSerializableExtra("resultado");
+        resultado = (Resultado) getIntent().getSerializableExtra("resultado");
         preguntaViewModel = new ViewModelProvider(this).get(PreguntaViewModel.class);
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
         pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
@@ -193,13 +193,13 @@ public class SeleccionaOpcion extends AppCompatActivity {
             posicion++;
 
             if (posicion <= longitudPreguntas - 1) {
-               /* if(sesion.obtenerTipoUsuario()==1){
+                if(sesion.obtenerTipoUsuario()==1){
                     System.out.println("Resultado id "+ resultado.getResultado_id());
                     detalleResultado.setResultado_id(resultado.getResultado_id());
                     detalleResultado.setNombre_pregunta(tituloPregunta.toString());
                     detalleResultado.setCantidad_fallos(numeroFallos);
                     detalleResultadoViewModel.insertResultado(detalleResultado);
-                }*/
+                }
                 reiniciarCards();
                 setearOpciones(posicion);
             } else {

@@ -38,13 +38,13 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
         public ImageView check;
 
 
+
         private PictoSecuenciaHolder(View itemView){
             super(itemView);
             nombrePictograma = itemView.findViewById(R.id.nombre_pictograma);
             imagen = itemView.findViewById(R.id.img_pictograma);
             flecha = itemView.findViewById(R.id.img_flecha);
             check = itemView.findViewById(R.id.img_check);
-
         }
     }
     public PictoSecuenciaAdapter(ArrayList<Pictograma> pictoFraseList){
@@ -62,6 +62,7 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
     @Override
     public void onBindViewHolder(PictoSecuenciaAdapter.PictoSecuenciaHolder holder, int position) {
         final int pos = position;
+
         if (position == pictoFraseList.size() - 1) {
             holder.flecha.setVisibility(View.GONE);
         }
@@ -85,7 +86,7 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                System.out.println("Seleccion:"+pictoFraseList.get(pos).getPictograma_id());
+                //holder.check.setVisibility(View.VISIBLE);
                 posicionMarcada = pos;
                 TTSManagerSecuencia.pictogramaSeleccion = pictoFraseList.get(pos);
                 TTSManagerSecuencia.pictogramaIdSeleccion= pos+1;

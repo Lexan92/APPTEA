@@ -3,6 +3,7 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_title">TEAyudo Jugando</string>
+    <string name="txt9">Usuario</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -17,6 +18,7 @@
     <string name="menu_persona_tea">Lista de niños y niñas</string>
     <string name="menu_configuracion">Configuración</string>
     <string name="menu_preguntas_frecuentes">Preguntas Frecuentes</string>
+    <string name="menu_cerrar_sesion">Cerrar Sesión</string>
 
     <string name="home_second">Home Second</string>
     <string name="nombre_opcion_menu">nombre_opcion_menu</string>
@@ -28,14 +30,19 @@
     <string name="txt1">Bienvenido a</string>
     <string name="txt2" translatable="false">TEAyudo jugando</string>
     <string name="txt3">Terminos y Condiciones</string>
+    <string name="txt4">Al presionar Siguiente, usted acepta los Terminos y Condiciones de TEAyudo Jugando</string>
     <string name="button1">Siguiente</string>
     <string name="button2">Acceso directo</string>
-    <string name="textarea">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et malesuada fames ac turpis egestas sed tempus urna et. Nisi lacus sed viverra tellus. Vulputate sapien nec sagittis aliquam malesuada. Montes nascetur ridiculus mus mauris vitae ultricies. Neque vitae tempus quam pellentesque nec nam aliquam sem et. Amet massa vitae tortor condimentum lacinia quis. Elit duis tristique sollicitudin nibh sit amet commodo. Non pulvinar neque laoreet suspendisse interdum. In hac habitasse platea dictumst vestibulum. Diam quam nulla porttitor massa id neque. Ultricies lacus sed turpis tincidunt id aliquet risus. Varius sit amet mattis vulputate enim. Diam vulputate ut pharetra sit amet aliquam id diam.
+    <string name="textarea">Modificar estos terminos y condiciones </string>
 
-Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar elementum integer. </string>
+    --Acceso pin
+    <string name="txt5">Acceso con Contraseña</string>
+    <string name="button3">Ingresar</string>
+    <string name="txt6">Ingrese la Contraseña</string>
+    <string name="txt7">¿Olvidaste tu contraseña?</string>
 
 
-    --registro usuario
+    --registro de usuario
     <string name="datos">Datos Generales</string>
     <string name="editarDatos">Editar Datos Generales</string>
     <string name="tituloCamContrasenia">Cambiar Contraseña</string>
@@ -56,6 +63,15 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="mensaje_validar_codigo">Se ha enviado un código a tu correo electronico</string>
     <string name="campo_codigo">Código</string>
     <string name="button_validar">Validar</string>
+
+
+    --Mi perfil
+    <string name="txt8">Acerca de TEAyudo Jugando</string>
+    <string name="txt10">Correo:</string>
+    <string name="txt11">Iniciar Sesión</string>
+    <string name="txt12">Iniciar Sesión Como :</string>
+
+
 
     --Categoria Habilidad Cotidiana
     <string name="campo_nombre">Nombre de Categoria</string>
@@ -96,6 +112,12 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="hint_dialog_nuevo_pictograma">Nombre Imagen</string>
     <string name="button_elegir_imagen_nuevo_pictograma">Selecciona Imagen</string>
     <string name="button_guardar_imagen_nuevo_pictograma">Guardar</string>
+    <string name="txt18">Nueva Imagen</string>
+    <string name="txt19">Actualizar Imagen</string>
+
+
+
+
     <string name="juegos_interactivos">Juegos Interactivos</string>
     <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
     <string name="vocabulario">Vocabulario</string>
@@ -121,4 +143,20 @@ Et sollicitudin ac orci phasellus. Id consectetur purus ut faucibus pulvinar ele
     <string name="telefonoTera">Telefono</string>
     <string name="cancelarTera">Cancelar</string>
     <string name="guardarTera">Guardar</string>
+
+    --Iniciar sesion
+    <string name="txt13">Nombre:</string>
+    <string name="txt14">Apellido:</string>
+    <string name="txt15">Edad:</string>
+    <string name="txt16">Iniciar como:</string>
+    <string name="txt17">Hola  </string>
+
+
+    --Categoria de Pictogramas
+    <string name="agregarImg" translatable="false">¿Desea guardar como imagen principal de Categoria: </string>
+    <string name="agregarImg2" translatable="false">el pictograma: </string>
+    <string name="atencion" translatable="false">Atención </string>
+    <string name="aceptar" translatable="false">Aceptar </string>
+
+
 </resources>

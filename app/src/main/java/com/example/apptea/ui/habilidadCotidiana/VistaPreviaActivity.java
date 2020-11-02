@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -48,6 +49,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
     TTSManagerSecuencia ttsManagerSecuencia2=null;
     private ArrayList<Secuencia> listaSecuencia;
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
+
 
 
     public VistaPreviaActivity(){
@@ -93,7 +95,6 @@ public class VistaPreviaActivity extends AppCompatActivity {
 
 
 
-
         int milisegundos = 3000;
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -104,6 +105,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     atras.setVisibility(View.VISIBLE);
                     nombreHabilidad.setText(tituloHabilidad);
                     nombreHabilidad.setEnabled(false);
+
                 }else{
                 atras.setVisibility(View.VISIBLE);
                 nombreHabilidad.setVisibility(View.VISIBLE);
@@ -165,7 +167,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 } else {
                     if (editar == false) {
-                        TTSManagerSecuencia.pictogramaSeleccion = null;
+
                         HabilidadCotidiana habilidadCotidiana = new HabilidadCotidiana();
                         habilidadCotidiana.setCat_hab_cotidiana_id(idCategoriaHab);
                         habilidadCotidiana.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
@@ -191,6 +193,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                             secuenciaViewModel.insert(secuencia);
                             orden += 1;
                         }
+                        TTSManagerSecuencia.pictogramaSeleccion = null;
                     } else {
                         HabilidadCotidiana habInsertada = habilidadCotidianaDao.obtenerUnaHabilidadCotidiana(idHabilidad);
                         habInsertada.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
@@ -219,7 +222,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                             secuenciaViewModel.insert(secuencia);
                             orden += 1;
                         }
-
+                        TTSManagerSecuencia.pictogramaSeleccion = null;
                     }
                     Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada ", Toast.LENGTH_LONG).show();
                     finish();

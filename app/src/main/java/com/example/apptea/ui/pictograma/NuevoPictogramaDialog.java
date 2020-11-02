@@ -83,14 +83,16 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
 
         //VALIDANDO SI ES EDICION DE PICTOGRAMA
         Intent intent = getIntent();
+        String txtNueIma = getResources().getString(R.string.txt18);
+        String txtActuaIma= getResources().getString(R.string.txt19);
 
         if(intent.getIntExtra(EXTRA_EDIT,-1)==1){
            //ES NUEVO PICTOGRAMA
-            titulo.setText("Nueva Imagen");
+            titulo.setText(txtNueIma);
             imgvacia = imgFoto.getDrawable();
         }else{
             // ES ACTUALIZACION
-            titulo.setText("Actualizar Imagen");
+            titulo.setText(txtActuaIma);
 
             nombrePictograma.setText(intent.getStringExtra(EXTRA_NOMBRE_PICTOGRAMA_UPDATE));
 

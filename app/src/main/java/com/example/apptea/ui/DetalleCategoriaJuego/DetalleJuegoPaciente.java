@@ -25,19 +25,24 @@ import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
+import com.example.apptea.ui.juegoSeleccion.ResultadoViewModel;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import roomsqlite.dao.DetalleSesionDao;
+import roomsqlite.dao.HabilidadCotidianaDao;
+import roomsqlite.dao.ResultadoDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.Juego;
+import roomsqlite.entidades.Resultado;
 
 public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPaciente.OnJuegoListener {
 
@@ -49,6 +54,9 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
     LiveData<CategoriaJuego> categoriaJuegoLiveData;
     List<Juego> juegosConPregunta = new ArrayList<>();
     int key = 0;
+
+    ResultadoViewModel resultadoViewModel;
+    ResultadoDao resultadoDao;
 
     public DetalleJuegoPaciente() {
         // Required empty public constructor
@@ -92,6 +100,8 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
         preguntaViewModel = new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
         categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
+        resultadoViewModel = new ViewModelProvider(this).get(ResultadoViewModel.class);
+        resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
 
         Bundle objetoCategoriaJuego = getArguments();
 
@@ -165,23 +175,35 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
             //se verifica la cantidad de preguntas que tiene el juego seleccionado
             int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
             if (numero > 0) {
-                if (bundle.getBoolean("bandera")) {
+                if (bundle.getBoolean("bandera")) { //Si viene del menu principal
 
+                    Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
                     AdministarSesion administarSesion = new AdministarSesion(getContext());
                     if (administarSesion.obtenerIDSesion() > 0) {
                         DetalleSesion detalleSesion = new DetalleSesion();
                         detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
-                        detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
+                        Date hora = UtilidadFecha.obtenerFechaHoraActual();
+                        detalleSesion.setHora_inicio(hora);
                         detalleSesion.setNombre_opcion("JUEGO: ".concat(juego.getJuego_nombre()));
 
                         DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
-
-
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
+
+                        //INSERTANDO EN RESULTADO
+                        Resultado resultado = new Resultado();
+                        resultado.setSesion_id(administarSesion.obtenerIDSesion());
+                        resultado.setNombre_juego(juego.getJuego_nombre());
+                        resultado.setHora_juego(hora);
+                        resultadoViewModel.insertResultado(resultado);
+                        Resultado res = new Resultado();
+                        res = resultadoDao.obtenerResultado();
+                        intent.putExtra("resultado", res);
+                        System.out.println("Resultado id : "+ res.getResultado_id());
+                        System.out.println("Resultado juego : "+ res.getNombre_juego());
+                        System.out.println("Resultado SESION : "+ res.getSesion_id());
                     }
 
 
-                    Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
                     intent.putExtra("juego", juego);
                     startActivity(intent);
 

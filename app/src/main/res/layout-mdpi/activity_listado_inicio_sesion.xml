@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Elige un Perfil"
+        android:text="@string/txt11"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/list_inicio"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
 
-        android:text="Iniciar Como Encargado"
+        android:text="@string/txt12"
         app:icon="@drawable/ic_account_circle_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

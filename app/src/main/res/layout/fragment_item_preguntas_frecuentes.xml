@@ -9,5 +9,6 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
+    app:autoSizeTextType="uniform"
     tools:context=".ui.preguntasFrecuentes.FaqFragment"
     tools:listitem="@layout/fragment_item" />

@@ -31,6 +31,7 @@ import com.example.apptea.R;
 import com.example.apptea.ui.pictograma.Detalle_Pictograma;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
+import com.example.apptea.utilidades.TTSManagerSecuencia;
 import com.example.apptea.utilidades.UtilidadFecha;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -188,7 +189,19 @@ public class CategoriaPictogramaFragment extends Fragment {
 
                 Navigation.findNavController(v).navigate(R.id.detalle_Pictograma, bundleEnvio); //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
             }
+
+
+                @Override
+                public void itemLongClicked(CategoriaPictograma categoriaPictograma) {
+                    Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagen.class);
+                    intentSeleccion.putExtra("categoria",categoriaPictograma.getCat_pictograma_id());
+                    System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
+                    startActivity(intentSeleccion);
+            }
+
         });
+
+
 
 
         //Comprobacion para pintar el nombre del toolbar proveniente del menu principal y quitar el FAB
@@ -277,8 +290,7 @@ public class CategoriaPictogramaFragment extends Fragment {
             CategoriaPictograma categoria = (CategoriaPictograma) data.getSerializableExtra(EditCategoriaPictograma.EXTRA_CAT_HAB_UPDATE);
             categoriaPictogramaViewModel.update(categoria);
         } else {
-            Toast.makeText(getActivity(), R.string.vacio_cat_hab_cot,
-                    Toast.LENGTH_LONG).show();
+           //Se cierra modal.
         }
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /*
-  ~ Nombre del Autor
-  ~ 18/05/2020
-  ~ Esta actividad hace el llamado a la lista de roles
+  ~ Oscar Turish
+  ~ 30/10/2020
+  ~ Este Liner Layout muestra la secuencia de pictogamas para las habilidaddes cotidianas
   ~ */
   ~
   ~
@@ -12,19 +12,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="160dp"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorFondo"
-        android:orientation="horizontal">
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_pictoFrases"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="10dp"
@@ -40,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorFondo"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
                 <!-- Media -->
                 <ImageView
                     android:id="@+id/img_pictograma"
@@ -59,12 +55,10 @@
                     android:id="@+id/img_check"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="-45dp"
+                    android:layout_marginLeft="-20dp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginRight="5dp"
                     android:paddingLeft="5dp"
                     android:paddingTop="5dp"
-                    android:paddingRight="5dp"
                     android:paddingBottom="5dp"
                     app:srcCompat="@drawable/ic_check" />
             </LinearLayout>
@@ -74,17 +68,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/capriola"
-                    android:paddingBottom="5dp"
                     android:text="nombre pictograma"
+                    android:layout_margin="10dp"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/mi_perfil_titulo"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
-
-
         </com.google.android.material.card.MaterialCardView>
+
         <ImageView
             android:id="@+id/img_flecha"
             android:layout_width="90dp"
@@ -96,8 +88,5 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             app:srcCompat="@drawable/ic_next_hab" />
-
-
-    </LinearLayout>
 
 </LinearLayout>

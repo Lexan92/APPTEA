@@ -31,11 +31,14 @@
         <item name="android:fontFamily">@font/capriola</item>
     </style>
     <style name="temaHabilidad" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
-
+    <style name="temaSeleccionPicto" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
 
 
 

@@ -48,7 +48,7 @@ public class TerapeutaFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_gestion_terapeuta, container, false);
 
         recyclerView =  vista.findViewById(R.id.lista_terapeutas);
-        final TextView textTerapeuta = vista.findViewById(R.id.text_terapeuta);
+
 
         final TerapeutaAdapter adapter = new TerapeutaAdapter();
 

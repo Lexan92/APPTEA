@@ -55,6 +55,9 @@ public interface CategoriaPictogramaDAO {
             "AND cp.cat_pictograma_id = :id")
     int numPictoHabilidad (int id);
 
+    @Query("SELECT * FROM categoria_pictograma WHERE cat_pictograma_id = :id")
+    CategoriaPictograma obtenerUnaCategoriaPictograma(int id);
+
 }
 
 

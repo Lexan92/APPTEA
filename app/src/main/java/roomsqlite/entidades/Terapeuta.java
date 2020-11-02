@@ -9,7 +9,9 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "terapeuta", foreignKeys = @ForeignKey(entity = PersonaTea.class,parentColumns = "persona_id",childColumns = "persona_id"))
+import static androidx.room.ForeignKey.CASCADE;
+
+@Entity(tableName = "terapeuta", foreignKeys = @ForeignKey(entity = PersonaTea.class,parentColumns = "persona_id",childColumns = "persona_id" ,onDelete=CASCADE, onUpdate = CASCADE))
 public class Terapeuta implements Serializable {
     @PrimaryKey (autoGenerate = true)
     private int terapeuta_id;

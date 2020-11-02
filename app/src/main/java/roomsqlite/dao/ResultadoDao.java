@@ -20,13 +20,12 @@ public interface ResultadoDao {
     @Query("SELECT * FROM resultado")
     LiveData<List<Resultado>> getAllResultado();
 
-    //RESULTADO DE UN JUEGO EN UNA SESION
-    @Query("SELECT * FROM resultado r " +
-            "INNER JOIN pregunta p ON p.pregunta_id = r.pregunta_id " +
-            "WHERE p.juego_id = :id_juego AND r.sesion_id = :id_sesion ")
-    LiveData<List<Resultado>> findAllResultadoByJuegoSesion(int id_juego, int id_sesion);
 
     @Query("DELETE FROM resultado WHERE sesion_id=:id")
     void borrarResultadoPorId(int id);
+
+    //OBTIENE EL ULTIMO RESULTADO INGRESADO
+    @Query("SELECT * FROM resultado ORDER BY resultado_id DESC LIMIT 1")
+    Resultado obtenerResultado();
 
 }

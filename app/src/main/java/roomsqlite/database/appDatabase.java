@@ -16,6 +16,7 @@ import roomsqlite.config.constantes;
 import roomsqlite.dao.CategoriaHabCotidianaDao;
 import roomsqlite.dao.CategoriaJuegoDAO;
 import roomsqlite.dao.CategoriaPictogramaDAO;
+import roomsqlite.dao.DetalleResultadoDao;
 import roomsqlite.dao.DetalleSesionDao;
 import roomsqlite.dao.FaqDao;
 import roomsqlite.dao.HabilidadCotidianaDao;
@@ -37,6 +38,7 @@ import roomsqlite.dao.UsuarioDao;
 import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.CategoriaPictograma;
+import roomsqlite.entidades.DetalleResultado;
 import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.Faq;
 import roomsqlite.entidades.HabilidadCotidiana;
@@ -58,7 +60,7 @@ import roomsqlite.entidades.Usuario;
 
 @Database(entities = {CategoriaHabCotidiana.class, HabilidadCotidiana.class, CategoriaPictograma.class, CategoriaJuego.class,
         Rol.class, PersonaTea.class, Pictograma.class, Usuario.class, Juego.class, Pregunta.class, Opcion.class, Secuencia.class,
-        Terapeuta.class, Sesion.class, DetalleSesion.class, Faq.class, RespuestaFaq.class,Resultado.class}, version = 1, exportSchema = false)
+        Terapeuta.class, Sesion.class, DetalleSesion.class, Faq.class, RespuestaFaq.class,Resultado.class, DetalleResultado.class}, version = 1, exportSchema = false)
 
 public abstract class appDatabase extends RoomDatabase {
 
@@ -106,6 +108,7 @@ public abstract class appDatabase extends RoomDatabase {
 
     public  abstract ResultadoDao resultadoDao();
 
+    public abstract DetalleResultadoDao detalleResultadoDao();
 
     //OBTENER INSTANCIA DE LA BASE DE DATOS
     public static appDatabase getDatabase(final Context context) {
@@ -153,7 +156,7 @@ public abstract class appDatabase extends RoomDatabase {
                     RespuestaFaqDao respuestaFaqDao = INSTANCE.respuestaFaqDao();
 
                     ResultadoDao resultadoDao = INSTANCE.resultadoDao();
-
+                    DetalleResultadoDao detalleResultadoDao = INSTANCE.detalleResultadoDao();
 
                     //DELETE
                     roldao.deleteRolAll();

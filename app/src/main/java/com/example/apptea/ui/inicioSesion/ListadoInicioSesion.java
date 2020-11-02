@@ -48,6 +48,15 @@ public class ListadoInicioSesion extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        Date date = UtilidadFecha.obtenerFechaHoraActual();
+
+        Log.d("LEXAN", "HORA: " + date.toString());
+
+        Log.d("LEXAN", "HORA con formato: " + UtilidadFecha.obtenerHora(date));
+        Log.d("LEXAN", "Fecha con formato: " + UtilidadFecha.obtenerFecha(date));
+
+
     }
 
     @Override
@@ -65,6 +74,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String textSesion= getResources().getString(R.string.txt16);
         setContentView(R.layout.activity_listado_inicio_sesion);
         AdministarSesion administarSesion = new AdministarSesion(ListadoInicioSesion.this);
         recyclerView = findViewById(R.id.list_inicio);
@@ -74,7 +84,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
         //Se obtiene el usuario guardado se obtiene la primera fila.
         UsuarioDao usuarioDao = appDatabase.getDatabase(getApplicationContext()).usuarioDao();
         Usuario usuario = usuarioDao.obtenerUsuario();
-
+        sesionAdmin.setText(textSesion+ usuario.getUsuario_nombre());
 
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         recyclerView.setAdapter(adapter);

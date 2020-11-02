@@ -34,19 +34,27 @@ public class CategoriaPictograma implements Serializable {
     @ColumnInfo(name = "predeterminado")
     private boolean predeterminado;
 
+    private int pictograma_id;
+
 public CategoriaPictograma(){
 
 }
 
-//CONSTRUCTOR
-
     @Ignore
-    public CategoriaPictograma(@NonNull int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado) {
+    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado) {
         this.cat_pictograma_id = cat_pictograma_id;
         this.cat_pictograma_nombre = cat_pictograma_nombre;
         this.predeterminado = predeterminado;
     }
 
+    //CONSTRUCTOR
+    @Ignore
+    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado, int pictograma_id) {
+        this.cat_pictograma_id = cat_pictograma_id;
+        this.cat_pictograma_nombre = cat_pictograma_nombre;
+        this.predeterminado = predeterminado;
+        this.pictograma_id = pictograma_id;
+    }
 
     //GET Y SET
 
@@ -74,12 +82,11 @@ public CategoriaPictograma(){
         this.predeterminado = predeterminado;
     }
 
-
-    /*public int getCat_pictorgrama_ban() {
-        return cat_pictorgrama_ban;
+    public int getPictograma_id() {
+        return pictograma_id;
     }
 
-    public void setCat_pictorgrama_ban(int cat_pictorgrama_ban) {
-        this.cat_pictorgrama_ban = cat_pictorgrama_ban;
-    }*/
+    public void setPictograma_id(int pictograma_id) {
+        this.pictograma_id = pictograma_id;
+    }
 }

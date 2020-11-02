@@ -19,9 +19,11 @@
         android:id="@+id/card_menu_principal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        android:layout_margin="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,7 +59,7 @@
                         android:id="@+id/nombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre:"
+                        android:text="@string/txt13"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -79,7 +81,7 @@
                         android:id="@+id/apellido"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Apellido:"
+                        android:text="@string/txt14"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -103,7 +105,7 @@
                         android:id="@+id/fecha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Edad"
+                        android:text="@string/txt15"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         android:textSize="12sp"
                         android:textStyle="bold" />

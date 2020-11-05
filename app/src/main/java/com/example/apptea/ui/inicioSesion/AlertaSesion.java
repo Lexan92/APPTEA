@@ -43,9 +43,15 @@ public class AlertaSesion extends AppCompatActivity {
         int id = administarSesion.obtenerIDSesion();
         SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
         sesion = sesionDao.obtenerSesionPorId(id);
-        sesionDao.borrarSesion(sesion);
+        if (sesion==null){
+
+        }else {
+            sesionDao.borrarSesion(sesion);
+        }
+
         ResultadoDao resultadoDao = appDatabase.getDatabase(getApplicationContext()).resultadoDao();
         resultadoDao.borrarResultadoPorId(id);
+        administarSesion.cerrarSesionPersonaTea();
         Intent intent = new Intent(AlertaSesion.this, ListadoInicioSesion.class);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Sesión Descartada", Toast.LENGTH_SHORT).show();

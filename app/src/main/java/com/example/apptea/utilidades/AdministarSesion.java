@@ -17,7 +17,7 @@ public class AdministarSesion {
     String user = "idUsuario";
     String usuario_Rol = "idRolUsuario";
     String persona_Tea = "idPersonaTea";
-    String persona_Rol = "idRolPersonaTea";
+
 
 
 
@@ -75,7 +75,14 @@ public class AdministarSesion {
     }
 
     public void cerrarSesionPersonaTea(){
-        editor.putInt(persona_Tea,-1).commit();
+
+        editor.putInt(persona_Tea,-1);
+        editor.putInt("idSesion",0);
+        editor.putInt(user,0);
+        editor.putInt("esAdmin",-1);
+        editor.putInt(persona_Tea,0);
+        editor.commit();
+
     }
 
     public void guardarIDSesion(int id){

@@ -84,7 +84,8 @@ dependencies {
     //para String Utils o WordUtils
     implementation 'org.apache.commons:commons-text:1.9'
 
-
+    //EasyFlipView
+    implementation 'com.wajahatkarim3.EasyFlipView:EasyFlipView:3.0.0'
 
 
 }

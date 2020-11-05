@@ -9,6 +9,7 @@ import java.util.List;
 import roomsqlite.dao.DetalleResultadoDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.DetalleResultado;
+import roomsqlite.entidades.Pictograma;
 
 public class DetalleResultadoRepository {
     private DetalleResultadoDao detalleResultadoDao;
@@ -24,4 +25,8 @@ public class DetalleResultadoRepository {
     public LiveData<List<DetalleResultado>> GetDetalleResultado(){return detalleResultadoAll;}
 
     public void insertDetalleResultado (DetalleResultado detalleResultado){detalleResultadoDao.insertDetalleResultado(detalleResultado);}
+
+    public LiveData<List<DetalleResultado>>finfByResultadoId(int id){
+        return detalleResultadoDao.findbyResultadoId(id);
+    }
 }

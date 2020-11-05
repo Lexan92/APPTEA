@@ -9,6 +9,7 @@ import androidx.room.Query;
 import java.util.List;
 
 import roomsqlite.entidades.DetalleResultado;
+import roomsqlite.entidades.Pictograma;
 
 @Dao
 public interface DetalleResultadoDao {
@@ -17,6 +18,9 @@ public interface DetalleResultadoDao {
 
     @Query("SELECT * FROM detalle_resultado")
     LiveData<List<DetalleResultado>> getAllDetalleResultado();
+
+    @Query("SELECT * FROM  detalle_resultado  WHERE resultado_id = :id")
+    LiveData<List<DetalleResultado>> findbyResultadoId(int id);
 
 
 }

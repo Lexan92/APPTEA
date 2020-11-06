@@ -7,13 +7,14 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import roomsqlite.database.DateConverter;
 
 @Entity(tableName = Sesion.NOMBRE_TABLA)
 @TypeConverters(DateConverter.class)
-public class Sesion {
+public class Sesion implements Serializable {
     public static final String NOMBRE_TABLA="sesion";
 
     @PrimaryKey(autoGenerate = true)
@@ -24,7 +25,9 @@ public class Sesion {
     @ColumnInfo(index = true)
     private int persona_id;
     @NonNull
-    private Date fecha_sesion;
+    private Date inicio_sesion;
+    @NonNull
+    private Date fin_sesion;
 
     private String comentario;
 
@@ -32,10 +35,11 @@ public class Sesion {
     }
 
     @Ignore
-    public Sesion(int sesion_id, int persona_id, @NonNull Date fecha_sesion, String comentario) {
+    public Sesion(int sesion_id, int persona_id, @NonNull Date fecha_sesion,Date fin_sesion ,String comentario) {
         this.sesion_id = sesion_id;
         this.persona_id = persona_id;
-        this.fecha_sesion = fecha_sesion;
+        this.inicio_sesion = fecha_sesion;
+        this.fin_sesion = fin_sesion;
         this.comentario = comentario;
 
     }
@@ -60,12 +64,21 @@ public class Sesion {
     }
 
     @NonNull
-    public Date getFecha_sesion() {
-        return fecha_sesion;
+    public Date getInicio_sesion() {
+        return inicio_sesion;
     }
 
-    public void setFecha_sesion(@NonNull Date fecha_sesion) {
-        this.fecha_sesion = fecha_sesion;
+    public void setInicio_sesion(@NonNull Date inicio_sesion) {
+        this.inicio_sesion = inicio_sesion;
+    }
+
+    @NonNull
+    public Date getFin_sesion() {
+        return fin_sesion;
+    }
+
+    public void setFin_sesion(@NonNull Date fin_sesion) {
+        this.fin_sesion = fin_sesion;
     }
 
     public String getComentario() {

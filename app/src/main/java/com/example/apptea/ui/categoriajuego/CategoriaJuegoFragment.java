@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,7 +45,7 @@ public class CategoriaJuegoFragment extends Fragment {
         super.onStart();
         AdministarSesion administarSesion = new AdministarSesion(getContext());
         //registro de sesion
-        if(administarSesion.obtenerIDSesion()>0){
+        if (administarSesion.obtenerIDSesion() > 0) {
             DetalleSesion detalleSesion = new DetalleSesion();
             detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
             detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
@@ -107,22 +108,37 @@ public class CategoriaJuegoFragment extends Fragment {
                         DetalleSesion detalleSesion = new DetalleSesion();
                         detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                         detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-                        detalleSesion.setNombre_opcion("CATEGORIA JUEGO: "+ categoriaJuego.getCategoriaJuegoNombre());
+                        detalleSesion.setNombre_opcion("CATEGORIA JUEGO: " + categoriaJuego.getCategoriaJuegoNombre());
                         DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
                     }
-                    //Instancia de fragment al cual se dirigira
-                    DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
-                    detalle_juego.setArguments(bundleEnvio);
-                    Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
+
+                    if (categoriaJuego.getCategoriaJuegoId()==1){
+
+                        //fragment para paciente categoria 1
+                        DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
+                        detalle_juego.setArguments(bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
+                    }else {
+                        //fragment para paciente categoria 2
+                        Toast.makeText(getContext(),"categoria juego 2",Toast.LENGTH_SHORT).show();
+                    }
+
+
 
                 } else {
 
-                    //Instancia de fragment al cual se dirigira
-                    Detalle_Juego detalle_juego = new Detalle_Juego();
-                    detalle_juego.setArguments(bundleEnvio);
-                    //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                    Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
+                    if (categoriaJuego.getCategoriaJuegoId()==1){
+                        //Instancia de fragment al cual se dirigira
+                        Detalle_Juego detalle_juego = new Detalle_Juego();
+                        detalle_juego.setArguments(bundleEnvio);
+                        //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
+                        Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
+                    }else {
+                        Toast.makeText(getContext(),"categoria juego 2",Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
 
             }

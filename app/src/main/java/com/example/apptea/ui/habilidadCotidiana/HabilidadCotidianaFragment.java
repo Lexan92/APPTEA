@@ -52,30 +52,29 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HabilidadCotidianaFragment extends Fragment implements HabilidadCotidianaAdapter.OnHabilidadListener{
+public class HabilidadCotidianaFragment extends Fragment implements HabilidadCotidianaAdapter.OnHabilidadListener {
 
 
     RecyclerView recyclerView;
-    private HabilidadCotidianaAdapter adapter= null;
+    private HabilidadCotidianaAdapter adapter = null;
     private HabilidadCotidianaViewModel habilidadCotidianaViewModel;
     private CategoriaHabCotidiana categoriaHabCotidiana = null;
     public static final int NEW_HAB_REQUEST_CODE = 1;
     public static final int UPDATE_HAB_REQUEST_CODE = 2;
     SecuenciaViewModel secuenciaViewModel;
-    private List<Secuencia> secuenciaList= new ArrayList<>();
-    private List<Pictograma> pictoFraseList= new ArrayList<>();
-    PictogramaDAO pictogramaDao= appDatabase.getDatabase(getActivity()).pictogramaDAO();
-    boolean bandera=false;
+    private List<Secuencia> secuenciaList = new ArrayList<>();
+    private List<Pictograma> pictoFraseList = new ArrayList<>();
+    PictogramaDAO pictogramaDao = appDatabase.getDatabase(getActivity()).pictogramaDAO();
+    boolean bandera = false;
 
 
-    public HabilidadCotidianaFragment(){
+    public HabilidadCotidianaFragment() {
         //constructor vacio
     }
 
     public static HabilidadCotidianaFragment newInstance(String param1, String param2) {
-        HabilidadCotidianaFragment fragment = new HabilidadCotidianaFragment();
 
-        return fragment;
+        return new HabilidadCotidianaFragment();
     }
 
     @Override
@@ -89,7 +88,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-      return inflater.inflate(R.layout.fragment_detalle_habilidad_cotidiana, container, false);
+        return inflater.inflate(R.layout.fragment_detalle_habilidad_cotidiana, container, false);
 
 
     }
@@ -107,22 +106,22 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         habilidadCotidianaViewModel = new ViewModelProvider(getActivity()).get(HabilidadCotidianaViewModel.class);
-        secuenciaViewModel =  new ViewModelProvider(getActivity()).get(SecuenciaViewModel.class);
+        secuenciaViewModel = new ViewModelProvider(getActivity()).get(SecuenciaViewModel.class);
 
 
         Bundle objetoHabilidad = getArguments();
 
-        if(objetoHabilidad != null){
+        if (objetoHabilidad != null) {
             categoriaHabCotidiana = (CategoriaHabCotidiana) objetoHabilidad.getSerializable("elementos");
             habilidadCotidianaViewModel.getHabilidadCotidianaAll(categoriaHabCotidiana.getCat_hab_cotidiana_id()).observe(getActivity(), new Observer<List<HabilidadCotidiana>>() {
                 @Override
                 public void onChanged(List<HabilidadCotidiana> habilidadCotidianas) {
-                    if( habilidadCotidianas.size() == 0 || habilidadCotidianas.isEmpty()){
+                    if (habilidadCotidianas.size() == 0 || habilidadCotidianas.isEmpty()) {
                         cajita.setVisibility(View.VISIBLE);
                         mensaje.setVisibility(View.VISIBLE);
                         cajita.playAnimation();
                         recyclerView.setVisibility(View.GONE);
-                    }else{
+                    } else {
                         cajita.setVisibility(View.INVISIBLE);
                         mensaje.setVisibility(View.INVISIBLE);
                         cajita.cancelAnimation();
@@ -140,7 +139,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
             public void deleteClickedHab(HabilidadCotidiana habilidadCotidiana) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Alerta");
-                builder.setMessage("¿Esta seguro de eliminar a la Habilidad Cotidiana de :\n" + habilidadCotidiana.getHabilidad_cotidiana_nombre()+ "?");
+                builder.setMessage("¿Esta seguro de eliminar a la Habilidad Cotidiana de :\n" + habilidadCotidiana.getHabilidad_cotidiana_nombre() + "?");
                 builder.setIcon(android.R.drawable.ic_delete);
                 builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                     @Override
@@ -162,18 +161,14 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
             @Override
             public void updateClickedHab(HabilidadCotidiana habilidadCotidiana) {
-                    editarHabilidad(habilidadCotidiana);
+                editarHabilidad(habilidadCotidiana);
             }
         });
-
-
 
 
         //Setteando Toolbar para categorias
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Categoria: " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
-
-
 
 
         //Boton de + para agregar una nueva categoria
@@ -187,12 +182,12 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
             }
         });
 
-        if(objetoHabilidad!=null){
+        if (objetoHabilidad != null) {
             bandera = objetoHabilidad.getBoolean("ban");
 
-            if(bandera == true){
+            if (bandera == true) {
                 fab.setVisibility(View.INVISIBLE);
-                adapter.isHabilidad=true;
+                adapter.isHabilidad = true;
             }
 
         }
@@ -200,7 +195,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     }
 
 
-    public void editarHabilidad(HabilidadCotidiana habilidadCotidiana){
+    public void editarHabilidad(HabilidadCotidiana habilidadCotidiana) {
         int idHab = habilidadCotidiana.getHabilidad_cotidiana_id();
 
 
@@ -209,7 +204,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
         secuenciaList = secuenciaViewModel.getSecuenciaById(idHab);
         //Se recorre la lista de secuencias
-        for(Secuencia secuencia:secuenciaList){
+        for (Secuencia secuencia : secuenciaList) {
             //se obtienen mediante referecnia del id de pictogramas
             int idPicto = secuencia.getPictograma_id();
             Pictograma pictograma = pictogramaDao.findbyPictoId(idPicto);
@@ -218,7 +213,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         }
         Intent intent = new Intent(getActivity(), EditSecuencia.class);
         intent.putExtra("llaveCatHabilidad", categoriaHabCotidiana.getCat_hab_cotidiana_id());
-        intent.putExtra("listaSecuencia",(Serializable) pictoFraseList );
+        intent.putExtra("listaSecuencia", (Serializable) pictoFraseList);
         intent.putExtra("nombreHabilidad", habilidadCotidiana.getHabilidad_cotidiana_nombre());
         intent.putExtra("idHabilidad", habilidadCotidiana.getHabilidad_cotidiana_id());
         intent.putExtra("predeterminadoHabilidad", habilidadCotidiana.isPredeterminado());
@@ -226,29 +221,28 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
     }
 
 
-
     @Override
     public void onHabilidadClick(HabilidadCotidiana habilidadCotidiana) {
         int idHab = habilidadCotidiana.getHabilidad_cotidiana_id();
 
-       
+
         pictoFraseList.clear();
         //Se valida que la lista de pictogramas este vacia (si lo esta se llena) sino se imprime la misma
 
-            secuenciaList = secuenciaViewModel.getSecuenciaById(idHab);
-            //Se recorre la lista de secuencias
-            for(Secuencia secuencia:secuenciaList){
-                //se obtienen mediante referecnia del id de pictogramas
-                int idPicto = secuencia.getPictograma_id();
-                Pictograma pictograma = pictogramaDao.findbyPictoId(idPicto);
-                //lista auxiliar para guardar pictogramas
-                pictoFraseList.add(pictograma);
-            }
+        secuenciaList = secuenciaViewModel.getSecuenciaById(idHab);
+        //Se recorre la lista de secuencias
+        for (Secuencia secuencia : secuenciaList) {
+            //se obtienen mediante referecnia del id de pictogramas
+            int idPicto = secuencia.getPictograma_id();
+            Pictograma pictograma = pictogramaDao.findbyPictoId(idPicto);
+            //lista auxiliar para guardar pictogramas
+            pictoFraseList.add(pictograma);
+        }
 
 
         Intent intent = new Intent(getContext(), VistaPreviaActivity.class);
-        intent.putExtra("listaSecuencia",(Serializable) pictoFraseList );
-        intent.putExtra("definirPantalla",bandera);
+        intent.putExtra("listaSecuencia", (Serializable) pictoFraseList);
+        intent.putExtra("definirPantalla", bandera);
         intent.putExtra("nombreHabilidad", habilidadCotidiana.getHabilidad_cotidiana_nombre());
         startActivity(intent);
 

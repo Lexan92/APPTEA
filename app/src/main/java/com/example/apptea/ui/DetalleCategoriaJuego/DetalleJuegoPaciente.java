@@ -177,6 +177,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
             if (numero > 0) {
                 if (bundle.getBoolean("bandera")) { //Si viene del menu principal
 
+                    Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
                     AdministarSesion administarSesion = new AdministarSesion(getContext());
                     if (administarSesion.obtenerIDSesion() > 0) {
                         DetalleSesion detalleSesion = new DetalleSesion();
@@ -194,17 +195,16 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                         resultado.setNombre_juego(juego.getJuego_nombre());
                         resultado.setHora_juego(hora);
                         resultadoViewModel.insertResultado(resultado);
+                        Resultado res = new Resultado();
+                        res = resultadoDao.obtenerResultado();
+                        intent.putExtra("resultado", res);
+                        System.out.println("Resultado id : "+ res.getResultado_id());
+                        System.out.println("Resultado juego : "+ res.getNombre_juego());
+                        System.out.println("Resultado SESION : "+ res.getSesion_id());
                     }
 
 
-                    Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
                     intent.putExtra("juego", juego);
-                   /* Resultado res = new Resultado();
-                    res = resultadoDao.obtenerResultado();
-                    intent.putExtra("resultado", res);
-                    System.out.println("Resultado id : "+ res.getResultado_id());
-                    System.out.println("Resultado juego : "+ res.getNombre_juego());
-                    System.out.println("Resultado SESION : "+ res.getSesion_id());*/
                     startActivity(intent);
 
                 } else {

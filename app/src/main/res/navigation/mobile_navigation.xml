@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_nav_menu_persona_tea_to_terapeutaFragment"
             app:destination="@id/terapeutaFragment" />
+        <action
+            android:id="@+id/action_nav_menu_persona_tea_to_verSesion"
+            app:destination="@id/verSesion" />
     </fragment>
 
     <fragment
@@ -218,6 +221,28 @@
         android:name="com.example.apptea.ui.preguntasFrecuentes.RespuestaFaqFragment"
         android:label="RespuestaFaqFragment"
         tools:layout="@layout/fragment_respuesta_faq" />
+    <fragment
+        android:id="@+id/verSesion"
+        android:name="com.example.apptea.ui.sesion.VerSesion"
+        android:label="fragment_ver_sesion"
+        tools:layout="@layout/fragment_ver_sesion" >
+        <action
+            android:id="@+id/action_verSesion_to_verDetalleSesion"
+            app:destination="@id/verDetalleSesion" />
+        <action
+            android:id="@+id/action_verSesion_to_comentarioDialogo"
+            app:destination="@id/comentarioDialogo" />
+    </fragment>
+    <fragment
+        android:id="@+id/verDetalleSesion"
+        android:name="com.example.apptea.ui.sesion.VerDetalleSesion"
+        android:label="fragment_ver_detalle_sesion"
+        tools:layout="@layout/fragment_ver_detalle_sesion" />
+    <dialog
+        android:id="@+id/comentarioDialogo"
+        android:name="com.example.apptea.ui.sesion.ComentarioDialogo"
+        android:label="fragment_comentario_dialogo"
+        tools:layout="@layout/fragment_comentario_dialogo" />
 
 
 </navigation>

@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import roomsqlite.entidades.DetalleResultado;
+import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Resultado;
 import roomsqlite.repositorios.DetalleResultadoRepository;
 import roomsqlite.repositorios.ResultadoRepository;
@@ -25,4 +26,7 @@ public class DetalleResultadoViewModel extends AndroidViewModel {
 
     public  void insertResultado(DetalleResultado detalleResultado){detalleResultadoRepository.insertDetalleResultado(detalleResultado);}
 
+    public LiveData<List<DetalleResultado>> getDetalleResultadoByResultado(int id) {
+        return detalleResultadoRepository.finfByResultadoId(id);
+    }
 }

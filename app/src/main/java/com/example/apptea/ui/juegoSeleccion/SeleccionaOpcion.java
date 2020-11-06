@@ -64,7 +64,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
     int numeroCorrectas = 0;
     int numeroFallos=0;
     private int milisegundos = 1000;
-    
+    String pregunta;
 
 
     @Override
@@ -88,7 +88,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         siguiente = findViewById(R.id.pregunta_siguiente);
         globos = findViewById(R.id.lottie_globos);
         juego = (Juego) getIntent().getSerializableExtra("juego");
-       // resultado = (Resultado) getIntent().getSerializableExtra("resultado");
+        resultado = (Resultado) getIntent().getSerializableExtra("resultado");
         preguntaViewModel = new ViewModelProvider(this).get(PreguntaViewModel.class);
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
         pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
@@ -193,17 +193,18 @@ public class SeleccionaOpcion extends AppCompatActivity {
             posicion++;
 
             if (posicion <= longitudPreguntas - 1) {
-               /* if(sesion.obtenerTipoUsuario()==1){
+                if(sesion.obtenerTipoUsuario()==1){
                     System.out.println("Resultado id "+ resultado.getResultado_id());
                     detalleResultado.setResultado_id(resultado.getResultado_id());
-                    detalleResultado.setNombre_pregunta(tituloPregunta.toString());
+                    detalleResultado.setNombre_pregunta(pregunta);
                     detalleResultado.setCantidad_fallos(numeroFallos);
                     detalleResultadoViewModel.insertResultado(detalleResultado);
-                }*/
+                }
                 reiniciarCards();
                 setearOpciones(posicion);
             } else {
                 Intent intent = new Intent(this, FinJuego.class);
+                intent.putExtra("resultado",resultado);
                 startActivity(intent);
                 finish();
             }
@@ -221,7 +222,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
         //seteo del nombre de la pregunta
         listadoPreguntas.observe(SeleccionaOpcion.this, preguntas -> {
             tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
-
+            pregunta = preguntas.get(posicion).getTitulo_pregunta();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override

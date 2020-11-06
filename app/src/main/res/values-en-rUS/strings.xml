@@ -62,7 +62,7 @@
     <string name="txt10">E-mail:</string>
     <string name="txt11">Login</string>
     <string name="txt12"> Login As:</string>
-    Login As:
+
 
     --Everyday Skill Category
     <string name="campo_nombre">Category name</string>
@@ -91,6 +91,11 @@
     <string name="hint_dialog_nuevo_pictograma">Name Image</string>
     <string name="button_elegir_imagen_nuevo_pictograma">Select Image</string>
     <string name="button_guardar_imagen_nuevo_pictograma">Save</string>
+    <string name="txt18">New image</string>
+    <string name="txt19"> Update Image</string>
+
+
+
 
 
     <string name="juegos_interactivos">Interactive games</string>
@@ -123,5 +128,10 @@
     <string name="txt13">Name:</string>
     <string name="txt14">Last name:</string>
     <string name="txt15">Age:</string>
+    <string name="txt16"> Sign in as:</string>
+    <string name="txt17">Hello </string>
+
+
+
 
 </resources>

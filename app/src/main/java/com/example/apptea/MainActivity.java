@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
             boolean bandera = getIntent().getBooleanExtra("bandera", false);
 
             if (!bandera) {
-
-
                 menu.removeItem(R.id.nav_mi_perfil);
                 menu.removeItem(R.id.nav_gestion_pictograma);
                 menu.removeItem(R.id.nav_gestion_habilidad);

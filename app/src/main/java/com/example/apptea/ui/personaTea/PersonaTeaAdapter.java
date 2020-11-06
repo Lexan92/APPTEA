@@ -39,6 +39,7 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
         void deleteClickedPersona(PersonaTea personaTea);
         void updateClickedPersona(PersonaTea personaTea);
         void terapeutaClicked(PersonaTea personaTea);
+        void personaTeaClicked(PersonaTea personaTea);
     }
 
     public void setButtonClicked(ButtonClicked buttonClicked) {
@@ -53,6 +54,7 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
         public Button eliminar;
         public Button editar;
         public Button terapeuta;
+        public Button sesion;
 
 
         private PersonaTeaHolder(View itemView){
@@ -65,6 +67,7 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
             eliminar= itemView.findViewById(R.id.btn_eliminar_persona);
             editar = itemView.findViewById(R.id.btn_editar_persona);
             terapeuta = itemView.findViewById(R.id.btn_terapeuta);
+            sesion = itemView.findViewById(R.id.btn_ver_sesion);
 
             eliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,6 +87,14 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
                 @Override
                 public void onClick(View v) {
                     buttonClicked.terapeutaClicked(personaTeaList.get(getAdapterPosition()));
+                }
+            });
+
+            sesion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttonClicked.personaTeaClicked(personaTeaList.get(getAdapterPosition()));
+
                 }
             });
 

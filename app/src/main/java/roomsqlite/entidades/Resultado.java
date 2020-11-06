@@ -44,7 +44,7 @@ public class Resultado implements Serializable {
         return resultado_id;
     }
 
-    public void setResultado_id(int resulado_id) {
+    public void setResultado_id(int resultado_id) {
         this.resultado_id = resultado_id;
     }
 

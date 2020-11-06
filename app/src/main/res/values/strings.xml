@@ -112,6 +112,10 @@
     <string name="hint_dialog_nuevo_pictograma">Nombre Imagen</string>
     <string name="button_elegir_imagen_nuevo_pictograma">Selecciona Imagen</string>
     <string name="button_guardar_imagen_nuevo_pictograma">Guardar</string>
+    <string name="txt18">Nueva Imagen</string>
+    <string name="txt19">Actualizar Imagen</string>
+
+
 
 
     <string name="juegos_interactivos">Juegos Interactivos</string>
@@ -144,12 +148,15 @@
     <string name="txt13">Nombre:</string>
     <string name="txt14">Apellido:</string>
     <string name="txt15">Edad:</string>
+    <string name="txt16">Iniciar como:</string>
+    <string name="txt17">Hola  </string>
+
 
     --Categoria de Pictogramas
-    <string name="agregarImg">¿Desea guardar como imagen principal de Categoria: </string>
-    <string name="agregarImg2">el pictograma: </string>
-    <string name="atencion">Atención </string>
-    <string name="aceptar">Aceptar </string>
+    <string name="agregarImg" translatable="false">¿Desea guardar como imagen principal de Categoria: </string>
+    <string name="agregarImg2" translatable="false">el pictograma: </string>
+    <string name="atencion" translatable="false">Atención </string>
+    <string name="aceptar" translatable="false">Aceptar </string>
 
 
     <string name="buscar_pictogramas">Buscar Pictogramas</string>

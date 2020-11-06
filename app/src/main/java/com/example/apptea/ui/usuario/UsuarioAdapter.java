@@ -32,6 +32,8 @@ import roomsqlite.repositorios.RolRepository;
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioHolder> {
 
 
+
+
     private UsuarioAdapter.ButtonClicked buttonClicked;
 
     public interface ButtonClicked{
@@ -46,6 +48,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
 
 
     private final TextView nombreItemView;
+
 
     private final TextView correoItemView;
     //private final TextView telItemView;
@@ -90,19 +93,20 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioH
     public UsuarioHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = mInflater.inflate(R.layout.recyclerview_item_mi_perfil,parent, false);
 
+
         return new UsuarioHolder(itemview);
     }
 
     @Override
     public void onBindViewHolder(UsuarioHolder holder, int position) {
-
        //Se obtiene una instancia del DAO (aca no se implementa Repository genera error)
         //RolDao paisDao = (RolDao) appDatabase.getDatabase(mInflater.getContext()).paisDao();
+        String text = holder.itemView.getContext().getString(R.string.txt17);
 
         if (usuarioList != null) {
             Usuario current = usuarioList.get(position);
             //int idP= current.getPais_id();
-            holder.nombreItemView.setText("Hola \n"+current.getUsuario_nombre()+" "+current.getUsuario_apellido()+"!");
+            holder.nombreItemView.setText(text+"\n"+current.getUsuario_nombre()+" "+current.getUsuario_apellido()+"!");
             holder.correoItemView.setText(current.getCorreo());
           /*  holder.telItemView.setText(String.valueOf(current.getTelefono()));
             holder.paisItemView.setText(paisDao.findPaisById(current.getPais_id()).getPais_nombre());

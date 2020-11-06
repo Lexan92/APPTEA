@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog;
+import com.example.apptea.ui.sesion.VerSesion;
 import com.example.apptea.ui.terapeuta.TerapeutaFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -115,6 +116,15 @@ public class PersonaTeaFragment extends Fragment {
                 bundleEnvio.putSerializable("persona", personaTea);
                 terapeutaFragment.setArguments(bundleEnvio);
                 Navigation.findNavController(vista).navigate(R.id.terapeutaFragment,bundleEnvio);
+            }
+
+            @Override
+            public void personaTeaClicked(PersonaTea personaTea) {
+                VerSesion verSesion = new VerSesion();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("persona",personaTea);
+                verSesion.setArguments(bundle);
+                Navigation.findNavController(vista).navigate(R.id.verSesion,bundle);
             }
 
             @Override

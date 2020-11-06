@@ -74,6 +74,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String textSesion= getResources().getString(R.string.txt16);
         setContentView(R.layout.activity_listado_inicio_sesion);
         AdministarSesion administarSesion = new AdministarSesion(ListadoInicioSesion.this);
         recyclerView = findViewById(R.id.list_inicio);
@@ -83,7 +84,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
         //Se obtiene el usuario guardado se obtiene la primera fila.
         UsuarioDao usuarioDao = appDatabase.getDatabase(getApplicationContext()).usuarioDao();
         Usuario usuario = usuarioDao.obtenerUsuario();
-        sesionAdmin.setText("Iniciar como: " + usuario.getUsuario_nombre());
+        sesionAdmin.setText(textSesion+ usuario.getUsuario_nombre());
 
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
         recyclerView.setAdapter(adapter);
@@ -120,7 +121,8 @@ public class ListadoInicioSesion extends AppCompatActivity {
                 //creacion de sesion
                 Sesion sesion = new Sesion();
                 sesion.setPersona_id(personaTea.getPersona_id());
-                sesion.setFecha_sesion(UtilidadFecha.obtenerFechaHoraActual());
+                sesion.setInicio_sesion(UtilidadFecha.obtenerFechaHoraActual());
+                sesion.setFin_sesion(UtilidadFecha.obtenerFechaHoraActual());
                 SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
                 sesionDao.insertarSesion(sesion);
 

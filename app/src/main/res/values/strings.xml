@@ -70,7 +70,7 @@
     <string name="txt10">Correo:</string>
     <string name="txt11">Iniciar Sesión</string>
     <string name="txt12">Iniciar Sesión Como :</string>
-
+    <string name="conexion_internet">Se necesita una conexión a Internet</string>
 
 
     --Categoria Habilidad Cotidiana
@@ -151,5 +151,7 @@
     <string name="atencion">Atención </string>
     <string name="aceptar">Aceptar </string>
 
+
+    <string name="buscar_pictogramas">Buscar Pictogramas</string>
 
 </resources>

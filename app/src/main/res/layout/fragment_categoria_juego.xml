@@ -16,7 +16,6 @@
         android:paddingStart="@dimen/card_side_margin"
         android:paddingTop="@dimen/header_margin"
         android:layout_gravity="center_horizontal"
-
         tools:listitem="@layout/fragment_item_categoria_juego"/>
 
 </GridLayout>

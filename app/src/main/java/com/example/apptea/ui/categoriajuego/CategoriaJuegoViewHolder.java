@@ -17,18 +17,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 
 public class CategoriaJuegoViewHolder extends RecyclerView.ViewHolder{
 
     public TextView nombreCategoria;
-
+    public LottieAnimationView juegoImg;
 
 
     public CategoriaJuegoViewHolder(@NonNull View itemView) {
         super(itemView);
         nombreCategoria = itemView.findViewById(R.id.nombre_categoria_juego);
-
+        juegoImg = itemView.findViewById(R.id.juegoImagen);
 
     }
 

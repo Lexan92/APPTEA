@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente;
 import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
@@ -36,6 +37,7 @@ public class CategoriaJuegoFragment extends Fragment {
     RecyclerView recyclerView;
     private CategoriaViewModel categoriaViewModel;
     boolean bandera = false;
+    public LottieAnimationView juegoImg;
 
     @Override
     public void onStart() {
@@ -69,8 +71,9 @@ public class CategoriaJuegoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.lista_categoria_juego);
+
         final CategoriaJuegoAdapter adapter = new CategoriaJuegoAdapter(getActivity());
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         recyclerView.setAdapter(adapter);
         categoriaViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         categoriaViewModel.getAllCategoriasJuegos().observe(getActivity(), new Observer<List<CategoriaJuego>>() {
@@ -85,8 +88,6 @@ public class CategoriaJuegoFragment extends Fragment {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 //objeto Bundle que encapsula el objeto de tipo CategoriaJuego
                 CategoriaJuego categoriaJuego = categoriaViewModel.getAllCategoriasJuegos().getValue().get(recyclerView.getChildAdapterPosition(v));
                 Bundle bundleEnvio = new Bundle();

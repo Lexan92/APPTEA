@@ -3,6 +3,7 @@
 package com.example.apptea.ui.categoriajuego;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 
+import java.io.InputStream;
 import java.util.List;
+
+import javax.mail.Quota;
 
 import roomsqlite.entidades.CategoriaJuego;
 
@@ -42,7 +46,13 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
     @Override
     public void onBindViewHolder(@NonNull CategoriaJuegoViewHolder holder, int position) {
         if (categoriasJuego != null && position < categoriasJuego.size()) {
+
             CategoriaJuego categoriaJuego = categoriasJuego.get(position);
+            if(position == 0){
+                holder.juegoImg.setAnimation(R.raw.juego_seleccion);
+            }else if(position == 1){
+                holder.juegoImg.setAnimation(R.raw.memoria_juego);
+            }
             holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
             holder.setIsRecyclable(false);
 

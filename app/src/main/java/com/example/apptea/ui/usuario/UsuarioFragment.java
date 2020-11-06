@@ -117,8 +117,9 @@ public class UsuarioFragment extends Fragment {
         cardCorreo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                String conexion = getResources().getString(R.string.conexion_internet);
                 if (!ValidarConexion.compruebaConexion(getContext())) {
-                    Toast.makeText(getContext(),"Se necesita una conexión a Internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),conexion, Toast.LENGTH_SHORT).show();
                 }else {
                     new progreso().execute();
                 }
@@ -140,11 +141,11 @@ public class UsuarioFragment extends Fragment {
         adapter.setButtonClicked(new UsuarioAdapter.ButtonClicked() {
             @Override
             public void updateClickedUsuario(Usuario usuario) {
-                System.out.println("en el fragment"+usuario.getUsuario_id());
                 Intent intentUpdate = new Intent(getActivity(), EditUsuario.class);
                 intentUpdate.putExtra(EditUsuario.EXTRA_ID_USUARIO_UPDATE, usuario.getUsuario_id());
                 intentUpdate.putExtra(EditUsuario.EXTRA_NOMBRE_USUARIO_UPDATE, usuario.getUsuario_nombre());
                 intentUpdate.putExtra(EditUsuario.EXTRA_APELLIDO_USUARIO_UPDATE, usuario.getUsuario_apellido());
+                intentUpdate.putExtra(EditUsuario.EXTRA_ROL_USUARIO_UPDATE, usuario.getRol_id());
                 intentUpdate.putExtra(EditUsuario.EXTRA_CORREO_USUARIO_UPDATE, usuario.getCorreo());
                 intentUpdate.putExtra(EditUsuario. EXTRA_CONTRASEÑA_UPDATE, usuario.getContrasenia());
                 startActivityForResult(intentUpdate,USUARIO_UPDATE_REQUEST_CODE);

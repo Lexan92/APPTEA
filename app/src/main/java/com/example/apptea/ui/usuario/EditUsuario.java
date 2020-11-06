@@ -27,8 +27,7 @@ public class EditUsuario extends AppCompatActivity {
     public static final String EXTRA_ID_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_ID_USUARIO_UPDATE";
     public static final String EXTRA_NOMBRE_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_NOMBRE_USUARIO_UPDATE";
     public static final String EXTRA_APELLIDO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_APELLIDO_USUARIO_UPDATE";
-    public static final String EXTRA_PAIS_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_PAIS_USUARIO_UPDATE";
-    public static final String EXTRA_TELEFONO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_TELEFONO_USUARIO_UPDATE";
+    public static final String EXTRA_ROL_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_ROL_USUARIO_UPDATE";
     public static final String EXTRA_CORREO_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_CORREO_USUARIO_UPDATE";
     public static final String EXTRA_CONTRASEÑA_UPDATE = "com.example.apptea.ui.usuario.EXTRA_CONTRASEÑA_UPDATE";
     public static final String EXTRA_USUARIO_UPDATE = "com.example.apptea.ui.usuario.EXTRA_USUARIO_UPDATE";
@@ -68,9 +67,8 @@ public class EditUsuario extends AppCompatActivity {
                     usuario.setUsuario_id(intent.getIntExtra(EXTRA_ID_USUARIO_UPDATE, -1));
                     usuario.setUsuario_nombre(editNombre.getText().toString());
                     usuario.setUsuario_apellido(editApellido.getText().toString());
+                    usuario.setRol_id(intent.getIntExtra(EXTRA_ROL_USUARIO_UPDATE,1));
                     usuario.setCorreo(editCorreo.getText().toString());
-                    /*usuario.setPais_id(intent.getIntExtra(EXTRA_PAIS_USUARIO_UPDATE, 1));
-                    usuario.setTelefono(intent.getIntExtra(EXTRA_TELEFONO_USUARIO_UPDATE,1));*/
                     usuario.setContrasenia(intent.getStringExtra(EXTRA_CONTRASEÑA_UPDATE));
                     replyIntent.putExtra(EXTRA_USUARIO_UPDATE, usuario);
                     setResult(RESULT_OK, replyIntent);

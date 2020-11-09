@@ -78,7 +78,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
         android:textColor="#66BB6A"
         android:textSize="16sp"
         android:textStyle="bold"

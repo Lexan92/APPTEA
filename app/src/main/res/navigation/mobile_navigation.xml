@@ -201,7 +201,7 @@
     <fragment
         android:id="@+id/terapeutaFragment"
         android:name="com.example.apptea.ui.terapeuta.TerapeutaFragment"
-        android:label="Terapeutas encargados"
+        android:label="@string/tituloTerapeutaEncargado"
         tools:layout="@layout/fragment_gestion_terapeuta" />
     <activity
         android:id="@+id/cerrarSesionUsuario"

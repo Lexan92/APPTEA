@@ -143,6 +143,23 @@
     <string name="telefonoTera">Telefono</string>
     <string name="cancelarTera">Cancelar</string>
     <string name="guardarTera">Guardar</string>
+    <string name="nombreTeP">Nombre:</string>
+    <string name="correoTeP">Correo:</string>
+    <string name="telefonoTeP">Telefono:</string>
+    <string name="txtNueTera">Nuevo Terapeuta</string>
+    <string name="txtModiTera">Modificar Terapeuta</string>
+    <string name="tituloTerapeutaEncargado">Terapeutas encargados</string>
+    <string name="noSeHanIngresado">No se han ingresado terapeutas a la lista</string>
+    <string name="alerta">Alerta</string>
+    <string name="estaSeguro">¿esta seguro de eliminar a</string>
+    <string name="eliminarTera">Eliminar</string>
+
+
+
+
+
+
+
 
     --Iniciar sesion
     <string name="txt13">Nombre:</string>

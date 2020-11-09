@@ -88,12 +88,15 @@ public class TerapeutaFragment extends Fragment {
         adapter.setButtonClicked(new TerapeutaAdapter.ButtonClicked() {
             @Override
             public void deleteClickedTerapeuta(Terapeuta terapeuta) {
+                String alerta=getResources().getString(R.string.alerta);
+                String estaSeguro=getResources().getString(R.string.estaSeguro);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Alerta");
-                builder.setMessage("¿esta seguro de eliminar a \n"+terapeuta.getTerapeuta_nombre()+"?");
+                builder.setTitle(alerta);
+                builder.setMessage(estaSeguro +"\n"+terapeuta.getTerapeuta_nombre()+"?");
                 builder.setIcon(android.R.drawable.ic_delete);
 
-                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.eliminarTera), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         System.out.println("el terapeuta es " + terapeuta.getTerapeuta_nombre());
@@ -103,7 +106,7 @@ public class TerapeutaFragment extends Fragment {
                     }
                 });
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getResources().getString(R.string.cancelarTera), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

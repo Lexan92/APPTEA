@@ -60,7 +60,6 @@ public class CategoriaPictogramaFragment extends Fragment {
     private SearchView.OnQueryTextListener queryTextListener;
     RecyclerView recyclerView;
 
-
     public CategoriaPictogramaFragment() {
         //constructor vacio
     }
@@ -136,20 +135,20 @@ public class CategoriaPictogramaFragment extends Fragment {
                 if (numPictoHab > 0) {
                     //System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
                     if (numPictoJue > 0) {
-                        MensajeAlerta("Esta categoria no se puede eliminar,  existen: \n \n" +
-                                numPictoHab + " pictogramas usados en habilidades cotidianas \n" +
-                                numPictoJue + " pictogramas usados en juegos interactivos");
+                        MensajeAlerta(getResources().getString(R.string.categoNoSeElimina)+" \n \n" +
+                                numPictoHab +  getResources().getString(R.string.pictogramaUsaHabi)+" \n" +
+                                numPictoJue + getResources().getString(R.string.pictogramaUsaJuegoI));
                     } else {
-                        MensajeAlerta("E\"Esta categoria no se puede eliminar, existen: \n \n" +
-                                numPictoHab + " pictogramas usados en habilidades cotidianas ");
+                        MensajeAlerta(getResources().getString(R.string.categoNoSeElimina)+"\n \n" +
+                                numPictoHab + getResources().getString(R.string.pictogramaUsaHabi));
                     }
 
                 } else {
                     if (numPictoJue > 0) {
-                        MensajeAlerta("Esta categoria no se puede eliminar,  existen: \n \n" +
-                                numPictoJue + " pictogramas usados en juegos interactivos");
+                        MensajeAlerta(getResources().getString(R.string.categoNoSeElimina)+"\n \n" +
+                                numPictoJue + getResources().getString(R.string.pictogramaUsaJuegoI));
                     } else {
-                        MensajeDelete(categoriaPictograma, "¿Esta seguro? \n Se eliminara la Categoria de pictogramas con todas sus imagenes");
+                        MensajeDelete(categoriaPictograma, getResources().getString(R.string.estaSeguroMensa)+"\n"+getResources().getString(R.string.seEliminaran));
                     }
 
                 }
@@ -182,7 +181,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                     DetalleSesion detalleSesion = new DetalleSesion();
                     detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                     detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-                    detalleSesion.setNombre_opcion("CATEGORIA: " + categoriaPictograma.getCat_pictograma_nombre());
+                    detalleSesion.setNombre_opcion(getResources().getString(R.string.CATEGORIA) + categoriaPictograma.getCat_pictograma_nombre());
                     DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                     detalleSesionDao.insertarDetalleSesion(detalleSesion);
                 }
@@ -194,7 +193,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 @Override
                 public void itemLongClicked(CategoriaPictograma categoriaPictograma) {
                     Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagen.class);
-                    intentSeleccion.putExtra("categoria",categoriaPictograma.getCat_pictograma_id());
+                    intentSeleccion.putExtra(getResources().getString(R.string.categoria),categoriaPictograma.getCat_pictograma_id());
                     System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
                     startActivity(intentSeleccion);
             }
@@ -209,9 +208,10 @@ public class CategoriaPictogramaFragment extends Fragment {
             bandera = objetoBundle.getBoolean("bandera");
 
             if (bandera == true) {
+
                 Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
                 //toolbar se setea con VOCABULARIO
-                toolbar.setTitle("Vocabulario");
+                toolbar.setTitle(getResources().getString(R.string.vocabulario));
                 // el FAB se hace invisible
                 fab1.setVisibility(View.INVISIBLE);
                 adapter.isVocabulary = true;
@@ -298,11 +298,11 @@ public class CategoriaPictogramaFragment extends Fragment {
     //ALERTA DELETE
     public void MensajeDelete(CategoriaPictograma categoriaPictograma, String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Alerta");
+        builder.setTitle(getResources().getString(R.string.alerta));
         builder.setMessage(mensaje);
         builder.setIcon(android.R.drawable.ic_delete);
 
-        builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //DELETE CASCADE
@@ -311,7 +311,7 @@ public class CategoriaPictogramaFragment extends Fragment {
             }
         });
 
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -324,10 +324,10 @@ public class CategoriaPictogramaFragment extends Fragment {
     //ALERTA
     public void MensajeAlerta(String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Alerta");
+        builder.setTitle(getResources().getString(R.string.alerta));
         builder.setMessage(mensaje);
         builder.setIcon(android.R.drawable.ic_delete);
-        builder.setPositiveButton("Cerrar", null);
+        builder.setPositiveButton(getResources().getString(R.string.cerrar), null);
         builder.show();
     }
 

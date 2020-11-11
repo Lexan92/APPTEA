@@ -81,7 +81,7 @@ public class AccesoPin extends Fragment {
                     bundle.putBoolean("bandera", bandera);
                     Navigation.findNavController(getView()).navigate(R.id.accesoPin_a_CategoriaJuego, bundle);
                 } else {
-                    entradaPin.setError("Contraseña Incorrecta");
+                    entradaPin.setError(getResources().getString(R.string.contraseIncorecta));
                 }
             });
         });

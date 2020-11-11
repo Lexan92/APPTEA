@@ -103,6 +103,8 @@
     <string name="apellidoTea">Apellido</string>
     <string name="fechaTea">fecha de nacimiento</string>
     <string name="SexoTea">Sexo</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
     <string name="foto">Foto</string>
     <string name="guardarPersona">Guardar</string>
     <string name="cancelar">Cancelar</string>
@@ -183,6 +185,15 @@
     <string name="cargarImagen">Cargar Imagen</string>
     <string name="seleccioneApli">Seleccione la Aplicación</string>
     <string name="noExistePicto">No existe pictogramas</string>
+    <string name="esNecesarioCampoRequerido">Es necesario llenar los campos requeridos</string>
+    <string name="noSeHanIngesado">No se han ingresado personas a la lista</string>
+    <string name="seActualizoContrase">Se actualizó la contraseña con éxito</string>
+    <string name="debenSerIguales">Las contraseñas deben de ser iguales</string>
+    <string name="correoConExito">Correo Enviado con Éxito</string>
+    <string name="codigoIncorrecto">  El Código es incorrecto</string>
+    <string name="contraseIncorecta">Contraseña Incorrecta</string>
+    <string name="campoVaciIngreseContra">Campo Vacío, ingresa la contraseña</string>
+
 
 
 

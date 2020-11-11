@@ -50,7 +50,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     List<Rol> rolesArray = new ArrayList<>();
     int rolId;
 
-    String error="Campo Obligatorio";
+    //String error="Campo Obligatorio";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +94,11 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
 
                 if (validaciones()>0) {
-                    System.out.println("está vacio");
-                    Toast.makeText(RegistroUsuarioActivity.this,"Es necesario llenar los campos obligatorios",Toast.LENGTH_LONG).show();
+                    System.out.println(getResources().getString(R.string.vacio));
+                    Toast.makeText(RegistroUsuarioActivity.this,getResources().getString(R.string.esNecesarioCampoRequerido),Toast.LENGTH_LONG).show();
                     /*setResult(RESULT_CANCELED, replyIntent)*/;
                 } else {
-                    System.out.println("no vacio");
+                    System.out.println(getResources().getString(R.string.vacio));
                     usuario.setUsuario_nombre(nombreUsuario.getText().toString());
                     usuario.setUsuario_apellido(apellidoUsuario.getText().toString());
                     usuario.setCorreo(correoUsuario.getText().toString());
@@ -126,23 +126,23 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(nombreUsuario.getText())) {
                 validar+=1;
-                nombreUsuario.setError(error);
+                nombreUsuario.setError(getResources().getString(R.string.esNecesarioCampoRequerido));
         }else{nombreUsuario.setError(null); }
 
         if(TextUtils.isEmpty(apellidoUsuario.getText())){
                 validar+=1;;
-                apellidoUsuario.setError(error);
+                apellidoUsuario.setError(getResources().getString(R.string.esNecesarioCampoRequerido));
         }else{apellidoUsuario.setError(null); }
 
         if(TextUtils.isEmpty(correoUsuario.getText())){
                 validar+=1;
-                correoUsuario.setError(error);
+                correoUsuario.setError(getResources().getString(R.string.esNecesarioCampoRequerido));
        }else{correoUsuario.setError(null); }
 
 
         if(TextUtils.isEmpty(contraUsuario.getText())){
                 validar+=1;
-                contraUsuario.setError(error);
+                contraUsuario.setError(getResources().getString(R.string.esNecesarioCampoRequerido));
        }else{contraUsuario.setError(null); }
 
         return validar;

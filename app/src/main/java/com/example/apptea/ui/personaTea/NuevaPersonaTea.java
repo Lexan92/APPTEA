@@ -90,7 +90,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
     PersonaTea personaTea = new PersonaTea();
     UsuarioViewModel usuarioViewModel;
     int id;
-    String error="Campo Obligatorio";
+   // String error=getResources().getString(R.string.campoRequerido);
     private Button camara;
     private ImageView foto;
     private Uri output;
@@ -135,8 +135,8 @@ public class NuevaPersonaTea extends AppCompatActivity {
 
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
         ArrayList<String> sexo = new ArrayList<String>();
-        sexo.add("Masculino");
-        sexo.add("Femenino");
+        sexo.add(getResources().getString(R.string.masculino));
+        sexo.add(getResources().getString(R.string.femenino));
 
         //PARA EL SPINNER
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,sexo);
@@ -185,7 +185,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
 
         if(intent.getIntExtra(EXTRA_EDIT,-1)==1){
             //ES NUEVO
-            titulo.setText("Nuevo Registro");
+            titulo.setText(getResources().getString(R.string.datosTea));
         }else{
             // ES ACTUALIZACION
             titulo.setText(R.string.actualizarTea);
@@ -198,7 +198,7 @@ public class NuevaPersonaTea extends AppCompatActivity {
             byte[] actualizarfoto= intent.getByteArrayExtra(EXTRA_FOTO_PERSONA_UPDATE);
             if (actualizarfoto==null){
                 String sexoAc= intent.getStringExtra(EXTRA_SEXO_PERSONA_UPDATE);
-                if (sexoAc.equals("Femenino")) {
+                if (sexoAc.equals(getResources().getString(R.string.femenino))) {
                     foto.setImageResource(R.drawable.ic_linda);
                 } else {
                     foto.setImageResource(R.drawable.ic_smile);
@@ -216,8 +216,8 @@ public class NuevaPersonaTea extends AppCompatActivity {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
                 if(validacionespersona()>0) {
-                    System.out.println("está vacio");
-                    Toast.makeText(NuevaPersonaTea.this,"Es necesario llenar los campos obligatorios",Toast.LENGTH_LONG).show();
+                    System.out.println(getResources().getString(R.string.vacio));
+                    Toast.makeText(NuevaPersonaTea.this,getResources().getString(R.string.esNecesarioCampoRequerido),Toast.LENGTH_LONG).show();
                    // setResult(RESULT_CANCELED, replyIntent);
                 } else {
 
@@ -295,17 +295,17 @@ public class NuevaPersonaTea extends AppCompatActivity {
 
         if (TextUtils.isEmpty(nombreTea.getText())) {
             validar+=1;
-            nombreTea.setError(error);
+            nombreTea.setError(getResources().getString(R.string.campoRequerido));
         }else{nombreTea.setError(null); }
 
         if(TextUtils.isEmpty(apellidoTea.getText())){
             validar+=1;;
-            apellidoTea.setError(error);
+            apellidoTea.setError(getResources().getString(R.string.campoRequerido));
         }else{apellidoTea.setError(null); }
 
         if(TextUtils.isEmpty(fecha.getText())){
             validar+=1;
-            fecha.setError(error);
+            fecha.setError(getResources().getString(R.string.campoRequerido));
         }else{fecha.setError(null); }
 
 

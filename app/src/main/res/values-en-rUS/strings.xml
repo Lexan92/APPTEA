@@ -81,6 +81,8 @@
     <string name="apellidoTea">Last name</string>
     <string name="fechaTea">Birthdate</string>
     <string name="SexoTea">Gender</string>
+    <string name="masculino">Male</string>
+    <string name="femenino">Female</string>
     <string name="foto">Photo</string>
     <string name="guardarPersona">Save</string>
     <string name="cancelar">Cancel</string>
@@ -162,6 +164,16 @@
     <string name="cargarImagen">Load Image</string>
     <string name="seleccioneApli">Select the Application</string>
     <string name="noExistePicto">There are no pictograms</string>
+    <string name="esNecesarioCampoRequerido">It is necessary to fill the required fields</string>
+    <string name="noSeHanIngesado">No people have been added to the list</string>
+    <string name="seActualizoContrase">Password updated successfully</string>
+    <string name="debenSerIguales">Passwords must be equal</string>
+    <string name="correoConExito">Mail Sent Successfully</string>
+    <string name="codigoIncorrecto">The code is incorrect</string>
+    <string name="contraseIncorecta">Incorrect password</string>
+    <string name="campoVaciIngreseContra">Empty field, enter the password</string>
+
+
 
 
 

@@ -216,7 +216,7 @@ public class UsuarioFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),getResources().getString(R.string.correoConExito),Toast.LENGTH_LONG).show();
 
             recyclerView.setVisibility(VISIBLE);
             cambiarContra.setVisibility(VISIBLE);

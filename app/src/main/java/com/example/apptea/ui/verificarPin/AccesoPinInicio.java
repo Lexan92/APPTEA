@@ -96,7 +96,7 @@ public class AccesoPinInicio extends Fragment {
             usuario = usuarioViewModel.getUsuarioAll();
             usuario.observe(getActivity(), usuarios -> {
                 if (entradaPin.getText().toString().isEmpty()) {
-                    entradaPin.setError("Campo Vacío, ingresa la contraseña");
+                    entradaPin.setError(getResources().getString(R.string.campoVaciIngreseContra));
                 } else if (usuarios.get(0).getContrasenia().equals(entradaPin.getText().toString())) {
 
                     //Se obtiene el usuario guardado se obtiene la primera fila.
@@ -107,7 +107,7 @@ public class AccesoPinInicio extends Fragment {
                     administarSesion.guardarSesion(usuario);
                     Navigation.findNavController(getView()).navigate(R.id.action_accesoPinInicio_to_nav_home);
                 } else {
-                    entradaPin.setError("Contraseña Incorrecta");
+                    entradaPin.setError(getResources().getString(R.string.contraseIncorecta));
                 }
             });
         });
@@ -127,7 +127,7 @@ public class AccesoPinInicio extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!ValidarConexion.compruebaConexion(getContext())) {
-                    Toast.makeText(getContext(),"Se necesita una conexión a Internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getResources().getString(R.string.conexion_internet), Toast.LENGTH_SHORT).show();
                 }else {
                     new progreso().execute();
                 }
@@ -173,7 +173,7 @@ public class AccesoPinInicio extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Toast.makeText(getActivity(),"Correo Enviado con Exito",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),getResources().getString(R.string.correoConExito),Toast.LENGTH_LONG).show();
 
             contenedor.setVisibility(View.GONE);
             sobre.setVisibility(View.INVISIBLE);

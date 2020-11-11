@@ -124,7 +124,7 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
 
            if (foto==null){
 
-               if (sexo.equals("Femenino")) {
+               if (sexo.equals(holder.itemView.getContext().getString(R.string.femenino))) {
                    holder.personaItemFoto.setImageResource(R.drawable.ic_linda);
                } else {
                    holder.personaItemFoto.setImageResource(R.drawable.ic_smile);
@@ -139,7 +139,7 @@ public class PersonaTeaAdapter  extends RecyclerView.Adapter<PersonaTeaAdapter.P
            }
         } else {
             // Covers the case of data not being ready yet.
-            holder.personaItemNombre.setText("No se han ingresado personas a la lista");
+            holder.personaItemNombre.setText(holder.itemView.getContext().getString(R.string.noSeHanIngresado));
         }
 
     }

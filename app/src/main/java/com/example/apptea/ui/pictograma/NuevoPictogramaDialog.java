@@ -126,14 +126,14 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                 //inicia guardado de pictogramas
                 //se valida si los campos estan vacios
                 if (nombrePictograma.getText().toString().isEmpty() && imgFoto.getDrawable().equals(imgvacia)) {
-                    nombrePictograma.setError("Campo Requerido");
-                    Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
+                    nombrePictograma.setError(getResources().getString(R.string.campoRequerido));
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.debeAgregarImagen), Toast.LENGTH_LONG).show();
                 } else {
                     if (imgFoto.getDrawable().equals(imgvacia)) {
-                        Toast.makeText(getApplicationContext(), "Debe agregar una imagen  antes de guardar", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.debeAgregarImagen), Toast.LENGTH_LONG).show();
                     } else {
                         if (nombrePictograma.getText().toString().isEmpty()) {
-                            nombrePictograma.setError("Campo Requerido");
+                            nombrePictograma.setError(getResources().getString(R.string.campoRequerido));
                         } else {
                             Pictograma pictograma = new Pictograma();
                             pictograma.setCat_pictograma_id(keyCategoria);
@@ -141,7 +141,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             if(imagen) {
                                 pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
                             }
-                            Toast.makeText(getApplicationContext(), "Imagen Guardada", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.imagenGuardada), Toast.LENGTH_LONG).show();
 
                             // ES NUEVO
                             if(intent.getIntExtra(EXTRA_EDIT,-1 )==1){
@@ -179,19 +179,19 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
 
 
     private void cargarImagen() {
-        final CharSequence[] opciones = {"Tomar Foto", "Cargar Imagen", "Cancelar"};
+        final CharSequence[] opciones = {getResources().getString(R.string.tomarFoto),getResources().getString(R.string.cargarImagen) , getResources().getString(R.string.cancelar)};
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(NuevoPictogramaDialog.this);
-        builder.setTitle("Seleccione una opción");
+        builder.setTitle(getResources().getString(R.string.seleccioneOpcion));
         builder.setItems(opciones, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                if (opciones[i].equals("Tomar Foto")) {
+                if (opciones[i].equals(getResources().getString(R.string.tomarFoto))) {
                     tomarFotografia();
                 } else {
-                    if (opciones[i].equals("Cargar Imagen")) {
+                    if (opciones[i].equals(getResources().getString(R.string.cargarImagen) )) {
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         intent.setType("image/");
-                        startActivityForResult(intent.createChooser(intent, "Seleccione la Aplicación"), COD_SELECCIONA);
+                        startActivityForResult(intent.createChooser(intent, getResources().getString(R.string.seleccioneApli)), COD_SELECCIONA);
                     } else {
                         dialog.dismiss();
                     }

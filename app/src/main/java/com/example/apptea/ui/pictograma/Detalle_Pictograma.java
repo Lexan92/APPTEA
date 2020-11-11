@@ -130,7 +130,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
 
         //Definiendo nombre para el toolbar
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Categoria: " + categoriaPictograma.getCat_pictograma_nombre());
+        toolbar.setTitle(getResources().getString(R.string.categoria)+ categoriaPictograma.getCat_pictograma_nombre());
 
 
         //NUEVO PICTOGRAMA
@@ -157,20 +157,20 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
                if (numpictoO>0){
                     //System.out.println("cantidad de veces que se usa el pictograma "+ numpictoO);
                     if(numHabPicto>0){
-                        MensajeAlerta("Este pictograma no se puede eliminar,  pictograma utilizado en: \n \n" +
-                                numHabPicto + " habilidades cotidianas \n"+
-                                numpictoO + " juegos interactivos");
+                        MensajeAlerta(getResources().getString(R.string.pictoNoSeElimina)+"\n \n" +
+                                numHabPicto + getResources().getString(R.string.habiCoti)+"\n"+
+                                numpictoO + getResources().getString(R.string.jueInterac));
                     }else{
-                        MensajeAlerta("Este pictograma no se puede eliminar,  pictograma utilizado en: \n \n" +
-                                numpictoO + "  juegos interactivos");
+                        MensajeAlerta(getResources().getString(R.string.pictoNoSeElimina)+"\n \n" +
+                                numpictoO + getResources().getString(R.string.jueInterac));
                     }
 
                }else{
                    if(numHabPicto>0){
-                       MensajeAlerta("Este pictograma no se puede eliminar,  pictograma utilizado en: \n \n" +
-                               numHabPicto+ " habilidades cotidianas ");
+                       MensajeAlerta(getResources().getString(R.string.pictoNoSeElimina)+"\n \n" +
+                               numHabPicto+  getResources().getString(R.string.habiCoti));
                    }else{
-                       MensajeDelete( pictograma,"¿Esta seguro? \n Se eliminara el pictograma");
+                       MensajeDelete( pictograma,getResources().getString(R.string.estaSeguroMensa)+"\n"+getResources().getString(R.string.seEliminaraPicto));
                    }
 
                }
@@ -220,18 +220,18 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
             pictograma = (Pictograma) data.getSerializableExtra(NuevoPictogramaDialog.EXTRA_PICTOGRAMA_UPDATE);
             pictogramaViewModel.update(pictograma);
         } else {
-            Toast.makeText(getActivity(),"esta vacio",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),getResources().getString(R.string.vacio),Toast.LENGTH_LONG).show();
         }
     }
 
     //ALERTA DELETE
     public void MensajeDelete(Pictograma pictograma, String mensaje){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Alerta");
+        builder.setTitle(getResources().getString(R.string.alerta));
         builder.setMessage(mensaje);
         builder.setIcon(android.R.drawable.ic_delete);
 
-        builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //DELETE CASCADE
@@ -240,7 +240,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
             }
         });
 
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -252,10 +252,10 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
     //ALERTA
     public void MensajeAlerta(String mensaje){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Alerta");
+        builder.setTitle(getResources().getString(R.string.alerta));
         builder.setMessage(mensaje);
         builder.setIcon(android.R.drawable.ic_delete);
-        builder.setPositiveButton("Cerrar",null);
+        builder.setPositiveButton(getResources().getString(R.string.cerrar),null);
         builder.show();
     }
 

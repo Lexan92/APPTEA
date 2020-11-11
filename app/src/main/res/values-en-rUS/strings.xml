@@ -62,6 +62,8 @@
     <string name="txt10">E-mail:</string>
     <string name="txt11">Login</string>
     <string name="txt12"> Login As:</string>
+    <string name="conexion_internet">Se necesita una conexión a Internet</string>
+    <string name="miPerfil">My Profile</string>
 
 
     --Everyday Skill Category
@@ -103,6 +105,10 @@
     <string name="vocabulario">Vocabulary</string>
     <string name="frases">Phrases</string>
 
+    --Phrases
+    <string name="creaerFrases">Create Phrases</string>
+
+
 
     <string name="lista_vacia">UPS! THIS CATEGORY IS EMPTY.</string>
 
@@ -123,6 +129,42 @@
     <string name="telefonoTera">Phone</string>
     <string name="cancelarTera">Cancel</string>
     <string name="guardarTera">Save</string>
+    <string name="nombreTeP">Name:</string>
+    <string name="correoTeP">E-mail:</string>
+    <string name="telefonoTeP">Phone:</string>
+    <string name="txtNueTera">New Therapist</string>
+    <string name="txtModiTera">Modify Therapist</string>
+    <string name="tituloTerapeutaEncargado">Therapists in charge</string>
+    <string name="noSeHanIngresado">No therapists have been added to the list</string>
+    <string name="eliminarTera">Eliminar</string>
+
+
+    --mensajes
+    <string name="alerta">Alert</string>
+    <string name="estaSeguro">Are you sure to eliminate</string>
+    <string name="eliminar">Delete</string>
+    <string name="cerrar">Close</string>
+    <string name="categoNoSeElimina">This category cannot be eliminated, there are:</string>
+    <string name="pictogramaUsaHabi">pictograms used in everyday skills</string>
+    <string name="pictogramaUsaJuegoI">pictograms used in interactive games</string>
+    <string name="estaSeguroMensa">Are you sure?</string>
+    <string name="seEliminaran">The Pictogram Category will be removed with all its images</string>
+    <string name="pictoNoSeElimina">This pictogram cannot be removed, pictogram used in:</string>
+    <string name="habiCoti">everyday skills</string>
+    <string name="jueInterac">interactive games</string>
+    <string name="seEliminaraPicto">The pictogram will be removed</string>
+    <string name="vacio">it is empty</string>
+    <string name="campoRequerido"> Required field</string>
+    <string name="debeAgregarImagen">  You must add an image before saving</string>
+    <string name="imagenGuardada">Saved Image</string>
+    <string name="seleccioneOpcion">Select an option</string>
+    <string name="tomarFoto">Take Picture</string>
+    <string name="cargarImagen">Load Image</string>
+    <string name="seleccioneApli">Select the Application</string>
+    <string name="noExistePicto">There are no pictograms</string>
+
+
+
 
     --Iniciar sesion
     <string name="txt13">Name:</string>
@@ -131,6 +173,10 @@
     <string name="txt16"> Sign in as:</string>
     <string name="txt17">Hello </string>
 
+    --Categoria de Pictogramas
+    <string name="categoria">Category:</string>
+    <string name="CATEGORIA">CATEGORY:</string>
+    <string name="buscar_pictogramas">Pictograms Search</string>
 
 
 

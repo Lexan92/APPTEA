@@ -60,13 +60,15 @@ public class NuevoTerapeuta  extends AppCompatActivity {
 
         //VALIDANDO SI ES EDICION
         Intent intent = getIntent();
+        String txtNueTera = getResources().getString(R.string.txtNueTera);
+        String txtModiTera= getResources().getString(R.string.txtModiTera);
 
         if(intent.getIntExtra(EXTRA_EDIT,-1)==1){
             //ES NUEVO
-            titulo.setText("Nuevo Terapeuta");
+            titulo.setText(txtNueTera);
         }else{
             // ES ACTUALIZACION
-            titulo.setText("Modificar Terapeuta");
+            titulo.setText(txtModiTera);
             nombreTerapeuta.setText(intent.getStringExtra(EXTRA_NOMBRE_TERAPEUTA_UPDATE));
             apellidoTerapeuta.setText(intent.getStringExtra(EXTRA_APELLIDO_TERAPEUTA_UPDATE));
             correoTerapeuta.setText(intent.getStringExtra(EXTRA_CORREO_TERAPEUTA_UPDATE));
@@ -134,7 +136,7 @@ public class NuevoTerapeuta  extends AppCompatActivity {
         }else{nombreTerapeuta.setError(null); }
 
         if(TextUtils.isEmpty(apellidoTerapeuta.getText())){
-            validar+=1;;
+            validar+=1;
             apellidoTerapeuta.setError(error);
         }else{apellidoTerapeuta.setError(null); }
 

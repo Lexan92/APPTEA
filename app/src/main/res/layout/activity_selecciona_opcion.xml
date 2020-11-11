@@ -37,193 +37,198 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo_juego" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_1"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:columnCount="2"
+        app:layout_constraintBottom_toTopOf="@+id/pregunta_siguiente"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387">
+        app:layout_constraintTop_toBottomOf="@+id/titulo_pregunta"
+        app:rowCount="2"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
 
-            <ImageView
-                android:id="@+id/pictograma_uno"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_juegos" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/titulo_pictograma_uno"
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/pictograma_uno"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/ic_juegos"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/titulo_pictograma_uno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/capriola"
+                    android:text="Pictograma"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/pictograma_uno"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="13dp"
-                android:layout_marginBottom="7dp"
-                android:fontFamily="@font/capriola"
-                android:text="Pictograma"
-                android:textAlignment="center"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/pictograma_dos"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/ic_juegos"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_horizontal"/>
 
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/titulo_pictograma_dos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/capriola"
+                    android:text="Pictograma"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/colorPrimary"/>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_2"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387">
+            </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:id="@+id/pictograma_dos"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_juegos" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/titulo_pictograma_dos"
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/pictograma_tres"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/ic_juegos"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/titulo_pictograma_tres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/capriola"
+                    android:text="Pictograma"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/pictograma_dos"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="13dp"
-                android:layout_marginBottom="7dp"
-                android:fontFamily="@font/capriola"
-                android:text="Pictograma"
-                android:textAlignment="center"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/pictograma_cuatro"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/ic_juegos"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_horizontal"/>
 
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/titulo_pictograma_cuatro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/capriola"
+                    android:text="Pictograma"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/colorPrimary"/>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_3"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819">
+            </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:id="@+id/pictograma_tres"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_juegos" />
-
-            <TextView
-                android:id="@+id/titulo_pictograma_tres"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/pictograma_tres"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="13dp"
-                android:layout_marginBottom="7dp"
-                android:fontFamily="@font/capriola"
-                android:text="Pictograma"
-                android:textAlignment="center"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary" />
-
-
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_4"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/pictograma_cuatro"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_juegos" />
-
-            <TextView
-                android:id="@+id/titulo_pictograma_cuatro"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/pictograma_cuatro"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="13dp"
-                android:layout_marginBottom="7dp"
-                android:fontFamily="@font/capriola"
-                android:text="Pictograma"
-                android:textAlignment="center"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/colorPrimary" />
-
-
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.gridlayout.widget.GridLayout>
 
     <Button
         android:id="@+id/pregunta_siguiente"

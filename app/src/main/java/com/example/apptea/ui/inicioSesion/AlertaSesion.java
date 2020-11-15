@@ -32,7 +32,7 @@ public class AlertaSesion extends AppCompatActivity {
     public void ContinuarSesion(View view) {
         Intent intent = new Intent(AlertaSesion.this, MainActivity.class);
         intent.putExtra("bandera", false);
-        Toast.makeText(getApplicationContext(), "Sesión Reanudada", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.sesionReanudada), Toast.LENGTH_SHORT).show();
         startActivity(intent);
         finish();
 
@@ -54,6 +54,6 @@ public class AlertaSesion extends AppCompatActivity {
         administarSesion.cerrarSesionPersonaTea();
         Intent intent = new Intent(AlertaSesion.this, ListadoInicioSesion.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "Sesión Descartada", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.sesionDescartada), Toast.LENGTH_SHORT).show();
     }
 }

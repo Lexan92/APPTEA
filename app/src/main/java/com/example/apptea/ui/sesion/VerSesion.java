@@ -92,7 +92,7 @@ public class VerSesion extends Fragment implements SesionAdapter.OnSesionListene
 
 
             Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-            toolbar.setTitle("Perfil: ".concat(personaTea.getPersona_nombre()).concat(" ").concat(personaTea.getPersona_apellido()));
+            toolbar.setTitle(getResources().getString(R.string.opcionesSeleccionadas).concat(": ").concat(personaTea.getPersona_nombre()).concat(" ").concat(personaTea.getPersona_apellido()));
 
         }
 

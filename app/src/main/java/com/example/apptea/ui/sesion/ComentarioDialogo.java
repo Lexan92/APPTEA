@@ -85,7 +85,7 @@ Sesion sesion;
                 sesion.setComentario(comentario.getText().toString());
                 SesionDao sesionDao = appDatabase.getDatabase(getActivity()).sesionDao();
                 sesionDao.actualizarSesion(sesion);
-                Toast.makeText(getActivity(),"Comentario Actualizado",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),getResources().getString(R.string.comentarioActualizado),Toast.LENGTH_SHORT).show();
                 dismiss();
 
             }

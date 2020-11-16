@@ -37,16 +37,23 @@ public class JuegoPrincipal extends AppCompatActivity {
         nombreJuego.setText(juegoNuevo.getJuego_nombre());
 
 
-        nuevaPregunta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
-                intent.putExtra("juegoNuevo", juegoNuevo);
-                Log.d("Pregunta", "titulo: " + juegoNuevo.getJuego_nombre());
-                startActivity(intent);
-                finish();
-            }
-        });
+        //tomar la categoria 1 o 2 para enviar a la actividad correspondiente
+
+        if (juegoNuevo.getCategoria_juego_id()==1){
+            nuevaPregunta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), DefinirPregunta.class);
+                    intent.putExtra("juegoNuevo", juegoNuevo);
+                    Log.d("Pregunta", "titulo: " + juegoNuevo.getJuego_nombre());
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }else {
+            //enviar a definir juego de  memoria
+        }
+
     }
 
 

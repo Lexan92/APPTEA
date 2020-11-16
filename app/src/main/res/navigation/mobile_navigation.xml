@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_nav_gestion_juego_to_detalleJuegoPaciente"
             app:destination="@id/detalleJuegoPaciente" />
+        <action
+            android:id="@+id/action_nav_gestion_juego_to_detalleJuegoPaciente2"
+            app:destination="@id/detalleJuegoPaciente2" />
     </fragment>
 
     <fragment
@@ -243,6 +246,15 @@
         android:name="com.example.apptea.ui.sesion.ComentarioDialogo"
         android:label="fragment_comentario_dialogo"
         tools:layout="@layout/fragment_comentario_dialogo" />
+    <fragment
+        android:id="@+id/detalleJuegoPaciente2"
+        android:name="com.example.apptea.ui.juegoMemoria.DetalleJuegoPaciente2"
+        android:label="fragment_detalle_juego_paciente2"
+        tools:layout="@layout/fragment_detalle_juego_paciente2" >
+        <action
+            android:id="@+id/action_detalleJuegoPaciente2_to_nav_gestion_juego"
+            app:destination="@id/nav_gestion_juego" />
+    </fragment>
 
 
 </navigation>

@@ -154,6 +154,9 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                     sesionDao.borrarSesion(sesion);
                     ResultadoDao resultadoDao = appDatabase.getDatabase(getApplicationContext()).resultadoDao();
                     resultadoDao.borrarResultadoPorId(id);
+                    administarSesion.setearTipoUsuario(-1);
+                    administarSesion.guardarIDSesion(-1);
+                    administarSesion.cerrarSesionPersonaTea();
                     Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "Sesión Descartada", Toast.LENGTH_SHORT).show();

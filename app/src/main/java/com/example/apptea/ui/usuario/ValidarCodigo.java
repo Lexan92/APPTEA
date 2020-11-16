@@ -57,7 +57,7 @@ public class ValidarCodigo extends Activity {
                                 startActivity(intent2);
                                 finish();
                             } else {
-                              Toast.makeText(getApplicationContext(), "El Codigo es incorrecto", Toast.LENGTH_LONG).show();
+                              Toast.makeText(getApplicationContext(), getResources().getString(R.string.codigoIncorrecto), Toast.LENGTH_LONG).show();
                             }
                         }
 

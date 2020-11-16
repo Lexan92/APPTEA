@@ -170,9 +170,10 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
 
 
         } else {
+            String noExist=holder.itemView.getContext().getString(R.string.noExistePicto);
             // Covers the case of data not being ready yet.
             Glide.with(holder.itemView.getContext()).clear(holder.imagen);
-            holder.pictogramaItemView.setText("No existe pictogramas");
+            holder.pictogramaItemView.setText(noExist);
         }
     }
 

@@ -71,6 +71,8 @@
     <string name="txt11">Iniciar Sesión</string>
     <string name="txt12">Iniciar Sesión Como :</string>
     <string name="conexion_internet">Se necesita una conexión a Internet</string>
+    <string name="miPerfil">Mi Perfil</string>
+
 
 
     --Categoria Habilidad Cotidiana
@@ -101,6 +103,8 @@
     <string name="apellidoTea">Apellido</string>
     <string name="fechaTea">fecha de nacimiento</string>
     <string name="SexoTea">Sexo</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
     <string name="foto">Foto</string>
     <string name="guardarPersona">Guardar</string>
     <string name="cancelar">Cancelar</string>
@@ -120,6 +124,10 @@
     <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
     <string name="vocabulario">Vocabulario</string>
     <string name="frases">Frases</string>
+
+    --frases
+    <string name="creaerFrases">Crear Frases</string>
+
 
     --Lista vacia
     <string name="lista_vacia">UPS! ESTA CATEGORIA ESTA VACIA.</string>
@@ -141,6 +149,81 @@
     <string name="telefonoTera">Telefono</string>
     <string name="cancelarTera">Cancelar</string>
     <string name="guardarTera">Guardar</string>
+    <string name="nombreTeP">Nombre:</string>
+    <string name="correoTeP">Correo:</string>
+    <string name="telefonoTeP">Telefono:</string>
+    <string name="txtNueTera">Nuevo Terapeuta</string>
+    <string name="txtModiTera">Modificar Terapeuta</string>
+    <string name="tituloTerapeutaEncargado">Terapeutas encargados</string>
+    <string name="noSeHanIngresado">No se han ingresado terapeutas a la lista</string>
+    <string name="eliminarTera">Eliminar</string>
+
+
+    --sesiones
+    <string name="toolbarPerfil">Perfil: </string>
+    <string name="encontramosSesionSinGuardar">Encontramos una sesión sin guardar</string>
+    <string name="deseaSeguirODescartar">¿Desea seguir grabando la sesión o descartarla?</string>
+    <string name="continuarSesion">Continuar Sesión</string>
+    <string name="descartarSesion">Descartar Sesión</string>
+    <string name="escribaAquiComentarios">Escriba aquí los comentarios sobre esta sesión</string>
+    <string name="escribaContra">Escriba la contraseña</string>
+    <string name="comentarioDeSesion">Comentario de la Sesión</string>
+    <string name="detalle">Detalle</string>
+    <string name="horaInicio">Hora Inicio Sesión</string>
+    <string name="fecha">Fecha</string>
+    <string name="accion">ACCIÓN</string>
+    <string name="inicio">INICIO</string>
+    <string name="fecham">FECHA</string>
+    <string name="fechaSesion">Fecha Sesión</string>
+    <string name="horaFin">Hora Fin Sesión</string>
+    <string name="fin">FIN</string>
+    <string name="detalleDeLaSesion">Detalle de la Sesión</string>
+    <string name="sesionesRealizadas">Sesiones Realizadas</string>
+    <string name="noHaySesionesRealizadas">NO HAY SESIONES REGISTRADAS</string>
+    <string name="verSesion">Ver Sesiones</string>
+
+
+
+    --mensajes
+    <string name="alerta">Alerta</string>
+    <string name="estaSeguro">¿está seguro de eliminar a</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="categoNoSeElimina">Esta categoría no se puede eliminar,  existen:</string>
+    <string name="pictogramaUsaHabi">pictogramas usados en habilidades cotidianas </string>
+    <string name="pictogramaUsaJuegoI">pictogramas usados en juegos interactivos</string>
+    <string name="estaSeguroMensa">¿está seguro?</string>
+    <string name="seEliminaran">Se eliminará la Categoría de pictogramas con todas sus imágenes</string>
+    <string name="pictoNoSeElimina">Este pictograma no se puede eliminar,  pictograma utilizado en:</string>
+    <string name="habiCoti">habilidades cotidianas</string>
+    <string name="jueInterac">juegos interactivos</string>
+    <string name="seEliminaraPicto">Se eliminará el pictograma</string>
+    <string name="vacio">esta vacio</string>
+    <string name="campoRequerido">Campo Requerido</string>
+    <string name="debeAgregarImagen">Debe agregar una imagen  antes de guardar</string>
+    <string name="imagenGuardada">Imagen Guardada</string>
+    <string name="seleccioneOpcion">Seleccione una opción</string>
+    <string name="tomarFoto">Tomar Foto</string>
+    <string name="cargarImagen">Cargar Imagen</string>
+    <string name="seleccioneApli">Seleccione la Aplicación</string>
+    <string name="noExistePicto">No existe pictogramas</string>
+    <string name="esNecesarioCampoRequerido">Es necesario llenar los campos requeridos</string>
+    <string name="noSeHanIngesado">No se han ingresado personas a la lista</string>
+    <string name="seActualizoContrase">Se actualizó la contraseña con éxito</string>
+    <string name="debenSerIguales">Las contraseñas deben de ser iguales</string>
+    <string name="correoConExito">Correo Enviado con Éxito</string>
+    <string name="codigoIncorrecto">  El Código es incorrecto</string>
+    <string name="contraseIncorecta">Contraseña Incorrecta</string>
+    <string name="campoVaciIngreseContra">Campo Vacío, ingresa la contraseña</string>
+    <string name="contraParaConti">Escriba la contraseña para continuar</string>
+    <string name="sesionGuardada">Sesion Guardada</string>
+    <string name="escribaContrasDescartar">Escriba la contraseña para DESCARTAR la sesión</string>
+    <string name="sesionDescartada">Sesión Descartada</string>
+    <string name="sesionReanudada">Sesión Reanudada</string>
+    <string name="comentarioActualizado">Comentario Actualizado</string>
+    <string name="opcionesSeleccionadas">Opciones Selecionadas:</string>
+
+
 
     --Iniciar sesion
     <string name="txt13">Nombre:</string>
@@ -155,8 +238,8 @@
     <string name="agregarImg2" translatable="false">el pictograma: </string>
     <string name="atencion" translatable="false">Atención </string>
     <string name="aceptar" translatable="false">Aceptar </string>
-
-
+    <string name="categoria">Categoría:</string>
+    <string name="CATEGORIA">CATEGORIA:</string>
     <string name="buscar_pictogramas">Buscar Pictogramas</string>
 
 </resources>

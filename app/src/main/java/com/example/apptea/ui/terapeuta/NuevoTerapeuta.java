@@ -35,7 +35,7 @@ public class NuevoTerapeuta  extends AppCompatActivity {
     TextInputEditText correoTerapeuta;
     TextInputEditText telefonoTerapeuta;
     private TextView titulo;
-    String error="Campo Obligatorio";
+    //String error="Campo Obligatorio";
     private Button cancelar;
     Terapeuta terapeuta = new Terapeuta();
 
@@ -60,13 +60,15 @@ public class NuevoTerapeuta  extends AppCompatActivity {
 
         //VALIDANDO SI ES EDICION
         Intent intent = getIntent();
+        String txtNueTera = getResources().getString(R.string.txtNueTera);
+        String txtModiTera= getResources().getString(R.string.txtModiTera);
 
         if(intent.getIntExtra(EXTRA_EDIT,-1)==1){
             //ES NUEVO
-            titulo.setText("Nuevo Terapeuta");
+            titulo.setText(txtNueTera);
         }else{
             // ES ACTUALIZACION
-            titulo.setText("Modificar Terapeuta");
+            titulo.setText(txtModiTera);
             nombreTerapeuta.setText(intent.getStringExtra(EXTRA_NOMBRE_TERAPEUTA_UPDATE));
             apellidoTerapeuta.setText(intent.getStringExtra(EXTRA_APELLIDO_TERAPEUTA_UPDATE));
             correoTerapeuta.setText(intent.getStringExtra(EXTRA_CORREO_TERAPEUTA_UPDATE));
@@ -82,8 +84,8 @@ public class NuevoTerapeuta  extends AppCompatActivity {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
                 if(validacionesterapeuta()>0) {
-                    System.out.println("está vacio");
-                    Toast.makeText(NuevoTerapeuta.this,"Es necesario llenar los campos obligatorios",Toast.LENGTH_LONG).show();
+                    System.out.println(getResources().getString(R.string.vacio));
+                    Toast.makeText(NuevoTerapeuta.this,getResources().getString(R.string.esNecesarioCampoRequerido),Toast.LENGTH_LONG).show();
                     // setResult(RESULT_CANCELED, replyIntent);
                 } else {
 
@@ -130,22 +132,22 @@ public class NuevoTerapeuta  extends AppCompatActivity {
 
         if (TextUtils.isEmpty(nombreTerapeuta.getText())) {
             validar+=1;
-            nombreTerapeuta.setError(error);
+            nombreTerapeuta.setError(getResources().getString(R.string.campoRequerido));
         }else{nombreTerapeuta.setError(null); }
 
         if(TextUtils.isEmpty(apellidoTerapeuta.getText())){
-            validar+=1;;
-            apellidoTerapeuta.setError(error);
+            validar+=1;
+            apellidoTerapeuta.setError(getResources().getString(R.string.campoRequerido));
         }else{apellidoTerapeuta.setError(null); }
 
         if(TextUtils.isEmpty(correoTerapeuta.getText())){
             validar+=1;
-            correoTerapeuta.setError(error);
+            correoTerapeuta.setError(getResources().getString(R.string.campoRequerido));
         }else{correoTerapeuta.setError(null); }
 
         if(TextUtils.isEmpty(telefonoTerapeuta.getText())){
             validar+=1;
-            telefonoTerapeuta.setError(error);
+            telefonoTerapeuta.setError(getResources().getString(R.string.campoRequerido));
         }else{telefonoTerapeuta.setError(null); }
 
         return validar;

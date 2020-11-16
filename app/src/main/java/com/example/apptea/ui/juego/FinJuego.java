@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.apptea.R;
 import com.example.apptea.ui.juegoSeleccion.DetalleResultadoAdapter;
 import com.example.apptea.ui.juegoSeleccion.DetalleResultadoViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class FinJuego extends AppCompatActivity {
         ttsManager = new TTSManager();
         ttsManager.init(getApplication());
         String frase = "¡Fin del Juego! ¡Bien hecho! ";
+        AdministarSesion administarSesion = new AdministarSesion(this);
 
         int milisegundos = 1000;
         Handler handler = new Handler();
@@ -48,19 +50,20 @@ public class FinJuego extends AppCompatActivity {
             }
         },milisegundos);
 
-        nombreJuego.setText("N° de fallos: "+resultado.getNombre_juego());
-        recyclerView =findViewById(R.id.lista_detalleRes);
-        final DetalleResultadoAdapter detalleResultadoAdapter = new DetalleResultadoAdapter();
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));
-        recyclerView.setAdapter(detalleResultadoAdapter);
-        detalleResultadoViewModel = new ViewModelProvider(this).get(DetalleResultadoViewModel.class);
-        detalleResultadoViewModel.getDetalleResultadoByResultado(resultado.getResultado_id()).observe(this, new Observer<List<DetalleResultado>>() {
-            @Override
-            public void onChanged(List<DetalleResultado> detalleResultados) {
-                detalleResultadoAdapter.setDetalleResultados(detalleResultados);
-            }
-        });
-
+        if (administarSesion.obtenerIDSesion() > 0) {
+            nombreJuego.setText("N° de fallos: "+resultado.getNombre_juego());
+            recyclerView =findViewById(R.id.lista_detalleRes);
+            final DetalleResultadoAdapter detalleResultadoAdapter = new DetalleResultadoAdapter();
+            recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));
+            recyclerView.setAdapter(detalleResultadoAdapter);
+            detalleResultadoViewModel = new ViewModelProvider(this).get(DetalleResultadoViewModel.class);
+            detalleResultadoViewModel.getDetalleResultadoByResultado(resultado.getResultado_id()).observe(this, new Observer<List<DetalleResultado>>() {
+                @Override
+                public void onChanged(List<DetalleResultado> detalleResultados) {
+                    detalleResultadoAdapter.setDetalleResultados(detalleResultados);
+                }
+            });
+        }
 
     }
 

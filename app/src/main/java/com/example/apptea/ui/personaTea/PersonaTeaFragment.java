@@ -130,11 +130,11 @@ public class PersonaTeaFragment extends Fragment {
             @Override
             public void deleteClickedPersona(PersonaTea personaTea) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Alerta");
-                builder.setMessage("¿esta seguro de eliminar a \n" + personaTea.getPersona_nombre() + "?");
+                builder.setTitle(getResources().getString(R.string.alerta));
+                builder.setMessage(getResources().getString(R.string.estaSeguro)+"\n" + personaTea.getPersona_nombre() + "?");
                 builder.setIcon(android.R.drawable.ic_delete);
 
-                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         System.out.println("La persona TEA es " + personaTea.getPersona_nombre());
@@ -144,7 +144,7 @@ public class PersonaTeaFragment extends Fragment {
                     }
                 });
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

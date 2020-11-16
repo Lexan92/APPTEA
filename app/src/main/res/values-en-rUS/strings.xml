@@ -62,6 +62,8 @@
     <string name="txt10">E-mail:</string>
     <string name="txt11">Login</string>
     <string name="txt12"> Login As:</string>
+    <string name="conexion_internet">Se necesita una conexión a Internet</string>
+    <string name="miPerfil">My Profile</string>
 
 
     --Everyday Skill Category
@@ -79,6 +81,8 @@
     <string name="apellidoTea">Last name</string>
     <string name="fechaTea">Birthdate</string>
     <string name="SexoTea">Gender</string>
+    <string name="masculino">Male</string>
+    <string name="femenino">Female</string>
     <string name="foto">Photo</string>
     <string name="guardarPersona">Save</string>
     <string name="cancelar">Cancel</string>
@@ -103,6 +107,10 @@
     <string name="vocabulario">Vocabulary</string>
     <string name="frases">Phrases</string>
 
+    --Phrases
+    <string name="creaerFrases">Create Phrases</string>
+
+
 
     <string name="lista_vacia">UPS! THIS CATEGORY IS EMPTY.</string>
 
@@ -123,6 +131,89 @@
     <string name="telefonoTera">Phone</string>
     <string name="cancelarTera">Cancel</string>
     <string name="guardarTera">Save</string>
+    <string name="nombreTeP">Name:</string>
+    <string name="correoTeP">E-mail:</string>
+    <string name="telefonoTeP">Phone:</string>
+    <string name="txtNueTera">New Therapist</string>
+    <string name="txtModiTera">Modify Therapist</string>
+    <string name="tituloTerapeutaEncargado">Therapists in charge</string>
+    <string name="noSeHanIngresado">No therapists have been added to the list</string>
+    <string name="eliminarTera">Eliminar</string>
+
+
+    --sesiones
+    <string name="toolbarPerfil">Profile: </string>
+    <string name="encontramosSesionSinGuardar">We found one session without saving</string>
+    <string name="deseaSeguirODescartar">Do you want to continue recording the session or discard?</string>
+    <string name="continuarSesion">Continue Session</string>
+    <string name="descartarSesion">Dismiss Session</string>
+    <string name="escribaAquiComentarios"> Write your comments about this session here</string>
+    <string name="escribaContra">Enter password</string>
+    <string name="comentarioDeSesion">Session Comment</string>
+    <string name="detalle">Detail</string>
+    <string name="horaInicio">Start Time session</string>
+    <string name="fecha">Date</string>
+    <string name="accion">ACTION</string>
+    <string name="inicio">START</string>
+    <string name="fecham">DATE</string>
+    <string name="fechaSesion">Session Date</string>
+    <string name="horaFin">End Time</string>
+    <string name="fin">END</string>
+    <string name="detalleDeLaSesion">Session Detail</string>
+    <string name="sesionesRealizadas">Sessions Held</string>
+    <string name="noHaySesionesRealizadas">NO REGISTERED SESSIONS</string>
+    <string name="verSesion">View Sessions</string>
+
+
+
+
+
+    --mensajes
+    <string name="alerta">Alert</string>
+    <string name="estaSeguro">Are you sure to eliminate</string>
+    <string name="eliminar">Delete</string>
+    <string name="cerrar">Close</string>
+    <string name="categoNoSeElimina">This category cannot be eliminated, there are:</string>
+    <string name="pictogramaUsaHabi">pictograms used in everyday skills</string>
+    <string name="pictogramaUsaJuegoI">pictograms used in interactive games</string>
+    <string name="estaSeguroMensa">Are you sure?</string>
+    <string name="seEliminaran">The Pictogram Category will be removed with all its images</string>
+    <string name="pictoNoSeElimina">This pictogram cannot be removed, pictogram used in:</string>
+    <string name="habiCoti">everyday skills</string>
+    <string name="jueInterac">interactive games</string>
+    <string name="seEliminaraPicto">The pictogram will be removed</string>
+    <string name="vacio">it is empty</string>
+    <string name="campoRequerido"> Required field</string>
+    <string name="debeAgregarImagen">  You must add an image before saving</string>
+    <string name="imagenGuardada">Saved Image</string>
+    <string name="seleccioneOpcion">Select an option</string>
+    <string name="tomarFoto">Take Picture</string>
+    <string name="cargarImagen">Load Image</string>
+    <string name="seleccioneApli">Select the Application</string>
+    <string name="noExistePicto">There are no pictograms</string>
+    <string name="esNecesarioCampoRequerido">It is necessary to fill the required fields</string>
+    <string name="noSeHanIngesado">No people have been added to the list</string>
+    <string name="seActualizoContrase">Password updated successfully</string>
+    <string name="debenSerIguales">Passwords must be equal</string>
+    <string name="correoConExito">Mail Sent Successfully</string>
+    <string name="codigoIncorrecto">The code is incorrect</string>
+    <string name="contraseIncorecta">Incorrect password</string>
+    <string name="campoVaciIngreseContra">Empty field, enter the password</string>
+    <string name="contraParaConti">Enter password to continue</string>
+    <string name="sesionGuardada">Saved session</string>
+    <string name="escribaContrasDescartar">Enter the password to DISCARD the session</string>
+    <string name="sesionDescartada">Discarded session</string>
+    <string name="sesionReanudada">Resumed session</string>
+    <string name="comentarioActualizado">Comment Updated</string>
+    <string name="opcionesSeleccionadas">Selected Options</string>
+
+
+
+
+
+
+
+
 
     --Iniciar sesion
     <string name="txt13">Name:</string>
@@ -131,6 +222,10 @@
     <string name="txt16"> Sign in as:</string>
     <string name="txt17">Hello </string>
 
+    --Categoria de Pictogramas
+    <string name="categoria">Category:</string>
+    <string name="CATEGORIA">CATEGORY:</string>
+    <string name="buscar_pictogramas">Pictograms Search</string>
 
 
 

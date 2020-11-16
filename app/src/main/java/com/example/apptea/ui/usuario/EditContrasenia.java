@@ -40,7 +40,7 @@ public class EditContrasenia extends AppCompatActivity {
 
    EditText contra1;
    EditText contra2;
-   String error="Campo Obligatorio";
+   //String error="Campo Obligatorio";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class EditContrasenia extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (validaciones() > 0) {
-                    Toast.makeText(getApplicationContext(), "Debe completar los campos obligatorios", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.esNecesarioCampoRequerido), Toast.LENGTH_LONG).show();
                 } else {
                     if (contra1.getText().toString().equals(contra2.getText().toString())) {
 
@@ -70,11 +70,11 @@ public class EditContrasenia extends AppCompatActivity {
                         usuario.setContrasenia(contra1.getText().toString());
                         usuarioViewModel.update(usuario);
 
-                        Toast.makeText(getApplicationContext(), "Se actualizo la contraseña con exito", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.seActualizoContrase), Toast.LENGTH_LONG).show();
                         finish();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "Las contraseñas deben de ser iguales", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.debenSerIguales), Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -90,12 +90,12 @@ public class EditContrasenia extends AppCompatActivity {
 
         if (TextUtils.isEmpty(contra1.getText())) {
             validar+=1;
-            contra1.setError(error);
+            contra1.setError(getResources().getString(R.string.campoRequerido));
         }else{contra1.setError(null); }
 
         if(TextUtils.isEmpty(contra2.getText())){
             validar+=1;;
-            contra2.setError(error);
+            contra2.setError(getResources().getString(R.string.campoRequerido));
         }else{contra2.setError(null); }
 
         return validar;

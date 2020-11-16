@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/nav_mi_perfil"
         android:name="com.example.apptea.ui.usuario.UsuarioFragment"
-        android:label="Mi Perfil"
+        android:label="@string/miPerfil"
         tools:layout="@layout/fragment_mi_perfil" >
         <action
             android:id="@+id/action_nav_mi_perfil_to_editUsuario"
@@ -134,7 +134,7 @@
     <fragment
         android:id="@+id/frasesFragment"
         android:name="com.example.apptea.ui.frases.frasesFragment"
-        android:label="Crear Frases"
+        android:label="@string/creaerFrases"
         tools:layout="@layout/fragment_frases" />
     <activity
         android:id="@+id/editUsuario"
@@ -204,7 +204,7 @@
     <fragment
         android:id="@+id/terapeutaFragment"
         android:name="com.example.apptea.ui.terapeuta.TerapeutaFragment"
-        android:label="Terapeutas encargados"
+        android:label="@string/tituloTerapeutaEncargado"
         tools:layout="@layout/fragment_gestion_terapeuta" />
     <activity
         android:id="@+id/cerrarSesionUsuario"
@@ -227,7 +227,7 @@
     <fragment
         android:id="@+id/verSesion"
         android:name="com.example.apptea.ui.sesion.VerSesion"
-        android:label="fragment_ver_sesion"
+        android:label="@string/verSesion"
         tools:layout="@layout/fragment_ver_sesion" >
         <action
             android:id="@+id/action_verSesion_to_verDetalleSesion"

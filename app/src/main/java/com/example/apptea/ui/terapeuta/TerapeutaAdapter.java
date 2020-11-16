@@ -74,7 +74,10 @@ public class TerapeutaAdapter extends RecyclerView.Adapter<TerapeutaAdapter.Tera
 
     @Override
     public void onBindViewHolder(@NonNull TerapeutaAdapter.TerapeutaHolder holder, int position) {
+        String text1= holder.itemView.getContext().getString(R.string.noSeHanIngresado);
+
         if (terapeutaList != null) {
+
             Terapeuta terapeuta = terapeutaList.get(position);
             holder.nombreTerapeuta.setText(terapeuta.getTerapeuta_nombre());
             holder.correoTerapeuta.setText(terapeuta.getTerapeuta_correo());
@@ -82,7 +85,8 @@ public class TerapeutaAdapter extends RecyclerView.Adapter<TerapeutaAdapter.Tera
 
         } else {
             // Covers the case of data not being ready yet.
-            holder.nombreTerapeuta.setText("No se han ingresado terapeutas a la lista");
+            holder.nombreTerapeuta.setText(text1);
+
         }
 
     }

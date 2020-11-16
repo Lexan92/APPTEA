@@ -107,7 +107,7 @@ public class PictogramaAdapterBusqueda extends RecyclerView.Adapter<PictogramaAd
         } else {
             // Covers the case of data not being ready yet.
             Glide.with(holder.itemView.getContext()).clear(holder.imagen);
-            holder.pictogramaItemView.setText("No existe pictogramas");
+            holder.pictogramaItemView.setText(holder.itemView.getContext().getString(R.string.noExistePicto));
         }
     }
 

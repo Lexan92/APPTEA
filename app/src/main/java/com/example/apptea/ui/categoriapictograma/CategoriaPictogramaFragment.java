@@ -91,7 +91,7 @@ public class CategoriaPictogramaFragment extends Fragment {
             DetalleSesion detalleSesion = new DetalleSesion();
             detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
             detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-            detalleSesion.setNombre_opcion("OPCION MENU: Vocabulario");
+            detalleSesion.setNombre_opcion(getResources().getString(R.string.opcionMenuVocabluario));
 
             DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
 
@@ -222,7 +222,7 @@ public class CategoriaPictogramaFragment extends Fragment {
     }
 
     /////////
-    @Override
+   @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
@@ -277,6 +277,18 @@ public class CategoriaPictogramaFragment extends Fragment {
         searchView.setOnQueryTextListener(queryTextListener);
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onDestroyOptionsMenu() {
+        super.onDestroyOptionsMenu();
+
+        if (searchView != null &&
+                !searchView.getQuery().toString().isEmpty()) {
+
+            searchView.setIconified(true);
+            searchView.setIconified(true);
+        }
+    }
+
 /////////
 
 

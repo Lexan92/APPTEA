@@ -225,6 +225,7 @@
 
 
 
+
     --Iniciar sesion
     <string name="txt13">Nombre:</string>
     <string name="txt14">Apellido:</string>
@@ -241,5 +242,6 @@
     <string name="categoria">Categoría:</string>
     <string name="CATEGORIA">CATEGORIA:</string>
     <string name="buscar_pictogramas">Buscar Pictogramas</string>
+    <string name="opcionMenuVocabluario">OPCION MENU: Vocabulario</string>
 
 </resources>

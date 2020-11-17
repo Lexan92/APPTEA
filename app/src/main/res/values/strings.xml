@@ -120,8 +120,6 @@
     <string name="txt19">Actualizar Imagen</string>
 
 
-
-
     <string name="juegos_interactivos">Juegos Interactivos</string>
     <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
     <string name="vocabulario">Vocabulario</string>
@@ -161,6 +159,30 @@
     <string name="eliminarTera">Eliminar</string>
 
 
+    --sesiones
+    <string name="toolbarPerfil">Perfil: </string>
+    <string name="encontramosSesionSinGuardar">Encontramos una sesión sin guardar</string>
+    <string name="deseaSeguirODescartar">¿Desea seguir grabando la sesión o descartarla?</string>
+    <string name="continuarSesion">Continuar Sesión</string>
+    <string name="descartarSesion">Descartar Sesión</string>
+    <string name="escribaAquiComentarios">Escriba aquí los comentarios sobre esta sesión</string>
+    <string name="escribaContra">Escriba la contraseña</string>
+    <string name="comentarioDeSesion">Comentario de la Sesión</string>
+    <string name="detalle">Detalle</string>
+    <string name="horaInicio">Hora Inicio Sesión</string>
+    <string name="fecha">Fecha</string>
+    <string name="accion">ACCIÓN</string>
+    <string name="inicio">INICIO</string>
+    <string name="fecham">FECHA</string>
+    <string name="fechaSesion">Fecha Sesión</string>
+    <string name="horaFin">Hora Fin Sesión</string>
+    <string name="fin">FIN</string>
+    <string name="detalleDeLaSesion">Detalle de la Sesión</string>
+    <string name="sesionesRealizadas">Sesiones Realizadas</string>
+    <string name="noHaySesionesRealizadas">NO HAY SESIONES REGISTRADAS</string>
+    <string name="verSesion">Ver Sesiones</string>
+
+
 
     --mensajes
     <string name="alerta">Alerta</string>
@@ -193,15 +215,13 @@
     <string name="codigoIncorrecto">  El Código es incorrecto</string>
     <string name="contraseIncorecta">Contraseña Incorrecta</string>
     <string name="campoVaciIngreseContra">Campo Vacío, ingresa la contraseña</string>
-
-
-
-
-
-
-
-
-
+    <string name="contraParaConti">Escriba la contraseña para continuar</string>
+    <string name="sesionGuardada">Sesion Guardada</string>
+    <string name="escribaContrasDescartar">Escriba la contraseña para DESCARTAR la sesión</string>
+    <string name="sesionDescartada">Sesión Descartada</string>
+    <string name="sesionReanudada">Sesión Reanudada</string>
+    <string name="comentarioActualizado">Comentario Actualizado</string>
+    <string name="opcionesSeleccionadas">Opciones Selecionadas:</string>
 
 
 

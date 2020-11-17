@@ -40,6 +40,7 @@ public class CategoriaJuegoFragment extends Fragment {
     boolean bandera = false;
     public LottieAnimationView juegoImg;
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -72,7 +73,7 @@ public class CategoriaJuegoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.lista_categoria_juego);
-
+        AdministarSesion administarSesion = new AdministarSesion(getContext());
         final CategoriaJuegoAdapter adapter = new CategoriaJuegoAdapter(getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         recyclerView.setAdapter(adapter);
@@ -95,14 +96,14 @@ public class CategoriaJuegoFragment extends Fragment {
                 bundleEnvio.putInt("objeto", categoriaJuego.getCategoriaJuegoId());
 
 
-                Bundle bundle = getArguments();
+               /* Bundle bundle = getArguments();
                 if (bundle != null) {
                     bandera = bundle.getBoolean("bandera");
                 }
-                bundleEnvio.putBoolean("bandera", bandera);
+                bundleEnvio.putBoolean("bandera", bandera);*/
 
                 //direcciona a fragmente proveniente del menu principal
-                if (bandera) {
+                if (administarSesion.obtenerTipoUsuario()==0) {
                     AdministarSesion administarSesion = new AdministarSesion(getContext());
                     if (administarSesion.obtenerIDSesion() > 0) {
                         DetalleSesion detalleSesion = new DetalleSesion();
@@ -121,7 +122,9 @@ public class CategoriaJuegoFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
                     }else {
                         //fragment para paciente categoria 2
-                        Toast.makeText(getContext(),"categoria juego 2",Toast.LENGTH_SHORT).show();
+                        DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
+                        detalle_juego.setArguments(bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.action_nav_gestion_juego_to_detalleJuegoPaciente2,bundleEnvio);
                     }
 
 

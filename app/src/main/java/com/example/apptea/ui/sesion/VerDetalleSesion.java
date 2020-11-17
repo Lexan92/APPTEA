@@ -71,7 +71,7 @@ public class VerDetalleSesion extends Fragment implements DetalleSesionAdapter.O
         }
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Opciones Selecionadas");
+        toolbar.setTitle(getResources().getString(R.string.opcionesSeleccionadas));
     }
 
     @Override

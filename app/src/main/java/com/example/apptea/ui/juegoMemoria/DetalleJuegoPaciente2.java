@@ -1,4 +1,4 @@
-package com.example.apptea.ui.DetalleCategoriaJuego;
+package com.example.apptea.ui.juegoMemoria;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,12 +20,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.DetalleCategoriaJuego.JuegoAdapterPaciente;
+import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
 import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
 import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
-import com.example.apptea.ui.juegoSeleccion.ResultadoViewModel;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
@@ -36,18 +37,17 @@ import java.util.Date;
 import java.util.List;
 
 import roomsqlite.dao.DetalleSesionDao;
-import roomsqlite.dao.HabilidadCotidianaDao;
-import roomsqlite.dao.ResultadoDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.DetalleSesion;
 import roomsqlite.entidades.Juego;
 import roomsqlite.entidades.Resultado;
 
-public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPaciente.OnJuegoListener {
+
+public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPaciente2.OnJuegoListener {
 
     RecyclerView recyclerView;
-    JuegoAdapterPaciente adapter;
+    JuegoAdapterPaciente2 adapter;
     CategoriaViewModel categoriaJuegoViewModel;
     PreguntaViewModel preguntaViewModel;
     JuegoViewModel juegoViewModel;
@@ -55,12 +55,13 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
     List<Juego> juegosConPregunta = new ArrayList<>();
     int key = 0;
 
-    ResultadoViewModel resultadoViewModel;
-    ResultadoDao resultadoDao;
 
-    public DetalleJuegoPaciente() {
+
+
+    public DetalleJuegoPaciente2() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onStart() {
@@ -76,46 +77,41 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         }
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle__juego__paciente, container, false);
+        return inflater.inflate(R.layout.fragment_detalle_juego_paciente2, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        recyclerView = view.findViewById(R.id.lista_juegos);
-        adapter = new JuegoAdapterPaciente(getActivity(), this);
+        recyclerView = view.findViewById(R.id.lista_juegos_2);
+        adapter = new JuegoAdapterPaciente2(getActivity(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
         preguntaViewModel = new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
         categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
-        resultadoViewModel = new ViewModelProvider(this).get(ResultadoViewModel.class);
-        resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
-        AdministarSesion administarSesion = new AdministarSesion(getContext());
-
         Bundle objetoCategoriaJuego = getArguments();
-
-        if (objetoCategoriaJuego != null ) {
+        if (objetoCategoriaJuego != null) {
             key = objetoCategoriaJuego.getInt("objeto", -1);
             juegoViewModel.findJuegosByCategoriaId(key).observe(getActivity(), new Observer<List<Juego>>() {
                 @Override
                 public void onChanged(List<Juego> juegos) {
 
                     //se verifica si la llamada proviene del menu principal
-                   // Bundle bundle = getArguments();
-                   // if (bundle != null) {
-                        if (administarSesion.obtenerTipoUsuario()==0/*bundle.getBoolean("bandera"*/) {
+                    Bundle bundle = getArguments();
+                    if (bundle != null) {
+                        if (bundle.getBoolean("bandera")) {
                             //se recorre los juegos colocando en el adapter aquellos que si tengan preguntas
                             for (int i = 0; i <= juegos.size() - 1; i++) {
                                 int numero = preguntaViewModel.numeroPreguntas(juegos.get(i).getJuego_id());
@@ -127,7 +123,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                             //si la llamada  proviene del menu lateral, se agregan todos los juegos al adaptador
                             adapter.setJuegos(juegos);
                         }
-                    //}
+                    }
                 }
             });
 
@@ -144,17 +140,18 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
             }
         });
 
-
         //Boton de + para agregar un nuevo juego
-        FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
-       // Bundle bundle = getArguments();
-        if (administarSesion.obtenerTipoUsuario()==1/*bundle.getBoolean("bandera")*/) {
+        FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego_2);
+        Bundle bundle = getArguments();
+        if (bundle.getBoolean("bandera")) {
             fab.setVisibility(View.INVISIBLE);
         }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //diseña nueva activity
                 Intent intent = new Intent(getActivity(), NuevoJuego.class);
                 //envia ID de categoria de juego
                 intent.putExtra("categoriaJuego", key);
@@ -162,17 +159,13 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
             }
         });
-
-
     }
 
-    //METODO PARA INGRESAR A LOS JUEGOS CREADOS
+
     @Override
     public void onJuegoClick(Juego juego) {
-
         Bundle bundle = getArguments();
-        if (bundle != null) {
-
+        if (bundle != null){
             //se verifica la cantidad de preguntas que tiene el juego seleccionado
             int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
             if (numero > 0) {
@@ -186,22 +179,9 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                         Date hora = UtilidadFecha.obtenerFechaHoraActual();
                         detalleSesion.setHora_inicio(hora);
                         detalleSesion.setNombre_opcion("JUEGO: ".concat(juego.getJuego_nombre()));
-
                         DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
 
-                        //INSERTANDO EN RESULTADO
-                        Resultado resultado = new Resultado();
-                        resultado.setSesion_id(administarSesion.obtenerIDSesion());
-                        resultado.setNombre_juego(juego.getJuego_nombre());
-                        resultado.setHora_juego(hora);
-                        resultadoViewModel.insertResultado(resultado);
-                        Resultado res = new Resultado();
-                        res = resultadoDao.obtenerResultado();
-                        intent.putExtra("resultado", res);
-                        System.out.println("Resultado id : "+ res.getResultado_id());
-                        System.out.println("Resultado juego : "+ res.getNombre_juego());
-                        System.out.println("Resultado SESION : "+ res.getSesion_id());
                     }
 
 
@@ -209,6 +189,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                     startActivity(intent);
 
                 } else {
+                    //diseñar nuevas activity
                     Intent intent = new Intent(getActivity(), VisorPregunta.class);
                     intent.putExtra("juego", juego);
                     startActivity(intent);
@@ -216,6 +197,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
 
             } else if (numero == 0) {
+                //diseñar nuevas activity
                 Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
                 intent.putExtra("juego", juego);
                 startActivity(intent);

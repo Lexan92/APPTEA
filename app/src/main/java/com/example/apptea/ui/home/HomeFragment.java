@@ -83,9 +83,9 @@ public class HomeFragment extends Fragment {
                 super.onAuthenticationSucceeded(result);
 
 
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("bandera", bandera);
-                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_nav_gestion_juego, bundle);
+               // Bundle bundle = new Bundle();
+                //bundle.putBoolean("bandera", bandera);
+                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_nav_gestion_juego /*,bundle*/);
             }
 
             @Override

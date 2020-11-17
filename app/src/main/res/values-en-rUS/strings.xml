@@ -141,6 +141,33 @@
     <string name="eliminarTera">Eliminar</string>
 
 
+    --sesiones
+    <string name="toolbarPerfil">Profile: </string>
+    <string name="encontramosSesionSinGuardar">We found one session without saving</string>
+    <string name="deseaSeguirODescartar">Do you want to continue recording the session or discard?</string>
+    <string name="continuarSesion">Continue Session</string>
+    <string name="descartarSesion">Dismiss Session</string>
+    <string name="escribaAquiComentarios"> Write your comments about this session here</string>
+    <string name="escribaContra">Enter password</string>
+    <string name="comentarioDeSesion">Session Comment</string>
+    <string name="detalle">Detail</string>
+    <string name="horaInicio">Start Time session</string>
+    <string name="fecha">Date</string>
+    <string name="accion">ACTION</string>
+    <string name="inicio">START</string>
+    <string name="fecham">DATE</string>
+    <string name="fechaSesion">Session Date</string>
+    <string name="horaFin">End Time</string>
+    <string name="fin">END</string>
+    <string name="detalleDeLaSesion">Session Detail</string>
+    <string name="sesionesRealizadas">Sessions Held</string>
+    <string name="noHaySesionesRealizadas">NO REGISTERED SESSIONS</string>
+    <string name="verSesion">View Sessions</string>
+
+
+
+
+
     --mensajes
     <string name="alerta">Alert</string>
     <string name="estaSeguro">Are you sure to eliminate</string>
@@ -172,6 +199,16 @@
     <string name="codigoIncorrecto">The code is incorrect</string>
     <string name="contraseIncorecta">Incorrect password</string>
     <string name="campoVaciIngreseContra">Empty field, enter the password</string>
+    <string name="contraParaConti">Enter password to continue</string>
+    <string name="sesionGuardada">Saved session</string>
+    <string name="escribaContrasDescartar">Enter the password to DISCARD the session</string>
+    <string name="sesionDescartada">Discarded session</string>
+    <string name="sesionReanudada">Resumed session</string>
+    <string name="comentarioActualizado">Comment Updated</string>
+    <string name="opcionesSeleccionadas">Selected Options</string>
+
+
+
 
 
 

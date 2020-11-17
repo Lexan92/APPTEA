@@ -73,13 +73,13 @@ public class AccesoPin extends Fragment {
             usuario = usuarioViewModel.getUsuarioAll();
             usuario.observe(getActivity(), usuarios -> {
                 if (entradaPin.getText().toString().isEmpty()) {
-                    entradaPin.setError("Campo Vacío, ingresa la contraseña");
+                    entradaPin.setError(getResources().getString(R.string.campoVaciIngreseContra));
                 } else if (usuarios.get(0).getContrasenia().equals(entradaPin.getText().toString())) {
                     usuarioViewModel = new ViewModelProvider(getActivity()).get(UsuarioViewModel.class);
-                    final boolean bandera = true;
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("bandera", bandera);
-                    Navigation.findNavController(getView()).navigate(R.id.accesoPin_a_CategoriaJuego, bundle);
+                    //final boolean bandera = true;
+                    //Bundle bundle = new Bundle();
+                    //bundle.putBoolean("bandera", bandera);
+                    Navigation.findNavController(getView()).navigate(R.id.accesoPin_a_CategoriaJuego);
                 } else {
                     entradaPin.setError(getResources().getString(R.string.contraseIncorecta));
                 }

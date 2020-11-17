@@ -11,27 +11,27 @@
         android:id="@+id/text_persona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/txt11"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/list_inicio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_inicio"
         android:name="com.example.apptea.ui.personaTea.PersonaAutistaFragment"
-        android:layout_width="387dp"
-        android:layout_height="537dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        app:layoutManager="LinearLayoutManager"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_inicio_sesion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
-        tools:context=".ui.personaTea.PersonaAutistaFragment"
+        app:layout_constraintTop_toBottomOf="@+id/text_persona"
         tools:listitem="@layout/fragment_item_iniciar_sesion" />
 
     <Button
@@ -39,8 +39,7 @@
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-
+        android:layout_marginBottom="16dp"
         android:text="@string/txt12"
         app:icon="@drawable/ic_account_circle_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"

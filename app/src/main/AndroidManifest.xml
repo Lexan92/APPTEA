@@ -23,7 +23,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.inicioSesion.ListadoInicioSesion"
-            android:theme="@style/AppTheme.NoActionBar" />
+             />
         <activity
             android:name=".ui.juego.FinJuego"
             android:theme="@style/AppTheme.NoActionBar" />

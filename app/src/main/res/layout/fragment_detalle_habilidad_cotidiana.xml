@@ -14,8 +14,9 @@
         android:id="@+id/recyclerview_hab_cotidiana"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/recyclerview_item_hab_cotidiana">
 
     </androidx.recyclerview.widget.RecyclerView>

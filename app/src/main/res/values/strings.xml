@@ -74,7 +74,6 @@
     <string name="miPerfil">Mi Perfil</string>
 
 
-
     --Categoria Habilidad Cotidiana
     <string name="campo_nombre">Nombre de Categoria</string>
     <string name="button_save">Guardar</string>
@@ -183,7 +182,6 @@
     <string name="verSesion">Ver Sesiones</string>
 
 
-
     --mensajes
     <string name="alerta">Alerta</string>
     <string name="estaSeguro">¿está seguro de eliminar a</string>
@@ -222,8 +220,6 @@
     <string name="sesionReanudada">Sesión Reanudada</string>
     <string name="comentarioActualizado">Comentario Actualizado</string>
     <string name="opcionesSeleccionadas">Opciones Selecionadas:</string>
-
-
 
 
     --Iniciar sesion

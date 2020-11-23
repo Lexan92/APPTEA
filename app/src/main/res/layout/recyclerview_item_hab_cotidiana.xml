@@ -49,7 +49,7 @@
 
                     <TextView
                         android:id="@+id/nombre_hab_cotidiana"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="45dp"
@@ -69,12 +69,12 @@
             </LinearLayout>
 
             <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:layout_margin="10dp"
                     android:orientation="horizontal"
                     android:layout_gravity="center_horizontal"
-                    >
+                    android:gravity="center"
+                    android:paddingBottom="10dp">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_editar_hab_cotidiana"
@@ -89,7 +89,7 @@
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="42dp"
+                        android:layout_marginLeft="30dp"
                         app:icon="@drawable/ic_close_black" />
                 </LinearLayout>
 

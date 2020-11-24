@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente;
-import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
+import com.example.apptea.ui.juegoMemoria.DetalleJuegoPaciente2;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
 
@@ -96,14 +96,14 @@ public class CategoriaJuegoFragment extends Fragment {
                 bundleEnvio.putInt("objeto", categoriaJuego.getCategoriaJuegoId());
 
 
-               /* Bundle bundle = getArguments();
+                Bundle bundle = getArguments();
                 if (bundle != null) {
                     bandera = bundle.getBoolean("bandera");
                 }
-                bundleEnvio.putBoolean("bandera", bandera);*/
+                bundleEnvio.putBoolean("bandera", bandera);
 
                 //direcciona a fragmente proveniente del menu principal
-                if (administarSesion.obtenerTipoUsuario()==0) {
+                if (bandera) {
                     AdministarSesion administarSesion = new AdministarSesion(getContext());
                     if (administarSesion.obtenerIDSesion() > 0) {
                         DetalleSesion detalleSesion = new DetalleSesion();
@@ -122,7 +122,7 @@ public class CategoriaJuegoFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
                     }else {
                         //fragment para paciente categoria 2
-                        DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
+                        DetalleJuegoPaciente2 detalle_juego = new DetalleJuegoPaciente2();
                         detalle_juego.setArguments(bundleEnvio);
                         Navigation.findNavController(v).navigate(R.id.action_nav_gestion_juego_to_detalleJuegoPaciente2,bundleEnvio);
                     }
@@ -133,10 +133,10 @@ public class CategoriaJuegoFragment extends Fragment {
 
                     if (categoriaJuego.getCategoriaJuegoId()==1){
                         //Instancia de fragment al cual se dirigira
-                        Detalle_Juego detalle_juego = new Detalle_Juego();
-                        detalle_juego.setArguments(bundleEnvio);
                         //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                        Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
+                        DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
+                        detalle_juego.setArguments(bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
                     }else {
                         Toast.makeText(getContext(),"categoria juego 2",Toast.LENGTH_SHORT).show();
                     }
@@ -149,3 +149,4 @@ public class CategoriaJuegoFragment extends Fragment {
         });
     }
 }
+

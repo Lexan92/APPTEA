@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente;
+import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
 import com.example.apptea.ui.juegoMemoria.DetalleJuegoPaciente2;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
@@ -115,16 +116,15 @@ public class CategoriaJuegoFragment extends Fragment {
                     }
 
                     if (categoriaJuego.getCategoriaJuegoId()==1){
-
                         //fragment para paciente categoria 1
                         DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
                         detalle_juego.setArguments(bundleEnvio);
                         Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
-                    }else {
+                    }else if(categoriaJuego.getCategoriaJuegoId()==2){
                         //fragment para paciente categoria 2
                         DetalleJuegoPaciente2 detalle_juego = new DetalleJuegoPaciente2();
                         detalle_juego.setArguments(bundleEnvio);
-                        Navigation.findNavController(v).navigate(R.id.action_nav_gestion_juego_to_detalleJuegoPaciente2,bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente,bundleEnvio);
                     }
 
 
@@ -134,11 +134,14 @@ public class CategoriaJuegoFragment extends Fragment {
                     if (categoriaJuego.getCategoriaJuegoId()==1){
                         //Instancia de fragment al cual se dirigira
                         //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
-                        DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
+                        Detalle_Juego detalle_juego = new Detalle_Juego();
                         detalle_juego.setArguments(bundleEnvio);
-                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
-                    }else {
-                        Toast.makeText(getContext(),"categoria juego 2",Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
+                    }else  if(categoriaJuego.getCategoriaJuegoId()==2){
+                        //fragment para paciente categoria 2
+                        Detalle_Juego detalle_juego = new Detalle_Juego();
+                        detalle_juego.setArguments(bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalle_Juego,bundleEnvio);
                     }
 
 

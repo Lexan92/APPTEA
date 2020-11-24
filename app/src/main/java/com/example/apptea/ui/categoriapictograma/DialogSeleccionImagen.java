@@ -108,7 +108,7 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
         String cancelar = getResources().getString(R.string.cancelar);
 
         builder.setTitle(" "+atencion);
-        builder.setMessage(p1+" "+ categoriaPictograma.getCat_pictograma_nombre()+"\n"+p2 +" "+ pictograma.getPictograma_nombre() + "?");
+        builder.setMessage(p1+" "+ categoriaPictograma.getCat_pictograma_nombre() +"\n"+p2 +" "+ pictograma.getPictograma_nombre() + "?");
         builder.setIcon(android.R.drawable.ic_dialog_info);
 
         builder.setPositiveButton(aceptar, new DialogInterface.OnClickListener() {

@@ -1,216 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-
-
-    <ScrollView
-        android:id="@+id/scrollView4"
+    <androidx.gridlayout.widget.GridLayout tools:context=".ui.home.HomeFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <androidx.gridlayout.widget.GridLayout xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:columnCount="2"
-            app:rowCount="2"
-            tools:context=".ui.home.HomeFragment">
+        app:columnCount="2"
+        app:rowCount="2"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        xmlns:tools="http://schemas.android.com/tools">
 
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_frases"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="6dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_frases"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="2dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Media -->
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/ic_frases"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/frases"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                    <!-- Media -->
-                    <ImageView
+            </LinearLayout>
 
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="30dp"
-                        android:layout_weight=".5"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_frases" />
+        </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/frases"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_vocabulario"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="2dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                </LinearLayout>
+                <!-- Media -->
+                <ImageView
 
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_vocabulario" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_vocabulario"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="6dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:id="@+id/vocabulario"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/vocabulario"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            </LinearLayout>
 
-                    <!-- Media -->
-                    <ImageView
+        </com.google.android.material.card.MaterialCardView>
 
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="30dp"
-                        android:layout_weight=".5"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_vocabulario"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_habilidades"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="2dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
 
-                        />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                    <!-- Title, secondary and supporting text -->
-                    <TextView
-                        android:id="@+id/vocabulario"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/vocabulario"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_habilidades"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="6dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
+                <!-- Media -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/ic_habilidad"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="@string/habilidades_cotidianas"
+                    android:layout_marginBottom="5dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                    <!-- Media -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="30dp"
-                        android:layout_weight=".5"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/ic_habilidad"
+            </LinearLayout>
 
-                        />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/habilidades_cotidianas"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6" />
+        </com.google.android.material.card.MaterialCardView>
 
 
-                </LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_juegos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="2dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
 
-            </com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <!-- Media -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/ic_juegos"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center_horizontal" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_juegos"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="6dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/juegos_interactivos"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                    <!-- Media -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="30dp"
-                        android:layout_weight=".5"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/ic_juegos"
+            </LinearLayout>
 
-                        />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.gridlayout.widget.GridLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/juegos_interactivos"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6" />
-
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-        </androidx.gridlayout.widget.GridLayout>
-
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+</ScrollView>

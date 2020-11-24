@@ -26,7 +26,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"
-        android:clipToPadding="false"
         android:paddingStart="@dimen/card_side_margin"
         android:paddingTop="@dimen/header_margin"
         android:paddingEnd="@dimen/card_side_margin"

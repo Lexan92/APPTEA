@@ -14,11 +14,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="15dp"
-    android:layout_marginLeft="15dp">
+    android:layout_marginTop="15dp">
 
     <LinearLayout
-        android:layout_width="369dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorFondo"
         android:orientation="horizontal">
@@ -27,7 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="@color/colorFondo">
+            android:background="@color/colorFondo"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/img_felcha_derecha"
@@ -38,24 +38,23 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="324dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:background="@color/colorFondo">
+            android:background="@color/colorFondo"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/txt_respuesta_faq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:justificationMode="inter_word"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="3dp"
                 android:fontFamily="@font/capriola"
-
-
-                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/mi_perfil_titulo"
                 android:textStyle="bold"
                 app:autoSizeTextType="uniform"

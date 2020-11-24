@@ -264,6 +264,18 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         searchView.setOnQueryTextListener(queryTextListener);
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onDestroyOptionsMenu() {
+        super.onDestroyOptionsMenu();
+
+        if (searchView != null &&
+                !searchView.getQuery().toString().isEmpty()) {
+
+            searchView.setIconified(true);
+            searchView.setIconified(true);
+        }
+    }
 /////////
 
     @Override

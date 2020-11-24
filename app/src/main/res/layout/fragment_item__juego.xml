@@ -27,14 +27,6 @@
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="2dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorFondo"
-            android:orientation="vertical">
-
-            <!-- Media -->
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,41 +41,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nombre Pictograma"
-
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/capriola"
                     android:textColor="@color/colorSplash"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="3dp"
                     android:gravity="left"
                     />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_eliminar_juego_lista"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="8dp"
+                    app:icon="@drawable/ic_close_black"
+                    app:iconTint="#000000"
+                    android:layout_gravity="right"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="right"
-                    >
 
-
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_eliminar_juego_lista"
-                        style="?attr/borderlessButtonStyle"
-                        android:layout_width="40dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        app:icon="@drawable/ic_close_black"
-                        app:iconTint="#000000"/>
-                </LinearLayout>
             </LinearLayout>
-
-
-        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

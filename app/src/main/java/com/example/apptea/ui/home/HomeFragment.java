@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 
+import com.example.apptea.InterfaceDrawer;
+import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.card.MaterialCardView;
@@ -34,12 +36,14 @@ public class HomeFragment extends Fragment {
     boolean bandera = true;
 
 
+
     @Override
     public void onStart() {
         super.onStart();
         ocultarTeclado();
 
     }
+
 
 
     private void ocultarTeclado() {
@@ -83,9 +87,9 @@ public class HomeFragment extends Fragment {
                 super.onAuthenticationSucceeded(result);
 
 
-               // Bundle bundle = new Bundle();
-                //bundle.putBoolean("bandera", bandera);
-                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_nav_gestion_juego /*,bundle*/);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("bandera", bandera);
+                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_nav_gestion_juego, bundle);
             }
 
             @Override
@@ -170,3 +174,4 @@ public class HomeFragment extends Fragment {
 
 
 }
+

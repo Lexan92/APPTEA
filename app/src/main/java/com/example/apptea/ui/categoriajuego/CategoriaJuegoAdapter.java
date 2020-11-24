@@ -48,9 +48,9 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
         if (categoriasJuego != null && position < categoriasJuego.size()) {
 
             CategoriaJuego categoriaJuego = categoriasJuego.get(position);
-            if(position == 0){
+            if(categoriaJuego.getCategoriaJuegoId() == 1){
                 holder.juegoImg.setAnimation(R.raw.juego_seleccion);
-            }else if(position == 1){
+            }else if(categoriaJuego.getCategoriaJuegoId() == 2){
                 holder.juegoImg.setAnimation(R.raw.memoria_juego);
             }
             holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());

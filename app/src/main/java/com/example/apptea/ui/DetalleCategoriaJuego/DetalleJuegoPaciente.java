@@ -102,7 +102,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         resultadoViewModel = new ViewModelProvider(this).get(ResultadoViewModel.class);
         resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
-        AdministarSesion administarSesion = new AdministarSesion(getContext());
+
 
         Bundle objetoCategoriaJuego = getArguments();
 
@@ -113,9 +113,9 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                 public void onChanged(List<Juego> juegos) {
 
                     //se verifica si la llamada proviene del menu principal
-                   // Bundle bundle = getArguments();
-                   // if (bundle != null) {
-                        if (administarSesion.obtenerTipoUsuario()==0/*bundle.getBoolean("bandera"*/) {
+                    Bundle bundle = getArguments();
+                    if (bundle != null) {
+                        if (bundle.getBoolean("bandera")){
                             //se recorre los juegos colocando en el adapter aquellos que si tengan preguntas
                             for (int i = 0; i <= juegos.size() - 1; i++) {
                                 int numero = preguntaViewModel.numeroPreguntas(juegos.get(i).getJuego_id());
@@ -123,11 +123,12 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                                     juegosConPregunta.add(juegos.get(i));
                             }
                             adapter.setJuegos(juegosConPregunta);
-                        } else {
+                        }
+                        else{
                             //si la llamada  proviene del menu lateral, se agregan todos los juegos al adaptador
                             adapter.setJuegos(juegos);
                         }
-                    //}
+                    }
                 }
             });
 
@@ -140,15 +141,15 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         categoriaJuegoLiveData.observe(getActivity(), new Observer<CategoriaJuego>() {
             @Override
             public void onChanged(CategoriaJuego categoriaJuego) {
-                toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+               toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
             }
         });
 
 
         //Boton de + para agregar un nuevo juego
         FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
-       // Bundle bundle = getArguments();
-        if (administarSesion.obtenerTipoUsuario()==1/*bundle.getBoolean("bandera")*/) {
+       Bundle bundle = getArguments();
+        if (bundle!=null&&bundle.getBoolean("bandera")) {
             fab.setVisibility(View.INVISIBLE);
         }
 
@@ -170,7 +171,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
     @Override
     public void onJuegoClick(Juego juego) {
 
-        Bundle bundle = getArguments();
+        Bundle  bundle = getArguments();
         if (bundle != null) {
 
             //se verifica la cantidad de preguntas que tiene el juego seleccionado

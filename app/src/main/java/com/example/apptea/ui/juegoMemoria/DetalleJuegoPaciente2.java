@@ -143,8 +143,8 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
         //Boton de + para agregar un nuevo juego
         FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego_2);
         Bundle bundle = getArguments();
-        if (bundle.getBoolean("bandera")) {
-            fab.setVisibility(View.INVISIBLE);
+        if (bundle!=null&&bundle.getBoolean("bandera")) {
+            fab.setVisibility(View.VISIBLE);
         }
 
         fab.setOnClickListener(new View.OnClickListener() {

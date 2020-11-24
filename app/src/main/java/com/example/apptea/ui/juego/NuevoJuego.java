@@ -62,10 +62,17 @@ public class NuevoJuego extends AppCompatActivity {
                     juegoNuevo.observe(NuevoJuego.this, new Observer<Juego>() {
                         @Override
                         public void onChanged(Juego juego) {
-                            Intent intent = new Intent(getApplicationContext(), JuegoPrincipal.class);
-                            intent.putExtra("juego", juego);
-                            startActivity(intent);
-                            finish();
+                            //validacion por KEY (categoria del juego)
+                            if(keyCategoriaJuego==1){
+                                Intent intent = new Intent(getApplicationContext(), JuegoPrincipal.class);
+                                intent.putExtra("juego", juego);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                //categoria 2 del juego 
+
+                            }
+
                         }
                     });
 

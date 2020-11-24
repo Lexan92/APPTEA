@@ -54,7 +54,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     CategoriaViewModel categoriaJuegoViewModel;
     PreguntaViewModel preguntaViewModel;
     LiveData<CategoriaJuego> categoriaJuegoLiveData;
-    List<Juego> juegosConPregunta = new ArrayList<>();
+
     int key = 0;
 
 

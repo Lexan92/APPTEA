@@ -12,101 +12,100 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardUsuarioMiperfil"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardElevation="12dp"
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="0dp"
         >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorFondo"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_margin="15dp"
-            >
 
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="115dp"
-                android:layout_marginLeft="0dp"
-                app:srcCompat="@drawable/ic_user_mi_perfil" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                >
-
-                <TextView
-                    android:id="@+id/txt_nombreUsuario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/capriola"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:textColor="@color/mi_perfil_titulo"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-                </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEdit"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                style="?attr/borderlessButtonStyle"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                app:icon="@drawable/ic_mode_edit_black_24dp" />
-        </LinearLayout>
-        <View android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/letra_mi_perfil_contenido"
-            android:layout_marginTop="120dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="130dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp">
+            android:padding="8dp">
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@color/colorFondo"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_weight=".70">
+                <!-- Media -->
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_user_mi_perfil" />
+
+                <TextView
+                    android:id="@+id/txt_nombreUsuario"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".75"
+                    android:fontFamily="@font/capriola"
+                    android:maxLength="20"
+                    android:text="nombre pictograma"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/mi_perfil_titulo"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:padding="8dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEdit"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".15"
+                    app:icon="@drawable/ic_mode_edit_black_24dp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/letra_mi_perfil_contenido" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:orientation="vertical"
+                android:layout_weight=".30">
+
                 <TextView
                     android:id="@+id/txt_tituloEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/mi_perfil_titulo"
+                    android:fontFamily="@font/capriola"
                     android:text="@string/txt10"
-                    android:fontFamily="@font/capriola"/>
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:textColor="@color/mi_perfil_titulo"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/txt_correoUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:fontFamily="@font/capriola"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:textSize="19sp"
-                    android:textStyle="normal"
                     android:textColor="@color/letra_mi_perfil_contenido"
-                    android:fontFamily="@font/capriola"/>
+                    android:textSize="19sp"
+                    android:textStyle="normal" />
 
             </LinearLayout>
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-
 
 
 </LinearLayout>

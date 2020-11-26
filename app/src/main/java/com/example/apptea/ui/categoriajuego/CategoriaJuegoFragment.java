@@ -126,9 +126,6 @@ public class CategoriaJuegoFragment extends Fragment {
                         detalle_juego.setArguments(bundleEnvio);
                         Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente,bundleEnvio);
                     }
-
-
-
                 } else {
 
                     if (categoriaJuego.getCategoriaJuegoId()==1){

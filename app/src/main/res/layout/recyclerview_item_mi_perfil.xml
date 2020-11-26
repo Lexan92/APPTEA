@@ -54,7 +54,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight=".75"
                     android:fontFamily="@font/capriola"
-                    android:maxLength="20"
+
                     android:text="nombre pictograma"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/mi_perfil_titulo"

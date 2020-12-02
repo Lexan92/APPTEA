@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
+import com.example.apptea.ui.juegoMemoria.VisorMemoria;
 import com.example.apptea.utilidades.ValidacionCadenas;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -69,7 +70,11 @@ public class NuevoJuego extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             } else {
-                                //categoria 2 del juego 
+                                //categoria 2 del juego
+                                Intent intent = new Intent(getApplicationContext(), VisorMemoria.class);
+                                intent.putExtra("juego",juego);
+                                startActivity(intent);
+                                finish();
 
                             }
 

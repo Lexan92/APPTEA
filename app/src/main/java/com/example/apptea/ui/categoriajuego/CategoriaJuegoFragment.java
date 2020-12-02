@@ -115,30 +115,30 @@ public class CategoriaJuegoFragment extends Fragment {
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
                     }
 
-                    if (categoriaJuego.getCategoriaJuegoId()==1){
+                    if (categoriaJuego.getCategoriaJuegoId() == 1) {
                         //fragment para paciente categoria 1
                         DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
                         detalle_juego.setArguments(bundleEnvio);
                         Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
-                    }else if(categoriaJuego.getCategoriaJuegoId()==2){
+                    } else if (categoriaJuego.getCategoriaJuegoId() == 2) {
                         //fragment para paciente categoria 2
                         DetalleJuegoPaciente2 detalle_juego = new DetalleJuegoPaciente2();
                         detalle_juego.setArguments(bundleEnvio);
-                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente,bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
                     }
                 } else {
 
-                    if (categoriaJuego.getCategoriaJuegoId()==1){
+                    if (categoriaJuego.getCategoriaJuegoId() == 1) {
                         //Instancia de fragment al cual se dirigira
                         //Se define navegacion a siguiente fragment, se manda de parametros ID de fragment y objeto bundle
                         Detalle_Juego detalle_juego = new Detalle_Juego();
                         detalle_juego.setArguments(bundleEnvio);
                         Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
-                    }else  if(categoriaJuego.getCategoriaJuegoId()==2){
+                    } else if (categoriaJuego.getCategoriaJuegoId() == 2) {
                         //fragment para paciente categoria 2
                         Detalle_Juego detalle_juego = new Detalle_Juego();
                         detalle_juego.setArguments(bundleEnvio);
-                        Navigation.findNavController(v).navigate(R.id.detalle_Juego,bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalle_Juego, bundleEnvio);
                     }
 
 

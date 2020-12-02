@@ -171,6 +171,8 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
             if (numero > 0) {
                 if (bundle.getBoolean("bandera")) { //Si viene del menu principal
 
+
+                    //cambiar activity a la clase de turish
                     Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
                     AdministarSesion administarSesion = new AdministarSesion(getContext());
                     if (administarSesion.obtenerIDSesion() > 0) {
@@ -189,7 +191,7 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
                     startActivity(intent);
 
                 } else {
-                    //diseñar nuevas activity
+                   
                     Intent intent = new Intent(getActivity(), VisorPregunta.class);
                     intent.putExtra("juego", juego);
                     startActivity(intent);
@@ -197,7 +199,7 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
 
 
             } else if (numero == 0) {
-                //diseñar nuevas activity
+
                 Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
                 intent.putExtra("juego", juego);
                 startActivity(intent);

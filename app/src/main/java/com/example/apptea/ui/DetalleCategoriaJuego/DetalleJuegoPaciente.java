@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
+import com.example.apptea.ui.juegoMemoria.VistaMemoriaPaciente;
 import com.example.apptea.ui.juegoSeleccion.ResultadoViewModel;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.example.apptea.utilidades.AdministarSesion;
@@ -147,7 +149,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
 
         //Boton de + para agregar un nuevo juego
-        FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
+       FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego);
        Bundle bundle = getArguments();
         if (bundle!=null&&bundle.getBoolean("bandera")) {
             fab.setVisibility(View.INVISIBLE);
@@ -169,16 +171,25 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
     //METODO PARA INGRESAR A LOS JUEGOS CREADOS
     @Override
-    public void onJuegoClick(Juego juego) {
+    public void onJuegoClick(Juego juego, View v) {
 
+        Bundle bundleEnvio = new Bundle();
         Bundle  bundle = getArguments();
         if (bundle != null) {
+
+            if (key == 2) {
+                VistaMemoriaPaciente vistaPaciente = new VistaMemoriaPaciente();
+                bundleEnvio.putInt("juegoId",juego.getJuego_id());
+                bundleEnvio.putString("nombreJuego",juego.getJuego_nombre());
+                vistaPaciente.setArguments(bundleEnvio);
+                Navigation.findNavController(v).navigate(R.id.vistaMemoriaPaciente2,bundleEnvio);
+            } else {
+
 
             //se verifica la cantidad de preguntas que tiene el juego seleccionado
             int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
             if (numero > 0) {
                 if (bundle.getBoolean("bandera")) { //Si viene del menu principal
-
                     Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
                     AdministarSesion administarSesion = new AdministarSesion(getContext());
                     if (administarSesion.obtenerIDSesion() > 0) {
@@ -200,9 +211,9 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                         Resultado res = new Resultado();
                         res = resultadoDao.obtenerResultado();
                         intent.putExtra("resultado", res);
-                        System.out.println("Resultado id : "+ res.getResultado_id());
-                        System.out.println("Resultado juego : "+ res.getNombre_juego());
-                        System.out.println("Resultado SESION : "+ res.getSesion_id());
+                        System.out.println("Resultado id : " + res.getResultado_id());
+                        System.out.println("Resultado juego : " + res.getNombre_juego());
+                        System.out.println("Resultado SESION : " + res.getSesion_id());
                     }
 
 
@@ -222,6 +233,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                 startActivity(intent);
 
             }
+        }
         }
 
     }

@@ -66,7 +66,7 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
 
         @Override
         public void onClick(View v) {
-            onJuegoListener.onJuegoClick(juegos.get(getAdapterPosition()));
+            onJuegoListener.onJuegoClick(juegos.get(getAdapterPosition()),v);
         }
     }
 
@@ -77,7 +77,7 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
 
 
     public interface OnJuegoListener {
-        void onJuegoClick(Juego juego);
+        void onJuegoClick(Juego juego, View v);
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,7 +69,7 @@ public class VistaMemoriaPaciente extends Fragment {
     int posicion = 0;
     int longitudPreguntas;
     boolean  bandera1, bandera2, bandera3, bandera4, duracion=false;
-    String nomPregunta;
+    String titulo;
     LiveData<List<Pregunta>> listadoPreguntas;
     LiveData<List<Opcion>> listaOpciones;
     LiveData<Pictograma> pictograma;
@@ -81,8 +82,10 @@ public class VistaMemoriaPaciente extends Fragment {
     int seleccion2 = 0;
     int ca;
     int pos =0;
+    int correctas = 0;
     private int milisegundos = 800;
     TTSManager ttsManager = null;
+    Button siguiente;
 
 
     public VistaMemoriaPaciente() {
@@ -147,12 +150,13 @@ public class VistaMemoriaPaciente extends Fragment {
         juegoViewModel = new ViewModelProvider(this).get(JuegoViewModel.class);
         ttsManager = new TTSManager();
         ttsManager.init(getActivity());
-
+        siguiente = view.findViewById(R.id.pregunta_siguiente);
+        siguiente.setVisibility(View.INVISIBLE);
 
 
         juegoId = argumento.getInt("juegoId",0);
-        //nomPregunta = argumento.getString("nombreJuego");
-
+        titulo = argumento.getString("nombreJuego");
+        nombreJuego.setText(titulo);
 
 
         listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juegoId);
@@ -172,6 +176,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 pos = 1;
                 opcion1.setEnabled(false);
             }else{
+                opcion1.setEnabled(false);
                 seleccion2 = pic1;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -202,6 +207,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 pos = 2;
                 opcion2.setEnabled(false);
             }else{
+                opcion2.setEnabled(false);
                 seleccion2 = pic2;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -232,6 +238,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 pos = 3;
                 opcion3.setEnabled(false);
             }else{
+                opcion3.setEnabled(false);
                 seleccion2 = pic3;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -262,6 +269,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 pos = 4;
                 opcion4.setEnabled(false);
             }else{
+                opcion4.setEnabled(false);
                 seleccion2 = pic4;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -291,6 +299,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 pos = 5;
                 opcion5.setEnabled(false);
             }else{
+                opcion5.setEnabled(false);
                 seleccion2 = pic5;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -320,6 +329,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 pos = 6;
                 opcion6.setEnabled(false);
             }else{
+                opcion6.setEnabled(false);
                 seleccion2 = pic6;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -339,6 +349,18 @@ public class VistaMemoriaPaciente extends Fragment {
             System.out.println(pic6);
                 }
         );
+
+        siguiente.setOnClickListener(v -> {
+            posicion++;
+            if(posicion <= longitudPreguntas-1){
+                System.out.println("siguiente"+posicion);
+                setearOpciones(posicion);
+                reiniciarCartas();
+            }else{
+                System.out.println("FIN DEL JUEGO");
+            }
+
+        });
 
 
     }
@@ -388,6 +410,10 @@ public class VistaMemoriaPaciente extends Fragment {
         if(s1 == s2){
             System.out.println("iguales");
             iguales = true;
+            correctas++;
+            if(correctas == 3){
+                siguiente.setVisibility(View.VISIBLE);
+            }
         }else{
             System.out.println("no son Iguales");
             iguales = false;
@@ -397,6 +423,16 @@ public class VistaMemoriaPaciente extends Fragment {
         return iguales;
     }
 
+
+    //Metodo para reiniciar cartas se vuelven habilitar
+    private void reiniciarCartas(){
+        opcion1.setEnabled(true);
+        opcion2.setEnabled(true);
+        opcion3.setEnabled(true);
+        opcion4.setEnabled(true);
+        opcion5.setEnabled(true);
+        opcion6.setEnabled(true);
+    }
 
 
     //funcion que setea cardviews con pictogramas, recibe la posicion en la lista de las preguntas

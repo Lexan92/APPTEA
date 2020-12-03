@@ -24,6 +24,7 @@ import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.List;
+import java.util.Locale;
 
 import roomsqlite.entidades.Usuario;
 
@@ -69,5 +70,29 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 3000);
+
+        // IDIOMA 1 = ESPAÑOL 2 = INGLES
+        int español= 1, ingles= 2;
+        //pendiente validar si idioma en share esta vacio
+        String idioma = Locale.getDefault().getLanguage();
+
+
+        if(idioma.equals("es")|| idioma.equals("ES")){
+            administarSesion.configuracionIdioma(español);
+            System.out.println("Idioma es español " + idioma);
+        }
+        else if(idioma.equals("en")|| idioma.equals("EN")){
+                administarSesion.configuracionIdioma(ingles);
+                System.out.println("Idioma  es ingles " + idioma);
+            }
+        else if(!idioma.equals("en")|| !idioma.equals("EN") ||!idioma.equals("es")|| !idioma.equals("ES")){
+                    administarSesion.configuracionIdioma(español);
+                    System.out.println("Idioma es otro " + idioma);
+                }
+
+        // DESBLOQUEO 1 = POR CONTRASEÑA , 2 = POR HUELLA
+        administarSesion.configurarDesbloqueo(1);
+
+
     }
 }

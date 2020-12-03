@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
@@ -22,13 +23,15 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     private OnJuegoListener mOnJuegoListener;
     private List<Juego> juegos;
     private final LayoutInflater cjInflater;
-
+    AdministarSesion idioma ;
     private JuegoAdapter.ButtonClicked buttonClicked;
 
 
     public JuegoAdapter(Context context, OnJuegoListener onJuegoListener) {
         cjInflater = LayoutInflater.from(context);
         this.mOnJuegoListener = onJuegoListener;
+        idioma = new AdministarSesion(context);
+
     }
 
 
@@ -80,13 +83,16 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
     public void onBindViewHolder(@NonNull JuegoViewHolder holder, int position) {
         if (juegos != null && position < juegos.size()) {
             Juego juego = juegos.get(position);
-            if (juego.isJuego_predeterminado()) {
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
                 holder.nombreJuego.setText(juego.getJuego_nombre());
+            }else
+                holder.nombreJuego.setText(juego.getName_game());
+            if (juego.isJuego_predeterminado()) {
                 holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
 
             } else {
-                holder.nombreJuego.setText(juego.getJuego_nombre());
                 holder.setIsRecyclable(false);
             }
         }

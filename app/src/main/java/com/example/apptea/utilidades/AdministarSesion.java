@@ -93,4 +93,26 @@ public class AdministarSesion {
     public int obtenerIDSesion(){
         return sharedPreferences.getInt("idSesion",-1);
     }
+
+
+    //CONFIGURACION
+
+    public void configuracionIdioma(int idioma){
+        editor.putInt("codIdioma", idioma);
+        editor.commit();
+    }
+
+    public  void configurarDesbloqueo(int desbloqueo){
+        editor.putInt("codDesbloqueo", desbloqueo);
+        editor.commit();
+    }
+
+    public int getIdioma(){
+        return  sharedPreferences.getInt("codIdioma",-1);
+    }
+
+    public  int getDesbloqueo(){
+        return sharedPreferences.getInt("codDesbloqueo",-1);
+    }
+
 }

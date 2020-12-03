@@ -86,8 +86,9 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
             System.out.println("Idioma es  " + idioma.getIdioma());
             if(idioma.getIdioma()==1){
                 holder.nombreJuego.setText(juego.getJuego_nombre());
-            }else
-                holder.nombreJuego.setText(juego.getName_game());
+            }else{
+                holder.nombreJuego.setText(juego.getName_game());}
+
             if (juego.isJuego_predeterminado()) {
                 holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);

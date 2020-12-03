@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     private CategoriaHabCotidianaAdapter.ButtonClicked buttonClicked;
     OnCategoriaHabiCotiListener onCategoriaHabiCotiListener;
     public boolean isVistaNiño = false;
+    AdministarSesion idioma ;
 
     public interface ButtonClicked{
         void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);
@@ -88,7 +90,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
 
     CategoriaHabCotidianaAdapter(Context context){
         mInflater = LayoutInflater.from(context);
-
+        idioma = new AdministarSesion(context);
     }
 
 
@@ -107,14 +109,19 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
         int mposition = position;
         if (categoriaHabCotidianaList != null && position < categoriaHabCotidianaList.size()) {
             CategoriaHabCotidiana current = categoriaHabCotidianaList.get(position);
-            if (isVistaNiño == true || current.isCat_predeterminado()) {
+
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
                 holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
+            }else{
+                holder.categoriaItemView.setText(current.getCat_hab_cotidiana_name());}
+
+            if (isVistaNiño == true || current.isCat_predeterminado()) {
                 holder.btnDelete.setVisibility(View.GONE);
                 holder.btnEdit.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
 
             } else {
-                holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
                 holder.setIsRecyclable(false);
 
             }

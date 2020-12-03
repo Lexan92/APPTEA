@@ -143,6 +143,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 Intent intentUpdate = new Intent(getActivity(), EditCategoriaHab.class);
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_ID_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_id());
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_NOMBRE_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+                intentUpdate.putExtra(EditCategoriaHab.EXTRA_NAME_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_name());
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaHabCotidiana.isCat_predeterminado());
                 startActivityForResult(intentUpdate, CAT_UPDATE_REQUEST_CODE);
             }

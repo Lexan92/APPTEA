@@ -38,6 +38,7 @@ public class CategoriaNueva extends Activity {
                     //String word =  nombreCategoria.getText().toString();
                     //replyIntent.putExtra(EXTRA_REPLY, word);
                     categoriaPictograma.setCat_pictograma_nombre(nombreCategoria.getText().toString());
+                    categoriaPictograma.setCat_pictograma_name(nombreCategoria.getText().toString());
                     replyIntent.putExtra(EXTRA_REPLY, categoriaPictograma);
                     setResult(RESULT_OK, replyIntent);
                 }

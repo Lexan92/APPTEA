@@ -161,6 +161,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 Intent intentUpdate = new Intent(getActivity(), EditCategoriaPictograma.class);
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_ID_CAT_UPDATE, categoriaPictograma.getCat_pictograma_id());
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_NOMBRE_CAT_UPDATE, categoriaPictograma.getCat_pictograma_nombre());
+                intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_NAME_CAT_UPDATE, categoriaPictograma.getCat_pictograma_name());
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaPictograma.isPredeterminado());
                 startActivityForResult(intentUpdate, CAT_UPDATE_REQUEST_CODE);
             }

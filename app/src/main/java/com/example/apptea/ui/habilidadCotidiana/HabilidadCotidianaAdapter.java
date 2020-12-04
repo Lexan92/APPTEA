@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
     public boolean isHabilidad = false;
     private List<HabilidadCotidiana> habilidadCotidianaList;
     private List<HabilidadCotidiana> habilidadCotidianaListBusqueda;
+    AdministarSesion idioma ;
 
     private HabilidadCotidianaAdapter.ButtonClicked buttonClicked;
 
@@ -93,6 +95,7 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
     public HabilidadCotidianaAdapter(Context context, OnHabilidadListener onHabilidadListener) {
         mInflater = LayoutInflater.from(context);
         this.mOnHabilidadListener = onHabilidadListener;
+        idioma = new AdministarSesion(context);
     }
 
 
@@ -112,21 +115,23 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
 
             PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
 
-            if (isHabilidad == true || current.isPredeterminado()) {
-                Glide.with(holder.itemView.getContext())
-                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
-                        .thumbnail(0.5f)
-                        .into(holder.imagen);
+            Glide.with(holder.itemView.getContext())
+                    .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
+                    .thumbnail(0.5f)
+                    .into(holder.imagen);
+
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
+            }else{
+                holder.habilidadItemView.setText(current.getEveryday_skills_name());}
+
+            if (isHabilidad == true || current.isPredeterminado()) {
+
                 holder.editar.setVisibility(View.GONE);
                 holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
             } else {
-                Glide.with(holder.itemView.getContext())
-                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
-                        .thumbnail(0.5f)
-                        .into(holder.imagen);
-                holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
                 holder.setIsRecyclable(false);
             }
 

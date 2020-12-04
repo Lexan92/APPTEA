@@ -47,6 +47,7 @@ public class  EditSecuencia extends AppCompatActivity{
 
     public static final String EXTRA_ID_HAB_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_ID_HAB_UPDATE";
     public static final String EXTRA_NOMBRE_HAB_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_NOMBRE_HAB_UPDATE";
+    public static final String EXTRA_NAME_HAB_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_NAME_HAB_UPDATE";
     public static final String UPDATE_HAB_REQUEST_CODE = "com.example.apptea.ui.habilidadcotidiana.UPDATE_HAB_REQUEST_CODE";
     public static final String EXTRA_HAB_PREDETERMINADO_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_HAB_PREDETERMINADO_UPDATE";
     private List<Pictograma> pictoFraseList;
@@ -87,6 +88,7 @@ public class  EditSecuencia extends AppCompatActivity{
         Intent intentUpdate = getIntent();
         int idHab = getIntent().getIntExtra("idHabilidad",0);
         String nombrehabilidad = intentUpdate.getStringExtra("nombreHabilidad");
+        String namehabilidad = intentUpdate.getStringExtra("nameHabilidad");
         boolean habPredeterminado = intentUpdate.getBooleanExtra("predeterminadoHabilidad",true);
 
         //RECYCLER FRASES
@@ -172,6 +174,7 @@ public class  EditSecuencia extends AppCompatActivity{
                         intent.putExtra("idHabilidad",idHab);
                         intent.putExtra("predeterminadoHabilidad",habPredeterminado);
                         intent.putExtra("nombreHabilidad",nombrehabilidad);
+                        intent.putExtra("nameHabilidad",namehabilidad);
                         startActivity(intent);
 
                 }

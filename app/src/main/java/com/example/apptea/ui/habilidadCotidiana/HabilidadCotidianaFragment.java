@@ -215,6 +215,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         intent.putExtra("llaveCatHabilidad", categoriaHabCotidiana.getCat_hab_cotidiana_id());
         intent.putExtra("listaSecuencia", (Serializable) pictoFraseList);
         intent.putExtra("nombreHabilidad", habilidadCotidiana.getHabilidad_cotidiana_nombre());
+        intent.putExtra("nameHabilidad", habilidadCotidiana.getEveryday_skills_name());
         intent.putExtra("idHabilidad", habilidadCotidiana.getHabilidad_cotidiana_id());
         intent.putExtra("predeterminadoHabilidad", habilidadCotidiana.isPredeterminado());
         startActivityForResult(intent, UPDATE_HAB_REQUEST_CODE);
@@ -244,6 +245,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         intent.putExtra("listaSecuencia", (Serializable) pictoFraseList);
         intent.putExtra("definirPantalla", bandera);
         intent.putExtra("nombreHabilidad", habilidadCotidiana.getHabilidad_cotidiana_nombre());
+        intent.putExtra("nameHabilidad", habilidadCotidiana.getEveryday_skills_name());
         startActivity(intent);
 
     }

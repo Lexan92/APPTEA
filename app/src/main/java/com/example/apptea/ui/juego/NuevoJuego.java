@@ -53,6 +53,7 @@ public class NuevoJuego extends AppCompatActivity {
                 } else {
                     Juego juego = new Juego();
                     juego.setJuego_nombre(ValidacionCadenas.capitalizaCadena(nombreJuego.getText().toString()));
+                    juego.setName_game(ValidacionCadenas.capitalizaCadena(nombreJuego.getText().toString()));
                     juego.setCategoria_juego_id(keyCategoriaJuego);
                     juego.setJuego_predeterminado(false);
                     juegoViewModel.insert(juego);

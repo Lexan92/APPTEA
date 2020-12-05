@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -161,7 +162,12 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
 
 
     @Override
-    public void onJuegoClick(Juego juego) {
+    public void onJuegoClick(Juego juego, View v) {
+
+
+
+
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             //se verifica la cantidad de preguntas que tiene el juego seleccionado

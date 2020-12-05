@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.ParseException;
@@ -34,11 +35,13 @@ public class EditCategoriaHab extends Activity {
 
     public static final String EXTRA_ID_CAT_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_ID_CAT_UPDATE";
     public static final String EXTRA_NOMBRE_CAT_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_NOMBRE_CAT_UPDATE";
+    public static final String EXTRA_NAME_CAT_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_NAME_CAT_UPDATE";
     public static final String EXTRA_CAT_HAB_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_CAT_HAB_UPDATE";
     public static final String EXTRA_CAT_PREDETERMINADO_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_CAT_HAB_UPDATE";
 
     EditText nombreCat;
     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,14 @@ public class EditCategoriaHab extends Activity {
         nombreCat = findViewById(R.id.edit_cat);
 
         Intent intent = getIntent();
+        AdministarSesion idioma = new AdministarSesion(getApplicationContext());
 
-        nombreCat.setText(intent.getStringExtra(EXTRA_NOMBRE_CAT_UPDATE));
+        if(idioma.getIdioma()==1){
+            nombreCat.setText(intent.getStringExtra(EXTRA_NOMBRE_CAT_UPDATE));
+        }else{
+            nombreCat.setText(intent.getStringExtra(EXTRA_NAME_CAT_UPDATE));}
+
+
 
         //PARA GUARDAR ACTUALIZACION Categoria de habilidades cotidiandas
         final Button button = findViewById(R.id.button_save);
@@ -60,7 +69,15 @@ public class EditCategoriaHab extends Activity {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     categoriaHabCotidiana.setCat_hab_cotidiana_id(intent.getIntExtra(EXTRA_ID_CAT_UPDATE, -1));
-                    categoriaHabCotidiana.setCat_hab_cotidiana_nombre(nombreCat.getText().toString());
+
+                    if(idioma.getIdioma()==1){
+                        categoriaHabCotidiana.setCat_hab_cotidiana_nombre(nombreCat.getText().toString());
+                        categoriaHabCotidiana.setCat_hab_cotidiana_name(intent.getStringExtra(EXTRA_NAME_CAT_UPDATE));
+                    }else{
+                        categoriaHabCotidiana.setCat_hab_cotidiana_name(nombreCat.getText().toString());
+                        categoriaHabCotidiana.setCat_hab_cotidiana_nombre(intent.getStringExtra(EXTRA_NOMBRE_CAT_UPDATE));
+                        }
+
                     categoriaHabCotidiana.setCat_predeterminado(intent.getBooleanExtra(EXTRA_CAT_PREDETERMINADO_UPDATE,Boolean.parseBoolean(EXTRA_CAT_PREDETERMINADO_UPDATE)));
                     replyIntent.putExtra(EXTRA_CAT_HAB_UPDATE, categoriaHabCotidiana);
                     setResult(RESULT_OK, replyIntent);

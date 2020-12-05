@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.io.InputStream;
 import java.util.List;
@@ -26,12 +27,13 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
     private List<CategoriaJuego> categoriasJuego;
     private final LayoutInflater cjInflater;
     private View.OnClickListener listener;
+    AdministarSesion idioma ;
 
 
     public CategoriaJuegoAdapter(Context context) {
 
         cjInflater = LayoutInflater.from(context);
-
+        idioma = new AdministarSesion(context);
     }
 
     @Override
@@ -53,7 +55,13 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
             }else if(categoriaJuego.getCategoriaJuegoId() == 2){
                 holder.juegoImg.setAnimation(R.raw.memoria_juego);
             }
-            holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
+                holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
+            }else{
+                holder.nombreCategoria.setText(categoriaJuego.getCategoryNameGame());}
+
             holder.setIsRecyclable(false);
 
         } else {

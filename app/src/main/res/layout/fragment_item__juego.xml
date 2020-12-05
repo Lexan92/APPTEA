@@ -40,7 +40,7 @@
                     android:id="@+id/nombre_item_juego"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre Pictograma"
+                    android:text="Nombre Juego"
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/capriola"

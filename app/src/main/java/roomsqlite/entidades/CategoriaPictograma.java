@@ -27,6 +27,7 @@ public class CategoriaPictograma implements Serializable {
 
     @NonNull
     private String cat_pictograma_nombre;
+    private String cat_pictograma_name;
 
    // private int cat_pictorgrama_ban;
 
@@ -40,18 +41,20 @@ public CategoriaPictograma(){
 
 }
 
-    @Ignore
-    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado) {
+   /* @Ignore
+    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre,String cat_pictograma_name, boolean predeterminado) {
         this.cat_pictograma_id = cat_pictograma_id;
         this.cat_pictograma_nombre = cat_pictograma_nombre;
+        this.cat_pictograma_name = cat_pictograma_name;
         this.predeterminado = predeterminado;
-    }
+    }*/
 
     //CONSTRUCTOR
     @Ignore
-    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre, boolean predeterminado, int pictograma_id) {
+    public CategoriaPictograma(int cat_pictograma_id, @NonNull String cat_pictograma_nombre, String cat_pictograma_name, boolean predeterminado, int pictograma_id) {
         this.cat_pictograma_id = cat_pictograma_id;
         this.cat_pictograma_nombre = cat_pictograma_nombre;
+        this.cat_pictograma_name = cat_pictograma_name;
         this.predeterminado = predeterminado;
         this.pictograma_id = pictograma_id;
     }
@@ -88,5 +91,13 @@ public CategoriaPictograma(){
 
     public void setPictograma_id(int pictograma_id) {
         this.pictograma_id = pictograma_id;
+    }
+
+    public String getCat_pictograma_name() {
+        return cat_pictograma_name;
+    }
+
+    public void setCat_pictograma_name(String cat_pictograma_name) {
+        this.cat_pictograma_name = cat_pictograma_name;
     }
 }

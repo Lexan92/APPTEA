@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriajuego.CategoriaJuegoViewHolder;
 import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManagerSecuencia;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
     private List<CategoriaPictograma> categoriaPictogramaListFull;
     private ArrayList<Pictograma> pictogramas;
     private CategoriaPictogramaAdapter.ButtonClickedCatPicto buttonClickedCatPicto;
+    AdministarSesion idioma ;
 
 
     public interface ButtonClickedCatPicto{
@@ -56,9 +58,8 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
 
 
     public CategoriaPictogramaAdapter(Context context) {
-
         mInflater = LayoutInflater.from(context);
-
+        idioma = new AdministarSesion(context);
     }
 
 
@@ -82,20 +83,32 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                         .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(categoriaPictograma.getPictograma_id()).getPictograma_imagen()))
                         .thumbnail(0.5f)
                         .into(holder.imagen);
-                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+
+                System.out.println("Idioma es  " + idioma.getIdioma());
+                if(idioma.getIdioma()==1){
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                }else{
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
+
                 holder.editar.setVisibility(View.GONE);
                 holder.cancelar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
             }else{
                 if (categoriaPictograma.getPictograma_id() == 0) {
-                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                    }else{
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
                     holder.setIsRecyclable(false);
                 }else {
                     Glide.with(holder.itemView.getContext())
                             .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(categoriaPictograma.getPictograma_id()).getPictograma_imagen()))
                             .thumbnail(0.5f)
                             .into(holder.imagen);
-                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                    }else{
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
                     holder.setIsRecyclable(false);
                 }
                     holder.imagen.setOnLongClickListener(new View.OnLongClickListener() {

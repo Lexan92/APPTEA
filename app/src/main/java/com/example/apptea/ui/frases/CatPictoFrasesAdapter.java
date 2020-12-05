@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ import roomsqlite.entidades.CategoriaPictograma;
 public class CatPictoFrasesAdapter extends RecyclerView.Adapter<CatPictoFrasesAdapter.FrasesHolder> {
     private List<CategoriaPictograma> categoriaPictogramaList;
     private ClickedCatPicto clickedCatPicto;
+    AdministarSesion idioma ;
 
     public interface ClickedCatPicto{
         void CategoriaClicked(CategoriaPictograma categoriaPictograma);
@@ -54,6 +56,7 @@ public class CatPictoFrasesAdapter extends RecyclerView.Adapter<CatPictoFrasesAd
     @Override
     public FrasesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_frases,parent, false);
+        idioma = new AdministarSesion(parent.getContext());
         return new FrasesHolder(itemview);
     }
 
@@ -62,7 +65,13 @@ public class CatPictoFrasesAdapter extends RecyclerView.Adapter<CatPictoFrasesAd
         if (categoriaPictogramaList != null && position < categoriaPictogramaList.size()) {
 
             CategoriaPictograma categoriaPictograma = categoriaPictogramaList.get(position);
-            holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
+                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+            }else{
+                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
+
             holder.setIsRecyclable(false);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

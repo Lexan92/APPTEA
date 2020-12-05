@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
 import com.example.apptea.utilidades.TTSManagerSecuencia;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
 
     public static final String EXTRA_ID_HAB_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_ID_HAB_UPDATE";
     public static final String EXTRA_NOMBRE_HAB_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_NOMBRE_HAB_UPDATE";
+    public static final String EXTRA_NAME_HAB_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_NAME_HAB_UPDATE";
     public static final String UPDATE_HAB_REQUEST_CODE = "com.example.apptea.ui.habilidadcotidiana.UPDATE_HAB_REQUEST_CODE";
     public static final String EXTRA_HAB_PREDETERMINADO_UPDATE = "com.example.apptea.ui.habilidadcotidiana.EXTRA_HAB_PREDETERMINADO_UPDATE";
     private ArrayList<Pictograma> pictoSecuenciaList;
@@ -49,7 +51,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
     TTSManagerSecuencia ttsManagerSecuencia2=null;
     private ArrayList<Secuencia> listaSecuencia;
     private CategoriaHabCotidianaViewModel categoriaHabCotidianaViewModel;
-
+    AdministarSesion idioma ;
 
 
     public VistaPreviaActivity(){
@@ -81,10 +83,11 @@ public class VistaPreviaActivity extends AppCompatActivity {
         HabilidadCotidianaDao habilidadCotidianaDao= appDatabase.getDatabase(getApplicationContext()).habilidadCotidianaDao();
         boolean bandera = getIntent().getBooleanExtra("definirPantalla",true);
         String tituloHabilidad = getIntent().getStringExtra("nombreHabilidad");
+        String titleHabilidad = getIntent().getStringExtra("nameHabilidad");
         boolean editar = getIntent().getBooleanExtra("editar", false);
         int idHabilidad = getIntent().getIntExtra("idHabilidad",0);
         categoriaHabCotidianaViewModel = new ViewModelProvider(this).get(CategoriaHabCotidianaViewModel.class);
-
+        idioma = new AdministarSesion(getApplicationContext());
 
         //RECYCLER FRASES
         recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -99,25 +102,44 @@ public class VistaPreviaActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+
                 if(bandera == true){
                     nombreHabilidad.setVisibility(View.VISIBLE);
                     play.setVisibility(View.VISIBLE);
                     atras.setVisibility(View.VISIBLE);
-                    nombreHabilidad.setText(tituloHabilidad);
+
+                    System.out.println("Idioma es  " + idioma.getIdioma());
+                    if(idioma.getIdioma()==1){
+                        nombreHabilidad.setText(tituloHabilidad);
+                    }else{
+                        nombreHabilidad.setText(titleHabilidad);}
+
                     nombreHabilidad.setEnabled(false);
 
                 }else{
                 atras.setVisibility(View.VISIBLE);
                 nombreHabilidad.setVisibility(View.VISIBLE);
-                nombreHabilidad.setText(tituloHabilidad);
+                    if(idioma.getIdioma()==1){
+                        nombreHabilidad.setText(tituloHabilidad);
+                    }else{
+                        nombreHabilidad.setText(titleHabilidad);}
+
                 play.setVisibility(View.VISIBLE);
                 guardar.setVisibility(View.VISIBLE);
                     if(!nombreHabilidad.getText().toString().isEmpty() && editar == false ){
-                        nombreHabilidad.setText(tituloHabilidad);
+
+                        if(idioma.getIdioma()==1){
+                            nombreHabilidad.setText(tituloHabilidad);
+                        }else{
+                            nombreHabilidad.setText(titleHabilidad);}
+
                         nombreHabilidad.setEnabled(false);
                         guardar.setVisibility(View.INVISIBLE);
                     }else{
-                        nombreHabilidad.setText(tituloHabilidad);
+                        if(idioma.getIdioma()==1){
+                            nombreHabilidad.setText(tituloHabilidad);
+                        }else{
+                            nombreHabilidad.setText(titleHabilidad);}
                     }
                 }
                 recyclerView1.setAdapter(adapterSecuencia);
@@ -166,11 +188,14 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Debes agregar un nombre",
                             Toast.LENGTH_LONG).show();
                 } else {
+                    //NUEVO
                     if (editar == false) {
 
                         HabilidadCotidiana habilidadCotidiana = new HabilidadCotidiana();
                         habilidadCotidiana.setCat_hab_cotidiana_id(idCategoriaHab);
+
                         habilidadCotidiana.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
+                        habilidadCotidiana.setEveryday_skills_name(nombreHabilidad.getText().toString());
                         habilidadCotidiana.setPredeterminado(false);
 
                         if (TTSManagerSecuencia.pictogramaSeleccion == null) {
@@ -194,9 +219,19 @@ public class VistaPreviaActivity extends AppCompatActivity {
                             orden += 1;
                         }
                         TTSManagerSecuencia.pictogramaSeleccion = null;
-                    } else {
+                    }
+                    //EDITAR
+                    else {
                         HabilidadCotidiana habInsertada = habilidadCotidianaDao.obtenerUnaHabilidadCotidiana(idHabilidad);
-                        habInsertada.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
+
+                        if(idioma.getIdioma()==1){
+                            habInsertada.setHabilidad_cotidiana_nombre(nombreHabilidad.getText().toString());
+                            habInsertada.setEveryday_skills_name(titleHabilidad);
+                        }else{
+                            habInsertada.setEveryday_skills_name(nombreHabilidad.getText().toString());
+                            habInsertada.setHabilidad_cotidiana_nombre(tituloHabilidad);
+                        }
+
                         if (TTSManagerSecuencia.pictogramaSeleccion == null) {
                             TTSManagerSecuencia.pictogramaSeleccion = pictoSecuenciaList.get(0);
                             habInsertada.setPictograma_id(TTSManagerSecuencia.pictogramaSeleccion.getPictograma_id());

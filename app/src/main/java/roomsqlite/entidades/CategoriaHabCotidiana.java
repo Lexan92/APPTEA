@@ -21,14 +21,16 @@ public class CategoriaHabCotidiana implements Serializable{
 
     @NonNull
     private String cat_hab_cotidiana_nombre;
+    private String cat_hab_cotidiana_name;
     @NonNull
     private boolean cat_predeterminado;
 
 
     @Ignore
-    public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, boolean cat_predeterminado) {
+    public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, String cat_hab_cotidiana_name, boolean cat_predeterminado) {
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
+        this.cat_hab_cotidiana_name = cat_hab_cotidiana_name;
         this.cat_predeterminado = cat_predeterminado;
     }
 
@@ -64,4 +66,11 @@ public class CategoriaHabCotidiana implements Serializable{
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
     }
 
+    public String getCat_hab_cotidiana_name() {
+        return cat_hab_cotidiana_name;
+    }
+
+    public void setCat_hab_cotidiana_name(String cat_hab_cotidiana_name) {
+        this.cat_hab_cotidiana_name = cat_hab_cotidiana_name;
+    }
 }

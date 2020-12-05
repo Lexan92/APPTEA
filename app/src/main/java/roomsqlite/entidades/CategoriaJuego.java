@@ -24,6 +24,7 @@ public class CategoriaJuego implements Serializable {
     private int categoriaJuegoId;
     @NonNull
     private String categoriaJuegoNombre;
+    private String categoryNameGame;
     @NonNull
     private boolean predeterminado;
 
@@ -31,13 +32,12 @@ public class CategoriaJuego implements Serializable {
     }
 
     @Ignore
-    public CategoriaJuego(@NonNull int categoriaJuegoId, @NonNull  String categoriaJuegoNombre, @NonNull boolean predeterminado) {
+    public CategoriaJuego(int categoriaJuegoId, @NonNull String categoriaJuegoNombre, String categoryNameGame, boolean predeterminado) {
         this.categoriaJuegoId = categoriaJuegoId;
         this.categoriaJuegoNombre = categoriaJuegoNombre;
+        this.categoryNameGame = categoryNameGame;
         this.predeterminado = predeterminado;
     }
-
-
 
     @NonNull
     public  int getCategoriaJuegoId() {
@@ -63,5 +63,13 @@ public class CategoriaJuego implements Serializable {
 
     public void setPredeterminado(boolean predeterminado) {
         this.predeterminado = predeterminado;
+    }
+
+    public String getCategoryNameGame() {
+        return categoryNameGame;
+    }
+
+    public void setCategoryNameGame(String categoryNameGame) {
+        this.categoryNameGame = categoryNameGame;
     }
 }

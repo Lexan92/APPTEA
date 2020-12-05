@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
 import com.example.apptea.ui.juego.OpcionViewModel;
@@ -77,6 +78,7 @@ public class VistaMemoriaPaciente extends Fragment {
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
     PictogramaViewModel pictogramaViewModel;
+    LottieAnimationView celebracion;
     public static int pic1,pic2,pic3,pic4,pic5,pic6;
     int seleccion1 = 0;
     int seleccion2 = 0;
@@ -143,6 +145,8 @@ public class VistaMemoriaPaciente extends Fragment {
         opcion4 = view.findViewById(R.id.card_memoria4);
         opcion5 = view.findViewById(R.id.card_memoria5);
         opcion6 = view.findViewById(R.id.card_memoria6);
+        siguiente = view.findViewById(R.id.pregunta_siguiente);
+        celebracion = view.findViewById(R.id.lottie_acierto);
         nombreJuego = view.findViewById(R.id.titulo_juego);
         preguntaViewModel = new ViewModelProvider(this).get(PreguntaViewModel.class);
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
@@ -150,9 +154,9 @@ public class VistaMemoriaPaciente extends Fragment {
         juegoViewModel = new ViewModelProvider(this).get(JuegoViewModel.class);
         ttsManager = new TTSManager();
         ttsManager.init(getActivity());
-        siguiente = view.findViewById(R.id.pregunta_siguiente);
-        siguiente.setVisibility(View.INVISIBLE);
 
+        siguiente.setVisibility(View.INVISIBLE);
+        celebracion.setVisibility(View.INVISIBLE);
 
         juegoId = argumento.getInt("juegoId",0);
         titulo = argumento.getString("nombreJuego");
@@ -165,6 +169,7 @@ public class VistaMemoriaPaciente extends Fragment {
         });
 
         setearOpciones(posicion);
+
 
         opcion1.setOnClickListener(v -> {
             ttsManager.initQueue(nombreCard1.getText().toString());
@@ -367,6 +372,7 @@ public class VistaMemoriaPaciente extends Fragment {
 
 
     //Metodo para validar la primera seleccion del usuario
+    // SI las cartas no son iguales estas deben ocultarse de nuevo
     private void validar(int pos){
         switch(pos){
             case 1:
@@ -414,6 +420,20 @@ public class VistaMemoriaPaciente extends Fragment {
             if(correctas == 3){
                 siguiente.setVisibility(View.VISIBLE);
             }
+            celebracion.setVisibility(View.VISIBLE);
+            celebracion.bringToFront();
+            celebracion.setSpeed(2);
+            celebracion.playAnimation();
+            
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    celebracion.setVisibility(View.INVISIBLE);
+                }
+            },milisegundos);
+
+
         }else{
             System.out.println("no son Iguales");
             iguales = false;
@@ -433,6 +453,7 @@ public class VistaMemoriaPaciente extends Fragment {
         opcion5.setEnabled(true);
         opcion6.setEnabled(true);
     }
+
 
 
     //funcion que setea cardviews con pictogramas, recibe la posicion en la lista de las preguntas

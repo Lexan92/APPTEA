@@ -36,6 +36,7 @@ import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
+import com.example.apptea.ui.juegoMemoria.VisorMemoria;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -200,8 +201,10 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
                     startActivity(intent);
 
                 } else {
-                    Intent intent = new Intent(getActivity(), VisorPregunta.class);
+                    boolean ban_listado = true;
+                    Intent intent = new Intent(getActivity(), VisorMemoria.class);
                     intent.putExtra("juego", juego);
+                    intent.putExtra("ban_listado", ban_listado);
                     startActivity(intent);
                 }
 

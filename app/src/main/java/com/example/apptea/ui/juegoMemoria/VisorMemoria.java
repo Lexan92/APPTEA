@@ -55,6 +55,7 @@ public class VisorMemoria extends AppCompatActivity {
     PreguntaViewModel preguntaViewModel;
     OpcionViewModel opcionViewModel;
     Opcion opcion1, opcion2, opcion3;
+    boolean ban_editar = false;
 
 
     @Override
@@ -86,9 +87,10 @@ public class VisorMemoria extends AppCompatActivity {
         opcion3 = new Opcion();
 
 
+
         PreguntaDAO preguntaDAO = appDatabase.getDatabase(getApplicationContext()).preguntaDao();
         Pregunta preguntaNueva = new Pregunta();
-        AtomicReference<Boolean> clickEditar = new AtomicReference<>(false);
+
 
         //textos al inicio vacios
         picto_uno.setVisibility(View.INVISIBLE);
@@ -122,7 +124,7 @@ public class VisorMemoria extends AppCompatActivity {
 
         //Listener para los tres espacios de pictogramas
         card1.setOnClickListener(v -> {
-            if (editar.getVisibility() != View.VISIBLE) {
+            if (editar.getVisibility() != View.VISIBLE || ban_editar) {
                 Intent intent = new Intent(getApplicationContext(), BuscarPictograma.class);
                 startActivityForResult(intent, UNO);
             }
@@ -130,14 +132,14 @@ public class VisorMemoria extends AppCompatActivity {
         });
 
         card2.setOnClickListener(v -> {
-            if (editar.getVisibility() != View.VISIBLE) {
+            if (editar.getVisibility() != View.VISIBLE || ban_editar) {
                 Intent intent = new Intent(getApplicationContext(), BuscarPictograma.class);
                 startActivityForResult(intent, DOS);
             }
         });
 
         card3.setOnClickListener(v -> {
-            if (editar.getVisibility() != View.VISIBLE) {
+            if (editar.getVisibility() != View.VISIBLE || ban_editar) {
                 Intent intent = new Intent(getApplicationContext(), BuscarPictograma.class);
                 startActivityForResult(intent, TRES);
             }
@@ -155,7 +157,7 @@ public class VisorMemoria extends AppCompatActivity {
         //listener boton guardar
         guardar.setOnClickListener(v -> {
 
-            if (!clickEditar.get()) {
+            if (editar.getVisibility()==View.INVISIBLE) {
                 if (ban1 && ban2 && ban3) {
 
                     preguntaNueva.setJuego_id(juego.getJuego_id());
@@ -163,6 +165,7 @@ public class VisorMemoria extends AppCompatActivity {
                     preguntaDAO.insertPregunta(preguntaNueva);
                     //se obtiene el ID de la pregunta insertada
                     Pregunta pregunta1 = preguntaDAO.obtenerUltimaPregunta();
+                    Log.d("TRACE", "ID ".concat(Integer.toString(pregunta1.getJuego_id())));
 
                     //insertando opcion 1
                     opcion1.setPregunta_id(pregunta1.getPregunta_id());
@@ -195,7 +198,7 @@ public class VisorMemoria extends AppCompatActivity {
 
 
                 }
-            } else if (clickEditar.get()) {
+            } else if (ban_editar) {
 
                 /*
                 //carga las opciones si el juego ha sido creado
@@ -226,11 +229,14 @@ public class VisorMemoria extends AppCompatActivity {
                     opcionViewModel.update(opcions.get(4));
                     opcionViewModel.update(opcions.get(5));
 
-
-                    Toast.makeText(getApplicationContext(), "Nivel Actualizado con Exito", Toast.LENGTH_SHORT).show();
+                    guardar.setVisibility(View.INVISIBLE);
+                    cancelar.setVisibility(View.INVISIBLE);
+                    editar.setVisibility(View.VISIBLE);
 
 
                 });
+
+                Toast.makeText(getApplicationContext(), "Nivel Actualizado con Exito", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -241,10 +247,10 @@ public class VisorMemoria extends AppCompatActivity {
 
         //listener editar nivel
         editar.setOnClickListener(v -> {
-            clickEditar.set(true);
             guardar.setVisibility(View.VISIBLE);
             cancelar.setVisibility(View.VISIBLE);
-            editar.setVisibility(View.INVISIBLE);
+            ban_editar=true;
+
 
         });
 

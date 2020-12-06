@@ -19,8 +19,10 @@ import java.util.Locale;
 public class TTSManager {
     private TextToSpeech mTts = null;
     private boolean isLoaded = false;
+    AdministarSesion idioma ;
 
     public void init(Context context) {
+        idioma = new AdministarSesion(context);
         try {
             mTts = new TextToSpeech(context, onInitListener);
         } catch (Exception e) {
@@ -33,10 +35,17 @@ public class TTSManager {
         public void onInit(int status) {
             //ESTABLECIENDO IDIOMA
             Locale spanish = new Locale("es", "ES");
+            Locale english = new Locale("en","EN");
+
             if (status == TextToSpeech.SUCCESS) {
-                int result = mTts.setLanguage(spanish);
+                int result;
+                if(idioma.getIdioma()==1){
+                    result = mTts.setLanguage(spanish);
+                }else{
+                    result = mTts.setLanguage(english);}
+
                 //mTts.setPitch(1f); //tono de voz
-                mTts.setSpeechRate(0.7f); //velocidad de voz
+                mTts.setSpeechRate(0.8f); //velocidad de voz
 
                 isLoaded = true;
 

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ import roomsqlite.entidades.Pictograma;
 
 public class frasesAdapter extends RecyclerView.Adapter<frasesAdapter.frasesHolder> {
     private List<Pictograma> pictoFraseList;
-
+    AdministarSesion idioma ;
 
 
     public class frasesHolder extends RecyclerView.ViewHolder{
@@ -56,6 +57,7 @@ public class frasesAdapter extends RecyclerView.Adapter<frasesAdapter.frasesHold
     @Override
     public frasesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_pic_frases,parent, false);
+        idioma = new AdministarSesion(parent.getContext());
         return new frasesHolder(itemview);
     }
 
@@ -69,7 +71,11 @@ public class frasesAdapter extends RecyclerView.Adapter<frasesAdapter.frasesHold
                     .thumbnail(0.5f)
                     .into(holder.imagen);
 
-            holder.nombrePictograma.setText(current.getPictograma_nombre());
+            if(idioma.getIdioma()==1){
+                holder.nombrePictograma.setText(current.getPictograma_nombre());
+            }else{
+                holder.nombrePictograma.setText(current.getPictograma_name());}
+
             holder.setIsRecyclable(false);
 
         } else {

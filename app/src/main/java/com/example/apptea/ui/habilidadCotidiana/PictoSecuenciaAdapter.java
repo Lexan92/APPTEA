@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManagerSecuencia;
 
 
@@ -29,7 +30,7 @@ import roomsqlite.entidades.Secuencia;
 public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAdapter.PictoSecuenciaHolder> {
     private List<Pictograma> pictoFraseList;
     private int posicionMarcada = 0;
-
+    AdministarSesion idioma ;
 
     public class PictoSecuenciaHolder extends RecyclerView.ViewHolder{
         private final TextView nombrePictograma;
@@ -56,6 +57,7 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
     @Override
     public PictoSecuenciaAdapter.PictoSecuenciaHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_pic_secuencia,parent, false);
+        idioma = new AdministarSesion(parent.getContext());
         return new PictoSecuenciaAdapter.PictoSecuenciaHolder(itemview);
     }
 
@@ -74,7 +76,13 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
                     .thumbnail(0.5f)
                     .into(holder.imagen);
 
-            holder.nombrePictograma.setText(current.getPictograma_nombre());
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
+                holder.nombrePictograma.setText(current.getPictograma_nombre());
+            }else{
+                holder.nombrePictograma.setText(current.getPictograma_name());}
+
+
             holder.setIsRecyclable(false);
 
         } else {

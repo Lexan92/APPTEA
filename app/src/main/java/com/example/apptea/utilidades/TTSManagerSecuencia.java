@@ -15,8 +15,10 @@ public class TTSManagerSecuencia {
     private boolean isLoaded = false;
     public static Pictograma pictogramaSeleccion = null;
     public static int pictogramaIdSeleccion = 0;
+    AdministarSesion idioma ;
 
     public void init(Context context) {
+        idioma = new AdministarSesion(context);
         try {
             mTts = new TextToSpeech(context, onInitListener);
             mTts2 = new TextToSpeech(context, onInit2Listener);
@@ -30,8 +32,13 @@ public class TTSManagerSecuencia {
         public void onInit(int status) {
             //ESTABLECIENDO IDIOMA
             Locale spanish = new Locale("es", "ES");
+            Locale english = new Locale("en","EN");
             if (status == TextToSpeech.SUCCESS) {
-                int result = mTts.setLanguage(spanish);
+                int result;
+                if(idioma.getIdioma()==1){
+                    result = mTts.setLanguage(spanish);
+                }else{
+                    result = mTts.setLanguage(english);}
                 //mTts.setPitch(1f); //tono de voz
                 mTts.setSpeechRate(0.6f); //velocidad de voz
 
@@ -51,8 +58,13 @@ public class TTSManagerSecuencia {
         public void onInit(int status) {
             //ESTABLECIENDO IDIOMA
             Locale spanish = new Locale("es", "ES");
+            Locale english = new Locale("en","EN");
             if (status == TextToSpeech.SUCCESS) {
-                int result = mTts.setLanguage(spanish);
+                int result;
+                if(idioma.getIdioma()==1){
+                    result = mTts.setLanguage(spanish);
+                }else{
+                    result = mTts.setLanguage(english);}
                 //mTts.setPitch(1f); //tono de voz
                 mTts.setSpeechRate(1f); //velocidad de voz
 

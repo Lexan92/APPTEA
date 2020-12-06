@@ -175,7 +175,13 @@ public class CategoriaPictogramaFragment extends Fragment {
                 detalle_pictograma.setArguments(bundleEnvio);
                 if (bandera == true) {
                     System.out.println("en el fragment" + categoriaPictograma.getCat_pictograma_nombre());
-                    ttsManager.initQueue(categoriaPictograma.getCat_pictograma_nombre());
+                    if(administarSesion.getIdioma()==1){
+                        ttsManager.initQueue(categoriaPictograma.getCat_pictograma_nombre());
+                    }else{
+                        ttsManager.initQueue(categoriaPictograma.getCat_pictograma_name());}
+
+
+
                 }
 
                 if (administarSesion.obtenerIDSesion() > 0) {

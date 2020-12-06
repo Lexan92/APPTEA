@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ import roomsqlite.entidades.Pictograma;
 public class PictoFrasesAdapter extends RecyclerView.Adapter<PictoFrasesAdapter.PictoFrasesHolder> {
     private List<Pictograma> pictogramaList;
     private ClickedPicto clickedPicto;
+    AdministarSesion idioma ;
 
     public interface ClickedPicto{
         void PictoClicked(Pictograma pictograma);
@@ -61,6 +63,7 @@ public class PictoFrasesAdapter extends RecyclerView.Adapter<PictoFrasesAdapter.
     @Override
     public PictoFrasesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_pic_frases,parent, false);
+        idioma = new AdministarSesion(parent.getContext());
         return new PictoFrasesHolder(itemview);
     }
 
@@ -74,7 +77,12 @@ public class PictoFrasesAdapter extends RecyclerView.Adapter<PictoFrasesAdapter.
                         .thumbnail(0.5f)
                         .into(holder.imagen);
 
-                holder.nombrePictograma.setText(pictograma.getPictograma_nombre());
+                System.out.println("Idioma es  " + idioma.getIdioma());
+                if(idioma.getIdioma()==1){
+                    holder.nombrePictograma.setText(pictograma.getPictograma_nombre());
+                }else{
+                    holder.nombrePictograma.setText(pictograma.getPictograma_name());}
+
                 holder.setIsRecyclable(false);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {

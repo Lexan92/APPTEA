@@ -31,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.internal.ContextUtils;
 
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     private List<Pictograma> pictogramaList;
     private List<Pictograma> pictogramaListBusqueda;
     private ButtonClickedPictograma buttonClickedPictograma;
+    AdministarSesion idioma ;
 
     public interface OnPictogramaListener{
         void onPictogramaClick(Pictograma posicion);
@@ -106,6 +108,7 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
     public PictogramaAdapter(Context context, OnPictogramaListener onPictogramaListener){
         mInflater = LayoutInflater.from(context);
         this.mOnPictogramaListener = onPictogramaListener;
+        idioma = new AdministarSesion(context);
     }
 
 
@@ -130,7 +133,14 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                         .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
                         .thumbnail(0.5f)
                         .into(holder.imagen);
-                holder.pictogramaItemView.setText(current.getPictograma_nombre());
+
+                System.out.println("Idioma es  " + idioma.getIdioma());
+                if(idioma.getIdioma()==1){
+                    holder.pictogramaItemView.setText(current.getPictograma_nombre());
+                }else{
+                    holder.pictogramaItemView.setText(current.getPictograma_name());}
+
+
                 holder.eliminar.setVisibility(View.GONE);
                 holder.editar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
@@ -150,7 +160,10 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                             .thumbnail(0.5f)
                             .into(holder.imagen);
 
-                    holder.pictogramaItemView.setText(current.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        holder.pictogramaItemView.setText(current.getPictograma_nombre());
+                    }else{
+                        holder.pictogramaItemView.setText(current.getPictograma_name());}
                     holder.editar.setVisibility(View.GONE);
                     holder.eliminar.setVisibility(View.GONE);
                     holder.setIsRecyclable(false);
@@ -163,7 +176,10 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                             .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
                             .thumbnail(0.5f)
                             .into(holder.imagen);
-                    holder.pictogramaItemView.setText(current.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        holder.pictogramaItemView.setText(current.getPictograma_nombre());
+                    }else{
+                        holder.pictogramaItemView.setText(current.getPictograma_name());}
                     holder.setIsRecyclable(false);
                 }
             }

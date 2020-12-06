@@ -107,9 +107,11 @@ public class frasesFragment extends Fragment {
         recyclerView3 = vista.findViewById(R.id.recycler_picto);
         play = vista.findViewById(R.id.btn_play);
         backspace = vista.findViewById(R.id.btn_backspace);
+        AdministarSesion idioma = new AdministarSesion(getContext());
 
         //ORIENTACION
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         //RECYCLER FRASES
         recyclerView1.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         pictoFraseList = new ArrayList<Pictograma>();
@@ -155,7 +157,12 @@ public class frasesFragment extends Fragment {
             public void PictoClicked(Pictograma pictograma) {
                 System.out.println("en el fragment" + pictograma.getPictograma_nombre());
                 //REPRODUCIENDO NOMBRE
-                ttsManager.initQueue(pictograma.getPictograma_nombre());
+                if(idioma.getIdioma()==1){
+                    ttsManager.initQueue(pictograma.getPictograma_nombre());
+                }else{
+                    ttsManager.initQueue(pictograma.getPictograma_name());}
+
+
                 //FRASE
                 adapterFrases = new frasesAdapter((ArrayList<Pictograma>) pictoFraseList);
                 pictoFraseList.add(pictograma);
@@ -181,7 +188,13 @@ public class frasesFragment extends Fragment {
 
                 for (Pictograma palabra : pictoFraseList) {
                     System.out.println("la palabra es " + palabra.getPictograma_nombre());
-                    frase += palabra.getPictograma_nombre() + " ";
+
+                    if(idioma.getIdioma()==1){
+                        frase += palabra.getPictograma_nombre() + " ";
+                    }else{
+                        frase += palabra.getPictograma_name() + " ";}
+
+
                 }
                 System.out.println("la frase es " + frase);
                 //REPRODUCTOR DE TEXTO A VOZ

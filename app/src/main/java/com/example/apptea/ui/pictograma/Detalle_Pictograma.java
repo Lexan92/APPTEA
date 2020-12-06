@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.personaTea.NuevaPersonaTea;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -112,7 +113,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(adapter);
         pictogramaViewModel = new ViewModelProvider(getActivity()).get(PictogramaViewModel.class);
-
+        AdministarSesion idioma = new AdministarSesion(getContext());
         ttsManager= new TTSManager();
         ttsManager.init(getActivity());
 
@@ -192,7 +193,12 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
 
             @Override
             public void itemClickedPictograma(Pictograma pictograma) {
-                ttsManager.initQueue(pictograma.getPictograma_nombre());
+                if(idioma.getIdioma()==1){
+                    ttsManager.initQueue(pictograma.getPictograma_nombre());
+                }else{
+                    ttsManager.initQueue(pictograma.getPictograma_name());}
+
+
             }
         });
 

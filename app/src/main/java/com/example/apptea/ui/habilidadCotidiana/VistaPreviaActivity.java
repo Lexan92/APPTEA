@@ -168,7 +168,11 @@ public class VistaPreviaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String frase = "";
                 for(Pictograma palabra: pictoSecuenciaList){
-                    frase+=palabra.getPictograma_nombre()+" ";
+                    if(idioma.getIdioma()==1){
+                        frase+=palabra.getPictograma_nombre()+" ";
+                    }else{
+                        frase+=palabra.getPictograma_name()+" ";}
+
                 }
 
                 //REPRODUCTOR DE TEXTO A VOZ
@@ -274,11 +278,20 @@ public class VistaPreviaActivity extends AppCompatActivity {
             public void run() {
                 String frase = "";
                 for (Pictograma palabra : pictoSecuenciaList) {
-                    frase += palabra.getPictograma_nombre() + " ";
+
+                    if(idioma.getIdioma()==1){
+                        frase += palabra.getPictograma_nombre() + " ";
+                    }else{
+                        frase += palabra.getPictograma_name() + " ";}
+
                 }
 
                 //REPRODUCTOR DE TEXTO A VOZ
-                ttsManagerSecuencia2.initQueue("Repite despues de mi: ");
+                if(idioma.getIdioma()==1){
+                    ttsManagerSecuencia2.initQueue("Repite despues de mi: ");
+                }else{
+                    ttsManagerSecuencia2.initQueue("Repeat after me: ");}
+
                 ttsManager.initQueue(frase);
             }
         }, milisegundos);

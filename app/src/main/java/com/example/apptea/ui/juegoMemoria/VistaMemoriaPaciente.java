@@ -1,6 +1,7 @@
 package com.example.apptea.ui.juegoMemoria;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -21,10 +23,13 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
+import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
+import com.example.apptea.ui.juegoSeleccion.DetalleResultadoViewModel;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
 import com.google.android.material.card.MaterialCardView;
 
@@ -33,11 +38,15 @@ import java.util.List;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
+import roomsqlite.dao.ResultadoDao;
 import roomsqlite.database.ImageConverter;
+import roomsqlite.database.appDatabase;
+import roomsqlite.entidades.DetalleResultado;
 import roomsqlite.entidades.Juego;
 import roomsqlite.entidades.Opcion;
 import roomsqlite.entidades.Pictograma;
 import roomsqlite.entidades.Pregunta;
+import roomsqlite.entidades.Resultado;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,9 +94,16 @@ public class VistaMemoriaPaciente extends Fragment {
     int ca;
     int pos =0;
     int correctas = 0;
+    int incorrectas = 0;
     private int milisegundos = 800;
     TTSManager ttsManager = null;
     Button siguiente;
+    DetalleResultado detalleResultado= new DetalleResultado();
+    DetalleResultadoViewModel detalleResultadoViewModel;
+    AdministarSesion sesion;
+    int resultado;
+    ResultadoDao resultadoDao;
+    Resultado res = new Resultado();
 
 
     public VistaMemoriaPaciente() {
@@ -152,12 +168,14 @@ public class VistaMemoriaPaciente extends Fragment {
         opcionViewModel = new ViewModelProvider(this).get(OpcionViewModel.class);
         pictogramaViewModel = new ViewModelProvider(this).get(PictogramaViewModel.class);
         juegoViewModel = new ViewModelProvider(this).get(JuegoViewModel.class);
+        detalleResultadoViewModel = new ViewModelProvider(this).get(DetalleResultadoViewModel.class);
+        resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
         ttsManager = new TTSManager();
         ttsManager.init(getActivity());
-
+        resultado = argumento.getInt("resultado");
         siguiente.setVisibility(View.INVISIBLE);
         celebracion.setVisibility(View.INVISIBLE);
-
+        sesion = new AdministarSesion(getActivity());
         juegoId = argumento.getInt("juegoId",0);
         titulo = argumento.getString("nombreJuego");
         nombreJuego.setText(titulo);
@@ -358,11 +376,21 @@ public class VistaMemoriaPaciente extends Fragment {
         siguiente.setOnClickListener(v -> {
             posicion++;
             if(posicion <= longitudPreguntas-1){
+                if(sesion.obtenerTipoUsuario()==1){
+                    System.out.println("Resultado id "+ resultado);
+                    detalleResultado.setResultado_id(resultado);
+                    detalleResultado.setNombre_pregunta(titulo);
+                    detalleResultado.setCantidad_fallos(incorrectas);
+                    detalleResultadoViewModel.insertResultado(detalleResultado);
+                }
                 System.out.println("siguiente"+posicion);
                 setearOpciones(posicion);
                 reiniciarCartas();
             }else{
-                System.out.println("FIN DEL JUEGO");
+                Intent intent = new Intent(getActivity(), FinJuego.class);
+                res = resultadoDao.obtenerResultado();
+                intent.putExtra("resultado",res);
+                startActivity(intent);
             }
 
         });
@@ -436,6 +464,7 @@ public class VistaMemoriaPaciente extends Fragment {
 
         }else{
             System.out.println("no son Iguales");
+            incorrectas++;
             iguales = false;
         }
         seleccion1 = 0;

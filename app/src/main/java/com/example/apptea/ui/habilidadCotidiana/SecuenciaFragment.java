@@ -31,6 +31,7 @@ import com.example.apptea.ui.frases.CatPictoFrasesAdapter;
 import com.example.apptea.ui.frases.PictoFrasesAdapter;
 import com.example.apptea.ui.frases.frasesAdapter;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
 import com.example.apptea.utilidades.TTSManagerSecuencia;
 
@@ -78,7 +79,7 @@ public class SecuenciaFragment extends AppCompatActivity{
     ver = findViewById(R.id.btn_save);
     backspace = findViewById(R.id.btn_backspace);
     int catHabilidadId = getIntent().getIntExtra("llaveCatHabilidad",0);
-
+    AdministarSesion idioma = new AdministarSesion(getApplicationContext());
     //RECYCLER FRASES
     recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
     pictoFraseList = new ArrayList<Pictograma>();
@@ -124,7 +125,12 @@ public class SecuenciaFragment extends AppCompatActivity{
         public void PictoClicked(Pictograma pictograma) {
             System.out.println("en el fragment" + pictograma.getPictograma_nombre());
             //REPRODUCIENDO NOMBRE
-            ttsManager.initQueue(pictograma.getPictograma_nombre());
+            if(idioma.getIdioma()==1){
+                ttsManager.initQueue(pictograma.getPictograma_nombre());
+            }else{
+                ttsManager.initQueue(pictograma.getPictograma_name());}
+
+
             //FRASE
             adapterFrases = new PictoSecuenciaAdapter((ArrayList<Pictograma>) pictoFraseList);
             pictoFraseList.add(pictograma);

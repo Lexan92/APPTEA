@@ -124,7 +124,7 @@ public class CategoriaJuegoFragment extends Fragment {
                         //fragment para paciente categoria 2
                         DetalleJuegoPaciente2 detalle_juego = new DetalleJuegoPaciente2();
                         detalle_juego.setArguments(bundleEnvio);
-                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente2, bundleEnvio);
                     }
                 } else {
 

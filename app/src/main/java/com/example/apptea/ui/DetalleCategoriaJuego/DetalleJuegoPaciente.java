@@ -248,7 +248,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                     startActivity(intent);
 
                 } else {
-                    Intent intent = new Intent(getActivity(), VisorPregunta.class);
+                   Intent intent = new Intent(getActivity(), VisorPregunta.class);
                     intent.putExtra("juego", juego);
                     startActivity(intent);
                 }

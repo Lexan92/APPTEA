@@ -28,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.Utilities.UtilCamara;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.io.IOException;
@@ -48,7 +49,6 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     boolean imagen = false;
 
 
-
     //ACCION
     public static final String EXTRA_EDIT = "com.example.apptea.ui.pictograma.EDIT";
     //NUEVO
@@ -57,6 +57,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
     public static final String EXTRA_ID_PICTOGRAMA_UPDATE = "com.example.apptea.ui.pictograma.EXTRA_ID_PICTOGRAMA_UPDATE";
     public static final String EXTRA_ID_CATEGORIA_UPDATE = "com.example.apptea.ui.pictograma.EXTRA_ID_CATEGORIA_UPDATE";
     public static final String EXTRA_NOMBRE_PICTOGRAMA_UPDATE = "com.example.apptea.ui.pictograma.EXTRA_NOMBRE_PICTOGRAMA_UPDATE";
+    public static final String EXTRA_NAME_PICTOGRAMA_UPDATE = "com.example.apptea.ui.pictograma.EXTRA_NAME_PICTOGRAMA_UPDATE";
     public static final String EXTRA_FOTO_PICTOGRAMA_UPDATE = "com.example.apptea.ui.pictograma.EXTRA_FOTO_PICTOGRAMA_UPDATE";
     public static final String EXTRA_PICTOGRAMA_UPDATE = "com.example.apptea.ui.pictograma.EXTRA_PICTOGRAMA_UPDATE";
 
@@ -74,6 +75,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         botonRegistrar = findViewById(R.id.button_guardar_imagen);
         botonSeleccionar = findViewById(R.id.button_seleccionar_imagen);
         botonCancelar = findViewById(R.id.button_cancelar_guardar_imagen);
+        AdministarSesion idioma = new AdministarSesion(getApplicationContext());
 
         //se obteiene el ID de categoria pictograma
         int keyCategoria = getIntent().getIntExtra("llaveCategoria", 0);
@@ -93,8 +95,11 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         }else{
             // ES ACTUALIZACION
             titulo.setText(txtActuaIma);
+            if(idioma.getIdioma()==1){
+                nombrePictograma.setText(intent.getStringExtra(EXTRA_NOMBRE_PICTOGRAMA_UPDATE));
+            }else{
+                nombrePictograma.setText(intent.getStringExtra(EXTRA_NAME_PICTOGRAMA_UPDATE));}
 
-            nombrePictograma.setText(intent.getStringExtra(EXTRA_NOMBRE_PICTOGRAMA_UPDATE));
 
             byte[] actualizarfoto= intent.getByteArrayExtra(EXTRA_FOTO_PICTOGRAMA_UPDATE);
             if(actualizarfoto==null){
@@ -138,6 +143,7 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                             Pictograma pictograma = new Pictograma();
                             pictograma.setCat_pictograma_id(keyCategoria);
                             pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
+                            pictograma.setPictograma_name(nombrePictograma.getText().toString());
                             if(imagen) {
                                 pictograma.setPictograma_imagen(ImageConverter.convertirImagenAByteArray(((BitmapDrawable) imgFoto.getDrawable()).getBitmap()));
                             }
@@ -155,6 +161,13 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
                                 pictograma.setCat_pictograma_id(intent.getIntExtra(EXTRA_ID_CATEGORIA_UPDATE, -1));
                                 if(imagen== false){
                                     pictograma.setPictograma_imagen(intent.getByteArrayExtra(EXTRA_FOTO_PICTOGRAMA_UPDATE));
+                                }
+                                if(idioma.getIdioma()==1){
+                                    pictograma.setPictograma_nombre(nombrePictograma.getText().toString());
+                                    pictograma.setPictograma_name(intent.getStringExtra(EXTRA_NAME_PICTOGRAMA_UPDATE));
+                                }else{
+                                    pictograma.setPictograma_name(nombrePictograma.getText().toString());
+                                    pictograma.setPictograma_nombre(intent.getStringExtra(EXTRA_NOMBRE_PICTOGRAMA_UPDATE));
                                 }
                                 replyIntent.putExtra(EXTRA_PICTOGRAMA_UPDATE, pictograma);
                                 setResult(RESULT_OK, replyIntent);

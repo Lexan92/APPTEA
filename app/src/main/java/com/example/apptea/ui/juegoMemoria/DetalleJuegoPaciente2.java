@@ -57,8 +57,6 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
     int key = 0;
 
 
-
-
     public DetalleJuegoPaciente2() {
         // Required empty public constructor
     }
@@ -144,7 +142,7 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
         //Boton de + para agregar un nuevo juego
         FloatingActionButton fab = view.findViewById(R.id.fab_nuevo_juego_2);
         Bundle bundle = getArguments();
-        if (bundle!=null&&bundle.getBoolean("bandera")) {
+        if (bundle != null && bundle.getBoolean("bandera")) {
             fab.setVisibility(View.VISIBLE);
         }
 
@@ -171,7 +169,7 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
 
 
         Bundle bundle = getArguments();
-        if (bundle != null){
+        if (bundle != null) {
             //se verifica la cantidad de preguntas que tiene el juego seleccionado
             int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
             if (numero > 0) {
@@ -191,24 +189,16 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
 
                     }
-
-
                     intent.putExtra("juego", juego);
                     startActivity(intent);
-
                 } else {
-                   
-                    Intent intent = new Intent(getActivity(), VisorPregunta.class);
+                    boolean ban_listado = true;
+                    Intent intent = new Intent(getActivity(), VisorMemoria.class);
                     intent.putExtra("juego", juego);
+                    intent.putExtra("ban_listado", ban_listado);
                     startActivity(intent);
                 }
 
-
-            } else if (numero == 0) {
-
-                Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
-                intent.putExtra("juego", juego);
-                startActivity(intent);
 
             }
         }

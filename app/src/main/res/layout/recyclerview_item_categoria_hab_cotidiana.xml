@@ -27,28 +27,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorFondo"
-                android:orientation="vertical">
-                <TextView
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/img_cat_hab"
+                    android:layout_width="106dp"
+                    android:layout_height="@dimen/card_height_cat_juego"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_wallpaper"
+                    android:layout_gravity="center_horizontal"/>
+                  <TextView
                     android:id="@+id/txt_categoria_hab_cotidiana"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/capriola"
-                    android:textColor="@color/mi_perfil_titulo"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="3dp"
-                    android:textAlignment="center" />
+                    android:fontFamily="@font/capriola"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:textColor="@color/mi_perfil_titulo"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:gravity="center">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_editar_cat_hab"

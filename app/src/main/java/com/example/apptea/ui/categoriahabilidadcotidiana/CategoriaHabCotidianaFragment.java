@@ -37,6 +37,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriapictograma.DialogSeleccionImagen;
 import com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
@@ -145,8 +146,10 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_NOMBRE_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_NAME_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_name());
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaHabCotidiana.isCat_predeterminado());
+                intentUpdate.putExtra(EditCategoriaHab.EXTRA_PICTOGRAMA_ID_UPDATE, categoriaHabCotidiana.getPictograma_id());
                 startActivityForResult(intentUpdate, CAT_UPDATE_REQUEST_CODE);
             }
+
 
             @Override
             public void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
@@ -173,6 +176,13 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 });
                 AlertDialog deleteDialog = builder.create();
                 deleteDialog.show();
+            }
+
+            @Override
+            public void itemLongClicked(CategoriaHabCotidiana categoriaHabCotidiana) {
+                Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagenHab.class);
+                intentSeleccion.putExtra("categoria",categoriaHabCotidiana.getCat_hab_cotidiana_id());
+                startActivity(intentSeleccion);
             }
         });
 

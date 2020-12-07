@@ -24,14 +24,15 @@ public class CategoriaHabCotidiana implements Serializable{
     private String cat_hab_cotidiana_name;
     @NonNull
     private boolean cat_predeterminado;
-
+    private int pictograma_id;
 
     @Ignore
-    public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, String cat_hab_cotidiana_name, boolean cat_predeterminado) {
+    public CategoriaHabCotidiana(int cat_hab_cotidiana_id, @NonNull String cat_hab_cotidiana_nombre, String cat_hab_cotidiana_name, boolean cat_predeterminado, int pictograma_id) {
         this.cat_hab_cotidiana_id = cat_hab_cotidiana_id;
         this.cat_hab_cotidiana_nombre = cat_hab_cotidiana_nombre;
         this.cat_hab_cotidiana_name = cat_hab_cotidiana_name;
         this.cat_predeterminado = cat_predeterminado;
+        this.pictograma_id = pictograma_id;
     }
 
     public boolean isCat_predeterminado() {
@@ -72,5 +73,13 @@ public class CategoriaHabCotidiana implements Serializable{
 
     public void setCat_hab_cotidiana_name(String cat_hab_cotidiana_name) {
         this.cat_hab_cotidiana_name = cat_hab_cotidiana_name;
+    }
+
+    public int getPictograma_id() {
+        return pictograma_id;
+    }
+
+    public void setPictograma_id(int pictograma_id) {
+        this.pictograma_id = pictograma_id;
     }
 }

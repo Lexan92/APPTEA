@@ -47,4 +47,9 @@ public interface CategoriaHabCotidianaDao {
     //metodo donde se elimina una categoria de habilidades cotidianas junto con sus habilidades cotidianas..
      @Delete
      public void deleteCategoriaHabCotidiana(CategoriaHabCotidiana categoriaHabCotidiana, List<HabilidadCotidiana> habilidadesCotidianas);
+
+
+     //Obterner una categoria de habilidades
+    @Query("SELECT * FROM cat_habilidad_cotidiana WHERE cat_hab_cotidiana_id = :id")
+    CategoriaHabCotidiana obtenerUnaCategoriaHab(int id);
 }

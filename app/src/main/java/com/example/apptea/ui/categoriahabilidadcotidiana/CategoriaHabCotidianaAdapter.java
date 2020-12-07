@@ -17,11 +17,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
 import com.example.apptea.utilidades.AdministarSesion;
@@ -29,7 +31,11 @@ import com.example.apptea.utilidades.AdministarSesion;
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.dao.PictogramaDAO;
+import roomsqlite.database.ImageConverter;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaHabCotidiana;
+import roomsqlite.entidades.CategoriaPictograma;
 import roomsqlite.entidades.Pictograma;
 
 public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder> implements View.OnClickListener, Filterable {
@@ -47,6 +53,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     public interface ButtonClicked{
         void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);
         void updateClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana);
+        void itemLongClicked(CategoriaHabCotidiana categoriaHabCotidiana);
     }
 
     public void setButtonClicked(CategoriaHabCotidianaAdapter.ButtonClicked buttonClicked) {
@@ -57,6 +64,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     class CategoriaHabCotidianaHolder extends RecyclerView.ViewHolder {
         private final TextView categoriaItemView;
         private final Button btnEdit, btnDelete;
+        private final ImageView imagen;
 
 
 
@@ -65,6 +73,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
             categoriaItemView = itemView.findViewById((R.id.txt_categoria_hab_cotidiana));
             btnEdit = itemView.findViewById(R.id.btn_editar_cat_hab);
             btnDelete = itemView.findViewById(R.id.btn_delete_cat_hab);
+            imagen = itemView.findViewById(R.id.img_cat_hab);
 
 
 
@@ -82,6 +91,8 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
                     buttonClicked.updateClickedCatHab(categoriaHabCotidianaList.get(getAdapterPosition()));
                 }
             });
+
+
         }
     }
 
@@ -108,22 +119,40 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
     public void onBindViewHolder(CategoriaHabCotidianaAdapter.CategoriaHabCotidianaHolder holder, int position) {
         int mposition = position;
         if (categoriaHabCotidianaList != null && position < categoriaHabCotidianaList.size()) {
+            PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
             CategoriaHabCotidiana current = categoriaHabCotidianaList.get(position);
 
-            System.out.println("Idioma es  " + idioma.getIdioma());
-            if(idioma.getIdioma()==1){
-                holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
-            }else{
-                holder.categoriaItemView.setText(current.getCat_hab_cotidiana_name());}
+            if(current.getPictograma_id() == 0){
+                if(idioma.getIdioma()==1){
+                    holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
+                }else{
+                    holder.categoriaItemView.setText(current.getCat_hab_cotidiana_name());}
+            }else {
+                Glide.with(holder.itemView.getContext())
+                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
+                        .thumbnail(0.5f)
+                        .into(holder.imagen);
+                System.out.println("Idioma es  " + idioma.getIdioma());
+                if (idioma.getIdioma() == 1) {
+                    holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
+                } else {
+                    holder.categoriaItemView.setText(current.getCat_hab_cotidiana_name());
+                }
+            }
 
             if (isVistaNiño == true || current.isCat_predeterminado()) {
                 holder.btnDelete.setVisibility(View.GONE);
                 holder.btnEdit.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
-
             } else {
                 holder.setIsRecyclable(false);
-
+                holder.imagen.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        buttonClicked.itemLongClicked(current);
+                        return true;
+                    }
+                });
             }
         }else{
             holder.categoriaItemView.setText("No existe ninguna categoria para habilidades cotidianas");

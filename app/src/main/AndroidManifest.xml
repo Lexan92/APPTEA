@@ -143,6 +143,18 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchablepictograma" />
         </activity>
+        <activity
+            android:name=".ui.categoriahabilidadcotidiana.DialogSeleccionImagenHab"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchablepictograma" />
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

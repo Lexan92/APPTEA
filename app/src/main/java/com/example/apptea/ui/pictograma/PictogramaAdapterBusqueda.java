@@ -67,7 +67,6 @@ public class PictogramaAdapterBusqueda extends RecyclerView.Adapter<PictogramaAd
         @Override
         public void onClick(View v) {
             onPictogramaListener.onPictogramaClick(pictogramaList.get(getAdapterPosition()));
-
         }
     }
 

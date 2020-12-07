@@ -56,6 +56,12 @@ public class VisorMemoria extends AppCompatActivity {
     OpcionViewModel opcionViewModel;
     Opcion opcion1, opcion2, opcion3;
     boolean ban_editar = false;
+    boolean ban_agrega_nivel = false;
+
+    //posicion del nivel
+    int posicion;
+
+    int contador = 0;
 
 
     @Override
@@ -87,7 +93,6 @@ public class VisorMemoria extends AppCompatActivity {
         opcion3 = new Opcion();
 
 
-
         PreguntaDAO preguntaDAO = appDatabase.getDatabase(getApplicationContext()).preguntaDao();
         Pregunta preguntaNueva = new Pregunta();
 
@@ -114,11 +119,22 @@ public class VisorMemoria extends AppCompatActivity {
         //setear opciones
         boolean ban = getIntent().getBooleanExtra("ban_listado", false);
         if (ban) {
+            agregar.setVisibility(View.VISIBLE);
             editar.setVisibility(View.VISIBLE);
+            borrar.setVisibility(View.VISIBLE);
             cancelar.setVisibility(View.INVISIBLE);
             listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
             listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
                 setearOpciones(preguntas.get(0).getPregunta_id());
+
+                if (preguntas.size()==3){
+                        agregar.setVisibility(View.INVISIBLE);
+                    siguiente.setVisibility(View.VISIBLE);
+                    anterior.setVisibility(View.VISIBLE);
+                }else   if(preguntas.size()>1&&preguntas.size()<4){
+                        siguiente.setVisibility(View.VISIBLE);
+                        anterior.setVisibility(View.VISIBLE);
+                }
             });
         }
 
@@ -148,16 +164,20 @@ public class VisorMemoria extends AppCompatActivity {
 
         //listener boton cancelar
         cancelar.setOnClickListener(v -> {
+            if (ban_agrega_nivel){
+                finish();
+            }
             guardar.setVisibility(View.INVISIBLE);
             cancelar.setVisibility(View.INVISIBLE);
             editar.setVisibility(View.VISIBLE);
+            ban_editar = false;
 
         });
 
         //listener boton guardar
         guardar.setOnClickListener(v -> {
 
-            if (editar.getVisibility()==View.INVISIBLE) {
+            if (editar.getVisibility() == View.INVISIBLE) {
                 if (ban1 && ban2 && ban3) {
 
                     preguntaNueva.setJuego_id(juego.getJuego_id());
@@ -165,7 +185,7 @@ public class VisorMemoria extends AppCompatActivity {
                     preguntaDAO.insertPregunta(preguntaNueva);
                     //se obtiene el ID de la pregunta insertada
                     Pregunta pregunta1 = preguntaDAO.obtenerUltimaPregunta();
-                    Log.d("TRACE", "ID ".concat(Integer.toString(pregunta1.getJuego_id())));
+
 
                     //insertando opcion 1
                     opcion1.setPregunta_id(pregunta1.getPregunta_id());
@@ -194,6 +214,8 @@ public class VisorMemoria extends AppCompatActivity {
                     guardar.setVisibility(View.INVISIBLE);
                     cancelar.setVisibility(View.INVISIBLE);
                     editar.setVisibility(View.VISIBLE);
+                    agregar.setVisibility(View.VISIBLE);
+                    borrar.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "Nivel Guardado", Toast.LENGTH_LONG).show();
 
 
@@ -237,11 +259,7 @@ public class VisorMemoria extends AppCompatActivity {
                 });
 
                 Toast.makeText(getApplicationContext(), "Nivel Actualizado con Exito", Toast.LENGTH_SHORT).show();
-
-
             }
-
-
         });
 
 
@@ -249,7 +267,8 @@ public class VisorMemoria extends AppCompatActivity {
         editar.setOnClickListener(v -> {
             guardar.setVisibility(View.VISIBLE);
             cancelar.setVisibility(View.VISIBLE);
-            ban_editar=true;
+            ban_editar = true;
+            ban_agrega_nivel = true;
 
 
         });
@@ -257,6 +276,17 @@ public class VisorMemoria extends AppCompatActivity {
 
         //listener borrar nivel
         borrar.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "Borrar nivel", Toast.LENGTH_SHORT).show();
+        });
+
+        //listener agregar nivel
+        agregar.setOnClickListener(v -> {
+            ban_agrega_nivel = true;
+            Toast.makeText(getApplicationContext(), "Agregar nivel", Toast.LENGTH_SHORT).show();
+            reiniciarvistaOpciones();
+            editar.setVisibility(View.INVISIBLE);
+            borrar.setVisibility(View.INVISIBLE);
+
 
         });
 
@@ -303,6 +333,17 @@ public class VisorMemoria extends AppCompatActivity {
             }
 
         });
+    }
+
+
+    private void reiniciarvistaOpciones() {
+        boton_uno.setImageResource(R.drawable.ic_agregar);
+        boton_dos.setImageResource(R.drawable.ic_agregar);
+        boton_tres.setImageResource(R.drawable.ic_agregar);
+        picto_uno.setVisibility(View.INVISIBLE);
+        picto_dos.setVisibility(View.INVISIBLE);
+        picto_tres.setVisibility(View.INVISIBLE);
+
     }
 
 

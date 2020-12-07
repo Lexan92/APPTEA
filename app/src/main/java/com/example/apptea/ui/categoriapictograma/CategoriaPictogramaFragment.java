@@ -163,6 +163,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_NOMBRE_CAT_UPDATE, categoriaPictograma.getCat_pictograma_nombre());
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_NAME_CAT_UPDATE, categoriaPictograma.getCat_pictograma_name());
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_CAT_PREDETERMINADO_UPDATE, categoriaPictograma.isPredeterminado());
+                intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_PICTOGRAMA_ID_UPDATE, categoriaPictograma.getPictograma_id());
                 startActivityForResult(intentUpdate, CAT_UPDATE_REQUEST_CODE);
             }
 
@@ -200,7 +201,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 @Override
                 public void itemLongClicked(CategoriaPictograma categoriaPictograma) {
                     Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagen.class);
-                    intentSeleccion.putExtra(getResources().getString(R.string.categoria),categoriaPictograma.getCat_pictograma_id());
+                    intentSeleccion.putExtra("categoria",categoriaPictograma.getCat_pictograma_id());
                     System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
                     startActivity(intentSeleccion);
             }

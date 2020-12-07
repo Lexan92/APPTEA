@@ -61,6 +61,7 @@ public class FinJuego extends AppCompatActivity {
                 @Override
                 public void onChanged(List<DetalleResultado> detalleResultados) {
                     detalleResultadoAdapter.setDetalleResultados(detalleResultados);
+
                 }
             });
         }

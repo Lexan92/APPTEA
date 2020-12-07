@@ -175,14 +175,42 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
         Bundle bundleEnvio = new Bundle();
         Bundle  bundle = getArguments();
+        Resultado res = new Resultado();
         if (bundle != null) {
-
+            AdministarSesion administarSesion = new AdministarSesion(getContext());
             if (key == 2) {
                 VistaMemoriaPaciente vistaPaciente = new VistaMemoriaPaciente();
                 bundleEnvio.putInt("juegoId",juego.getJuego_id());
                 bundleEnvio.putString("nombreJuego",juego.getJuego_nombre());
-                vistaPaciente.setArguments(bundleEnvio);
+
                 Navigation.findNavController(v).navigate(R.id.vistaMemoriaPaciente2,bundleEnvio);
+                if (administarSesion.obtenerIDSesion() > 0) {
+                    DetalleSesion detalleSesion = new DetalleSesion();
+                    detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
+                    Date hora = UtilidadFecha.obtenerFechaHoraActual();
+                    detalleSesion.setHora_inicio(hora);
+                    detalleSesion.setNombre_opcion("JUEGO: ".concat(juego.getJuego_nombre()));
+
+                    DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
+                    detalleSesionDao.insertarDetalleSesion(detalleSesion);
+
+                    //INSERTANDO EN RESULTADO
+                    Resultado resultado = new Resultado();
+                    resultado.setSesion_id(administarSesion.obtenerIDSesion());
+                    resultado.setNombre_juego(juego.getJuego_nombre());
+                    resultado.setHora_juego(hora);
+                    resultadoViewModel.insertResultado(resultado);
+
+                    res = resultadoDao.obtenerResultado();
+                    System.out.println("Resultado id : " + res.getResultado_id());
+                    System.out.println("Resultado juego : " + res.getNombre_juego());
+                    System.out.println("Resultado SESION : " + res.getSesion_id());
+
+                }
+
+                bundleEnvio.putInt("resultado",res.getResultado_id());
+                System.out.println("RESULTADO AFUERA" + res.getResultado_id());
+                vistaPaciente.setArguments(bundleEnvio);
             } else {
 
 
@@ -191,7 +219,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
             if (numero > 0) {
                 if (bundle.getBoolean("bandera")) { //Si viene del menu principal
                     Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
-                    AdministarSesion administarSesion = new AdministarSesion(getContext());
+
                     if (administarSesion.obtenerIDSesion() > 0) {
                         DetalleSesion detalleSesion = new DetalleSesion();
                         detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
@@ -208,7 +236,6 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                         resultado.setNombre_juego(juego.getJuego_nombre());
                         resultado.setHora_juego(hora);
                         resultadoViewModel.insertResultado(resultado);
-                        Resultado res = new Resultado();
                         res = resultadoDao.obtenerResultado();
                         intent.putExtra("resultado", res);
                         System.out.println("Resultado id : " + res.getResultado_id());

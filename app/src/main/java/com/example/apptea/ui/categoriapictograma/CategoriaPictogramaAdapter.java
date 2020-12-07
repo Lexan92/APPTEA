@@ -79,20 +79,29 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
 
             CategoriaPictograma categoriaPictograma = categoriaPictogramaList.get(position);
             if(isVocabulary==true || categoriaPictograma.isPredeterminado() == true){
-                Glide.with(holder.itemView.getContext())
-                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(categoriaPictograma.getPictograma_id()).getPictograma_imagen()))
-                        .thumbnail(0.5f)
-                        .into(holder.imagen);
+                if (categoriaPictograma.getPictograma_id() == 0) {
+                    if(idioma.getIdioma()==1){
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                    }else{
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
+                    holder.setIsRecyclable(false);
+                }else {
+                    Glide.with(holder.itemView.getContext())
+                            .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(categoriaPictograma.getPictograma_id()).getPictograma_imagen()))
+                            .thumbnail(0.5f)
+                            .into(holder.imagen);
 
-                System.out.println("Idioma es  " + idioma.getIdioma());
-                if(idioma.getIdioma()==1){
-                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-                }else{
-                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
+                    System.out.println("Idioma es  " + idioma.getIdioma());
+                    if (idioma.getIdioma() == 1) {
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                    } else {
+                        holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());
+                    }
 
-                holder.editar.setVisibility(View.GONE);
-                holder.cancelar.setVisibility(View.GONE);
-                holder.setIsRecyclable(false);
+                    holder.editar.setVisibility(View.GONE);
+                    holder.cancelar.setVisibility(View.GONE);
+                    holder.setIsRecyclable(false);
+                }
             }else{
                 if (categoriaPictograma.getPictograma_id() == 0) {
                     if(idioma.getIdioma()==1){

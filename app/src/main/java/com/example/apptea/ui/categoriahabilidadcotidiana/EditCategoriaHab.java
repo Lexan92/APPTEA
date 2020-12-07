@@ -38,6 +38,8 @@ public class EditCategoriaHab extends Activity {
     public static final String EXTRA_NAME_CAT_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_NAME_CAT_UPDATE";
     public static final String EXTRA_CAT_HAB_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_CAT_HAB_UPDATE";
     public static final String EXTRA_CAT_PREDETERMINADO_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_CAT_HAB_UPDATE";
+    public static final String EXTRA_PICTOGRAMA_ID_UPDATE = "com.example.apptea.ui.categoriahabilidadcotidiana.EXTRA_PICTOGRAMA_ID_UPDATE";
+
 
     EditText nombreCat;
     CategoriaHabCotidiana categoriaHabCotidiana = new CategoriaHabCotidiana();
@@ -79,6 +81,7 @@ public class EditCategoriaHab extends Activity {
                         }
 
                     categoriaHabCotidiana.setCat_predeterminado(intent.getBooleanExtra(EXTRA_CAT_PREDETERMINADO_UPDATE,Boolean.parseBoolean(EXTRA_CAT_PREDETERMINADO_UPDATE)));
+                    categoriaHabCotidiana.setPictograma_id(intent.getIntExtra(EXTRA_PICTOGRAMA_ID_UPDATE,-1));
                     replyIntent.putExtra(EXTRA_CAT_HAB_UPDATE, categoriaHabCotidiana);
                     setResult(RESULT_OK, replyIntent);
                 }

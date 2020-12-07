@@ -125,15 +125,24 @@ public class VisorMemoria extends AppCompatActivity {
             cancelar.setVisibility(View.INVISIBLE);
             listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
             listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
-                setearOpciones(preguntas.get(0).getPregunta_id());
+
+
+
 
                 if (preguntas.size()==3){
-                        agregar.setVisibility(View.INVISIBLE);
+                    setearOpciones(preguntas.get(0).getPregunta_id());
+                    agregar.setVisibility(View.INVISIBLE);
                     siguiente.setVisibility(View.VISIBLE);
                     anterior.setVisibility(View.VISIBLE);
                 }else   if(preguntas.size()>1&&preguntas.size()<4){
+                    setearOpciones(preguntas.get(0).getPregunta_id());
                         siguiente.setVisibility(View.VISIBLE);
                         anterior.setVisibility(View.VISIBLE);
+                }else if (preguntas.size()==0){
+                    editar.setVisibility(View.INVISIBLE);
+                    agregar.setVisibility(View.INVISIBLE);
+                    borrar.setVisibility(View.INVISIBLE);
+
                 }
             });
         }

@@ -210,8 +210,10 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
 
             } else if (numero == 0) {
-                Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
+                boolean ban_listado = true;
+                Intent intent = new Intent(getActivity(), VisorMemoria.class);
                 intent.putExtra("juego", juego);
+                intent.putExtra("ban_listado", ban_listado);
                 startActivity(intent);
 
             }

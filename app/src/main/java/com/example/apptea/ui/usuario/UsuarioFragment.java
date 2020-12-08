@@ -141,6 +141,18 @@ public class UsuarioFragment extends Fragment {
         adapter.setButtonClicked(new UsuarioAdapter.ButtonClicked() {
             @Override
             public void updateClickedUsuario(Usuario usuario) {
+
+               /* Bundle bundleEnvio = new Bundle();
+                EditUsuarioFragment editUsuarioFragment = new EditUsuarioFragment();
+                bundleEnvio.putInt(EditUsuarioFragment.EXTRA_ID_USUARIO_UPDATE,usuario.getUsuario_id());
+                bundleEnvio.putString(EditUsuarioFragment.EXTRA_NOMBRE_USUARIO_UPDATE, usuario.getUsuario_nombre());
+                bundleEnvio.putString(EditUsuarioFragment.EXTRA_APELLIDO_USUARIO_UPDATE, usuario.getUsuario_apellido());
+                bundleEnvio.putInt(EditUsuarioFragment.EXTRA_ROL_USUARIO_UPDATE, usuario.getRol_id());
+                bundleEnvio.putString(EditUsuarioFragment.EXTRA_CORREO_USUARIO_UPDATE, usuario.getCorreo());
+                bundleEnvio.putString(EditUsuarioFragment.EXTRA_CONTRASEÑA_UPDATE, usuario.getContrasenia());
+                setTargetFragment();
+                startActivityForResult(intentUpdate,USUARIO_UPDATE_REQUEST_CODE)*/
+
                 Intent intentUpdate = new Intent(getActivity(), EditUsuario.class);
                 intentUpdate.putExtra(EditUsuario.EXTRA_ID_USUARIO_UPDATE, usuario.getUsuario_id());
                 intentUpdate.putExtra(EditUsuario.EXTRA_NOMBRE_USUARIO_UPDATE, usuario.getUsuario_nombre());
@@ -172,7 +184,7 @@ public class UsuarioFragment extends Fragment {
             Usuario usuario = (Usuario) data.getSerializableExtra(EditUsuario.EXTRA_USUARIO_UPDATE);
             usuarioViewModel.update(usuario);
         } else {
-           System.out.println("No edito");
+           System.out.println("Ups ocurrio un error al guardar los datos!!");
         }
     }
 

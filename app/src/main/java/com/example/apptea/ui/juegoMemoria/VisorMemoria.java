@@ -61,7 +61,7 @@ public class VisorMemoria extends AppCompatActivity {
     //posicion del nivel
     int posicion;
 
-    int contador = 0;
+    int cuenta = 0;
 
 
     @Override
@@ -123,22 +123,21 @@ public class VisorMemoria extends AppCompatActivity {
             editar.setVisibility(View.VISIBLE);
             borrar.setVisibility(View.VISIBLE);
             cancelar.setVisibility(View.INVISIBLE);
+            posicion=0;
             listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
             listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
 
 
-
-
-                if (preguntas.size()==3){
-                    setearOpciones(preguntas.get(0).getPregunta_id());
+                if (preguntas.size() == 3) {
+                    setearOpciones(preguntas.get(cuenta).getPregunta_id());
                     agregar.setVisibility(View.INVISIBLE);
                     siguiente.setVisibility(View.VISIBLE);
                     anterior.setVisibility(View.VISIBLE);
-                }else   if(preguntas.size()>1&&preguntas.size()<4){
-                    setearOpciones(preguntas.get(0).getPregunta_id());
-                        siguiente.setVisibility(View.VISIBLE);
-                        anterior.setVisibility(View.VISIBLE);
-                }else if (preguntas.size()==0){
+                } else if (preguntas.size() > 1 && preguntas.size() < 4) {
+                    setearOpciones(preguntas.get(cuenta).getPregunta_id());
+                    siguiente.setVisibility(View.VISIBLE);
+                    anterior.setVisibility(View.VISIBLE);
+                } else if (preguntas.size() == 0) {
                     editar.setVisibility(View.INVISIBLE);
                     agregar.setVisibility(View.INVISIBLE);
                     borrar.setVisibility(View.INVISIBLE);
@@ -173,7 +172,7 @@ public class VisorMemoria extends AppCompatActivity {
 
         //listener boton cancelar
         cancelar.setOnClickListener(v -> {
-            if (ban_agrega_nivel){
+            if (ban_agrega_nivel) {
                 finish();
             }
             guardar.setVisibility(View.INVISIBLE);
@@ -299,6 +298,36 @@ public class VisorMemoria extends AppCompatActivity {
 
         });
 
+        //listener nivel siguiente
+        siguiente.setOnClickListener(v -> {
+            anterior.setVisibility(View.VISIBLE);
+
+            posicion++;
+            listadoPreguntas.observe(VisorMemoria.this,preguntas -> {
+                int sizePreguntas = preguntas.size();
+                if (posicion<=sizePreguntas-1){
+                    setearOpciones(preguntas.get(posicion).getPregunta_id());
+                }else {
+                    siguiente.setVisibility(View.INVISIBLE);
+                    posicion--;
+                }
+            });
+        });
+
+
+        //listener nivel anterior
+        anterior.setOnClickListener(v -> {
+            siguiente.setVisibility(View.VISIBLE);
+           posicion--;
+           listadoPreguntas.observe(VisorMemoria.this,preguntas -> {
+               if(0<=posicion){
+                   setearOpciones(preguntas.get(posicion).getPregunta_id());
+               }else {
+                   anterior.setVisibility(View.INVISIBLE);
+                   posicion++;
+               }
+           });
+        });
 
     }
 

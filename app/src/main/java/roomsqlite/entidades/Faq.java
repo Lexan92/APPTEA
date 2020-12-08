@@ -17,14 +17,18 @@ public class Faq implements Serializable {
     @NonNull
     private String faq_info;
 
+    private String faq_question;
+
+
     @Ignore
     public Faq() {
     }
 
 
-    public Faq(int faq_id, @NonNull String faq_info) {
+    public Faq(int faq_id, @NonNull String faq_info, String faq_question) {
         this.faq_id = faq_id;
         this.faq_info = faq_info;
+        this.faq_question = faq_question;
     }
 
     public int getFaq_id() {
@@ -42,5 +46,13 @@ public class Faq implements Serializable {
 
     public void setFaq_info(@NonNull String faq_info) {
         this.faq_info = faq_info;
+    }
+
+    public String getFaq_question() {
+        return faq_question;
+    }
+
+    public void setFaq_question(String faq_question) {
+        this.faq_question = faq_question;
     }
 }

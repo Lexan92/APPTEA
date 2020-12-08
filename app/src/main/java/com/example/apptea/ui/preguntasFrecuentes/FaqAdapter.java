@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaAdapter;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.FaqHolder> imple
     private final LayoutInflater mInflater;
     private List<Faq> faqList;
     private List<Faq> faqListFull;
+    AdministarSesion idioma ;
 
 
     class FaqHolder extends RecyclerView.ViewHolder {
@@ -36,7 +38,7 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.FaqHolder> imple
 
    FaqAdapter(Context context){
         mInflater = LayoutInflater.from(context);
-
+       idioma = new AdministarSesion(context);
     }
 
     @Override
@@ -53,10 +55,17 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.FaqHolder> imple
         int mposition = position;
         if (faqList != null && position < faqList.size()) {
             Faq current = faqList.get(position);
+
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
                 holder.faqItemView.setText(current.getFaq_info());
-                holder.setIsRecyclable(false);
+            }else{
+                holder.faqItemView.setText(current.getFaq_question());
+            }
+            holder.setIsRecyclable(false);
         }else{
             holder.faqItemView.setText("No existe ninguna categoria para habilidades cotidianas");
+            holder.setIsRecyclable(false);
         }
     }
 

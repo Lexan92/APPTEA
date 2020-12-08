@@ -28,6 +28,7 @@ import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
+import com.example.apptea.ui.juegoSeleccion.ResultadoViewModel;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
@@ -38,6 +39,7 @@ import java.util.Date;
 import java.util.List;
 
 import roomsqlite.dao.DetalleSesionDao;
+import roomsqlite.dao.ResultadoDao;
 import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.DetalleSesion;
@@ -55,6 +57,8 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
     LiveData<CategoriaJuego> categoriaJuegoLiveData;
     List<Juego> juegosConPregunta = new ArrayList<>();
     int key = 0;
+    ResultadoViewModel resultadoViewModel;
+    ResultadoDao resultadoDao;
 
 
     public DetalleJuegoPaciente2() {
@@ -101,6 +105,9 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
         preguntaViewModel = new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
         categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         Bundle objetoCategoriaJuego = getArguments();
+        resultadoViewModel = new ViewModelProvider(this).get(ResultadoViewModel.class);
+        resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
+
         if (objetoCategoriaJuego != null) {
             key = objetoCategoriaJuego.getInt("objeto", -1);
             juegoViewModel.findJuegosByCategoriaId(key).observe(getActivity(), new Observer<List<Juego>>() {
@@ -163,43 +170,50 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
 
     @Override
     public void onJuegoClick(Juego juego, View v) {
-
-
-
-
-
         Bundle bundle = getArguments();
         if (bundle != null) {
             //se verifica la cantidad de preguntas que tiene el juego seleccionado
+            Bundle bundleEnvio = new Bundle();
+            AdministarSesion administarSesion = new AdministarSesion(getContext());
+            Resultado res = new Resultado();
             int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
             if (numero > 0) {
                 if (bundle.getBoolean("bandera")) { //Si viene del menu principal
 
+                    VistaMemoriaPaciente vistaPaciente = new VistaMemoriaPaciente();
+                    bundleEnvio.putInt("juegoId", juego.getJuego_id());
+                    bundleEnvio.putString("nombreJuego", juego.getJuego_nombre());
 
-                    //cambiar activity a la clase de turish
-                    Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
-                    AdministarSesion administarSesion = new AdministarSesion(getContext());
+                    Navigation.findNavController(v).navigate(R.id.vistaMemoriaPaciente2, bundleEnvio);
                     if (administarSesion.obtenerIDSesion() > 0) {
                         DetalleSesion detalleSesion = new DetalleSesion();
                         detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                         Date hora = UtilidadFecha.obtenerFechaHoraActual();
                         detalleSesion.setHora_inicio(hora);
                         detalleSesion.setNombre_opcion("JUEGO: ".concat(juego.getJuego_nombre()));
+
                         DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
 
+                        //INSERTANDO EN RESULTADO
+                        Resultado resultado = new Resultado();
+                        resultado.setSesion_id(administarSesion.obtenerIDSesion());
+                        resultado.setNombre_juego(juego.getJuego_nombre());
+                        resultado.setHora_juego(hora);
+                        resultadoViewModel.insertResultado(resultado);
+
+                        res = resultadoDao.obtenerResultado();
+                        System.out.println("Resultado id : " + res.getResultado_id());
+                        System.out.println("Resultado juego : " + res.getNombre_juego());
+                        System.out.println("Resultado SESION : " + res.getSesion_id());
+
                     }
-                    intent.putExtra("juego", juego);
-                    startActivity(intent);
-                } else {
-                    boolean ban_listado = true;
-                    Intent intent = new Intent(getActivity(), VisorMemoria.class);
-                    intent.putExtra("juego", juego);
-                    intent.putExtra("ban_listado", ban_listado);
-                    startActivity(intent);
+
+                    bundleEnvio.putInt("resultado", res.getResultado_id());
+                    System.out.println("RESULTADO AFUERA" + res.getResultado_id());
+                    vistaPaciente.setArguments(bundleEnvio);
+
                 }
-
-
             }
         }
 

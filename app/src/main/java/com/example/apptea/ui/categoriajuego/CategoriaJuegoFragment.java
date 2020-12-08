@@ -122,9 +122,9 @@ public class CategoriaJuegoFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
                     } else if (categoriaJuego.getCategoriaJuegoId() == 2) {
                         //fragment para paciente categoria 2
-                        DetalleJuegoPaciente2 detalle_juego = new DetalleJuegoPaciente2();
+                        DetalleJuegoPaciente detalle_juego = new DetalleJuegoPaciente();
                         detalle_juego.setArguments(bundleEnvio);
-                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente2, bundleEnvio);
+                        Navigation.findNavController(v).navigate(R.id.detalleJuegoPaciente, bundleEnvio);
                     }
                 } else {
 

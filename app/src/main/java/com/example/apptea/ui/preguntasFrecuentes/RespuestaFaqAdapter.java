@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class RespuestaFaqAdapter extends RecyclerView.Adapter<RespuestaFaqAdapte
     private OnRespuestaListener mOnRespuestaListener;
     private final LayoutInflater mInflater;
     private List<RespuestaFaq> respuestaFaqList;
+    AdministarSesion idioma ;
 
     @Override
     public void onClick(View v) {
@@ -48,6 +50,7 @@ public class RespuestaFaqAdapter extends RecyclerView.Adapter<RespuestaFaqAdapte
 
     public RespuestaFaqAdapter(Context context, RespuestaFaqAdapter.OnRespuestaListener onRespuestaListener){
         mInflater = LayoutInflater.from(context);
+        idioma = new AdministarSesion(context);
         this.mOnRespuestaListener = onRespuestaListener;
     }
 
@@ -64,7 +67,13 @@ public class RespuestaFaqAdapter extends RecyclerView.Adapter<RespuestaFaqAdapte
 
         if(respuestaFaqList !=null){
             RespuestaFaq current = respuestaFaqList.get(position);
-            holder.respuestaItemView.setText(current.getRespuesta());
+            System.out.println("Idioma es  " + idioma.getIdioma());
+            if(idioma.getIdioma()==1){
+                holder.respuestaItemView.setText(current.getRespuesta());
+            }else{
+                holder.respuestaItemView.setText(current.getAnswer());
+            }
+
             holder.setIsRecyclable(false);
         }else{
             holder.respuestaItemView.setText("No existe ninguna categoria para habilidades cotidianas");

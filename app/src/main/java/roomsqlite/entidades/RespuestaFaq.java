@@ -30,14 +30,17 @@ public class RespuestaFaq implements Serializable {
     @NonNull
     private int orden;
 
+    private String answer;
+
     @Ignore
     public RespuestaFaq() {
     }
 
-    public RespuestaFaq(int respuesta_faq_id, int faq_id, @NonNull String respuesta, int orden) {
+    public RespuestaFaq(int respuesta_faq_id, int faq_id, @NonNull String respuesta, String answer, int orden) {
         this.respuesta_faq_id = respuesta_faq_id;
         this.faq_id = faq_id;
         this.respuesta = respuesta;
+        this.answer = answer;
         this.orden = orden;
     }
 
@@ -72,5 +75,13 @@ public class RespuestaFaq implements Serializable {
 
     public void setOrden(int orden) {
         this.orden = orden;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

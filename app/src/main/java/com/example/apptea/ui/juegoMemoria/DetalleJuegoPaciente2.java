@@ -170,7 +170,7 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
 
     @Override
     public void onJuegoClick(Juego juego, View v) {
-        Bundle bundle = getArguments();
+      /*  Bundle bundle = getArguments();
         if (bundle != null) {
             //se verifica la cantidad de preguntas que tiene el juego seleccionado
             Bundle bundleEnvio = new Bundle();
@@ -215,7 +215,7 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
 
                 }
             }
-        }
+        }*/
 
     }
 }

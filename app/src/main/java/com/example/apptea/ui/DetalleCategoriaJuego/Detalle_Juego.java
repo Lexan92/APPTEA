@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -107,10 +108,10 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
         if (objetoCategoriaJuego != null) {
             key = objetoCategoriaJuego.getInt("objeto", -1);
+
             juegoViewModel.findJuegosByCategoriaId(key).observe(getActivity(), new Observer<List<Juego>>() {
                 @Override
                 public void onChanged(List<Juego> juegos) {
-
 
                             //si la llamada  proviene del menu lateral, se agregan todos los juegos al adaptador
                             adapter.setJuegos(juegos);
@@ -190,17 +191,39 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
     public void onJuegoClick(Juego juego) {
 
         Bundle bundle = getArguments();
+        int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
         if (bundle != null) {
+            if(key==1){
+                //se verifica la cantidad de preguntas que tiene el juego seleccionado
 
-            //se verifica la cantidad de preguntas que tiene el juego seleccionado
-            int numero = preguntaViewModel.numeroPreguntas(juego.getJuego_id());
-            if (numero > 0) {
-                if (bundle.getBoolean("bandera")) {
-                    Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
+                if (numero > 0) {
+                    if (bundle.getBoolean("bandera")) {
+                        Intent intent = new Intent(getActivity(), SeleccionaOpcion.class);
+                        intent.putExtra("juego", juego);
+                        startActivity(intent);
+
+                    } else {
+
+                        Intent intent = new Intent(getActivity(), VisorPregunta.class);
+                        intent.putExtra("juego", juego);
+                        startActivity(intent);
+                    }
+
+
+                } else if (numero == 0) {
+                    Intent intent = new Intent(getActivity(), JuegoPrincipal.class);
                     intent.putExtra("juego", juego);
                     startActivity(intent);
 
+                }
+            }else if (key==2){
+
+
+                if (bundle.getBoolean("bandera")) {
+
+
                 } else {
+
                     boolean ban_listado = true;
                     Intent intent = new Intent(getActivity(), VisorMemoria.class);
                     intent.putExtra("juego", juego);
@@ -210,6 +233,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
 
             } else if (numero == 0) {
+
                 boolean ban_listado = true;
                 Intent intent = new Intent(getActivity(), VisorMemoria.class);
                 intent.putExtra("juego", juego);
@@ -217,7 +241,10 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
                 startActivity(intent);
 
             }
-        }
+            }
+
+
+
 
     }
 

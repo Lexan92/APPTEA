@@ -21,8 +21,10 @@ import com.example.apptea.R;
 import com.example.apptea.ui.juego.BuscarPictograma;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
+import com.example.apptea.ui.juego.VisorPregunta;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -123,25 +125,33 @@ public class VisorMemoria extends AppCompatActivity {
             editar.setVisibility(View.VISIBLE);
             borrar.setVisibility(View.VISIBLE);
             cancelar.setVisibility(View.INVISIBLE);
-            posicion=0;
+            posicion = 0;
             listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
             listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
 
+                
+                if (preguntas.size() == 2) {
+                    setearOpciones(preguntas.get(cuenta).getPregunta_id());
+                    agregar.setVisibility(View.VISIBLE);
+                    siguiente.setVisibility(View.VISIBLE);
+                    anterior.setVisibility(View.VISIBLE);
 
-                if (preguntas.size() == 3) {
+                } else if (preguntas.size() == 1) {
                     setearOpciones(preguntas.get(cuenta).getPregunta_id());
-                    agregar.setVisibility(View.INVISIBLE);
-                    siguiente.setVisibility(View.VISIBLE);
-                    anterior.setVisibility(View.VISIBLE);
-                } else if (preguntas.size() > 1 && preguntas.size() < 4) {
-                    setearOpciones(preguntas.get(cuenta).getPregunta_id());
-                    siguiente.setVisibility(View.VISIBLE);
-                    anterior.setVisibility(View.VISIBLE);
+
+                    agregar.setVisibility(View.VISIBLE);
+
                 } else if (preguntas.size() == 0) {
                     editar.setVisibility(View.INVISIBLE);
                     agregar.setVisibility(View.INVISIBLE);
                     borrar.setVisibility(View.INVISIBLE);
 
+
+                } else if (preguntas.size() == 3) {
+                    setearOpciones(preguntas.get(cuenta).getPregunta_id());
+                    agregar.setVisibility(View.INVISIBLE);
+                    siguiente.setVisibility(View.VISIBLE);
+                    anterior.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -284,13 +294,30 @@ public class VisorMemoria extends AppCompatActivity {
 
         //listener borrar nivel
         borrar.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Borrar nivel", Toast.LENGTH_SHORT).show();
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(VisorMemoria.this);
+
+            builder.setTitle("Eliminar Nivel");
+            builder.setMessage("El nivel será eliminado del juego actual ¿Desea continuar?");
+            builder.setNegativeButton("CANCELAR", (dialog, which) -> {
+            });
+            builder.setPositiveButton("ACEPTAR", (dialog, which) -> {
+                listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
+                    if (preguntas.size() != 0) {
+                        Pregunta preguntaBorrar = preguntas.get(posicion);
+                        borrarPregunta(preguntaBorrar);
+                        finish();
+                    }
+
+                });
+                listadoPreguntas.removeObservers(VisorMemoria.this);
+            });
+
+            builder.show();
         });
 
         //listener agregar nivel
         agregar.setOnClickListener(v -> {
             ban_agrega_nivel = true;
-            Toast.makeText(getApplicationContext(), "Agregar nivel", Toast.LENGTH_SHORT).show();
             reiniciarvistaOpciones();
             editar.setVisibility(View.INVISIBLE);
             borrar.setVisibility(View.INVISIBLE);
@@ -303,11 +330,11 @@ public class VisorMemoria extends AppCompatActivity {
             anterior.setVisibility(View.VISIBLE);
 
             posicion++;
-            listadoPreguntas.observe(VisorMemoria.this,preguntas -> {
+            listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
                 int sizePreguntas = preguntas.size();
-                if (posicion<=sizePreguntas-1){
+                if (posicion <= sizePreguntas - 1) {
                     setearOpciones(preguntas.get(posicion).getPregunta_id());
-                }else {
+                } else {
                     siguiente.setVisibility(View.INVISIBLE);
                     posicion--;
                 }
@@ -318,17 +345,27 @@ public class VisorMemoria extends AppCompatActivity {
         //listener nivel anterior
         anterior.setOnClickListener(v -> {
             siguiente.setVisibility(View.VISIBLE);
-           posicion--;
-           listadoPreguntas.observe(VisorMemoria.this,preguntas -> {
-               if(0<=posicion){
-                   setearOpciones(preguntas.get(posicion).getPregunta_id());
-               }else {
-                   anterior.setVisibility(View.INVISIBLE);
-                   posicion++;
-               }
-           });
+            posicion--;
+            listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
+                if (0 <= posicion) {
+                    setearOpciones(preguntas.get(posicion).getPregunta_id());
+                } else {
+                    anterior.setVisibility(View.INVISIBLE);
+                    posicion++;
+                }
+            });
         });
 
+    }
+
+    private void borrarPregunta(Pregunta pregunta) {
+        preguntaViewModel.delete(pregunta);
+     /*   boolean banderaDos = true;
+        Intent intent = new Intent(VisorMemoria.this, VisorMemoria.class);
+        intent.putExtra("juego", juego);
+        intent.putExtra("ban_listado",banderaDos);
+        startActivity(intent);*/
+        finish();
     }
 
     private void setearOpciones(int pregunta_id) {

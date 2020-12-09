@@ -5,7 +5,7 @@
     <string name="txt9">User</string>
 
 
-    --Menu names
+    --MENU NAMES
     <string name="menu_inicio">Start</string>
     <string name="menu_gestion_pictograma">Pictograms management</string>
     <string name="menu_mi_perfil">My Profile</string>
@@ -17,11 +17,15 @@
     <string name="menu_cerrar_sesion">Sign out</string>
 
 
-    -- Options menu person tea
+    -- OPTIONS MENU PRINCIPAL
     <string name="opcion_menu_tea_vocabulario">Vocabulary</string>
+    <string name="juegos_interactivos">Interactive games</string>
+    <string name="habilidades_cotidianas">Everyday Skills</string>
+    <string name="vocabulario">Vocabulary</string>
+    <string name="frases">Phrases</string>
 
 
-    --Installation buttons
+    --INSTALLATION
     <string name="txt1">"Welcome "</string>
     <string name="txt2" translatable="false">TEAyudo jugando</string>
     <string name="txt3">Terms and Conditions</string>
@@ -30,9 +34,19 @@
     <string name="button2">Direct access</string>
     <string name="textarea">Modify these terms and conditions.</string>
 
+    --CONFIGURATION
+    <string name="idioma">Languages</string>
+    <string name="español">Spanish</string>
+    <string name="ingles">English</string>
+    <string name="desbloqueo">Unlock</string>
+    <string name="porContrasena">By password</string>
+    <string name="porHuella">By fingerprint</string>
+    <string name="seleccionarIdioma">Selection lenguages</string>
+
+
     --Acceso pin
     <string name="txt5">Password Access</string>
-    <string name="button3">Enterokay</string>
+    <string name="button3">Log in</string>
     <string name="txt6"> Enter Password</string>
     <string name="txt7"> Forgot your password?</string>
 
@@ -102,10 +116,7 @@
 
 
 
-    <string name="juegos_interactivos">Interactive games</string>
-    <string name="habilidades_cotidianas">Everyday Skills</string>
-    <string name="vocabulario">Vocabulary</string>
-    <string name="frases">Phrases</string>
+
 
     --Phrases
     <string name="creaerFrases">Create Phrases</string>
@@ -227,7 +238,7 @@
     <string name="CATEGORIA">CATEGORY:</string>
     <string name="buscar_pictogramas">Pictograms Search</string>
     <string name="opcionMenuVocabluario">MENU OPTION: Vocabulary</string>
-
+    <string name="seleccionarDesbloqueo">Selection Unlock</string>
 
 
 </resources>

@@ -32,7 +32,7 @@ public class TTSManagerSecuencia {
         public void onInit(int status) {
             //ESTABLECIENDO IDIOMA
             Locale spanish = new Locale("es", "ES");
-            Locale english = new Locale("en","EN");
+            Locale english = new Locale("en","US");
             if (status == TextToSpeech.SUCCESS) {
                 int result;
                 if(idioma.getIdioma()==1){

@@ -1,8 +1,10 @@
 package com.example.apptea.ui.configuracion;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -22,8 +24,9 @@ import java.util.ArrayList;
 
 public class configuracionFragment extends Fragment {
 
-    private Spinner spinnerIdioma, spinnerDesbloqueo;
-    String opcionIdioma, opcionDesbloqueo;
+    Button spinnerIdioma, spinnerDesbloqueo;
+    String [] opcionIdioma, opcionDesbloqueo;
+    AdministarSesion administarSesion;
 
 
     @Override
@@ -40,64 +43,103 @@ public class configuracionFragment extends Fragment {
 
         spinnerIdioma = vista.findViewById(R.id.IdiomaSelect);
         spinnerDesbloqueo= vista.findViewById(R.id.DesbloqueoSelect);
-        AdministarSesion administarSesion = new AdministarSesion(getContext());
-        int español= 1, ingles= 2;
+        administarSesion = new AdministarSesion(getContext());
 
-
-        ArrayList<String> idioma = new ArrayList<String>();
-        idioma.add("Español");
-        idioma.add("Ingles");
-
-        ArrayList<String> desbloqueo = new ArrayList<String>();
-        desbloqueo.add("Por Contraseña");
-        desbloqueo.add("Por Huella");
-
-        ArrayAdapter<CharSequence> adapterIdioma = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_dropdown_item,idioma);
-        spinnerIdioma.setAdapter(adapterIdioma);
-
-        ArrayAdapter<CharSequence> adapterDesbloqueo = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_dropdown_item,desbloqueo);
-        spinnerDesbloqueo.setAdapter(adapterDesbloqueo);
-
-        //SETEANDO SPINNER
+        //SETEANDO IDIOMA
         System.out.println("Idioma es en share " +administarSesion.getIdioma());
         if(administarSesion.getIdioma()==1){
-            spinnerIdioma.setSelection(0);
+            spinnerIdioma.setText(R.string.español);
         }
         else
-            spinnerIdioma.setSelection(1);
+            spinnerIdioma.setText(R.string.ingles);
+
+        System.out.println("desbloqueo es en share " +administarSesion.getIdioma());
+        if(administarSesion.getDesbloqueo()==1){
+            spinnerDesbloqueo.setText(R.string.porContrasena);
+        }
+        else
+            spinnerDesbloqueo.setText(R.string.porHuella);
 
 
-        //SELECCION SPINNER Y ACTUALIZANDO SHAREPREFERENCE
-        spinnerIdioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        spinnerIdioma.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch(position){
-                    case 0:
-                        //ACTUALIZANDO SHAREPREFERENCES
-                        administarSesion.configuracionIdioma(español);
-                        administarSesion.getIdioma();
-                        System.out.println("Idioma es español " + administarSesion.getIdioma());
-                        break;
-
-                    case 1:
-                        //ACTUALIZANDO SHAREPREFERENCES
-                        administarSesion.configuracionIdioma(ingles);
-                        System.out.println("Idioma  es ingles " + administarSesion.getIdioma());
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View v) {
+                SelectIdioma();
             }
         });
 
-
-
+        spinnerDesbloqueo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectDesbloqueo();
+            }
+        });
 
         return vista;
     }
 
+    private void SelectIdioma(){
+        int codespañol= 1, codingles= 2;
+        AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+        b.setTitle(getResources().getString(R.string.seleccionarIdioma));
+
+        opcionIdioma = new String[]{getResources().getString(R.string.español), getResources().getString(R.string.ingles) };
+        b.setItems(opcionIdioma, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                switch(which){
+                    case 0:
+                        //ACTUALIZANDO SHAREPREFERENCES
+                        System.out.println("Idioma es español " + codespañol);
+                        administarSesion.configuracionIdioma(codespañol);
+                        System.out.println("Idioma es español " + administarSesion.getIdioma());
+                        spinnerIdioma.setText(R.string.español);
+                        break;
+
+                    case 1:
+                        //ACTUALIZANDO SHAREPREFERENCES
+                        administarSesion.configuracionIdioma(codingles);
+                        System.out.println("Idioma  es ingles " + administarSesion.getIdioma());
+                        spinnerIdioma.setText(R.string.ingles);
+                        break;
+                }
+            }
+        });
+        b.show();
+    }
+
+    private void SelectDesbloqueo(){
+        AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+        b.setTitle(getResources().getString(R.string.seleccionarDesbloqueo));
+        int contrasena=1,huella=2;
+        opcionDesbloqueo = new String[]{getResources().getString(R.string.porContrasena), getResources().getString(R.string.porHuella) };
+
+        b.setItems(opcionDesbloqueo, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                switch(which){
+                    case 0:
+                        //ACTUALIZANDO SHAREPREFERENCES
+                        administarSesion.configurarDesbloqueo(contrasena);
+                        spinnerDesbloqueo.setText(R.string.porContrasena);
+                        break;
+
+                    case 1:
+                        //ACTUALIZANDO SHAREPREFERENCES
+                        administarSesion.configurarDesbloqueo(huella);
+                        spinnerDesbloqueo.setText(R.string.porHuella);
+                        break;
+                }
+            }
+        });
+        b.show();
+    }
+
+    private void updateStrigs(){
+
+    }
 
 }

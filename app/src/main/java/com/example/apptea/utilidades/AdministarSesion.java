@@ -98,6 +98,7 @@ public class AdministarSesion {
     //CONFIGURACION
 
     public void configuracionIdioma(int idioma){
+
         editor.putInt("codIdioma", idioma);
         editor.commit();
     }

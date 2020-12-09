@@ -8,7 +8,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    --Nombre de Menus
+    --NOMBRE DE MENUS
 
     <string name="menu_inicio">Inicio</string>
     <string name="menu_gestion_pictograma">Gestión de Pictogramas</string>
@@ -23,10 +23,17 @@
     <string name="home_second">Home Second</string>
     <string name="nombre_opcion_menu">nombre_opcion_menu</string>
 
-    -- Opciones menu persona tea
-    <string name="opcion_menu_tea_vocabulario">Vocabulario</string>
+    --BOTONES
 
-    --botones instalacion
+
+    -- OPCIONES DE APRENDIZAJE MENU PRINCIPAL
+    <string name="opcion_menu_tea_vocabulario">Vocabulario</string>
+    <string name="juegos_interactivos">Juegos Interactivos</string>
+    <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
+    <string name="vocabulario">Vocabulario</string>
+    <string name="frases">Frases</string>
+
+    --INSTALACION
     <string name="txt1">Bienvenido a</string>
     <string name="txt2" translatable="false">TEAyudo jugando</string>
     <string name="txt3">Terminos y Condiciones</string>
@@ -35,14 +42,17 @@
     <string name="button2">Acceso directo</string>
     <string name="textarea">Modificar estos terminos y condiciones </string>
 
-    --Acceso pin
-    <string name="txt5">Acceso con Contraseña</string>
-    <string name="button3">Ingresar</string>
-    <string name="txt6">Ingrese la Contraseña</string>
-    <string name="txt7">¿Olvidaste tu contraseña?</string>
+    --CONFIGURACION
+    <string name="idioma"> Idioma </string>
+    <string name="español">Español </string>
+    <string name="ingles">Ingles </string>
+    <string name="desbloqueo">Desbloqueo </string>
+    <string name="porContrasena">Por Contraseña </string>
+    <string name="porHuella">Por Huella </string>
+    <string name="seleccionarIdioma">Seleccionar Idioma </string>
+    <string name="seleccionarDesbloqueo">Seleccionar Desbloqueo </string>
 
-
-    --registro de usuario
+    --REGISTRO DE USUARIO
     <string name="datos">Datos Generales</string>
     <string name="editarDatos">Editar Datos Generales</string>
     <string name="tituloCamContrasenia">Cambiar Contraseña</string>
@@ -64,6 +74,11 @@
     <string name="campo_codigo">Código</string>
     <string name="button_validar">Validar</string>
 
+    --ACCESO PIN
+    <string name="txt5">Acceso con Contraseña</string>
+    <string name="button3">Ingresar</string>
+    <string name="txt6">Ingrese la Contraseña</string>
+    <string name="txt7">¿Olvidaste tu contraseña?</string>
 
     --Mi perfil
     <string name="txt8">Acerca de TEAyudo Jugando</string>
@@ -119,10 +134,7 @@
     <string name="txt19">Actualizar Imagen</string>
 
 
-    <string name="juegos_interactivos">Juegos Interactivos</string>
-    <string name="habilidades_cotidianas">Habilidades Cotidianas</string>
-    <string name="vocabulario">Vocabulario</string>
-    <string name="frases">Frases</string>
+
 
     --frases
     <string name="creaerFrases">Crear Frases</string>

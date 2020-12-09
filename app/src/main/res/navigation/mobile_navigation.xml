@@ -73,9 +73,6 @@
         <action
             android:id="@+id/action_nav_gestion_juego_to_detalleJuegoPaciente"
             app:destination="@id/detalleJuegoPaciente" />
-        <action
-            android:id="@+id/action_nav_gestion_juego_to_detalleJuegoPaciente2"
-            app:destination="@id/detalleJuegoPaciente2" />
     </fragment>
 
     <fragment
@@ -178,6 +175,9 @@
         <action
             android:id="@+id/action_detalleJuegoPaciente_to_nav_gestion_juego"
             app:destination="@id/nav_gestion_juego" />
+        <action
+            android:id="@+id/action_detalleJuegoPaciente_to_vistaMemoriaPaciente22"
+            app:destination="@id/vistaMemoriaPaciente2" />
     </fragment>
     <activity
         android:id="@+id/nuevoJuego"
@@ -247,18 +247,6 @@
         android:label="fragment_comentario_dialogo"
         tools:layout="@layout/fragment_comentario_dialogo" />
     <fragment
-        android:id="@+id/detalleJuegoPaciente2"
-        android:name="com.example.apptea.ui.juegoMemoria.DetalleJuegoPaciente2"
-        android:label="fragment_detalle_juego_paciente2"
-        tools:layout="@layout/fragment_detalle_juego_paciente2" >
-        <action
-            android:id="@+id/action_detalleJuegoPaciente2_to_nav_gestion_juego"
-            app:destination="@id/nav_gestion_juego"/>
-        <action
-            android:id="@+id/action_detalleJuegoPaciente2_to_vistaMemoriaPaciente2"
-            app:destination="@id/vistaMemoriaPaciente2" />
-    </fragment>
-    <fragment
         android:id="@+id/nav_menu_configuracion"
         android:name="com.example.apptea.ui.configuracion.configuracionFragment"
         android:label="Configuracion"
@@ -267,5 +255,9 @@
         android:id="@+id/vistaMemoriaPaciente2"
         android:name="com.example.apptea.ui.juegoMemoria.VistaMemoriaPaciente"
         android:label="Juego de Memoria"
-        tools:layout="@layout/fragment_vista_memoria_paciente" />
+        tools:layout="@layout/fragment_vista_memoria_paciente" >
+        <action
+            android:id="@+id/action_vistaMemoriaPaciente2_to_detalleJuegoPaciente"
+            app:destination="@id/detalleJuegoPaciente" />
+    </fragment>
 </navigation>

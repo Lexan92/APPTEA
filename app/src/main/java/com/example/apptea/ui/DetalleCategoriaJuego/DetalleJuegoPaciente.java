@@ -106,6 +106,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
 
 
+
         Bundle objetoCategoriaJuego = getArguments();
 
         if (objetoCategoriaJuego != null ) {
@@ -208,7 +209,8 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
                 }
 
-                bundleEnvio.putInt("resultado",res.getResultado_id());
+                bundleEnvio.putInt("resultadoId",res.getResultado_id());
+                bundleEnvio.putSerializable("resultado", res);
                 System.out.println("RESULTADO AFUERA" + res.getResultado_id());
                 vistaPaciente.setArguments(bundleEnvio);
             } else {
@@ -263,5 +265,25 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         }
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
+        juegosConPregunta.clear();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
+        juegosConPregunta.clear();
     }
 }

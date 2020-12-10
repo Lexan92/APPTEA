@@ -260,4 +260,9 @@
             android:id="@+id/action_vistaMemoriaPaciente2_to_detalleJuegoPaciente"
             app:destination="@id/detalleJuegoPaciente" />
     </fragment>
+    <activity
+        android:id="@+id/finJuegoMemoria"
+        android:name="com.example.apptea.ui.juegoMemoria.FinJuegoMemoria"
+        android:label="FinJuegoMemoria"
+        tools:layout="@layout/activity_fin_juego"/>
 </navigation>

@@ -20,6 +20,7 @@ import com.example.apptea.R;
 import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
+import com.example.apptea.ui.juegoMemoria.FinJuegoMemoria;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
@@ -192,6 +193,25 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
             posicion++;
 
+            if(sesion.obtenerTipoUsuario()==1) {
+                detalleResultado.setResultado_id(resultado.getResultado_id());
+                detalleResultado.setNombre_pregunta(pregunta);
+                detalleResultado.setCantidad_fallos(numeroFallos);
+                detalleResultadoViewModel.insertResultado(detalleResultado);
+                if (posicion <= longitudPreguntas - 1) {
+                    reiniciarCards();
+                    setearOpciones(posicion);
+                } else {
+                    Intent intent = new Intent(this, FinJuego.class);
+                    intent.putExtra("resultado",resultado);
+                    startActivity(intent);
+                    finish();
+                }
+            }else{
+                System.out.println("NO ES PACIENTE");
+            }
+
+            /*
             if (posicion <= longitudPreguntas - 1) {
                 if(sesion.obtenerTipoUsuario()==1){
                     System.out.println("Resultado id "+ resultado.getResultado_id());
@@ -207,7 +227,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 intent.putExtra("resultado",resultado);
                 startActivity(intent);
                 finish();
-            }
+            }*/
 
 
         });

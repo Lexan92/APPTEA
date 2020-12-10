@@ -184,7 +184,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                 bundleEnvio.putInt("juegoId",juego.getJuego_id());
                 bundleEnvio.putString("nombreJuego",juego.getJuego_nombre());
 
-                Navigation.findNavController(v).navigate(R.id.vistaMemoriaPaciente2,bundleEnvio);
+
                 if (administarSesion.obtenerIDSesion() > 0) {
                     DetalleSesion detalleSesion = new DetalleSesion();
                     detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
@@ -213,6 +213,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                 bundleEnvio.putSerializable("resultado", res);
                 System.out.println("RESULTADO AFUERA" + res.getResultado_id());
                 vistaPaciente.setArguments(bundleEnvio);
+                Navigation.findNavController(v).navigate(R.id.vistaMemoriaPaciente2,bundleEnvio);
             } else {
 
 

@@ -30,6 +30,9 @@
             android:name=".ui.juego.FinJuego"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.juegoMemoria.FinJuegoMemoria"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.juegoSeleccion.SeleccionaOpcion"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

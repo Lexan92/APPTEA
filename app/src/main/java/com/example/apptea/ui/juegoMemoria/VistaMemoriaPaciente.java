@@ -172,7 +172,7 @@ public class VistaMemoriaPaciente extends Fragment {
         resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
         ttsManager = new TTSManager();
         ttsManager.init(getActivity());
-        resultado = argumento.getInt("resultado");
+        resultado = argumento.getInt("resultadoId");
         siguiente.setVisibility(View.INVISIBLE);
         celebracion.setVisibility(View.INVISIBLE);
         sesion = new AdministarSesion(getActivity());
@@ -375,22 +375,23 @@ public class VistaMemoriaPaciente extends Fragment {
 
         siguiente.setOnClickListener(v -> {
             posicion++;
-            if(posicion <= longitudPreguntas-1){
-                if(sesion.obtenerTipoUsuario()==1){
-                    System.out.println("Resultado id "+ resultado);
-                    detalleResultado.setResultado_id(resultado);
-                    detalleResultado.setNombre_pregunta(titulo);
-                    detalleResultado.setCantidad_fallos(incorrectas);
-                    detalleResultadoViewModel.insertResultado(detalleResultado);
+            if(sesion.obtenerTipoUsuario()==1) {
+                detalleResultado.setResultado_id(resultado);
+                detalleResultado.setNombre_pregunta("Nivel "+posicion+":");
+                detalleResultado.setCantidad_fallos(incorrectas);
+                detalleResultadoViewModel.insertResultado(detalleResultado);
+                if (posicion <= longitudPreguntas - 1) {
+                    setearOpciones(posicion);
+                    reiniciarCartas();
+                    incorrectas=0;
+                } else {
+                    Intent intent = new Intent(getActivity(), FinJuegoMemoria.class);
+                    res = resultadoDao.obtenerResultado();
+                    intent.putExtra("resultado", res);
+                    startActivity(intent);
                 }
-                System.out.println("siguiente"+posicion);
-                setearOpciones(posicion);
-                reiniciarCartas();
             }else{
-                Intent intent = new Intent(getActivity(), FinJuego.class);
-                res = resultadoDao.obtenerResultado();
-                intent.putExtra("resultado",res);
-                startActivity(intent);
+                System.out.println("NO ES PACIENTE");
             }
 
         });

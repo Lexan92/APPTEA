@@ -1,6 +1,8 @@
 package com.example.apptea;
 
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -16,6 +18,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.navigation.NavigationView;
 
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gestion_habilidad, R.id.nav_gestion_juego, R.id.nav_gestion_pictograma, R.id.nav_mi_perfil, R.id.nav_gestion_juego,
-                R.id.nav_menu_persona_tea, R.id.menuPrincipalFragment, R.id.detalle_Juego,R.id.cerrarSesionUsuario,R.id.nav_menu_preguntas_frecuentes)
+                R.id.nav_menu_persona_tea, R.id.menuPrincipalFragment, R.id.detalle_Juego,R.id.cerrarSesionUsuario,R.id.nav_menu_preguntas_frecuentes,R.id.nav_menu_configuracion)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -131,4 +134,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
 }

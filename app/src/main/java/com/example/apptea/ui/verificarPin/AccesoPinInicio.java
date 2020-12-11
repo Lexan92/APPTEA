@@ -18,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavAction;
+import androidx.navigation.NavBackStackEntry;
 import androidx.navigation.Navigation;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -106,6 +108,7 @@ public class AccesoPinInicio extends Fragment {
                     AdministarSesion administarSesion = new AdministarSesion(getContext());
                     administarSesion.guardarSesion(usuario);
                     Navigation.findNavController(getView()).navigate(R.id.action_accesoPinInicio_to_nav_home);
+
                 } else {
                     entradaPin.setError(getResources().getString(R.string.contraseIncorecta));
                 }

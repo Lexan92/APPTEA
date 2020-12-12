@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/accesoPinInicio">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
@@ -184,18 +184,6 @@
         android:name="com.example.apptea.ui.juego.NuevoJuego"
         android:label="activity_nuevo_juego"
         tools:layout="@layout/activity_nuevo_juego" />
-    <fragment
-        android:id="@+id/accesoPinInicio"
-        android:name="com.example.apptea.ui.verificarPin.AccesoPinInicio"
-        android:label="fragment_acceso_pin_inicio"
-        tools:layout="@layout/fragment_acceso_pin_inicio" >
-        <action
-            android:id="@+id/action_accesoPinInicio_to_nav_home"
-            app:destination="@id/nav_home" />
-        <action
-            android:id="@+id/action_accesoPinInicio_to_listadoInicioSesion"
-            app:destination="@id/listadoInicioSesion" />
-    </fragment>
     <activity
         android:id="@+id/listadoInicioSesion"
         android:name="com.example.apptea.ui.inicioSesion.ListadoInicioSesion"
@@ -259,5 +247,16 @@
         <action
             android:id="@+id/action_vistaMemoriaPaciente2_to_detalleJuegoPaciente"
             app:destination="@id/detalleJuegoPaciente" />
+    </fragment>
+    <fragment
+        android:id="@+id/finJuegoMemoriaFragment"
+        android:name="com.example.apptea.ui.juegoMemoria.FinJuegoMemoriaFragment"
+        android:label="Resultados"
+        tools:layout="@layout/fragment_fin_juego_memoria" >
+        <action
+            android:id="@+id/action_finJuegoMemoriaFragment_to_detalleJuegoPaciente"
+            app:destination="@id/detalleJuegoPaciente"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="false"/>
     </fragment>
 </navigation>

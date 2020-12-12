@@ -1,7 +1,9 @@
 package com.example.apptea.ui.juegoMemoria;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
@@ -73,7 +76,13 @@ public class VistaMemoriaPaciente extends Fragment {
     private ImageView imgCard4;
     private ImageView imgCard5;
     private ImageView imgCard6;
-    MaterialCardView opcion1, opcion2, opcion3, opcion4, opcion5,opcion6;
+    private MaterialCardView opcion1;
+    private MaterialCardView opcion2;
+    private MaterialCardView opcion3;
+    private MaterialCardView opcion4;
+    private MaterialCardView opcion5;
+    private MaterialCardView opcion6;
+    Juego juego = new Juego();
     int juegoId = 0;
     int contador = 0;
     int posicion = 0;
@@ -104,7 +113,8 @@ public class VistaMemoriaPaciente extends Fragment {
     int resultado;
     ResultadoDao resultadoDao;
     Resultado res = new Resultado();
-
+    private static Drawable fondoBlanco;
+    private static Drawable fondo;
 
     public VistaMemoriaPaciente() {
         // Required empty public constructor
@@ -172,21 +182,27 @@ public class VistaMemoriaPaciente extends Fragment {
         resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
         ttsManager = new TTSManager();
         ttsManager.init(getActivity());
-        resultado = argumento.getInt("resultado");
+        resultado = argumento.getInt("resultadoId");
         siguiente.setVisibility(View.INVISIBLE);
         celebracion.setVisibility(View.INVISIBLE);
         sesion = new AdministarSesion(getActivity());
-        juegoId = argumento.getInt("juegoId",0);
-        titulo = argumento.getString("nombreJuego");
-        nombreJuego.setText(titulo);
+        juego = (Juego) argumento.getSerializable("juego");
+        //juegoId = argumento.getInt("juegoId",0);
+        //titulo = argumento.getString("nombreJuego");
+        nombreJuego.setText(juego.getJuego_nombre());
+        fondoBlanco = getResources().getDrawable(R.drawable.ic_add_black_24dp);
+        fondo = getResources().getDrawable(R.drawable.instalacion2);
 
 
-        listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juegoId);
+
+
+        listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
         listadoPreguntas.observe(getActivity(), preguntas -> {
             longitudPreguntas = preguntas.size();
         });
 
         setearOpciones(posicion);
+
 
 
         opcion1.setOnClickListener(v -> {
@@ -198,8 +214,10 @@ public class VistaMemoriaPaciente extends Fragment {
                 seleccion1 = pic1;
                 pos = 1;
                 opcion1.setEnabled(false);
+                opcion1.setBackgroundDrawable(fondoBlanco);
             }else{
                 opcion1.setEnabled(false);
+                opcion1.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic1;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -209,6 +227,7 @@ public class VistaMemoriaPaciente extends Fragment {
                             opcion1.setEnabled(true);
                             validar(pos);
                             imgCard1.setVisibility(View.INVISIBLE);
+                            opcion1.setBackgroundDrawable(fondo);
                             nombreCard1.setVisibility(View.INVISIBLE);
                         }else{
                             opcion1.setEnabled(false);
@@ -229,8 +248,10 @@ public class VistaMemoriaPaciente extends Fragment {
                 seleccion1 = pic2;
                 pos = 2;
                 opcion2.setEnabled(false);
+                opcion2.setBackgroundDrawable(fondoBlanco);
             }else{
                 opcion2.setEnabled(false);
+                opcion2.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic2;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -238,6 +259,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     public void run() {
                         if(compararCartas(seleccion1,seleccion2)==false){
                             opcion2.setEnabled(true);
+                            opcion2.setBackgroundDrawable(fondo);
                             validar(pos);
                             imgCard2.setVisibility(View.INVISIBLE);
                             nombreCard2.setVisibility(View.INVISIBLE);
@@ -260,8 +282,10 @@ public class VistaMemoriaPaciente extends Fragment {
                 seleccion1 = pic3;
                 pos = 3;
                 opcion3.setEnabled(false);
+                opcion3.setBackgroundDrawable(fondoBlanco);
             }else{
                 opcion3.setEnabled(false);
+                opcion3.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic3;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -269,6 +293,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     public void run() {
                         if(compararCartas(seleccion1,seleccion2)==false){
                             opcion3.setEnabled(true);
+                            opcion3.setBackgroundDrawable(fondo);
                             validar(pos);
                             imgCard3.setVisibility(View.INVISIBLE);
                             nombreCard3.setVisibility(View.INVISIBLE);
@@ -291,8 +316,10 @@ public class VistaMemoriaPaciente extends Fragment {
                 seleccion1 = pic4;
                 pos = 4;
                 opcion4.setEnabled(false);
+                opcion4.setBackgroundDrawable(fondoBlanco);
             }else{
                 opcion4.setEnabled(false);
+                opcion4.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic4;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -301,6 +328,7 @@ public class VistaMemoriaPaciente extends Fragment {
                         if(compararCartas(seleccion1,seleccion2)==false){
                             opcion4.setEnabled(true);
                             validar(pos);
+                            opcion4.setBackgroundDrawable(fondo);
                             imgCard4.setVisibility(View.INVISIBLE);
                             nombreCard4.setVisibility(View.INVISIBLE);
                         }else{
@@ -321,8 +349,10 @@ public class VistaMemoriaPaciente extends Fragment {
                 seleccion1 = pic5;
                 pos = 5;
                 opcion5.setEnabled(false);
+                opcion5.setBackgroundDrawable(fondoBlanco);
             }else{
                 opcion5.setEnabled(false);
+                opcion5.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic5;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -330,6 +360,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     public void run() {
                         if(compararCartas(seleccion1,seleccion2)==false){
                             opcion5.setEnabled(true);
+                            opcion5.setBackgroundDrawable(fondo);
                             validar(pos);
                             imgCard5.setVisibility(View.INVISIBLE);
                             nombreCard5.setVisibility(View.INVISIBLE);
@@ -351,8 +382,10 @@ public class VistaMemoriaPaciente extends Fragment {
                 seleccion1 = pic6;
                 pos = 6;
                 opcion6.setEnabled(false);
+                opcion6.setBackgroundDrawable(fondoBlanco);
             }else{
                 opcion6.setEnabled(false);
+                opcion6.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic6;
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -360,6 +393,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     public void run() {
                         if(compararCartas(seleccion1,seleccion2)==false){
                             opcion6.setEnabled(true);
+                            opcion6.setBackgroundDrawable(fondo);
                             validar(pos);
                             imgCard6.setVisibility(View.INVISIBLE);
                             nombreCard6.setVisibility(View.INVISIBLE);
@@ -375,23 +409,33 @@ public class VistaMemoriaPaciente extends Fragment {
 
         siguiente.setOnClickListener(v -> {
             posicion++;
-            if(posicion <= longitudPreguntas-1){
-                if(sesion.obtenerTipoUsuario()==1){
-                    System.out.println("Resultado id "+ resultado);
-                    detalleResultado.setResultado_id(resultado);
-                    detalleResultado.setNombre_pregunta(titulo);
-                    detalleResultado.setCantidad_fallos(incorrectas);
-                    detalleResultadoViewModel.insertResultado(detalleResultado);
-                }
-                System.out.println("siguiente"+posicion);
-                setearOpciones(posicion);
-                reiniciarCartas();
+
+            //Se comprueba el tipo de usuario Si es 1 guardamos resultado si es distinto no se guarda.
+            if(sesion.obtenerTipoUsuario()==1) {
+                detalleResultado.setResultado_id(resultado);
+                detalleResultado.setNombre_pregunta("Nivel "+posicion+":");
+                detalleResultado.setCantidad_fallos(incorrectas);
+                detalleResultadoViewModel.insertResultado(detalleResultado);
             }else{
-                Intent intent = new Intent(getActivity(), FinJuego.class);
-                res = resultadoDao.obtenerResultado();
-                intent.putExtra("resultado",res);
-                startActivity(intent);
+                System.out.println("NO ES PACIENTE");
             }
+
+            // If para validar si existen mas preguntas sino se envia al fragment de fin de juego
+                if (posicion <= longitudPreguntas - 1) {
+                    setearOpciones(posicion);
+                    reiniciarCartas();
+                    incorrectas=0;
+                } else {
+                    Bundle bundleEnvio = new Bundle();
+                    res = resultadoDao.obtenerResultado();
+                    FinJuegoMemoriaFragment finJuegoMemoriaFragment = new FinJuegoMemoriaFragment();
+                    bundleEnvio.putSerializable("resultado", res);
+                    bundleEnvio.putInt("categoriaJuego", juego.getCategoria_juego_id());
+                    finJuegoMemoriaFragment.setArguments(bundleEnvio);
+                    Navigation.findNavController(v).navigate(R.id.finJuegoMemoriaFragment,bundleEnvio);
+
+                    }
+
 
         });
 
@@ -405,6 +449,7 @@ public class VistaMemoriaPaciente extends Fragment {
         switch(pos){
             case 1:
                 opcion1.setEnabled(true);
+                opcion1.setBackgroundDrawable(fondo);
                 imgCard1.setVisibility(View.INVISIBLE);
                 nombreCard1.setVisibility(View.INVISIBLE);
                 break;
@@ -412,27 +457,31 @@ public class VistaMemoriaPaciente extends Fragment {
                 opcion2.setEnabled(true);
                 imgCard2.setVisibility(View.INVISIBLE);
                 nombreCard2.setVisibility(View.INVISIBLE);
-
+                opcion2.setBackgroundDrawable(fondo);
                 break;
             case 3:
                 opcion3.setEnabled(true);
                 imgCard3.setVisibility(View.INVISIBLE);
                 nombreCard3.setVisibility(View.INVISIBLE);
+                opcion3.setBackgroundDrawable(fondo);
                 break;
             case 4:
                 opcion4.setEnabled(true);
                 imgCard4.setVisibility(View.INVISIBLE);
                 nombreCard4.setVisibility(View.INVISIBLE);
+                opcion4.setBackgroundDrawable(fondo);
                 break;
             case 5:
                 opcion5.setEnabled(true);
                 imgCard5.setVisibility(View.INVISIBLE);
                 nombreCard5.setVisibility(View.INVISIBLE);
+                opcion5.setBackgroundDrawable(fondo);
                 break;
             case 6:
                 opcion6.setEnabled(true);
                 imgCard6.setVisibility(View.INVISIBLE);
                 nombreCard6.setVisibility(View.INVISIBLE);
+                opcion6.setBackgroundDrawable(fondo);
                 break;
         }
     }
@@ -445,14 +494,13 @@ public class VistaMemoriaPaciente extends Fragment {
             System.out.println("iguales");
             iguales = true;
             correctas++;
-            if(correctas == 3){
-                siguiente.setVisibility(View.VISIBLE);
-            }
             celebracion.setVisibility(View.VISIBLE);
             celebracion.bringToFront();
             celebracion.setSpeed(2);
             celebracion.playAnimation();
-            
+            if(correctas == 3){
+                siguiente.setVisibility(View.VISIBLE);
+            }
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -475,6 +523,7 @@ public class VistaMemoriaPaciente extends Fragment {
 
     //Metodo para reiniciar cartas se vuelven habilitar
     private void reiniciarCartas(){
+        siguiente.setVisibility(View.INVISIBLE);
         opcion1.setEnabled(true);
         opcion2.setEnabled(true);
         opcion3.setEnabled(true);
@@ -487,8 +536,11 @@ public class VistaMemoriaPaciente extends Fragment {
 
     //funcion que setea cardviews con pictogramas, recibe la posicion en la lista de las preguntas
     //SETEA CANTIDAD DE RESPUESTAS BUENAS POR PREGUNTA
+    @SuppressLint("ResourceAsColor")
     private void setearOpciones(int posicion) {
 
+        correctas = 0;
+        siguiente.setVisibility(View.INVISIBLE);
         listadoPreguntas.observe(getActivity(), preguntas -> {
             listaOpciones = opcionViewModel.getOcionesByIdPregunta(preguntas.get(posicion).getPregunta_id());
             listaOpciones.observe(getActivity(), opciones -> {
@@ -499,6 +551,8 @@ public class VistaMemoriaPaciente extends Fragment {
                 while (count <= size) {
                     pictograma = pictogramaViewModel.getPictogramaById(nuevaListaOpcion.get(count).getPictograma_id());
                     //seteado de imagenes y texto del pictograma
+
+
                     int finalCount = count;
                     pictograma.observe(getActivity(), pictograma1 -> {
                         switch (finalCount) {
@@ -507,6 +561,7 @@ public class VistaMemoriaPaciente extends Fragment {
                                 nombreCard1.setText(pictograma1.getPictograma_nombre());
                                 bandera1 = opciones.get(0).isOpcion_respuesta();
                                 opcion1.setVisibility(View.VISIBLE);
+                                opcion1.setBackgroundDrawable(fondo);
                                 imgCard1.setVisibility(View.INVISIBLE);
                                 nombreCard1.setVisibility(View.INVISIBLE);
                                 pic1 = pictograma1.getPictograma_id();
@@ -516,6 +571,7 @@ public class VistaMemoriaPaciente extends Fragment {
                                 nombreCard2.setText(pictograma1.getPictograma_nombre());
                                 bandera2 = opciones.get(1).isOpcion_respuesta();
                                 opcion2.setVisibility(View.VISIBLE);
+                                opcion2.setBackgroundDrawable(fondo);
                                 imgCard2.setVisibility(View.INVISIBLE);
                                 nombreCard2.setVisibility(View.INVISIBLE);
                                 pic2 = pictograma1.getPictograma_id();
@@ -525,6 +581,7 @@ public class VistaMemoriaPaciente extends Fragment {
                                 nombreCard3.setText(pictograma1.getPictograma_nombre());
                                 bandera3 = opciones.get(2).isOpcion_respuesta();
                                 opcion3.setVisibility(View.VISIBLE);
+                                opcion3.setBackgroundDrawable(fondo);
                                 imgCard3.setVisibility(View.INVISIBLE);
                                 nombreCard3.setVisibility(View.INVISIBLE);
                                 pic3 = pictograma1.getPictograma_id();
@@ -534,6 +591,7 @@ public class VistaMemoriaPaciente extends Fragment {
                                 nombreCard4.setText(pictograma1.getPictograma_nombre());
                                 bandera4 = opciones.get(3).isOpcion_respuesta();
                                 opcion4.setVisibility(View.VISIBLE);
+                                opcion4.setBackgroundDrawable(fondo);
                                 imgCard4.setVisibility(View.INVISIBLE);
                                 nombreCard4.setVisibility(View.INVISIBLE);
                                 pic4 = pictograma1.getPictograma_id();
@@ -545,6 +603,7 @@ public class VistaMemoriaPaciente extends Fragment {
                                 imgCard5.setVisibility(View.INVISIBLE);
                                 nombreCard5.setVisibility(View.INVISIBLE);
                                 opcion5.setVisibility(View.VISIBLE);
+                                opcion5.setBackgroundDrawable(fondo);
                                 pic5 = pictograma1.getPictograma_id();
                                 break;
                             case 5:
@@ -552,6 +611,7 @@ public class VistaMemoriaPaciente extends Fragment {
                                 nombreCard6.setText(pictograma1.getPictograma_nombre());
                                 bandera3 = opciones.get(5).isOpcion_respuesta();
                                 opcion6.setVisibility(View.VISIBLE);
+                                opcion6.setBackgroundDrawable(fondo);
                                 imgCard6.setVisibility(View.INVISIBLE);
                                 nombreCard6.setVisibility(View.INVISIBLE);
                                 pic6 = pictograma1.getPictograma_id();
@@ -586,5 +646,10 @@ public class VistaMemoriaPaciente extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
 
     }

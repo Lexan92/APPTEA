@@ -31,10 +31,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:background="#0BBD14">
-
+                android:orientation="horizontal"
+                android:background="@color/colorFondo"
+                android:layout_margin="5dp">
+                <ImageView
+                    android:id="@+id/img_juego"
+                    android:layout_width="106dp"
+                    android:layout_height="@dimen/card_height_cat_juego"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_wallpaper"
+                    android:layout_gravity="center_horizontal"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/colorFondo">
                 <!-- Title, secondary and supporting text -->
                 <TextView
                     android:id="@+id/nombre_item_juego"
@@ -44,28 +56,27 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/capriola"
-                    android:textColor="@color/colorSplash"
+                    android:textColor="@color/mi_perfil_titulo"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="3dp"
                     android:gravity="left"
                     />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_eliminar_juego_lista"
-                    style="?attr/borderlessButtonStyle"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="8dp"
-                    app:icon="@drawable/ic_close_black"
-                    app:iconTint="#000000"
-                    android:layout_gravity="right"/>
-
-
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_eliminar_juego_lista"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="8dp"
+                        app:icon="@drawable/ic_close_black"
+                        app:iconTint="@color/mi_perfil_titulo"
+                        android:layout_gravity="right"/>
             </LinearLayout>
 
+
+
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

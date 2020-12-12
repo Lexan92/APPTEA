@@ -1,7 +1,9 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriapictograma.CategoriaPictogramaViewModel;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.frases.CatPictoFrasesAdapter;
 import com.example.apptea.ui.frases.PictoFrasesAdapter;
 import com.example.apptea.ui.frases.frasesAdapter;
@@ -179,6 +182,21 @@ public class SecuenciaFragment extends AppCompatActivity{
                 adapterPicto.setPictograma(pictogramas);
             }
         });
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 
 }

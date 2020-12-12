@@ -9,7 +9,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,9 +20,11 @@ import android.widget.Toast;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.personaTea.PersonaListadoInicioAdapter;
 import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 import com.example.apptea.ui.personaTea.PersonaTeaViewModel;
+import com.example.apptea.ui.verificarPin.AccesoPinInicio;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
 
@@ -74,6 +78,9 @@ public class ListadoInicioSesion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getApplicationContext().getResources();
+
         String textSesion= getResources().getString(R.string.txt16);
         setContentView(R.layout.activity_listado_inicio_sesion);
         AdministarSesion administarSesion = new AdministarSesion(ListadoInicioSesion.this);
@@ -101,7 +108,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
         sesionAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListadoInicioSesion.this, MainActivity.class);
+                Intent intent = new Intent(ListadoInicioSesion.this, AccesoPinInicio.class);
                 intent.putExtra("bandera", true);
                 administarSesion.setearTipoUsuario(0);
                 startActivity(intent);
@@ -147,5 +154,19 @@ public class ListadoInicioSesion extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(ListadoInicioSesion.this, onBackPressedCallback);
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base, LocaleHelper.getLanguage(base)));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
 
 }

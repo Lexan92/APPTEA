@@ -6,17 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
+import roomsqlite.dao.PictogramaDAO;
+import roomsqlite.database.ImageConverter;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.Juego;
 
 public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPaciente.JuegoViewHolder> {
@@ -43,13 +48,26 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
     @Override
     public void onBindViewHolder(@NonNull JuegoViewHolder holder, int position) {
         if (juegos != null && position < juegos.size()) {
+            PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
             Juego juego = juegos.get(position);
+            if(juego.getPictograma_id() == 0){
+                if(idioma.getIdioma()==1){
+                    holder.nombreJuego.setText(juego.getJuego_nombre());
+                }else{
+                    holder.nombreJuego.setText(juego.getName_game());}
+            }else {
 
-            System.out.println("Idioma es  " + idioma.getIdioma());
-            if(idioma.getIdioma()==1){
-                holder.nombreJuego.setText(juego.getJuego_nombre());
-            }else{
-                holder.nombreJuego.setText(juego.getName_game());}
+                Glide.with(holder.itemView.getContext())
+                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(juego.getPictograma_id()).getPictograma_imagen()))
+                        .thumbnail(0.5f)
+                        .into(holder.imagen);
+                System.out.println("Idioma es  " + idioma.getIdioma());
+                if (idioma.getIdioma() == 1) {
+                    holder.nombreJuego.setText(juego.getJuego_nombre());
+                } else {
+                    holder.nombreJuego.setText(juego.getName_game());
+                }
+            }
             holder.eliminar.setVisibility(View.GONE);
             holder.setIsRecyclable(true);
 
@@ -62,11 +80,13 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
         public TextView nombreJuego;
         public MaterialButton eliminar;
         OnJuegoListener onJuegoListener;
+        public ImageView imagen;
 
         public JuegoViewHolder(@NonNull View itemView, OnJuegoListener onJuegoListener) {
             super(itemView);
             nombreJuego = itemView.findViewById(R.id.nombre_item_juego);
             eliminar = itemView.findViewById(R.id.btn_eliminar_juego_lista);
+            imagen = itemView.findViewById(R.id.img_juego);
             eliminar.setVisibility(View.INVISIBLE);
             this.onJuegoListener = onJuegoListener;
             itemView.setOnClickListener(this);

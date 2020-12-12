@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -113,6 +113,7 @@
                 android:layout_marginLeft="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
+                android:background="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -123,7 +124,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorFondo"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical">
                     <!-- Media -->
                     <ImageView
@@ -171,6 +172,7 @@
                 android:layout_marginRight="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
+                android:background="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/card_memoria4"
                 app:layout_constraintHorizontal_bias="0.35"
@@ -184,7 +186,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorFondo"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical">
                     <!-- Media -->
                     <ImageView
@@ -221,6 +223,7 @@
                 android:layout_marginLeft="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
+                android:background="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -231,7 +234,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorFondo"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical">
                     <!-- Media -->
                     <ImageView
@@ -280,6 +283,7 @@
                 android:layout_marginRight="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
+                android:background="@color/colorPrimaryDark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/card_memoria6"
                 app:layout_constraintHorizontal_bias="0.35"
@@ -293,7 +297,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorFondo"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical">
                     <!-- Media -->
                     <ImageView
@@ -340,7 +344,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorFondo"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical">
                     <!-- Media -->
                     <ImageView

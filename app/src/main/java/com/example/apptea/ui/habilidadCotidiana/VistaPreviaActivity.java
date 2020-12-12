@@ -1,7 +1,9 @@
 package com.example.apptea.ui.habilidadCotidiana;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.apptea.R;
 import com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaViewModel;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
 import com.example.apptea.utilidades.TTSManagerSecuencia;
@@ -296,5 +299,20 @@ public class VistaPreviaActivity extends AppCompatActivity {
             }
         }, milisegundos);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 }

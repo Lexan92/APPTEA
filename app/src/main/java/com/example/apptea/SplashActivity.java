@@ -14,10 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.inicioSesion.AlertaSesion;
 import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
@@ -73,26 +76,46 @@ public class SplashActivity extends AppCompatActivity {
 
         // IDIOMA 1 = ESPAÑOL 2 = INGLES
         int español= 1, ingles= 2;
-        //pendiente validar si idioma en share esta vacio
-        String idioma = Locale.getDefault().getLanguage();
+        String idioma;
+        if(administarSesion.getIdioma() == -1){
+            idioma = Locale.getDefault().getLanguage();
 
-
-        if(idioma.equals("es")|| idioma.equals("ES")){
-            administarSesion.configuracionIdioma(español);
-            System.out.println("Idioma es español " + idioma);
-        }
-        else if(idioma.equals("en")|| idioma.equals("EN")){
+            if(idioma.equals("es")|| idioma.equals("ES")){
+                administarSesion.configuracionIdioma(español);
+                System.out.println("Idioma es español " + idioma);
+            }
+            else if(idioma.equals("en")|| idioma.equals("EN")){
                 administarSesion.configuracionIdioma(ingles);
                 System.out.println("Idioma  es ingles " + idioma);
             }
-        else if(!idioma.equals("en")|| !idioma.equals("EN") ||!idioma.equals("es")|| !idioma.equals("ES")){
-                    administarSesion.configuracionIdioma(español);
-                    System.out.println("Idioma es otro " + idioma);
-                }
+            else if(!idioma.equals("en")|| !idioma.equals("EN") ||!idioma.equals("es")|| !idioma.equals("ES")){
+                administarSesion.configuracionIdioma(español);
+                System.out.println("Idioma es otro " + idioma);
+            }
+
+        }else if(administarSesion.getIdioma()==1){
+            idioma= "es";
+        }else
+            idioma= "en";
 
         // DESBLOQUEO 1 = POR CONTRASEÑA , 2 = POR HUELLA
         administarSesion.configurarDesbloqueo(1);
 
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 }

@@ -3,8 +3,10 @@
 
 package com.example.apptea.ui.pictograma;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageDecoder;
@@ -28,6 +30,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.Utilities.UtilCamara;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -297,5 +300,20 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         Log.d("lifecycle", "onDestroy Pictograma");
         Runtime.getRuntime().gc();
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 }

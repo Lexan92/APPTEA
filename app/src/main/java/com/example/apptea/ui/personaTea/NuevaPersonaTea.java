@@ -16,7 +16,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -38,6 +40,7 @@ import android.widget.Toast;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.Utilities.UtilCamara;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.rol.RolViewModel;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.google.android.material.textfield.TextInputEditText;
@@ -343,4 +346,18 @@ public class NuevaPersonaTea extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
 }

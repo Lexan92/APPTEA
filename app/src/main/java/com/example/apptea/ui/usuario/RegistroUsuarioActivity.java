@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.rol.RolViewModel;
 import com.google.android.material.textfield.TextInputEditText;
@@ -146,6 +149,21 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
        }else{contraUsuario.setError(null); }
 
         return validar;
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 
 }

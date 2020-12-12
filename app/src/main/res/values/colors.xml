@@ -12,4 +12,6 @@
     <color name = "fondoHab">#CFCFCF</color>
     <color name="colorAzul">#1E508C</color>
     <color name="gris">#707070</color>
+    <color name="fondoCartas">#76DA7A</color>
+
 </resources>

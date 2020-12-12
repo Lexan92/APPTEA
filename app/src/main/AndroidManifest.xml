@@ -30,9 +30,6 @@
             android:name=".ui.juego.FinJuego"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.juegoMemoria.FinJuegoMemoria"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ui.juegoSeleccion.SeleccionaOpcion"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -148,6 +145,18 @@
         </activity>
         <activity
             android:name=".ui.categoriahabilidadcotidiana.DialogSeleccionImagenHab"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchablepictograma" />
+        </activity>
+        <activity
+            android:name=".ui.DetalleCategoriaJuego.DialogSeleccionImagenJuego"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>

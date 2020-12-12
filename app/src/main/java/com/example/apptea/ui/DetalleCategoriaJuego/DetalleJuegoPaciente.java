@@ -181,9 +181,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
             AdministarSesion administarSesion = new AdministarSesion(getContext());
             if (key == 2) {
                 VistaMemoriaPaciente vistaPaciente = new VistaMemoriaPaciente();
-                bundleEnvio.putInt("juegoId",juego.getJuego_id());
-                bundleEnvio.putString("nombreJuego",juego.getJuego_nombre());
-
+                bundleEnvio.putSerializable("juego",juego);
 
                 if (administarSesion.obtenerIDSesion() > 0) {
                     DetalleSesion detalleSesion = new DetalleSesion();

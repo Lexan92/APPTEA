@@ -37,14 +37,16 @@ public class Juego implements Serializable {
     private  String name_game;
     @NonNull
     private boolean juego_predeterminado;
+    private int pictograma_id;
 
     @Ignore
-    public Juego(int juego_id, int categoria_juego_id, @NonNull String juego_nombre, String name_game, boolean juego_predeterminado) {
+    public Juego(int juego_id, int categoria_juego_id, @NonNull String juego_nombre, String name_game, boolean juego_predeterminado, int pictograma_id) {
         this.juego_id = juego_id;
         this.categoria_juego_id = categoria_juego_id;
         this.juego_nombre = juego_nombre;
         this.name_game = name_game;
         this.juego_predeterminado = juego_predeterminado;
+        this.pictograma_id = pictograma_id;
     }
 
     public Juego() {
@@ -90,5 +92,13 @@ public class Juego implements Serializable {
 
     public void setName_game(String name_game) {
         this.name_game = name_game;
+    }
+
+    public int getPictograma_id() {
+        return pictograma_id;
+    }
+
+    public void setPictograma_id(int pictograma_id) {
+        this.pictograma_id = pictograma_id;
     }
 }

@@ -260,9 +260,15 @@
             android:id="@+id/action_vistaMemoriaPaciente2_to_detalleJuegoPaciente"
             app:destination="@id/detalleJuegoPaciente" />
     </fragment>
-    <activity
-        android:id="@+id/finJuegoMemoria"
-        android:name="com.example.apptea.ui.juegoMemoria.FinJuegoMemoria"
-        android:label="FinJuegoMemoria"
-        tools:layout="@layout/activity_fin_juego"/>
+    <fragment
+        android:id="@+id/finJuegoMemoriaFragment"
+        android:name="com.example.apptea.ui.juegoMemoria.FinJuegoMemoriaFragment"
+        android:label="Resultados"
+        tools:layout="@layout/fragment_fin_juego_memoria" >
+        <action
+            android:id="@+id/action_finJuegoMemoriaFragment_to_detalleJuegoPaciente"
+            app:destination="@id/detalleJuegoPaciente"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="false"/>
+    </fragment>
 </navigation>

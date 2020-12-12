@@ -7,28 +7,21 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
 import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
-import com.example.apptea.ui.juegoMemoria.FinJuegoMemoria;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.TTSManager;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import roomsqlite.database.ImageConverter;
@@ -193,33 +186,14 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
             posicion++;
 
-            if(sesion.obtenerTipoUsuario()==1) {
+            if(sesion.obtenerTipoUsuario()==1){
+                System.out.println("Resultado id "+ resultado.getResultado_id());
                 detalleResultado.setResultado_id(resultado.getResultado_id());
                 detalleResultado.setNombre_pregunta(pregunta);
                 detalleResultado.setCantidad_fallos(numeroFallos);
                 detalleResultadoViewModel.insertResultado(detalleResultado);
-                if (posicion <= longitudPreguntas - 1) {
-                    reiniciarCards();
-                    setearOpciones(posicion);
-                } else {
-                    Intent intent = new Intent(this, FinJuego.class);
-                    intent.putExtra("resultado",resultado);
-                    startActivity(intent);
-                    finish();
-                }
-            }else{
-                System.out.println("NO ES PACIENTE");
             }
-
-            /*
             if (posicion <= longitudPreguntas - 1) {
-                if(sesion.obtenerTipoUsuario()==1){
-                    System.out.println("Resultado id "+ resultado.getResultado_id());
-                    detalleResultado.setResultado_id(resultado.getResultado_id());
-                    detalleResultado.setNombre_pregunta(pregunta);
-                    detalleResultado.setCantidad_fallos(numeroFallos);
-                    detalleResultadoViewModel.insertResultado(detalleResultado);
-                }
                 reiniciarCards();
                 setearOpciones(posicion);
             } else {
@@ -227,7 +201,7 @@ public class SeleccionaOpcion extends AppCompatActivity {
                 intent.putExtra("resultado",resultado);
                 startActivity(intent);
                 finish();
-            }*/
+            }
 
 
         });

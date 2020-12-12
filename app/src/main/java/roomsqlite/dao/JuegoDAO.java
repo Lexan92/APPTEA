@@ -46,4 +46,7 @@ public interface JuegoDAO {
 
     @Query("SELECT * FROM " + Juego.TABLE_NAME + " ORDER BY juego_id ASC")
     LiveData<List<Juego>> getAllJuegos();
+
+    @Query("SELECT * FROM "+ Juego.TABLE_NAME+" WHERE juego_id = :id")
+    Juego obtenerUnJuego(int id);
 }

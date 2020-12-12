@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.categoriahabilidadcotidiana.DialogSeleccionImagenHab;
 import com.example.apptea.ui.categoriajuego.CategoriaViewModel;
 import com.example.apptea.ui.juego.JuegoPrincipal;
 import com.example.apptea.ui.juego.NuevoJuego;
@@ -45,6 +46,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import roomsqlite.entidades.CategoriaHabCotidiana;
 import roomsqlite.entidades.CategoriaJuego;
 import roomsqlite.entidades.Juego;
 
@@ -181,7 +183,15 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
                 builder.show();
             }
 
+            public void itemLongClicked(Juego juego) {
+                Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagenJuego.class);
+                intentSeleccion.putExtra("juego",juego.getJuego_id());
+                startActivity(intentSeleccion);
+            }
+
         });
+
+
 
 
     }

@@ -251,5 +251,6 @@
     <string name="CATEGORIA">CATEGORIA:</string>
     <string name="buscar_pictogramas">Buscar Pictogramas</string>
     <string name="opcionMenuVocabluario">OPCION MENU: Vocabulario</string>
+    <string name="agregarImgJuego" translatable="false">¿Desea guardar como imagen principal del Juego: </string>
 
 </resources>

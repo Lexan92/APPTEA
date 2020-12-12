@@ -70,14 +70,6 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
                 }
             });
 
-            imagen.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    buttonClicked.itemLongClicked(juegos.get(getAdapterPosition()));
-                    return true;
-                }
-            });
-
         }
 
         @Override
@@ -119,8 +111,14 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
             if (juego.isJuego_predeterminado()) {
                 holder.eliminar.setVisibility(View.GONE);
                 holder.setIsRecyclable(false);
-
             } else {
+                holder.imagen.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        buttonClicked.itemLongClicked(juegos.get(position));
+                        return true;
+                    }
+                });
                 holder.setIsRecyclable(false);
             }
         }

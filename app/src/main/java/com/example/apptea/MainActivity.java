@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                             .into(imageView);
                 }
                 textView.setText("USUARIO: ".concat(personaTea.getPersona_nombre()).concat(" ").concat(personaTea.getPersona_apellido()));
-                navController.navigate(R.id.action_accesoPinInicio_to_nav_home);
+                //navController.navigate(R.id.action_accesoPinInicio_to_nav_home);
             }
 
         }

@@ -24,6 +24,7 @@ import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.personaTea.PersonaListadoInicioAdapter;
 import com.example.apptea.ui.personaTea.PersonaTeaAdapter;
 import com.example.apptea.ui.personaTea.PersonaTeaViewModel;
+import com.example.apptea.ui.verificarPin.AccesoPinInicio;
 import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.UtilidadFecha;
 
@@ -107,7 +108,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
         sesionAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListadoInicioSesion.this, MainActivity.class);
+                Intent intent = new Intent(ListadoInicioSesion.this, AccesoPinInicio.class);
                 intent.putExtra("bandera", true);
                 administarSesion.setearTipoUsuario(0);
                 startActivity(intent);

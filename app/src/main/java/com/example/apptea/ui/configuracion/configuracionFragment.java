@@ -1,29 +1,20 @@
 package com.example.apptea.ui.configuracion;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigator;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Switch;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
-import com.example.apptea.ui.verificarPin.AccesoPinInicio;
 import com.example.apptea.utilidades.AdministarSesion;
-
-import java.util.ArrayList;
 
 
 public class configuracionFragment extends Fragment {
@@ -146,8 +137,5 @@ public class configuracionFragment extends Fragment {
         b.show();
     }
 
-    private void updateStrigs(){
-
-    }
 
 }

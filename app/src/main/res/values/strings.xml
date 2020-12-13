@@ -149,6 +149,7 @@
     <string name="comentario_hab">**Si selecciona -Más tarde- podra despues agregar los pasos**</string>
     <string name="button_mas_tarde">Más tarde</string>
     <string name="button_si_agregar">Si</string>
+    <string name="habilidad">"HABILIDAD:</string>
 
     --terapeuta
     <string name="datosTera">Nuevo Registro</string>
@@ -190,11 +191,14 @@
     <string name="sesionesRealizadas">Sesiones Realizadas</string>
     <string name="noHaySesionesRealizadas">NO HAY SESIONES REGISTRADAS</string>
     <string name="verSesion">Ver Sesiones</string>
+    <string name="OPCIONMENU">OPCION MENU: Habilidades Cotidianas</string>
 
 
     --mensajes
     <string name="alerta">Alerta</string>
     <string name="estaSeguro">¿está seguro de eliminar a</string>
+    <string name="estaSeguroEliminarCatHab">Are you sure to remove the Category of:</string>
+    <string name="estaSeguroEliminarHab">¿Está seguro de eliminar a la Habilidad Cotidiana de :</string>
     <string name="eliminar">Eliminar</string>
     <string name="cerrar">Cerrar</string>
     <string name="categoNoSeElimina">Esta categoría no se puede eliminar,  existen:</string>
@@ -230,6 +234,10 @@
     <string name="sesionReanudada">Sesión Reanudada</string>
     <string name="comentarioActualizado">Comentario Actualizado</string>
     <string name="opcionesSeleccionadas">Opciones Selecionadas:</string>
+    <string name="noExisteCatHabili">No existe ninguna categoría para habilidades cotidianas</string>
+    <string name="paraVerDebe">Para visualizar debes agregar al menos un pictograma.</string>
+    <string name="debeAgregarNombre">Debes agregar un nombre.</string>
+    <string name="habilidadGuardada">Habilidad Cotidiana Guardada</string>
 
 
     --Iniciar sesion

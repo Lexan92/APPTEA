@@ -138,10 +138,10 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
             @Override
             public void deleteClickedHab(HabilidadCotidiana habilidadCotidiana) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Alerta");
-                builder.setMessage("¿Esta seguro de eliminar a la Habilidad Cotidiana de :\n" + habilidadCotidiana.getHabilidad_cotidiana_nombre() + "?");
+                builder.setTitle(getResources().getString(R.string.alerta));
+                builder.setMessage(getResources().getString(R.string.estaSeguroEliminarHab)+"\n" + habilidadCotidiana.getHabilidad_cotidiana_nombre() + "?");
                 builder.setIcon(android.R.drawable.ic_delete);
-                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         habilidadCotidianaViewModel.delete(habilidadCotidiana);
@@ -149,7 +149,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
                     }
                 });
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -168,7 +168,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
         //Setteando Toolbar para categorias
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Categoria: " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+        toolbar.setTitle(getResources().getString(R.string.categoria)+" " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
 
 
         //Boton de + para agregar una nueva categoria

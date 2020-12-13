@@ -88,7 +88,7 @@ public class PictoSecuenciaAdapter extends RecyclerView.Adapter<PictoSecuenciaAd
         } else {
             // Covers the case of data not being ready yet.
             Glide.with(holder.itemView.getContext()).clear(holder.imagen);
-            holder.nombrePictograma.setText("No existe pictogramas");
+            holder.nombrePictograma.setText(holder.itemView.getContext().getString(R.string.noExistePicto));
         }
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {

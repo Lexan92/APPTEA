@@ -157,7 +157,7 @@ public class SecuenciaFragment extends AppCompatActivity{
         @Override
         public void onClick(View v) {
             if(pictoFraseList.isEmpty() || pictoFraseList.size() == 0){
-                Toast.makeText(getApplicationContext(), "Para visualizar debes agregar al menos un pictograma.",
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.paraVerDebe),
                         Toast.LENGTH_LONG).show();
             }else{
                 Intent intent = new Intent(getApplicationContext(), VistaPreviaActivity.class);

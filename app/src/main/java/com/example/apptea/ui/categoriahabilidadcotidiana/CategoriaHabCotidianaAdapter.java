@@ -155,7 +155,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
                 });
             }
         }else{
-            holder.categoriaItemView.setText("No existe ninguna categoria para habilidades cotidianas");
+            holder.categoriaItemView.setText(holder.itemView.getContext().getString(R.string.noExisteCatHabili));
         }
     }
 

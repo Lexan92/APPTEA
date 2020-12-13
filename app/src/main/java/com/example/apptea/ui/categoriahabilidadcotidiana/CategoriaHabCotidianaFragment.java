@@ -77,7 +77,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             DetalleSesion detalleSesion = new DetalleSesion();
             detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
             detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-            detalleSesion.setNombre_opcion("OPCION MENU: Habilidades Cotidianas");
+            detalleSesion.setNombre_opcion(getResources().getString(R.string.OPCIONMENU));
             DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
             detalleSesionDao.insertarDetalleSesion(detalleSesion);
         }
@@ -154,11 +154,11 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             @Override
             public void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Alerta");
-                builder.setMessage("¿Esta seguro de eliminar a la Categoria de:\n" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre() + "?");
+                builder.setTitle(getResources().getString(R.string.alerta));
+                builder.setMessage(getResources().getString(R.string.estaSeguroEliminarCatHab)+"\n" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre() + "?");
                 builder.setIcon(android.R.drawable.ic_delete);
 
-                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         System.out.println("La Categoria de Habilidad Cotidiana" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
@@ -168,7 +168,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                     }
                 });
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -204,7 +204,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                     DetalleSesion detalleSesion = new DetalleSesion();
                     detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                     detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-                    detalleSesion.setNombre_opcion("HABILIDAD: " + categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)).getCat_hab_cotidiana_nombre());
+                    detalleSesion.setNombre_opcion(getResources().getString(R.string.habilidad)+" " + categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)).getCat_hab_cotidiana_nombre());
                     DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                     detalleSesionDao.insertarDetalleSesion(detalleSesion);
                 }

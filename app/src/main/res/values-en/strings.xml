@@ -132,6 +132,7 @@
     <string name="comentario_hab">**If you select -Later- you can later add the steps**</string>
     <string name="button_mas_tarde">Later</string>
     <string name="button_si_agregar">Yes</string>
+    <string name="habilidad">"ABILITY:</string>
 
 
     --therapist
@@ -174,7 +175,7 @@
     <string name="sesionesRealizadas">Sessions Held</string>
     <string name="noHaySesionesRealizadas">NO REGISTERED SESSIONS</string>
     <string name="verSesion">View Sessions</string>
-
+    <string name="OPCIONMENU">MENU OPTION: Everyday Skills</string>
 
 
 
@@ -182,6 +183,8 @@
     --mensajes
     <string name="alerta">Alert</string>
     <string name="estaSeguro">Are you sure to eliminate</string>
+    <string name="estaSeguroEliminarCatHab">Are you sure to remove the Category of:</string>
+    <string name="estaSeguroEliminarHab">Are you sure to eliminate the Everyday Skill of:</string>
     <string name="eliminar">Delete</string>
     <string name="cerrar">Close</string>
     <string name="categoNoSeElimina">This category cannot be eliminated, there are:</string>
@@ -217,6 +220,10 @@
     <string name="sesionReanudada">Resumed session</string>
     <string name="comentarioActualizado">Comment Updated</string>
     <string name="opcionesSeleccionadas">Selected Options</string>
+    <string name="noExisteCatHabili"> There is no category for everyday skills</string>
+    <string name="paraVerDebe">To view you must add at least one pictogram.</string>
+    <string name="debeAgregarNombre">You must add a name.</string>
+    <string name="habilidadGuardada">Saved Everyday Skill </string>
 
 
 

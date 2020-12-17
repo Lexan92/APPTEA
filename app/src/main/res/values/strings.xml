@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name" translatable="false">TEAyudo Jugando</string>
+    <string name="app_name" translatable="false">TEA KIDS</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="nav_header_title">TEAyudo Jugando</string>
+    <string name="nav_header_title">TEA KIDS</string>
     <string name="txt9">Usuario</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -35,7 +35,7 @@
 
     --INSTALACION
     <string name="txt1">Bienvenido a</string>
-    <string name="txt2" translatable="false">TEAyudo jugando</string>
+    <string name="txt2" translatable="false">TEA KIDS</string>
     <string name="txt3">Terminos y Condiciones</string>
     <string name="txt4">Al presionar Siguiente, usted acepta los Terminos y Condiciones de TEAyudo Jugando</string>
     <string name="button1">Siguiente</string>
@@ -81,7 +81,7 @@
     <string name="txt7">¿Olvidaste tu contraseña?</string>
 
     --Mi perfil
-    <string name="txt8">Acerca de TEAyudo Jugando</string>
+    <string name="txt8">Acerca de TEA KIDS</string>
     <string name="txt10">Correo:</string>
     <string name="txt11">Iniciar Sesión</string>
     <string name="txt12">Iniciar Sesión Como :</string>

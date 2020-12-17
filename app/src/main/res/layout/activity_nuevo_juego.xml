@@ -54,7 +54,9 @@
         android:textSize="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#4CAF50" />
+        android:textColor="#4CAF50"
+        android:maxLength="25"
+        android:inputType="textCapSentences"/>
 
 </com.google.android.material.textfield.TextInputLayout>
 

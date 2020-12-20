@@ -11,7 +11,9 @@
 package com.example.apptea.ui.juego;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +29,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
@@ -54,6 +58,7 @@ public class VisorPregunta extends AppCompatActivity {
     LottieAnimationView checkedDone3;
     LottieAnimationView checkedDone4;
     Pregunta preguntaEditar = new Pregunta();
+    AdministarSesion idioma ;
 
     //posicion de la pregunta
     int posicion;
@@ -97,7 +102,7 @@ public class VisorPregunta extends AppCompatActivity {
         checkedDone4.setVisibility(View.GONE);
         aviso = findViewById(R.id.aviso_opcion_vacio);
         aviso.setVisibility(View.GONE);
-
+        idioma = new AdministarSesion(getApplicationContext());
 
         listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
 
@@ -106,8 +111,14 @@ public class VisorPregunta extends AppCompatActivity {
 
             if (preguntas.size() != 0) {
                 posicion = 0;
-                tituloPregunta.setText(preguntas.get(0).getTitulo_pregunta());
-                tituloJuego.setText(juego.getJuego_nombre());
+                if(idioma.getIdioma()==1){
+                    tituloPregunta.setText(preguntas.get(0).getTitulo_pregunta());
+                    tituloJuego.setText(juego.getJuego_nombre());
+                }else{
+                    tituloPregunta.setText(preguntas.get(0).getName_pregunta());
+                    tituloJuego.setText(juego.getName_game());}
+
+
                 setearOpciones(preguntas.get(0).getPregunta_id());
                 contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
             } else {
@@ -197,8 +208,13 @@ public class VisorPregunta extends AppCompatActivity {
             listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
                 int sizePreguntas = preguntas.size();
                 if (posicion <= sizePreguntas - 1) {
-                    tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
-                    tituloJuego.setText(juego.getJuego_nombre());
+                    if(idioma.getIdioma()==1){
+                        tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
+                        tituloJuego.setText(juego.getJuego_nombre());
+                    }else{
+                        tituloPregunta.setText(preguntas.get(posicion).getName_pregunta());
+                        tituloJuego.setText(juego.getName_game());}
+
                     setearOpciones(preguntas.get(posicion).getPregunta_id());
                     contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
                 } else {
@@ -215,8 +231,13 @@ public class VisorPregunta extends AppCompatActivity {
             listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
 
                 if (0 <= posicion) {
-                    tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
-                    tituloJuego.setText(juego.getJuego_nombre());
+                    if(idioma.getIdioma()==1){
+                        tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
+                        tituloJuego.setText(juego.getJuego_nombre());
+                    }else{
+                        tituloPregunta.setText(preguntas.get(posicion).getName_pregunta());
+                        tituloJuego.setText(juego.getName_game());}
+
                     setearOpciones(preguntas.get(posicion).getPregunta_id());
                     contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
                 } else {
@@ -273,7 +294,10 @@ public class VisorPregunta extends AppCompatActivity {
                                 txt1.setVisibility(View.VISIBLE);
                                 checkedDone1.setVisibility(View.VISIBLE);
                                 opcionBoton1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt1.setText(pictograma.getPictograma_nombre());
+                                if(idioma.getIdioma()==1){
+                                    txt1.setText(pictograma.getPictograma_nombre());
+                                }else{
+                                    txt1.setText(pictograma.getPictograma_name());}
 
                                 // seteado de checkbox
                                 if (opciones.get(0).isOpcion_respuesta()) {
@@ -289,7 +313,10 @@ public class VisorPregunta extends AppCompatActivity {
                                 txt2.setVisibility(View.VISIBLE);
                                 checkedDone2.setVisibility(View.VISIBLE);
                                 opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt2.setText(pictograma.getPictograma_nombre());
+                                if(idioma.getIdioma()==1){
+                                    txt2.setText(pictograma.getPictograma_nombre());
+                                }else{
+                                    txt2.setText(pictograma.getPictograma_name());}
 
                                 // seteado de checkbox
                                 if (opciones.get(1).isOpcion_respuesta()) {
@@ -306,7 +333,10 @@ public class VisorPregunta extends AppCompatActivity {
                                 txt3.setVisibility(View.VISIBLE);
                                 checkedDone3.setVisibility(View.VISIBLE);
                                 opcionBoton3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt3.setText(pictograma.getPictograma_nombre());
+                                if(idioma.getIdioma()==1){
+                                    txt3.setText(pictograma.getPictograma_nombre());
+                                }else{
+                                    txt3.setText(pictograma.getPictograma_name());}
 
                                 // seteado de checkbox
                                 if (opciones.get(2).isOpcion_respuesta()) {
@@ -322,7 +352,10 @@ public class VisorPregunta extends AppCompatActivity {
                                 txt4.setVisibility(View.VISIBLE);
                                 checkedDone4.setVisibility(View.VISIBLE);
                                 opcionBoton4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                txt4.setText(pictograma.getPictograma_nombre());
+                                if(idioma.getIdioma()==1){
+                                    txt4.setText(pictograma.getPictograma_nombre());
+                                }else{
+                                    txt4.setText(pictograma.getPictograma_name());}
 
                                 // seteado de checkbox
                                 if (opciones.get(3).isOpcion_respuesta()) {
@@ -375,6 +408,21 @@ public class VisorPregunta extends AppCompatActivity {
         super.onDestroy();
         Runtime.getRuntime().gc();
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 
 

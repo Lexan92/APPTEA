@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class PictogramaAdapterBusqueda extends RecyclerView.Adapter<PictogramaAd
     private final LayoutInflater mInflater;
     private List<Pictograma> pictogramaList;
     private List<Pictograma> pictogramaListBusqueda;
+    AdministarSesion idioma ;
 
 
     public interface OnPictogramaListener{
@@ -74,6 +76,7 @@ public class PictogramaAdapterBusqueda extends RecyclerView.Adapter<PictogramaAd
     public PictogramaAdapterBusqueda(Context context, OnPictogramaListener onPictogramaListener){
         mInflater = LayoutInflater.from(context);
         this.mOnPictogramaListener = onPictogramaListener;
+        idioma = new AdministarSesion(context);
     }
 
 
@@ -95,12 +98,16 @@ public class PictogramaAdapterBusqueda extends RecyclerView.Adapter<PictogramaAd
 
 
 
-                    Glide.with(holder.itemView.getContext())
-                            .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
-                            .thumbnail(0.5f)
-                            .into(holder.imagen);
-                    holder.pictogramaItemView.setText(current.getPictograma_nombre());
-                    holder.setIsRecyclable(false);
+            Glide.with(holder.itemView.getContext())
+            .load(ImageConverter.convertirByteArrayAImagen(current.getPictograma_imagen()))
+            .thumbnail(0.5f)
+            .into(holder.imagen);
+            if(idioma.getIdioma()==1){
+                holder.pictogramaItemView.setText(current.getPictograma_nombre());
+            }else{
+                holder.pictogramaItemView.setText(current.getPictograma_name());}
+
+            holder.setIsRecyclable(false);
 
 
 
@@ -150,10 +157,18 @@ public class PictogramaAdapterBusqueda extends RecyclerView.Adapter<PictogramaAd
                 String patronDeFiltrado = constraint.toString().toLowerCase().trim();
 
                 for(Pictograma item:pictogramaListBusqueda){
-                    if (item.getPictograma_nombre().toLowerCase().contains(patronDeFiltrado)){
 
-                        listaFiltrada.add(item);
-                    }
+                    if(idioma.getIdioma()==1){
+                        if (item.getPictograma_nombre().toLowerCase().contains(patronDeFiltrado)){
+
+                            listaFiltrada.add(item);
+                        }
+                    }else{
+                        if (item.getPictograma_name().toLowerCase().contains(patronDeFiltrado)){
+
+                            listaFiltrada.add(item);
+                        }}
+
                 }
             }
             FilterResults results = new FilterResults();

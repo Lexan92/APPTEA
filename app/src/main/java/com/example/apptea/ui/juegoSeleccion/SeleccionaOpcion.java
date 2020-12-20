@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.juego.FinJuego;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
@@ -98,7 +101,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
 
 
         //seteado de nombre del juego
-        tituloJuego.setText(juego.getJuego_nombre());
+        if(sesion.getIdioma()==1){
+            tituloJuego.setText(juego.getJuego_nombre());
+        }else{
+            tituloJuego.setText(juego.getName_game());}
+
         listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
         listadoPreguntas.observe(SeleccionaOpcion.this, preguntas -> {
             longitudPreguntas = preguntas.size();
@@ -215,8 +222,13 @@ public class SeleccionaOpcion extends AppCompatActivity {
     private void setearOpciones(int posicion) {
         //seteo del nombre de la pregunta
         listadoPreguntas.observe(SeleccionaOpcion.this, preguntas -> {
-            tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
-            pregunta = preguntas.get(posicion).getTitulo_pregunta();
+            if(sesion.getIdioma()==1){
+                tituloPregunta.setText(preguntas.get(posicion).getTitulo_pregunta());
+                pregunta = preguntas.get(posicion).getTitulo_pregunta();
+            }else{
+                tituloPregunta.setText(preguntas.get(posicion).getName_pregunta());
+                pregunta = preguntas.get(posicion).getName_pregunta();}
+
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -239,7 +251,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
                         switch (finalCount) {
                             case 0:
                                 imagen1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                txt1.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    txt1.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    txt1.setText(pictograma1.getPictograma_name());}
+
                                 bandera1 = opciones.get(0).isOpcion_respuesta();
                                 opcion1.setVisibility(View.VISIBLE);
                                 if (opciones.get(0).isOpcion_respuesta())
@@ -248,7 +264,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 break;
                             case 1:
                                 imagen2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                txt2.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    txt2.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    txt2.setText(pictograma1.getPictograma_name());}
+
                                 bandera2 = opciones.get(1).isOpcion_respuesta();
                                 opcion2.setVisibility(View.VISIBLE);
                                 if (opciones.get(1).isOpcion_respuesta())
@@ -257,7 +277,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 break;
                             case 2:
                                 imagen3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                txt3.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    txt3.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    txt3.setText(pictograma1.getPictograma_name());}
+
                                 bandera3 = opciones.get(2).isOpcion_respuesta();
                                 opcion3.setVisibility(View.VISIBLE);
                                 if (opciones.get(2).isOpcion_respuesta())
@@ -266,7 +290,11 @@ public class SeleccionaOpcion extends AppCompatActivity {
                                 break;
                             case 3:
                                 imagen4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                txt4.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    txt4.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    txt4.setText(pictograma1.getPictograma_name());}
+
                                 bandera4 = opciones.get(3).isOpcion_respuesta();
                                 opcion4.setVisibility(View.VISIBLE);
                                 if (opciones.get(3).isOpcion_respuesta())
@@ -324,4 +352,20 @@ public class SeleccionaOpcion extends AppCompatActivity {
         return opciones;
 
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
+
 }

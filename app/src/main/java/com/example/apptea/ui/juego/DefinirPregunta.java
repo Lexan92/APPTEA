@@ -11,7 +11,9 @@
 package com.example.apptea.ui.juego;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +31,9 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.example.apptea.utilidades.ValidacionCadenas;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -67,6 +71,7 @@ public class DefinirPregunta extends AppCompatActivity {
     LottieAnimationView checkedDone2;
     LottieAnimationView checkedDone3;
     LottieAnimationView checkedDone4;
+    AdministarSesion idioma ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +105,7 @@ public class DefinirPregunta extends AppCompatActivity {
         txt4 = findViewById(R.id.nombre_opcion_cuatro);
         PreguntaDAO preguntaDAO = appDatabase.getDatabase(getApplicationContext()).preguntaDao();
         Pregunta preguntaNueva = new Pregunta();
+        idioma = new AdministarSesion(getApplicationContext());
         validarObjeto();
 
 
@@ -114,7 +120,10 @@ public class DefinirPregunta extends AppCompatActivity {
                 Snackbar.make(v, "El titulo debe ser menor a 30 caracteres", Snackbar.LENGTH_LONG)
                         .show();
             } else if (!tituloPregunta.getText().toString().isEmpty()) {
+
                 preguntaNueva.setTitulo_pregunta(tituloPregunta.getText().toString());
+                preguntaNueva.setName_pregunta(tituloPregunta.getText().toString());
+
                 if (getIntent() == null) {
                     juego.observe(DefinirPregunta.this, juego -> preguntaNueva.setJuego_id(juego.getJuego_id()));
                 } else {
@@ -264,7 +273,11 @@ public class DefinirPregunta extends AppCompatActivity {
         } else {
 
             juegoNuevo = (Juego) getIntent().getSerializableExtra("juegoNuevo");
-            nombreJuego.setText(juegoNuevo.getJuego_nombre());
+            if(idioma.getIdioma()==1){
+                nombreJuego.setText(juegoNuevo.getJuego_nombre());
+            }else{
+                nombreJuego.setText(juegoNuevo.getName_game());}
+
         }
 
     }
@@ -279,7 +292,11 @@ public class DefinirPregunta extends AppCompatActivity {
                 pictogramaUno = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaUno.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton1);
-                    txt1.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt1.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt1.setText(pictograma.getPictograma_name());}
+
                     checkedDone1.setVisibility(View.VISIBLE);
                     agrego1 = true;
                 });
@@ -292,7 +309,11 @@ public class DefinirPregunta extends AppCompatActivity {
                 pictogramaDos = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaDos.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton2);
-                    txt2.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt2.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt2.setText(pictograma.getPictograma_name());}
+
                     checkedDone2.setVisibility(View.VISIBLE);
                     agrego2 = true;
                 });
@@ -304,7 +325,11 @@ public class DefinirPregunta extends AppCompatActivity {
                 pictogramaTres = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaTres.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton3);
-                    txt3.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt3.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt3.setText(pictograma.getPictograma_name());}
+
                     checkedDone3.setVisibility(View.VISIBLE);
                     agrego3 = true;
                 });
@@ -316,7 +341,11 @@ public class DefinirPregunta extends AppCompatActivity {
                 pictogramaCuatro = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaCuatro.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton4);
-                    txt4.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt4.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt4.setText(pictograma.getPictograma_name());}
+
                     checkedDone4.setVisibility(View.VISIBLE);
                     agrego4 = true;
                 });
@@ -328,5 +357,20 @@ public class DefinirPregunta extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Runtime.getRuntime().gc();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 }

@@ -6,12 +6,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.apptea.R;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.juegoSeleccion.DetalleResultadoAdapter;
 import com.example.apptea.ui.juegoSeleccion.DetalleResultadoViewModel;
 import com.example.apptea.utilidades.AdministarSesion;
@@ -70,5 +73,20 @@ public class FinJuego extends AppCompatActivity {
 
     public void listaJuegos(View view) {
         finish();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 }

@@ -1,7 +1,9 @@
 package com.example.apptea.ui.juego;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,7 +17,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -36,7 +40,7 @@ public class EditarPregunta extends AppCompatActivity {
     Button guardar;
     TextView tituloPregunta, tituloJuego, contadorPreguntas, txt1, txt2, txt3, txt4;
     boolean agrego1 = false, agrego2 = false, agrego3 = false, agrego4 = false;
-
+    AdministarSesion idioma ;
     LiveData<List<Opcion>> listaOpciones;
     LiveData<Pictograma> pictograma, pictogramaUno, pictogramaDos, pictogramaTres, pictogramaCuatro;
     int picto_uno, picto_dos, picto_tres, picto_cuatro, opcion_uno = 0, opcion_dos = 0, opcion_tres = 0, opcion_cuatro = 0;
@@ -81,10 +85,15 @@ public class EditarPregunta extends AppCompatActivity {
         checkedDone2 = findViewById(R.id.check_opcion_dos);
         checkedDone3 = findViewById(R.id.check_opcion_tres);
         checkedDone4 = findViewById(R.id.check_opcion_cuatro);
+        idioma = new AdministarSesion(getApplicationContext());
 
+        if(idioma.getIdioma()==1){
+            tituloJuego.setText(juego.getJuego_nombre());
+            tituloPregunta.setText(pregunta.getTitulo_pregunta());
+        }else{
+            tituloJuego.setText(juego.getName_game());
+            tituloPregunta.setText(pregunta.getName_pregunta());}
 
-        tituloJuego.setText(juego.getJuego_nombre());
-        tituloPregunta.setText(pregunta.getTitulo_pregunta());
         setearOpcionesEditar(pregunta.getPregunta_id());
 
 
@@ -92,7 +101,11 @@ public class EditarPregunta extends AppCompatActivity {
         guardar.setOnClickListener(v -> {
 
             if (!tituloPregunta.getText().toString().isEmpty()) {
-                pregunta.setTitulo_pregunta(tituloPregunta.getText().toString());
+                if(idioma.getIdioma()==1){
+                    pregunta.setTitulo_pregunta(tituloPregunta.getText().toString());
+                }else{
+                    pregunta.setName_pregunta(tituloPregunta.getText().toString());}
+
                 preguntaViewModel.update(pregunta);
 
                 //seteado de valores para la opcion 1
@@ -301,7 +314,11 @@ public class EditarPregunta extends AppCompatActivity {
                         case 0:
                             opcionBoton1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                             picto_uno = pictograma.getPictograma_id();
-                            txt1.setText(pictograma.getPictograma_nombre());
+                            if(idioma.getIdioma()==1){
+                                txt1.setText(pictograma.getPictograma_nombre());
+                            }else{
+                                txt1.setText(pictograma.getPictograma_name());}
+
                             agrego1 = true;
                             opcion_uno = finalID;
                             // seteado de checkbox
@@ -320,7 +337,11 @@ public class EditarPregunta extends AppCompatActivity {
 
                             opcionBoton2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                             picto_dos = pictograma.getPictograma_id();
-                            txt2.setText(pictograma.getPictograma_nombre());
+                            if(idioma.getIdioma()==1){
+                                txt2.setText(pictograma.getPictograma_nombre());
+                            }else{
+                                txt2.setText(pictograma.getPictograma_name());}
+
                             agrego2 = true;
                             opcion_dos = finalID;
                             // seteado de checkbox
@@ -338,7 +359,11 @@ public class EditarPregunta extends AppCompatActivity {
                         case 2:
                             opcionBoton3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                             picto_tres = pictograma.getPictograma_id();
-                            txt3.setText(pictograma.getPictograma_nombre());
+                            if(idioma.getIdioma()==1){
+                                txt3.setText(pictograma.getPictograma_nombre());
+                            }else{
+                                txt3.setText(pictograma.getPictograma_name());}
+
                             agrego3 = true;
                             opcion_tres = finalID;
                             // seteado de checkbox
@@ -356,7 +381,11 @@ public class EditarPregunta extends AppCompatActivity {
                         case 3:
                             opcionBoton4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                             picto_cuatro = pictograma.getPictograma_id();
-                            txt4.setText(pictograma.getPictograma_nombre());
+                            if(idioma.getIdioma()==1){
+                                txt4.setText(pictograma.getPictograma_nombre());
+                            }else{
+                                txt4.setText(pictograma.getPictograma_name());}
+
                             agrego4 = true;
                             opcion_cuatro = finalID;
                             // seteado de checkbox
@@ -388,7 +417,10 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaUno = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaUno.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton1);
-                    txt1.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt1.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt1.setText(pictograma.getPictograma_name());}
                     agrego1 = true;
                     picto_uno = -1;
                 });
@@ -401,7 +433,10 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaDos = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaDos.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton2);
-                    txt2.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt2.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt2.setText(pictograma.getPictograma_name());}
                     agrego2 = true;
                     picto_dos = -1;
                 });
@@ -413,7 +448,10 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaTres = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaTres.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton3);
-                    txt3.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt3.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt3.setText(pictograma.getPictograma_name());}
                     agrego3 = true;
                     picto_tres = -1;
                 });
@@ -425,7 +463,10 @@ public class EditarPregunta extends AppCompatActivity {
                 pictogramaCuatro = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaCuatro.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(opcionBoton4);
-                    txt4.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        txt4.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        txt4.setText(pictograma.getPictograma_name());}
                     agrego4 = true;
                     picto_cuatro = -1;
                 });
@@ -433,5 +474,19 @@ public class EditarPregunta extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
+    }
 
 }

@@ -11,9 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.example.apptea.MainActivity;
 import com.example.apptea.R;
+import com.example.apptea.ui.home.HomeFragment;
 import com.example.apptea.utilidades.AdministarSesion;
 
 
@@ -22,6 +25,7 @@ public class configuracionFragment extends Fragment {
     Button spinnerIdioma, spinnerDesbloqueo;
     String [] opcionIdioma, opcionDesbloqueo;
     AdministarSesion administarSesion;
+    HomeFragment homeFragment;
 
 
     @Override
@@ -39,6 +43,9 @@ public class configuracionFragment extends Fragment {
         spinnerIdioma = vista.findViewById(R.id.IdiomaSelect);
         spinnerDesbloqueo= vista.findViewById(R.id.DesbloqueoSelect);
         administarSesion = new AdministarSesion(getContext());
+        homeFragment = new HomeFragment();
+
+        System.out.println("hay huella " + homeFragment.isFingerprint());
 
         //SETEANDO IDIOMA
         System.out.println("Idioma es en share " +administarSesion.getIdioma());
@@ -119,22 +126,36 @@ public class configuracionFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                Intent i;
                 switch(which){
                     case 0:
                         //ACTUALIZANDO SHAREPREFERENCES
                         administarSesion.configurarDesbloqueo(contrasena);
                         spinnerDesbloqueo.setText(R.string.porContrasena);
+                        i = new Intent(getContext(), MainActivity.class);
+                        startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
 
                     case 1:
                         //ACTUALIZANDO SHAREPREFERENCES
                         administarSesion.configurarDesbloqueo(huella);
                         spinnerDesbloqueo.setText(R.string.porHuella);
+                        i = new Intent(getContext(), MainActivity.class);
+                        startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                         break;
                 }
             }
         });
+
         b.show();
+        /*ListView list= b.show().getListView();
+        final ListAdapter adapter = b.show().getListView().getAdapter();
+        for(int i=0; i<opcionDesbloqueo.length;i++){
+            if(homeFragment.isFingerprint()==false){
+                adapter.getView(1,null,list).setEnabled(true);
+            }else
+                adapter.getView(1,null,list).setEnabled(false);
+        }*/
     }
 
 

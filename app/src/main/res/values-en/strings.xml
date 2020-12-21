@@ -29,10 +29,12 @@
     <string name="txt1">"Welcome "</string>
     <string name="txt2" translatable="false">TEA KIDS</string>
     <string name="txt3">Terms and Conditions</string>
-    <string name="txt4">By clicking Next, you accept the Terms and Conditions of TEAyudo Jugando</string>
+    <string name="txt4">By clicking Next, you accept the Terms and Conditions of TEA KIDS</string>
     <string name="button1">Next</string>
     <string name="button2">Direct access</string>
-    <string name="textarea">Modify these terms and conditions.</string>
+    <string name="textarea">Anyone can access to TEA KIDS app and use it in different media (without previous authorization) for non-profit activities.
+                           All TEA KIDS rights are exclusive of the University of El Salvador therefore, the institution is not responsible for the inappropriate use of the app.
+                           The use of TEA KIDS doesn’t replace a language therapy.</string>
 
     --CONFIGURATION
     <string name="idioma">Languages</string>
@@ -241,6 +243,10 @@
     <string name="txt17">Hello </string>
 
     --Categoria de Pictogramas
+    <string name="agregarImg">Do you want to save as main Category image: </string>
+    <string name="agregarImg2">the pictogram: </string>
+    <string name="atencion">Attention </string>
+    <string name="aceptar">Accept </string>
     <string name="categoria">Category:</string>
     <string name="CATEGORIA">CATEGORY:</string>
     <string name="buscar_pictogramas">Pictograms Search</string>

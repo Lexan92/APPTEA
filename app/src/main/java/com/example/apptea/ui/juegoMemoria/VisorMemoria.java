@@ -59,8 +59,8 @@ public class VisorMemoria extends AppCompatActivity {
     Opcion opcion1, opcion2, opcion3;
     boolean ban_editar = false;
     boolean ban_agrega_nivel = false;
-    public int cantidad_pregunta=0;
-    public int id_pregunta=0;
+    public int cantidad_pregunta = 0;
+    public int id_pregunta = 0;
 
     //posicion del nivel
     int posicion;
@@ -149,16 +149,13 @@ public class VisorMemoria extends AppCompatActivity {
 
         //listener boton cancelar
         cancelar.setOnClickListener(v -> {
-            if (ban_agrega_nivel) {
-                ban_editar=false;
-                guardar.setVisibility(View.INVISIBLE);
-                cancelar.setVisibility(View.INVISIBLE);
 
-            }
-            guardar.setVisibility(View.INVISIBLE);
-            cancelar.setVisibility(View.INVISIBLE);
-            editar.setVisibility(View.VISIBLE);
-            ban_editar = false;
+
+            Intent intent = new Intent(VisorMemoria.this, VisorMemoria.class);
+            intent.putExtra("juego", juego);
+            intent.putExtra("ban_listado", true);
+            startActivity(intent);
+            finish();
 
         });
 
@@ -204,37 +201,56 @@ public class VisorMemoria extends AppCompatActivity {
                     editar.setVisibility(View.VISIBLE);
                     agregar.setVisibility(View.VISIBLE);
                     borrar.setVisibility(View.VISIBLE);
+
+
                     Toast.makeText(getApplicationContext(), "Nivel Guardado", Toast.LENGTH_LONG).show();
 
 
                 }
             } else if (ban_editar) {
 
-                //Boton guardar activado por la opcion de editar nivel
-                listaOpciones.observe(VisorMemoria.this, opcions -> {
-                    //seteo de id de pictogramas
-                    opcions.get(0).setPictograma_id(id_picto_1);
-                    opcions.get(1).setPictograma_id(id_picto_1);
-                    opcions.get(2).setPictograma_id(id_picto_2);
-                    opcions.get(3).setPictograma_id(id_picto_2);
-                    opcions.get(4).setPictograma_id(id_picto_3);
-                    opcions.get(5).setPictograma_id(id_picto_3);
 
-                    //actualizacion de opciones
-                    opcionViewModel.update(opcions.get(0));
-                    opcionViewModel.update(opcions.get(1));
-                    opcionViewModel.update(opcions.get(2));
-                    opcionViewModel.update(opcions.get(3));
-                    opcionViewModel.update(opcions.get(4));
-                    opcionViewModel.update(opcions.get(5));
-
-                    guardar.setVisibility(View.INVISIBLE);
-                    cancelar.setVisibility(View.INVISIBLE);
-                    editar.setVisibility(View.VISIBLE);
+                    //Boton guardar activado por la opcion de editar nivel
+                    listaOpciones.observe(VisorMemoria.this, opcions -> {
 
 
-                });
+                        if(ban1){
+                            opcions.get(0).setPictograma_id(id_picto_1);
+                            opcions.get(1).setPictograma_id(id_picto_1);
+                            opcionViewModel.update(opcions.get(0));
+                            opcionViewModel.update(opcions.get(1));
 
+                        }
+
+                        if(ban2){
+                            opcions.get(2).setPictograma_id(id_picto_2);
+                            opcions.get(3).setPictograma_id(id_picto_2);
+                            opcionViewModel.update(opcions.get(2));
+                            opcionViewModel.update(opcions.get(3));
+
+
+                        }
+
+                        if (ban3){
+                            opcions.get(4).setPictograma_id(id_picto_3);
+                            opcions.get(5).setPictograma_id(id_picto_3);
+                            opcionViewModel.update(opcions.get(4));
+                            opcionViewModel.update(opcions.get(5));
+
+                        }
+
+
+
+
+                    });
+
+
+                listaOpciones.removeObservers(VisorMemoria.this);
+                guardar.setVisibility(View.INVISIBLE);
+                cancelar.setVisibility(View.INVISIBLE);
+                editar.setVisibility(View.VISIBLE);
+                siguiente.setVisibility(View.VISIBLE);
+                anterior.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(), "Nivel Actualizado con Exito", Toast.LENGTH_SHORT).show();
             }
         });
@@ -244,7 +260,8 @@ public class VisorMemoria extends AppCompatActivity {
         editar.setOnClickListener(v -> {
             guardar.setVisibility(View.VISIBLE);
             cancelar.setVisibility(View.VISIBLE);
-
+            siguiente.setVisibility(View.INVISIBLE);
+            anterior.setVisibility(View.INVISIBLE);
             ban_editar = true;
             ban_agrega_nivel = true;
 
@@ -264,7 +281,7 @@ public class VisorMemoria extends AppCompatActivity {
                 listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
                     if (preguntas.size() != 0) {
                         Pregunta preguntaBorrar = preguntas.get(posicion);
-                        Log.d("TAG","PREGUNTA id:".concat(Integer.toString(preguntaBorrar.getPregunta_id())).concat(" POSICION: ").concat(Integer.toString(posicion)));
+                        Log.d("TAG", "PREGUNTA id:".concat(Integer.toString(preguntaBorrar.getPregunta_id())).concat(" POSICION: ").concat(Integer.toString(posicion)));
                         borrarPregunta(preguntaBorrar);
                         finish();
 
@@ -279,10 +296,15 @@ public class VisorMemoria extends AppCompatActivity {
 
         //listener agregar nivel
         agregar.setOnClickListener(v -> {
+            ban1=false;
+            ban2=false;
+            ban3=false;
             ban_agrega_nivel = true;
             reiniciarvistaOpciones();
             editar.setVisibility(View.INVISIBLE);
             borrar.setVisibility(View.INVISIBLE);
+            anterior.setVisibility(View.INVISIBLE);
+            siguiente.setVisibility(View.INVISIBLE);
 
 
         });
@@ -324,7 +346,7 @@ public class VisorMemoria extends AppCompatActivity {
 
     }
 
-    private  void llenadoOpciones(){
+    private void llenadoOpciones() {
         //setear opciones
         boolean ban = getIntent().getBooleanExtra("ban_listado", false);
         if (ban) {
@@ -335,31 +357,31 @@ public class VisorMemoria extends AppCompatActivity {
             posicion = 0;
             listadoPreguntas = preguntaViewModel.getPreguntasByIdJuego(juego.getJuego_id());
             listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
-            cantidad_pregunta=preguntas.size();
-            switch(cantidad_pregunta) {
-                case 0:
-                    editar.setVisibility(View.INVISIBLE);
-                    agregar.setVisibility(View.INVISIBLE);
-                    borrar.setVisibility(View.INVISIBLE);
-                    break;
-                case 1:
-                    setearOpciones(preguntas.get(posicion).getPregunta_id());
-                    agregar.setVisibility(View.VISIBLE);
-                    break;
-                case 2:
-                    setearOpciones(preguntas.get(posicion).getPregunta_id());
-                    agregar.setVisibility(View.VISIBLE);
-                    siguiente.setVisibility(View.VISIBLE);
-                    anterior.setVisibility(View.VISIBLE);
-                    break;
-                case 3:
-                    setearOpciones(preguntas.get(posicion).getPregunta_id());
-                    agregar.setVisibility(View.INVISIBLE);
-                    siguiente.setVisibility(View.VISIBLE);
-                    anterior.setVisibility(View.VISIBLE);
-                    break;
+                cantidad_pregunta = preguntas.size();
+                switch (cantidad_pregunta) {
+                    case 0:
+                        editar.setVisibility(View.INVISIBLE);
+                        agregar.setVisibility(View.INVISIBLE);
+                        borrar.setVisibility(View.INVISIBLE);
+                        break;
+                    case 1:
+                        setearOpciones(preguntas.get(posicion).getPregunta_id());
+                        agregar.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        setearOpciones(preguntas.get(posicion).getPregunta_id());
+                        agregar.setVisibility(View.VISIBLE);
+                        siguiente.setVisibility(View.VISIBLE);
+                        anterior.setVisibility(View.VISIBLE);
+                        break;
+                    case 3:
+                        setearOpciones(preguntas.get(posicion).getPregunta_id());
+                        agregar.setVisibility(View.INVISIBLE);
+                        siguiente.setVisibility(View.VISIBLE);
+                        anterior.setVisibility(View.VISIBLE);
+                        break;
 
-            }
+                }
             });
 
 
@@ -373,11 +395,9 @@ public class VisorMemoria extends AppCompatActivity {
         pictograma.removeObservers(VisorMemoria.this);
 
         preguntaViewModel.delete(pregunta_borrar);
-
-
         Intent intent = new Intent(VisorMemoria.this, VisorMemoria.class);
         intent.putExtra("juego", juego);
-        intent.putExtra("ban_listado",true);
+        intent.putExtra("ban_listado", true);
         startActivity(intent);
         finish();
     }
@@ -385,9 +405,10 @@ public class VisorMemoria extends AppCompatActivity {
     private void setearOpciones(int pregunta_id) {
 
 
+
         listaOpciones = opcionViewModel.getOcionesByIdPregunta(pregunta_id);
         listaOpciones.observe(VisorMemoria.this, opciones -> {
-            if (opciones.size()!=0) {
+            if (opciones.size() != 0) {
                 int contador = count;
                 while (contador <= 5) {
                     pictograma = pictogramaViewModel.getPictogramaById(opciones.get(contador).getPictograma_id());
@@ -400,6 +421,7 @@ public class VisorMemoria extends AppCompatActivity {
                                 id_picto_1 = pictograma.getPictograma_id();
                                 boton_uno.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                                 picto_uno.setText(pictograma.getPictograma_nombre());
+
                                 break;
 
                             case 2:
@@ -407,6 +429,7 @@ public class VisorMemoria extends AppCompatActivity {
                                 id_picto_2 = pictograma.getPictograma_id();
                                 boton_dos.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                                 picto_dos.setText(pictograma.getPictograma_nombre());
+
                                 break;
 
                             case 4:
@@ -414,6 +437,8 @@ public class VisorMemoria extends AppCompatActivity {
                                 id_picto_3 = pictograma.getPictograma_id();
                                 boton_tres.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
                                 picto_tres.setText(pictograma.getPictograma_nombre());
+
+                                break;
                         }
 
 
@@ -421,13 +446,11 @@ public class VisorMemoria extends AppCompatActivity {
                     contador = contador + 2;
 
                 }
-            }else {
+            } else {
                 llenadoOpciones();
-
             }
 
         });
-
 
 
     }
@@ -504,5 +527,23 @@ public class VisorMemoria extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Runtime.getRuntime().gc();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Runtime.getRuntime().gc();
     }
 }

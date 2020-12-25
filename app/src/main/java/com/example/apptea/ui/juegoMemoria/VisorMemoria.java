@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,11 +20,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.juego.BuscarPictograma;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -59,8 +63,9 @@ public class VisorMemoria extends AppCompatActivity {
     Opcion opcion1, opcion2, opcion3;
     boolean ban_editar = false;
     boolean ban_agrega_nivel = false;
-    public int cantidad_pregunta = 0;
-    public int id_pregunta = 0;
+    public int cantidad_pregunta=0;
+    public int id_pregunta=0;
+    AdministarSesion idioma ;
 
     //posicion del nivel
     int posicion;
@@ -96,7 +101,7 @@ public class VisorMemoria extends AppCompatActivity {
         opcion1 = new Opcion();
         opcion2 = new Opcion();
         opcion3 = new Opcion();
-
+        idioma = new AdministarSesion(getApplicationContext());
 
         PreguntaDAO preguntaDAO = appDatabase.getDatabase(getApplicationContext()).preguntaDao();
         Pregunta preguntaNueva = new Pregunta();
@@ -119,7 +124,12 @@ public class VisorMemoria extends AppCompatActivity {
         //Seteo nombre del juego
 
         juego = (Juego) getIntent().getSerializableExtra("juego");
-        nombreJuego.setText(juego.getJuego_nombre());
+        if(idioma.getIdioma()==1){
+            nombreJuego.setText(juego.getJuego_nombre());
+        }else{
+            nombreJuego.setText(juego.getName_game());}
+
+
         llenadoOpciones();
 
 
@@ -167,6 +177,7 @@ public class VisorMemoria extends AppCompatActivity {
 
                     preguntaNueva.setJuego_id(juego.getJuego_id());
                     preguntaNueva.setTitulo_pregunta("null");
+                    preguntaNueva.setName_pregunta("null");
                     preguntaDAO.insertPregunta(preguntaNueva);
                     //se obtiene el ID de la pregunta insertada
                     Pregunta pregunta1 = preguntaDAO.obtenerUltimaPregunta();
@@ -201,8 +212,6 @@ public class VisorMemoria extends AppCompatActivity {
                     editar.setVisibility(View.VISIBLE);
                     agregar.setVisibility(View.VISIBLE);
                     borrar.setVisibility(View.VISIBLE);
-
-
                     Toast.makeText(getApplicationContext(), "Nivel Guardado", Toast.LENGTH_LONG).show();
 
 
@@ -281,7 +290,7 @@ public class VisorMemoria extends AppCompatActivity {
                 listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
                     if (preguntas.size() != 0) {
                         Pregunta preguntaBorrar = preguntas.get(posicion);
-                        Log.d("TAG", "PREGUNTA id:".concat(Integer.toString(preguntaBorrar.getPregunta_id())).concat(" POSICION: ").concat(Integer.toString(posicion)));
+                        Log.d("TAG","PREGUNTA id:".concat(Integer.toString(preguntaBorrar.getPregunta_id())).concat(" POSICION: ").concat(Integer.toString(posicion)));
                         borrarPregunta(preguntaBorrar);
                         finish();
 
@@ -346,7 +355,7 @@ public class VisorMemoria extends AppCompatActivity {
 
     }
 
-    private void llenadoOpciones() {
+    private  void llenadoOpciones(){
         //setear opciones
         boolean ban = getIntent().getBooleanExtra("ban_listado", false);
         if (ban) {
@@ -381,7 +390,7 @@ public class VisorMemoria extends AppCompatActivity {
                         anterior.setVisibility(View.VISIBLE);
                         break;
 
-                }
+            }
             });
 
 
@@ -405,7 +414,6 @@ public class VisorMemoria extends AppCompatActivity {
     private void setearOpciones(int pregunta_id) {
 
 
-
         listaOpciones = opcionViewModel.getOcionesByIdPregunta(pregunta_id);
         listaOpciones.observe(VisorMemoria.this, opciones -> {
             if (opciones.size() != 0) {
@@ -420,7 +428,10 @@ public class VisorMemoria extends AppCompatActivity {
                                 picto_uno.setVisibility(View.VISIBLE);
                                 id_picto_1 = pictograma.getPictograma_id();
                                 boton_uno.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                picto_uno.setText(pictograma.getPictograma_nombre());
+                                if(idioma.getIdioma()==1){
+                                    picto_uno.setText(pictograma.getPictograma_nombre());
+                                }else{
+                                    picto_uno.setText(pictograma.getPictograma_name());}
 
                                 break;
 
@@ -428,7 +439,10 @@ public class VisorMemoria extends AppCompatActivity {
                                 picto_dos.setVisibility(View.VISIBLE);
                                 id_picto_2 = pictograma.getPictograma_id();
                                 boton_dos.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                picto_dos.setText(pictograma.getPictograma_nombre());
+                                if(idioma.getIdioma()==1){
+                                    picto_dos.setText(pictograma.getPictograma_nombre());
+                                }else{
+                                    picto_dos.setText(pictograma.getPictograma_name());}
 
                                 break;
 
@@ -436,9 +450,11 @@ public class VisorMemoria extends AppCompatActivity {
                                 picto_tres.setVisibility(View.VISIBLE);
                                 id_picto_3 = pictograma.getPictograma_id();
                                 boton_tres.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen()));
-                                picto_tres.setText(pictograma.getPictograma_nombre());
+                                if(idioma.getIdioma()==1){
+                                    picto_tres.setText(pictograma.getPictograma_nombre());
+                                }else{
+                                    picto_tres.setText(pictograma.getPictograma_name());}
 
-                                break;
                         }
 
 
@@ -448,9 +464,11 @@ public class VisorMemoria extends AppCompatActivity {
                 }
             } else {
                 llenadoOpciones();
+
             }
 
         });
+
 
 
     }
@@ -476,7 +494,11 @@ public class VisorMemoria extends AppCompatActivity {
                 pictogramaUno = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaUno.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(boton_uno);
-                    picto_uno.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        picto_uno.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        picto_uno.setText(pictograma.getPictograma_name());}
+
                     picto_uno.setVisibility(View.VISIBLE);
                     ban1 = true;
                     id_picto_1 = pictograma.getPictograma_id();
@@ -495,7 +517,11 @@ public class VisorMemoria extends AppCompatActivity {
                 pictogramaDos = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaDos.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(boton_dos);
-                    picto_dos.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        picto_dos.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        picto_dos.setText(pictograma.getPictograma_name());}
+
                     picto_dos.setVisibility(View.VISIBLE);
                     ban2 = true;
                     id_picto_2 = pictograma.getPictograma_id();
@@ -513,7 +539,11 @@ public class VisorMemoria extends AppCompatActivity {
                 pictogramaTres = pictogramaViewModel.getPictogramaById(data.getIntExtra("id", 0));
                 pictogramaTres.observe(this, pictograma -> {
                     Glide.with(getApplicationContext()).load(ImageConverter.convertirByteArrayAImagen(pictograma.getPictograma_imagen())).into(boton_tres);
-                    picto_tres.setText(pictograma.getPictograma_nombre());
+                    if(idioma.getIdioma()==1){
+                        picto_tres.setText(pictograma.getPictograma_nombre());
+                    }else{
+                        picto_tres.setText(pictograma.getPictograma_name());}
+
                     picto_tres.setVisibility(View.VISIBLE);
                     ban3 = true;
                     id_picto_3 = pictograma.getPictograma_id();
@@ -527,6 +557,21 @@ public class VisorMemoria extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 
     @Override

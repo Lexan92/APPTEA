@@ -32,15 +32,16 @@ public class Pregunta implements Parcelable {
     private int juego_id;
     @NonNull
     private String titulo_pregunta;
+    private String name_pregunta;
 
 
     @Ignore
-    public Pregunta(int pregunta_id, int juego_id, @NonNull String titulo_pregunta) {
+    public Pregunta(int pregunta_id, int juego_id, @NonNull String titulo_pregunta, String name_pregunta) {
         this.pregunta_id = pregunta_id;
         this.juego_id = juego_id;
         this.titulo_pregunta = titulo_pregunta;
+        this.name_pregunta = name_pregunta;
     }
-
 
     public int getPregunta_id() {
         return pregunta_id;
@@ -67,6 +68,14 @@ public class Pregunta implements Parcelable {
         this.titulo_pregunta = titulo_pregunta;
     }
 
+
+    public String getName_pregunta() {
+        return name_pregunta;
+    }
+
+    public void setName_pregunta(String name_pregunta) {
+        this.name_pregunta = name_pregunta;
+    }
 
     @Override
     public int describeContents() {

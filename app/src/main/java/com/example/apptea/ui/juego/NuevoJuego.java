@@ -2,7 +2,9 @@
 
 package com.example.apptea.ui.juego;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.apptea.R;
 import com.example.apptea.ui.DetalleCategoriaJuego.JuegoViewModel;
+import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.juegoMemoria.VisorMemoria;
 import com.example.apptea.utilidades.ValidacionCadenas;
 import com.google.android.material.snackbar.Snackbar;
@@ -100,5 +103,20 @@ public class NuevoJuego extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Runtime.getRuntime().gc();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(overrideConfiguration);
     }
 }

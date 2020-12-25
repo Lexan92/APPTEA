@@ -34,7 +34,8 @@ public class HomeFragment extends Fragment {
     BiometricPrompt biometricPrompt;
     BiometricPrompt.PromptInfo promptInfo;
     boolean bandera = true;
-
+    private static boolean fingerprint;
+    AdministarSesion administarSesion;
 
 
     @Override
@@ -68,35 +69,38 @@ public class HomeFragment extends Fragment {
         vocabulario = vista.findViewById(R.id.card_vocabulario);
         habilidades = vista.findViewById(R.id.card_habilidades);
         juegos = vista.findViewById(R.id.card_juegos);
-        AdministarSesion administarSesion = new AdministarSesion(getContext());
+        administarSesion = new AdministarSesion(getContext());
 
 
         biometricManager = BiometricManager.from(requireContext());
         verificarEstadoBiometrico(biometricManager);
+        System.out.println("fingerprint "+ fingerprint);
         executor = ContextCompat.getMainExecutor(requireContext());
+
+        //VERIFICACION DE HUELLA AL DAR CLICK EN JUEGOS
         biometricPrompt = new BiometricPrompt((FragmentActivity) requireContext(), executor, new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
+                @Override
+                public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                    super.onAuthenticationError(errorCode, errString);
 
-                Navigation.findNavController(getView()).navigate(R.id.menu_a_accesoPin);
-            }
+                    Navigation.findNavController(getView()).navigate(R.id.menu_a_accesoPin);
+                }
 
-            @Override
-            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
+                @Override
+                public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                    super.onAuthenticationSucceeded(result);
 
 
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("bandera", bandera);
-                Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_nav_gestion_juego, bundle);
-            }
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("bandera", bandera);
+                    Navigation.findNavController(getView()).navigate(R.id.action_nav_home_to_nav_gestion_juego, bundle);
+                }
 
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-                Navigation.findNavController(getView()).navigate(R.id.menu_a_accesoPin);
-            }
+                @Override
+                public void onAuthenticationFailed() {
+                    super.onAuthenticationFailed();
+                    Navigation.findNavController(getView()).navigate(R.id.menu_a_accesoPin);
+                }
         });
 
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
@@ -138,6 +142,9 @@ public class HomeFragment extends Fragment {
         juegos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(administarSesion.getDesbloqueo()==1){
+                    Navigation.findNavController(v).navigate(R.id.menu_a_accesoPin);
+                 }else
                 biometricPrompt.authenticate(promptInfo);
             }
         });
@@ -157,21 +164,27 @@ public class HomeFragment extends Fragment {
     private void verificarEstadoBiometrico(BiometricManager biometricManager) {
         switch (biometricManager.canAuthenticate()) {
             case BiometricManager.BIOMETRIC_SUCCESS:
+                fingerprint=true;
                 Log.d("MY_APP_TAG", "App can authenticate using biometrics.");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                fingerprint=false;
                 Log.e("MY_APP_TAG", "No biometric features available on this device.");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                fingerprint=false;
                 Log.e("MY_APP_TAG", "Biometric features are currently unavailable.");
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                fingerprint=false;
                 Log.e("MY_APP_TAG", "The user hasn't associated " +
                         "any biometric credentials with their account.");
                 break;
         }
     }
 
-
+    public boolean isFingerprint() {
+        return fingerprint;
+    }
 }
 

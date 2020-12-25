@@ -189,7 +189,13 @@ public class VistaMemoriaPaciente extends Fragment {
         juego = (Juego) argumento.getSerializable("juego");
         //juegoId = argumento.getInt("juegoId",0);
         //titulo = argumento.getString("nombreJuego");
-        nombreJuego.setText(juego.getJuego_nombre());
+
+        if(sesion.getIdioma()==1){
+            nombreJuego.setText(juego.getJuego_nombre());
+        }else{
+            nombreJuego.setText(juego.getName_game());}
+
+
         fondoBlanco = getResources().getDrawable(R.drawable.ic_add_black_24dp);
         fondo = getResources().getDrawable(R.drawable.instalacion2);
 
@@ -413,7 +419,7 @@ public class VistaMemoriaPaciente extends Fragment {
             //Se comprueba el tipo de usuario Si es 1 guardamos resultado si es distinto no se guarda.
             if(sesion.obtenerTipoUsuario()==1) {
                 detalleResultado.setResultado_id(resultado);
-                detalleResultado.setNombre_pregunta("Nivel "+posicion+":");
+                detalleResultado.setNombre_pregunta("Nivel "+posicion+":"); //poner string
                 detalleResultado.setCantidad_fallos(incorrectas);
                 detalleResultadoViewModel.insertResultado(detalleResultado);
             }else{
@@ -558,7 +564,11 @@ public class VistaMemoriaPaciente extends Fragment {
                         switch (finalCount) {
                             case 0:
                                 imgCard1.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                nombreCard1.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    nombreCard1.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    nombreCard1.setText(pictograma1.getPictograma_name());}
+
                                 bandera1 = opciones.get(0).isOpcion_respuesta();
                                 opcion1.setVisibility(View.VISIBLE);
                                 opcion1.setBackgroundDrawable(fondo);
@@ -568,7 +578,11 @@ public class VistaMemoriaPaciente extends Fragment {
                                 break;
                             case 1:
                                 imgCard2.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                nombreCard2.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    nombreCard2.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    nombreCard2.setText(pictograma1.getPictograma_name());}
+
                                 bandera2 = opciones.get(1).isOpcion_respuesta();
                                 opcion2.setVisibility(View.VISIBLE);
                                 opcion2.setBackgroundDrawable(fondo);
@@ -578,7 +592,11 @@ public class VistaMemoriaPaciente extends Fragment {
                                 break;
                             case 2:
                                 imgCard3.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                nombreCard3.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    nombreCard3.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    nombreCard3.setText(pictograma1.getPictograma_name());}
+
                                 bandera3 = opciones.get(2).isOpcion_respuesta();
                                 opcion3.setVisibility(View.VISIBLE);
                                 opcion3.setBackgroundDrawable(fondo);
@@ -588,7 +606,11 @@ public class VistaMemoriaPaciente extends Fragment {
                                 break;
                             case 3:
                                 imgCard4.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                nombreCard4.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    nombreCard4.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    nombreCard4.setText(pictograma1.getPictograma_name());}
+
                                 bandera4 = opciones.get(3).isOpcion_respuesta();
                                 opcion4.setVisibility(View.VISIBLE);
                                 opcion4.setBackgroundDrawable(fondo);
@@ -598,7 +620,11 @@ public class VistaMemoriaPaciente extends Fragment {
                                 break;
                             case 4:
                                 imgCard5.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                nombreCard5.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    nombreCard5.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    nombreCard5.setText(pictograma1.getPictograma_name());}
+
                                 bandera3 = opciones.get(4).isOpcion_respuesta();
                                 imgCard5.setVisibility(View.INVISIBLE);
                                 nombreCard5.setVisibility(View.INVISIBLE);
@@ -608,7 +634,11 @@ public class VistaMemoriaPaciente extends Fragment {
                                 break;
                             case 5:
                                 imgCard6.setImageBitmap(ImageConverter.convertirByteArrayAImagen(pictograma1.getPictograma_imagen()));
-                                nombreCard6.setText(pictograma1.getPictograma_nombre());
+                                if(sesion.getIdioma()==1){
+                                    nombreCard6.setText(pictograma1.getPictograma_nombre());
+                                }else{
+                                    nombreCard6.setText(pictograma1.getPictograma_name());}
+
                                 bandera3 = opciones.get(5).isOpcion_respuesta();
                                 opcion6.setVisibility(View.VISIBLE);
                                 opcion6.setBackgroundDrawable(fondo);
@@ -652,4 +682,5 @@ public class VistaMemoriaPaciente extends Fragment {
         Runtime.getRuntime().gc();
     }
 
-    }
+
+}

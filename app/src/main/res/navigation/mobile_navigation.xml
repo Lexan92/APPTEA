@@ -237,7 +237,7 @@
     <fragment
         android:id="@+id/nav_menu_configuracion"
         android:name="com.example.apptea.ui.configuracion.configuracionFragment"
-        android:label="Configuracion"
+        android:label="@string/menu_configuracion"
         tools:layout="@layout/fragment_configuracion" />
     <fragment
         android:id="@+id/vistaMemoriaPaciente2"

@@ -192,7 +192,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                 int orden = 0;
 
                 if (TextUtils.isEmpty(nombreHabilidad.getText())) {
-                    Toast.makeText(getApplicationContext(), "Debes agregar un nombre",
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.debeAgregarNombre),
                             Toast.LENGTH_LONG).show();
                 } else {
                     //NUEVO
@@ -266,7 +266,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                         }
                         TTSManagerSecuencia.pictogramaSeleccion = null;
                     }
-                    Toast.makeText(getApplicationContext(), "Habilidad Cotidiana Guardada ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.habilidadGuardada), Toast.LENGTH_LONG).show();
                     finish();
                 }
             }

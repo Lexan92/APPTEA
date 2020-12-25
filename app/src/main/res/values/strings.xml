@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name" translatable="false">TEAyudo Jugando</string>
+    <string name="app_name" translatable="false">TEA KIDS</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="nav_header_title">TEAyudo Jugando</string>
+    <string name="nav_header_title">TEA KIDS</string>
     <string name="txt9">Usuario</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -13,7 +13,7 @@
     <string name="menu_inicio">Inicio</string>
     <string name="menu_gestion_pictograma">Gestión de Pictogramas</string>
     <string name="menu_mi_perfil">Mi perfil</string>
-    <string name="menu_gestion_habilidad">Categorias de Habilidades Cotidianas</string>
+    <string name="menu_gestion_habilidad">Categorías de Habilidades Cotidianas</string>
     <string name="menu_gestion_juego">Gestión de Juegos Interactivos</string>
     <string name="menu_persona_tea">Lista de niños y niñas</string>
     <string name="menu_configuracion">Configuración</string>
@@ -35,18 +35,21 @@
 
     --INSTALACION
     <string name="txt1">Bienvenido a</string>
-    <string name="txt2" translatable="false">TEAyudo jugando</string>
-    <string name="txt3">Terminos y Condiciones</string>
-    <string name="txt4">Al presionar Siguiente, usted acepta los Terminos y Condiciones de TEAyudo Jugando</string>
+    <string name="txt2" translatable="false">TEA KIDS</string>
+    <string name="txt3">Términos y Condiciones</string>
+    <string name="txt4">Al presionar Siguiente, usted acepta los Términos y Condiciones de TEA KIDS</string>
     <string name="button1">Siguiente</string>
     <string name="button2">Acceso directo</string>
-    <string name="textarea">Modificar estos terminos y condiciones </string>
+    <string name="textarea">Cualquiera puede acceder a la aplicación TEA KIDS y utilizarla en diferentes medios (sin permiso previo) para actividades sin fines de lucro.
+                           Todos los derechos de TEA KIDS son exclusivamente de la Universidad de El Salvador por tanto la institución no se hace responsable del uso indebido de la misma.
+                           El uso de TEA KIDS NO sustituye una terapia de Lenguaje.</string>
+
 
     --CONFIGURACION
     <string name="idioma"> Idioma </string>
     <string name="español">Español </string>
-    <string name="ingles">Ingles </string>
-    <string name="desbloqueo">Desbloqueo </string>
+    <string name="ingles">Inglés </string>
+    <string name="desbloqueo">Desbloqueo para juegos</string>
     <string name="porContrasena">Por Contraseña </string>
     <string name="porHuella">Por Huella </string>
     <string name="seleccionarIdioma">Seleccionar Idioma </string>
@@ -61,7 +64,7 @@
     <string name="NContrasenia">Nueva Contraseña</string>
     <string name="NContrasenia2">Confirmar Contraseña</string>
     <string name="correoUsuario">Correo</string>
-    <string name="telefonoUsuario">Telefono</string>
+    <string name="telefonoUsuario">Teléfono</string>
     <string name="spinnerPais" translatable="false">Pais</string>
     <string name="spinnerDepto" translatable="false">Departamento</string>
     <string name="spinnerMunicipio" translatable="false">Municipio</string>
@@ -70,7 +73,7 @@
     <string name="siguienteUsuario">Siguiente</string>
     <string name="regresarUsuario">Regresar</string>
     <string name="titulo_validar_codigo">Ingresar código de validación</string>
-    <string name="mensaje_validar_codigo">Se ha enviado un código a tu correo electronico</string>
+    <string name="mensaje_validar_codigo">Se ha enviado un código a tu correo electrónico</string>
     <string name="campo_codigo">Código</string>
     <string name="button_validar">Validar</string>
 
@@ -81,7 +84,7 @@
     <string name="txt7">¿Olvidaste tu contraseña?</string>
 
     --Mi perfil
-    <string name="txt8">Acerca de TEAyudo Jugando</string>
+    <string name="txt8">Acerca de TEA KIDS</string>
     <string name="txt10">Correo:</string>
     <string name="txt11">Iniciar Sesión</string>
     <string name="txt12">Iniciar Sesión Como :</string>
@@ -90,11 +93,11 @@
 
 
     --Categoria Habilidad Cotidiana
-    <string name="campo_nombre">Nombre de Categoria</string>
+    <string name="campo_nombre">Nombre de Categoría</string>
     <string name="button_save">Guardar</string>
-    <string name="vacio_cat_hab_cot" translatable="false">No se guardo, ya que el campo esta vacio.</string>
-    <string name="titulo_cat_hab_cot">Nueva Categoria</string>
-    <string name="titulo_edit_cat_hab_cot">Editar Categoria</string>
+    <string name="vacio_cat_hab_cot" translatable="false">No se guardo, ya que el campo esta vacío.</string>
+    <string name="titulo_cat_hab_cot">Nueva Categoría</string>
+    <string name="titulo_edit_cat_hab_cot">Editar Categoría</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -139,28 +142,29 @@
 
 
     --Lista vacia
-    <string name="lista_vacia">UPS! ESTA CATEGORIA ESTA VACIA.</string>
+    <string name="lista_vacia">UPS! ESTA CATEGORÍA ESTA VACÍA.</string>
 
 
     --Nueva habilidad
     <string name="titulo_dialog_nueva_hab">Nueva Habilidad Cotidiana</string>
     <string name="hint_dialog_nueva_habilidad">Nombre Habilidad Cotidiana</string>
     <string name="pregunta_agregar_hab">¿Desea agregar un paso a la habilidad creada?</string>
-    <string name="comentario_hab">**Si selecciona -Más tarde- podra despues agregar los pasos**</string>
+    <string name="comentario_hab">**Si selecciona -Más tarde- podrá después agregar los pasos**</string>
     <string name="button_mas_tarde">Más tarde</string>
     <string name="button_si_agregar">Si</string>
+    <string name="habilidad">"HABILIDAD:</string>
 
     --terapeuta
     <string name="datosTera">Nuevo Registro</string>
     <string name="nombreTera">Nombre</string>
     <string name="apellidoTera">Apellido</string>
     <string name="correoTera">Correo</string>
-    <string name="telefonoTera">Telefono</string>
+    <string name="telefonoTera">Teléfono</string>
     <string name="cancelarTera">Cancelar</string>
     <string name="guardarTera">Guardar</string>
     <string name="nombreTeP">Nombre:</string>
     <string name="correoTeP">Correo:</string>
-    <string name="telefonoTeP">Telefono:</string>
+    <string name="telefonoTeP">Teléfono:</string>
     <string name="txtNueTera">Nuevo Terapeuta</string>
     <string name="txtModiTera">Modificar Terapeuta</string>
     <string name="tituloTerapeutaEncargado">Terapeutas encargados</string>
@@ -190,11 +194,14 @@
     <string name="sesionesRealizadas">Sesiones Realizadas</string>
     <string name="noHaySesionesRealizadas">NO HAY SESIONES REGISTRADAS</string>
     <string name="verSesion">Ver Sesiones</string>
+    <string name="OPCIONMENU">OPCIÓN MENÚ: Habilidades Cotidianas</string>
 
 
     --mensajes
     <string name="alerta">Alerta</string>
     <string name="estaSeguro">¿está seguro de eliminar a</string>
+    <string name="estaSeguroEliminarCatHab">¿Está seguro de eliminar la Categoría de:</string>
+    <string name="estaSeguroEliminarHab">¿Está seguro de eliminar a la Habilidad Cotidiana de:</string>
     <string name="eliminar">Eliminar</string>
     <string name="cerrar">Cerrar</string>
     <string name="categoNoSeElimina">Esta categoría no se puede eliminar,  existen:</string>
@@ -206,7 +213,7 @@
     <string name="habiCoti">habilidades cotidianas</string>
     <string name="jueInterac">juegos interactivos</string>
     <string name="seEliminaraPicto">Se eliminará el pictograma</string>
-    <string name="vacio">esta vacio</string>
+    <string name="vacio">esta vacío</string>
     <string name="campoRequerido">Campo Requerido</string>
     <string name="debeAgregarImagen">Debe agregar una imagen  antes de guardar</string>
     <string name="imagenGuardada">Imagen Guardada</string>
@@ -230,6 +237,10 @@
     <string name="sesionReanudada">Sesión Reanudada</string>
     <string name="comentarioActualizado">Comentario Actualizado</string>
     <string name="opcionesSeleccionadas">Opciones Selecionadas:</string>
+    <string name="noExisteCatHabili">No existe ninguna categoría para habilidades cotidianas</string>
+    <string name="paraVerDebe">Para visualizar debes agregar al menos un pictograma.</string>
+    <string name="debeAgregarNombre">Debes agregar un nombre.</string>
+    <string name="habilidadGuardada">Habilidad Cotidiana Guardada</string>
 
 
     --Iniciar sesion
@@ -241,14 +252,14 @@
 
 
     --Categoria de Pictogramas
-    <string name="agregarImg" translatable="false">¿Desea guardar como imagen principal de Categoria: </string>
-    <string name="agregarImg2" translatable="false">el pictograma: </string>
-    <string name="atencion" translatable="false">Atención </string>
-    <string name="aceptar" translatable="false">Aceptar </string>
+    <string name="agregarImg">¿Desea guardar como imagen principal de Categoría: </string>
+    <string name="agregarImg2">el pictograma: </string>
+    <string name="atencion">Atención </string>
+    <string name="aceptar">Aceptar </string>
     <string name="categoria">Categoría:</string>
-    <string name="CATEGORIA">CATEGORIA:</string>
+    <string name="CATEGORIA">CATEGORÍA:</string>
     <string name="buscar_pictogramas">Buscar Pictogramas</string>
-    <string name="opcionMenuVocabluario">OPCION MENU: Vocabulario</string>
+    <string name="opcionMenuVocabluario">OPCIÓN MENÚ: Vocabulario</string>
     <string name="agregarImgJuego" translatable="false">¿Desea guardar como imagen principal del Juego: </string>
 
 </resources>

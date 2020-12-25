@@ -35,6 +35,8 @@
         android:textColor="@color/colorPrimary"
         android:textSize="21sp"
         android:textStyle="bold"
+        android:maxLength="30"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editNombreJuego1" />

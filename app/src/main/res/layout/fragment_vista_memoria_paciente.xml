@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -55,7 +55,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_memoria1"
                 android:layout_width="150dp"
-                android:layout_height="175dp"
+                android:layout_height="150dp"
                 android:layout_marginRight="7dp"
                 android:background="@color/colorPrimaryDark"
                 app:cardCornerRadius="20dp"
@@ -109,7 +109,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_memoria2"
                 android:layout_width="150dp"
-                android:layout_height="175dp"
+                android:layout_height="150dp"
                 android:layout_marginLeft="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
@@ -168,7 +168,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_memoria3"
                 android:layout_width="150dp"
-                android:layout_height="175dp"
+                android:layout_height="150dp"
                 android:layout_marginRight="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
@@ -219,7 +219,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_memoria4"
                 android:layout_width="150dp"
-                android:layout_height="175dp"
+                android:layout_height="150dp"
                 android:layout_marginLeft="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
@@ -279,7 +279,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_memoria5"
                 android:layout_width="150dp"
-                android:layout_height="175dp"
+                android:layout_height="150dp"
                 android:layout_marginRight="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
@@ -296,7 +296,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
                     <!-- Media -->
@@ -330,7 +330,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_memoria6"
                 android:layout_width="150dp"
-                android:layout_height="175dp"
+                android:layout_height="150dp"
                 android:layout_marginLeft="7dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
@@ -343,7 +343,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
                     <!-- Media -->

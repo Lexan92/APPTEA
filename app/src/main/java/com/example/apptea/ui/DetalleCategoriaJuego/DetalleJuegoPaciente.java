@@ -283,6 +283,6 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
     public void onStop() {
         super.onStop();
         Runtime.getRuntime().gc();
-      
+
     }
 }

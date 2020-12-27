@@ -50,20 +50,6 @@ public class ListadoInicioSesion extends AppCompatActivity {
     Button sesionAdmin;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-        Date date = UtilidadFecha.obtenerFechaHoraActual();
-
-        Log.d("LEXAN", "HORA: " + date.toString());
-
-        Log.d("LEXAN", "HORA con formato: " + UtilidadFecha.obtenerHora(date));
-        Log.d("LEXAN", "Fecha con formato: " + UtilidadFecha.obtenerFecha(date));
-
-
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         Runtime.getRuntime().gc();
@@ -148,7 +134,7 @@ public class ListadoInicioSesion extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
                 //al presionar se termina la aplicacion
-                finish();
+                //finish();
             }
         };
         getOnBackPressedDispatcher().addCallback(ListadoInicioSesion.this, onBackPressedCallback);

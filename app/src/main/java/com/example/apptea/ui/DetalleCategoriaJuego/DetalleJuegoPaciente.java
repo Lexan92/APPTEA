@@ -276,13 +276,13 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
     public void onPause() {
         super.onPause();
         Runtime.getRuntime().gc();
-        juegosConPregunta.clear();
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
         Runtime.getRuntime().gc();
-        juegosConPregunta.clear();
+      
     }
 }

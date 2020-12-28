@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ ImageButton cerrar;
 Button guardar, cancelar;
 EditText comentario;
 Sesion sesion;
+    int contador =0;
 
 
     public ComentarioDialogo() {
@@ -58,6 +61,26 @@ Sesion sesion;
         sesion= (Sesion) objetoSesion.getSerializable("sesion");
         comentario.setText(sesion.getComentario());
 
+        comentario.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                guardar.setVisibility(View.INVISIBLE);
+                cancelar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                guardar.setVisibility(View.VISIBLE);
+                cancelar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
         eventosBotones();
         return builder.create();
     }
@@ -70,14 +93,10 @@ Sesion sesion;
             }
         });
 
-        comentario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                guardar.setVisibility(View.VISIBLE);
-                cancelar.setVisibility(View.VISIBLE);
 
-            }
-        });
+
+
+
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +117,15 @@ Sesion sesion;
             }
         });
     }
+
+    private void botones() {
+        if (contador>0){
+            guardar.setVisibility(View.VISIBLE);
+            cancelar.setVisibility(View.VISIBLE);
+        }
+    }
+
+
 
 
 }

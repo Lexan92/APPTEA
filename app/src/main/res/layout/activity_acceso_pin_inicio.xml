@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:inputType="textPassword"
+            android:imeOptions="actionDone"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

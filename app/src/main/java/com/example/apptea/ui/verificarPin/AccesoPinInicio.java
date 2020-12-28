@@ -30,6 +30,7 @@ import com.example.apptea.utilidades.EnviarCorreo;
 import com.example.apptea.utilidades.GenerarNumAleatorio;
 import com.example.apptea.utilidades.ValidarConexion;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
@@ -42,6 +43,7 @@ import static androidx.camera.core.CameraX.getContext;
 
 public class AccesoPinInicio extends AppCompatActivity {
 
+    TextInputLayout entradaPinLayout;
     EditText entradaPin;
     Button acceder, cancelar,contraseña;
     UsuarioViewModel usuarioViewModel;
@@ -59,6 +61,7 @@ public class AccesoPinInicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acceso_pin_inicio);
 
+        entradaPinLayout = findViewById(R.id.entrada_pin);
         entradaPin = findViewById(R.id.edit_word);
         acceder = findViewById(R.id.boton_acceder);
         cancelar = findViewById(R.id.boton_cancelar);
@@ -69,15 +72,14 @@ public class AccesoPinInicio extends AppCompatActivity {
         sobre = findViewById(R.id.sobre);
         sobre.setVisibility(View.INVISIBLE);
 
-        /*MaterialToolbar toolbar = this.findViewById(R.id.toolbar);
-        toolbar.setTitle(" ");*/
+
 
         acceder.setOnClickListener(v -> {
 
             usuario = usuarioViewModel.getUsuarioAll();
             usuario.observe(this, usuarios -> {
                 if (entradaPin.getText().toString().isEmpty()) {
-                    entradaPin.setError(getResources().getString(R.string.campoVaciIngreseContra));
+                    entradaPinLayout.setError(getResources().getString(R.string.campoVaciIngreseContra));
                 } else if (usuarios.get(0).getContrasenia().equals(entradaPin.getText().toString())) {
 
                     //Se obtiene el usuario guardado se obtiene la primera fila.
@@ -93,7 +95,7 @@ public class AccesoPinInicio extends AppCompatActivity {
                     finish();
 
                 } else {
-                    entradaPin.setError(getResources().getString(R.string.contraseIncorecta));
+                    entradaPinLayout.setError(getResources().getString(R.string.contraseIncorecta));
                 }
             });
         });

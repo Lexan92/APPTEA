@@ -22,6 +22,7 @@ import com.example.apptea.R;
 import com.example.apptea.ui.categoriajuego.CategoriaJuegoFragment;
 import com.example.apptea.ui.usuario.UsuarioViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +32,7 @@ import roomsqlite.entidades.Usuario;
 
 public class AccesoPin extends Fragment {
 
+    TextInputLayout entradaPinLayout;
     EditText entradaPin;
     Button acceder, cancelar;
     UsuarioViewModel usuarioViewModel;
@@ -59,6 +61,7 @@ public class AccesoPin extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        entradaPinLayout = view.findViewById(R.id.entrada_pin);
         entradaPin = view.findViewById(R.id.edit_word);
         acceder = view.findViewById(R.id.boton_acceder);
         cancelar = view.findViewById(R.id.boton_cancelar);
@@ -73,7 +76,7 @@ public class AccesoPin extends Fragment {
             usuario = usuarioViewModel.getUsuarioAll();
             usuario.observe(getActivity(), usuarios -> {
                 if (entradaPin.getText().toString().isEmpty()) {
-                    entradaPin.setError(getResources().getString(R.string.campoVaciIngreseContra));
+                    entradaPinLayout.setError(getResources().getString(R.string.campoVaciIngreseContra));
                 } else if (usuarios.get(0).getContrasenia().equals(entradaPin.getText().toString())) {
                     usuarioViewModel = new ViewModelProvider(getActivity()).get(UsuarioViewModel.class);
                     final boolean bandera = true;
@@ -81,7 +84,7 @@ public class AccesoPin extends Fragment {
                     bundle.putBoolean("bandera", bandera);
                     Navigation.findNavController(getView()).navigate(R.id.accesoPin_a_CategoriaJuego,bundle);
                 } else {
-                    entradaPin.setError(getResources().getString(R.string.contraseIncorecta));
+                    entradaPinLayout.setError(getResources().getString(R.string.contraseIncorecta));
                 }
             });
         });

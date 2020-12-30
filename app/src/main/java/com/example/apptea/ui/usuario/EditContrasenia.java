@@ -56,7 +56,7 @@ public class EditContrasenia extends AppCompatActivity {
         contra2 =  findViewById(R.id.editContrasenia2);
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
 
-        //PARA mostrar la actividad de editar contraseña
+        //BOTON SAVE
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -81,6 +81,14 @@ public class EditContrasenia extends AppCompatActivity {
                     }
 
                 }
+            }
+        });
+
+        final Button regresar = findViewById(R.id.regresar);
+        regresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

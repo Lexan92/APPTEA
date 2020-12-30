@@ -62,6 +62,7 @@
             android:id="@+id/edit_codigo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:fontFamily="sans-serif-light" />
 
     </com.google.android.material.textfield.TextInputLayout>

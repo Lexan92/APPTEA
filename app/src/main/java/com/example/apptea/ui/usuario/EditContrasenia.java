@@ -43,7 +43,6 @@ public class EditContrasenia extends AppCompatActivity {
 
    EditText contra1;
    EditText contra2;
-   //String error="Campo Obligatorio";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

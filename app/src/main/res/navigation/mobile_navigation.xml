@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_nav_mi_perfil_to_editUsuario"
             app:destination="@id/editUsuario" />
+        <action
+            android:id="@+id/action_nav_mi_perfil_to_acercaDeFragment"
+            app:destination="@id/acercaDeFragment" />
     </fragment>
 
     <fragment
@@ -258,5 +261,14 @@
             app:destination="@id/detalleJuegoPaciente"
             app:popUpTo="@id/nav_home"
             app:popUpToInclusive="false"/>
+    </fragment>
+    <fragment
+        android:id="@+id/acercaDeFragment"
+        android:name="com.example.apptea.ui.usuario.AcercaDeFragment"
+        android:label="Acerca De Tea Kids"
+        tools:layout="@layout/fragment_acerca_de" >
+        <action
+            android:id="@+id/action_acercaDeFragment_to_nav_mi_perfil"
+            app:destination="@id/nav_mi_perfil" />
     </fragment>
 </navigation>

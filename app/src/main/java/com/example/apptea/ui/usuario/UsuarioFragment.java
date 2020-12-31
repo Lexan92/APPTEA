@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -132,7 +133,8 @@ public class UsuarioFragment extends Fragment {
         cardAcercaDe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Acerca de TEAyudo Jugando en Desarrollo",Toast.LENGTH_LONG).show();
+                //AcercaDeFragment acercaDeFragment = new AcercaDeFragment();
+                Navigation.findNavController(v).navigate(R.id.acercaDeFragment);
             }
         });
 
@@ -141,17 +143,6 @@ public class UsuarioFragment extends Fragment {
         adapter.setButtonClicked(new UsuarioAdapter.ButtonClicked() {
             @Override
             public void updateClickedUsuario(Usuario usuario) {
-
-               /* Bundle bundleEnvio = new Bundle();
-                EditUsuarioFragment editUsuarioFragment = new EditUsuarioFragment();
-                bundleEnvio.putInt(EditUsuarioFragment.EXTRA_ID_USUARIO_UPDATE,usuario.getUsuario_id());
-                bundleEnvio.putString(EditUsuarioFragment.EXTRA_NOMBRE_USUARIO_UPDATE, usuario.getUsuario_nombre());
-                bundleEnvio.putString(EditUsuarioFragment.EXTRA_APELLIDO_USUARIO_UPDATE, usuario.getUsuario_apellido());
-                bundleEnvio.putInt(EditUsuarioFragment.EXTRA_ROL_USUARIO_UPDATE, usuario.getRol_id());
-                bundleEnvio.putString(EditUsuarioFragment.EXTRA_CORREO_USUARIO_UPDATE, usuario.getCorreo());
-                bundleEnvio.putString(EditUsuarioFragment.EXTRA_CONTRASEÑA_UPDATE, usuario.getContrasenia());
-                setTargetFragment();
-                startActivityForResult(intentUpdate,USUARIO_UPDATE_REQUEST_CODE)*/
 
                 Intent intentUpdate = new Intent(getActivity(), EditUsuario.class);
                 intentUpdate.putExtra(EditUsuario.EXTRA_ID_USUARIO_UPDATE, usuario.getUsuario_id());

@@ -262,4 +262,17 @@
     <string name="opcionMenuVocabluario">OPCIÓN MENÚ: Vocabulario</string>
     <string name="agregarImgJuego" translatable="false">¿Desea guardar como imagen principal del Juego: </string>
 
+
+    --Acerca De
+    <string name="tituloDesarolladores">DESARROLLADORES</string>
+    <string name="des1">Luis Alexander Aquino Avendaño</string>
+    <string name="des2">Elsy Beatriz Campos Orellana</string>
+    <string name="des3">Rosa Guadalupe Rodríguez Hueso</string>
+    <string name="des4">Oscar Ramón Turish Guardado</string>
+
+    <string name="tituloColaboradores">COLABORADORES</string>
+    <string name="col1">Dra. Angela de Escobar</string>
+
+    <string name="tituloTutores">TUTORES</string>
+    <string name="tut1">Msc. José María Sanchez</string>
 </resources>

@@ -74,7 +74,7 @@
         android:orientation="horizontal"
         android:scrollbars="horizontal"
         android:layout_weight=".25"
-        tools:listitem="@layout/fragment_item_frases" >
+        tools:listitem="@layout/fragment_item_pic_frases" >
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -13,17 +13,22 @@ package com.example.apptea.ui.frases;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.List;
 
+import roomsqlite.dao.PictogramaDAO;
+import roomsqlite.database.ImageConverter;
+import roomsqlite.database.appDatabase;
 import roomsqlite.entidades.CategoriaPictograma;
 
 public class CatPictoFrasesAdapter extends RecyclerView.Adapter<CatPictoFrasesAdapter.FrasesHolder> {
@@ -41,11 +46,13 @@ public class CatPictoFrasesAdapter extends RecyclerView.Adapter<CatPictoFrasesAd
     }
 
     public class FrasesHolder extends RecyclerView.ViewHolder{
-        public TextView nombreCategoria;
+        private final TextView nombreCategoria;
+        public ImageView imagen;
 
         private FrasesHolder(View itemView){
             super(itemView);
-            nombreCategoria = itemView.findViewById(R.id.txt_categoria_pictograma);
+            nombreCategoria = itemView.findViewById(R.id.nombre_pictograma);
+            imagen = itemView.findViewById(R.id.img_pictograma);
 
         }
 
@@ -55,7 +62,7 @@ public class CatPictoFrasesAdapter extends RecyclerView.Adapter<CatPictoFrasesAd
 
     @Override
     public FrasesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_frases,parent, false);
+        View itemview = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_pic_frases,parent, false);
         idioma = new AdministarSesion(parent.getContext());
         return new FrasesHolder(itemview);
     }
@@ -63,15 +70,26 @@ public class CatPictoFrasesAdapter extends RecyclerView.Adapter<CatPictoFrasesAd
     @Override
     public void onBindViewHolder(CatPictoFrasesAdapter.FrasesHolder holder, int position) {
         if (categoriaPictogramaList != null && position < categoriaPictogramaList.size()) {
+            PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
 
             CategoriaPictograma categoriaPictograma = categoriaPictogramaList.get(position);
-
-            System.out.println("Idioma es  " + idioma.getIdioma());
-            if(idioma.getIdioma()==1){
-                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
-            }else{
-                holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
-
+            if (categoriaPictograma.getPictograma_id() == 0) {
+                if(idioma.getIdioma()==1){
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                }else{
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
+                holder.setIsRecyclable(false);
+            }else {
+                Glide.with(holder.itemView.getContext())
+                        .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(categoriaPictograma.getPictograma_id()).getPictograma_imagen()))
+                        .thumbnail(0.5f)
+                        .into(holder.imagen);
+                if(idioma.getIdioma()==1){
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
+                }else{
+                    holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_name());}
+                holder.setIsRecyclable(false);
+            }
             holder.setIsRecyclable(false);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

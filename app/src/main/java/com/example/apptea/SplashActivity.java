@@ -76,7 +76,7 @@ public class SplashActivity extends AppCompatActivity {
 
         // IDIOMA 1 = ESPAÑOL 2 = INGLES
         int español= 1, ingles= 2;
-        String idioma;
+       /* String idioma;
         if(administarSesion.getIdioma() == -1){
             idioma = Locale.getDefault().getLanguage();
 
@@ -96,7 +96,7 @@ public class SplashActivity extends AppCompatActivity {
         }else if(administarSesion.getIdioma()==1){
             idioma= "es";
         }else
-            idioma= "en";
+            idioma= "en";*/
 
         // DESBLOQUEO 1 = POR CONTRASEÑA , 2 = POR HUELLA
         administarSesion.configurarDesbloqueo(1);

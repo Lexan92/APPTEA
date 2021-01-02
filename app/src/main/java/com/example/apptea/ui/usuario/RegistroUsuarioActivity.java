@@ -29,10 +29,12 @@ import com.example.apptea.R;
 import com.example.apptea.ui.configuracion.LocaleHelper;
 import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.rol.RolViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import roomsqlite.entidades.Rol;
 import roomsqlite.entidades.Usuario;
@@ -59,6 +61,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario);
+        AdministarSesion administarSesion = new AdministarSesion(getApplicationContext());
 
         //obteniendo datos del layout
         nombreUsuario=  findViewById(R.id.nombreUsuario);
@@ -94,7 +97,25 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.guardar);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                 if(administarSesion.getIdioma() == -1){
 
+                    String idioma = Locale.getDefault().getLanguage();
+                    int español= 1, ingles= 2;
+                    if(idioma.equals(new Locale ("es").getLanguage())|| idioma.equals(new Locale ("ES").getLanguage())){
+                        administarSesion.configuracionIdioma(español);
+                        System.out.println("Idioma es español " + idioma);
+                    }
+                    else if(idioma.equals(new Locale ("en").getLanguage())|| idioma.equals(new Locale ("EN").getLanguage())){
+                        administarSesion.configuracionIdioma(ingles);
+                        System.out.println("Idioma  es ingles " + idioma);
+                    }
+                    else if(!idioma.equals(new Locale ("en").getLanguage())|| !idioma.equals(new Locale ("EN").getLanguage())
+                            ||!idioma.equals(new Locale ("es").getLanguage())|| !idioma.equals(new Locale("ES").getLanguage())){
+                        administarSesion.configuracionIdioma(español);
+                        System.out.println("Idioma es otro " + idioma);
+                    }
+
+                }
 
                 if (validaciones()>0) {
                     System.out.println(getResources().getString(R.string.vacio));

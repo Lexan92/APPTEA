@@ -40,6 +40,24 @@ public class LocaleHelper {
     private static String getPersistedData(Context context) {
         AdministarSesion administarSesion = new AdministarSesion(context);
         String idioma;
+        if(administarSesion.getIdioma()==-1){
+            idioma = Locale.getDefault().getLanguage();
+            administarSesion.configuracionIdioma(-1);
+            if(idioma.equals(new Locale ("es").getLanguage())|| idioma.equals(new Locale ("ES").getLanguage())){
+                idioma="es";
+                System.out.println("Idioma es español " + idioma);
+            }
+            else if(idioma.equals(new Locale ("en").getLanguage())|| idioma.equals(new Locale ("EN").getLanguage())){
+                idioma="en";
+                System.out.println("Idioma  es ingles " + idioma);
+            }
+            else if(!idioma.equals(new Locale ("en").getLanguage())|| !idioma.equals(new Locale ("EN").getLanguage())
+                    ||!idioma.equals(new Locale ("es").getLanguage())|| !idioma.equals(new Locale ("ES").getLanguage())){
+                idioma="es";
+                System.out.println("Idioma es otro " + idioma);
+            }
+
+        }else
         if(administarSesion.getIdioma()==1){
             idioma="es";
         }

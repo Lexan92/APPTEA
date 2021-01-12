@@ -275,4 +275,10 @@
 
     <string name="tituloTutores">TUTORES</string>
     <string name="tut1">Msc. José María Sanchez</string>
+
+    <string name="tituloCreditos">CREDITOS</string>
+    <string name="cre1">Gard Game por Иван Капустин en lottiefiles.com</string>
+    <string name="cre2">confetti on transparent background por Nataly Go en lottiefiles.com</string>
+    <string name="cre3">Empty box por Hoai Le en lottiefiles.com</string>
+    <string name="cre4">Gard Game por Иван Капустин en lottiefiles.com</string>
 </resources>

@@ -35,7 +35,7 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHold
     }
 
 
-    public interface ButtonCliked{
+    public interface ButtonCliked {
         void comentarioCliked(Sesion sesion);
     }
 
@@ -79,7 +79,7 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHold
         void onSesionClick(Sesion posicion);
     }
 
-    public void setButtonClicked(SesionAdapter.ButtonCliked buttonClicked){
+    public void setButtonClicked(SesionAdapter.ButtonCliked buttonClicked) {
         this.buttonCliked = buttonClicked;
     }
 
@@ -87,7 +87,7 @@ public class SesionAdapter extends RecyclerView.Adapter<SesionAdapter.SesionHold
         private final TextView fecha;
         private final TextView horaInicio;
         private final TextView horaFin;
-        private  Button verComentario;
+        private Button verComentario;
         OnSesionListener onSesionListener;
 
         public SesionHolder(View itemView, OnSesionListener onSesionListener) {

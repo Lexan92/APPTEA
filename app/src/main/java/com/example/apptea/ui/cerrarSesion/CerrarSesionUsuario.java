@@ -87,6 +87,7 @@ public class CerrarSesionUsuario extends AppCompatActivity {
         descartar = findViewById(R.id.btn_descartar);
         UsuarioViewModel usuarioViewModel;
         usuarioViewModel = new ViewModelProvider(this).get(UsuarioViewModel.class);
+        usuario = usuarioViewModel.getUsuarioAll();
 
         if (administarSesion.obtenerTipoUsuario() == 1) {
             nombreUsuario = findViewById(R.id.text_nombre_usuario);
@@ -117,7 +118,7 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                 if (StringUtils.isAllBlank(contraseña.getText())) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.contraParaConti), Toast.LENGTH_SHORT).show();
                 } else {
-                    usuario = usuarioViewModel.getUsuarioAll();
+
                     usuario.observe(CerrarSesionUsuario.this, usuarios -> {
                         if (usuarios.get(0).getContrasenia().equals(contraseña.getText().toString())) {
                             Sesion sesion;
@@ -149,19 +150,33 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                 if (StringUtils.isAllBlank(contraseña.getText())) {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.escribaContrasDescartar), Toast.LENGTH_SHORT).show();
                 } else {
-                    Sesion sesion;
-                    int id = administarSesion.obtenerIDSesion();
-                    SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
-                    sesion = sesionDao.obtenerSesionPorId(id);
-                    sesionDao.borrarSesion(sesion);
-                    ResultadoDao resultadoDao = appDatabase.getDatabase(getApplicationContext()).resultadoDao();
-                    resultadoDao.borrarResultadoPorId(id);
-                    administarSesion.setearTipoUsuario(-1);
-                    administarSesion.guardarIDSesion(-1);
-                    administarSesion.cerrarSesionPersonaTea();
-                    Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.sesionDescartada), Toast.LENGTH_SHORT).show();
+
+
+                    usuario.observe(CerrarSesionUsuario.this, usuarios -> {
+
+                        if (usuarios.get(0).getContrasenia().equals(contraseña.getText().toString())) {
+
+                            Sesion sesion;
+                            int id = administarSesion.obtenerIDSesion();
+                            SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();
+                            sesion = sesionDao.obtenerSesionPorId(id);
+                            sesionDao.borrarSesion(sesion);
+                            ResultadoDao resultadoDao = appDatabase.getDatabase(getApplicationContext()).resultadoDao();
+                            resultadoDao.borrarResultadoPorId(id);
+                            administarSesion.setearTipoUsuario(-1);
+                            administarSesion.guardarIDSesion(-1);
+                            administarSesion.cerrarSesionPersonaTea();
+                            Intent intent = new Intent(CerrarSesionUsuario.this, ListadoInicioSesion.class);
+                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.sesionDescartada), Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.contraseIncorecta), Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    });
+
+
                 }
             }
         });

@@ -132,7 +132,7 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
                         .load(ImageConverter.convertirByteArrayAImagen(pictogramaDAO.findbyPictoId(current.getPictograma_id()).getPictograma_imagen()))
                         .thumbnail(0.5f)
                         .into(holder.imagen);
-                System.out.println("Idioma es  " + idioma.getIdioma());
+
                 if (idioma.getIdioma() == 1) {
                     holder.categoriaItemView.setText(current.getCat_hab_cotidiana_nombre());
                 } else {

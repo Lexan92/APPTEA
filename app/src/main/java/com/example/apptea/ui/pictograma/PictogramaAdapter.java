@@ -134,7 +134,6 @@ public class PictogramaAdapter extends RecyclerView.Adapter<PictogramaAdapter.Pi
                         .thumbnail(0.5f)
                         .into(holder.imagen);
 
-                System.out.println("Idioma es  " + idioma.getIdioma());
                 if(idioma.getIdioma()==1){
                     holder.pictogramaItemView.setText(current.getPictograma_nombre());
                 }else{

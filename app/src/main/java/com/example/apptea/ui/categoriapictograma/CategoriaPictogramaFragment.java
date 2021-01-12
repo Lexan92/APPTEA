@@ -157,7 +157,7 @@ public class CategoriaPictogramaFragment extends Fragment {
 
             @Override
             public void updateClickedCatPicto(CategoriaPictograma categoriaPictograma, View v) {
-                System.out.println("en el fragment" + categoriaPictograma.getCat_pictograma_id());
+                //System.out.println("en el fragment" + categoriaPictograma.getCat_pictograma_id());
                 Intent intentUpdate = new Intent(getActivity(), EditCategoriaPictograma.class);
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_ID_CAT_UPDATE, categoriaPictograma.getCat_pictograma_id());
                 intentUpdate.putExtra(EditCategoriaPictograma.EXTRA_NOMBRE_CAT_UPDATE, categoriaPictograma.getCat_pictograma_nombre());
@@ -175,8 +175,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 bundleEnvio.putSerializable("elementos", categoriaPictograma);
                 detalle_pictograma.setArguments(bundleEnvio);
                 if (bandera == true) {
-                    System.out.println("en el fragment" + categoriaPictograma.getCat_pictograma_nombre());
-                    if(administarSesion.getIdioma()==1){
+                     if(administarSesion.getIdioma()==1){
                         ttsManager.initQueue(categoriaPictograma.getCat_pictograma_nombre());
                     }else{
                         ttsManager.initQueue(categoriaPictograma.getCat_pictograma_name());}

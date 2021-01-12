@@ -5,33 +5,43 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/contenedorMAyor"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.usuario.UsuarioFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_mi_perfil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintHeight_percent=".30"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recyclerview_item_mi_perfil"
-        android:padding="16dp"/>
+        tools:listitem="@layout/recyclerview_item_mi_perfil" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="576dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent=".4"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil" />
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cambiarContra"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
         app:cardElevation="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/acerca_de"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil"
+        app:layout_constraintVertical_bias="0.635"
         app:layout_constraintWidth_percent=".70"
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="1dp">
@@ -73,14 +83,12 @@
         android:id="@+id/acerca_de"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="124dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cambiarContra"
-        app:layout_constraintVertical_bias="0.15"
         app:layout_constraintWidth_percent=".70"
-        app:cardElevation="3dp"
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="1dp">
 
@@ -90,26 +98,25 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <ImageView
-                android:layout_width="31dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                app:srcCompat="@drawable/ic_info" />
+        <ImageView
+            android:layout_width="31dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/ic_info" />
 
-            <TextView
-                android:id="@+id/txt_acerca_de"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/capriola"
-                android:text="@string/txt8"
-                android:textAppearance="?attr/textAppearanceHeadline5"
-                android:textColor="@color/mi_perfil_titulo"
-                android:textSize="15sp"
-                android:textStyle="normal" />
-
+        <TextView
+            android:id="@+id/txt_acerca_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/capriola"
+            android:text="@string/txt8"
+            android:textAppearance="?attr/textAppearanceHeadline5"
+            android:textColor="@color/mi_perfil_titulo"
+            android:textSize="15sp"
+            android:textStyle="normal" />
 
         </LinearLayout>
 

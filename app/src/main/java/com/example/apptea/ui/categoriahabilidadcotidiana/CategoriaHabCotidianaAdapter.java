@@ -210,10 +210,18 @@ public class CategoriaHabCotidianaAdapter extends RecyclerView.Adapter<Categoria
                 String patronDeFiltrado = constraint.toString().toLowerCase().trim();
 
                 for(CategoriaHabCotidiana item:categoriaHabCotidianaListFull){
-                    if (item.getCat_hab_cotidiana_nombre().toLowerCase().contains(patronDeFiltrado)){
+                    if(idioma.getIdioma()==1){
+                        if (item.getCat_hab_cotidiana_nombre().toLowerCase().contains(patronDeFiltrado)){
 
-                        listaFiltrada.add(item);
+                            listaFiltrada.add(item);
+                        }
+                    }else{
+                        if (item.getCat_hab_cotidiana_name().toLowerCase().contains(patronDeFiltrado)){
+
+                            listaFiltrada.add(item);
+                        }
                     }
+
                 }
             }
 

@@ -225,10 +225,19 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                 String patronDeFiltrado = constraint.toString().toLowerCase().trim();
 
                 for(CategoriaPictograma item:categoriaPictogramaListFull){
-                    if (item.getCat_pictograma_nombre().toLowerCase().contains(patronDeFiltrado)){
+                    if(idioma.getIdioma()==1){
+                        if (item.getCat_pictograma_nombre().toLowerCase().contains(patronDeFiltrado)){
 
-                        listaFiltrada.add(item);
-                    }
+                            listaFiltrada.add(item);
+                        }
+                    }else{
+                        if (item.getCat_pictograma_name().toLowerCase().contains(patronDeFiltrado)){
+
+                            listaFiltrada.add(item);
+                        }}
+
+
+
                 }
             } else {
                 listaFiltrada= new ArrayList<>(categoriaPictogramaList);

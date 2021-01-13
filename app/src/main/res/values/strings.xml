@@ -265,6 +265,7 @@
     <string name="paraVerDebe">Para visualizar debes agregar al menos un pictograma.</string>
     <string name="debeAgregarNombre">Debes agregar un nombre.</string>
     <string name="habilidadGuardada">Habilidad Cotidiana Guardada</string>
+    <string name="comentarioSesionGuardar">Debe ingresar un comentario</string>
 
 
 

@@ -22,6 +22,7 @@
         android:id="@+id/editText_comentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLength="500"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"

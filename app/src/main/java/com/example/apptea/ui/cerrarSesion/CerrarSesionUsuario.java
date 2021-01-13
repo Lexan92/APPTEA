@@ -120,7 +120,9 @@ public class CerrarSesionUsuario extends AppCompatActivity {
                 } else {
 
                     usuario.observe(CerrarSesionUsuario.this, usuarios -> {
-                        if (usuarios.get(0).getContrasenia().equals(contraseña.getText().toString())) {
+                        if (comentario.getText().toString().isEmpty()) {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.comentarioSesionGuardar), Toast.LENGTH_SHORT).show();
+                        } else if (usuarios.get(0).getContrasenia().equals(contraseña.getText().toString())) {
                             Sesion sesion;
                             int id = administarSesion.obtenerIDSesion();
                             SesionDao sesionDao = appDatabase.getDatabase(getApplicationContext()).sesionDao();

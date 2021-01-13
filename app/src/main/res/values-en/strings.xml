@@ -247,7 +247,7 @@
     <string name="paraVerDebe">To view you must add at least one pictogram.</string>
     <string name="debeAgregarNombre">You must add a name.</string>
     <string name="habilidadGuardada">Saved Everyday Skill </string>
-
+    <string name="comentarioSesionGuardar">You must enter a comment.</string>
 
 
 </resources>

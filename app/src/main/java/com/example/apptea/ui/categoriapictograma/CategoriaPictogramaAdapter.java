@@ -91,7 +91,6 @@ public class CategoriaPictogramaAdapter extends RecyclerView.Adapter<CategoriaPi
                             .thumbnail(0.5f)
                             .into(holder.imagen);
 
-                    System.out.println("Idioma es  " + idioma.getIdioma());
                     if (idioma.getIdioma() == 1) {
                         holder.nombreCategoria.setText(categoriaPictograma.getCat_pictograma_nombre());
                     } else {

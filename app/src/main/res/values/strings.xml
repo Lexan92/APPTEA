@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_title">TEA KIDS</string>
-    <string name="txt9">Usuario</string>
+    <string name="txt9">Encargado</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -20,10 +20,7 @@
     <string name="menu_preguntas_frecuentes">Preguntas Frecuentes</string>
     <string name="menu_cerrar_sesion">Cerrar Sesión</string>
 
-    <string name="home_second">Home Second</string>
-    <string name="nombre_opcion_menu">nombre_opcion_menu</string>
-
-    --BOTONES
+     --BOTONES
 
 
     -- OPCIONES DE APRENDIZAJE MENU PRINCIPAL
@@ -77,45 +74,72 @@
     <string name="campo_codigo">Código</string>
     <string name="button_validar">Validar</string>
 
+    --INICIAR SESION
+    <string name="txt13">Nombre:</string>
+    <string name="txt14">Apellido:</string>
+    <string name="txt15">Edad:</string>
+    <string name="txt16">Iniciar como Encargado:</string>
+    <string name="txt17">Hola  </string>
+
+    --Mi perfil
+    <string name="txt8">Acerca de TEA KIDS</string>
+    <string name="txt10">Correo:</string>
+    <string name="txt11">Seleccione un Perfil</string>
+    <string name="txt12">Iniciar Como Encargado :</string>
+    <string name="conexion_internet">Se necesita una conexión a Internet</string>
+    <string name="miPerfil">Mi Perfil</string>
+
     --ACCESO PIN
     <string name="txt5">Acceso con Contraseña</string>
     <string name="button3">Ingresar</string>
     <string name="txt6">Ingrese la Contraseña</string>
     <string name="txt7">¿Olvidaste tu contraseña?</string>
 
-    --Mi perfil
-    <string name="txt8">Acerca de TEA KIDS</string>
-    <string name="txt10">Correo:</string>
-    <string name="txt11">Iniciar Sesión</string>
-    <string name="txt12">Iniciar Sesión Como :</string>
-    <string name="conexion_internet">Se necesita una conexión a Internet</string>
-    <string name="miPerfil">Mi Perfil</string>
+    --ACERCA DE
+    <string name="tituloDesarolladores">DESARROLLADORES</string>
+    <string name="des1" translatable="false">Luis Alexander Aquino Avendaño</string>
+    <string name="des2" translatable="false">Elsy Beatriz Campos Orellana</string>
+    <string name="des3" translatable="false">Rosa Guadalupe Rodríguez Hueso</string>
+    <string name="des4" translatable="false">Oscar Ramón Turish Guardado</string>
+
+    <string name="tituloColaboradores">COLABORADORES</string>
+    <string name="col1" translatable="false">Dra. Angela de Escobar</string>
+
+    <string name="tituloTutores">TUTORES</string>
+    <string name="tut1" translatable="false">Msc. José María Sanchez</string>
+
+    <string name="tituloCreditos">CREDITOS</string>
+    <string name="cre1" translatable="false">Gard Game por Иван Капустин en lottiefiles.com</string>
+    <string name="cre2" translatable="false">confetti on transparent background por Nataly Go en lottiefiles.com</string>
+    <string name="cre3" translatable="false">Empty box por Hoai Le en lottiefiles.com</string>
+    <string name="cre4" translatable="false">Gard Game por Иван Капустин en lottiefiles.com</string>
+
+    --CATEGORIA DE PICTOGRAMAS
+    <string name="agregarImg">¿Desea guardar como imagen principal de Categoría: </string>
+    <string name="agregarImg2">el pictograma: </string>
+    <string name="atencion">Atención </string>
+    <string name="aceptar">Aceptar </string>
+    <string name="categoria">Categoría:</string>
+    <string name="CATEGORIA">CATEGORÍA:</string>
+    <string name="buscar_pictogramas">Buscar Pictogramas</string>
+    <string name="opcionMenuVocabluario">OPCIÓN MENÚ: Vocabulario</string>
+    <string name="agregarImgJuego" translatable="false">¿Desea guardar como imagen principal del Juego: </string>
 
 
     --Categoria Habilidad Cotidiana
     <string name="campo_nombre">Nombre de Categoría</string>
     <string name="button_save">Guardar</string>
-    <string name="vacio_cat_hab_cot" translatable="false">No se guardo, ya que el campo esta vacío.</string>
+    <string name="vacio_cat_hab_cot">No se guardo, ya que el campo esta vacío.</string>
     <string name="titulo_cat_hab_cot">Nueva Categoría</string>
     <string name="titulo_edit_cat_hab_cot">Editar Categoría</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="title_item_list">Items</string>
-    <string name="title_item_detail">Item Detail</string>
-    <string name="title_activity_detalle_categoria_juego">activity_detalle_categoria_juego</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     --persona tea
-    <string name="datosTea">Nuevo Registro</string>
+    <string name="datosTea">Nuevo Perfil</string>
     <string name="nombreTea">Nombre</string>
     <string name="apellidoTea">Apellido</string>
     <string name="fechaTea">fecha de nacimiento</string>
@@ -125,7 +149,7 @@
     <string name="foto">Foto</string>
     <string name="guardarPersona">Guardar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="actualizarTea">Actualizar Datos</string>
+    <string name="actualizarTea">Actualizar Perfil</string>
     <string name="actualizarPersona">Actualizar</string>
 
     --nuevo pictograma
@@ -243,36 +267,11 @@
     <string name="habilidadGuardada">Habilidad Cotidiana Guardada</string>
 
 
-    --Iniciar sesion
-    <string name="txt13">Nombre:</string>
-    <string name="txt14">Apellido:</string>
-    <string name="txt15">Edad:</string>
-    <string name="txt16">Iniciar como:</string>
-    <string name="txt17">Hola  </string>
 
 
-    --Categoria de Pictogramas
-    <string name="agregarImg">¿Desea guardar como imagen principal de Categoría: </string>
-    <string name="agregarImg2">el pictograma: </string>
-    <string name="atencion">Atención </string>
-    <string name="aceptar">Aceptar </string>
-    <string name="categoria">Categoría:</string>
-    <string name="CATEGORIA">CATEGORÍA:</string>
-    <string name="buscar_pictogramas">Buscar Pictogramas</string>
-    <string name="opcionMenuVocabluario">OPCIÓN MENÚ: Vocabulario</string>
-    <string name="agregarImgJuego" translatable="false">¿Desea guardar como imagen principal del Juego: </string>
 
 
-    --Acerca De
-    <string name="tituloDesarolladores">DESARROLLADORES</string>
-    <string name="des1">Luis Alexander Aquino Avendaño</string>
-    <string name="des2">Elsy Beatriz Campos Orellana</string>
-    <string name="des3">Rosa Guadalupe Rodríguez Hueso</string>
-    <string name="des4">Oscar Ramón Turish Guardado</string>
 
-    <string name="tituloColaboradores">COLABORADORES</string>
-    <string name="col1">Dra. Angela de Escobar</string>
 
-    <string name="tituloTutores">TUTORES</string>
-    <string name="tut1">Msc. José María Sanchez</string>
+
 </resources>

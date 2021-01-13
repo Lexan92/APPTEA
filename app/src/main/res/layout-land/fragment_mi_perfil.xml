@@ -22,28 +22,39 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_mi_perfil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".43"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recyclerview_item_mi_perfil"
-        android:padding="16dp"/>
+        tools:listitem="@layout/recyclerview_item_mi_perfil" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="576dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent=".50"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil" />
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cambiarContra"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="16dp"
         app:cardElevation="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil"
-        app:layout_constraintWidth_percent=".40"
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="1dp">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,22 +86,20 @@
 
         </LinearLayout>
 
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/acerca_de"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerview_mi_perfil"
-        app:layout_constraintWidth_percent=".450"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="1dp">
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

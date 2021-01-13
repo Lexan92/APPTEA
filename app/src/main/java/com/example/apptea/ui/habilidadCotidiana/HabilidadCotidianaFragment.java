@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
@@ -104,7 +105,7 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
         adapter = new HabilidadCotidianaAdapter(getActivity(), HabilidadCotidianaFragment.this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-
+        AdministarSesion idioma = new AdministarSesion(getContext());
         habilidadCotidianaViewModel = new ViewModelProvider(getActivity()).get(HabilidadCotidianaViewModel.class);
         secuenciaViewModel = new ViewModelProvider(getActivity()).get(SecuenciaViewModel.class);
 
@@ -168,7 +169,12 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
 
         //Setteando Toolbar para categorias
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.categoria)+" " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+        if(idioma.getIdioma()==1){
+            toolbar.setTitle(getResources().getString(R.string.categoria)+" " + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+        }else{
+            toolbar.setTitle(getResources().getString(R.string.categoria)+" " + categoriaHabCotidiana.getCat_hab_cotidiana_name());}
+
+
 
 
         //Boton de + para agregar una nueva categoria

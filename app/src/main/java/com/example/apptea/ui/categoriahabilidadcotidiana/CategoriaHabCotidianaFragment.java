@@ -140,7 +140,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
         adapter.setButtonClicked(new CategoriaHabCotidianaAdapter.ButtonClicked() {
             @Override
             public void updateClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
-                System.out.println("en el fragment" + categoriaHabCotidiana.getCat_hab_cotidiana_id());
+                //System.out.println("en el fragment" + categoriaHabCotidiana.getCat_hab_cotidiana_id());
                 Intent intentUpdate = new Intent(getActivity(), EditCategoriaHab.class);
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_ID_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_id());
                 intentUpdate.putExtra(EditCategoriaHab.EXTRA_NOMBRE_CAT_UPDATE, categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
@@ -161,7 +161,7 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                 builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        System.out.println("La Categoria de Habilidad Cotidiana" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
+                       // System.out.println("La Categoria de Habilidad Cotidiana" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre());
 
                         categoriaHabCotidianaViewModel.delete(categoriaHabCotidiana);
                         adapter.notifyDataSetChanged();

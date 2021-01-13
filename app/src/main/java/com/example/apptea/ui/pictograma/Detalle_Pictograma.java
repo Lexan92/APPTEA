@@ -131,7 +131,11 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
 
         //Definiendo nombre para el toolbar
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getString(R.string.categoria)+ categoriaPictograma.getCat_pictograma_nombre());
+        if(idioma.getIdioma()==1){
+            toolbar.setTitle(getResources().getString(R.string.categoria)+ categoriaPictograma.getCat_pictograma_nombre());
+        }else{
+            toolbar.setTitle(getResources().getString(R.string.categoria)+ categoriaPictograma.getCat_pictograma_name());}
+
 
 
         //NUEVO PICTOGRAMA

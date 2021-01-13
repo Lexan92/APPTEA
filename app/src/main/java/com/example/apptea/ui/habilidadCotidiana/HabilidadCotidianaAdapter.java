@@ -120,7 +120,6 @@ public class HabilidadCotidianaAdapter extends RecyclerView.Adapter<HabilidadCot
                     .thumbnail(0.5f)
                     .into(holder.imagen);
 
-            System.out.println("Idioma es  " + idioma.getIdioma());
             if(idioma.getIdioma()==1){
                 holder.habilidadItemView.setText(current.getHabilidad_cotidiana_nombre());
             }else{

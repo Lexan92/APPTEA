@@ -107,7 +107,7 @@ public class SecuenciaFragment extends AppCompatActivity{
             adapterCatPicto.setCategoria(categoriaPictogramas);
             //CatPicto = categoriaPictogramas.get((int) adapterCatPicto.getItemId(0));
             CatPicto = categoriaPictogramas.get(0);
-            System.out.println("en el fragment" + CatPicto.getCat_pictograma_nombre());
+            //System.out.println("en el fragment" + CatPicto.getCat_pictograma_nombre());
             //INICIALIZANDO SEGUNDO RECYCLER PICTOGRAMAS
             ItemClicked(CatPicto);
         }
@@ -126,7 +126,7 @@ public class SecuenciaFragment extends AppCompatActivity{
     adapterPicto.setClickedPicto(new PictoFrasesAdapter.ClickedPicto() {
         @Override
         public void PictoClicked(Pictograma pictograma) {
-            System.out.println("en el fragment" + pictograma.getPictograma_nombre());
+            //System.out.println("en el fragment" + pictograma.getPictograma_nombre());
             //REPRODUCIENDO NOMBRE
             if(idioma.getIdioma()==1){
                 ttsManager.initQueue(pictograma.getPictograma_nombre());
@@ -174,8 +174,8 @@ public class SecuenciaFragment extends AppCompatActivity{
 
     //LLENADO SEGUNDO RECYCLER
     public void ItemClicked (CategoriaPictograma categoriaPictograma){
-        System.out.println("en el fragment"+categoriaPictograma.getCat_pictograma_id());
-        System.out.println("en el fragment"+categoriaPictograma.getCat_pictograma_nombre());
+        //System.out.println("en el fragment"+categoriaPictograma.getCat_pictograma_id());
+       // System.out.println("en el fragment"+categoriaPictograma.getCat_pictograma_nombre());
         ModelPicto.getAllPictogramaByCategoria(categoriaPictograma.getCat_pictograma_id()).observe(this, new Observer<List<Pictograma>>() {
             @Override
             public void onChanged(List<Pictograma> pictogramas) {

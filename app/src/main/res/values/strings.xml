@@ -177,6 +177,9 @@
     <string name="button_mas_tarde">Más tarde</string>
     <string name="button_si_agregar">Si</string>
     <string name="habilidad">"HABILIDAD:</string>
+    <string name="crearSecuencia">Crear Secuencia</string>
+    <string name="editSecuencia">Editar Secuencia</string>
+
 
     --terapeuta
     <string name="datosTera">Nuevo Registro</string>

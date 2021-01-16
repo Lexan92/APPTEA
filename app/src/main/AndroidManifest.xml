@@ -124,7 +124,7 @@
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
             android:name=".ui.habilidadCotidiana.SecuenciaFragment"
-            android:label="Crear secuencia"
+            android:label="@string/crearSecuencia"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.habilidadCotidiana.VistaPreviaActivity"
@@ -132,7 +132,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".ui.habilidadCotidiana.EditSecuencia"
-            android:label="Editar secuencia"
+            android:label="@string/editSecuencia"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.categoriapictograma.DialogSeleccionImagen"

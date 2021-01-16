@@ -253,6 +253,8 @@
     <string name="debeAgregarNombre">You must add a name.</string>
     <string name="habilidadGuardada">Saved Everyday Skill </string>
     <string name="comentarioSesionGuardar">You must enter a comment.</string>
+    <string name="crearSecuencia">Create Sequence</string>
+    <string name="editSecuencia">Edit Sequence</string>
     <string name="estaSeguroEliminarJuego">Are you sure to delete the Game:</string>
     <string name="debeAgregarPictogramasAOpciones">You must add pictograms to the answer options.</string>
     <string name="debeMarcarAlMenos">You must mark at least one option as correct.</string>

@@ -193,7 +193,8 @@ public class VistaMemoriaPaciente extends Fragment {
         if(sesion.getIdioma()==1){
             nombreJuego.setText(juego.getJuego_nombre());
         }else{
-            nombreJuego.setText(juego.getName_game());}
+            nombreJuego.setText(juego.getName_game());
+        }
 
 
         fondoBlanco = getResources().getDrawable(R.drawable.ic_add_black_24dp);
@@ -437,6 +438,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     FinJuegoMemoriaFragment finJuegoMemoriaFragment = new FinJuegoMemoriaFragment();
                     bundleEnvio.putSerializable("resultado", res);
                     bundleEnvio.putInt("categoriaJuego", juego.getCategoria_juego_id());
+                    bundleEnvio.putBoolean("bandera",argumento.getBoolean("bandera"));
                     finJuegoMemoriaFragment.setArguments(bundleEnvio);
                     Navigation.findNavController(v).navigate(R.id.finJuegoMemoriaFragment,bundleEnvio);
 

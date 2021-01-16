@@ -105,7 +105,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         resultadoViewModel = new ViewModelProvider(this).get(ResultadoViewModel.class);
         resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
         AdministarSesion idioma = new AdministarSesion(getContext());
-
+        juegosConPregunta.clear();
 
         Bundle objetoCategoriaJuego = getArguments();
 
@@ -210,7 +210,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
 
                 bundleEnvio.putInt("resultadoId",res.getResultado_id());
                 bundleEnvio.putSerializable("resultado", res);
-
+                bundleEnvio.putBoolean("bandera",bundle.getBoolean("bandera"));
                 vistaPaciente.setArguments(bundleEnvio);
                 Navigation.findNavController(v).navigate(R.id.vistaMemoriaPaciente2,bundleEnvio);
             } else {
@@ -262,7 +262,6 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
             }
         }
         }
-
     }
 
     @Override

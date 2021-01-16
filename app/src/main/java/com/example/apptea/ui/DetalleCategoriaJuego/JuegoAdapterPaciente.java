@@ -69,7 +69,7 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
                 }
             }
             holder.eliminar.setVisibility(View.GONE);
-            holder.setIsRecyclable(true);
+
 
         }
 
@@ -90,11 +90,15 @@ public class JuegoAdapterPaciente extends RecyclerView.Adapter<JuegoAdapterPacie
             eliminar.setVisibility(View.INVISIBLE);
             this.onJuegoListener = onJuegoListener;
             itemView.setOnClickListener(this);
+            itemView.setTag(this);
         }
 
         @Override
         public void onClick(View v) {
+            JuegoViewHolder holder = (JuegoViewHolder) v.getTag();
+            holder.setIsRecyclable(false);
             onJuegoListener.onJuegoClick(juegos.get(getAdapterPosition()),v);
+
         }
     }
 

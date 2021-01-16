@@ -135,6 +135,7 @@ public class FinJuegoMemoriaFragment extends Fragment {
             Bundle bundleEnvio = new Bundle();
             catJuego = argumento.getInt("categoriaJuego", -1);
             bundleEnvio.putInt("objeto", catJuego);
+            bundleEnvio.putBoolean("bandera",argumento.getBoolean("bandera"));
             Navigation.findNavController(view).navigate(R.id.action_finJuegoMemoriaFragment_to_detalleJuegoPaciente, bundleEnvio);
         });
 

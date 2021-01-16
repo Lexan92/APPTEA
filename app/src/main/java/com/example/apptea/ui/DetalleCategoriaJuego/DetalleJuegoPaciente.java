@@ -188,7 +188,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                     detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                     Date hora = UtilidadFecha.obtenerFechaHoraActual();
                     detalleSesion.setHora_inicio(hora);
-                    detalleSesion.setNombre_opcion("JUEGO: ".concat(juego.getJuego_nombre()));
+                    detalleSesion.setNombre_opcion(getResources().getString(R.string.juego)+" ".concat(juego.getJuego_nombre()));
 
                     DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                     detalleSesionDao.insertarDetalleSesion(detalleSesion);
@@ -201,15 +201,12 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                     resultadoViewModel.insertResultado(resultado);
 
                     res = resultadoDao.obtenerResultado();
-                    System.out.println("Resultado id : " + res.getResultado_id());
-                    System.out.println("Resultado juego : " + res.getNombre_juego());
-                    System.out.println("Resultado SESION : " + res.getSesion_id());
 
                 }
 
                 bundleEnvio.putInt("resultadoId",res.getResultado_id());
                 bundleEnvio.putSerializable("resultado", res);
-                System.out.println("RESULTADO AFUERA" + res.getResultado_id());
+
                 vistaPaciente.setArguments(bundleEnvio);
                 Navigation.findNavController(v).navigate(R.id.vistaMemoriaPaciente2,bundleEnvio);
             } else {
@@ -226,7 +223,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                         detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                         Date hora = UtilidadFecha.obtenerFechaHoraActual();
                         detalleSesion.setHora_inicio(hora);
-                        detalleSesion.setNombre_opcion("JUEGO: ".concat(juego.getJuego_nombre()));
+                        detalleSesion.setNombre_opcion(getResources().getString(R.string.juego)+" ".concat(juego.getJuego_nombre()));
 
                         DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
@@ -239,9 +236,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
                         resultadoViewModel.insertResultado(resultado);
                         res = resultadoDao.obtenerResultado();
                         intent.putExtra("resultado", res);
-                        System.out.println("Resultado id : " + res.getResultado_id());
-                        System.out.println("Resultado juego : " + res.getNombre_juego());
-                        System.out.println("Resultado SESION : " + res.getSesion_id());
+
                     }
 
 

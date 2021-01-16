@@ -242,7 +242,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 },milisegundos);
 
             }
-            System.out.println(pic1+"id imgcard"+ca);
+
         });
 
         opcion2.setOnClickListener(v -> {
@@ -310,7 +310,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 },milisegundos);
 
             }
-            System.out.println(pic3);
+
                 }
         );
         opcion4.setOnClickListener(v -> {
@@ -343,7 +343,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     }
                 },milisegundos);
             }
-            System.out.println(pic4);
+
                 }
         );
         opcion5.setOnClickListener(v -> {
@@ -376,7 +376,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     }
                 },milisegundos);
             }
-            System.out.println(pic5);
+
                 }
         );
         opcion6.setOnClickListener(v -> {
@@ -409,7 +409,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     }
                 },milisegundos);
             }
-            System.out.println(pic6);
+
                 }
         );
 
@@ -419,11 +419,11 @@ public class VistaMemoriaPaciente extends Fragment {
             //Se comprueba el tipo de usuario Si es 1 guardamos resultado si es distinto no se guarda.
             if(sesion.obtenerTipoUsuario()==1) {
                 detalleResultado.setResultado_id(resultado);
-                detalleResultado.setNombre_pregunta("Nivel "+posicion+":"); //poner string
+                detalleResultado.setNombre_pregunta(getResources().getString(R.string.nivel)+" "+posicion+":"); //poner string
                 detalleResultado.setCantidad_fallos(incorrectas);
                 detalleResultadoViewModel.insertResultado(detalleResultado);
             }else{
-                System.out.println("NO ES PACIENTE");
+
             }
 
             // If para validar si existen mas preguntas sino se envia al fragment de fin de juego

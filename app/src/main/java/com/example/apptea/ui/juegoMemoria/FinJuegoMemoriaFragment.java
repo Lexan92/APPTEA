@@ -103,7 +103,7 @@ public class FinJuegoMemoriaFragment extends Fragment {
         ttsManager = new TTSManager();
         ttsManager.init(getContext());
         fin = view.findViewById(R.id.fin);
-        String frase = "¡Fin del Juego! ¡Bien hecho! ";
+        String frase = getResources().getString(R.string.finJuegoBienHecho);
         AdministarSesion administarSesion = new AdministarSesion(getContext());
 
         int milisegundos = 1000;
@@ -116,7 +116,7 @@ public class FinJuegoMemoriaFragment extends Fragment {
         }, milisegundos);
 
         if (administarSesion.obtenerIDSesion() > 0) {
-            nombreJuego.setText("N° de fallos: " + resultado.getNombre_juego());
+            nombreJuego.setText(getResources().getString(R.string.nDeFallos)+" " + resultado.getNombre_juego());
             recyclerView = view.findViewById(R.id.lista_detalleRes);
             final DetalleResultadoAdapter detalleResultadoAdapter = new DetalleResultadoAdapter();
             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));

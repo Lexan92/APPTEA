@@ -41,7 +41,7 @@ public class FinJuego extends AppCompatActivity {
         nombreJuego = findViewById(R.id.ResNombreJuego);
         ttsManager = new TTSManager();
         ttsManager.init(getApplication());
-        String frase = "¡Fin del Juego! ¡Bien hecho! ";
+        String frase = getResources().getString(R.string.finJuegoBienHecho);
         AdministarSesion administarSesion = new AdministarSesion(this);
 
         int milisegundos = 1000;
@@ -54,7 +54,7 @@ public class FinJuego extends AppCompatActivity {
         },milisegundos);
 
         if (administarSesion.obtenerIDSesion() > 0) {
-            nombreJuego.setText("N° de fallos: "+resultado.getNombre_juego());
+            nombreJuego.setText(getResources().getString(R.string.nDeFallos)+" "+resultado.getNombre_juego());
             recyclerView =findViewById(R.id.lista_detalleRes);
             final DetalleResultadoAdapter detalleResultadoAdapter = new DetalleResultadoAdapter();
             recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));

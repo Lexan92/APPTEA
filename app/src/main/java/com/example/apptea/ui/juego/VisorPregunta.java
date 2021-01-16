@@ -142,7 +142,7 @@ public class VisorPregunta extends AppCompatActivity {
                         banderaPreguntas = true;
                     } else {
                         banderaPreguntas =false;
-                        Toast.makeText(getApplicationContext(), "Ya ha alcanzado el máximo de 10 preguntas, no puede crear más",
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.maximo10Preguntas),
                                 Toast.LENGTH_LONG).show();
                     }
                 });
@@ -181,11 +181,11 @@ public class VisorPregunta extends AppCompatActivity {
         borrarPregunta.setOnClickListener(v -> {
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(VisorPregunta.this);
 
-            builder.setTitle("Eliminar Pregunta");
-            builder.setMessage("La pregunta será eliminada del juego actual ¿Desea continuar?");
-            builder.setNegativeButton("CANCELAR", (dialog, which) -> {
+            builder.setTitle(getResources().getString(R.string.eliminarPregunta));
+            builder.setMessage(getResources().getString(R.string.laPReguntaSeraElimi));
+            builder.setNegativeButton(getResources().getString(R.string.cancelar), (dialog, which) -> {
             });
-            builder.setPositiveButton("ACEPTAR", (dialog, which) -> {
+            builder.setPositiveButton(getResources().getString(R.string.aceptar), (dialog, which) -> {
                 listadoPreguntas.observe(VisorPregunta.this, preguntas -> {
                     if (preguntas.size() != 0) {
                         Pregunta preguntaBorrar = preguntas.get(posicion);
@@ -259,7 +259,7 @@ public class VisorPregunta extends AppCompatActivity {
                     contadorPreguntas.setText((posicion + 1) + " / " + preguntas.size());
                 });
 
-                Toast.makeText(getApplicationContext(), "Guardado Correctamente",
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.guardadoCorrectamente),
                         Toast.LENGTH_LONG).show();
             }
         }
@@ -374,7 +374,7 @@ public class VisorPregunta extends AppCompatActivity {
                 }
             } else {
 
-                aviso.setText("Esta pregunta no tiene opciones, presiona el botón de editar para agregar opciones");
+                aviso.setText(getResources().getString(R.string.noTieneOpciones));
                 aviso.setVisibility(View.VISIBLE);
             }
 

@@ -92,7 +92,7 @@ public class JuegoAdapter extends RecyclerView.Adapter<JuegoAdapter.JuegoViewHol
         if (juegos != null && position < juegos.size()) {
             Juego juego = juegos.get(position);
             PictogramaDAO pictogramaDAO = appDatabase.getDatabase(holder.itemView.getContext()).pictogramaDAO();
-            System.out.println("Idioma es  " + idioma.getIdioma());
+
             if(juego.getPictograma_id() == 0){
                 if(idioma.getIdioma()==1){
                     holder.nombreJuego.setText(juego.getJuego_nombre());

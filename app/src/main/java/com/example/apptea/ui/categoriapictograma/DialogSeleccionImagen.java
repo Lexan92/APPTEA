@@ -28,6 +28,7 @@ import com.example.apptea.ui.juego.BuscarPictograma;
 import com.example.apptea.ui.pictograma.PictogramaAdapter;
 import com.example.apptea.ui.pictograma.PictogramaAdapterBusqueda;
 import com.example.apptea.ui.pictograma.PictogramaViewModel;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
@@ -109,11 +110,17 @@ public class DialogSeleccionImagen extends AppCompatActivity implements Pictogra
         String atencion = getResources().getString(R.string.atencion);
         String aceptar = getResources().getString(R.string.aceptar);
         String cancelar = getResources().getString(R.string.cancelar);
+        AdministarSesion idioma = new AdministarSesion(getApplicationContext());
 
-
-        builder.setTitle(" "+atencion);
-        builder.setMessage(p1+" "+ categoriaPictograma.getCat_pictograma_nombre() +"\n"+p2 +" "+ pictograma.getPictograma_nombre() + "?");
-        builder.setIcon(android.R.drawable.ic_dialog_info);
+        if(idioma.getIdioma()==1) {
+            builder.setTitle(" " + atencion);
+            builder.setMessage(p1 + " " + categoriaPictograma.getCat_pictograma_nombre() + "\n" + p2 + " " + pictograma.getPictograma_nombre() + "?");
+            builder.setIcon(android.R.drawable.ic_dialog_info);
+        }else{
+            builder.setTitle(" " + atencion);
+            builder.setMessage(p1 + " " + categoriaPictograma.getCat_pictograma_nombre() + "\n" + p2 + " " + pictograma.getPictograma_name() + "?");
+            builder.setIcon(android.R.drawable.ic_dialog_info);
+        }
 
         builder.setPositiveButton(aceptar, new DialogInterface.OnClickListener() {
             @Override

@@ -111,7 +111,7 @@ public class VistaPreviaActivity extends AppCompatActivity {
                     play.setVisibility(View.VISIBLE);
                     atras.setVisibility(View.VISIBLE);
 
-                    System.out.println("Idioma es  " + idioma.getIdioma());
+
                     if(idioma.getIdioma()==1){
                         nombreHabilidad.setText(tituloHabilidad);
                     }else{

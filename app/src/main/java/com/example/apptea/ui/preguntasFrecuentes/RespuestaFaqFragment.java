@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptea.R;
+import com.example.apptea.utilidades.AdministarSesion;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class RespuestaFaqFragment extends Fragment implements RespuestaFaqAdapte
         adapter = new RespuestaFaqAdapter(getActivity(), RespuestaFaqFragment.this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-
+        AdministarSesion idioma = new AdministarSesion(getContext());
         respuestaFaqViewModel = new ViewModelProvider(getActivity()).get(RespuestaFaqViewModel.class);
 
 
@@ -70,7 +71,11 @@ public class RespuestaFaqFragment extends Fragment implements RespuestaFaqAdapte
 
         //Setteando Toolbar para categorias
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(faq.getFaq_info());
+        if(idioma.getIdioma()==1) {
+            toolbar.setTitle(faq.getFaq_info());
+        }else{
+            toolbar.setTitle(faq.getFaq_question());
+        }
 
     }
 

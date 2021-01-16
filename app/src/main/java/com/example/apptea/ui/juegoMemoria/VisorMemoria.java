@@ -212,7 +212,7 @@ public class VisorMemoria extends AppCompatActivity {
                     editar.setVisibility(View.VISIBLE);
                     agregar.setVisibility(View.VISIBLE);
                     borrar.setVisibility(View.VISIBLE);
-                    Toast.makeText(getApplicationContext(), "Nivel Guardado", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.nivelGuardado), Toast.LENGTH_LONG).show();
 
 
                 }
@@ -260,7 +260,7 @@ public class VisorMemoria extends AppCompatActivity {
                 editar.setVisibility(View.VISIBLE);
                 siguiente.setVisibility(View.VISIBLE);
                 anterior.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(), "Nivel Actualizado con Exito", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.nivelActualizado), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -282,11 +282,11 @@ public class VisorMemoria extends AppCompatActivity {
         borrar.setOnClickListener(v -> {
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(VisorMemoria.this);
 
-            builder.setTitle("Eliminar Nivel");
-            builder.setMessage("El nivel será eliminado del juego actual ¿Desea continuar?");
-            builder.setNegativeButton("CANCELAR", (dialog, which) -> {
+            builder.setTitle(getResources().getString(R.string.eliminarNivel));
+            builder.setMessage(getResources().getString(R.string.elNivelSeraElimi));
+            builder.setNegativeButton(getResources().getString(R.string.cancelar), (dialog, which) -> {
             });
-            builder.setPositiveButton("ACEPTAR", (dialog, which) -> {
+            builder.setPositiveButton(getResources().getString(R.string.aceptar), (dialog, which) -> {
                 listadoPreguntas.observe(VisorMemoria.this, preguntas -> {
                     if (preguntas.size() != 0) {
                         Pregunta preguntaBorrar = preguntas.get(posicion);

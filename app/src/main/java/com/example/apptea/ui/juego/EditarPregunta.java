@@ -215,7 +215,7 @@ public class EditarPregunta extends AppCompatActivity {
 
                 finish();
             } else {
-                Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe ingresar un titulo para la pregunta", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.definir_pregunta_view), getResources().getString(R.string.debeIngresarUnTitulo), Snackbar.LENGTH_LONG).show();
             }
             finish();
         });

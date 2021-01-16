@@ -56,7 +56,7 @@ public class CategoriaJuegoAdapter extends RecyclerView.Adapter<CategoriaJuegoVi
                 holder.juegoImg.setAnimation(R.raw.memoria_juego);
             }
 
-            System.out.println("Idioma es  " + idioma.getIdioma());
+
             if(idioma.getIdioma()==1){
                 holder.nombreCategoria.setText(categoriaJuego.getCategoriaJuegoNombre());
             }else{

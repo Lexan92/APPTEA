@@ -107,6 +107,7 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
         Bundle objetoCategoriaJuego = getArguments();
         resultadoViewModel = new ViewModelProvider(this).get(ResultadoViewModel.class);
         resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
+        AdministarSesion idioma = new AdministarSesion(getContext());
 
         if (objetoCategoriaJuego != null) {
             key = objetoCategoriaJuego.getInt("objeto", -1);
@@ -142,7 +143,11 @@ public class DetalleJuegoPaciente2 extends Fragment implements JuegoAdapterPacie
         categoriaJuegoLiveData.observe(getActivity(), new Observer<CategoriaJuego>() {
             @Override
             public void onChanged(CategoriaJuego categoriaJuego) {
-                toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+                if(idioma.getIdioma()==1) {
+                    toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+                }else{
+                    toolbar.setTitle(categoriaJuego.getCategoryNameGame());
+                }
             }
         });
 

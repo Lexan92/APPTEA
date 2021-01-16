@@ -51,7 +51,7 @@ public class CategoriaJuegoFragment extends Fragment {
             DetalleSesion detalleSesion = new DetalleSesion();
             detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
             detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-            detalleSesion.setNombre_opcion("OPCION MENU: Juegos Interactivos");
+            detalleSesion.setNombre_opcion(getResources().getString(R.string.OPCIONMENUJUEGO));
 
             DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
 
@@ -110,7 +110,7 @@ public class CategoriaJuegoFragment extends Fragment {
                         DetalleSesion detalleSesion = new DetalleSesion();
                         detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                         detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-                        detalleSesion.setNombre_opcion("CATEGORIA JUEGO: " + categoriaJuego.getCategoriaJuegoNombre());
+                        detalleSesion.setNombre_opcion(getResources().getString(R.string.categoriaJuego)+" " + categoriaJuego.getCategoriaJuegoNombre());
                         DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                         detalleSesionDao.insertarDetalleSesion(detalleSesion);
                     }
@@ -149,4 +149,3 @@ public class CategoriaJuegoFragment extends Fragment {
         });
     }
 }
-

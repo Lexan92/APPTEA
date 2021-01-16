@@ -113,11 +113,11 @@ public class DefinirPregunta extends AppCompatActivity {
         guardar.setOnClickListener(v -> {
 
             if (!agrego1 && !agrego2 && !agrego3 && !agrego4) {
-                Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debes agregar pictogramas a las opciones de respuesta", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.definir_pregunta_view), getResources().getString(R.string.debeAgregarPictogramasAOpciones), Snackbar.LENGTH_LONG).show();
             } else if (!isCheckedOpcionUno && !isCheckedOpcionDos && !isCheckedOpcionTres && !isCheckedOpcionCuatro) {
-                Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe marcar al menos una opción como correcta", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.definir_pregunta_view), getResources().getString(R.string.debeMarcarAlMenos), Snackbar.LENGTH_LONG).show();
             } else if (ValidacionCadenas.validarTamaño(tituloPregunta.getText().toString(), 30)) {
-                Snackbar.make(v, "El titulo debe ser menor a 30 caracteres", Snackbar.LENGTH_LONG)
+                Snackbar.make(v, getResources().getString(R.string.elTituloDebeSerMenor30), Snackbar.LENGTH_LONG)
                         .show();
             } else if (!tituloPregunta.getText().toString().isEmpty()) {
 
@@ -186,7 +186,7 @@ public class DefinirPregunta extends AppCompatActivity {
                 setResult(Activity.RESULT_OK, intentRetorno);
                 finish();
             } else {
-                Snackbar.make(findViewById(R.id.definir_pregunta_view), "Debe ingresar un titulo para la pregunta", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.definir_pregunta_view), getResources().getString(R.string.debeIngresarUnTitulo), Snackbar.LENGTH_LONG).show();
 
             }
         });

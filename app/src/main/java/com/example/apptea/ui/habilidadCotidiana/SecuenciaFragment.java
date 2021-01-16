@@ -174,8 +174,7 @@ public class SecuenciaFragment extends AppCompatActivity{
 
     //LLENADO SEGUNDO RECYCLER
     public void ItemClicked (CategoriaPictograma categoriaPictograma){
-        //System.out.println("en el fragment"+categoriaPictograma.getCat_pictograma_id());
-       // System.out.println("en el fragment"+categoriaPictograma.getCat_pictograma_nombre());
+
         ModelPicto.getAllPictogramaByCategoria(categoriaPictograma.getCat_pictograma_id()).observe(this, new Observer<List<Pictograma>>() {
             @Override
             public void onChanged(List<Pictograma> pictogramas) {

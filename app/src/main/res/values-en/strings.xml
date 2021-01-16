@@ -17,6 +17,14 @@
     <string name="menu_cerrar_sesion">Sign out</string>
 
 
+    --Buttons
+    <string name="crear">Create</string>
+    <string name="guardar">Save</string>
+    <string name="agregarNivel">Add Level</string>
+    <string name="borrarNivel">Delete Level</string>
+    <string name="editarNivel">Edit Level</string>
+
+
     -- OPTIONS MENU PRINCIPAL
     <string name="opcion_menu_tea_vocabulario">Vocabulary</string>
     <string name="juegos_interactivos">Interactive games</string>
@@ -134,10 +142,7 @@
     <string name="button_guardar_imagen_nuevo_pictograma">Save</string>
     <string name="txt18">New image</string>
     <string name="txt19"> Update Image</string>
-
-
-
-
+    <string name="pictograma">Pictogram</string>
 
 
 
@@ -248,6 +253,50 @@
     <string name="debeAgregarNombre">You must add a name.</string>
     <string name="habilidadGuardada">Saved Everyday Skill </string>
     <string name="comentarioSesionGuardar">You must enter a comment.</string>
+    <string name="estaSeguroEliminarJuego">Are you sure to delete the Game:</string>
+    <string name="debeAgregarPictogramasAOpciones">You must add pictograms to the answer options.</string>
+    <string name="debeMarcarAlMenos">You must mark at least one option as correct.</string>
+    <string name="elTituloDebeSerMenor30">The title must be less than 30 characters.</string>
+    <string name="debeIngresarUnTitulo">You must enter a title for the question.</string>
+    <string name="finJuegoBienHecho">End of the game! Well done!</string>
+    <string name="debeIngresarUnTituloDeJuego">You must enter a Game title.</string>
+    <string name="elTituloDebeSerMenor25">The title must be less than 25 characters.</string>
+    <string name="maximo10Preguntas">You have already reached the maximum of 10 questions, you cannot create more.</string>
+    <string name="eliminarPregunta">Delete Question</string>
+    <string name="laPReguntaSeraElimi">The question will be removed from the current game Do you want to continue?</string>
+    <string name="guardadoCorrectamente">Saved Correctly.</string>
+    <string name="noTieneOpciones">This question has no options, press the edit button to add options.</string>
+    <string name="nivelGuardado">Saved Level</string>
+    <string name="nivelActualizado">Successfully Updated Level</string>
+    <string name="eliminarNivel">Delete Level</string>
+    <string name="elNivelSeraElimi">The level will be removed from the current game. Do you want to continue?</string>
+    <string name="nivel">Level</string>
+    <string name="agregar">Add</string>
+
+
+
+
+
+    --JUEGOS INTERACTIVOS
+    <string name="nombreJuego">Game Name</string>
+    <string name="nuevoJuego">New Game</string>
+    <string name="escribaTitulo">Write the title of the question</string>
+    <string name="escribaNombre">Write a name for your game</string>
+    <string name="guardarPregunta">Save Question</string>
+    <string name="nuevaPregunta">New Question</string>
+    <string name="tituloPregunta">Question Title</string>
+    <string name="tituloJuego">Game Title</string>
+    <string name="finJuego">End of the game</string>
+    <string name="continuar">Continue</string>
+    <string name="bienHecho">Well done!</string>
+    <string name="esteJuegoNoTienePre">This game does not have questions yet, you can add some by pressing the button below</string>
+    <string name="misJuegos">My Games</string>
+    <string name="OPCIONMENUJUEGO">MENU OPTION: Interactive Games</string>
+    <string name="categoriaJuego">GAME CATEGORY:</string>
+    <string name="juego">GAME:</string>
+    <string name="nDeFallos">N° of failures:</string>
+    <string name="juegoDeMemoria">Memory Game</string>
+    <string name="resultados">Results</string>
 
 
 </resources>

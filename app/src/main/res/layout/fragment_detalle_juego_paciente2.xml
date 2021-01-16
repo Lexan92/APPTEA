@@ -11,7 +11,7 @@
         android:id="@+id/textView2_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mis Juegos"
+        android:text="@string/misJuegos"
         android:textSize="30sp"
         android:layout_marginTop="5dp"
         android:gravity="center"

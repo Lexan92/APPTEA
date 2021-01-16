@@ -21,6 +21,11 @@
     <string name="menu_cerrar_sesion">Cerrar Sesión</string>
 
      --BOTONES
+    <string name="crear">Crear</string>
+    <string name="guardar">Guardar</string>
+    <string name="agregarNivel">Agregar Nivel</string>
+    <string name="borrarNivel">Borrar Nivel</string>
+    <string name="editarNivel">Editar Nivel</string>
 
 
     -- OPCIONES DE APRENDIZAJE MENU PRINCIPAL
@@ -99,7 +104,7 @@
     <string name="tituloDesarolladores">DESARROLLADORES</string>
     <string name="des1" translatable="false">Luis Alexander Aquino Avendaño</string>
     <string name="des2" translatable="false">Elsy Beatriz Campos Orellana</string>
-    <string name="des3" translatable="false">Rosa Guadalupe Rodríguez Hueso</string>
+    <string name="des3" translatable="false">Rosa Guadalupe Rodríguez Huezo</string>
     <string name="des4" translatable="false">Oscar Ramón Turish Guardado</string>
 
     <string name="tituloColaboradores">COLABORADORES</string>
@@ -159,6 +164,7 @@
     <string name="button_guardar_imagen_nuevo_pictograma">Guardar</string>
     <string name="txt18">Nueva Imagen</string>
     <string name="txt19">Actualizar Imagen</string>
+    <string name="pictograma">Pictograma</string>
 
 
     --frases
@@ -245,30 +251,71 @@
     <string name="tomarFoto">Tomar Foto</string>
     <string name="cargarImagen">Cargar Imagen</string>
     <string name="seleccioneApli">Seleccione la Aplicación</string>
-    <string name="noExistePicto">No existe pictogramas</string>
-    <string name="esNecesarioCampoRequerido">Es necesario llenar los campos requeridos</string>
-    <string name="noSeHanIngesado">No se han ingresado personas a la lista</string>
-    <string name="seActualizoContrase">Se actualizó la contraseña con éxito</string>
-    <string name="debenSerIguales">Las contraseñas deben de ser iguales</string>
-    <string name="correoConExito">Correo Enviado con Éxito</string>
-    <string name="codigoIncorrecto">  El Código es incorrecto</string>
-    <string name="contraseIncorecta">Contraseña Incorrecta</string>
-    <string name="campoVaciIngreseContra">Campo Vacío, ingresa la contraseña</string>
-    <string name="contraParaConti">Escriba la contraseña para continuar</string>
-    <string name="sesionGuardada">Sesion Guardada</string>
-    <string name="escribaContrasDescartar">Escriba la contraseña para DESCARTAR la sesión</string>
-    <string name="sesionDescartada">Sesión Descartada</string>
-    <string name="sesionReanudada">Sesión Reanudada</string>
-    <string name="comentarioActualizado">Comentario Actualizado</string>
+    <string name="noExistePicto">No existe pictogramas.</string>
+    <string name="esNecesarioCampoRequerido">Es necesario llenar los campos requeridos.</string>
+    <string name="noSeHanIngesado">No se han ingresado personas a la lista.</string>
+    <string name="seActualizoContrase">Se actualizó la contraseña con éxito.</string>
+    <string name="debenSerIguales">Las contraseñas deben de ser iguales.</string>
+    <string name="correoConExito">Correo Enviado con Éxito.</string>
+    <string name="codigoIncorrecto">  El Código es incorrecto.</string>
+    <string name="contraseIncorecta">Contraseña Incorrecta.</string>
+    <string name="campoVaciIngreseContra">Campo Vacío, ingresa la contraseña.</string>
+    <string name="contraParaConti">Escriba la contraseña para continuar.</string>
+    <string name="sesionGuardada">Sesion Guardada.</string>
+    <string name="escribaContrasDescartar">Escriba la contraseña para DESCARTAR la sesión.</string>
+    <string name="sesionDescartada">Sesión Descartada.</string>
+    <string name="sesionReanudada">Sesión Reanudada.</string>
+    <string name="comentarioActualizado">Comentario Actualizado.</string>
     <string name="opcionesSeleccionadas">Opciones Selecionadas:</string>
-    <string name="noExisteCatHabili">No existe ninguna categoría para habilidades cotidianas</string>
+    <string name="noExisteCatHabili">No existe ninguna categoría para habilidades cotidianas.</string>
     <string name="paraVerDebe">Para visualizar debes agregar al menos un pictograma.</string>
     <string name="debeAgregarNombre">Debes agregar un nombre.</string>
-    <string name="habilidadGuardada">Habilidad Cotidiana Guardada</string>
-    <string name="comentarioSesionGuardar">Debe ingresar un comentario</string>
+    <string name="habilidadGuardada">Habilidad Cotidiana Guardada.</string>
+    <string name="comentarioSesionGuardar">Debe ingresar un comentario.</string>
+    <string name="estaSeguroEliminarJuego">¿Está seguro de eliminar el Juego:</string>
+    <string name="debeAgregarPictogramasAOpciones">Debes agregar pictogramas a las opciones de respuesta.</string>
+    <string name="debeMarcarAlMenos">Debe marcar al menos una opción como correcta.</string>
+    <string name="elTituloDebeSerMenor30">El título debe ser menor a 30 caracteres.</string>
+    <string name="debeIngresarUnTitulo">Debe ingresar un título para la pregunta.</string>
+    <string name="finJuegoBienHecho">¡Fin del Juego! ¡Bien hecho!</string>
+    <string name="debeIngresarUnTituloDeJuego">Debe ingresar un título de Juego.</string>
+    <string name="elTituloDebeSerMenor25">El título debe ser menor a 25 caracteres.</string>
+    <string name="maximo10Preguntas">Ya ha alcanzado el máximo de 10 preguntas, no puede crear más.</string>
+    <string name="eliminarPregunta">Eliminar Pregunta</string>
+    <string name="laPReguntaSeraElimi">La pregunta será eliminada del juego actual ¿Desea continuar?</string>
+    <string name="guardadoCorrectamente">Guardado Correctamente</string>
+    <string name="noTieneOpciones">Esta pregunta no tiene opciones, presiona el botón de editar para agregar opciones</string>
+    <string name="nivelGuardado">Nivel Guardado</string>
+    <string name="nivelActualizado">Nivel Actualizado con Éxito</string>
+    <string name="eliminarNivel">Eliminar Nivel</string>
+    <string name="elNivelSeraElimi">El nivel será eliminado del juego actual ¿Desea continuar?</string>
+    <string name="nivel">Nivel</string>
+    <string name="agregar">Agregar</string>
 
 
 
+
+
+    --JUEGOS INTERACTIVOS
+    <string name="nombreJuego">Nombre Juego</string>
+    <string name="nuevoJuego">Nuevo Juego</string>
+    <string name="escribaTitulo">Escriba el título de la pregunta</string>
+    <string name="escribaNombre">Escribe un nombre para tu juego</string>
+    <string name="guardarPregunta">Guardar Pregunta</string>
+    <string name="nuevaPregunta">Nueva Pregunta</string>
+    <string name="tituloPregunta">Título de la Pregunta</string>
+    <string name="tituloJuego">Título Juego</string>
+    <string name="finJuego">Fin del Juego</string>
+    <string name="continuar">Continuar</string>
+    <string name="bienHecho">¡Bien Hecho!</string>
+    <string name="esteJuegoNoTienePre">Este juego aún no tiene preguntas, puedes agregar unas pulsando el botón de abajo</string>
+    <string name="misJuegos">Mis Juegos</string>
+    <string name="OPCIONMENUJUEGO">OPCIÓN MENÚ: Juegos Interactivos</string>
+    <string name="categoriaJuego">CATEGORIA JUEGO:</string>
+    <string name="juego">JUEGO:</string>
+    <string name="nDeFallos">N° de fallos:</string>
+    <string name="juegoDeMemoria">Juego de Memoria</string>
+    <string name="resultados">Resultados</string>
 
 
 

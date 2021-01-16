@@ -47,10 +47,10 @@ public class NuevoJuego extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (nombreJuego.getText().toString().isEmpty()) {
-                    Snackbar.make(v, "Debe ingresar un Titulo de Juego", Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, getResources().getString(R.string.debeIngresarUnTituloDeJuego), Snackbar.LENGTH_LONG)
                             .show();
                 } else if (ValidacionCadenas.validarTamaño(nombreJuego.getText().toString(),25)){
-                    Snackbar.make(v, "El titulo debe ser menor a 25 caracteres", Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, getResources().getString(R.string.elTituloDebeSerMenor25), Snackbar.LENGTH_LONG)
                             .show();
 
                 } else {

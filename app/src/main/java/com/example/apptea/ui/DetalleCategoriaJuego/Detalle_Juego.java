@@ -157,11 +157,11 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
             public void deleteClickedCatHab(Juego juego) {
 
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
-                builder.setTitle("Alerta");
-                builder.setMessage("¿Está seguro de eliminar el Juego :\n" + juego.getJuego_nombre() + "?");
+                builder.setTitle(getResources().getString(R.string.alerta));
+                builder.setMessage(getResources().getString(R.string.estaSeguroEliminarJuego)+"\n" + juego.getJuego_nombre() + "?");
                 builder.setIcon(android.R.drawable.ic_delete);
 
-                builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         juegoViewModel.delete(juego);
@@ -171,7 +171,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
                 });
 
 
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getResources().getString(R.string.cancelar), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -252,8 +252,6 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
             }
             }
-
-
 
 
     }

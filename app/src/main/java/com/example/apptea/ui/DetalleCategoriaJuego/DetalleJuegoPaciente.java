@@ -104,7 +104,7 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
         resultadoViewModel = new ViewModelProvider(this).get(ResultadoViewModel.class);
         resultadoDao= appDatabase.getDatabase(getActivity()).resultadoDao();
-
+        AdministarSesion idioma = new AdministarSesion(getContext());
 
 
         Bundle objetoCategoriaJuego = getArguments();
@@ -144,7 +144,11 @@ public class DetalleJuegoPaciente extends Fragment implements JuegoAdapterPacien
         categoriaJuegoLiveData.observe(getActivity(), new Observer<CategoriaJuego>() {
             @Override
             public void onChanged(CategoriaJuego categoriaJuego) {
-               toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+                if (idioma.getIdioma()==1) {
+                    toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+                }else{
+                    toolbar.setTitle(categoriaJuego.getCategoryNameGame());
+                }
             }
         });
 

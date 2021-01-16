@@ -40,6 +40,7 @@ import com.example.apptea.ui.juego.PreguntaViewModel;
 import com.example.apptea.ui.juego.VisorPregunta;
 import com.example.apptea.ui.juegoMemoria.VisorMemoria;
 import com.example.apptea.ui.juegoSeleccion.SeleccionaOpcion;
+import com.example.apptea.utilidades.AdministarSesion;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -105,7 +106,7 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         juegoViewModel = new ViewModelProvider(getActivity()).get(JuegoViewModel.class);
         preguntaViewModel = new ViewModelProvider(getActivity()).get(PreguntaViewModel.class);
         categoriaJuegoViewModel = new ViewModelProvider(getActivity()).get(CategoriaViewModel.class);
-
+        AdministarSesion idioma = new AdministarSesion(getContext());
         Bundle objetoCategoriaJuego = getArguments();
 
         if (objetoCategoriaJuego != null) {
@@ -131,7 +132,11 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
         categoriaJuegoLiveData.observe(getActivity(), new Observer<CategoriaJuego>() {
             @Override
             public void onChanged(CategoriaJuego categoriaJuego) {
-                toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+               if (idioma.getIdioma()==1) {
+                   toolbar.setTitle(categoriaJuego.getCategoriaJuegoNombre());
+               }else{
+                   toolbar.setTitle(categoriaJuego.getCategoryNameGame());
+               }
             }
         });
 

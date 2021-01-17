@@ -299,6 +299,11 @@
     <string name="nDeFallos">N° of failures:</string>
     <string name="juegoDeMemoria">Memory Game</string>
     <string name="resultados">Results</string>
+    <string name="OPCIONFRASES">MENU OPTION: PHRASES</string>
+    <string name="cerrarSesion">You need to log out</string>
+    <string name="accesojuegos">Access to Interactive Games</string>
+    <string name="huella">Use your fingerprint to enter this option</string>
+    <string name="usarPass">Use Password</string>
 
 
 </resources>

@@ -80,7 +80,7 @@ public class frasesFragment extends Fragment {
             DetalleSesion detalleSesion = new DetalleSesion();
             detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
             detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-            detalleSesion.setNombre_opcion("OPCION MENU: Frases");
+            detalleSesion.setNombre_opcion(getResources().getString(R.string.OPCIONFRASES));
 
             DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
 

@@ -155,7 +155,11 @@ public class CategoriaHabCotidianaFragment extends Fragment {
             public void deleteClickedCatHab(CategoriaHabCotidiana categoriaHabCotidiana) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(getResources().getString(R.string.alerta));
-                builder.setMessage(getResources().getString(R.string.estaSeguroEliminarCatHab)+"\n" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre() + "?");
+                if(administarSesion.getIdioma()==1){
+                    builder.setMessage(getResources().getString(R.string.estaSeguroEliminarCatHab)+"\n" + categoriaHabCotidiana.getCat_hab_cotidiana_nombre() + "?");
+                }else{
+                    builder.setMessage(getResources().getString(R.string.estaSeguroEliminarCatHab)+"\n" + categoriaHabCotidiana.getCat_hab_cotidiana_name() + "?");}
+
                 builder.setIcon(android.R.drawable.ic_delete);
 
                 builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
@@ -204,7 +208,11 @@ public class CategoriaHabCotidianaFragment extends Fragment {
                     DetalleSesion detalleSesion = new DetalleSesion();
                     detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                     detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-                    detalleSesion.setNombre_opcion(getResources().getString(R.string.habilidad)+" " + categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)).getCat_hab_cotidiana_nombre());
+                    if(administarSesion.getIdioma()==1){
+                        detalleSesion.setNombre_opcion(getResources().getString(R.string.habilidad)+" " + categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)).getCat_hab_cotidiana_nombre());
+                    }else{
+                        detalleSesion.setNombre_opcion(getResources().getString(R.string.habilidad)+" " + categoriaHabCotidianaViewModel.getCategoriaHabCotidianaAll().getValue().get(recyclerView.getChildAdapterPosition(v)).getCat_hab_cotidiana_name());}
+
                     DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                     detalleSesionDao.insertarDetalleSesion(detalleSesion);
                 }

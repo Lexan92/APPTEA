@@ -112,7 +112,7 @@ public class DialogSeleccionImagenJuego extends AppCompatActivity implements Pic
             builder.setIcon(android.R.drawable.ic_dialog_info);
         }else{
             builder.setTitle(" " + atencion);
-            builder.setMessage(p1 + " " + juego.getJuego_nombre() + "\n" + p2 + " " + pictograma.getPictograma_name() + "?");
+            builder.setMessage(p1 + " " + juego.getName_game() + "\n" + p2 + " " + pictograma.getPictograma_name() + "?");
             builder.setIcon(android.R.drawable.ic_dialog_info);
         }
 

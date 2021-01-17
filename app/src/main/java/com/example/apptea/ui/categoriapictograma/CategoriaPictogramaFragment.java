@@ -188,7 +188,11 @@ public class CategoriaPictogramaFragment extends Fragment {
                     DetalleSesion detalleSesion = new DetalleSesion();
                     detalleSesion.setSesion_id(administarSesion.obtenerIDSesion());
                     detalleSesion.setHora_inicio(UtilidadFecha.obtenerFechaHoraActual());
-                    detalleSesion.setNombre_opcion(getResources().getString(R.string.CATEGORIA) + categoriaPictograma.getCat_pictograma_nombre());
+                    if(administarSesion.getIdioma()==1){
+                        detalleSesion.setNombre_opcion(getResources().getString(R.string.CATEGORIA) + categoriaPictograma.getCat_pictograma_nombre());
+                    }else{
+                        detalleSesion.setNombre_opcion(getResources().getString(R.string.CATEGORIA) + categoriaPictograma.getCat_pictograma_name());}
+
                     DetalleSesionDao detalleSesionDao = appDatabase.getDatabase(getContext()).detalleSesionDao();
                     detalleSesionDao.insertarDetalleSesion(detalleSesion);
                 }
@@ -201,7 +205,7 @@ public class CategoriaPictogramaFragment extends Fragment {
                 public void itemLongClicked(CategoriaPictograma categoriaPictograma) {
                     Intent intentSeleccion = new Intent(getActivity(), DialogSeleccionImagen.class);
                     intentSeleccion.putExtra("categoria",categoriaPictograma.getCat_pictograma_id());
-                    System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
+                    //System.out.println("seleccionaste categoria: "+categoriaPictograma.getCat_pictograma_nombre() );
                     startActivity(intentSeleccion);
             }
 

@@ -140,7 +140,11 @@ public class HabilidadCotidianaFragment extends Fragment implements HabilidadCot
             public void deleteClickedHab(HabilidadCotidiana habilidadCotidiana) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(getResources().getString(R.string.alerta));
-                builder.setMessage(getResources().getString(R.string.estaSeguroEliminarHab)+"\n" + habilidadCotidiana.getHabilidad_cotidiana_nombre() + "?");
+                if(idioma.getIdioma()==1){
+                    builder.setMessage(getResources().getString(R.string.estaSeguroEliminarHab)+"\n" + habilidadCotidiana.getHabilidad_cotidiana_nombre() + "?");
+                }else{
+                    builder.setMessage(getResources().getString(R.string.estaSeguroEliminarHab)+"\n" + habilidadCotidiana.getEveryday_skills_name() + "?");}
+
                 builder.setIcon(android.R.drawable.ic_delete);
                 builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {
                     @Override

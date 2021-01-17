@@ -163,7 +163,11 @@ public class Detalle_Juego extends Fragment implements JuegoAdapter.OnJuegoListe
 
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
                 builder.setTitle(getResources().getString(R.string.alerta));
-                builder.setMessage(getResources().getString(R.string.estaSeguroEliminarJuego)+"\n" + juego.getJuego_nombre() + "?");
+                if(idioma.getIdioma()==1){
+                    builder.setMessage(getResources().getString(R.string.estaSeguroEliminarJuego)+"\n" + juego.getJuego_nombre() + "?");
+                }else{
+                    builder.setMessage(getResources().getString(R.string.estaSeguroEliminarJuego)+"\n" + juego.getName_game() + "?");}
+
                 builder.setIcon(android.R.drawable.ic_delete);
 
                 builder.setPositiveButton(getResources().getString(R.string.eliminar), new DialogInterface.OnClickListener() {

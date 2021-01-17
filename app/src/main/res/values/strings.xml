@@ -99,6 +99,10 @@
     <string name="button3">Ingresar</string>
     <string name="txt6">Ingrese la Contraseña</string>
     <string name="txt7">¿Olvidaste tu contraseña?</string>
+    <string name="accesojuegos">Acceso a Juegos Interactivos</string>
+    <string name="huella">Usa tu huella dactilar para ingresar a esta opción</string>
+    <string name="usarPass">Usar Contraseña</string>
+
 
     --ACERCA DE
     <string name="tituloDesarolladores">DESARROLLADORES</string>
@@ -228,6 +232,9 @@
     <string name="noHaySesionesRealizadas">NO HAY SESIONES REGISTRADAS</string>
     <string name="verSesion">Ver Sesiones</string>
     <string name="OPCIONMENU">OPCIÓN MENÚ: Habilidades Cotidianas</string>
+    <string name="OPCIONFRASES">OPCION MENU: Frases</string>
+    <string name="cerrarSesion">Debe cerrar sesión</string>
+
 
 
     --mensajes

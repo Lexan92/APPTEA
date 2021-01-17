@@ -104,9 +104,9 @@ public class HomeFragment extends Fragment {
         });
 
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Acceso a Juegos Interactivos")
-                .setDescription("Usa tu huella dactilar para ingresar a esta opción")
-                .setNegativeButtonText("Usar Password")
+                .setTitle(getResources().getString(R.string.accesojuegos))
+                .setDescription(getResources().getString(R.string.huella))
+                .setNegativeButtonText(getResources().getString(R.string.usarPass))
                 .build();
 
 
@@ -153,7 +153,8 @@ public class HomeFragment extends Fragment {
         OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Toast.makeText(getContext(), "Debe cerrar sesión", Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getContext(), R.string.cerrarSesion, Toast.LENGTH_LONG).show();
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), onBackPressedCallback);

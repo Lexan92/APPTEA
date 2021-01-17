@@ -99,8 +99,9 @@ public class SplashActivity extends AppCompatActivity {
             idioma= "en";*/
 
         // DESBLOQUEO 1 = POR CONTRASEÑA , 2 = POR HUELLA
-        administarSesion.configurarDesbloqueo(1);
-
+        if(administarSesion.getDesbloqueo() == -1) {
+            administarSesion.configurarDesbloqueo(1);
+        }
 
     }
 

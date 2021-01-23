@@ -304,6 +304,7 @@
     <string name="accesojuegos">Access to Interactive Games</string>
     <string name="huella">Use your fingerprint to enter this option</string>
     <string name="usarPass">Use Password</string>
+    <string name="salir">Finish</string>
 
 
 </resources>

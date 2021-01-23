@@ -26,7 +26,7 @@
     <string name="agregarNivel">Agregar Nivel</string>
     <string name="borrarNivel">Borrar Nivel</string>
     <string name="editarNivel">Editar Nivel</string>
-
+    <string name="salir">Salir</string>
 
     -- OPCIONES DE APRENDIZAJE MENU PRINCIPAL
     <string name="opcion_menu_tea_vocabulario">Vocabulario</string>

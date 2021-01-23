@@ -506,6 +506,7 @@ public class VistaMemoriaPaciente extends Fragment {
             celebracion.bringToFront();
             celebracion.setSpeed(2);
             celebracion.playAnimation();
+            ttsManager.initQueue(getResources().getString(R.string.bienHecho));
             if(correctas == 3){
                 siguiente.setVisibility(View.VISIBLE);
             }

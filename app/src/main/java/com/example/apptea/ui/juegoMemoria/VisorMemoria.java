@@ -1,5 +1,6 @@
 package com.example.apptea.ui.juegoMemoria;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.apptea.R;
 import com.example.apptea.ui.configuracion.LocaleHelper;
+import com.example.apptea.ui.inicioSesion.ListadoInicioSesion;
 import com.example.apptea.ui.juego.BuscarPictograma;
 import com.example.apptea.ui.juego.OpcionViewModel;
 import com.example.apptea.ui.juego.PreguntaViewModel;
@@ -43,7 +45,7 @@ import roomsqlite.entidades.Pregunta;
 
 public class VisorMemoria extends AppCompatActivity {
     TextView nombreJuego, picto_uno, picto_dos, picto_tres;
-    Button guardar, cancelar, agregar, borrar, editar;
+    Button guardar, cancelar, agregar, borrar, editar, salir;
     ImageButton anterior, siguiente;
     ImageView boton_uno, boton_dos, boton_tres;
     MaterialCardView card1, card2, card3;
@@ -91,6 +93,7 @@ public class VisorMemoria extends AppCompatActivity {
         cancelar = findViewById(R.id.btn_cancelar_memoria);
         agregar = findViewById(R.id.btn_agrega_nivel);
         borrar = findViewById(R.id.btn_borra_nivel);
+        salir = findViewById(R.id.btn_salir);
         editar = findViewById(R.id.editar_nivel);
         card1 = findViewById(R.id.card_1);
         card2 = findViewById(R.id.card_2);
@@ -119,7 +122,7 @@ public class VisorMemoria extends AppCompatActivity {
         siguiente.setVisibility(View.INVISIBLE);
         anterior.setVisibility(View.INVISIBLE);
         cancelar.setVisibility(View.INVISIBLE);
-
+        salir.setVisibility(View.INVISIBLE);
 
         //Seteo nombre del juego
 
@@ -212,6 +215,7 @@ public class VisorMemoria extends AppCompatActivity {
                     editar.setVisibility(View.VISIBLE);
                     agregar.setVisibility(View.VISIBLE);
                     borrar.setVisibility(View.VISIBLE);
+                    salir.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.nivelGuardado), Toast.LENGTH_LONG).show();
 
 
@@ -351,6 +355,10 @@ public class VisorMemoria extends AppCompatActivity {
             });
 
 
+        });
+
+        salir.setOnClickListener(v -> {
+            finish();
         });
 
     }
@@ -584,6 +592,7 @@ public class VisorMemoria extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Runtime.getRuntime().gc();
+
     }
 
     @Override

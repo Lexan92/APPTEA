@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.apptea.ui.home.HomeFragment"
+        android:name="com.teakids.apptea.ui.home.HomeFragment"
         android:label="@string/menu_inicio"
         tools:layout="@layout/fragment_home" >
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/nav_gestion_pictograma"
-        android:name="com.example.apptea.ui.categoriapictograma.CategoriaPictogramaFragment"
+        android:name="com.teakids.apptea.ui.categoriapictograma.CategoriaPictogramaFragment"
         android:label="@string/menu_gestion_pictograma"
         tools:layout="@layout/fragment_gestion_pictograma" >
         <action
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/nav_mi_perfil"
-        android:name="com.example.apptea.ui.usuario.UsuarioFragment"
+        android:name="com.teakids.apptea.ui.usuario.UsuarioFragment"
         android:label="@string/miPerfil"
         tools:layout="@layout/fragment_mi_perfil" >
         <action
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/nav_gestion_habilidad"
-        android:name="com.example.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaFragment"
+        android:name="com.teakids.apptea.ui.categoriahabilidadcotidiana.CategoriaHabCotidianaFragment"
         android:label="@string/menu_gestion_habilidad"
         tools:layout="@layout/fragment_gestion_habilidad" >
         <action
@@ -67,7 +67,7 @@
 
     <fragment
         android:id="@+id/nav_gestion_juego"
-        android:name="com.example.apptea.ui.categoriajuego.CategoriaJuegoFragment"
+        android:name="com.teakids.apptea.ui.categoriajuego.CategoriaJuegoFragment"
         android:label="@string/menu_gestion_juego"
         tools:layout="@layout/fragment_categoria_juego" >
         <action
@@ -80,7 +80,7 @@
 
     <fragment
         android:id="@+id/nav_menu_persona_tea"
-        android:name="com.example.apptea.ui.personaTea.PersonaTeaFragment"
+        android:name="com.teakids.apptea.ui.personaTea.PersonaTeaFragment"
         android:label="@string/menu_persona_tea"
         tools:layout="@layout/fragment_gestion_persona_tea" >
         <action
@@ -93,12 +93,12 @@
 
     <fragment
         android:id="@+id/menuPrincipalFragment"
-        android:name="com.example.apptea.ui.menuPrincipal.MenuPrincipalFragment"
+        android:name="com.teakids.apptea.ui.menuPrincipal.MenuPrincipalFragment"
         android:label="fragment_menu_principal"
         tools:layout="@layout/fragment_menu_persona_tea" />
     <fragment
         android:id="@+id/detalle_Juego"
-        android:name="com.example.apptea.ui.DetalleCategoriaJuego.Detalle_Juego"
+        android:name="com.teakids.apptea.ui.DetalleCategoriaJuego.Detalle_Juego"
         android:label="fragment_detalle__juego"
         tools:layout="@layout/fragment_detalle__juego" >
         <action
@@ -110,7 +110,7 @@
     </fragment>
     <fragment
         android:id="@+id/detalle_Pictograma"
-        android:name="com.example.apptea.ui.pictograma.Detalle_Pictograma"
+        android:name="com.teakids.apptea.ui.pictograma.Detalle_Pictograma"
         android:label="fragment_detalle__pictograma"
         tools:layout="@layout/fragment_detalle__pictograma" >
 
@@ -120,12 +120,12 @@
     </fragment>
     <fragment
         android:id="@+id/detalle_habilidad_Cotidiana"
-        android:name="com.example.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment"
+        android:name="com.teakids.apptea.ui.habilidadCotidiana.HabilidadCotidianaFragment"
         android:label="HabilidadCotidianaFragment"
         tools:layout="@layout/fragment_detalle_habilidad_cotidiana" />
     <activity
         android:id="@+id/juegoPrincipal"
-        android:name="com.example.apptea.ui.juego.JuegoPrincipal"
+        android:name="com.teakids.apptea.ui.juego.JuegoPrincipal"
         android:label="activity_juego_principal"
         tools:layout="@layout/activity_juego_principal" >
 
@@ -133,22 +133,22 @@
 
     <fragment
         android:id="@+id/frasesFragment"
-        android:name="com.example.apptea.ui.frases.frasesFragment"
+        android:name="com.teakids.apptea.ui.frases.frasesFragment"
         android:label="@string/creaerFrases"
         tools:layout="@layout/fragment_frases" />
     <activity
         android:id="@+id/editUsuario"
-        android:name="com.example.apptea.ui.usuario.EditUsuario"
+        android:name="com.teakids.apptea.ui.usuario.EditUsuario"
         android:label="activity_editar_usuario"
         tools:layout="@layout/activity_editar_usuario" />
     <activity
         android:id="@+id/visorPregunta"
-        android:name="com.example.apptea.ui.juego.VisorPregunta"
+        android:name="com.teakids.apptea.ui.juego.VisorPregunta"
         android:label="activity_visor_pregunta"
         tools:layout="@layout/activity_visor_pregunta" />
     <fragment
         android:id="@+id/secuenciaFragment"
-        android:name="com.example.apptea.ui.habilidadCotidiana.SecuenciaFragment"
+        android:name="com.teakids.apptea.ui.habilidadCotidiana.SecuenciaFragment"
         android:label="SecuenciaFragment"
         tools:layout="@layout/fragment_crear_secuencia">
         <action
@@ -158,7 +158,7 @@
 
     <fragment
         android:id="@+id/accesoPin"
-        android:name="com.example.apptea.ui.verificarPin.AccesoPin"
+        android:name="com.teakids.apptea.ui.verificarPin.AccesoPin"
         android:label="fragment_acceso_pin"
         tools:layout="@layout/fragment_acceso_pin" >
         <action
@@ -172,7 +172,7 @@
     </fragment>
     <fragment
         android:id="@+id/detalleJuegoPaciente"
-        android:name="com.example.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente"
+        android:name="com.teakids.apptea.ui.DetalleCategoriaJuego.DetalleJuegoPaciente"
         android:label="fragment_detalle__juego__paciente"
         tools:layout="@layout/fragment_detalle__juego__paciente" >
         <action
@@ -184,40 +184,40 @@
     </fragment>
     <activity
         android:id="@+id/nuevoJuego"
-        android:name="com.example.apptea.ui.juego.NuevoJuego"
+        android:name="com.teakids.apptea.ui.juego.NuevoJuego"
         android:label="activity_nuevo_juego"
         tools:layout="@layout/activity_nuevo_juego" />
     <activity
         android:id="@+id/listadoInicioSesion"
-        android:name="com.example.apptea.ui.inicioSesion.ListadoInicioSesion"
+        android:name="com.teakids.apptea.ui.inicioSesion.ListadoInicioSesion"
         android:label="activity_listado_inicio_sesion"
         tools:layout="@layout/activity_listado_inicio_sesion" />
     <fragment
         android:id="@+id/terapeutaFragment"
-        android:name="com.example.apptea.ui.terapeuta.TerapeutaFragment"
+        android:name="com.teakids.apptea.ui.terapeuta.TerapeutaFragment"
         android:label="@string/tituloTerapeutaEncargado"
         tools:layout="@layout/fragment_gestion_terapeuta" />
     <activity
         android:id="@+id/cerrarSesionUsuario"
-        android:name="com.example.apptea.ui.cerrarSesion.CerrarSesionUsuario"
+        android:name="com.teakids.apptea.ui.cerrarSesion.CerrarSesionUsuario"
         android:label="activity_cerrar_sesion_usuario"
         tools:layout="@layout/activity_cerrar_sesion_usuario" />
 
     <fragment
         android:id="@+id/nav_menu_preguntas_frecuentes"
-        android:name="com.example.apptea.ui.preguntasFrecuentes.FaqFragment"
+        android:name="com.teakids.apptea.ui.preguntasFrecuentes.FaqFragment"
         android:label="@string/menu_preguntas_frecuentes"
         tools:layout="@layout/fragment_faq" >
 
     </fragment>
     <fragment
         android:id="@+id/fragment_respuesta_faq"
-        android:name="com.example.apptea.ui.preguntasFrecuentes.RespuestaFaqFragment"
+        android:name="com.teakids.apptea.ui.preguntasFrecuentes.RespuestaFaqFragment"
         android:label="RespuestaFaqFragment"
         tools:layout="@layout/fragment_respuesta_faq" />
     <fragment
         android:id="@+id/verSesion"
-        android:name="com.example.apptea.ui.sesion.VerSesion"
+        android:name="com.teakids.apptea.ui.sesion.VerSesion"
         android:label="@string/verSesion"
         tools:layout="@layout/fragment_ver_sesion" >
         <action
@@ -229,22 +229,22 @@
     </fragment>
     <fragment
         android:id="@+id/verDetalleSesion"
-        android:name="com.example.apptea.ui.sesion.VerDetalleSesion"
+        android:name="com.teakids.apptea.ui.sesion.VerDetalleSesion"
         android:label="fragment_ver_detalle_sesion"
         tools:layout="@layout/fragment_ver_detalle_sesion" />
     <dialog
         android:id="@+id/comentarioDialogo"
-        android:name="com.example.apptea.ui.sesion.ComentarioDialogo"
+        android:name="com.teakids.apptea.ui.sesion.ComentarioDialogo"
         android:label="fragment_comentario_dialogo"
         tools:layout="@layout/fragment_comentario_dialogo" />
     <fragment
         android:id="@+id/nav_menu_configuracion"
-        android:name="com.example.apptea.ui.configuracion.configuracionFragment"
+        android:name="com.teakids.apptea.ui.configuracion.configuracionFragment"
         android:label="@string/menu_configuracion"
         tools:layout="@layout/fragment_configuracion" />
     <fragment
         android:id="@+id/vistaMemoriaPaciente2"
-        android:name="com.example.apptea.ui.juegoMemoria.VistaMemoriaPaciente"
+        android:name="com.teakids.apptea.ui.juegoMemoria.VistaMemoriaPaciente"
         android:label="@string/juegoDeMemoria"
         tools:layout="@layout/fragment_vista_memoria_paciente" >
         <action
@@ -253,7 +253,7 @@
     </fragment>
     <fragment
         android:id="@+id/finJuegoMemoriaFragment"
-        android:name="com.example.apptea.ui.juegoMemoria.FinJuegoMemoriaFragment"
+        android:name="com.teakids.apptea.ui.juegoMemoria.FinJuegoMemoriaFragment"
         android:label="@string/resultados"
         tools:layout="@layout/fragment_fin_juego_memoria" >
         <action
@@ -264,7 +264,7 @@
     </fragment>
     <fragment
         android:id="@+id/acercaDeFragment"
-        android:name="com.example.apptea.ui.usuario.AcercaDeFragment"
+        android:name="com.teakids.apptea.ui.usuario.AcercaDeFragment"
         android:label="@string/txt8"
         tools:layout="@layout/fragment_acerca_de" >
         <action

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.apptea">
+    package="com.teakids.apptea">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -10,36 +10,36 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
-        android:name=".ui.configuracion.LocaleConfiguracion"
+        android:name="com.teakids.apptea.ui.configuracion.LocaleConfiguracion"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.verificarPin.AccesoPinInicio"></activity>
+        <activity android:name="com.teakids.apptea.ui.verificarPin.AccesoPinInicio"></activity>
         <activity
-            android:name=".ui.juegoMemoria.VisorMemoria"
+            android:name="com.teakids.apptea.ui.juegoMemoria.VisorMemoria"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.inicioSesion.AlertaSesion"
+            android:name="com.teakids.apptea.ui.inicioSesion.AlertaSesion"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.cerrarSesion.CerrarSesionUsuario"
+            android:name="com.teakids.apptea.ui.cerrarSesion.CerrarSesionUsuario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.inicioSesion.ListadoInicioSesion" />
+            android:name="com.teakids.apptea.ui.inicioSesion.ListadoInicioSesion" />
         <activity
-            android:name=".ui.juego.FinJuego"
+            android:name="com.teakids.apptea.ui.juego.FinJuego"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.juegoSeleccion.SeleccionaOpcion"
+            android:name="com.teakids.apptea.ui.juegoSeleccion.SeleccionaOpcion"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.juego.EditarPregunta"
+            android:name="com.teakids.apptea.ui.juego.EditarPregunta"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.juego.BuscarPictograma"
+            android:name="com.teakids.apptea.ui.juego.BuscarPictograma"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
@@ -51,19 +51,19 @@
                 android:resource="@xml/searchablepictograma" />
         </activity>
         <activity
-            android:name=".ui.juego.VisorPregunta"
+            android:name="com.teakids.apptea.ui.juego.VisorPregunta"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.juego.DefinirPregunta"
+            android:name="com.teakids.apptea.ui.juego.DefinirPregunta"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.juego.JuegoPrincipal"
+            android:name="com.teakids.apptea.ui.juego.JuegoPrincipal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.juego.NuevoJuego"
+            android:name="com.teakids.apptea.ui.juego.NuevoJuego"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.teakids.apptea.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -72,70 +72,70 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.usuario.RegistroUsuarioActivity"
+            android:name="com.teakids.apptea.ui.usuario.RegistroUsuarioActivity"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
-            android:name=".instalacion"
+            android:name="com.teakids.apptea.instalacion"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.teakids.apptea.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.categoriahabilidadcotidiana.NuevaCategoriaDialog"
+            android:name="com.teakids.apptea.ui.categoriahabilidadcotidiana.NuevaCategoriaDialog"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name=".ui.categoriapictograma.CategoriaNueva"
+            android:name="com.teakids.apptea.ui.categoriapictograma.CategoriaNueva"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name=".ui.personaTea.NuevaPersonaTea"
+            android:name="com.teakids.apptea.ui.personaTea.NuevaPersonaTea"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
-            android:name=".ui.terapeuta.NuevoTerapeuta"
+            android:name="com.teakids.apptea.ui.terapeuta.NuevoTerapeuta"
             android:label=" "
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth"
             android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
-            android:name=".ui.pictograma.NuevoPictogramaDialog"
+            android:name="com.teakids.apptea.ui.pictograma.NuevoPictogramaDialog"
             android:label=" "
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name=".ui.categoriahabilidadcotidiana.EditCategoriaHab"
+            android:name="com.teakids.apptea.ui.categoriahabilidadcotidiana.EditCategoriaHab"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name=".ui.categoriapictograma.EditCategoriaPictograma"
+            android:name="com.teakids.apptea.ui.categoriapictograma.EditCategoriaPictograma"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name=".ui.usuario.EditUsuario"
-            android:parentActivityName=".ui.usuario.RegistroUsuarioActivity"
+            android:name="com.teakids.apptea.ui.usuario.EditUsuario"
+            android:parentActivityName="com.teakids.apptea.ui.usuario.RegistroUsuarioActivity"
             android:windowSoftInputMode="adjustPan|stateVisible">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.usuario.EditContrasenia" />
+                android:value="com.teakids.apptea.ui.usuario.EditContrasenia" />
         </activity>
         <activity
-            android:name=".ui.usuario.EditContrasenia"
+            android:name="com.teakids.apptea.ui.usuario.EditContrasenia"
             android:windowSoftInputMode="adjustPan|stateVisible" />
         <activity
-            android:name=".ui.Utilities.UtilCamara"
+            android:name="com.teakids.apptea.ui.Utilities.UtilCamara"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.usuario.ValidarCodigo"
+            android:name="com.teakids.apptea.ui.usuario.ValidarCodigo"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth" />
         <activity
-            android:name=".ui.habilidadCotidiana.SecuenciaFragment"
+            android:name="com.teakids.apptea.ui.habilidadCotidiana.SecuenciaFragment"
             android:label="@string/crearSecuencia"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.habilidadCotidiana.VistaPreviaActivity"
+            android:name="com.teakids.apptea.ui.habilidadCotidiana.VistaPreviaActivity"
             android:label=" "
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.habilidadCotidiana.EditSecuencia"
+            android:name="com.teakids.apptea.ui.habilidadCotidiana.EditSecuencia"
             android:label="@string/editSecuencia"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.categoriapictograma.DialogSeleccionImagen"
+            android:name="com.teakids.apptea.ui.categoriapictograma.DialogSeleccionImagen"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
@@ -147,7 +147,7 @@
                 android:resource="@xml/searchablepictograma" />
         </activity>
         <activity
-            android:name=".ui.categoriahabilidadcotidiana.DialogSeleccionImagenHab"
+            android:name="com.teakids.apptea.ui.categoriahabilidadcotidiana.DialogSeleccionImagenHab"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
@@ -159,7 +159,7 @@
                 android:resource="@xml/searchablepictograma" />
         </activity>
         <activity
-            android:name=".ui.DetalleCategoriaJuego.DialogSeleccionImagenJuego"
+            android:name="com.teakids.apptea.ui.DetalleCategoriaJuego.DialogSeleccionImagenJuego"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>

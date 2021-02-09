@@ -19,6 +19,7 @@ import roomsqlite.database.DateConverter;
 @TypeConverters(DateConverter.class)
 public class PersonaTea implements Serializable  {
     @PrimaryKey(autoGenerate = true)
+
     private int persona_id;
     @ColumnInfo(index = true)
     @NonNull
@@ -33,6 +34,7 @@ public class PersonaTea implements Serializable  {
     private String persona_sexo;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] persona_foto;
+    @ColumnInfo(index = true)
     private int rol_id;
 
 // CONSTRUCTOR

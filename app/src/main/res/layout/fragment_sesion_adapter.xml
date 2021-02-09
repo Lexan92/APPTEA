@@ -94,7 +94,7 @@
                 android:textColor="#C62828"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_editar_hab_cotidiana"
+
                 app:layout_constraintHorizontal_bias="0.523"
                 app:layout_constraintStart_toEndOf="@+id/hora_inicio"
                 app:layout_constraintTop_toTopOf="parent"

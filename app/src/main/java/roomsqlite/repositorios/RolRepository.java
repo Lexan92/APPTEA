@@ -14,8 +14,6 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.apptea.R;
-
 import java.util.List;
 
 import roomsqlite.dao.RolDao;

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -34,6 +35,7 @@ public class DetalleSesion {
         hora_inicio = null;
     }
 
+    @Ignore
     public DetalleSesion(int detalle_sesion_id, int sesion_id, @NonNull String nombre_opcion, @NonNull Date hora_inicio) {
         this.detalle_sesion_id = detalle_sesion_id;
         this.sesion_id = sesion_id;

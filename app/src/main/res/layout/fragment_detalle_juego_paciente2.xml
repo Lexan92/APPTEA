@@ -31,7 +31,7 @@
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+
         tools:listitem="@layout/fragment_item__juego">
 
     </androidx.recyclerview.widget.RecyclerView>

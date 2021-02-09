@@ -10,17 +10,9 @@
 
 package roomsqlite.database;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-
-import androidx.core.content.ContextCompat;
-
-import com.example.apptea.R;
 
 import java.io.ByteArrayOutputStream;
 

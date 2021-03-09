@@ -9,184 +9,166 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <TextView
-        android:id="@+id/txt_tituloDesarolladores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/tituloDesarolladores"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/letra_mi_perfil_contenido"
-        android:textSize="19sp"
-        android:textStyle="bold"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/txt_des1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/des1"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/mi_perfil_titulo"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tituloDesarolladores" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/txt_des2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/des2"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/mi_perfil_titulo"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_des1" />
+            <TextView
+                android:id="@+id/txt_tituloDesarolladores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/tituloDesarolladores"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/letra_mi_perfil_contenido"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txt_des3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/des3"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/mi_perfil_titulo"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_des2" />
+            <TextView
+                android:id="@+id/txt_des1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/des1"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
 
-    <TextView
-        android:id="@+id/txt_des4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/des4"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/mi_perfil_titulo"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_des3" />
+            <TextView
+                android:id="@+id/txt_des2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/des2"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:id="@+id/txt_des3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/des3"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/txt_des4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/des4"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
 
 
-    <TextView
-        android:id="@+id/txt_tituloColaboradores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/tituloColaboradores"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/letra_mi_perfil_contenido"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_des4" />
+            <TextView
+                android:id="@+id/txt_tituloColaboradores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/tituloColaboradores"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/letra_mi_perfil_contenido"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txt_col1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/col1"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/mi_perfil_titulo"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tituloColaboradores" />
+            <TextView
+                android:id="@+id/txt_col1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/col1"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
 
-    <TextView
-        android:id="@+id/txt_tituloTutores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/tituloTutores"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/letra_mi_perfil_contenido"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_col1" />
+            <TextView
+                android:id="@+id/txt_tituloTutores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/tituloTutores"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/letra_mi_perfil_contenido"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txt_tut1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/capriola"
-        android:text="@string/tut1"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/mi_perfil_titulo"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tituloTutores" />
+            <TextView
+                android:id="@+id/txt_tut1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/tut1"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal"/>
 
-    <TextView
-        android:id="@+id/txt_tituloCreditos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/capriola"
-        android:gravity="center_horizontal"
-        android:text="@string/tituloCreditos"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/letra_mi_perfil_contenido"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tut1" />
+            <TextView
+                android:id="@+id/txt_tituloCreditos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/tituloCreditos"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/letra_mi_perfil_contenido"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txt_cre1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/capriola"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="@string/cre1"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="@color/mi_perfil_titulo"
-        android:textSize="19sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tituloCreditos" />
+            <TextView
+                android:id="@+id/txt_cre1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre1"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

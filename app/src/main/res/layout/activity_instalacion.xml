@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="1"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/txt1"
         android:textSize="18sp"
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintHeight_percent=".30"
+        app:layout_constraintHeight_percent=".28"
         app:layout_constraintWidth_percent=".80"/>
 
     <TextView
@@ -92,10 +92,10 @@
         android:text="@string/button1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aceptarTerminos"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="0.891" />
     
 
 </androidx.constraintlayout.widget.ConstraintLayout>

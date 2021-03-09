@@ -23,7 +23,7 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight=".75"
+                android:layout_weight=".80"
                 android:layout_height="wrap_content"
                 android:background="@color/colorFondo"
                 android:layout_gravity="center_vertical">
@@ -45,7 +45,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight=".25"
+                android:layout_weight=".20"
                 android:layout_height="match_parent"
                 android:background="@color/colorFondo"
                 android:layout_gravity="center_vertical">
@@ -62,8 +62,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="34dp"
+        android:layout_margin="8dp"
         android:background="@color/gris"
-        android:orientation="horizontal"
-        />
+        android:orientation="horizontal" />
 </LinearLayout>

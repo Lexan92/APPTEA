@@ -34,126 +34,141 @@
         android:id="@+id/scrollView2"
         style="@android:style/Widget.ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/textView6">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="193dp"
-                android:layout_height="190dp"
+                android:id="@+id/lottieAnimationView7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="111dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="107dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".35"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="false"
                 app:lottie_rawRes="@raw/perfil" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nombreUsuarioLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="@string/nombreUsuario"
-                android:textSize="12sp">
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView7">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nombreUsuario"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nombreUsuarioLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName|textCapSentences"
-                    android:maxLength="25"/>
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="@string/nombreUsuario"
+                    android:textSize="12sp">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nombreUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:maxLength="25" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/apellidoUsuarioLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="@string/apellidoUsuario"
+                </com.google.android.material.textfield.TextInputLayout>
 
-                android:textSize="12sp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/apellidoUsuario"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/apellidoUsuarioLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName|textCapSentences"
-                    android:maxLength="25" />
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="@string/apellidoUsuario"
+
+                    android:textSize="12sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/apellidoUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName|textCapSentences"
+                        android:maxLength="25" />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/correoUsuarioLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="@string/correoUsuario"
-                android:textSize="12sp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/correoUsuario"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/correoUsuarioLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="50" />
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="@string/correoUsuario"
+                    android:textSize="12sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/correoUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="50" />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/contraUsuarioLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="15dp"
-                android:ems="10"
-                android:hint="@string/contraUsuario"
-                android:textSize="12sp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/contraUsuario"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/contraUsuarioLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:ems="10"
+                    android:hint="@string/contraUsuario"
+                    android:textSize="12sp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/contraUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/siguienteUsuario"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.964"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintVertical_bias="0.0" />
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/guardar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/siguienteUsuario" />
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:rotationX="4">
+    android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_hab_cotidiana"
@@ -21,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorFondo"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
 
 
             <!-- Title, secondary and supporting text -->
@@ -53,7 +53,7 @@
                 android:textColor="#558B2F"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,7 @@
                 android:id="@+id/fecha_detalle_sesion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="92dp"
+                android:layout_marginTop="88dp"
                 android:text="@string/fecha"
                 android:textColor="#558B2F"
                 android:textStyle="bold"

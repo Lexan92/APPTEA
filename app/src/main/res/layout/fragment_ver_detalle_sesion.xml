@@ -12,7 +12,7 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/detalleDeLaSesion"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,15 +21,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_detalle_sesion"
-        android:layout_width="407dp"
-        android:layout_height="563dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
-        tools:layout_editor_absoluteY="70dp"
-        tools:listitem="@layout/fragment_item_detalle_sesion"
-        />
+        tools:listitem="@layout/fragment_item_detalle_sesion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

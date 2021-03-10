@@ -13,14 +13,11 @@
         android:id="@+id/datosTerapeuta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/datos"
         android:textSize="18sp"
         android:layout_centerHorizontal="true"/>
-
-
 
 
     <ScrollView
@@ -121,35 +118,35 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/guardarTerapeuta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cancelarTerapeuta"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:text="@string/guardarTera" />
 
-                <Button
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/cancelarTerapeuta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/guardarTerapeuta"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:text="@string/cancelarTera" />
 
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
-
-
 
 </RelativeLayout>

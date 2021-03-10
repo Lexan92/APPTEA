@@ -10,7 +10,6 @@
         android:id="@+id/imageView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         android:src="@drawable/ic_teddy_bear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".20"
@@ -60,10 +59,10 @@
             android:id="@+id/edit_text_guardar_sesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:hint="@string/escribaAquiComentarios"
             android:inputType="textCapSentences|textMultiLine"
-            android:lines="5"
+            android:lines="4"
             android:maxLength="500"
             android:padding="8dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
@@ -76,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".70" />
+            app:layout_constraintGuide_percent=".60" />
 
         <EditText
             android:id="@+id/editTextTextPassword"
@@ -99,22 +98,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_save"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancelar_sesion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.892" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <Button
         android:id="@+id/btn_cancelar_sesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancelar"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_descartar"
         app:layout_constraintStart_toEndOf="@+id/btn_guardar_sesion"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <Button
         android:id="@+id/btn_descartar"
@@ -124,15 +123,8 @@
         android:text="@string/descartarSesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/btn_cancelar_sesion"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".90" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

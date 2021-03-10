@@ -125,8 +125,8 @@ public class NuevoPictogramaDialog extends AppCompatActivity {
         });
 
         //GUARDAR PICTOGRAMA
-        final Button button=findViewById(R.id.button_guardar_imagen);
-        button.setOnClickListener(new View.OnClickListener() {
+        //final Button button=findViewById(R.id.button_guardar_imagen);
+        botonRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent replyIntent=new Intent();

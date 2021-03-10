@@ -17,67 +17,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:strokeColor="@color/colorPrimaryDark"
-    >
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/titulo_dialog_nuevo_pictograma"
+        android:textSize="18sp" />
 
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="@string/titulo_dialog_nuevo_pictograma"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.535"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/img_nuevo_pictograma"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:src="@drawable/ic_wallpaper"
-            app:layout_constraintEnd_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".30" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_word_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="228dp"
-
+            android:layout_marginTop="8dp"
             android:hint="@string/hint_dialog_nuevo_pictograma"
-
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:layout_editor_absoluteX="-38dp"
-            app:errorEnabled="true">
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_nuevo_pictograma">
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_nombre_pictograma"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_marginStart="45dp"
-                android:layout_marginTop="164dp"
                 android:fontFamily="sans-serif-light"
                 android:inputType="textCapSentences"
                 android:maxLength="30"
-                android:textSize="14sp"
-
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,45 +82,39 @@
             style="?attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/button_elegir_imagen_nuevo_pictograma"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_word_layout"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_word_layout" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_guardar_imagen"
             style="?attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/button_guardar_imagen_nuevo_pictograma"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_word_layout"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/button_seleccionar_imagen" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cancelar_guardar_imagen"
             style="?attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/cancelar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_word_layout"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/button_guardar_imagen"/>
 
 
 

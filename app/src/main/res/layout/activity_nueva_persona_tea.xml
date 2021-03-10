@@ -9,39 +9,41 @@
   ~
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.personaTea.NuevaPersonaTea">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/datosTea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="@string/datosTea"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/datosTea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/datosTea"
-            android:textSize="18sp"
-            android:layout_gravity="center"/>
+
 
 
     <ScrollView
         android:id="@+id/scrollViewtea"
         style="@android:style/Widget.ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datosTea">
+        app:layout_constraintTop_toBottomOf="@+id/datosTea"
+        app:layout_constraintVertical_bias="0.1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +69,7 @@
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="36dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     app:icon="@drawable/ic_menu_camera" />
 
@@ -84,7 +86,6 @@
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/nombreTea"
-
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -103,7 +104,6 @@
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="@string/apellidoTea"
-
                 android:textSize="12sp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -154,12 +154,12 @@
                     style="@style/Widget.AppCompat.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp">
@@ -170,20 +170,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cancelar"
-                    android:layout_alignParentLeft="true" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guardarPersona"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/guardarPersona"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="@string/guardarPersona" />
-            </RelativeLayout>
+                    android:text="@string/guardarPersona"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cancelarPersona"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
         </LinearLayout>
     </ScrollView>
-    </LinearLayout>
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

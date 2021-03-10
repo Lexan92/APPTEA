@@ -67,7 +67,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_seleccionar_imagen"
+                android:id="@+id/button_seleccionar_imagenh"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_guardar_imagen"
+                android:id="@+id/button_guardar_imagenh"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_cancelar_guardar_imagen"
+                android:id="@+id/button_cancelar_guardar_imagenh"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

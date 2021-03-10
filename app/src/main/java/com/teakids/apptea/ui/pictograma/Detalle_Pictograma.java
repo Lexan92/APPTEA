@@ -186,6 +186,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
                 intentUpdate.putExtra(NuevoPictogramaDialog.EXTRA_ID_PICTOGRAMA_UPDATE, pictograma.getPictograma_id());
                 intentUpdate.putExtra(NuevoPictogramaDialog.EXTRA_ID_CATEGORIA_UPDATE, pictograma.getCat_pictograma_id());
                 intentUpdate.putExtra(NuevoPictogramaDialog.EXTRA_NOMBRE_PICTOGRAMA_UPDATE,pictograma.getPictograma_nombre());
+                intentUpdate.putExtra(NuevoPictogramaDialog.EXTRA_NAME_PICTOGRAMA_UPDATE,pictograma.getPictograma_name());
                 intentUpdate.putExtra(NuevoPictogramaDialog.EXTRA_FOTO_PICTOGRAMA_UPDATE, pictograma.getPictograma_imagen());
 
                 startActivityForResult(intentUpdate,PICTOGRAMA_UPDATE_REQUEST_CODE);
@@ -274,6 +275,7 @@ public class Detalle_Pictograma extends Fragment implements PictogramaAdapter.On
             adapter = null;
         }*/
         Runtime.getRuntime().gc();
+        ttsManager.shutDown();
 
     }
 

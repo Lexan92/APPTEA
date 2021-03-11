@@ -11,21 +11,20 @@
         android:id="@+id/text_nombre_juego_memoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="match_parent"
+        android:id="@+id/gridLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="200dp"
+        android:layout_marginTop="16dp"
         app:columnCount="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_nombre_juego_memoria"
         app:rowCount="3">
@@ -162,21 +161,28 @@
 
     </androidx.gridlayout.widget.GridLayout>
 
-    <TextView
-        android:id="@+id/text_agregar_pictograma"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".50" />
+
+
+    <TextView
+        android:id="@+id/text_agregar_pictograma"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/capriola"
         android:text="@string/agregar"
         android:textAlignment="center"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.867"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintWidth_percent=".40" />
 
     <TextView
         android:id="@+id/text_pictograma"
@@ -187,112 +193,97 @@
         android:textAlignment="center"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.907"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/text_agregar_pictograma" />
 
     <Button
         android:id="@+id/btn_guardar_memoria"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".40"
         android:text="@string/guardar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_agregar_pictograma"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/text_pictograma" />
 
     <Button
         android:id="@+id/btn_cancelar_memoria"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".40"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/cancelar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_memoria"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_memoria" />
 
     <Button
         android:id="@+id/btn_agrega_nivel"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".40"
         android:text="@string/agregarNivel"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_cancelar_memoria"
-        app:layout_constraintVertical_bias="0.272" />
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cancelar_memoria" />
+
+    <Button
+        android:id="@+id/editar_nivel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/editarNivel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/btn_agrega_nivel"
+        app:layout_constraintWidth_percent=".40" />
 
     <Button
         android:id="@+id/btn_borra_nivel"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".40"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/borrarNivel"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_agrega_nivel"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/editar_nivel" />
 
     <Button
         android:id="@+id/btn_salir"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".40"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/salir"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_borra_nivel"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/btn_borra_nivel" />
 
     <ImageButton
         android:id="@+id/img_btn_anterior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="232dp"
         android:backgroundTint="@color/colorAzul"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.925"
+        app:layout_constraintEnd_toStartOf="@+id/img_btn_siguiente"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/btn_salir"
+        app:layout_constraintVertical_bias="0.181"
         app:srcCompat="@android:drawable/ic_media_previous" />
 
     <ImageButton
         android:id="@+id/img_btn_siguiente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
         android:backgroundTint="@color/colorAzul"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toEndOf="@+id/img_btn_anterior"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.925"
+        app:layout_constraintTop_toBottomOf="@+id/btn_salir"
+        app:layout_constraintVertical_bias="0.181"
         app:srcCompat="@android:drawable/ic_media_next" />
 
-    <Button
-        android:id="@+id/editar_nivel"
-        android:layout_width="148dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/editarNivel"
-        app:layout_constraintBottom_toTopOf="@+id/btn_agrega_nivel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_cancelar_memoria"
-        app:layout_constraintVertical_bias="0.086" />
 </androidx.constraintlayout.widget.ConstraintLayout>

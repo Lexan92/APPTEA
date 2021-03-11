@@ -87,6 +87,7 @@ public class Pregunta implements Parcelable {
         dest.writeInt(this.pregunta_id);
         dest.writeInt(this.juego_id);
         dest.writeString(this.titulo_pregunta);
+        dest.writeString(this.name_pregunta);
     }
 
     @Ignore
@@ -94,6 +95,7 @@ public class Pregunta implements Parcelable {
         this.pregunta_id = in.readInt();
         this.juego_id = in.readInt();
         this.titulo_pregunta = in.readString();
+        this.name_pregunta = in.readString();
     }
 
 

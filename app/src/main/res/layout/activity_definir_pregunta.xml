@@ -22,50 +22,238 @@
         android:id="@+id/editNombreJuego1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
         android:text="@string/nombreJuego"
         android:textColor="@color/colorSplash"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.188"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundMode="filled"
         app:counterEnabled="true"
         app:counterMaxLength="30"
-        app:boxBackgroundMode="filled"
+        app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNombreJuego1">
+        app:layout_constraintTop_toBottomOf="@+id/editNombreJuego1"
+        app:layout_constraintVertical_bias="0.515">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nombre_pregunta"
-            android:textSize="15sp"
-            android:hint="@string/escribaTitulo"
-            android:inputType="textCapWords"
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#1B5E20"
-            android:maxLength="30"/>
+            android:hint="@string/escribaTitulo"
+            android:inputType="textCapWords"
+            android:maxLength="30"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:textColor="#1B5E20" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guardar_pregunta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input">
+
+        <ImageButton
+            android:id="@+id/opcion_uno"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toStartOf="@+id/opcion_dos"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".35" />
+
+
+        <TextView
+            android:id="@+id/nombre_opcion_uno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/nombre_opcion_dos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_uno"
+            app:layout_constraintWidth_percent=".40">
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_uno"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_uno"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_uno"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_uno"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done">
+
+        </com.airbnb.lottie.LottieAnimationView>
+
+        <ImageButton
+            android:id="@+id/opcion_dos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toEndOf="@+id/opcion_uno"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".35"/>
+
+        <TextView
+            android:id="@+id/nombre_opcion_dos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintStart_toEndOf="@+id/nombre_opcion_uno"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_dos"
+            app:layout_constraintWidth_percent=".40" >
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_dos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_dos"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_dos"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_dos"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done" />
+
+        <ImageButton
+            android:id="@+id/opcion_tres"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toStartOf="@+id/opcion_cuatro"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:layout_constraintWidth_percent=".35"  />
+
+        <TextView
+            android:id="@+id/nombre_opcion_tres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/nombre_opcion_cuatro"
+            app:layout_constraintHorizontal_bias="0.735"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_tres"
+            app:layout_constraintWidth_percent=".40">
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_tres"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_tres"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_tres"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_tres"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done" />
+
+        <ImageButton
+            android:id="@+id/opcion_cuatro"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toEndOf="@+id/opcion_tres"
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:layout_constraintWidth_percent=".35"  />
+
+        <TextView
+            android:id="@+id/nombre_opcion_cuatro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toEndOf="@+id/nombre_opcion_tres"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_cuatro"
+            app:layout_constraintWidth_percent=".40">
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_cuatro"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_cuatro"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_cuatro"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_cuatro"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".50" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <Button
         android:id="@+id/guardar_pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/guardarPregunta"
         android:textColor="@color/colorSplash"
@@ -73,159 +261,16 @@
         app:iconTint="@color/colorSplash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <ImageButton
-        android:id="@+id/opcion_uno"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="160dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_agregar"
-        app:layout_constraintEnd_toStartOf="@+id/opcion_dos"
-        app:layout_constraintHorizontal_bias="0.354"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
-
-    <TextView
-        android:id="@+id/nombre_opcion_uno"
-        android:layout_width="140dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".22" />
 
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion_uno">
-
-    </TextView>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/check_opcion_uno"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="260dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/checked_done">
-
-    </com.airbnb.lottie.LottieAnimationView>
-
-    <ImageButton
-        android:id="@+id/opcion_dos"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="160dp"
-        android:src="@drawable/ic_agregar"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/nombre_opcion_dos"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.861"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion_dos">
-
-    </TextView>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/check_opcion_dos"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="260dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/checked_done" />
-
-    <ImageButton
-        android:id="@+id/opcion_tres"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/ic_agregar"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/opcion_cuatro"
-        app:layout_constraintHorizontal_bias="0.354"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion_uno" />
-
-    <TextView
-        android:id="@+id/nombre_opcion_tres"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-
-        android:textColor="@color/colorPrimary"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion_tres">
-
-    </TextView>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/check_opcion_tres"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="440dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/checked_done" />
-
-    <ImageButton
-        android:id="@+id/opcion_cuatro"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/ic_agregar"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion_dos" />
-
-    <TextView
-        android:id="@+id/nombre_opcion_cuatro"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.861"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion_cuatro">
-
-    </TextView>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/check_opcion_cuatro"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="440dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/checked_done" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

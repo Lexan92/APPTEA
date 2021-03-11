@@ -29,7 +29,6 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,8 +37,9 @@
         android:id="@+id/nombre_pregunta_visor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorSplash"
         android:hint="@string/tituloPregunta"
         android:singleLine="true"
         android:textColor="@color/colorPrimary"
@@ -47,212 +47,263 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNombreJuegoVisor" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline10" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/eliminar_pregunta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_pregunta_visor">
+
+        <ImageButton
+            android:id="@+id/opcion_uno_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toStartOf="@+id/opcion_dos_visor"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".35" />
+
+
+        <TextView
+            android:id="@+id/nombre_opcion_uno_visor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/nombre_opcion_dos_visor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_uno_visor"
+            app:layout_constraintWidth_percent=".40">
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_uno_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_uno_visor"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_uno_visor"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_uno_visor"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done">
+
+        </com.airbnb.lottie.LottieAnimationView>
+
+        <ImageButton
+            android:id="@+id/opcion_dos_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toEndOf="@+id/opcion_uno_visor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".35" />
+
+        <TextView
+            android:id="@+id/nombre_opcion_dos_visor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintStart_toEndOf="@+id/nombre_opcion_uno_visor"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_dos_visor"
+            app:layout_constraintWidth_percent=".40" >
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_dos_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_dos_visor"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_dos_visor"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_dos_visor"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done" />
+
+        <ImageButton
+            android:id="@+id/opcion_tres_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toStartOf="@+id/opcion_cuatro_visor"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:layout_constraintWidth_percent=".35"  />
+
+        <TextView
+            android:id="@+id/nombre_opcion_tres_visor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/nombre_opcion_cuatro_visor"
+            app:layout_constraintHorizontal_bias="0.735"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_tres_visor"
+            app:layout_constraintWidth_percent=".40">
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_tres_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_tres_visor"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_tres_visor"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_tres_visor"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done" />
+
+        <ImageButton
+            android:id="@+id/opcion_cuatro_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_agregar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".30"
+            app:layout_constraintStart_toEndOf="@+id/opcion_tres_visor"
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:layout_constraintWidth_percent=".35" />
+
+        <TextView
+            android:id="@+id/nombre_opcion_cuatro_visor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toEndOf="@+id/nombre_opcion_tres_visor"
+            app:layout_constraintTop_toBottomOf="@+id/opcion_cuatro_visor"
+            app:layout_constraintWidth_percent=".40" >
+
+        </TextView>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_opcion_cuatro_visor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/nombre_opcion_cuatro_visor"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toStartOf="@+id/nombre_opcion_cuatro_visor"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_opcion_cuatro_visor"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".40"
+            app:lottie_rawRes="@raw/checked_done" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".50" />
+
+        <TextView
+            android:id="@+id/aviso_opcion_vacio"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"  />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/eliminar_pregunta"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/colorSplash"
+        android:scaleType="fitCenter"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/nueva_pregunta_visor"
+        app:layout_constraintHeight_percent=".07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintWidth_percent=".20"
+        app:srcCompat="@drawable/ic_delete_48" />
+
+    <ImageButton
+        android:id="@+id/editar_pregunta"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorSplash"
+        android:scaleType="fitCenter"
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/nueva_pregunta_visor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".07"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toEndOf="@+id/eliminar_pregunta"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintWidth_percent=".20"
+        app:srcCompat="@drawable/ic_edit_48" />
 
     <Button
         android:id="@+id/nueva_pregunta_visor"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/nuevaPregunta"
         android:textColor="@color/colorSplash"
+        android:textSize="14sp"
         app:icon="@drawable/ic_agregar"
         app:iconTint="@color/colorSplash"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_pregunta_visor"
-        tools:ignore="ScrollViewCount"
-        tools:layout_editor_absoluteX="16dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/opcion_uno_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="50dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_agregar"
-                app:layout_constraintEnd_toStartOf="@+id/opcion_dos_visor"
-                app:layout_constraintHorizontal_bias="0.354"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/pregunta_anterior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eliminar_pregunta"
+        app:layout_constraintWidth_percent=".50" />
 
 
-            <TextView
-                android:id="@+id/nombre_opcion_uno_visor"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.147"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_uno_visor">
-
-            </TextView>
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/check_opcion_uno_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="150dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.17"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lottie_rawRes="@raw/checked_done">
-
-            </com.airbnb.lottie.LottieAnimationView>
-
-            <ImageButton
-                android:id="@+id/opcion_dos_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="50dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_agregar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.833"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/nombre_opcion_dos_visor"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.861"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_dos_visor">
-
-            </TextView>
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/check_opcion_dos_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="150dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.83"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lottie_rawRes="@raw/checked_done" />
-
-            <ImageButton
-                android:id="@+id/opcion_tres_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="80dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_agregar"
-                app:layout_constraintEnd_toStartOf="@+id/opcion_cuatro_visor"
-                app:layout_constraintHorizontal_bias="0.354"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_uno_visor" />
-
-            <TextView
-                android:id="@+id/nombre_opcion_tres_visor"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.141"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_tres_visor">
-
-            </TextView>
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/check_opcion_tres_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="350dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.166"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lottie_rawRes="@raw/checked_done" />
-
-            <ImageButton
-                android:id="@+id/opcion_cuatro_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="80dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_agregar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.833"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_dos_visor" />
-
-            <TextView
-                android:id="@+id/nombre_opcion_cuatro_visor"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.861"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/opcion_cuatro_visor">
-
-            </TextView>
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/check_opcion_cuatro_visor"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="350dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.83"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lottie_rawRes="@raw/checked_done" />
-
-            <TextView
-                android:id="@+id/aviso_opcion_vacio"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
     <ImageButton
         android:id="@+id/siguiente_pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/contador_preguntas"
         app:srcCompat="@drawable/ic_siguiente" />
 
     <ImageButton
@@ -260,48 +311,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.691"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/contador_preguntas"
+        app:layout_constraintStart_toEndOf="@+id/nueva_pregunta_visor"
         app:srcCompat="@drawable/ic_anterior" />
 
     <TextView
         android:id="@+id/contador_preguntas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:text="1 / N"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/siguiente_pregunta"
+        app:layout_constraintStart_toEndOf="@+id/pregunta_anterior" />
 
-    <ImageButton
-        android:id="@+id/eliminar_pregunta"
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:background="@color/colorSplash"
-        android:tint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editar_pregunta"
-        app:layout_constraintHorizontal_bias="0.781"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_delete_48" />
-
-    <ImageButton
-        android:id="@+id/editar_pregunta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:background="@color/colorSplash"
-        android:tint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.308"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_edit_48" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".10" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

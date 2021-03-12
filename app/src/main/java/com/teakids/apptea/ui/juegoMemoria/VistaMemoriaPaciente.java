@@ -677,5 +677,11 @@ public class VistaMemoriaPaciente extends Fragment {
         Runtime.getRuntime().gc();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Runtime.getRuntime().gc();
+    }
+
 
 }

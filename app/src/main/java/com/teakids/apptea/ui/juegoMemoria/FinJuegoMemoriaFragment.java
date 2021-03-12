@@ -1,6 +1,12 @@
 package com.teakids.apptea.ui.juegoMemoria;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -12,13 +18,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-
+import com.google.android.material.appbar.MaterialToolbar;
 import com.teakids.apptea.R;
 import com.teakids.apptea.ui.juegoSeleccion.DetalleResultadoAdapter;
 import com.teakids.apptea.ui.juegoSeleccion.DetalleResultadoViewModel;
@@ -97,6 +97,9 @@ public class FinJuegoMemoriaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        MaterialToolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
+
         Bundle argumento = getArguments();
         resultado = (Resultado) argumento.getSerializable("resultado");
         nombreJuego = view.findViewById(R.id.ResNombreJuego);
@@ -137,7 +140,9 @@ public class FinJuegoMemoriaFragment extends Fragment {
             bundleEnvio.putInt("objeto", catJuego);
             bundleEnvio.putBoolean("bandera",argumento.getBoolean("bandera"));
             Navigation.findNavController(view).navigate(R.id.action_finJuegoMemoriaFragment_to_detalleJuegoPaciente, bundleEnvio);
+            toolbar.setVisibility(View.VISIBLE);
         });
+
 
 
     }

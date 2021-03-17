@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
-            android:padding="16dp"
+            android:padding="2dp"
             app:columnCount="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,34 +59,62 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
 
-                    <!-- Media -->
                     <ImageView
                         android:id="@+id/img_card1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight_percent=".7"
+                        app:layout_constraintWidth_percent=".75"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:paddingTop="5dp"
-                        android:scaleType="fitXY" />
+                        app:layout_constraintHeight_percent=".25"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_card1">
 
-                    <TextView
-                        android:id="@+id/nombre_card1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/capriola"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="@color/mi_perfil_titulo"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/nombre_card1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/capriola"
+                            android:paddingRight="4dp"
+                            android:paddingLeft="4dp"
+                            android:paddingBottom="4dp"
+                            android:text="nombre pictograma"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="@color/mi_perfil_titulo"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="8sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </com.google.android.material.card.MaterialCardView>
@@ -105,33 +133,61 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
-                    <!-- Media -->
+
                     <ImageView
                         android:id="@+id/img_card2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight_percent=".7"
+                        app:layout_constraintWidth_percent=".75"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:paddingTop="5dp"
-                        android:scaleType="fitXY" />
+                        app:layout_constraintHeight_percent=".25"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_card2">
 
-                    <TextView
-                        android:id="@+id/nombre_card2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/capriola"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="@color/mi_perfil_titulo"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/nombre_card2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/capriola"
+                            android:paddingRight="4dp"
+                            android:paddingLeft="4dp"
+                            android:paddingBottom="4dp"
+                            android:text="nombre pictograma"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="@color/mi_perfil_titulo"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="8sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -148,33 +204,61 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
-                    <!-- Media -->
+
                     <ImageView
                         android:id="@+id/img_card3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight_percent=".7"
+                        app:layout_constraintWidth_percent=".75"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:paddingTop="5dp"
-                        android:scaleType="fitXY" />
+                        app:layout_constraintHeight_percent=".25"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_card3">
 
-                    <TextView
-                        android:id="@+id/nombre_card3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/capriola"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="@color/mi_perfil_titulo"
-                        android:textSize="18sp"
-                        android:textStyle="bold"  />
-                </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/nombre_card3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/capriola"
+                            android:paddingRight="4dp"
+                            android:paddingLeft="4dp"
+                            android:paddingBottom="4dp"
+                            android:text="nombre pictograma"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="@color/mi_perfil_titulo"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="8sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -191,33 +275,60 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
-                    <!-- Media -->
                     <ImageView
                         android:id="@+id/img_card4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight_percent=".7"
+                        app:layout_constraintWidth_percent=".75"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:paddingTop="5dp"
-                        android:scaleType="fitXY"  />
+                        app:layout_constraintHeight_percent=".25"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_card4">
 
-                    <TextView
-                        android:id="@+id/nombre_card4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/capriola"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="@color/mi_perfil_titulo"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/nombre_card4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/capriola"
+                            android:paddingRight="4dp"
+                            android:paddingLeft="4dp"
+                            android:paddingBottom="4dp"
+                            android:text="nombre pictograma"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="@color/mi_perfil_titulo"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="8sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -234,33 +345,61 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
-                    <!-- Media -->
+
                     <ImageView
                         android:id="@+id/img_card5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight_percent=".7"
+                        app:layout_constraintWidth_percent=".75"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:paddingTop="5dp"
-                        android:scaleType="fitXY" />
+                        app:layout_constraintHeight_percent=".25"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_card5">
 
-                    <TextView
-                        android:id="@+id/nombre_card5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/capriola"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="@color/mi_perfil_titulo"
-                        android:textSize="18sp"
-                        android:textStyle="bold"  />
-                </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/nombre_card5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/capriola"
+                            android:paddingRight="4dp"
+                            android:paddingLeft="4dp"
+                            android:paddingBottom="4dp"
+                            android:text="nombre pictograma"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="@color/mi_perfil_titulo"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="8sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -277,33 +416,61 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:orientation="vertical">
-                    <!-- Media -->
+
                     <ImageView
                         android:id="@+id/img_card6"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight_percent=".7"
+                        app:layout_constraintWidth_percent=".75"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:paddingTop="5dp"
-                        android:scaleType="fitXY" />
+                        app:layout_constraintHeight_percent=".25"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_card6">
 
-                    <TextView
-                        android:id="@+id/nombre_card6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/capriola"
-                        android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
-                        android:textColor="@color/mi_perfil_titulo"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/nombre_card6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/capriola"
+                            android:paddingRight="4dp"
+                            android:paddingLeft="4dp"
+                            android:paddingBottom="4dp"
+                            android:text="nombre pictograma"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="@color/mi_perfil_titulo"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="8sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </androidx.gridlayout.widget.GridLayout>

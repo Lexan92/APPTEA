@@ -9,88 +9,133 @@
   ~
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.frases.frasesFragment"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-   <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight=".25">
+        android:background="@color/colorSplash"
+        app:layout_constraintHeight_percent=".25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".75">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_frases"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/fragment_item_pic_frases" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageButton
+            android:id="@+id/btn_play"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorSplash"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginBottom="2dp"
+            android:tint="@color/colorSplash"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".50"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout9"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".25"
+            app:srcCompat="@drawable/ic_play" />
+
+        <ImageButton
+            android:id="@+id/btn_backspace"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorSplash"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginTop="2dp"
+            android:tint="@color/colorSplash"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".50"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout9"
+            app:layout_constraintTop_toBottomOf="@+id/btn_play"
+            app:layout_constraintWidth_percent=".25"
+            app:srcCompat="@drawable/ic_backspace"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".25"
+        android:background="@color/colorSplash"
+        android:layout_marginTop="2dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_frases"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/recycler_categorias"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
-            android:layout_weight=".75"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/fragment_item_pic_frases"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorSplash"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_picto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/fragment_item_pic_frases" />
 
-       <LinearLayout
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           android:layout_weight=".25"
-           android:orientation="vertical">
-
-           <com.google.android.material.button.MaterialButton
-               android:id="@+id/btn_play"
-               android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:layout_weight=".50"
-               app:icon="@drawable/ic_play"
-               app:iconSize="@android:dimen/app_icon_size"
-               app:iconGravity="textStart"/>
-
-           <com.google.android.material.button.MaterialButton
-               android:id="@+id/btn_backspace"
-               android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:layout_weight=".50"
-               app:icon="@drawable/ic_backspace"
-               app:iconSize="@android:dimen/app_icon_size"
-               app:iconGravity="textStart"/>
-
-       </LinearLayout>
-
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_categorias"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:layout_weight=".25"
-        tools:listitem="@layout/fragment_item_pic_frases" >
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-      <View
-       android:id="@+id/divider2"
-       android:layout_width="match_parent"
-       android:layout_height="1dp"
-       android:background="@color/colorPrimary" />
-
-<androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/recycler_picto"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight=".50"
-       tools:listitem="@layout/fragment_item_pic_frases" />
-
-
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

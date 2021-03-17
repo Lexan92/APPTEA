@@ -9,7 +9,7 @@
   ~
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,93 +18,124 @@
     tools:context=".ui.habilidadCotidiana.SecuenciaFragment"
     android:orientation="vertical">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/secuenciaSection"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight=".25">
+        android:background="@color/colorSplash"
+        app:layout_constraintHeight_percent=".25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_secuencia"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:layout_weight=".75"
-            tools:listitem="@layout/fragment_item_pic_secuencia" />
-
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/secuencia"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight=".25"
-            android:orientation="vertical">
+            android:paddingBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".75">
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                android:id="@+id/btn_save"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_secuencia"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".50"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:insetLeft="3dp"
-                android:insetRight="0dp"
-                app:icon="@drawable/ic_ojo"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/fragment_item_pic_secuencia" />
 
-                app:iconSize="@android:dimen/app_icon_size"
-                app:iconGravity="textStart"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_backspace"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".50"
-                android:insetLeft="3dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                app:icon="@drawable/ic_backspace"
-
-                app:iconGravity="textStart"
-                app:iconSize="@android:dimen/app_icon_size" />
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </LinearLayout>
+        <ImageButton
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorSplash"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginBottom="2dp"
+            android:tint="@color/colorSplash"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".50"
+            app:layout_constraintStart_toEndOf="@+id/secuencia"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".25"
+            app:srcCompat="@drawable/ic_ojo" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
+        <ImageButton
+            android:id="@+id/btn_backspace"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorSplash"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginTop="2dp"
+            android:tint="@color/colorSplash"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".50"
+            app:layout_constraintStart_toEndOf="@+id/secuencia"
+            app:layout_constraintTop_toBottomOf="@+id/btn_save"
+            app:layout_constraintWidth_percent=".25"
+            app:srcCompat="@drawable/ic_backspace"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_categorias"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:layout_weight=".25"
-        tools:listitem="@layout/fragment_item_frases" >
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_picto"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".50"
-        tools:listitem="@layout/fragment_item_pic_frases" />
+        app:layout_constraintHeight_percent=".25"
+        android:background="@color/colorSplash"
+        android:layout_marginTop="2dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secuenciaSection">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_categorias"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/fragment_item_frases"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorSplash"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_picto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/fragment_item_pic_frases" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

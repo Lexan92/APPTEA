@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/capriola"
         android:text="@string/finJuego"
         android:textColor="#EF5350"

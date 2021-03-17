@@ -114,6 +114,7 @@
             android:layoutAnimation="@anim/layout_fall_down"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

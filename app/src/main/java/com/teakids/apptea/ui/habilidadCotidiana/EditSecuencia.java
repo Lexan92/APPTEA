@@ -23,6 +23,7 @@ import com.teakids.apptea.ui.configuracion.LocaleHelper;
 import com.teakids.apptea.ui.frases.CatPictoFrasesAdapter;
 import com.teakids.apptea.ui.frases.PictoFrasesAdapter;
 import com.teakids.apptea.ui.pictograma.PictogramaViewModel;
+import com.teakids.apptea.utilidades.AdministarSesion;
 import com.teakids.apptea.utilidades.TTSManager;
 
 import java.io.Serializable;
@@ -75,6 +76,7 @@ public class  EditSecuencia extends AppCompatActivity{
         backspace = findViewById(R.id.btn_backspace);
         int catHabilidadId = getIntent().getIntExtra("llaveCatHabilidad",0);
         Intent intentUpdate = getIntent();
+        AdministarSesion idioma = new AdministarSesion(getApplicationContext());
         int idHab = getIntent().getIntExtra("idHabilidad",0);
         String nombrehabilidad = intentUpdate.getStringExtra("nombreHabilidad");
         String namehabilidad = intentUpdate.getStringExtra("nameHabilidad");
@@ -128,7 +130,10 @@ public class  EditSecuencia extends AppCompatActivity{
             public void PictoClicked(Pictograma pictograma) {
                 System.out.println("en el fragment" + pictograma.getPictograma_nombre());
                 //REPRODUCIENDO NOMBRE
-                ttsManager.initQueue(pictograma.getPictograma_nombre());
+                if(idioma.getIdioma()==1){
+                    ttsManager.initQueue(pictograma.getPictograma_nombre());
+                }else{
+                    ttsManager.initQueue(pictograma.getPictograma_name());}
                 //FRASE
                 adapterFrases = new PictoSecuenciaAdapter((ArrayList<Pictograma>) pictoFraseList);
                 pictoFraseList.add(pictograma);

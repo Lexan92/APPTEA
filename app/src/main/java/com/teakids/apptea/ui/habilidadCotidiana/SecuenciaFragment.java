@@ -152,6 +152,7 @@ public class SecuenciaFragment extends AppCompatActivity{
                 intent.putExtra("idCatHabilidad",catHabilidadId);
                 intent.putExtra("definirPantalla",false);
                 startActivity(intent);
+                finish();
             }
         }
     });

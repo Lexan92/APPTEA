@@ -170,6 +170,7 @@ public class  EditSecuencia extends AppCompatActivity{
                         intent.putExtra("nombreHabilidad",nombrehabilidad);
                         intent.putExtra("nameHabilidad",namehabilidad);
                         startActivity(intent);
+                        finish();
 
                 }
             }

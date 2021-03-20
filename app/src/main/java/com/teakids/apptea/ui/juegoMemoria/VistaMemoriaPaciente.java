@@ -2,6 +2,7 @@ package com.teakids.apptea.ui.juegoMemoria;
 
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -181,6 +182,9 @@ public class VistaMemoriaPaciente extends Fragment {
         juego = (Juego) argumento.getSerializable("juego");
         //juegoId = argumento.getInt("juegoId",0);
         //titulo = argumento.getString("nombreJuego");
+
+        //ORIENTACION
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         if(sesion.getIdioma()==1){
             nombreJuego.setText(juego.getJuego_nombre());

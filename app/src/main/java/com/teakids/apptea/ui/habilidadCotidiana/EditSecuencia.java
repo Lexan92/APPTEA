@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,8 +43,8 @@ public class  EditSecuencia extends AppCompatActivity{
     RecyclerView recyclerView1;
     RecyclerView recyclerView2;
     RecyclerView recyclerView3;
-    private Button ver;
-    private Button backspace;
+    private ImageButton ver;
+    private ImageButton backspace;
     TTSManager ttsManager=null;
     private List<Pictograma> pictoFraseList2;
 

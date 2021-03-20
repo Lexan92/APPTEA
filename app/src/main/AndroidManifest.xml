@@ -20,7 +20,8 @@
         <activity android:name="com.teakids.apptea.ui.verificarPin.AccesoPinInicio"></activity>
         <activity
             android:name="com.teakids.apptea.ui.juegoMemoria.VisorMemoria"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.teakids.apptea.ui.inicioSesion.AlertaSesion"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -34,10 +35,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.teakids.apptea.ui.juegoSeleccion.SeleccionaOpcion"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.teakids.apptea.ui.juego.EditarPregunta"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.teakids.apptea.ui.juego.BuscarPictograma"
             android:theme="@style/AppTheme.NoActionBar"
@@ -52,10 +55,12 @@
         </activity>
         <activity
             android:name="com.teakids.apptea.ui.juego.VisorPregunta"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.teakids.apptea.ui.juego.DefinirPregunta"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.teakids.apptea.ui.juego.JuegoPrincipal"
             android:theme="@style/AppTheme.NoActionBar" />

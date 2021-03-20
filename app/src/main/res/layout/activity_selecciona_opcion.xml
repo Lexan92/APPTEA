@@ -57,38 +57,63 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
+            app:cardElevation="5dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/transparent"
                 android:orientation="vertical">
 
-                <!-- Media -->
                 <ImageView
                     android:id="@+id/pictograma_uno"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent=".7"
+                    app:layout_constraintWidth_percent=".75"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_juegos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:src="@drawable/ic_juegos"
-                    android:scaleType="fitXY"
-                    android:layout_gravity="center_horizontal"/>
+                    app:layout_constraintHeight_percent=".25"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pictograma_uno">
 
-                <TextView
-                    android:id="@+id/titulo_pictograma_uno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/capriola"
-                    android:text="@string/pictograma"
-                    android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/colorPrimary"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/titulo_pictograma_uno"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:fontFamily="@font/capriola"
+                        android:paddingRight="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/pictograma"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="8sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -101,40 +126,62 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="6dp"
+            app:cardElevation="5dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/transparent"
                 android:orientation="vertical">
 
-                <!-- Media -->
                 <ImageView
                     android:id="@+id/pictograma_dos"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent=".7"
+                    app:layout_constraintWidth_percent=".75"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_juegos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:src="@drawable/ic_juegos"
-                    android:scaleType="fitXY"
-                    android:layout_gravity="center_horizontal"/>
+                    app:layout_constraintHeight_percent=".25"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pictograma_dos">
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/titulo_pictograma_dos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:fontFamily="@font/capriola"
+                        android:paddingRight="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/pictograma"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="8sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/titulo_pictograma_dos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/capriola"
-                    android:text="@string/pictograma"
-                    android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/colorPrimary"/>
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -151,34 +198,58 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/transparent"
                 android:orientation="vertical">
 
-                <!-- Media -->
                 <ImageView
                     android:id="@+id/pictograma_tres"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent=".7"
+                    app:layout_constraintWidth_percent=".75"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_juegos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:src="@drawable/ic_juegos"
-                    android:scaleType="fitXY"
-                    android:layout_gravity="center_horizontal"/>
+                    app:layout_constraintHeight_percent=".25"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pictograma_tres">
 
-                <TextView
-                    android:id="@+id/titulo_pictograma_tres"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/capriola"
-                    android:text="@string/pictograma"
-                    android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/colorPrimary"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/titulo_pictograma_tres"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:fontFamily="@font/capriola"
+                        android:paddingRight="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/pictograma"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="8sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -196,34 +267,58 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/transparent"
                 android:orientation="vertical">
 
-                <!-- Media -->
                 <ImageView
                     android:id="@+id/pictograma_cuatro"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent=".7"
+                    app:layout_constraintWidth_percent=".75"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_juegos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:src="@drawable/ic_juegos"
-                    android:scaleType="fitXY"
-                    android:layout_gravity="center_horizontal"/>
+                    app:layout_constraintHeight_percent=".25"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pictograma_cuatro">
 
-                <TextView
-                    android:id="@+id/titulo_pictograma_cuatro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/capriola"
-                    android:text="@string/pictograma"
-                    android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/colorPrimary"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/titulo_pictograma_cuatro"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:fontFamily="@font/capriola"
+                        android:paddingRight="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/pictograma"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="8sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 

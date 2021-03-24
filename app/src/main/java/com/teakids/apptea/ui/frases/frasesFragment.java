@@ -217,6 +217,9 @@ public class frasesFragment extends Fragment {
                 adapterPicto.setPictograma(pictogramas);
             }
         });
+       ModelCatPicto.getAllCategoriaPictograma().removeObservers(getActivity());
+       ModelPicto.getAllPictogramaByCategoria(categoriaPictograma.getCat_pictograma_id()).removeObservers(getActivity());
+
     }
 
     @Override

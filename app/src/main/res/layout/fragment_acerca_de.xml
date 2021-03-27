@@ -10,6 +10,7 @@
 
 
     <ScrollView
+        android:id="@+id/scroll1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -25,10 +27,23 @@
             android:gravity="center_horizontal">
 
             <TextView
+                android:id="@+id/txt_general"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/capriola"
+                android:text="@string/general"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+
+            <TextView
                 android:id="@+id/txt_tituloDesarolladores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/capriola"
                 android:gravity="center_horizontal"
                 android:text="@string/tituloDesarolladores"
@@ -159,9 +174,202 @@
                 android:id="@+id/txt_cre1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/capriola"
                 android:gravity="center_horizontal"
                 android:text="@string/cre1"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre2"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre3"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre4"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre5"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre6"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre7"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre8"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre9"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre10"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre11"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre12"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre13"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre14"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre15"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre16"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textColor="@color/mi_perfil_titulo"
+                android:textSize="19sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/txt_cre17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/capriola"
+                android:gravity="center_horizontal"
+                android:text="@string/cre17"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textColor="@color/mi_perfil_titulo"
                 android:textSize="19sp"

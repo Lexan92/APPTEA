@@ -4,9 +4,9 @@
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_title">TEA KIDS</string>
     <string name="txt9">Encargado</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
 
     --NOMBRE DE MENUS
 
@@ -105,6 +105,10 @@
 
 
     --ACERCA DE
+    <string name="general" translatable="false">TEA KIDS es un software diseñado como herramienta de apoyo
+        para el aprendizaje de la comunicación orientado
+        a personas no verbales con trastornos del espectro autista.¡Gracias por utilizar TEA KIDS!</string>
+
     <string name="tituloDesarolladores">DESARROLLADORES</string>
     <string name="des1" translatable="false">Luis Alexander Aquino Avendaño</string>
     <string name="des2" translatable="false">Elsy Beatriz Campos Orellana</string>
@@ -118,10 +122,24 @@
     <string name="tut1" translatable="false">Msc. José María Sanchez</string>
 
     <string name="tituloCreditos">CREDITOS</string>
-    <string name="cre1" translatable="false">Gard Game por Иван Капустин en lottiefiles.com</string>
-    <string name="cre2" translatable="false">confetti on transparent background por Nataly Go en lottiefiles.com</string>
-    <string name="cre3" translatable="false">Empty box por Hoai Le en lottiefiles.com</string>
-    <string name="cre4" translatable="false">Gard Game por Иван Капустин en lottiefiles.com</string>
+    <string name="cre1" translatable="false">-Gard Game por Иван Капустин en lottiefiles.com</string>
+    <string name="cre2" translatable="false">-Confetti on transparent background por Nataly Go en lottiefiles.com</string>
+    <string name="cre3" translatable="false">-Empty box por Hoai Le en lottiefiles.com</string>
+    <string name="cre4" translatable="false">-Cofetti long video por Tom Fabre en lottiefiles.com</string>
+    <string name="cre5" translatable="false">-User por abdulrahman alfeky en lottiefiles.com</string>
+    <string name="cre6" translatable="false">-Lock animation por Alex Füllenbach en lottiefiles.com</string>
+    <string name="cre7" translatable="false">-Trophy por Lucas Nemo en lottiefiles.com</string>
+    <string name="cre8" translatable="false">-Autor: Sergio Palao /Origen: ARASAAC (http://www.arasaac.org)
+        Licencia: CC (BY-NC-SA) /Propiedad: Gobierno de Aragón (España)</string>
+    <string name="cre9" translatable="false">-Vector de Fondo creado por freepik - www.freepik.es</string>
+    <string name="cre10" translatable="false">-Vector de Personas creado por freepik - www.freepik.es</string>
+    <string name="cre11" translatable="false">-Vector de Diseño creado por freepik - www.freepik.es</string>
+    <string name="cre12" translatable="false">-Icono creado por: smashicons de www.flaticon.com</string>
+    <string name="cre13" translatable="false">-Icono creado por: prosymbols de www.flaticon.com</string>
+    <string name="cre14" translatable="false">-Icono creado por: eucalyp de www.flaticon.com</string>
+    <string name="cre15" translatable="false">-Icono creado por: freepik de www.flaticon.com</string>
+    <string name="cre16" translatable="false">-Icono creado por: becris de www.flaticon.com</string>
+    <string name="cre17" translatable="false">-Icono creado por: kiranshastry de www.flaticon.com</string>
 
     --CATEGORIA DE PICTOGRAMAS
     <string name="agregarImg">¿Desea guardar como imagen principal de Categoría: </string>

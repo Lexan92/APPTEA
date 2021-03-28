@@ -97,7 +97,7 @@ public class VistaMemoriaPaciente extends Fragment {
     int pos =0;
     int correctas = 0;
     int incorrectas = 0;
-    private int milisegundos = 800;
+    private int milisegundos = 500;
     TTSManager ttsManager = null;
     Button siguiente;
     DetalleResultado detalleResultado= new DetalleResultado();
@@ -222,6 +222,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 opcion1.setEnabled(false);
                 opcion1.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic1;
+                desactivarListener();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -256,6 +257,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 opcion2.setEnabled(false);
                 opcion2.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic2;
+                desactivarListener();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -268,11 +270,10 @@ public class VistaMemoriaPaciente extends Fragment {
                             nombreCard2.setVisibility(View.INVISIBLE);
                         }else{
                             opcion2.setEnabled(false);
-                        };
+                        }
                     }
                 },milisegundos);
             }
-            System.out.println(pic2);
             }
         );
 
@@ -290,6 +291,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 opcion3.setEnabled(false);
                 opcion3.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic3;
+                desactivarListener();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -302,7 +304,7 @@ public class VistaMemoriaPaciente extends Fragment {
                             nombreCard3.setVisibility(View.INVISIBLE);
                         }else{
                             opcion3.setEnabled(false);
-                        };
+                        }
                     }
                 },milisegundos);
 
@@ -324,6 +326,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 opcion4.setEnabled(false);
                 opcion4.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic4;
+                desactivarListener();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -340,8 +343,7 @@ public class VistaMemoriaPaciente extends Fragment {
                     }
                 },milisegundos);
             }
-
-                }
+        }
         );
         opcion5.setOnClickListener(v -> {
             ttsManager.initQueue(nombreCard5.getText().toString());
@@ -357,6 +359,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 opcion5.setEnabled(false);
                 opcion5.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic5;
+                desactivarListener();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -369,7 +372,7 @@ public class VistaMemoriaPaciente extends Fragment {
                             nombreCard5.setVisibility(View.INVISIBLE);
                         }else{
                             opcion5.setEnabled(false);
-                        };
+                        }
                     }
                 },milisegundos);
             }
@@ -390,6 +393,7 @@ public class VistaMemoriaPaciente extends Fragment {
                 opcion6.setEnabled(false);
                 opcion6.setBackgroundDrawable(fondoBlanco);
                 seleccion2 = pic6;
+                desactivarListener();
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -402,7 +406,7 @@ public class VistaMemoriaPaciente extends Fragment {
                             nombreCard6.setVisibility(View.INVISIBLE);
                         }else{
                             opcion6.setEnabled(false);
-                        };
+                        }
                     }
                 },milisegundos);
             }
@@ -494,8 +498,8 @@ public class VistaMemoriaPaciente extends Fragment {
     //Retorna true si son iguales y False sino son iguales
     private boolean compararCartas(int s1,int s2){
         boolean iguales;
+        //Si son iguales las dos cartas
         if(s1 == s2){
-            System.out.println("iguales");
             iguales = true;
             correctas++;
             celebracion.setVisibility(View.VISIBLE);
@@ -511,14 +515,15 @@ public class VistaMemoriaPaciente extends Fragment {
                 @Override
                 public void run() {
                     celebracion.setVisibility(View.INVISIBLE);
+                    activarListener();
                 }
             },milisegundos);
 
-
+        //No son iguales
         }else{
-            System.out.println("no son Iguales");
             incorrectas++;
             iguales = false;
+            activarListener();
         }
         seleccion1 = 0;
         seleccion2 = 0;
@@ -537,6 +542,23 @@ public class VistaMemoriaPaciente extends Fragment {
         opcion6.setEnabled(true);
     }
 
+    private void desactivarListener(){
+        opcion1.setClickable(false);
+        opcion2.setClickable(false);
+        opcion3.setClickable(false);
+        opcion4.setClickable(false);
+        opcion5.setClickable(false);
+        opcion6.setClickable(false);
+    }
+
+    private void activarListener(){
+        opcion1.setClickable(true);
+        opcion2.setClickable(true);
+        opcion3.setClickable(true);
+        opcion4.setClickable(true);
+        opcion5.setClickable(true);
+        opcion6.setClickable(true);
+    }
 
 
     //funcion que setea cardviews con pictogramas, recibe la posicion en la lista de las preguntas

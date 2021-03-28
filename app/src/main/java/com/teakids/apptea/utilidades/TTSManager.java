@@ -76,5 +76,9 @@ public class TTSManager {
         else
             Log.e("error", "TTS Not Initialized");
     }
+
+    public boolean isSpeaking(){
+        return mTts.isSpeaking();
+    }
 }
 
